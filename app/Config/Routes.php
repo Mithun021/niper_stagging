@@ -1,0 +1,88 @@
+<?php
+
+use CodeIgniter\Router\RouteCollection;
+
+/**
+ * @var RouteCollection $routes
+ */
+$routes->get('/', 'Home::index');
+$routes->match(['get','post'],'admin/login', 'AdminControllers::adminLogin');
+$routes->group('admin',['filter'=>'adminLogin'], static function($routes){
+    $routes->get('/', 'AdminControllers::adminDashboard');
+    $routes->get('logout', 'AdminControllers::logout');
+
+    $routes->match(['get','post'],'news-post', 'AdminControllers::news_post');
+    $routes->match(['get','post'],'event-post', 'AdminControllers::event_post');
+    $routes->match(['get','post'],'event-members', 'AdminControllers::event_members');
+    $routes->match(['get','post'],'event-organizer', 'AdminControllers::event_organizer');
+    $routes->match(['get','post'],'event-fees', 'AdminControllers::event_fees');
+    $routes->match(['get','post'],'event-highlight', 'AdminControllers::event_highlight');
+    $routes->match(['get','post'],'event-category', 'AdminControllers::event_category');
+    $routes->match(['get','post'],'accouncement', 'AdminControllers::accouncement');
+    $routes->match(['get','post'],'academic-details', 'AdminControllers::academic_details');
+    $routes->match(['get','post'],'achievements', 'AdminControllers::achievements');
+    // $routes->match(['get','post'],'director-message', 'AdminControllers::director_message');
+    $routes->match(['get','post'],'testimonial', 'AdminControllers::testimonial');
+    $routes->match(['get','post'],'research-publication', 'AdminControllers::research_publication');
+    $routes->match(['get','post'],'faculty-awards', 'AdminControllers::faculty_awards');
+    $routes->match(['get','post'],'awards-recognition', 'AdminControllers::awards_recognition');
+    $routes->match(['get','post'],'student-achievements', 'AdminControllers::student_achievements');
+
+    $routes->match(['get','post'],'employee', 'EmployeeController::employee');
+    $routes->match(['get','post'],'employee-department', 'AdminControllers::employee_department');
+    $routes->match(['get','post'],'employee-experience', 'AdminControllers::employee_experience');
+    $routes->match(['get','post'],'employee-projects', 'AdminControllers::employee_projects');
+    $routes->match(['get','post'],'employee-publication', 'AdminControllers::employee_publication');
+    $routes->match(['get','post'],'employee-awards', 'AdminControllers::employee_awards');
+
+    $routes->match(['get','post'],'images', 'AdminControllers::images');
+    $routes->match(['get','post'],'photo-album', 'AdminControllers::photo_album');
+    $routes->match(['get','post'],'media', 'AdminControllers::media');
+    $routes->match(['get','post'],'contact', 'AdminControllers::contact');
+    $routes->match(['get','post'],'download-forms', 'AdminControllers::download_forms');
+    $routes->match(['get','post'],'quick-link', 'AdminControllers::quick_link');
+    $routes->match(['get','post'],'youtube-link', 'AdminControllers::youtube_link');
+    $routes->match(['get','post'],'rules-regulations', 'AdminControllers::rules_regulations');
+    $routes->match(['get','post'],'departments-section', 'DepartmentController::departments_section');
+    $routes->match(['get','post'],'designation', 'DesignationController::designation');
+    $routes->match(['get','post'],'program', 'ProgramController::program');
+    $routes->match(['get','post'],'program-dept-mapping', 'AdminControllers::program_dept_mapping');
+    $routes->match(['get','post'],'program-dept-std-mapping', 'AdminControllers::program_dept_std_mapping');
+    $routes->match(['get','post'],'membership', 'AdminControllers::membership');
+    $routes->match(['get','post'],'banner-slider', 'AdminControllers::banner_slider');
+    $routes->match(['get','post'],'tendor-details', 'AdminControllers::tendor_details');
+    $routes->match(['get','post'],'admission', 'AdminControllers::admission');
+    $routes->match(['get','post'],'act-rules', 'AdminControllers::act_rules');
+
+    $routes->match(['get','post'],'job-details', 'AdminControllers::job_details');
+    $routes->match(['get','post'],'job-result', 'AdminControllers::job_result');
+    $routes->match(['get','post'],'job-category', 'AdminControllers::job_category');
+
+    $routes->match(['get','post'],'about', 'AdminControllers::about');
+    $routes->match(['get','post'],'bog', 'AdminControllers::bog');
+    $routes->match(['get','post'],'bog-member', 'AdminControllers::bog_member');
+    $routes->match(['get','post'],'leadership-and-media-link', 'AdminControllers::leadership_and_media_link');
+
+    $routes->match(['get', 'post'], 'collaboration', 'AdminControllers::collaboration');
+    $routes->match(['get', 'post'], 'committee-details', 'AdminControllers::committee_details');
+    $routes->match(['get', 'post'], 'copyright-details', 'AdminControllers::copyright_details');
+    $routes->match(['get', 'post'], 'patent-details', 'AdminControllers::patent_details');
+
+    $routes->match(['get', 'post'], 'students', 'AdminControllers::students');
+    $routes->match(['get', 'post'], 'convocation', 'AdminControllers::convocation');
+
+    $routes->match(['get', 'post'], 'result', 'AdminControllers::result');
+    $routes->match(['get', 'post'], 'grades', 'AdminControllers::grades');
+
+    $routes->match(['get', 'post'], 'ranking', 'AdminControllers::ranking');
+    $routes->match(['get', 'post'], 'annual-report', 'AdminControllers::annual_report');
+    $routes->match(['get', 'post'], 'placement-details', 'AdminControllers::placement_details');
+    $routes->match(['get', 'post'], 'recuiter-details', 'AdminControllers::recuiter_details');
+    $routes->match(['get', 'post'], 'instrument-facility', 'AdminControllers::instrument_facility');
+    $routes->match(['get', 'post'], 'instrument-rates', 'AdminControllers::instrument_rates');
+    $routes->match(['get', 'post'], 'private-research-labs', 'AdminControllers::private_research_labs');
+
+    $routes->match(['get', 'post'], 'modules', 'AdminControllers::modules');
+    $routes->match(['get', 'post'], 'roles-permissions', 'AdminControllers::roles_permissions');
+    $routes->match(['get', 'post'], 'permission/(:num)', 'AdminControllers::permission/$1');
+});

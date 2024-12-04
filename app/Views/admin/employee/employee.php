@@ -1,0 +1,218 @@
+<?= $this->extend("admin/layouts/master") ?>
+<?= $this->section("body-content"); ?>
+<?php
+
+use App\Models\Department_model;
+use App\Models\Designation_model;
+
+    $department_model = new Department_model();
+    $designation_model = new Designation_model();
+?>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title m-0">Add <?= $title; ?></h4>
+            </div>
+            <div class="card-body">
+                <?php
+                    if(session()->getFlashdata('msg')){
+                        echo session()->getFlashdata('msg');
+                    }
+                ?>
+                <!-- Form Start -->
+                <form action="<?= base_url() ?>admin/employee" method="post" enctype="multipart/form-data">
+                    <!-- Employee Name Fields -->
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <span for="EmpFirstName">First Name:</span>
+                            <input type="text" name="first_name" id="first_name" class="form-control form-control-sm" required minlength="3">
+                        </div>
+                        <div class="col-sm-4">
+                            <span for="EmpMiddleName">Middle Name:</span>
+                            <input type="text" name="middle_name" id="middle_name" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-sm-4">
+                            <span for="EmpLastName">Last Name:</span>
+                            <input type="text" name="last_name" id="last_name" class="form-control form-control-sm" required>
+                        </div>
+                    </div>
+
+                    <!-- Designation, Department, Mobile, and Landline -->
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <span for="Empdesignation">Designation:</span>
+                            <select name="designation_id" id="designation_id" class="form-control form-control-sm" required>
+                                <option value="">--Select--</option>
+                                <?php foreach ($designations as $key => $value) { ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <span for="Empdepartmentid">Department:</span>
+                            <select name="department_id" id="department_id" class="form-control form-control-sm" required>
+                                <option value="">--Select--</option>
+                            <?php foreach ($departments as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                            <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <span for="Empmobile">Mobile Number:</span>
+                            <input type="tel" name="mobile_no" id="mobile_no" class="form-control form-control-sm" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <span for="Emplandlineno">Landline Number:</span>
+                            <input type="tel" name="landline_no" id="landline_no" class="form-control form-control-sm">
+                        </div>
+                    </div>
+
+                    <!-- Email Fields -->
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <span for="Empofficialemail">Official Email:</span>
+                            <input type="email" name="official_mail" id="official_mail" class="form-control form-control-sm" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <span for="Emppersonalemail">Personal Email:</span>
+                            <input type="email" name="personal_mail" id="personal_mail" class="form-control form-control-sm">
+                        </div>
+                    </div>
+
+                    <!-- Photo and Resume Uploads -->
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <span for="Empphotoupload">Photo Upload(.pnd,.jpg,.jpeg):</span>
+                            <input type="file" name="profile_photo" id="profile_photo" class="form-control form-control-sm" accept=".pnd,.jpg,.jpeg">
+                        </div>
+                        <div class="col-sm-6">
+                            <span for="Empresumeupload">Resume Upload(.pdf,.docx):</span>
+                            <input type="file" name="resume_file" id="resume_file" class="form-control form-control-sm" accept=".pdf,.docx">
+                        </div>
+                    </div>
+
+                    <!-- Post Charge and Social Media Links -->
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <span for="Emppostcharge">Post Charge:</span>
+                            <input type="text" name="post_charge" id="post_charge" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-sm-6">
+                            <span for="Emptype">Employee Type:</span>
+                            <select name="employee_type" id="employee_type" class="form-control form-control-sm" required>
+                                <option value="Teaching">Teaching</option>
+                                <option value="NonTeaching">Non-Teaching</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Social Media Links -->
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <span for="Emptwitterlink">Twitter:</span>
+                            <input type="url" name="twitter" id="twitter" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-sm-4">
+                            <span for="Empfacebooklink">Facebook:</span>
+                            <input type="url" name="facebook" id="facebook" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-sm-4">
+                            <span for="Emplinkdinlink">LinkedIn:</span>
+                            <input type="url" name="linkedin" id="linkedin" class="form-control form-control-sm">
+                        </div>
+                    </div>
+
+                    <!-- Research Details and Indexes -->
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <span for="Researchinterest">Research Interest:</span>
+                            <textarea name="research" id="editor" class="form-control form-control-sm" rows="3"></textarea>
+                        </div>
+                        <div class="col-sm-4 form-group mt-1">
+                            <span for="Googlehindex">Google H-Index:</span>
+                            <input type="number" name="google_h_index" id="google_h_index" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-sm-4 form-group mt-1">
+                            <span for="I10index">i10-Index:</span>
+                            <input type="number" name="i10_index" id="i10_index" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-sm-4 form-group mt-1">
+                            <span for="Scopushindex">Scopus H-Index:</span>
+                            <input type="number" name="scopus_h_index" id="scopus_h_index" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-sm-12 form-group mt-1">
+                            <div class="form-group">
+                                <span>Status</span>
+                                <select name="status" id="status" class="form-control form-control-sm">
+                                    <option value="1">Active</option>
+                                    <option value="0">Draft</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title m-0"><?= $title; ?> List</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover" id="basic-datatable">
+                        <thead>
+                            <tr>
+                                <td>SN</td>
+                                <td>Files</td>
+                                <td>Name</td>
+                                <td>Off. Email</td>
+                                <td>Phone</td>
+                                <td>Designation</td>
+                                <td>Department</td>
+                                <td>Created At</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($employee as $key => $value) { ?>
+                            <tr>
+                                <td><?= ++$key ?></td>
+                                <td>
+                                    <img src="<?= base_url() ?>public/admin/uploads/employee/<?= $value['profile_photo'] ?>" alt="" height="30px" width="30px">
+                                    <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $value['resume_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/cv.png" height="30px"></a>
+                                </td>
+                                <td><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></td>
+                                <td><?= $value['official_mail'] ?></td>
+                                <td><?= $value['mobile_no'] ?></td>
+                                <td><?php $designations = $designation_model->get($value['designation_id']); echo (!empty($designations['name'])) ? $designations['name'] : '____';;  ?></td>
+                                <td><?php $department = $department_model->get($value['department_id']); echo (!empty($department['name'])) ? $department['name'] : '____';;  ?></td>
+                                <td><?= $value['created_at'] ?></td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?= $this->endSection() ?>

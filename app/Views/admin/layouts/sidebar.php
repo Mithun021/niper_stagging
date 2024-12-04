@@ -1,0 +1,190 @@
+<div id="sidebar-menu">
+    <!-- Left Menu Start -->
+    <ul class="metismenu list-unstyled" id="side-menu">
+        <li class="menu-title">Menu</li>
+
+        <li>
+            <a href="<?= base_url() ?>admin/" class="waves-effect"><i class="mdi mdi-home-analytics"></i><span>Dashboard</span></a>
+        </li>
+        <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect"><i
+                    class="mdi mdi-table-merge-cells"></i><span>News & Events</span></a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="<?= base_url() ?>admin/news-post" class="waves-effect"><span>News Post</span></a></li>
+                <li><a href="<?= base_url() ?>admin/event-post" class="waves-effect"><span>Events Post</span></a></li>
+                <li><a href="<?= base_url() ?>admin/event-members" class="waves-effect"><span>Events Member Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/event-organizer" class="waves-effect"><span>Events Organizer</span></a></li>
+                <li><a href="<?= base_url() ?>admin/event-fees" class="waves-effect"><span>Events Fee Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/event-highlight" class="waves-effect"><span>Events Highlight</span></a></li>
+                <li><a href="<?= base_url() ?>admin/event-category" class="waves-effect"><span>Events Category</span></a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect"><i
+                    class="mdi mdi-table-merge-cells"></i><span>Academic</span></a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="<?= base_url() ?>admin/academic-details" class="waves-effect"><span>Academic Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/accouncement" class="waves-effect"><span>Announcement</span></a></li>
+                <li><a href="<?= base_url() ?>admin/rules-regulations" class="waves-effect"><span>Rules & Regulations</span></a></li>
+                <!-- <li><a href="<?= base_url() ?>admin/officer-staff" class="waves-effect"><span>Officer & Staff</span></a></li> -->
+                <li><a href="<?= base_url() ?>admin/research-publication" class="waves-effect"><span>Research & Publication</span></a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect"><i
+                    class="mdi mdi-table-merge-cells"></i><span style="font-size: 12px;">Awards-Achievements</span></a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="<?= base_url() ?>admin/faculty-awards" class="waves-effect"><span>Faculty Awards</span></a></li>
+                <li><a href="<?= base_url() ?>admin/awards-recognition" class="waves-effect"><span>Awards & Recognition </span></a></li>
+                <li><a href="<?= base_url() ?>admin/student-achievements" class="waves-effect"><span>Student Achievements</span></a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="<?= base_url() ?>admin/tendor-details" class="waves-effect"><i class="mdi mdi-table-merge-cells"></i><span>Tendor Details</span></a>
+        </li>
+
+        <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect"><i
+                    class="mdi mdi-table-merge-cells"></i><span>Jobs &amp; Result</span></a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="<?= base_url() ?>admin/job-details">Job Details</a></li>
+                <li><a href="<?= base_url() ?>admin/job-result">Job Result</a></li>
+                <li><a href="<?= base_url() ?>admin/job-category">Job Category</a></li>
+            </ul>
+        </li>
+        
+        <li>
+            <a href="<?= base_url() ?>admin/collaboration" class="waves-effect"><i class="mdi mdi-table-merge-cells"></i><span>Collaboration</span></a>
+        </li>
+
+        <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect"><i
+                    class="mdi mdi-table-merge-cells"></i><span>Patent & Copyrights</span></a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="<?= base_url() ?>admin/patent-details">Patent Details</a></li>
+                <li><a href="<?= base_url() ?>admin/copyright-details">Copyright Details</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="<?= base_url() ?>admin/committee-details" class="waves-effect"><i class="mdi mdi-table-merge-cells"></i><span>Committee Detail</span></a>
+        </li>
+
+        <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect"><i
+                    class="mdi mdi-table-merge-cells"></i><span>Employee Details</span></a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="<?= base_url() ?>admin/employee" class="waves-effect"><span>Employee Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/employee-department" class="waves-effect"><span>Emp. Dept. Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/employee-experience" class="waves-effect"><span>Emp. Exp. Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/employee-projects" class="waves-effect"><span>Emp. Project Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/employee-publication" class="waves-effect"><span>Emp. Publication Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/employee-awards" class="waves-effect"><span>Emp. Awards Details</span></a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="<?= base_url() ?>admin/students" class="waves-effect"><i class="mdi mdi-table-merge-cells"></i><span>Student Details</span></a>
+        </li>
+
+        <li>
+            <a href="<?= base_url() ?>admin/convocation" class="waves-effect"><i class="mdi mdi-table-merge-cells"></i><span>Convocation Details</span></a>
+        </li>
+
+        <li>
+            <a href="<?= base_url() ?>admin/ranking" class="waves-effect"><i class="mdi mdi-table-merge-cells"></i><span>Ranking Details</span></a>
+        </li>
+
+        <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect"><i
+                    class="mdi mdi-table-merge-cells"></i><span>Result & Grades</span></a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="<?= base_url() ?>admin/result" class="waves-effect"><span>Result Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/grades" class="waves-effect"><span>Grades Details</span></a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect"><i
+                    class="mdi mdi-table-merge-cells"></i><span>Master</span></a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="<?= base_url() ?>admin/departments-section" class="waves-effect"><span>Department Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/designation" class="waves-effect"><span>Designation Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/program" class="waves-effect"><span>Program Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/program-dept-mapping" class="waves-effect"><span>Program Dept. Mapping</span></a></li>
+                <li><a href="<?= base_url() ?>admin/program-dept-std-mapping" class="waves-effect"><span>Program Dept. Std. Mapping</span></a></li>
+                <li><a href="<?= base_url() ?>admin/membership" class="waves-effect"><span>Membership Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/download-forms">Download Form</a></li>
+                <li><a href="<?= base_url() ?>admin/annual-report">Annual Report</a></li>
+                <li><a href="<?= base_url() ?>admin/placement-details">Placement Details</a></li>
+                <li><a href="<?= base_url() ?>admin/recuiter-details">Recuiter Details</a></li>
+                <li><a href="<?= base_url() ?>admin/instrument-facility">Instrument & Facilities</a></li>
+                <li><a href="<?= base_url() ?>admin/instrument-rates">Instrument Rates</a></li>
+                <li><a href="<?= base_url() ?>admin/private-research-labs">Private Research Labs</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect"><i
+                    class="mdi mdi-table-merge-cells"></i><span>Front Website</span></a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="<?= base_url() ?>admin/images">Image Gallery</a></li>
+                <li><a href="<?= base_url() ?>admin/photo-album">Photo Album</a></li>
+                <li><a href="<?= base_url() ?>admin/media">Media</a></li>
+                <li><a href="<?= base_url() ?>admin/quick-link">Quick Links</a></li>
+                <li><a href="<?= base_url() ?>admin/youtube-link">Youtube Link</a></li>
+                <li><a href="<?= base_url() ?>admin/contact">Contact Details</a></li>
+                <li><a href="<?= base_url() ?>admin/banner-slider" class="waves-effect"><span>Banner Slider</span></a></li>
+                <li><a href="<?= base_url() ?>admin/about" class="waves-effect"><span>About Us</span></a></li>
+                <li><a href="<?= base_url() ?>admin/bog" class="waves-effect"><span>BoG Page</span></a></li>
+                <li><a href="<?= base_url() ?>admin/bog-member" class="waves-effect"><span>BoG Members</span></a></li>
+                <li><a href="<?= base_url() ?>admin/leadership-and-media-link" class="waves-effect"><span>Leadership & Media Links</span></a></li>
+                <li><a href="<?= base_url() ?>admin/admission" class="waves-effect"><span>Admission Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/act-rules" class="waves-effect"><span>Act Rules Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/testimonial" class="waves-effect"><span>Testimonial</span></a></li>
+            </ul>
+        </li>
+        
+        <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect"><i
+                    class="mdi mdi-table-merge-cells"></i><span>Setting</span></a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="<?= base_url() ?>admin/modules">Module</a></li>
+                <li><a href="<?= base_url() ?>admin/roles-permissions">Roles & Permissions</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="<?= base_url() ?>admin/logout" class="waves-effect"><i class="mdi mdi-table-merge-cells"></i><span>Logout</span></a>
+        </li>
+        
+
+        <!-- <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect"><i
+                    class="mdi mdi-share-variant"></i><span>Patent & Copyrights</span></a>
+            <ul class="sub-menu" aria-expanded="true">
+                <li><a href="javascript: void(0);" class="has-arrow">Patent</a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li><a href="javascript: void(0);">Level 2.1</a></li>
+                        <li><a href="javascript: void(0);">Level 2.2</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li> -->
+        
+
+        <!-- <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect"><i
+                    class="mdi mdi-table-merge-cells"></i><span>Tables</span></a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="tables-basic.html">Basic Tables</a></li>
+                <li><a href="tables-datatables.html">Data Tables</a></li>
+            </ul>
+        </li> -->
+
+        
+
+    </ul>
+</div>
