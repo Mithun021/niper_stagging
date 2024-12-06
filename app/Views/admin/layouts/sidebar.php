@@ -78,7 +78,7 @@
                     class="mdi mdi-table-merge-cells"></i><span>Employee Details</span></a>
             <ul class="sub-menu" aria-expanded="false">
                 <li><a href="<?= base_url() ?>admin/employee" class="waves-effect"><span>Employee Details</span></a></li>
-                <li><a href="<?= base_url() ?>admin/employee-department" class="waves-effect"><span>Emp. Dept. Details</span></a></li>
+                <!-- <li><a href="<?= base_url() ?>admin/employee-department" class="waves-effect"><span>Emp. Dept. Details</span></a></li> -->
                 <li><a href="<?= base_url() ?>admin/employee-experience" class="waves-effect"><span>Emp. Exp. Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/employee-projects" class="waves-effect"><span>Emp. Project Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/employee-publication" class="waves-effect"><span>Emp. Publication Details</span></a></li>
