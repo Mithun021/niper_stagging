@@ -3,6 +3,7 @@
 
 use App\Models\Department_model;
 use App\Models\Designation_model;
+use App\Models\Employee_experience_model;
 use App\Models\Employee_model;
 
     class EmployeeController extends BaseController{
@@ -75,11 +76,36 @@ use App\Models\Employee_model;
         }
 
         public function employee_experience(){
+            $employee_model = new Employee_model();
+            $employee_experience_model = new Employee_experience_model();
             $data = ['title' => 'Employee Experience'];
             if ($this->request->is("get")) {
+                $data['employee'] = $employee_model->get();
+                $data['employee_exp'] = $employee_experience_model->get();
                 return view('admin/employee/employee-experience',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $data = [
+                    'emplyee_id' => $this->request->getPost('Empid'),
+                    'organization_name' => $this->request->getPost('orgname'),
+                    'start_date' => $this->request->getPost('startdate'),
+                    'end_date' => $this->request->getPost('enddate'),
+                    'exp_description' => $this->request->getPost('expdesc'),
+                    'org_type' => $this->request->getPost('orgtype'),
+                    'work_nature' => $this->request->getPost('natureofwork'),
+                    'upload_by' =>  $loggeduserId,
+                ];
 
+                // echo "<pre>";print_r($data);
+                $result = $employee_experience_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/employee')->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/employee')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 

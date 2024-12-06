@@ -18,19 +18,16 @@
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="/empexpdetails/store" method="post">
+                <form action="<?= base_url() ?>admin/employee-experience" method="post">
                     <!-- Empid -->
                     <div class="row">
-                        <div class="col-lg-6 form-group">
+                        <div class="col-lg-12 form-group">
                             <span for="Empid">Employee:</span>
                             <select name="Empid" id="Empid" class="form-control form-control-sm" required >
                                 <option value="">Select Employee</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-6 form-group">
-                            <span for="designation">Designation:</span>
-                            <select name="designation" id="designation" class="form-control form-control-sm" required >
-                                <option value="">Select Designation</option>
+                            <?php foreach($employee as $value){ ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                            <?php } ?>
                             </select>
                         </div>
                         <div class="col-lg-6 form-group">
@@ -91,7 +88,6 @@
                             <tr>
                                 <td>SN</td>
                                 <td>Employee</td>
-                                <td>Designation</td>
                                 <td>Org. Name</td>
                                 <td>Start & End Date</td>
                                 <td>Org. Type</td>
@@ -100,7 +96,24 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                        <?php foreach($employee_exp as $key => $value){ ?>
+                            <tr>
+                                <td><?= ++$key ?></td>
+                                <td><?= $value['emplyee_id'] ?></td>
+                                <td><?= $value['organization_name'] ?></td>
+                                <td><?= $value['start_date']. " - ".$value['end_date'] ?></td>
+                                <td><?= $value['org_type'] ?></td>
+                                <td><?= $value['work_nature'] ?></td>
+                                <td><?= $value['upload_by'] ?></td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
