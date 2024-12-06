@@ -73,5 +73,16 @@ use App\Models\Employee_model;
 
             }
         }
+
+        public function employee_experience(){
+            $data = ['title' => 'Employee Experience'];
+            if ($this->request->is("get")) {
+                return view('admin/employee/employee-experience',$data);
+            }else if ($this->request->is("post")) {
+
+            }
+        }
+
+
     }
 ?>

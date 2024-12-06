@@ -243,15 +243,6 @@ use App\Models\UserModel;
             }
         }
 
-        public function employee_experience(){
-            $data = ['title' => 'Employee Experience'];
-            if ($this->request->is("get")) {
-                return view('admin/employee-experience',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
         public function employee_projects(){
             $data = ['title' => 'Employee Projects'];
             if ($this->request->is("get")) {
