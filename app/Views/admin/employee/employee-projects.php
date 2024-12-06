@@ -16,7 +16,7 @@
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="/empprojectdetails/store" method="post">
+                <form action="<?= base_url() ?>admin/employee-projects" method="post">
                     <div class="row">
                         <div class="col-lg-6 form-group">
                             <span for="Empid">Employee: <span class="text-danger">*</span></span>
