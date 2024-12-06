@@ -34,11 +34,17 @@
                         </div>
                         <div class="col-lg-6 form-group">
                             <span for="projectstartdatetime">Project Start Date & Time:<span class="text-danger">*</span></span>
-                            <input type="datetime-local" name="projectstartdatetime" id="projectstartdatetime" class="form-control form-control-sm" required>
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-sm" name="project_start_date"  placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                <input type="text" class="form-control form-control-sm" name="project_start_time"  placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                            </div>
                         </div>
                         <div class="col-lg-6 form-group">
                             <span for="projectenddatetime">Project End Date & Time:<span class="text-danger">*</span></span>
-                            <input type="datetime-local" name="projectenddatetime" id="projectenddatetime" class="form-control form-control-sm">
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-sm" name="project_end_date"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                <input type="text" class="form-control form-control-sm" name="project_end_time"  placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                            </div>
                         </div>
                         <div class="col-lg-6 form-group">
                             <span for="projectstatus">Project Status:<span class="text-danger">*</span></span>
