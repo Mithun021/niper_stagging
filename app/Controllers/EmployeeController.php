@@ -35,7 +35,7 @@ use App\Models\Employee_model;
                 }else{
                  $resumeimageName = "invalidImage.png";
                 }
-
+                $password = "123456";
                 $data = [
                     'first_name' => $this->request->getPost('first_name'),
                     'middle_name' => $this->request->getPost('middle_name'),
@@ -57,6 +57,7 @@ use App\Models\Employee_model;
                     'google_h_index' => $this->request->getPost('google_h_index'),
                     'i10_index' => $this->request->getPost('i10_index'),
                     'scopus_h_index' => $this->request->getPost('scopus_h_index'),
+                    'password' => password_hash($password, PASSWORD_DEFAULT),
                     'status' => $this->request->getPost('status'),
                     'upload_by' =>  $loggeduserId,
                     // 'first_name' => $this->request->getPost('first_name'),
