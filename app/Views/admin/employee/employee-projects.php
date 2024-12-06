@@ -9,9 +9,9 @@
             </div>
 
             <div class="card-body">
-                <?php if (session()->getFlashdata('status')): ?>
+                <?php if (session()->getFlashdata('msg')): ?>
                     <div class="alert alert-success">
-                        <?= session()->getFlashdata('status') ?>
+                        <?= session()->getFlashdata('msg') ?>
                     </div>
                 <?php endif; ?>
 
@@ -22,6 +22,9 @@
                             <span for="Empid">Employee: <span class="text-danger">*</span></span>
                             <select name="Empid" id="Empid" class="form-control form-control-sm" required >
                                 <option value="">Select Employee</option>
+                            <?php foreach($employee as $value){ ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                            <?php } ?>
                             </select>
                         </div>
                         <div class="col-lg-6 form-group">
@@ -87,12 +90,30 @@
                                 <td>Project Title</td>
                                 <td>Project Status</td>
                                 <td>Project Date</td>
+                                <td>Sponsored by</td>
                                 <td>Project Value</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-
+                        <?php foreach($employee_projects as $key => $value){ ?>
+                            <tr>
+                                <td><?= ++$key ?></td>
+                                <td><?php $emp = $employee_model->get($value['emplyee_id']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                                <td><?= $value['project_title'] ?></td>
+                                <td><?= $value['project_status'] ?></td>
+                                <td><?= $value['start_date']." ".$value['start_time']. " - ".$value['end_date']." ".$value['end_time'] ?></td>
+                                <td><?= $value['sponsored_by'] ?></td>
+                                <td><?= $value['project_value'] ?></td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>

@@ -16,9 +16,9 @@
             </div>
 
             <div class="card-body">
-                <?php if (session()->getFlashdata('status')): ?>
+                <?php if (session()->getFlashdata('msg')): ?>
                     <div class="alert alert-success">
-                        <?= session()->getFlashdata('status') ?>
+                        <?= session()->getFlashdata('msg') ?>
                     </div>
                 <?php endif; ?>
 
