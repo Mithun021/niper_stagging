@@ -3,6 +3,11 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
 
+<?php
+    use App\Models\Employee_model;
+    $employee_model = new Employee_model();
+?>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -92,6 +97,7 @@
                                 <td>Start & End Date</td>
                                 <td>Org. Type</td>
                                 <td>Work Nature</td>
+                                <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
@@ -99,7 +105,7 @@
                         <?php foreach($employee_exp as $key => $value){ ?>
                             <tr>
                                 <td><?= ++$key ?></td>
-                                <td><?= $value['emplyee_id'] ?></td>
+                                <td><?php $emp = $employee_model->get($value['emplyee_id']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td><?= $value['organization_name'] ?></td>
                                 <td><?= $value['start_date']. " - ".$value['end_date'] ?></td>
                                 <td><?= $value['org_type'] ?></td>

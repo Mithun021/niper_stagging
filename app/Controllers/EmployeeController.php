@@ -102,9 +102,9 @@ use App\Models\Employee_model;
                 // echo "<pre>";print_r($data);
                 $result = $employee_experience_model->add($data);
                 if ($result === true) {
-                    return redirect()->to('admin/employee')->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                    return redirect()->to('admin/employee-experience')->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
-                    return redirect()->to('admin/employee')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                    return redirect()->to('admin/employee-experience')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
         }
