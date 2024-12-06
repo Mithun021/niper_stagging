@@ -5,6 +5,7 @@ use App\Models\Department_model;
 use App\Models\Designation_model;
 use App\Models\Employee_experience_model;
 use App\Models\Employee_model;
+use App\Models\Employee_projects_model;
 
     class EmployeeController extends BaseController{
         public function employee(){
@@ -110,11 +111,39 @@ use App\Models\Employee_model;
         }
 
         public function employee_projects(){
+            $employee_model = new Employee_model();
+            $employee_projects_model = new Employee_projects_model();
             $data = ['title' => 'Employee Projects'];
             if ($this->request->is("get")) {
+                $data['employee'] = $employee_model->get();
+                $data['employee_projects'] = $employee_projects_model->get();
                 return view('admin/employee/employee-projects',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $data = [
+                    'emplyee_id' => $this->request->getPost('Empid'),
+                    'project_title' => $this->request->getPost('projecttitle'),
+                    'project_description' => $this->request->getPost('projectdesc'),
+                    'start_date' => $this->request->getPost('project_start_date'),
+                    'start_time' => $this->request->getPost('project_start_time'),
+                    'end_date' => $this->request->getPost('project_end_date'),
+                    'end_time' => $this->request->getPost('project_end_time'),
+                    'project_status' => $this->request->getPost('projectstatus'),
+                    'sponsored_by' => $this->request->getPost('projectsponseredby'),
+                    'project_value' => $this->request->getPost('projectvalue'),
+                    'upload_by' =>  $loggeduserId,
+                ];
 
+                // echo "<pre>";print_r($data);
+                $result = $employee_projects_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/employee-projects')->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/employee-projects')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 
