@@ -243,32 +243,7 @@ use App\Models\UserModel;
             }
         }
 
-        public function employee_projects(){
-            $data = ['title' => 'Employee Projects'];
-            if ($this->request->is("get")) {
-                return view('admin/employee-projects',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
-        public function employee_publication(){
-            $data = ['title' => 'Employee Publication'];
-            if ($this->request->is("get")) {
-                return view('admin/employee-publication',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
-        public function employee_awards(){
-            $data = ['title' => 'Employee Awards'];
-            if ($this->request->is("get")) {
-                return view('admin/employee-awards',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
+        
 
         public function images(){
             $data = ['title' => 'Images'];
