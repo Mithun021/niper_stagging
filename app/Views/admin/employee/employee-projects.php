@@ -15,9 +15,7 @@
 
             <div class="card-body">
                 <?php if (session()->getFlashdata('msg')): ?>
-                    <div class="alert alert-success">
-                        <?= session()->getFlashdata('msg') ?>
-                    </div>
+                    <?= esc(session()->getFlashdata('msg')) ?>
                 <?php endif; ?>
 
                 <!-- Form Start -->
