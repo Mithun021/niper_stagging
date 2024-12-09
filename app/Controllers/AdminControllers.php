@@ -350,9 +350,9 @@ use App\Models\UserModel;
                 $data = [
                     'title' => $this->request->getPost('about_title'),
                     'description' => $this->request->getPost('aboutus_description'),
-                    'vision' => $this->request->getPost('vision'),
-                    'mission' => $this->request->getPost('mission'),
-                    'objective' => $this->request->getPost('objective'),
+                    'vision' => $this->request->getPost('about_vision'),
+                    'mission' => $this->request->getPost('about_mission'),
+                    'objective' => $this->request->getPost('about_objective'),
                     'banner_photo' => $new_image,
                 ];
 
