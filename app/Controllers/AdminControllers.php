@@ -327,7 +327,7 @@ use App\Models\UserModel;
             $about_niper_model = new About_niper_model();
             $data = ['title' => 'About Us'];
             if ($this->request->is("get")) {
-                $data['about'] = $about_niper_model->get();
+                $data['about_us'] = $about_niper_model->get(1);
                 return view('admin/about',$data);
             }else if ($this->request->is("post")) {
 

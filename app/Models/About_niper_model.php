@@ -13,8 +13,8 @@
             return $result ? true : 'Data not updated: Update failed.';
         }
 
-        public function get(){
-            return $this->where('id', 1)->first();
+        public function get($id){
+            return $this->where('id', $id)->first();
         } 
         
     }

@@ -22,35 +22,35 @@
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <span for="aboutusbannerphoto">Title:</span>
-                            <input type="text" name="about_title" id="about_title" class="form-control form-control-sm" value="<?= $about['title'] ?>" required>
+                            <input type="text" name="about_title" id="about_title" class="form-control form-control-sm" value="<?= $about_us['title'] ?>" required>
                         </div>
                         <div class="col-md-6 form-group">
                             <span for="aboutusbannerphoto">Banner Photo Upload:</span>
                             <input type="file" name="aboutusbannerphoto" id="aboutusbannerphoto" class="form-control form-control-sm" required>
-                            <img src="<?= base_url() ?>public/admin/frontweb/<?= $about['banner_photo'] ?>" alt="Niper Banner" height="80px">
+                            <img src="<?= base_url() ?>public/admin/frontweb/<?= $about_us['banner_photo'] ?>" alt="Niper Banner" height="80px">
                         </div>
                         <div class="col-md-12 form-group">
                             <span for="aboutus_description">About Us Description:</span>
-                            <textarea name="aboutus_description" id="editor" class="form-control form-control-sm" rows="4" required><?= $about['description'] ?></textarea>
+                            <textarea name="aboutus_description" id="editor" class="form-control form-control-sm" rows="4" required><?= $about_us['description'] ?></textarea>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <span for="vision">Vision:</span>
-                            <textarea name="vision" id="editor2" class="form-control form-control-sm" rows="3" required><?= $about['vision'] ?></textarea>
+                            <textarea name="vision" id="editor2" class="form-control form-control-sm" rows="3" required><?= $about_us['vision'] ?></textarea>
                         </div>
 
                         <div class="col-md-6 form-group">
                             <span for="mission">Mission:</span>
-                            <textarea name="mission" id="editor3" class="form-control form-control-sm" rows="3" required><?= $about['mission'] ?></textarea>
+                            <textarea name="mission" id="editor3" class="form-control form-control-sm" rows="3" required><?= $about_us['mission'] ?></textarea>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-12 form-group">
                             <span for="objective">Objective:</span>
-                            <textarea name="objective" id="editor4" class="form-control form-control-sm" rows="3" required><?= $about['objective'] ?></textarea>
+                            <textarea name="objective" id="editor4" class="form-control form-control-sm" rows="3" required><?= $about_us['objective'] ?></textarea>
                         </div>
                     </div>
 
