@@ -9,9 +9,9 @@
                 <h4 class="card-title m-0">Add Publication Details</h4>
             </div>
             <div class="card-body">
-                <?php if (session()->getFlashdata('status')): ?>
+                <?php if (session()->getFlashdata('msg')): ?>
                     <div class="alert alert-success">
-                        <?= esc(session()->getFlashdata('status')) ?>
+                        <?= esc(session()->getFlashdata('msg')) ?>
                     </div>
                 <?php endif; ?>
 
