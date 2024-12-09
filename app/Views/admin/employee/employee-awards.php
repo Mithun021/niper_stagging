@@ -10,14 +10,14 @@
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
             </div>
             <div class="card-body">
-                <?php if (session()->getFlashdata('status')): ?>
+                <?php if (session()->getFlashdata('msg')): ?>
                     <div class="alert alert-success">
-                        <?= esc(session()->getFlashdata('status')) ?>
+                        <?= esc(session()->getFlashdata('msg')) ?>
                     </div>
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="/empawarddetails/store" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/employee-awards" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-lg-6">
                         <!-- Employee ID -->

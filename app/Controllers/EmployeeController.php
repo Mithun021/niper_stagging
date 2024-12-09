@@ -3,6 +3,7 @@
 
 use App\Models\Department_model;
 use App\Models\Designation_model;
+use App\Models\Employee_awards_model;
 use App\Models\Employee_experience_model;
 use App\Models\Employee_model;
 use App\Models\Employee_projects_model;
@@ -206,10 +207,44 @@ use App\Models\Employee_publication_model;
         }
 
         public function employee_awards(){
+            $employee_model = new Employee_model();
+            $employee_awards_model = new Employee_awards_model();
             $data = ['title' => 'Employee Awards'];
             if ($this->request->is("get")) {
+                $data['employee'] = $employee_model->get();
+                $data['publication'] = $employee_awards_model->get();
                 return view('admin/employee/employee-awards',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $awards_photo = $this->request->getFile('Awardphotoupload');
+                if ($awards_photo->isValid() && ! $awards_photo->hasMoved()) {
+                    $awardsimageName = $awards_photo->getRandomName();
+                    $awards_photo->move(ROOTPATH . 'public/admin/uploads/awards', $awardsimageName);    
+                }else{
+                 $awardsimageName = "invalidImage.png";
+                }
+
+                $data = [
+                    'emplyee_id' => $this->request->getPost('Empid'),
+                    'award_title' => $this->request->getPost('Awardtitle'),
+                    'award_photo' => $awardsimageName,
+                    'award_year' => $this->request->getPost('Awardyear'),
+                    'award_date_time' => $this->request->getPost('Awarddatetime'),
+                    'award_agency_type' => $this->request->getPost('Awardingagencytype'),
+                    'award_agency_name' => $this->request->getPost('Awardingagencyname'),
+                    'upload_by' =>  $loggeduserId,
+                ]; 
+
+                // echo "<pre>";print_r($data);
+                $result = $employee_awards_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/employee-awards')->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/employee-awards')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
 
             }
         }
