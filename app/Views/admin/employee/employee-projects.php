@@ -14,9 +14,9 @@
             </div>
 
             <div class="card-body">
-                <?php if (session()->getFlashdata('msg')): ?>
-                    <?= esc(session()->getFlashdata('msg')) ?>
-                <?php endif; ?>
+            <?php if (session()->getFlashdata('msg')): ?>
+                <?= session()->getFlashdata('msg') ?>
+            <?php endif; ?>
 
                 <!-- Form Start -->
                 <form action="<?= base_url() ?>admin/employee-projects" method="post">
