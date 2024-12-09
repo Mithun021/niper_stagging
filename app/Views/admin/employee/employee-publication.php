@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="addServicetable">
+                            <table class="table table-bordered" id="addServicetable"> 
                                 <thead class="bg-light">
                                     <tr>
                                         <td scope="col">Author Details</td>

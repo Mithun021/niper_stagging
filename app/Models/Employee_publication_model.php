@@ -14,7 +14,7 @@
                 return $result ? true : 'Data not updated: Update failed.';
             } else {
                 $result = $this->insert($data);
-                return $result ? true : 'Data not inserted: Insertion failed.';
+                return $result ? true : 'Data not inserted: Insertion failed.'; 
             }
         }
 

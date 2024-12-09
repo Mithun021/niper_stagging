@@ -7,7 +7,7 @@
         protected $primaryKey = 'id';
         protected $allowedFields = ['author_name','emp_publication_id'];
 
-        public function add($data, $id = null) {
+        public function add($data, $id = null) { 
             if ($id != null) {
                 $result = $this->update($id, $data);
                 return $result ? true : 'Data not updated: Update failed.';

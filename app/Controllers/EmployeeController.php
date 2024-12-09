@@ -183,7 +183,7 @@ use App\Models\Employee_publication_model;
                     'publication_type' => $this->request->getPost('Pubtype'),
                     'status' => $this->request->getPost('Pubstatus'),
                     'upload_by' =>  $loggeduserId,
-                ];
+                ]; 
 
                 // echo "<pre>";print_r($data);
                 $result = $employee_publication_model->add($data);
