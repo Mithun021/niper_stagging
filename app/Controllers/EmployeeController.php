@@ -212,7 +212,7 @@ use App\Models\Employee_publication_model;
             $data = ['title' => 'Employee Awards'];
             if ($this->request->is("get")) {
                 $data['employee'] = $employee_model->get();
-                $data['publication'] = $employee_awards_model->get();
+                $data['awards'] = $employee_awards_model->get();
                 return view('admin/employee/employee-awards',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');

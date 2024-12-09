@@ -2,6 +2,11 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
 
+<?php
+    use App\Models\Employee_model;
+    $employee_model = new Employee_model();
+?>
+
 <div class="row">
     <!-- Form Section for Adding  Details -->
     <div class="col-lg-12">
@@ -92,15 +97,40 @@
                         <thead>
                             <tr>
                                 <td>SN</td>
+                                <td>Employee</td>
                                 <td>Award Title</td>
-                                <td>Description</td>
+                                <td>Date & Time</td>
                                 <td>Year</td>
+                                <td>Agency Type</td>
                                 <td>Agency Name</td>
+                                <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Dynamically populated rows go here -->
+                        <?php foreach($awards as $key => $value){ ?>
+                            <tr>
+                                <td><?= ++$key ?></td>
+                                <td>
+                                    <a href="<?= base_url() ?>public/admin/uploads/awards/<?= $value['award_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/awards/<?= $value['award_photo'] ?>" height="30px"></a>
+                                </td>
+                                <td><?php $emp = $employee_model->get($value['emplyee_id']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                                <td><?= $value['title'] ?></td>
+                                <td><?= $value['award_title'] ?></td>
+                                <td><?= $value['award_date_time'] ?></td>
+                                <td><?= $value['award_year'] ?></td>
+                                <td><?= $value['award_agency_type'] ?></td>
+                                <td><?= $value['award_agency_name'] ?></td>
+                                <td><?= $value['upload_by'] ?></td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
