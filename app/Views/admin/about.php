@@ -30,19 +30,19 @@
                             <img src="<?= base_url() ?>public/admin/uploads/frontweb/<?= $about_us['banner_photo'] ?>" alt="Niper Banner" height="80px">
                         </div>
                         <div class="col-md-12 form-group">
-                            <span for="aboutus_description">About Us Description:</span>
+                            <span>About Us Description:</span>
                             <textarea name="aboutus_description" id="editor" class="form-control form-control-sm" rows="4" required><?= $about_us['description'] ?></textarea>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 form-group">
-                            <span for="vision">Vision:</span>
+                            <span>Vision:</span>
                             <textarea name="about_vision" id="editor2" class="form-control form-control-sm" rows="3" required><?= $about_us['vision'] ?></textarea>
                         </div>
 
                         <div class="col-md-6 form-group">
-                            <span for="mission">Mission:</span>
+                            <span>Mission:</span>
                             <textarea name="about_mission" id="editor3" class="form-control form-control-sm" rows="3" required><?= $about_us['mission'] ?></textarea>
                         </div>
                     </div>
