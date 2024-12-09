@@ -31,26 +31,26 @@
                         </div>
                         <div class="col-md-12 form-group">
                             <span>About Us Description:</span>
-                            <textarea name="aboutus_description" id="editor" class="form-control form-control-sm" rows="4" required><?= $about_us['description'] ?></textarea>
+                            <textarea name="aboutus_description" id="editor" class="form-control form-control-sm" rows="4"><?= $about_us['description'] ?></textarea>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <span>Vision:</span>
-                            <textarea name="about_vision" id="editor2" class="form-control form-control-sm" rows="3" required><?= $about_us['vision'] ?></textarea>
+                            <textarea name="about_vision" id="editor2" class="form-control form-control-sm" rows="3"><?= $about_us['vision'] ?></textarea>
                         </div>
 
                         <div class="col-md-6 form-group">
                             <span>Mission:</span>
-                            <textarea name="about_mission" id="editor3" class="form-control form-control-sm" rows="3" required><?= $about_us['mission'] ?></textarea>
+                            <textarea name="about_mission" id="editor3" class="form-control form-control-sm" rows="3"><?= $about_us['mission'] ?></textarea>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-12 form-group">
                             <span for="objective">Objective:</span>
-                            <textarea name="about_objective" id="editor4" class="form-control form-control-sm" rows="3" required><?= $about_us['objective'] ?></textarea>
+                            <textarea name="about_objective" id="editor4" class="form-control form-control-sm" rows="3"><?= $about_us['objective'] ?></textarea>
                         </div>
                     </div>
 
