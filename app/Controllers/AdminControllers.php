@@ -1,6 +1,7 @@
 <?php
     namespace App\Controllers;
 
+use App\Models\About_niper_model;
 use App\Models\Department_model;
 use App\Models\Designation_model;
 use App\Models\Employee_model;
@@ -323,8 +324,10 @@ use App\Models\UserModel;
         }
 
         public function about(){
+            $about_niper_model = new About_niper_model();
             $data = ['title' => 'About Us'];
             if ($this->request->is("get")) {
+                $data['about'] = $about_niper_model->get();
                 return view('admin/about',$data);
             }else if ($this->request->is("post")) {
 
