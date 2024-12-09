@@ -25,6 +25,9 @@
                             <span for="Empid">Employee:</span>
                             <select name="Empid" id="Empid" class="form-control form-control-sm" required >
                                 <option value="">Select Employee</option>
+                            <?php foreach($employee as $value){ ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                            <?php } ?>
                             </select>
                         </div>
                     </div>
