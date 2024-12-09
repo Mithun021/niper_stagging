@@ -6,6 +6,8 @@ use App\Models\Designation_model;
 use App\Models\Employee_experience_model;
 use App\Models\Employee_model;
 use App\Models\Employee_projects_model;
+use App\Models\Employee_publication_author_model;
+use App\Models\Employee_publication_model;
 
     class EmployeeController extends BaseController{
         public function employee(){
@@ -148,10 +150,56 @@ use App\Models\Employee_projects_model;
         }
 
         public function employee_publication(){
+            $employee_model = new Employee_model();
+            $employee_publication_model = new Employee_publication_model();
+            $employee_publication_author_model = new Employee_publication_author_model();
             $data = ['title' => 'Employee Publication'];
             if ($this->request->is("get")) {
+                $data['employee'] = $employee_model->get();
                 return view('admin/employee/employee-publication',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $publication_photo = $this->request->getFile('Pubphotoupload');
+                if ($publication_photo->isValid() && ! $publication_photo->hasMoved()) {
+                    $publicationimageName = $publication_photo->getRandomName();
+                    $publication_photo->move(ROOTPATH . 'public/admin/uploads/publication', $publicationimageName);    
+                }else{
+                 $publicationimageName = "invalidImage.png";
+                }
+
+                $author_name = $this->request->getPost('author_name');
+
+                $data = [
+                    'emplyee_id' => $this->request->getPost('Empid'),
+                    'title' => $this->request->getPost('Pubtitle'),
+                    'description' => $this->request->getPost('description'),
+                    'keywords' => $this->request->getPost('Pubkeyword'),
+                    'publication_photo' => $publicationimageName,
+                    'doi_details' => $this->request->getPost('DoIdetails'),
+                    'publication_year' => $this->request->getPost('Pubyear'),
+                    'publication_type' => $this->request->getPost('Pubtype'),
+                    'status' => $this->request->getPost('Pubstatus'),
+                    'upload_by' =>  $loggeduserId,
+                ];
+
+                // echo "<pre>";print_r($data);
+                $result = $employee_publication_model->add($data);
+                if ($result === true) {
+                    foreach ($author_name as $value) {
+                        $data2 = [
+                            'author_name' => $value,
+                            'emp_publication_id' => $result,
+                        ];
+                        $employee_publication_author_model->add($data2);
+                    }
+                    return redirect()->to('admin/employee-publication')->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/employee-publication')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+
 
             }
         }

@@ -16,7 +16,7 @@
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="/emppublicationdetails/store" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/employee-publication" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-lg-6">
                         <!-- Employee ID -->
@@ -24,6 +24,9 @@
                             <span for="Empid">Employee:</span>
                             <select name="Empid" id="Empid" class="form-control form-control-sm" required >
                                 <option value="">Select Employee</option>
+                            <?php foreach($employee as $value){ ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                            <?php } ?>
                             </select>
                         </div>
                     </div>
@@ -38,7 +41,7 @@
                         <!-- Publication Description -->
                         <div class="form-group">
                             <span for="Pubdesc">Publication Description:</span>
-                            <textarea id="editor" name="content"></textarea>
+                            <textarea id="editor" name="description"></textarea>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -68,7 +71,7 @@
                                 <tbody id="stockTbody">
                                     <tr id="stockTrow">
                                         <td>
-                                            <input type="text" class="form-control" id="service_price" name="service_price[]" placeholder="Enter Author Name">
+                                            <input type="text" class="form-control" id="author_name" name="author_name[]" placeholder="Enter Author Name">
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
