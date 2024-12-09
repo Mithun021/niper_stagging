@@ -164,7 +164,15 @@
                                 </td>
                                 <td><?php $emp = $employee_model->get($value['emplyee_id']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td><?= $value['title'] ?></td>
-                                <td><?php echo ($value['status'] == 0) ? "<span class='badge badge-warning badge-pill>In Proceeding</span>" : (($value['status'] == 1) ? "<span class='badge badge-success badge-pill>Published</span>" : ""); ?></td>
+                                <td>
+                                    <?php
+                                        if ($value['status'] == 0) {
+                                            echo "<span class='badge badge-warning badge-pill>In Proceeding</span>";
+                                        } elseif ($value['status'] == 1) {
+                                            echo "<span class='badge badge-success badge-pill>Published</span>";
+                                        }
+                                    ?>
+                                </td>
                                 <td><?= $value['publication_type'] ?></td>
                                 <td><?= $value['publication_year'] ?></td>
                                 <td><?= $value['upload_by'] ?></td>
