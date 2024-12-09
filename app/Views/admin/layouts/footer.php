@@ -72,7 +72,7 @@
 
             $(document).ready(function () {
                 // Create Service Clone for add and remove rows also calculate price
-                var cloneLimit = 5;
+                var cloneLimit = 10;
                 var currentClones = 0;
                 $("#addnewservicerow").click(function(e){
                     e.preventDefault();
