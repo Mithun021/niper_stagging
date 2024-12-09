@@ -330,6 +330,38 @@ use App\Models\UserModel;
                 $data['about_us'] = $about_niper_model->get(1);
                 return view('admin/about',$data);
             }else if ($this->request->is("post")) {
+                $signature = $this->request->getFile('aboutusbannerphoto');
+
+                $data = $about_niper_model->where('id',1)->first();
+                $old_photo =  $data['banner_photo'];
+                //$imageFile = $this->request->getFile('hostel_image');
+                if ($signature->isValid() && !$signature->hasMoved()) {
+                
+                    if(file_exists("public/admin/uploads/frontweb/".$old_photo)){
+                        unlink("public/admin/uploads/frontweb/".$old_photo);
+                    }
+                    $new_image = $signature->getRandomName();
+                    $signature->move(ROOTPATH.'public/admin/uploads/frontweb', $new_image);
+                }
+                else{
+                    $new_image = $old_photo;
+                }
+
+                $data = [
+                    'title' => $this->request->getPost('about_title'),
+                    'description' => $this->request->getPost('aboutus_description'),
+                    'vision' => $this->request->getPost('vision'),
+                    'mission' => $this->request->getPost('mission'),
+                    'objective' => $this->request->getPost('objective'),
+                    'banner_photo' => $new_image,
+                ];
+
+                $result = $about_niper_model->add($data,1);
+                if ($result === true) {
+                    return redirect()->to('admin/about')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                } else {
+                    return redirect()->to('admin/about')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
 
             }
         }

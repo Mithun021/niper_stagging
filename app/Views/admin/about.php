@@ -26,7 +26,7 @@
                         </div>
                         <div class="col-md-6 form-group">
                             <span for="aboutusbannerphoto">Banner Photo Upload:</span>
-                            <input type="file" name="aboutusbannerphoto" id="aboutusbannerphoto" class="form-control form-control-sm" required>
+                            <input type="file" name="aboutusbannerphoto" id="aboutusbannerphoto" class="form-control form-control-sm">
                             <img src="<?= base_url() ?>public/admin/uploads/frontweb/<?= $about_us['banner_photo'] ?>" alt="Niper Banner" height="80px">
                         </div>
                         <div class="col-md-12 form-group">
