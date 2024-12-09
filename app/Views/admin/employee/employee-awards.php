@@ -97,6 +97,7 @@
                         <thead>
                             <tr>
                                 <td>SN</td>
+                                <td>Photo</td>
                                 <td>Employee</td>
                                 <td>Award Title</td>
                                 <td>Date & Time</td>
@@ -115,7 +116,6 @@
                                     <a href="<?= base_url() ?>public/admin/uploads/awards/<?= $value['award_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/awards/<?= $value['award_photo'] ?>" height="30px"></a>
                                 </td>
                                 <td><?php $emp = $employee_model->get($value['emplyee_id']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
-                                <td><?= $value['title'] ?></td>
                                 <td><?= $value['award_title'] ?></td>
                                 <td><?= $value['award_date_time'] ?></td>
                                 <td><?= $value['award_year'] ?></td>
