@@ -2,6 +2,11 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
 
+<?php
+    use App\Models\Employee_model;
+    $employee_model = new Employee_model();
+?>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -140,17 +145,38 @@
                         <thead>
                             <tr>
                                 <td>SN</td>
-                                <td>Title</td>
+                                <td>File</td>
                                 <td>Employee</td>
+                                <td>Title</td>
                                 <td>Status</td>
                                 <td>Type</td>
-                                <td>File</td>
                                 <td>Publication Year</td>
+                                <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Dynamically populate rows here -->
+                        <?php foreach($publication as $key => $value){ ?>
+                            <tr>
+                                <td><?= ++$key ?></td>
+                                <td>
+                                    <a href="<?= base_url() ?>public/admin/uploads/publication/<?= $value['publication_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" height="30px"></a>
+                                </td>
+                                <td><?php $emp = $employee_model->get($value['emplyee_id']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                                <td><?= $value['title'] ?></td>
+                                <td><?php echo ($value['status'] == 0) ? "<span class='badge badge-warning badge-pill>In Proceeding</span>" : (($value['status'] == 1) ? "<span class='badge badge-success badge-pill>Published</span>" : ""); ?></td>
+                                <td><?= $value['publication_type'] ?></td>
+                                <td><?= $value['publication_year'] ?></td>
+                                <td><?= $value['upload_by'] ?></td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>

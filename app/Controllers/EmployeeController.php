@@ -156,6 +156,7 @@ use App\Models\Employee_publication_model;
             $data = ['title' => 'Employee Publication'];
             if ($this->request->is("get")) {
                 $data['employee'] = $employee_model->get();
+                $data['publication'] = $employee_publication_model->get();
                 return view('admin/employee/employee-publication',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
