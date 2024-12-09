@@ -2,6 +2,7 @@
     namespace App\Controllers;
 
 use App\Models\About_niper_model;
+use App\Models\Contact_model;
 use App\Models\Department_model;
 use App\Models\Designation_model;
 use App\Models\Employee_model;
@@ -255,11 +256,32 @@ use App\Models\UserModel;
             }
         }
         public function contact(){
+            $contact_model = new Contact_model();
             $data = ['title' => 'Contact'];
             if ($this->request->is("get")) {
+                $data['contact'] = $contact_model->get(1);
                 return view('admin/contact',$data);
             }else if ($this->request->is("post")) {
+                $data = [
+                    'contact_address' => $this->request->getPost('Contactaddress'),
+                    'contact1' => $this->request->getPost('Contactnumber1'),
+                    'contact1_desc' => $this->request->getPost('Contactnumberdesc1'),
+                    'contact2' => $this->request->getPost('Contactnumber2'),
+                    'contact2_desc' => $this->request->getPost('Contactnumberdesc2'),
+                    'contact3' => $this->request->getPost('Contactnumber3'),
+                    'contact3_desc' => $this->request->getPost('Contactnumberdesc3'),
+                    'email_id1' => $this->request->getPost('Contactemailid1'),
+                    'email_id2' => $this->request->getPost('Contactemailid2'),
+                    'working_days' => $this->request->getPost('Workingdays'),
+                    'working_hours' => $this->request->getPost('Workinghours'),
+                ];
 
+                $result = $contact_model->add($data,1);
+                if ($result === true) {
+                    return redirect()->to('admin/contact')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                } else {
+                    return redirect()->to('admin/contact')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
         public function download_forms(){
