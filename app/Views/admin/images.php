@@ -62,7 +62,7 @@
                         <tr>
                             <td><?= ++$key ?></td>
                             <td><?= $value['image_title'] ?></td>
-                            <td><img src="<?= base_url() ?>public/admin/uploads/gallery/<?= $value['upload_file'] ?>" alt="<?= $value['image_title'] ?>"></td>
+                            <td><a href="<?= base_url() ?>public/admin/uploads/gallery/<?= $value['upload_file'] ?>"><img src="<?= base_url() ?>public/admin/uploads/gallery/<?= $value['upload_file'] ?>" alt="<?= $value['image_title'] ?>" height="40px"></a></td>
                             <td><?= $value['event_start_date']." - ".$value['event_end_date'] ?></td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
