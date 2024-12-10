@@ -61,13 +61,37 @@
                             <td>SN</td>
                             <td>Title</td>
                             <td>Files</td>
+                            <td>Status</td>
                             <td>Uploaded By</td>
                             <td>Create at</td>
                             <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    <?php foreach ($quick_link as $key => $value) { ?>
+                        <tr>
+                            <td><?= ++$key ?></td>
+                            <td><a href="<?= $value['page_url'] ?>" target="_blank"><?= $value['title'] ?></a></td>
+                            <td><a href="<?= base_url() ?>public/admin/uploads/gallery/<?= $value['image_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/gallery/<?= $value['image_file'] ?>" alt="<?= $value['title'] ?>" height="40px"></a></td>
+                            <td>
+                                <?php
+                                    if ($value['status'] == 0) {
+                                        echo "<span class='badge badge-warning badge-pill'>In Proceeding</span>";
+                                    } elseif ($value['status'] == 1) {
+                                        echo "<span class='badge badge-success badge-pill'>Published</span>";
+                                    }
+                                ?>
+                            </td>
+                            <td><?= $value['upload_by'] ?></td>
+                            <td><?= $value['created_at'] ?></td>
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                    <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                    <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 </div>
