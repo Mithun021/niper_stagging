@@ -10,6 +10,7 @@ use App\Models\Image_gallery_model;
 use App\Models\Permission_model;
 use App\Models\Photo_album_file_model;
 use App\Models\Photo_album_model;
+use App\Models\Quick_link_model;
 use App\Models\Roles_model;
 use App\Models\UserModel;
 
@@ -413,11 +414,40 @@ use App\Models\UserModel;
         }
 
         public function quick_link(){
+            $quick_link_model = new Quick_link_model();
             $data = ['title' => 'Quick Links'];
             if ($this->request->is("get")) {
+                $data['quick_link'] = $quick_link_model->get();
                 return view('admin/quick-link',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $quicklink_photo = $this->request->getFile('quicklink_file');
+                if ($quicklink_photo->isValid() && ! $quicklink_photo->hasMoved()) {
+                    $quicklinkimageName = $quicklink_photo->getRandomName();
+                    $quicklink_photo->move(ROOTPATH . 'public/admin/uploads/gallery', $quicklinkimageName);    
+                }else{
+                 $quicklinkimageName = "";
+                }
 
+                $data = [
+                    'title' => $this->request->getPost('quicklink_title'),
+                    'image_file' => $quicklinkimageName,
+                    'page_url' => $this->request->getPost('page_url'),
+                    'description' => $this->request->getPost('quicklinkdesc'),
+                    'status' => $this->request->getPost('status'),
+                    'upload_by' =>  $loggeduserId,
+                ]; 
+
+                // echo "<pre>";print_r($data);
+                $result = $quick_link_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/images')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/images')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 

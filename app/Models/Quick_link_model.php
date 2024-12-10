@@ -1,11 +1,12 @@
 <?php
     namespace App\Models;
     use CodeIgniter\Model;
-    class Photo_album_file_model extends Model
+    class Quick_link_model extends Model
     {
-        protected $table         = 'photo_album_file';
+        protected $table         = 'quick_links';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['album_id','file_name'];
+        protected $allowedFields = ['title','page_url','image_file','description','status','upload_by'];
+        protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
             if ($id != null) {
@@ -13,7 +14,11 @@
                 return $result ? true : 'Data not updated: Update failed.';
             } else {
                 $result = $this->insert($data);
-                return $result;
+                if ($result) {
+                    return $this->insertID(); // Return the inserted record's ID
+                } else {
+                    return 'Data not inserted: Insertion failed.';
+                }
             }
         }
 
@@ -21,14 +26,9 @@
             if($id != null){
                 $result = $this->where('id',$id)->first();
             }else{
-                $result = $this->findAll();
+                $result = $this->orderBy('id','asc')->findAll();
             }
             return $result;
-        } 
-
-        public function getByAlbumId($id){
-             return $this->orderBy('id','asc')->findAll();
-            
         } 
         
     }

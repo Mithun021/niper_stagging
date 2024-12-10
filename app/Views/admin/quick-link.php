@@ -17,26 +17,26 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form id="noticeBoardForm">
+                <form action="<?= base_url() ?>admin/contact" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="notice_title">
+                        <input type="text" class="form-control form-control-sm" name="quicklink_title" required>
                     </div>
                     <div class="form-group">
                         <span for="">Web Page URL<span class="text-danger">*</span></span>
-                        <input type="url" class="form-control form-control-sm" name="notice_title">
+                        <input type="url" class="form-control form-control-sm" name="page_url" required>
                     </div>
                     <div class="form-group">
                         <span for="">Upload File(JPG,PNG,PDF)</span>
-                        <input type="file" class="form-control form-control-sm" name="notice_file" accept=".jpg, .png, .pdf" required>
+                        <input type="file" class="form-control form-control-sm" name="quicklink_file" accept=".jpg, .png, .pdf" required>
                     </div>
                     <div class="form-group">
-                        <span for="resultdesc">Result Description:</span>
-                        <textarea name="resultdesc" id="editor" class="form-control form-control-sm" required><?= old('resultdesc') ?></textarea>
+                        <span for="quicklinkdesc">Result Description:</span>
+                        <textarea name="quicklinkdesc" id="editor" class="form-control form-control-sm"></textarea>
                     </div>
                     <div class="form-group">
-                        <span>Job Status<span class="text-danger">*</span></span>
-                        <select name="" id="" class="form-control form-control-sm">
+                        <span>Status<span class="text-danger">*</span></span>
+                        <select name="status" id="status" class="form-control form-control-sm">
                             <option value="0" selected>Inactive</option>
                             <option value="1">Active</option>
                         </select>
