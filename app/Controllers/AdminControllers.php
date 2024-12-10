@@ -8,6 +8,8 @@ use App\Models\Designation_model;
 use App\Models\Employee_model;
 use App\Models\Image_gallery_model;
 use App\Models\Permission_model;
+use App\Models\Photo_album_file_model;
+use App\Models\Photo_album_model;
 use App\Models\Roles_model;
 use App\Models\UserModel;
 
@@ -324,11 +326,43 @@ use App\Models\UserModel;
             }
         }
         public function photo_album(){
+            $photo_album_model = new Photo_album_model();
+            $photo_album_file_model = new Photo_album_file_model();
             $data = ['title' => 'Photo Album'];
             if ($this->request->is("get")) {
                 return view('admin/photo-album',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $album_photo = $this->request->getFile('album_file');
 
+                $data = [
+                    'album_title' => $this->request->getPost('album_title'),
+                    'upload_by' =>  $loggeduserId,
+                ]; 
+
+                // echo "<pre>";print_r($data);
+                $result = $photo_album_model->add($data);
+                if ($result === true) {
+                    foreach ($album_photo as $album_photos) {
+                        if ($album_photos->isValid() && ! $album_photos->hasMoved()) {
+                            $albumimageName = $album_photos->getRandomName();
+                            $album_photos->move(ROOTPATH . 'public/admin/uploads/album', $albumimageName);    
+                        }else{
+                         $albumimageName = "";
+                        }
+                        $data2=[
+                            'album_id' => $result,
+                            'file' => $albumimageName
+                        ];
+                        $photo_album_file_model->add($data2);
+                    }
+                    return redirect()->to('admin/photo-album')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/photo-album')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
         public function media(){

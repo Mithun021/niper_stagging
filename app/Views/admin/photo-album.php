@@ -20,11 +20,11 @@
                 <form id="noticeBoardForm">
                     <div class="form-group">
                         <span for="">Image Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="notice_title">
+                        <input type="text" class="form-control form-control-sm" name="album_title">
                     </div>
                     <div class="form-group">
                         <span for="">Upload File(JPG,PNG,JPEG)</span>
-                        <input type="file" class="form-control form-control-sm" name="notice_file" accept=".jpg, .png, .jpeg" required>
+                        <input type="file" class="form-control form-control-sm" name="album_file" accept=".jpg, .png, .jpeg" required multiple>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
