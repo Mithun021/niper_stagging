@@ -427,7 +427,7 @@ use App\Models\UserModel;
                 $quicklink_photo = $this->request->getFile('quicklink_file');
                 if ($quicklink_photo->isValid() && ! $quicklink_photo->hasMoved()) {
                     $quicklinkimageName = $quicklink_photo->getRandomName();
-                    $quicklink_photo->move(ROOTPATH . 'public/admin/uploads/gallery', $quicklinkimageName);    
+                    $quicklink_photo->move(ROOTPATH . 'public/admin/uploads/quicklink', $quicklinkimageName);    
                 }else{
                  $quicklinkimageName = "";
                 }
