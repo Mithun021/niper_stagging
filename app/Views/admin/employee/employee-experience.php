@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <!-- Empid -->
-                     <div class="card card-body form-container">
+                     <div class="card card-body" id="form-container">
                     <div class="row clone-form-group" id="form-1">
                         <div class="col-lg-12 form-group">
                             <span for="Empid">Employee:</span>
@@ -148,5 +148,37 @@
         </div>
     </div>
 </div>
+
+<!-- jQuery Script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    // Add Clone Button
+    $('#add-clone').click(function() {
+        // Get the last form row and clone it
+        var clone = $('#form-container .clone-form-group:last').clone();
+        
+        // Reset form values in the cloned form
+        clone.find('input, select, textarea').val('');
+        
+        // Create a unique ID for each cloned form to avoid conflicts
+        var newFormId = 'form-' + ($('#form-container .clone-form-group').length + 1);
+        clone.attr('id', newFormId);
+        
+        // Append the cloned form to the container
+        $('#form-container').append(clone);
+    });
+
+    // Remove Clone Button
+    $('#remove-clone').click(function() {
+        var formCount = $('#form-container .form-group').length;
+        if (formCount > 1) { // Keep at least one form
+            $('#form-container .form-group:last').remove(); // Remove the last form
+        } else {
+            alert('At least one form is required!');
+        }
+    });
+});
+</script>
 
 <?= $this->endSection() ?>
