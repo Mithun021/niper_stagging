@@ -26,7 +26,7 @@
             if($id != null){
                 $result = $this->where('id',$id)->first();
             }else{
-                $result = $this->findAll();
+                $result = $this->orderBy('id','asc')->findAll();
             }
             return $result;
         } 

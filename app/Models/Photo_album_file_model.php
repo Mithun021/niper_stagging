@@ -25,6 +25,11 @@
             }
             return $result;
         } 
+
+        public function getByAlbumId($id){
+             return $result = $this->orderBy('id','asc')->findAll();
+            
+        } 
         
     }
 ?>

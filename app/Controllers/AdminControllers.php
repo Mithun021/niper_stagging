@@ -331,6 +331,7 @@ use App\Models\UserModel;
             $data = ['title' => 'Photo Album'];
         
             if ($this->request->is("get")) {
+                $data['albums'] = $photo_album_model->get();
                 return view('admin/photo-album', $data);
             } else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');

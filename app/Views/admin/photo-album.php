@@ -1,6 +1,11 @@
 <?= $this->extend("admin/layouts/master") ?>
 
 <?=  $this->section("body-content"); ?>
+<?php
+
+use App\Models\Photo_album_file_model;
+$photo_album_file_model = new Photo_album_file_model();
+?>
 <style>
     
 </style>
@@ -46,11 +51,32 @@
                             <td>SN</td>
                             <td>Title</td>
                             <td>Files</td>
+                            <td>Upload by</td>
                             <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    <?php foreach($albums as $key => $value){ ?>
+                        <tr>
+                            <td><?= ++$key ?></td>
+                            <td><?= $value['album_title'] ?></td>
+                            <td>
+                                <?php
+                                    $albums = $photo_album_file_model->getByAlbumId($value['id']);
+                                    foreach ($variable as $key => $value) {
+                                ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/album/<?= $value['file_name'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/album/<?= $value['file_name'] ?>" alt="<?= $value['image_title'] ?>" height="40px"></a>
+                                <?php
+                                    }
+                                ?>
+                            </td>
+                            <td><?= $value['upload_by'] ?></td>
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                            </div>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 </div>
