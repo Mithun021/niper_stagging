@@ -17,7 +17,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form action="<?= base_url() ?>admin/contact" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/quick-link" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="quicklink_title" required>
