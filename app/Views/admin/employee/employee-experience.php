@@ -69,13 +69,21 @@
                                 <option value="Post Doc">Post Doc</option>
                             </select>
                         </div>
-                        <div class="col-lg-12 form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
+                        
                         
                     </div><!-- Close row -->
                      </div>
                 </form>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <div class="form-group">
+                    <button type="button" id="add-clone" class="btn btn-success">Add Clone</button>
+                    <button type="button" id="remove-clone" class="btn btn-danger">Remove Clone</button>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                
             </div>
         </div>
     </div>
