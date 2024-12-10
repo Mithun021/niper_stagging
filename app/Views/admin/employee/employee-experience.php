@@ -23,7 +23,8 @@
                 <!-- Form Start -->
                 <form action="<?= base_url() ?>admin/employee-experience" method="post">
                     <!-- Empid -->
-                    <div class="row">
+                     
+                    <div class="row card">
                         <div class="col-lg-12 form-group">
                             <span for="Empid">Employee:</span>
                             <select name="Empid" id="Empid" class="form-control form-control-sm" required >
