@@ -22,6 +22,19 @@
 
                 <!-- Form Start -->
                 <form action="<?= base_url() ?>admin/employee-experience" method="post">
+                    <div class="card card-body mb-1">
+                        <div class="row">
+                            <div class="col-lg-12 form-group">
+                                <span for="Empid">Employee:</span>
+                                <select name="Empid" id="Empid" class="form-control form-control-sm" required >
+                                    <option value="">Select Employee</option>
+                                <?php foreach($employee as $value){ ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                                <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Empid -->
                      <div class="card card-body">
                     <div class="row">
