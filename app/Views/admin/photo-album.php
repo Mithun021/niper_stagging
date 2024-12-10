@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-group">
                         <span for="">Upload File(JPG,PNG,JPEG)</span>
-                        <input type="file" class="form-control form-control-sm" name="album_file" accept=".jpg, .png, .jpeg" required multiple>
+                        <input type="file" class="form-control form-control-sm" name="album_file[]" accept=".jpg, .png, .jpeg" required multiple>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>

@@ -14,7 +14,11 @@
                 return $result ? true : 'Data not updated: Update failed.';
             } else {
                 $result = $this->insert($data);
-                return $result ? true : 'Data not inserted: Insertion failed.';
+                if ($result) {
+                    return $this->insertID(); // Return the inserted record's ID
+                } else {
+                    return 'Data not inserted: Insertion failed.';
+                }
             }
         }
 
