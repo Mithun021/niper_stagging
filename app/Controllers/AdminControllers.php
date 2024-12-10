@@ -375,12 +375,12 @@ use App\Models\UserModel;
                                 'album_id' => $album_id,
                                 'file_name' => $newName,
                             ];
-        
+                            echo "<pre>"; print_r($file_data);
                             // $photo_album_file_model->add($file_data);
                         }
                     }
                 }
-                echo "<pre>"; print_r($file_data); die;
+                 die;
                 return redirect()->to('admin/photo-album')->with(
                     'status', 
                     '<div class="alert alert-success" role="alert"> Data added successfully. </div>'
