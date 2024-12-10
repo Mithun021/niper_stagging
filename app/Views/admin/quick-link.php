@@ -72,7 +72,7 @@
                         <tr>
                             <td><?= ++$key ?></td>
                             <td><a href="<?= $value['page_url'] ?>" target="_blank"><?= $value['title'] ?></a></td>
-                            <td><a href="<?= base_url() ?>public/admin/uploads/gallery/<?= $value['image_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/gallery/<?= $value['image_file'] ?>" alt="<?= $value['title'] ?>" height="40px"></a></td>
+                            <td><a href="<?= base_url() ?>public/admin/uploads/quicklink/<?= $value['image_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/gallery/<?= $value['image_file'] ?>" alt="<?= $value['title'] ?>" height="40px"></a></td>
                             <td>
                                 <?php
                                     if ($value['status'] == 0) {
