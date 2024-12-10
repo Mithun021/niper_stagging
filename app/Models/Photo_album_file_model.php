@@ -5,7 +5,7 @@
     {
         protected $table         = 'photo_album_file';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['album_id','file'];
+        protected $allowedFields = ['album_id','file_name'];
 
         public function add($data, $id = null) {
             if ($id != null) {

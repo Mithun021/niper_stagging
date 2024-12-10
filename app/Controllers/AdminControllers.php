@@ -373,7 +373,7 @@ use App\Models\UserModel;
         
                             $file_data = [
                                 'album_id' => $album_id,
-                                'file' => $newName,
+                                'file_name' => $newName,
                             ];
         
                             $photo_album_file_model->add($file_data);
