@@ -17,15 +17,13 @@
 
             <div class="card-body">
                 <?php if (session()->getFlashdata('msg')): ?>
-                    <div class="alert alert-success">
-                        <?= session()->getFlashdata('msg') ?>
-                    </div>
+                    <?= session()->getFlashdata('msg') ?>
                 <?php endif; ?>
 
                 <!-- Form Start -->
                 <form action="<?= base_url() ?>admin/employee-experience" method="post">
                     <!-- Empid -->
-                    <div class="row">
+                    <div class="row card card-body">
                         <div class="col-lg-12 form-group">
                             <span for="Empid">Employee:</span>
                             <select name="Empid" id="Empid" class="form-control form-control-sm" required >
