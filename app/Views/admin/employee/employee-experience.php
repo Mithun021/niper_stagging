@@ -23,7 +23,6 @@
                 <!-- Form Start -->
                 <form action="<?= base_url() ?>admin/employee-experience" method="post">
                     <!-- Empid -->
-                     <div class="card card-body">
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <span for="Empid">Employee:</span>
@@ -74,7 +73,6 @@
                         </div>
                         
                     </div><!-- Close row -->
-                    </div>
                 </form>
             </div>
         </div>
