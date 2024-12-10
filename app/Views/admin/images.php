@@ -17,7 +17,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form action="<?= base_url() ?>admin/image" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/images" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Image Title<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="image_title">
