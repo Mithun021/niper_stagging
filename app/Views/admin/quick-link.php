@@ -30,10 +30,10 @@
                         <span for="">Upload File(JPG,PNG,PDF)</span>
                         <input type="file" class="form-control form-control-sm" name="quicklink_file" accept=".jpg, .png, .pdf" required>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <span for="quicklinkdesc">Result Description:</span>
                         <textarea name="quicklinkdesc" id="editor" class="form-control form-control-sm"></textarea>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <span>Status<span class="text-danger">*</span></span>
                         <select name="status" id="status" class="form-control form-control-sm">

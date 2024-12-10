@@ -436,7 +436,7 @@ use App\Models\UserModel;
                     'title' => $this->request->getPost('quicklink_title'),
                     'image_file' => $quicklinkimageName,
                     'page_url' => $this->request->getPost('page_url'),
-                    'description' => $this->request->getPost('quicklinkdesc'),
+                    // 'description' => $this->request->getPost('quicklinkdesc'),
                     'status' => $this->request->getPost('status'),
                     'upload_by' =>  $loggeduserId,
                 ]; 
