@@ -63,9 +63,9 @@ $photo_album_file_model = new Photo_album_file_model();
                             <td>
                                 <?php
                                     $albums = $photo_album_file_model->getByAlbumId($value['id']);
-                                    foreach ($albums as $key => $value) {
+                                    foreach ($albums as $key => $files) {
                                 ?>
-                                    <a href="<?= base_url() ?>public/admin/uploads/album/<?= $value['file_name'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/album/<?= $value['file_name'] ?>" alt="<?= $value['image_title'] ?>" height="40px"></a>
+                                    <a href="<?= base_url() ?>public/admin/uploads/album/<?= $files['file_name'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/album/<?= $files['file_name'] ?>" alt="<?= $value['album_title'] ?>" height="40px"></a>
                                 <?php
                                     }
                                 ?>
