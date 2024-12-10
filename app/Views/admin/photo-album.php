@@ -17,7 +17,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form id="noticeBoardForm">
+                <form  action="<?= base_url() ?>admin/photo-album" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Image Title<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="album_title">
