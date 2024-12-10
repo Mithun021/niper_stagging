@@ -325,53 +325,74 @@ use App\Models\UserModel;
 
             }
         }
-        public function photo_album(){
+        public function photo_album() {
             $photo_album_model = new Photo_album_model();
             $photo_album_file_model = new Photo_album_file_model();
             $data = ['title' => 'Photo Album'];
+        
             if ($this->request->is("get")) {
-                return view('admin/photo-album',$data);
-            }else if ($this->request->is("post")) {
+                return view('admin/photo-album', $data);
+            } else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
-                if ($sessionData) {
-                    $loggeduserId = $sessionData['loggeduserId']; 
+                $loggeduserId = $sessionData['loggeduserId'] ?? null;
+        
+                if (!$loggeduserId) {
+                    return redirect()->to('admin/photo-album')->with(
+                        'status', 
+                        '<div class="alert alert-danger" role="alert"> User session is not valid. Please log in again. </div>'
+                    );
                 }
-                // $album_photo = $this->request->getFileMultiple('album_file');
-
-                $data = [
-                    'album_title' => $this->request->getPost('album_title'),
-                    'upload_by' =>  $loggeduserId,
-                ]; 
-
-                // echo "<pre>";print_r($data);
-                $result = $photo_album_model->add($data);
-                if ($result === true) {
-                    $albumimage = $this->request->getFiles();
-                    if ($albumimage) {
-                        foreach ($albumimage['album_file'] as $file) {
-                            // Check if the file is valid
-                            if ($file->isValid() && !$file->hasMoved()) {
-                                // Generate a new file name
-                                $newName = $file->getRandomName();
-                                // Move the file to the desired location
-                                $file->move(ROOTPATH . 'public/admin/uploads/album', $newName);
-                    
-                                // Save to database
-                                $data = [
-                                    'album_id' => $result,
-                                    'file' => $newName
-                                ];
-                    
-                                $photo_album_file_model->add($data);
-                            }
+        
+                $album_title = $this->request->getPost('album_title');
+                if (empty($album_title)) {
+                    return redirect()->to('admin/photo-album')->with(
+                        'status', 
+                        '<div class="alert alert-danger" role="alert"> Album title cannot be empty. </div>'
+                    );
+                }
+        
+                $album_data = [
+                    'album_title' => $album_title,
+                    'upload_by' => $loggeduserId,
+                ];
+        
+                $album_id = $photo_album_model->add($album_data);
+                if (!$album_id) {
+                    return redirect()->to('admin/photo-album')->with(
+                        'status', 
+                        '<div class="alert alert-danger" role="alert"> Failed to create photo album. Please try again. </div>'
+                    );
+                }
+        
+                $album_files = $this->request->getFiles();
+                if ($album_files && isset($album_files['album_file'])) {
+                    foreach ($album_files['album_file'] as $file) {
+                        if ($file->isValid() && !$file->hasMoved()) {
+                            $newName = $file->getRandomName();
+                            $file->move(ROOTPATH . 'public/admin/uploads/album', $newName);
+        
+                            $file_data = [
+                                'album_id' => $album_id,
+                                'file' => $newName,
+                            ];
+        
+                            $photo_album_file_model->add($file_data);
                         }
                     }
-                    return redirect()->to('admin/photo-album')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
-                } else {
-                    return redirect()->to('admin/photo-album')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
+        
+                return redirect()->to('admin/photo-album')->with(
+                    'status', 
+                    '<div class="alert alert-success" role="alert"> Data added successfully. </div>'
+                );
             }
+        
+            return redirect()->to('admin/photo-album')->with(
+                'status', 
+                '<div class="alert alert-danger" role="alert"> Invalid request method. </div>'
+            );
         }
+        
         public function media(){
             $data = ['title' => 'Media'];
             if ($this->request->is("get")) {
