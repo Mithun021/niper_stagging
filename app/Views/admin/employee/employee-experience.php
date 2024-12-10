@@ -37,7 +37,7 @@
                     </div>
                     <!-- Empid -->
                      <div class="card card-body">
-                    <div class="row">
+                    <div class="row" id="form-clone-container">
                         <div class="col-lg-12 form-group">
                             <span for="Empid">Employee:</span>
                             <select name="Empid" id="Empid" class="form-control form-control-sm" required >
@@ -148,5 +148,28 @@
         </div>
     </div>
 </div>
+
+
+<!-- jQuery Script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    // Add Clone Button
+    $('#add-clone').click(function() {
+        var clone = $('#form-clone-container .row').last().clone(); // Clone the last row
+        // Reset form values in cloned form
+        clone.find('input, select, textarea').val('');
+        clone.appendTo('#form-clone-container'); // Append the clone
+    });
+
+    // Remove Clone Button
+    $('#remove-clone').click(function() {
+        var clones = $('#form-clone-container .row');
+        if (clones.length > 1) {
+            clones.last().remove(); // Remove the last clone
+        }
+    });
+});
+</script>
 
 <?= $this->endSection() ?>
