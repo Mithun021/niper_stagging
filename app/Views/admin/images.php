@@ -17,20 +17,20 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form id="noticeBoardForm">
+                <form action="<?= base_url() ?>admin/image" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Image Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="notice_title">
+                        <input type="text" class="form-control form-control-sm" name="image_title">
                     </div>
                     <div class="form-group">
                         <span for="">Upload File(JPG,PNG,PDF)</span>
-                        <input type="file" class="form-control form-control-sm" name="notice_file" accept=".jpg, .png, .pdf" required>
+                        <input type="file" class="form-control form-control-sm" name="image_file" accept=".jpg, .png, .pdf" required>
                     </div>
                     <div class="form-group">
                         <span for="">Event Date<span class="text-danger">*</span></span>
                         <div class="input-group">
-                            <input type="text" class="form-control form-control-sm" name="news_date"  placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                            <input type="text" class="form-control form-control-sm" name="news_date"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                            <input type="text" class="form-control form-control-sm" name="event_start_date"  placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                            <input type="text" class="form-control form-control-sm" name="event_start_date"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
                         </div>
                     </div>
 
@@ -58,7 +58,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    <?php foreach($gallery as $key => $value){ ?>
+                        <tr>
+                            <td><?= ++$key ?></td>
+                            <td><?= $value['image_title'] ?></td>
+                            <td><img src="<?= base_url() ?>public/admin/uploads/gallery/<?= $value['upload_file'] ?>" alt="<?= $value['image_title'] ?>"></td>
+                            <td><?= $value['event_start_date']." - ".$value['event_end_date'] ?></td>
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                    <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                    <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                    <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 </div>

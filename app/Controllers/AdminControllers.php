@@ -6,6 +6,7 @@ use App\Models\Contact_model;
 use App\Models\Department_model;
 use App\Models\Designation_model;
 use App\Models\Employee_model;
+use App\Models\Image_gallery_model;
 use App\Models\Permission_model;
 use App\Models\Roles_model;
 use App\Models\UserModel;
@@ -248,10 +249,40 @@ use App\Models\UserModel;
         
 
         public function images(){
+            $image_gallery_model = new Image_gallery_model();
             $data = ['title' => 'Images'];
             if ($this->request->is("get")) {
+                $data['gallery'] = $image_gallery_model->get();
                 return view('admin/images',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $gallery_photo = $this->request->getFile('image_file');
+                if ($gallery_photo->isValid() && ! $gallery_photo->hasMoved()) {
+                    $galleryimageName = $gallery_photo->getRandomName();
+                    $gallery_photo->move(ROOTPATH . 'public/admin/uploads/gallery', $galleryimageName);    
+                }else{
+                 $galleryimageName = "";
+                }
+
+                $data = [
+                    'image_title' => $this->request->getPost('image_title'),
+                    'upload_file' => $galleryimageName,
+                    'event_start_date' => $this->request->getPost('event_start_date'),
+                    'event_end_date' => $this->request->getPost('event_start_date'),
+                    'upload_by' =>  $loggeduserId,
+                ]; 
+
+                // echo "<pre>";print_r($data);
+                $result = $image_gallery_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/images')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/images')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+
 
             }
         }
