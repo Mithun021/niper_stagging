@@ -336,7 +336,7 @@ use App\Models\UserModel;
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
-                $album_photo = $this->request->getFile('album_file');
+                // $album_photo = $this->request->getFileMultiple('album_file');
 
                 $data = [
                     'album_title' => $this->request->getPost('album_title'),
@@ -346,18 +346,25 @@ use App\Models\UserModel;
                 // echo "<pre>";print_r($data);
                 $result = $photo_album_model->add($data);
                 if ($result === true) {
-                    foreach ($album_photo as $album_photos) {
-                        if ($album_photos->isValid() && ! $album_photos->hasMoved()) {
-                            $albumimageName = $album_photos->getRandomName();
-                            $album_photos->move(ROOTPATH . 'public/admin/uploads/album', $albumimageName);    
-                        }else{
-                         $albumimageName = "";
+                    $albumimage = $this->request->getFiles();
+                    if ($albumimage) {
+                        foreach ($albumimage['album_file'] as $file) {
+                            // Check if the file is valid
+                            if ($file->isValid() && !$file->hasMoved()) {
+                                // Generate a new file name
+                                $newName = $file->getRandomName();
+                                // Move the file to the desired location
+                                $file->move(ROOTPATH . 'public/admin/uploads/album', $newName);
+                    
+                                // Save to database
+                                $data = [
+                                    'album_id' => $result,
+                                    'file' => $newName
+                                ];
+                    
+                                $photo_album_file_model->add($data);
+                            }
                         }
-                        $data2=[
-                            'album_id' => $result,
-                            'file' => $albumimageName
-                        ];
-                        $photo_album_file_model->add($data2);
                     }
                     return redirect()->to('admin/photo-album')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
