@@ -19,7 +19,7 @@
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
                 <div>
-                    <button type="button" class="btn btn-sm btn-danger">Export Sample</button>
+                    <button type="button" class="btn btn-sm btn-danger">Export Emp. Sample</button>
                     <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>
                 </div>
             </div>
