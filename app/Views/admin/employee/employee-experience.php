@@ -36,8 +36,9 @@
                         </div>
                     </div>
                     <!-- Empid -->
-                     <div class="card card-body" id="clone_content">
-                    <div class="row" id="clone_employee_data">
+                     <div id="clone_content">
+                     <div class="card card-body" id="clone_employee_data">
+                    <div class="row">
                         <div class="col-lg-12 form-group">
                             <span for="Empid">Employee:</span>
                             <select name="Empid" id="Empid" class="form-control form-control-sm" required >
@@ -85,6 +86,7 @@
                         
                         
                     </div><!-- Close row -->
+                     </div>
                      </div>
                 </form>
             </div>
