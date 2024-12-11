@@ -80,9 +80,6 @@
                             <span for="projectvalue">Project Value (in INR):<span class="text-danger">*</span></span>
                             <input type="number" name="projectvalue" id="projectvalue" class="form-control form-control-sm" step="0.01">
                         </div>
-                        <div class="col-lg-12 mt-3">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
                     </div>
                         <button type="button" id="remove-clone" class="btn btn-danger" style="width: 120px;">Remove Clone</button>
                      </div>
