@@ -86,6 +86,7 @@
                         
                         
                     </div><!-- Close row -->
+                        <button type="button" id="remove-clone" class="btn btn-danger">Remove Clone</button>
                      </div>
                      </div>
                 </form>
@@ -93,7 +94,6 @@
             <div class="card-footer d-flex justify-content-between">
                 <div class="form-group">
                     <button type="button" id="add-clone" class="btn btn-success">Add Clone</button>
-                    <button type="button" id="remove-clone" class="btn btn-danger">Remove Clone</button>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -159,8 +159,11 @@ $(document).ready(function() {
         e.preventDefault();
         var cloneCatrow = $('#clone_employee_data').clone().appendTo('#clone_content');
         $(cloneCatrow).find('input').val('');
-        
     });
+
+    $('#clone_content').on('click','#remove-clone', function(){
+		$(this).closest('#clone_employee_data').remove();
+	});
 });
 </script>
 
