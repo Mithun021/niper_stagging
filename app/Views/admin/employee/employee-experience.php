@@ -8,7 +8,7 @@
     $employee_model = new Employee_model();
 ?>
 <style>
-    #clone_content:first-child #clone_employee_data button#remove-clone{
+    #clone_content #clone_employee_data:first-child button#remove-clone {
         display: none;
     }
 </style>
