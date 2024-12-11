@@ -90,7 +90,7 @@
                         
                         
                     </div><!-- Close row -->
-                        <button type="button" id="remove-clone" class="btn btn-danger">Remove Clone</button>
+                        <button type="button" id="remove-clone" class="btn btn-danger" style="width: 120px;">Remove Clone</button>
                      </div>
                      </div>
                 </form>
