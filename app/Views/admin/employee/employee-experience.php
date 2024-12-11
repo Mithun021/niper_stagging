@@ -7,7 +7,11 @@
     use App\Models\Employee_model;
     $employee_model = new Employee_model();
 ?>
-
+<style>
+    #clone_content:first-child #remove-clone:first-child{
+        display: none;
+    }
+</style>
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
