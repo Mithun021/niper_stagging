@@ -43,15 +43,6 @@
                      <div id="clone_content">
                      <div class="card card-body" id="clone_employee_data">
                     <div class="row">
-                        <div class="col-lg-12 form-group">
-                            <span for="Empid">Employee:</span>
-                            <select name="Empid" id="Empid" class="form-control form-control-sm" required >
-                                <option value="">Select Employee</option>
-                            <?php foreach($employee as $value){ ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
-                            <?php } ?>
-                            </select>
-                        </div>
                         <div class="col-lg-6 form-group">
                             <span for="orgname">Organization Name:</span>
                             <input type="text" name="orgname" id="orgname" class="form-control form-control-sm" required>
