@@ -6,13 +6,22 @@
     use App\Models\Employee_model;
     $employee_model = new Employee_model();
 ?>
+<style>
+    #clone_content #clone_employee_data:first-child button#remove-clone {
+        display: none;
+    }
+</style>
 
 <div class="row">
     <!-- Form Section for Adding  Details -->
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
+                <div>
+                    <button type="button" class="btn btn-sm btn-danger">Export Sample</button>
+                    <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>
+                </div>
             </div>
             <div class="card-body">
             <?php if (session()->getFlashdata('msg')): ?>
@@ -21,6 +30,19 @@
 
                 <!-- Form Start -->
                 <form action="<?= base_url() ?>admin/employee-awards" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-lg-12 form-group">
+                        <span for="Empid">Employee:</span>
+                        <select name="Empid" id="Empid" class="form-control form-control-sm" required >
+                            <option value="">Select Employee</option>
+                        <?php foreach($employee as $value){ ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div id="clone_content">
+                    <div class="card card-body" id="clone_employee_data">
                 <div class="row">
                     <div class="col-lg-6">
                         <!-- Employee ID -->
@@ -76,11 +98,15 @@
                             <input type="text" name="Awardingagencyname" id="Awardingagencyname" class="form-control form-control-sm" required value="<?= esc(old('Awardingagencyname')) ?>">
                         </div>
                     </div>
-                    <div class="col-lg-12">
-                        <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                </div>
+                    <button type="button" id="remove-clone" class="btn btn-danger" style="width: 120px;">Remove Clone</button>
                     </div>
                 </div>
                 </form>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <button type="button" id="add-clone" class="btn btn-success">Add Clone</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </div>
@@ -138,5 +164,50 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="upload_emp_exp_modal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Upload Employee Awards Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="" method="post">
+      <div class="modal-body">
+        <input type="file" class="dropify" data-height="300" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Upload</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- jQuery Script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#add-clone").click(function(e){
+        e.preventDefault();
+        var cloneCatrow = $('#clone_employee_data').clone().appendTo('#clone_content');
+        $(cloneCatrow).find('input').val('');
+    });
+
+    $('#clone_content').on('click','#remove-clone', function(){
+		$(this).closest('#clone_employee_data').remove();
+	});
+
+    $('#upload_emp_exp_btn').on('click',function (e) { 
+        e.preventDefault();
+        $('#upload_emp_exp_modal').modal('show');
+     })
+
+
+});
+</script>
 
 <?= $this->endSection() ?>
