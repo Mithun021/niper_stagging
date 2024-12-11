@@ -44,23 +44,11 @@
                 <div id="clone_content">
                     <div class="card card-body" id="clone_employee_data">
                 <div class="row">
-                    <div class="col-lg-6">
-                        <!-- Employee ID -->
-                        <div class="form-group">
-                            <span for="Empid">Employee:</span>
-                            <select name="Empid" id="Empid" class="form-control form-control-sm" required >
-                                <option value="">Select Employee</option>
-                            <?php foreach($employee as $value){ ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
-                            <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <!-- Award Title -->
                         <div class="form-group">
                             <span for="Awardtitle">Award Title:</span>
-                            <input type="text" name="Awardtitle" id="Awardtitle" class="form-control form-control-sm" required value="<?= esc(old('Awardtitle')) ?>">
+                            <input type="text" name="Awardtitle" id="editor" class="form-control form-control-sm">
                         </div>
                     </div>
                     <div class="col-lg-6">
