@@ -6,6 +6,12 @@
     $employee_model = new Employee_model();
 ?>
 
+<style>
+    #clone_content #clone_employee_data:first-child button#remove-clone {
+        display: none;
+    }
+</style>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -20,19 +26,25 @@
 
                 <!-- Form Start -->
                 <form action="<?= base_url() ?>admin/employee-projects" method="post">
-                    <div class="row">
-                        <div class="col-lg-6 form-group">
-                            <span for="Empid">Employee: <span class="text-danger">*</span></span>
-                            <select name="Empid" id="Empid" class="form-control form-control-sm" required >
-                                <option value="">Select Employee</option>
-                            <?php foreach($employee as $value){ ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
-                            <?php } ?>
-                            </select>
+                <div class="card card-body mb-1">
+                        <div class="row">
+                            <div class="col-lg-12 form-group">
+                                <span for="Empid">Employee:</span>
+                                <select name="Empid" id="Empid" class="form-control form-control-sm" required >
+                                    <option value="">Select Employee</option>
+                                <?php foreach($employee as $value){ ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                                <?php } ?>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-lg-6 form-group">
+                    </div>
+                    <div id="clone_content">
+                     <div class="card card-body" id="clone_employee_data">
+                    <div class="row">
+                        <div class="col-lg-12 form-group">
                             <span for="projecttitle">Project Title:<span class="text-danger">*</span></span>
-                            <input type="text" name="projecttitle" id="projecttitle" class="form-control form-control-sm" required>
+                            <textarea type="text" name="projecttitle" id="editor2" class="form-control form-control-sm"></textarea>
                         </div>
                         <div class="col-lg-12">
                             <span for="projectdesc">Project Description:</span>
@@ -72,7 +84,14 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
+                        <button type="button" id="remove-clone" class="btn btn-danger" style="width: 120px;">Remove Clone</button>
+                     </div>
+                    </div>
                 </form>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <button type="button" id="add-clone" class="btn btn-success">Add Clone</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </div>
@@ -124,5 +143,28 @@
         </div>
     </div>
 </div>
+
+<!-- jQuery Script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#add-clone").click(function(e){
+        e.preventDefault();
+        var cloneCatrow = $('#clone_employee_data').clone().appendTo('#clone_content');
+        $(cloneCatrow).find('input').val('');
+    });
+
+    $('#clone_content').on('click','#remove-clone', function(){
+		$(this).closest('#clone_employee_data').remove();
+	});
+
+    $('#upload_emp_exp_btn').on('click',function (e) { 
+        e.preventDefault();
+        $('#upload_emp_exp_modal').modal('show');
+     })
+
+
+});
+</script>
 
 <?= $this->endSection() ?>
