@@ -22,7 +22,8 @@
 
         <!-- App favicon -->
         <link rel="shortcut icon" href="<?= base_url() ?>public/assets/image/logo.jpg">
-
+        <!-- Dropify css -->
+        <link href="<?= base_url() ?>public/admin/plugins/dropify/dropify.min.css" rel="stylesheet" type="text/css" />
         <!-- App css -->
         <link href="<?= base_url() ?>public/admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="<?= base_url() ?>public/admin/assets/css/icons.min.css" rel="stylesheet" type="text/css" />

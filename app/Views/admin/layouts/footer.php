@@ -51,6 +51,12 @@
         <script src="<?= base_url() ?>public/admin/plugins/datatables/vfs_fonts.js"></script>
         <!-- third party js ends -->
 
+        <!--dropify-->
+        <script src="<?= base_url() ?>public/admin/plugins/dropify/dropify.min.js"></script>
+
+        <!-- Init js-->
+        <script src="<?= base_url() ?>public/admin/assets/pages/fileuploads-demo.js"></script>
+
         <!-- Datatables init -->
         <script src="<?= base_url() ?>public/admin/assets/pages/datatables-demo.js"></script>
         <script src="<?= base_url() ?>public/admin/assets/js/adminScript.js"></script>

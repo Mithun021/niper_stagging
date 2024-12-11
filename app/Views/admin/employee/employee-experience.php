@@ -19,7 +19,7 @@
                 <h4 class="card-title m-0">Add <?= $title; ?></h4>
                 <div>
                     <button type="button" class="btn btn-sm btn-danger">Export Sample</button>
-                    <button class="btn btn-sm btn-primary">Import</button>
+                    <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>
                 </div>
             </div>
 
@@ -145,6 +145,28 @@
     </div>
 </div>
 
+<div class="modal fade" tabindex="-1" role="dialog" id="upload_emp_exp_modal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Upload Employee Experience Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="" method="post">
+      <div class="modal-body">
+        <input type="file" class="dropify" data-height="300" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Upload</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <!-- jQuery Script -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -158,6 +180,13 @@ $(document).ready(function() {
     $('#clone_content').on('click','#remove-clone', function(){
 		$(this).closest('#clone_employee_data').remove();
 	});
+
+    $('#upload_emp_exp_btn').on('click',function (e) { 
+        e.preventDefault();
+        $('#upload_emp_exp_modal').modal('show');
+     })
+
+
 });
 </script>
 
