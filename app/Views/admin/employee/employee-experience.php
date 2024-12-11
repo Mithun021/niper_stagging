@@ -36,8 +36,8 @@
                         </div>
                     </div>
                     <!-- Empid -->
-                     <div class="card card-body" id="form-container">
-                    <div class="row clone-form-group" id="form-1">
+                     <div class="card card-body" id="clone_content">
+                    <div class="row" id="clone_employee_data">
                         <div class="col-lg-12 form-group">
                             <span for="Empid">Employee:</span>
                             <select name="Empid" id="Empid" class="form-control form-control-sm" required >
@@ -153,30 +153,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
-    // Add Clone Button
-    $('#add-clone').click(function() {
-        // Get the last form row and clone it
-        var clone = $('#form-container .clone-form-group:last').clone();
+    $("#add-clone").click(function(e){
+        e.preventDefault();
+        var cloneCatrow = $('#clone_employee_data').clone().appendTo('#clone_content');
+        $(cloneCatrow).find('input').val('');
         
-        // Reset form values in the cloned form
-        clone.find('input, select, textarea').val('');
-        
-        // Create a unique ID for each cloned form to avoid conflicts
-        var newFormId = 'form-' + ($('#form-container .clone-form-group').length + 1);
-        clone.attr('id', newFormId);
-        
-        // Append the cloned form to the container
-        $('#form-container').append(clone);
-    });
-
-    // Remove Clone Button
-    $('#remove-clone').click(function() {
-        var formCount = $('#form-container .form-group').length;
-        if (formCount > 1) { // Keep at least one form
-            $('#form-container .form-group:last').remove(); // Remove the last form
-        } else {
-            alert('At least one form is required!');
-        }
     });
 });
 </script>

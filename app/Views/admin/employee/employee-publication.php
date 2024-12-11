@@ -88,7 +88,7 @@
                          <!-- DOI Details -->
                         <div class="form-group">
                             <span for="DoIdetails">DOI Details:</span>
-                            <input type="text" name="DoIdetails" id="DoIdetails" class="form-control form-control-sm" value="<?= esc(old('DoIdetails')) ?>">
+                            <input type="text" name="DoIdetails" id="DoIdetails" class="form-control form-control-sm">
                         </div>
                     </div>
                     <div class="col-lg-6">
