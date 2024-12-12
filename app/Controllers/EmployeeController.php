@@ -227,7 +227,7 @@ use App\Models\Employee_publication_model;
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
-                $awards_photo = $this->request->getFiles('Awardphotoupload');
+                $awards_photo = $this->request->getFile('Awardphotoupload');
                 $awards_titles = $this->request->getPost('Awardtitle');
                 foreach ($awards_titles as $key => $title) {    
                     $photo = $awards_photo[$key];
