@@ -146,10 +146,10 @@ use App\Models\Employee_publication_model;
                         'upload_by' =>  $loggeduserId,
                     ];
 
-                    echo "<pre>";print_r($data);
-                    // $result = $employee_projects_model->add($data);
+                    // echo "<pre>";print_r($data);
+                    $result = $employee_projects_model->add($data);
                 }
-                die;
+                // die;
                 if ($result === true) {
                     return redirect()->to('admin/employee-projects')->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
