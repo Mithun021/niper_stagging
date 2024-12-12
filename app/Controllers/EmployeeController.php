@@ -130,22 +130,26 @@ use App\Models\Employee_publication_model;
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
-                $data = [
-                    'emplyee_id' => $this->request->getPost('Empid'),
-                    'project_title' => $this->request->getPost('projecttitle'),
-                    'project_description' => $this->request->getPost('projectdesc'),
-                    'start_date' => $this->request->getPost('project_start_date'),
-                    'start_time' => $this->request->getPost('project_start_time'),
-                    'end_date' => $this->request->getPost('project_end_date'),
-                    'end_time' => $this->request->getPost('project_end_time'),
-                    'project_status' => $this->request->getPost('projectstatus'),
-                    'sponsored_by' => $this->request->getPost('projectsponseredby'),
-                    'project_value' => $this->request->getPost('projectvalue'),
-                    'upload_by' =>  $loggeduserId,
-                ];
+                $project_start_date = $this->request->getPost('project_start_date');
+                foreach ($project_start_date as $key => $value) {
+                    $data = [
+                        'emplyee_id' => $this->request->getPost('Empid'),
+                        'project_title' => $this->request->getPost('projecttitle')[$key],
+                        'project_description' => $this->request->getPost('projectdesc')[$key],
+                        'start_date' => $value,
+                        'start_time' => $this->request->getPost('project_start_time')[$key],
+                        'end_date' => $this->request->getPost('project_end_date')[$key],
+                        'end_time' => $this->request->getPost('project_end_time')[$key],
+                        'project_status' => $this->request->getPost('projectstatus')[$key],
+                        'sponsored_by' => $this->request->getPost('projectsponseredby')[$key],
+                        'project_value' => $this->request->getPost('projectvalue')[$key],
+                        'upload_by' =>  $loggeduserId,
+                    ];
 
-                // echo "<pre>";print_r($data);
-                $result = $employee_projects_model->add($data);
+                    echo "<pre>";print_r($data);
+                    // $result = $employee_projects_model->add($data);
+                }
+                die;
                 if ($result === true) {
                     return redirect()->to('admin/employee-projects')->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
