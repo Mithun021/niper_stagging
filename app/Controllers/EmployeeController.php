@@ -227,27 +227,29 @@ use App\Models\Employee_publication_model;
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
-                $awards_photo = $this->request->getFile('Awardphotoupload');
-                if ($awards_photo->isValid() && ! $awards_photo->hasMoved()) {
-                    $awardsimageName = $awards_photo->getRandomName();
-                    $awards_photo->move(ROOTPATH . 'public/admin/uploads/awards', $awardsimageName);    
-                }else{
-                 $awardsimageName = "invalidImage.png";
+                $awards_photo = $this->request->getFiles('Awardphotoupload');
+                $awards_titles = $this->request->getPost('Awardtitle');
+                foreach ($awards_titles as $key => $title) {    
+                    $photo = $awards_photo[$key];
+                    $photoName = "invalidImage.png";
+                    if ($photo->isValid() && !$photo->hasMoved()) {
+                        $photoName = $photo->getRandomName();
+                        $photo->move(ROOTPATH . 'public/admin/uploads/awards', $photoName);
+                    }
+                    $data = [
+                        'emplyee_id' => $this->request->getPost('Empid'),
+                        'award_title' => $title,
+                        'award_photo' => $photoName,
+                        'award_year' => $this->request->getPost('Awardyear')[$key],
+                        'award_date_time' => $this->request->getPost('Awarddatetime')[$key],
+                        'award_agency_type' => $this->request->getPost('Awardingagencytype')[$key],
+                        'award_agency_name' => $this->request->getPost('Awardingagencyname')[$key],
+                        'upload_by' =>  $loggeduserId,
+                    ]; 
+
+                    // echo "<pre>";print_r($data);
+                    $result = $employee_awards_model->add($data);
                 }
-
-                $data = [
-                    'emplyee_id' => $this->request->getPost('Empid'),
-                    'award_title' => $this->request->getPost('Awardtitle'),
-                    'award_photo' => $awardsimageName,
-                    'award_year' => $this->request->getPost('Awardyear'),
-                    'award_date_time' => $this->request->getPost('Awarddatetime'),
-                    'award_agency_type' => $this->request->getPost('Awardingagencytype'),
-                    'award_agency_name' => $this->request->getPost('Awardingagencyname'),
-                    'upload_by' =>  $loggeduserId,
-                ]; 
-
-                // echo "<pre>";print_r($data);
-                $result = $employee_awards_model->add($data);
                 if ($result === true) {
                     return redirect()->to('admin/employee-awards')->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
