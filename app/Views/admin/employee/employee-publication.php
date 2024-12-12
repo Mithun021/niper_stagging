@@ -229,7 +229,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
-        // Create Service Clone for add and remove rows
+        // Initialize clone data variables
         var cloneLimit = 10;
         var currentClones = 0;
 
@@ -239,7 +239,7 @@
             if (currentClones < cloneLimit) {
                 currentClones++;
                 var cloneCatrow = $('#stockTrow').clone().appendTo('#stockTbody');
-                $(cloneCatrow).find('input').val('');
+                $(cloneCatrow).find('input').val(''); // Clear input fields in the cloned row
             }
         });
 
@@ -247,7 +247,7 @@
         $("#addnewexpenserow").click(function (e) {
             e.preventDefault();
             var cloneExpCatrow = $('#expenseTrow').clone().appendTo('#expenseTbody');
-            $(cloneExpCatrow).find('input').val('');
+            $(cloneExpCatrow).find('input').val(''); // Clear input fields in the cloned row
         });
 
         // Remove service row
@@ -265,7 +265,7 @@
             e.preventDefault();
             var cloneCatrow = $('#clone_employee_data').first().clone();
             cloneCatrow.find('input, textarea, select').val('');
-            cloneCatrow.find('.ck-editor').remove();
+            cloneCatrow.find('.ck-editor').remove(); // Remove CKEditor instances from the cloned elements
             cloneCatrow.appendTo('#clone_content');
             cloneCatrow.find('.clone_editor').removeAttr('data-ckeditor-initialized');
             initializeEditors();
