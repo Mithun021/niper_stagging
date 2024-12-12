@@ -229,6 +229,38 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
+        // Create Service Clone for add and remove rows
+        var cloneLimit = 10;
+        var currentClones = 0;
+
+        // Add new service row
+        $("#addnewservicerow").click(function (e) {
+            e.preventDefault();
+            if (currentClones < cloneLimit) {
+                currentClones++;
+                var cloneCatrow = $('#stockTrow').clone().appendTo('#stockTbody');
+                $(cloneCatrow).find('input').val('');
+            }
+        });
+
+        // Add new expense row
+        $("#addnewexpenserow").click(function (e) {
+            e.preventDefault();
+            var cloneExpCatrow = $('#expenseTrow').clone().appendTo('#expenseTbody');
+            $(cloneExpCatrow).find('input').val('');
+        });
+
+        // Remove service row
+        $('#stockTbody').on('click', '#removenewServicerow', function () {
+            $(this).closest('tr').remove();
+        });
+
+        // Remove expense row
+        $('#expenseTbody').on('click', '#removenewExpenserow', function () {
+            $(this).closest('tr').remove();
+        });
+
+        // Add clone for employee data
         $("#add-clone").click(function (e) {
             e.preventDefault();
             var cloneCatrow = $('#clone_employee_data').first().clone();
@@ -239,15 +271,12 @@
             initializeEditors();
         });
 
+        // Remove clone for employee data
         $('#clone_content').on('click', '#remove-clone', function () {
             $(this).closest('#clone_employee_data').remove();
         });
 
-        $('#upload_emp_exp_btn').on('click', function (e) {
-            e.preventDefault();
-            $('#upload_emp_exp_modal').modal('show');
-        });
-
+        // Submit form hook to collect CKEditor data
         $('form').on('submit', function () {
             $('.clone_editor').each(function () {
                 if (this.editorInstance) {
@@ -256,23 +285,23 @@
             });
         });
     });
+
     // CKEditor Initialization
-function initializeEditors() {
-    document.querySelectorAll(".clone_editor").forEach((textarea) => {
-        if (!textarea.dataset.ckeditorInitialized) {
-            ClassicEditor.create(textarea)
-                .then(editor => {
-                    textarea.editorInstance = editor; // Save the CKEditor instance for later use
-                })
-                .catch(error => console.error(error));
-            textarea.dataset.ckeditorInitialized = true; // Mark as initialized
-        }
-    });
-}
+    function initializeEditors() {
+        document.querySelectorAll(".clone_editor").forEach((textarea) => {
+            if (!textarea.dataset.ckeditorInitialized) {
+                ClassicEditor.create(textarea)
+                    .then(editor => {
+                        textarea.editorInstance = editor; // Save the CKEditor instance for later use
+                    })
+                    .catch(error => console.error(error));
+                textarea.dataset.ckeditorInitialized = true; // Mark as initialized
+            }
+        });
+    }
 
-// Initialize editors for existing elements on page load
-initializeEditors();
-
+    // Initialize editors for existing elements on page load
+    initializeEditors();
 </script>
 
 <?= $this->endSection() ?>
