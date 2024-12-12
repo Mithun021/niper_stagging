@@ -271,7 +271,7 @@ use App\Models\Employee_publication_model;
             }
             //echo "<pre>"; print_r($employees); die;
             if ($empIds) {
-                $employeeDetails = $employee_model->getEmployeesByIds($empIds);
+                $employeeDetails = $employee_model->getEmployeeDetailsByIds($empIds);
                 $csvData = "emp_name,email,emp_phone,organization_name,start_date,end_date,description,organization_type,nature_of_work\n";
                 foreach ($employeeDetails as $employee) {
                     $csvData .= implode(",", [
