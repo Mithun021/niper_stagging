@@ -49,23 +49,23 @@
                     <div class="row">
                         <div class="col-lg-6 form-group">
                             <span for="orgname">Organization Name:</span>
-                            <input type="text" name="orgname" id="orgname" class="form-control form-control-sm" required>
+                            <input type="text" name="orgname[]" id="orgname" class="form-control form-control-sm" required>
                         </div>
                         <div class="col-lg-3 form-group">
                             <span for="startdate">Start Date:</span>
-                            <input type="date" name="startdate" id="startdate" class="form-control form-control-sm" required>
+                            <input type="date" name="startdate[]" id="startdate" class="form-control form-control-sm" required>
                         </div>
                         <div class="col-lg-3 form-group">
                             <span for="enddate">End Date:</span>
-                            <input type="date" name="enddate" id="enddate" class="form-control form-control-sm">
+                            <input type="date" name="enddate[]" id="enddate" class="form-control form-control-sm">
                         </div>
                         <div class="col-lg-12 form-group">
                             <span for="expdesc">Experience Description:</span>
-                            <textarea name="expdesc" id="editor" class="form-control form-control-sm" rows="4"></textarea>
+                            <textarea name="expdesc[]" id="editor" class="form-control form-control-sm" rows="4"></textarea>
                         </div>
                         <div class="col-lg-6 form-group">
                             <span for="orgtype">Organization Type:</span>
-                            <select name="orgtype" id="orgtype" class="form-control form-control-sm" required>
+                            <select name="orgtype[]" id="orgtype" class="form-control form-control-sm" required>
                                 <option value="Central Government">Central Government</option>
                                 <option value="State Government">State Government</option>
                                 <option value="Autonomous">Autonomous</option>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="col-lg-6 form-group">
                             <span for="natureofwork">Nature of Work:</span>
-                            <select name="natureofwork" id="natureofwork" class="form-control form-control-sm" required>
+                            <select name="natureofwork[]" id="natureofwork" class="form-control form-control-sm" required>
                                 <option value="Teaching">Teaching</option>
                                 <option value="Research">Research</option>
                                 <option value="Administrative">Administrative</option>

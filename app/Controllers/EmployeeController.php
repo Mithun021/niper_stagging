@@ -92,19 +92,23 @@ use App\Models\Employee_publication_model;
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
-                $data = [
-                    'emplyee_id' => $this->request->getPost('Empid'),
-                    'organization_name' => $this->request->getPost('orgname'),
-                    'start_date' => $this->request->getPost('startdate'),
-                    'end_date' => $this->request->getPost('enddate'),
-                    'exp_description' => $this->request->getPost('expdesc'),
-                    'org_type' => $this->request->getPost('orgtype'),
-                    'work_nature' => $this->request->getPost('natureofwork'),
-                    'upload_by' =>  $loggeduserId,
-                ];
-
-                // echo "<pre>";print_r($data);
-                $result = $employee_experience_model->add($data);
+                $orgname = $this->request->getPost('orgname');
+                foreach ($orgname as $key => $value) {
+                    $data = [
+                        'emplyee_id' => $this->request->getPost('Empid'),
+                        'organization_name' => $value,
+                        'start_date' => $this->request->getPost('startdate'),
+                        'end_date' => $this->request->getPost('enddate'),
+                        'exp_description' => $this->request->getPost('expdesc'),
+                        'org_type' => $this->request->getPost('orgtype'),
+                        'work_nature' => $this->request->getPost('natureofwork'),
+                        'upload_by' =>  $loggeduserId,
+                    ];
+    
+                    echo "<pre>";print_r($data);
+                    //$result = $employee_experience_model->add($data);
+                }
+                die;
                 if ($result === true) {
                     return redirect()->to('admin/employee-experience')->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
