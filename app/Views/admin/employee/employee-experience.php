@@ -157,9 +157,9 @@
       </div>
       <form action="<?= base_url() ?>admin/export_emp_experience_sample" method="post">
       <div class="modal-body">
-        <div class="alert alert-danger"><p class="m-0">After exporting the CSV, do not delete the top headings from the Excel sheet.</p></div>
+        <div class="alert alert-danger"><p class="m-0">Note : After exporting the CSV, do not delete the top headings from the Excel sheet.</p></div>
         <div class="card card-body">
-            <h3 class="m-0 p-2 border-bottom border-danger mb-3">Employee Details</h3>
+            <h5 class="m-0 p-2 border-bottom border-danger mb-3">Employee Details</h5>
             <?php foreach($employee as $value){ ?>
                 <span><input type="checkbox" name="emp_id[]" value="<?= $value['id'] ?>"> <?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></span> <br>
             <?php } ?>
@@ -185,6 +185,12 @@
       </div>
       <form action="<?= base_url() ?>admin/upload_emp_experience_csv" method="post" enctype="multipart/form-data">
       <div class="modal-body">
+        <div class="alert alert-danger">
+            <p class="m-0">1. Ensure that the employee is available before uploading the CSV file. Please verify employee details beforehand.</p>
+            <p class="m-0">2. The employee's mobile number and official email ID must be available.</p>
+            <p class="m-0">3. Before uploading the CSV, cross-check the employee's official email address and mobile number.</p>
+            <p class="m-0">4.Please upload only CSV files.</p>
+        </div>
         <input type="file" class="dropify" name="csv_file" data-height="300" />
       </div>
       <div class="modal-footer">
