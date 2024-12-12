@@ -19,7 +19,7 @@
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
                 <div>
-                    <button type="button" class="btn btn-sm btn-danger">Export Emp. Sample</button>
+                    <button type="button" class="btn btn-sm btn-danger" id="export_sample_btn">Export Emp. Sample</button>
                     <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>
                 </div>
             </div>
@@ -154,6 +154,30 @@
     </div>
 </div>
 
+<div class="modal fade" tabindex="-1" role="dialog" id="export_emp_sample_modal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Export Employee Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="" method="post">
+      <div class="modal-body">
+        <?php foreach($employee as $value){ ?>
+            <span><input type="checkbox" value="<?= $value['id'] ?>"> <?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></span> <br>
+        <?php } ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Download CSV</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" tabindex="-1" role="dialog" id="upload_emp_exp_modal">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -208,6 +232,11 @@ $(document).ready(function () {
     $('#upload_emp_exp_btn').on('click', function (e) {
         e.preventDefault();
         $('#upload_emp_exp_modal').modal('show');
+    });
+
+    $('#export_sample_btn').on('click',function (e) { 
+        e.preventDefault();
+        $('#export_emp_sample_modal').modal('show');
     });
 
     // Sync CKEditor Data Before Form Submission

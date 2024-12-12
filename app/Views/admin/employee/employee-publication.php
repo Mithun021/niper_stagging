@@ -199,7 +199,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Upload Employee Experience Data</h5>
+        <h5 class="modal-title">Export Employee Data</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -207,11 +207,11 @@
       <form action="" method="post">
       <div class="modal-body">
         <?php foreach($employee as $value){ ?>
-            <span><input type="checkbox" value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></span> <br>
+            <span><input type="checkbox" value="<?= $value['id'] ?>"> <?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></span> <br>
         <?php } ?>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Upload</button>
+        <button type="button" class="btn btn-primary">Download CSV</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
       </form>
