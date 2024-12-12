@@ -89,4 +89,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
 
     // Export and Import routes
     $routes->post('export_emp_experience_sample', 'EmployeeController::export_emp_experience_sample');
+    $routes->post('upload_emp_experience_csv', 'EmployeeController::upload_emp_experience_csv');
+
+    
 });

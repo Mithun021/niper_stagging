@@ -300,5 +300,48 @@ use App\Models\Employee_publication_model;
         }
 
 
+
+        // Import CSV File of Employees
+
+        public function upload_emp_experience_csv(){
+            $employeeModel = new Employee_model();
+            $experienceModel = new Employee_experience_model();
+            $file = $this->request->getFile('csv_file');
+
+            // Check if a file is uploaded and is valid
+            if ($file && $file->isValid() && !$file->hasMoved()) {
+                $fileContent = $file->getTempName();
+                $csvData = array_map('str_getcsv', file($fileContent));
+                $header = array_shift($csvData); // Extract the header row
+
+                foreach ($csvData as $row) {
+                    $data = array_combine($header, $row); // Combine header with row values
+
+                    // Find the employee_id based on email and phone
+                    $employee = $employeeModel->where('official_mail', $data['email'])
+                        ->where('mobile_no', $data['emp_phone'])
+                        ->first();
+
+                    if ($employee) {
+                        $experienceModel->insert([
+                            'employee_id'       => $employee['id'],
+                            'organization_name' => $data['organization_name'],
+                            'start_date'        => $data['start_date'],
+                            'end_date'          => $data['end_date'],
+                            'exp_description'   => $data['description'],
+                            'org_type'          => $data['organization_type'],
+                            'work_nature'       => $data['nature_of_work'],
+                        ]);
+                    }
+                }
+
+                return redirect()->back()->with('msg', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully!</div>');
+            }
+
+            return redirect()->back()->with('msg', '<div class="alert alert-danger" role="alert">Failed to process the CSV file.</div>');
+    
+        }
+
+
     }
 ?>

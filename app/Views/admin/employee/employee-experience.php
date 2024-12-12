@@ -179,9 +179,9 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="" method="post">
+      <form action="<?= base_url() ?>admin/upload_emp_experience_csv" method="post">
       <div class="modal-body">
-        <input type="file" class="dropify" data-height="300" />
+        <input type="file" class="dropify" name="csv_file" data-height="300" />
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary">Upload</button>
