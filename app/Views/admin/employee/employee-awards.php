@@ -23,13 +23,13 @@
                     <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>
                 </div>
             </div>
+            <form action="<?= base_url() ?>admin/employee-awards" method="post" enctype="multipart/form-data">
             <div class="card-body">
             <?php if (session()->getFlashdata('msg')): ?>
                 <?= session()->getFlashdata('msg') ?>
             <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/employee-awards" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-lg-12 form-group">
                         <span for="Empid">Employee:</span>
@@ -48,54 +48,55 @@
                         <!-- Award Title -->
                         <div class="form-group">
                             <span for="Awardtitle">Award Title:</span>
-                            <input type="text" name="Awardtitle" id="editor" class="form-control form-control-sm">
+                            <input type="text" name="Awardtitle[]" id="" class="form-control form-control-sm clone_editor">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <!-- Award Photo Upload -->
                         <div class="form-group">
                             <span for="Awardphotoupload">Upload Award Photo:</span>
-                            <input type="file" name="Awardphotoupload" id="Awardphotoupload" class="form-control form-control-sm" accept="image/*">
+                            <input type="file" name="Awardphotoupload[]" id="Awardphotoupload" class="form-control form-control-sm" accept="image/*">
                         </div>
                     </div>
                     <div class="col-lg-6">
                          <!-- Award Year -->
                         <div class="form-group">
                             <span for="Awardyear">Award Year:</span>
-                            <input type="number" name="Awardyear" id="Awardyear" class="form-control form-control-sm" min="1900" max="<?= date('Y') ?>" required value="<?= esc(old('Awardyear')) ?>">
+                            <input type="number" name="Awardyear[]" id="Awardyear" class="form-control form-control-sm" min="1900" max="<?= date('Y') ?>" required value="<?= esc(old('Awardyear')) ?>">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <!-- Award Date and Time -->
                         <div class="form-group">
                             <span for="Awarddatetime">Award Date and Time:</span>
-                            <input type="datetime-local" name="Awarddatetime" id="Awarddatetime" class="form-control form-control-sm" required value="<?= esc(old('Awarddatetime')) ?>">
+                            <input type="datetime-local" name="Awarddatetime[]" id="Awarddatetime" class="form-control form-control-sm" required value="<?= esc(old('Awarddatetime')) ?>">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <!-- Awarding Agency Type -->
                         <div class="form-group">
                             <span for="Awardingagencytype">Awarding Agency Type:</span>
-                            <input type="text" name="Awardingagencytype" id="Awardingagencytype" class="form-control form-control-sm" required value="<?= esc(old('Awardingagencytype')) ?>">
+                            <input type="text" name="Awardingagencytype[]" id="Awardingagencytype" class="form-control form-control-sm" required value="<?= esc(old('Awardingagencytype')) ?>">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <!-- Awarding Agency Name -->
                         <div class="form-group">
                             <span for="Awardingagencyname">Awarding Agency Name:</span>
-                            <input type="text" name="Awardingagencyname" id="Awardingagencyname" class="form-control form-control-sm" required value="<?= esc(old('Awardingagencyname')) ?>">
+                            <input type="text" name="Awardingagencyname[]" id="Awardingagencyname" class="form-control form-control-sm" required value="<?= esc(old('Awardingagencyname')) ?>">
                         </div>
                     </div>
                 </div>
                     <button type="button" id="remove-clone" class="btn btn-danger" style="width: 120px;">Remove Clone</button>
                     </div>
                 </div>
-                </form>
+                
             </div>
             <div class="card-footer d-flex justify-content-between">
                 <button type="button" id="add-clone" class="btn btn-success">Add Clone</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
+            </form>
         </div>
     </div>
 
@@ -174,28 +175,67 @@
     </div>
   </div>
 </div>
-
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 <!-- jQuery Script -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$(document).ready(function() {
-    $("#add-clone").click(function(e){
+$(document).ready(function () {
+    // Add Clone Button Click
+    $("#add-clone").click(function (e) {
         e.preventDefault();
-        var cloneCatrow = $('#clone_employee_data').clone().appendTo('#clone_content');
-        $(cloneCatrow).find('input').val('');
+
+        // Clone the employee data card
+        var cloneCatrow = $('#clone_employee_data').first().clone();
+
+        // Reset the cloned fields
+        cloneCatrow.find('input, textarea, select').val('');
+        cloneCatrow.find('.ck-editor').remove(); // Remove existing CKEditor container if any
+
+        // Append the cloned element to the clone content container
+        cloneCatrow.appendTo('#clone_content');
+
+        // Reinitialize CKEditor for cloned textarea
+        cloneCatrow.find('.clone_editor').removeAttr('data-ckeditor-initialized'); // Reset the initialized flag
+        initializeEditors(); // Reinitialize editors
     });
 
-    $('#clone_content').on('click','#remove-clone', function(){
-		$(this).closest('#clone_employee_data').remove();
-	});
+    // Remove Clone Button Click
+    $('#clone_content').on('click', '#remove-clone', function () {
+        $(this).closest('#clone_employee_data').remove();
+    });
 
-    $('#upload_emp_exp_btn').on('click',function (e) { 
+    // Modal Trigger (Optional Example for Context)
+    $('#upload_emp_exp_btn').on('click', function (e) {
         e.preventDefault();
         $('#upload_emp_exp_modal').modal('show');
-     })
+    });
 
-
+    // Sync CKEditor Data Before Form Submission
+    $('form').on('submit', function () {
+        $('.clone_editor').each(function () {
+            if (this.editorInstance) {
+                this.value = this.editorInstance.getData(); // Sync CKEditor content to textarea
+            }
+        });
+    });
 });
+
+// CKEditor Initialization
+function initializeEditors() {
+    document.querySelectorAll(".clone_editor").forEach((textarea) => {
+        if (!textarea.dataset.ckeditorInitialized) {
+            ClassicEditor.create(textarea)
+                .then(editor => {
+                    textarea.editorInstance = editor; // Save the CKEditor instance for later use
+                })
+                .catch(error => console.error(error));
+            textarea.dataset.ckeditorInitialized = true; // Mark as initialized
+        }
+    });
+}
+
+// Initialize editors for existing elements on page load
+initializeEditors();
 </script>
 
 <?= $this->endSection() ?>
