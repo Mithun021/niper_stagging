@@ -304,26 +304,33 @@ use App\Models\Employee_publication_model;
         // Import CSV File of Employees
 
         public function upload_emp_experience_csv(){
-            $employeeModel = new Employee_model();
-            $experienceModel = new Employee_experience_model();
+            $employeeModel = new \App\Models\Employee_model();
+            $experienceModel = new \App\Models\Employee_experience_model();
             $file = $this->request->getFile('csv_file');
 
             // Check if a file is uploaded and is valid
             if ($file && $file->isValid() && !$file->hasMoved()) {
                 $fileContent = $file->getTempName();
                 $csvData = array_map('str_getcsv', file($fileContent));
-                $header = array_shift($csvData); // Extract the header row
+                $header = array_map('trim', array_shift($csvData)); // Extract and trim header row
 
                 foreach ($csvData as $row) {
                     $data = array_combine($header, $row); // Combine header with row values
 
+                    // Validate mandatory fields
+                    if (empty($data['email']) || empty($data['emp_phone']) || empty($data['organization_name'])) {
+                        continue; // Skip if mandatory fields are missing
+                    }
+
                     // Find the employee_id based on email and phone
-                    $employee = $employeeModel->where('official_mail', $data['email'])
+                    $employee = $employeeModel
+                        ->where('official_mail', $data['email'])
                         ->where('mobile_no', $data['emp_phone'])
                         ->first();
 
                     if ($employee) {
-                        $experienceModel->insert([
+                        // Prepare data for insertion
+                        $experienceData = [
                             'employee_id'       => $employee['id'],
                             'organization_name' => $data['organization_name'],
                             'start_date'        => $data['start_date'],
@@ -331,16 +338,19 @@ use App\Models\Employee_publication_model;
                             'exp_description'   => $data['description'],
                             'org_type'          => $data['organization_type'],
                             'work_nature'       => $data['nature_of_work'],
-                        ]);
+                        ];
+
+                        // Validate and insert
+                        $experienceModel->insert($experienceData);
                     }
                 }
 
                 return redirect()->back()->with('msg', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully!</div>');
             }
 
-            return redirect()->back()->with('msg', '<div class="alert alert-danger" role="alert">Failed to process the CSV file.</div>');
-    
+            return redirect()->back()->with('msg', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
         }
+
 
 
     }

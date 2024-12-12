@@ -179,7 +179,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url() ?>admin/upload_emp_experience_csv" method="post">
+      <form action="<?= base_url() ?>admin/upload_emp_experience_csv" method="post" enctype="multipart/form-data">
       <div class="modal-body">
         <input type="file" class="dropify" name="csv_file" data-height="300" />
       </div>
