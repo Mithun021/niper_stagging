@@ -304,15 +304,16 @@ use App\Models\Employee_publication_model;
         // Import CSV File of Employees
 
         public function upload_emp_experience_csv(){
-            $employeeModel = new \App\Models\Employee_model();
-            $experienceModel = new \App\Models\Employee_experience_model();
+            $employeeModel = new Employee_model();
+            $experienceModel = new Employee_experience_model();
             $file = $this->request->getFile('csv_file');
             $sessionData = session()->get('loggedUserData');
+
             if ($sessionData) {
-                $loggeduserId = $sessionData['loggeduserId']; 
+                $loggeduserId = $sessionData['loggeduserId'];
             }
 
-            // Check if a file is uploaded and is valid
+            // Check if file is uploaded and is valid
             if ($file && $file->isValid() && !$file->hasMoved()) {
                 $fileContent = $file->getTempName();
                 $csvData = array_map('str_getcsv', file($fileContent));
@@ -337,16 +338,15 @@ use App\Models\Employee_publication_model;
                         $experienceData = [
                             'emplyee_id'       => $employee['id'],
                             'organization_name' => $data['organization_name'],
-                            'start_date'        => $data['start_date'],
-                            'end_date'          => $data['end_date'],
+                            'start_date'        => $this->parseDate($data['start_date']),
+                            'end_date'          => $this->parseDate($data['end_date']),
                             'exp_description'   => $data['description'],
                             'org_type'          => $data['organization_type'],
                             'work_nature'       => $data['nature_of_work'],
                             'upload_by'         => $loggeduserId,
                         ];
 
-                        // echo "<pre>"; print_r($experienceData);
-                        // Validate and insert
+                        // Insert experience data
                         $experienceModel->insert($experienceData);
                     }
                 }
@@ -356,6 +356,16 @@ use App\Models\Employee_publication_model;
 
             return redirect()->back()->with('msg', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
         }
+
+        /**
+         * Helper function to parse dates
+         */
+        private function parseDate($dateStr)
+        {
+            $date = \DateTime::createFromFormat('Y-m-d', $dateStr);
+            return $date ? $date->format('Y-m-d') : null; // Return null if date parsing fails
+        }
+
 
 
 
