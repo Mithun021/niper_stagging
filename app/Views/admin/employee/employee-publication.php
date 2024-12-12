@@ -308,10 +308,10 @@
                     textarea.dataset.ckeditorInitialized = true; // Mark as initialized
                 }
             });
-        }
+        } 
 
         // Initialize CKEditor for existing elements on page load
-        initializeEditors();
+        initializeEditors(); 
     });
 </script>
 
