@@ -171,7 +171,7 @@
 <!-- jQuery Script -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$(document).ready(function() {
+// $(document).ready(function() {
 //     $("#add-clone").click(function(e){
 //         e.preventDefault();
 //         var cloneCatrow = $('#clone_employee_data').clone().appendTo('#clone_content');
@@ -210,18 +210,12 @@ $(document).ready(function () {
         var cloneCatrow = $('#clone_employee_data').first().clone();
         cloneCatrow.appendTo('#clone_content');
 
-        // Reset the input fields in the clone
+        // Reset inputs and initialize CKEditor for the cloned textarea
         $(cloneCatrow).find('input, textarea, select').val('');
-        
-        // Remove old editor instances if they exist
-        $(cloneCatrow).find('.ck-editor').remove();
+        $(cloneCatrow).find('.ck-editor').remove(); // Ensure old CKEditor instances are cleared
 
-        // Reassign class for cloned editor and initialize CKEditor
-        $(cloneCatrow).find('.clone_editor').each(function () {
-            $(this).removeAttr('data-ckeditor-initialized'); // Reset initialization flag
-        });
-
-        initializeEditors(); // Reinitialize editors
+        // Reinitialize CKEditor for new clone
+        initializeEditors();
     });
 
     // Remove Clone Button Click
@@ -243,26 +237,25 @@ $(document).ready(function () {
             }
         });
     });
+
+    // Initialize CKEditor
+    function initializeEditors() {
+        // Loop through each textarea with the .clone_editor class
+        document.querySelectorAll(".clone_editor").forEach((textarea) => {
+            if (!textarea.dataset.ckeditorInitialized) {
+                ClassicEditor.create(textarea)
+                    .then(editor => {
+                        textarea.editorInstance = editor; // Save editor instance for later use
+                    })
+                    .catch(error => console.error(error));
+                textarea.dataset.ckeditorInitialized = true; // Mark as initialized
+            }
+        });
+    }
+
+    // Initialize editors for existing elements on page load
+    initializeEditors();
 });
-
-// ClassicEditor Initialization
-function initializeEditors() {
-    // Loop through each textarea with the .clone_editor class
-    document.querySelectorAll(".clone_editor").forEach((textarea) => {
-        if (!textarea.dataset.ckeditorInitialized) {
-            // Initialize CKEditor if not already initialized
-            ClassicEditor.create(textarea)
-                .then(editor => {
-                    textarea.editorInstance = editor; // Save editor instance for later use
-                })
-                .catch(error => console.error(error));
-            textarea.dataset.ckeditorInitialized = true; // Mark as initialized
-        }
-    });
-}
-
-// Initialize editors for existing elements on page load
-initializeEditors();
 
 
 
