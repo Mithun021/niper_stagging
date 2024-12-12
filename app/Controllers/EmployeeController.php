@@ -265,6 +265,7 @@ use App\Models\Employee_publication_model;
         public function export_emp_experience_sample(){
             $employee_model = new Employee_model();
             $empIds = $this->request->getPost('emp_id');
+            echo "<pre>"; print_r($empIds); die;
             if (empty($empIds) || !is_array($empIds)) {
                 return redirect()->to('admin/employee-awards')->with('msg','<div class="alert alert-danger" role="alert"> No Employee Selected </div>');
             }
