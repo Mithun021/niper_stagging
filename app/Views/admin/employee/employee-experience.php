@@ -184,7 +184,7 @@
         <input type="file" class="dropify" name="csv_file" data-height="300" />
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Upload</button>
+        <button type="submit" class="btn btn-primary">Upload</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
       </form>
