@@ -105,8 +105,8 @@ use App\Models\Employee_publication_model;
                         'upload_by' =>  $loggeduserId,
                     ];
     
-                    echo "<pre>";print_r($data);
-                    //$result = $employee_experience_model->add($data);
+                    //echo "<pre>";print_r($data);
+                    $result = $employee_experience_model->add($data);
                 }
                 die;
                 if ($result === true) {
