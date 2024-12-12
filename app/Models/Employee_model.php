@@ -28,9 +28,7 @@
         }
 
         public function getEmployeeDetailsByIds(array $empIds) {
-            return $this->select(['first_name', 'middle_name', 'last_name', 'official_mail', 'mobile_no'])
-                ->whereIn('id', $empIds)
-                ->findAll();
+            return $this->whereIn('id',$empIds)->findAll();
         }
         
     }
