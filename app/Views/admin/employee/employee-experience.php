@@ -157,9 +157,11 @@
       </div>
       <form action="" method="post">
       <div class="modal-body">
-        <?php foreach($employee as $value){ ?>
-            <span><input type="checkbox" value="<?= $value['id'] ?>"> <?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></span> <br>
-        <?php } ?>
+        <form action="<?= base_url() ?>admin/export_emp_experience_sample" method="post">
+            <?php foreach($employee as $value){ ?>
+                <span><input type="checkbox" name="exam_id" value="<?= $value['id'] ?>"> <?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></span> <br>
+            <?php } ?>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary">Download CSV</button>

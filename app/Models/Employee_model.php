@@ -27,7 +27,11 @@
             return $result;
         }
 
-        
+        public function getEmployeeDetailsByIds($empIds) {
+            return $this->select('first_name, middle_name, last_name, official_mail, mobile_no')
+                        ->whereIn('id', $empIds)
+                        ->findAll();
+        }
         
     }
 ?>

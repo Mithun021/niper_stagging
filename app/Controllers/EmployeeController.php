@@ -260,5 +260,41 @@ use App\Models\Employee_publication_model;
         }
 
 
+        // Export Employee Sample Controller function ============================
+
+        public function export_emp_experience_sample(){
+            $employee_model = new Employee_model();
+            $empIds = $this->request->getPost('exam_id');
+
+            if ($empIds) {
+                $employeeDetails = $employee_model->getEmployeeDetailsByIds($empIds);
+                $csvData = "emp_name,email,emp_phone,organization_name,start_date,end_date,description,organization_type,nature_of_work\n";
+                foreach ($employeeDetails as $employee) {
+                    $csvData .= implode(",", [
+                        $employee['first_name'] . ' ' . $employee['middle_name'] . ' ' . $employee['last_name'],
+                        $employee['official_mail'],
+                        $employee['mobile_no'],
+                        'Sample Organization',
+                        '2024-01-01',
+                        '2024-12-31',
+                        'Sample Description',
+                        'Private',
+                        'Development'
+                    ]) . "\n";
+                }
+                // Generate CSV file
+                $this->generateCSV($csvData, 'employee_experience_sample.csv');
+            }
+        }
+
+        private function generateCSV($csvData, $fileName){
+        $response = $this->response->setContentType('text/csv')
+                                    ->setHeader('Content-Disposition', 'attachment; filename="' . $fileName . '"')
+                                    ->setBody($csvData)
+                                    ->send();
+            return $response;
+        }
+
+
     }
 ?>
