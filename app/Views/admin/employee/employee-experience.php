@@ -172,34 +172,100 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
-    $("#add-clone").click(function(e){
+//     $("#add-clone").click(function(e){
+//         e.preventDefault();
+//         var cloneCatrow = $('#clone_employee_data').clone().appendTo('#clone_content');
+//         $(cloneCatrow).find('input').val('');
+//         initializeEditors();
+//     });
+
+//     $('#clone_content').on('click','#remove-clone', function(){
+// 		$(this).closest('#clone_employee_data').remove();
+// 	});
+
+//     $('#upload_emp_exp_btn').on('click',function (e) { 
+//         e.preventDefault();
+//         $('#upload_emp_exp_modal').modal('show');
+//      })
+
+// });
+
+// // ClassicEditor Initialization
+// function initializeEditors() {
+//     document.querySelectorAll(".clone_editor").forEach((textarea, index) => {
+//         if (!textarea.dataset.ckeditorInitialized) {
+//             ClassicEditor.create(textarea).catch(error => console.error(error));
+//             textarea.dataset.ckeditorInitialized = true;
+//         }
+//     });
+// }
+// initializeEditors();
+
+$(document).ready(function () {
+    // Add Clone Button Click
+    $("#add-clone").click(function (e) {
         e.preventDefault();
-        var cloneCatrow = $('#clone_employee_data').clone().appendTo('#clone_content');
-        $(cloneCatrow).find('input').val('');
-        initializeEditors();
+
+        // Clone the employee data card
+        var cloneCatrow = $('#clone_employee_data').first().clone();
+        cloneCatrow.appendTo('#clone_content');
+
+        // Reset the input fields in the clone
+        $(cloneCatrow).find('input, textarea, select').val('');
+        
+        // Remove old editor instances if they exist
+        $(cloneCatrow).find('.ck-editor').remove();
+
+        // Reassign class for cloned editor and initialize CKEditor
+        $(cloneCatrow).find('.clone_editor').each(function () {
+            $(this).removeAttr('data-ckeditor-initialized'); // Reset initialization flag
+        });
+
+        initializeEditors(); // Reinitialize editors
     });
 
-    $('#clone_content').on('click','#remove-clone', function(){
-		$(this).closest('#clone_employee_data').remove();
-	});
+    // Remove Clone Button Click
+    $('#clone_content').on('click', '#remove-clone', function () {
+        $(this).closest('#clone_employee_data').remove();
+    });
 
-    $('#upload_emp_exp_btn').on('click',function (e) { 
+    // Open Modal Button
+    $('#upload_emp_exp_btn').on('click', function (e) {
         e.preventDefault();
         $('#upload_emp_exp_modal').modal('show');
-     })
+    });
 
+    // Synchronize CKEditor Data Before Form Submission
+    $('form').on('submit', function () {
+        $('.clone_editor').each(function () {
+            if (this.editorInstance) {
+                this.value = this.editorInstance.getData(); // Sync CKEditor content to textarea
+            }
+        });
+    });
 });
 
 // ClassicEditor Initialization
 function initializeEditors() {
-    document.querySelectorAll(".clone_editor").forEach((textarea, index) => {
+    // Loop through each textarea with the .clone_editor class
+    document.querySelectorAll(".clone_editor").forEach((textarea) => {
         if (!textarea.dataset.ckeditorInitialized) {
-            ClassicEditor.create(textarea).catch(error => console.error(error));
-            textarea.dataset.ckeditorInitialized = true;
+            // Initialize CKEditor if not already initialized
+            ClassicEditor.create(textarea)
+                .then(editor => {
+                    textarea.editorInstance = editor; // Save editor instance for later use
+                })
+                .catch(error => console.error(error));
+            textarea.dataset.ckeditorInitialized = true; // Mark as initialized
         }
     });
 }
+
+// Initialize editors for existing elements on page load
 initializeEditors();
+
+
+
 </script>
 
 <?= $this->endSection() ?>
