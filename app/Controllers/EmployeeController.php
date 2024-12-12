@@ -307,6 +307,10 @@ use App\Models\Employee_publication_model;
             $employeeModel = new \App\Models\Employee_model();
             $experienceModel = new \App\Models\Employee_experience_model();
             $file = $this->request->getFile('csv_file');
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
 
             // Check if a file is uploaded and is valid
             if ($file && $file->isValid() && !$file->hasMoved()) {
@@ -331,21 +335,23 @@ use App\Models\Employee_publication_model;
                     if ($employee) {
                         // Prepare data for insertion
                         $experienceData = [
-                            'employee_id'       => $employee['id'],
+                            'emplyee_id'       => $employee['id'],
                             'organization_name' => $data['organization_name'],
                             'start_date'        => $data['start_date'],
                             'end_date'          => $data['end_date'],
                             'exp_description'   => $data['description'],
                             'org_type'          => $data['organization_type'],
                             'work_nature'       => $data['nature_of_work'],
+                            'upload_by'         => $loggeduserId,
                         ];
 
+                        echo "<pre>"; print_r($experienceData);
                         // Validate and insert
-                        $experienceModel->insert($experienceData);
+                        // $experienceModel->insert($experienceData);
                     }
                 }
 
-                return redirect()->back()->with('msg', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully!</div>');
+                // return redirect()->back()->with('msg', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully!</div>');
             }
 
             return redirect()->back()->with('msg', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
