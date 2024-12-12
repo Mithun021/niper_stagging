@@ -278,12 +278,12 @@ use App\Models\Employee_publication_model;
                         $employee['first_name'] . ' ' . $employee['middle_name'] . ' ' . $employee['last_name'],
                         $employee['official_mail'],
                         $employee['mobile_no'],
-                        'Sample Organization',
-                        '2024-01-01',
-                        '2024-12-31',
-                        'Sample Description',
-                        'Private',
-                        'Development'
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        ''
                     ]) . "\n";
                 }
                 // Generate CSV file
