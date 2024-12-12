@@ -7,153 +7,135 @@
     $employee_model = new Employee_model();
 ?>
 
-<style>
-    #clone_content #clone_employee_data:first-child button#remove-clone {
-        display: none;
-    }
-</style>
-
 <div class="row">
-    
-    <!-- Container and form structure -->
-<div class="col-lg-12">
-    <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h4 class="card-title m-0">Add Publication Details</h4>
-            <div>
-                <button type="button" class="btn btn-sm btn-danger">Export Samples</button>
-                <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title m-0">Add Publication Details</h4>
+                <div>
+                    <button type="button" class="btn btn-sm btn-danger" id="export_sample_btn">Export Sample</button>
+                    <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>
+                </div>
             </div>
-        </div>
-        
-        <!-- Form Start -->
-        <form action="<?= base_url() ?>admin/employee-publication" method="post" enctype="multipart/form-data">
             <div class="card-body">
-                <?php if (session()->getFlashdata('msg')): ?>
-                    <?= session()->getFlashdata('msg') ?>
-                <?php endif; ?>
-                
-                <div class="card card-body mb-1">
-                    <div class="row">
-                        <div class="col-lg-12 form-group">
-                            <label for="Empid">Employee:</label>
-                            <select name="Empid" id="Empid" class="form-control form-control-sm" required>
+            <?php if (session()->getFlashdata('msg')): ?>
+                <?= session()->getFlashdata('msg') ?>
+            <?php endif; ?>
+
+                <!-- Form Start -->
+                <form action="<?= base_url() ?>admin/employee-publication" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- Employee ID -->
+                        <div class="form-group">
+                            <span for="Empid">Employee:</span>
+                            <select name="Empid" id="Empid" class="form-control form-control-sm" required >
                                 <option value="">Select Employee</option>
-                                <?php foreach ($employee as $value): ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
-                                <?php endforeach; ?>
+                            <?php foreach($employee as $value){ ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                            <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <!-- Publication Title -->
+                        <div class="form-group">
+                            <span for="Pubtitle">Publication Title:</span>
+                            <textarea name="Pubtitle" id="editor2" class="form-control form-control-sm" ></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <!-- Publication Description -->
+                        <div class="form-group">
+                            <span for="Pubdesc">Publication Description:</span>
+                            <textarea id="editor" name="description"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- Keywords -->
+                        <div class="form-group">
+                            <span for="Pubkeyword">Keywords:</span>
+                            <input type="text" name="Pubkeyword" id="Pubkeyword" class="form-control form-control-sm" placeholder="e.g., machine learning, AI">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- Photo Upload -->
+                        <div class="form-group">
+                            <span for="Pubphotoupload">Photo Upload:</span>
+                            <input type="file" name="Pubphotoupload" id="Pubphotoupload" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="addServicetable"> 
+                                <thead class="bg-light">
+                                    <tr>
+                                        <td scope="col">Author Details</td>
+                                        <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewservicerow">+</button></td>
+                                    </tr>
+                        
+                                </thead>
+                                <tbody id="stockTbody">
+                                    <tr id="stockTrow">
+                                        <td>
+                                            <input type="text" class="form-control" id="author_name" name="author_name[]" placeholder="Enter Author Name">
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                         <!-- DOI Details -->
+                        <div class="form-group">
+                            <span for="DoIdetails">DOI Details:</span>
+                            <input type="text" name="DoIdetails" id="DoIdetails" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- Publication Year -->
+                        <div class="form-group">
+                            <span for="Pubyear">Publication Year:</span>
+                            <input type="number" name="Pubyear" id="Pubyear" class="form-control form-control-sm" min="1900" max="<?= date("Y") ?>" required value="<?= esc(old('Pubyear')) ?>">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- Publication Type -->
+                        <div class="form-group">
+                            <span for="Pubtype">Publication Type:</span>
+                            <select name="Pubtype" id="Pubtype" class="form-control form-control-sm" required>
+                                <option value="">Select Type</option>
+                                <option value="Research Article">Research Article</option>
+                                <option value="Review Article">Review Article</option>
+                                <option value="Book Chapter">Book Chapter</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- Publication Status -->
+                        <div class="form-group">
+                            <span for="Pubstatus">Publication Status:</span>
+                            <select name="Pubstatus" id="Pubstatus" class="form-control form-control-sm" required>
+                                <option value="">Select Status</option>
+                                <option value="0">In Proceeding</option>
+                                <option value="1">Published</option>
                             </select>
                         </div>
                     </div>
                 </div>
-
-                <div id="clone_content">
-                    <div class="card card-body" id="clone_employee_data">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <!-- Publication Title -->
-                                <div class="form-group">
-                                    <label for="Pubtitle">Publication Title:</label>
-                                    <textarea name="Pubtitle" id="Pubtitle" class="form-control form-control-sm clone_editor"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <!-- Publication Description -->
-                                <div class="form-group">
-                                    <label for="Pubdesc">Publication Description:</label>
-                                    <textarea id="Pubdesc" name="description" class="clone_editor"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <!-- Keywords -->
-                                <div class="form-group">
-                                    <label for="Pubkeyword">Keywords:</label>
-                                    <input type="text" name="Pubkeyword" id="Pubkeyword" class="form-control form-control-sm" placeholder="e.g., machine learning, AI">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <!-- Photo Upload -->
-                                <div class="form-group">
-                                    <label for="Pubphotoupload">Photo Upload:</label>
-                                    <input type="file" name="Pubphotoupload" id="Pubphotoupload" class="form-control form-control-sm">
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="addServicetable">
-                                        <thead class="bg-light">
-                                            <tr>
-                                                <td scope="col">Author Details</td>
-                                                <td scope="col">
-                                                    <button type="button" class="btn btn-sm btn-primary" id="addnewservicerow">+</button>
-                                                </td>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="stockTbody">
-                                            <tr id="stockTrow">
-                                                <td>
-                                                    <input type="text" class="form-control" id="author_name" name="author_name[]" placeholder="Enter Author Name">
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <!-- DOI Details -->
-                                <div class="form-group">
-                                    <label for="DoIdetails">DOI Details:</label>
-                                    <input type="text" name="DoIdetails" id="DoIdetails" class="form-control form-control-sm">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <!-- Publication Year -->
-                                <div class="form-group">
-                                    <label for="Pubyear">Publication Year:</label>
-                                    <input type="number" name="Pubyear" id="Pubyear" class="form-control form-control-sm" min="1900" max="<?= date("Y") ?>" required value="<?= esc(old('Pubyear')) ?>">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <!-- Publication Type -->
-                                <div class="form-group">
-                                    <label for="Pubtype">Publication Type:</label>
-                                    <select name="Pubtype" id="Pubtype" class="form-control form-control-sm" required>
-                                        <option value="">Select Type</option>
-                                        <option value="Research Article">Research Article</option>
-                                        <option value="Review Article">Review Article</option>
-                                        <option value="Book Chapter">Book Chapter</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <!-- Publication Status -->
-                                <div class="form-group">
-                                    <label for="Pubstatus">Publication Status:</label>
-                                    <select name="Pubstatus" id="Pubstatus" class="form-control form-control-sm" required>
-                                        <option value="">Select Status</option>
-                                        <option value="0">In Proceeding</option>
-                                        <option value="1">Published</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="button" id="remove-clone" class="btn btn-danger" style="width: 120px;">Remove Clone</button>
-                    </div>
+                    
+                <div class="col-lg-12">
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
                 </div>
+                    
+                </form>
             </div>
-
-            <div class="card-footer d-flex justify-content-between">
-                <button type="button" id="add-clone" class="btn btn-success">Add Clone</button>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
-
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
@@ -213,6 +195,31 @@
     </div>
 </div>
 
+<div class="modal fade" tabindex="-1" role="dialog" id="export_emp_sample_modal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Upload Employee Experience Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="" method="post">
+      <div class="modal-body">
+        <?php foreach($employee as $value){ ?>
+            <span><input type="checkbox" value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></span> <br>
+        <?php } ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Upload</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
 <div class="modal fade" tabindex="-1" role="dialog" id="upload_emp_exp_modal">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -235,82 +242,19 @@
   </div>
 </div>
 
-<script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
-<!-- jQuery Script -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
-        var cloneLimit = 10; // Maximum number of clones allowed
-        var currentClones = 0; // Keep track of current clones
-
-        // Add new service row
-        $("#addnewservicerow").click(function (e) {
-            e.preventDefault();
-            if (currentClones < cloneLimit) {
-                currentClones++;
-                var cloneRow = $('#stockTrow').clone().appendTo('#stockTbody');
-                $(cloneRow).find('input').val(''); // Clear input fields
-            }
-        });
-
-        // Remove service row
-        $('#stockTbody').on('click', '#removenewServicerow', function () {
-            $(this).closest('tr').remove();
-        });
-
-        // Add clone for employee data
-        $("#add-clone").click(function (e) {
-            e.preventDefault();
-            if (currentClones < cloneLimit) {
-                currentClones++;
-                var cloneRow = $('#clone_employee_data').first().clone();
-                cloneRow.appendTo('#clone_content');
-
-                // Reset inputs and initialize CKEditor for the cloned textarea
-                $(cloneRow).find('input, textarea, select').val('');
-                initializeEditors(); // Ensure CKEditor instances are initialized properly
-            }
-        });
-
-        // Remove clone
-        $('#clone_content').on('click', '#remove-clone', function () {
-            $(this).closest('#clone_employee_data').remove();
-            currentClones--;
-        });
-
-        // File upload modal
-        $('#upload_emp_exp_btn').on('click', function (e) {
+        $('#upload_emp_exp_btn').on('click',function (e) { 
             e.preventDefault();
             $('#upload_emp_exp_modal').modal('show');
         });
 
-        // Synchronize CKEditor data before form submission
-        $('form').on('submit', function () {
-            $('.clone_editor').each(function () {
-                if (this.editorInstance) {
-                    this.value = this.editorInstance.getData(); // Sync CKEditor content to textarea
-                }
-            });
-        });
-
-        // Initialize CKEditor for elements
-        function initializeEditors() {
-            document.querySelectorAll(".clone_editor").forEach((textarea) => {
-                if (!textarea.dataset.ckeditorInitialized) {
-                    ClassicEditor.create(textarea)
-                        .then(editor => {
-                            textarea.editorInstance = editor; // Save editor instance for later use
-                        })
-                        .catch(error => console.error(error));
-                    textarea.dataset.ckeditorInitialized = true; // Mark as initialized
-                }
-            });
-        }
-
-        // Initialize CKEditor for existing elements on page load
-        initializeEditors();
+        $('#export_sample_btn').on('click',function (e) { 
+            e.preventDefault();
+            $('#export_emp_sample_modal').modal('show');
+        })
     });
 </script>
-
 
 <?= $this->endSection() ?>
