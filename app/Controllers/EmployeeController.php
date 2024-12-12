@@ -267,7 +267,7 @@ use App\Models\Employee_publication_model;
             $empIds = $this->request->getPost('emp_id');
             echo "<pre>"; print_r($empIds); die;
             if (empty($empIds) || !is_array($empIds)) {
-                return redirect()->to('admin/employee-awards')->with('msg','<div class="alert alert-danger" role="alert"> No Employee Selected </div>');
+                return redirect()->to('admin/employee-experience')->with('msg','<div class="alert alert-danger" role="alert"> No Employee Selected </div>');
             }
             $employees = $employee_model->getEmployeesByIds($empIds);
             echo "<pre>"; print_r($employees); die;
