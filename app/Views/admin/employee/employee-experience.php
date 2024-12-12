@@ -61,7 +61,7 @@
                         </div>
                         <div class="col-lg-12 form-group">
                             <span for="expdesc">Experience Description:</span>
-                            <textarea name="expdesc[]" id="editor" class="form-control form-control-sm" rows="4"></textarea>
+                            <textarea name="expdesc[]" class="form-control form-control-sm clone_editor" rows="4"></textarea>
                         </div>
                         <div class="col-lg-6 form-group">
                             <span for="orgtype">Organization Type:</span>
