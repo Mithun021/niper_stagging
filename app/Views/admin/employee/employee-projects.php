@@ -22,14 +22,14 @@
                     <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>
                 </div>
             </div>
-
+            <form action="<?= base_url() ?>admin/employee-projects" method="post">
             <div class="card-body">
             <?php if (session()->getFlashdata('msg')): ?>
                 <?= session()->getFlashdata('msg') ?>
             <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/employee-projects" method="post">
+                
                 <div class="card card-body mb-1">
                         <div class="row">
                             <div class="col-lg-12 form-group">
@@ -48,29 +48,29 @@
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <span for="projecttitle">Project Title:<span class="text-danger">*</span></span>
-                            <textarea type="text" name="projecttitle" id="editor2" class="form-control form-control-sm"></textarea>
+                            <textarea type="text" name="projecttitle[]" id="" class="form-control form-control-sm clone_editor"></textarea>
                         </div>
                         <div class="col-lg-12">
                             <span for="projectdesc">Project Description:</span>
-                            <textarea name="projectdesc" id="editor" class="form-control form-control-sm" rows="4"></textarea>
+                            <textarea name="projectdesc[]" id="" class="form-control form-control-sm clone_editor" rows="4"></textarea>
                         </div>
                         <div class="col-lg-6 form-group">
                             <span for="projectstartdatetime">Project Start Date & Time:<span class="text-danger">*</span></span>
                             <div class="input-group">
-                                <input type="text" class="form-control form-control-sm" name="project_start_date"  placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                <input type="text" class="form-control form-control-sm" name="project_start_time"  placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                <input type="text" class="form-control form-control-sm" name="project_start_date[]"  placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                <input type="text" class="form-control form-control-sm" name="project_start_time[]"  placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')">
                             </div>
                         </div>
                         <div class="col-lg-6 form-group">
                             <span for="projectenddatetime">Project End Date & Time:<span class="text-danger">*</span></span>
                             <div class="input-group">
-                                <input type="text" class="form-control form-control-sm" name="project_end_date"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                <input type="text" class="form-control form-control-sm" name="project_end_time"  placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                <input type="text" class="form-control form-control-sm" name="project_end_date[]"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                <input type="text" class="form-control form-control-sm" name="project_end_time[]"  placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
                             </div>
                         </div>
                         <div class="col-lg-6 form-group">
                             <span for="projectstatus">Project Status:<span class="text-danger">*</span></span>
-                            <select name="projectstatus" id="projectstatus" class="form-control form-control-sm" required>
+                            <select name="projectstatus[]" id="projectstatus" class="form-control form-control-sm" required>
                                 <option value="Not Started">Not Started</option>
                                 <option value="In Progress">In Progress</option>
                                 <option value="Completed">Completed</option>
@@ -78,22 +78,22 @@
                         </div>
                         <div class="col-lg-6 form-group">
                             <span for="projectsponseredby">Sponsored By:<span class="text-danger">*</span></span>
-                            <input type="text" name="projectsponseredby" id="projectsponseredby" class="form-control form-control-sm">
+                            <input type="text" name="projectsponseredby[]" id="projectsponseredby" class="form-control form-control-sm">
                         </div>
                         <div class="col-lg-6 form-group">
                             <span for="projectvalue">Project Value (in INR):<span class="text-danger">*</span></span>
-                            <input type="number" name="projectvalue" id="projectvalue" class="form-control form-control-sm" step="0.01">
+                            <input type="number" name="projectvalue[]" id="projectvalue" class="form-control form-control-sm" step="0.01">
                         </div>
                     </div>
                         <button type="button" id="remove-clone" class="btn btn-danger" style="width: 120px;">Remove Clone</button>
                      </div>
                     </div>
-                </form>
             </div>
             <div class="card-footer d-flex justify-content-between">
                 <button type="button" id="add-clone" class="btn btn-success">Add Clone</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
+            </form>
         </div>
     </div>
 
@@ -170,24 +170,84 @@
 <!-- jQuery Script -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$(document).ready(function() {
-    $("#add-clone").click(function(e){
+// $(document).ready(function() {
+//     $("#add-clone").click(function(e){
+//         e.preventDefault();
+//         var cloneCatrow = $('#clone_employee_data').clone().appendTo('#clone_content');
+//         $(cloneCatrow).find('input').val('');
+//     });
+
+//     $('#clone_content').on('click','#remove-clone', function(){
+// 		$(this).closest('#clone_employee_data').remove();
+// 	});
+
+//     $('#upload_emp_exp_btn').on('click',function (e) { 
+//         e.preventDefault();
+//         $('#upload_emp_exp_modal').modal('show');
+//      })
+
+
+// });
+
+$(document).ready(function () {
+    // Add Clone Button Click
+    $("#add-clone").click(function (e) {
         e.preventDefault();
-        var cloneCatrow = $('#clone_employee_data').clone().appendTo('#clone_content');
-        $(cloneCatrow).find('input').val('');
+
+        // Clone the employee data card
+        var cloneCatrow = $('#clone_employee_data').first().clone();
+
+        // Reset the cloned fields
+        cloneCatrow.find('input, textarea, select').val('');
+        cloneCatrow.find('.ck-editor').remove(); // Remove existing CKEditor container if any
+
+        // Append the cloned element to the clone content container
+        cloneCatrow.appendTo('#clone_content');
+
+        // Reinitialize CKEditor for cloned textarea
+        cloneCatrow.find('.clone_editor').removeAttr('data-ckeditor-initialized'); // Reset the initialized flag
+        initializeEditors(); // Reinitialize editors
     });
 
-    $('#clone_content').on('click','#remove-clone', function(){
-		$(this).closest('#clone_employee_data').remove();
-	});
+    // Remove Clone Button Click
+    $('#clone_content').on('click', '#remove-clone', function () {
+        $(this).closest('#clone_employee_data').remove();
+    });
 
-    $('#upload_emp_exp_btn').on('click',function (e) { 
+    // Modal Trigger (Optional Example for Context)
+    $('#upload_emp_exp_btn').on('click', function (e) {
         e.preventDefault();
         $('#upload_emp_exp_modal').modal('show');
-     })
+    });
 
-
+    // Sync CKEditor Data Before Form Submission
+    $('form').on('submit', function () {
+        $('.clone_editor').each(function () {
+            if (this.editorInstance) {
+                this.value = this.editorInstance.getData(); // Sync CKEditor content to textarea
+            }
+        });
+    });
 });
+
+// CKEditor Initialization
+function initializeEditors() {
+    document.querySelectorAll(".clone_editor").forEach((textarea) => {
+        if (!textarea.dataset.ckeditorInitialized) {
+            ClassicEditor.create(textarea)
+                .then(editor => {
+                    textarea.editorInstance = editor; // Save the CKEditor instance for later use
+                })
+                .catch(error => console.error(error));
+            textarea.dataset.ckeditorInitialized = true; // Mark as initialized
+        }
+    });
+}
+
+// Initialize editors for existing elements on page load
+initializeEditors();
+
+
 </script>
 
 <?= $this->endSection() ?>
