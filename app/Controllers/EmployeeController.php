@@ -265,31 +265,30 @@ use App\Models\Employee_publication_model;
         public function export_emp_experience_sample(){
             $employee_model = new Employee_model();
             $empIds = $this->request->getPost('emp_id');
-            echo "<pre>"; print_r($empIds); die;
+            //echo "<pre>"; print_r($empIds); die;
             if (empty($empIds) || !is_array($empIds)) {
                 return redirect()->to('admin/employee-experience')->with('msg','<div class="alert alert-danger" role="alert"> No Employee Selected </div>');
             }
-            $employees = $employee_model->getEmployeesByIds($empIds);
-            echo "<pre>"; print_r($employees); die;
-            // if ($empIds) {
-            //     $employeeDetails = $employee_model->getEmployeeDetailsByIds($empIds);
-            //     $csvData = "emp_name,email,emp_phone,organization_name,start_date,end_date,description,organization_type,nature_of_work\n";
-            //     foreach ($employeeDetails as $employee) {
-            //         $csvData .= implode(",", [
-            //             $employee['first_name'] . ' ' . $employee['middle_name'] . ' ' . $employee['last_name'],
-            //             $employee['official_mail'],
-            //             $employee['mobile_no'],
-            //             'Sample Organization',
-            //             '2024-01-01',
-            //             '2024-12-31',
-            //             'Sample Description',
-            //             'Private',
-            //             'Development'
-            //         ]) . "\n";
-            //     }
-            //     // Generate CSV file
-            //     $this->generateCSV($csvData, 'employee_experience_sample.csv');
-            // }
+            //echo "<pre>"; print_r($employees); die;
+            if ($empIds) {
+                $employeeDetails = $employee_model->getEmployeesByIds($empIds);
+                $csvData = "emp_name,email,emp_phone,organization_name,start_date,end_date,description,organization_type,nature_of_work\n";
+                foreach ($employeeDetails as $employee) {
+                    $csvData .= implode(",", [
+                        $employee['first_name'] . ' ' . $employee['middle_name'] . ' ' . $employee['last_name'],
+                        $employee['official_mail'],
+                        $employee['mobile_no'],
+                        'Sample Organization',
+                        '2024-01-01',
+                        '2024-12-31',
+                        'Sample Description',
+                        'Private',
+                        'Development'
+                    ]) . "\n";
+                }
+                // Generate CSV file
+                $this->generateCSV($csvData, 'employee_experience_sample.csv');
+            }
         }
 
         private function generateCSV($csvData, $fileName){
