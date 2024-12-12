@@ -27,28 +27,6 @@
                         <textarea id="editor" name="description"></textarea>
                     </div>
 
-                    <!-- <div class="form-group">
-                        <span for="Empid">Dept. Head Employee: <span class="text-danger">*</span></span>
-                        <select name="Empid" id="Empid" class="form-control form-control-sm" required >
-                            <option value="">Select Employee</option>
-                        </select>
-                    </div> -->
-
-                    <div class="form-group">
-                        <span for="Deptid">Dept. Program ID: <span class="text-danger">*</span></span>
-                        <select name="program_id" id="program_id" class="form-control form-control-sm" >
-                            <option value="">--Select Program--</option>
-                            <?php foreach ($program as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <span for="Awardphotoupload">Dept. Upload  Photo(.jpg,.jpeg,.png):</span>
-                        <input type="file" name="photoupload" id="photoupload" class="form-control form-control-sm" accept=".jpg,.jpeg,.png" required>
-                    </div>
-
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
                     
                 </form>

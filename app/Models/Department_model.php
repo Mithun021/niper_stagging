@@ -5,7 +5,7 @@
     {
         protected $table         = 'department';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['name','description','program_id','files'];
+        protected $allowedFields = ['name','description'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
