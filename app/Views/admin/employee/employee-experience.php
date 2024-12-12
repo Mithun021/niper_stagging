@@ -176,6 +176,7 @@ $(document).ready(function() {
         e.preventDefault();
         var cloneCatrow = $('#clone_employee_data').clone().appendTo('#clone_content');
         $(cloneCatrow).find('input').val('');
+        initializeEditors();
     });
 
     $('#clone_content').on('click','#remove-clone', function(){
@@ -189,6 +190,17 @@ $(document).ready(function() {
 
 
 });
+
+// ClassicEditor Initialization
+function initializeEditors() {
+    document.querySelectorAll(".clone_editor").forEach((textarea, index) => {
+        if (!textarea.dataset.ckeditorInitialized) {
+            ClassicEditor.create(textarea).catch(error => console.error(error));
+            textarea.dataset.ckeditorInitialized = true;
+        }
+    });
+}
+initializeEditors();
 </script>
 
 <?= $this->endSection() ?>

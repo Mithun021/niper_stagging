@@ -76,17 +76,6 @@
                     });
             });
 
-            // ClassicEditor Initialization
-            function initializeEditors() {
-                document.querySelectorAll(".clone_editor").forEach((textarea, index) => {
-                    if (!textarea.dataset.ckeditorInitialized) {
-                        ClassicEditor.create(textarea).catch(error => console.error(error));
-                        textarea.dataset.ckeditorInitialized = true;
-                    }
-                });
-            }
-            initializeEditors();
-
 
 
             $(document).ready(function () {
