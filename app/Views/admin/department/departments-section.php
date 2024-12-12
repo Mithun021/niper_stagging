@@ -45,8 +45,6 @@
                         <tr>
                             <td>SN</td>
                             <td>Dept Name</td>
-                            <td>Program</td>
-                            <td>Photo</td>
                             <td>Action</td>
                         </tr>
                     </thead>
@@ -55,8 +53,6 @@
                         <tr>
                             <td><?= ++$key ?></td>
                             <td><?= $value['name'] ?></td>
-                            <td><?= $value['program_id'] ?></td>
-                            <td><a href="<?= base_url() ?>public/admin/uploads/department/<?= $value['files'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/department/<?= $value['files'] ?>" alt="" height="40px"></a></td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                     <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
