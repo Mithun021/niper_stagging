@@ -22,14 +22,14 @@
                     <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>
                 </div>
             </div>
-
+            <form action="<?= base_url() ?>admin/employee-experience" method="post">
             <div class="card-body">
                 <?php if (session()->getFlashdata('msg')): ?>
                     <?= session()->getFlashdata('msg') ?>
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/employee-experience" method="post">
+                
                     <div class="card card-body mb-1">
                         <div class="row">
                             <div class="col-lg-12 form-group">
@@ -88,12 +88,13 @@
                         <button type="button" id="remove-clone" class="btn btn-danger" style="width: 120px;">Remove Clone</button>
                      </div>
                      </div>
-                </form>
+                
             </div>
             <div class="card-footer d-flex justify-content-between">
                 <button type="button" id="add-clone" class="btn btn-success">Add Clone</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
+            </form>
         </div>
     </div>
 
