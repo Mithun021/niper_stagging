@@ -10,20 +10,23 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title m-0">Add Publication Details</h4>
+                <div>
+                    <button type="button" class="btn btn-sm btn-danger">Export Sample</button>
+                    <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>
+                </div>
             </div>
+            <!-- Form Start -->
+            <form action="<?= base_url() ?>admin/employee-publication" method="post" enctype="multipart/form-data">
             <div class="card-body">
             <?php if (session()->getFlashdata('msg')): ?>
                 <?= session()->getFlashdata('msg') ?>
             <?php endif; ?>
 
-                <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/employee-publication" method="post" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <!-- Employee ID -->
-                        <div class="form-group">
+                <div class="card card-body mb-1">
+                    <div class="row">
+                        <div class="col-lg-12 form-group">
                             <span for="Empid">Employee:</span>
                             <select name="Empid" id="Empid" class="form-control form-control-sm" required >
                                 <option value="">Select Employee</option>
@@ -33,6 +36,11 @@
                             </select>
                         </div>
                     </div>
+                </div>
+                <!-- Empid -->
+                <div id="clone_content">
+                <div class="card card-body" id="clone_employee_data">
+                <div class="row">
                     <div class="col-lg-6">
                         <!-- Publication Title -->
                         <div class="form-group">
@@ -122,14 +130,15 @@
                         </div>
                     </div>
                 </div>
-                    
-                <div class="col-lg-12">
-                    <!-- Submit Button -->
-                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                <button type="button" id="remove-clone" class="btn btn-danger" style="width: 120px;">Remove Clone</button>
                 </div>
-                    
-                </form>
+                </div>
             </div>
+            <div class="card-footer d-flex justify-content-between">
+                <button type="button" id="add-clone" class="btn btn-success">Add Clone</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
         </div>
     </div>
     <div class="col-lg-12">

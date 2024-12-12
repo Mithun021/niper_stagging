@@ -231,7 +231,7 @@ use App\Models\Employee_publication_model;
                 $awards_titles = $this->request->getPost('Awardtitle');
                 foreach ($awards_titles as $key => $title) {    
                     $photo = $awards_photo[$key];
-                    $photoName = "invalidImage.png";
+                    $photoName = "";
                     if ($photo->isValid() && !$photo->hasMoved()) {
                         $photoName = $photo->getRandomName();
                         $photo->move(ROOTPATH . 'public/admin/uploads/awards', $photoName);
