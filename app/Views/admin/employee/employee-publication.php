@@ -200,4 +200,91 @@
     </div>
 </div>
 
+<div class="modal fade" tabindex="-1" role="dialog" id="upload_emp_exp_modal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Upload Employee Experience Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="" method="post">
+      <div class="modal-body">
+        <input type="file" class="dropify" data-height="300" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Upload</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+<!-- jQuery Script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function () {
+    // Add Clone Button Click
+    $("#add-clone").click(function (e) {
+        e.preventDefault();
+
+        // Clone the employee data card
+        var cloneCatrow = $('#clone_employee_data').first().clone();
+
+        // Reset the cloned fields
+        cloneCatrow.find('input, textarea, select').val('');
+        cloneCatrow.find('.ck-editor').remove(); // Remove existing CKEditor container if any
+
+        // Append the cloned element to the clone content container
+        cloneCatrow.appendTo('#clone_content');
+
+        // Reinitialize CKEditor for cloned textarea
+        cloneCatrow.find('.clone_editor').removeAttr('data-ckeditor-initialized'); // Reset the initialized flag
+        initializeEditors(); // Reinitialize editors
+    });
+
+    // Remove Clone Button Click
+    $('#clone_content').on('click', '#remove-clone', function () {
+        $(this).closest('#clone_employee_data').remove();
+    });
+
+    // Modal Trigger (Optional Example for Context)
+    $('#upload_emp_exp_btn').on('click', function (e) {
+        e.preventDefault();
+        $('#upload_emp_exp_modal').modal('show');
+    });
+
+    // Sync CKEditor Data Before Form Submission
+    $('form').on('submit', function () {
+        $('.clone_editor').each(function () {
+            if (this.editorInstance) {
+                this.value = this.editorInstance.getData(); // Sync CKEditor content to textarea
+            }
+        });
+    });
+});
+
+// CKEditor Initialization
+function initializeEditors() {
+    document.querySelectorAll(".clone_editor").forEach((textarea) => {
+        if (!textarea.dataset.ckeditorInitialized) {
+            ClassicEditor.create(textarea)
+                .then(editor => {
+                    textarea.editorInstance = editor; // Save the CKEditor instance for later use
+                })
+                .catch(error => console.error(error));
+            textarea.dataset.ckeditorInitialized = true; // Mark as initialized
+        }
+    });
+}
+
+// Initialize editors for existing elements on page load
+initializeEditors();
+
+
+</script>
+
 <?= $this->endSection() ?>
