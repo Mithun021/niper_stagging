@@ -77,33 +77,6 @@
             });
 
 
-
-            // $(document).ready(function () {
-            //     // Create Service Clone for add and remove rows also calculate price
-            //     var cloneLimit = 10;
-            //     var currentClones = 0;
-            //     $("#addnewservicerow").click(function(e){
-            //         e.preventDefault();
-            //         if (currentClones < cloneLimit) {
-            //             currentClones++;
-            //             var cloneCatrow = $('#stockTrow').clone().appendTo('#stockTbody');
-            //             $(cloneCatrow).find('input').val('');
-            //         }
-                    
-            //     });
-            //     $("#addnewexpenserow").click(function(e){
-            //         e.preventDefault();
-            //             var cloneExpCatrow = $('#expenseTrow').clone().appendTo('#expenseTbody');
-            //             $(cloneExpCatrow).find('input').val('');
-            //     });
-
-            //     $('#stockTbody').on('click','#removenewServicerow', function(){
-            //         $(this).closest('tr').remove();
-            //     });
-            //     $('#expenseTbody').on('click','#removenewExpenserow', function(){
-            //         $(this).closest('tr').remove();
-            //     });
-            // });
         </script>
 
     </body>
