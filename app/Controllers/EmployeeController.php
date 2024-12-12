@@ -337,8 +337,8 @@ use App\Models\Employee_publication_model;
                         $experienceData = [
                             'emplyee_id'       => $employee['id'],
                             'organization_name' => $data['organization_name'],
-                            'start_date'        => $data['start_date'],
-                            'end_date'          => $data['end_date'],
+                            'start_date'        => date('Y-m-d', strtotime($data['start_date'])),
+                            'end_date'          => date('Y-m-d', strtotime($data['end_date'])),
                             'exp_description'   => $data['description'],
                             'org_type'          => $data['organization_type'],
                             'work_nature'       => $data['nature_of_work'],
