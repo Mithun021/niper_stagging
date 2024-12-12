@@ -200,6 +200,7 @@
 //     });
 // }
 // initializeEditors();
+
 $(document).ready(function () {
     // Add Clone Button Click
     $("#add-clone").click(function (e) {
@@ -207,17 +208,14 @@ $(document).ready(function () {
 
         // Clone the employee data card
         var cloneCatrow = $('#clone_employee_data').first().clone();
-
-        // Reset the cloned fields
-        cloneCatrow.find('input, textarea, select').val('');
-        cloneCatrow.find('.ck-editor').remove(); // Remove existing CKEditor container if any
-
-        // Append the cloned element to the clone content container
         cloneCatrow.appendTo('#clone_content');
 
-        // Reinitialize CKEditor for cloned textarea
-        cloneCatrow.find('.clone_editor').removeAttr('data-ckeditor-initialized'); // Reset the initialized flag
-        initializeEditors(); // Reinitialize editors
+        // Reset inputs and initialize CKEditor for the cloned textarea
+        $(cloneCatrow).find('input, textarea, select').val('');
+        // $(cloneCatrow).find('.ck-editor').remove(); // Ensure old CKEditor instances are cleared
+
+        // Reinitialize CKEditor for new clone
+        initializeEditors();
     });
 
     // Remove Clone Button Click
@@ -225,13 +223,13 @@ $(document).ready(function () {
         $(this).closest('#clone_employee_data').remove();
     });
 
-    // Modal Trigger (Optional Example for Context)
+    // Open Modal Button
     $('#upload_emp_exp_btn').on('click', function (e) {
         e.preventDefault();
         $('#upload_emp_exp_modal').modal('show');
     });
 
-    // Sync CKEditor Data Before Form Submission
+    // Synchronize CKEditor Data Before Form Submission
     $('form').on('submit', function () {
         $('.clone_editor').each(function () {
             if (this.editorInstance) {
@@ -239,24 +237,26 @@ $(document).ready(function () {
             }
         });
     });
+
+    // Initialize CKEditor
+    function initializeEditors() {
+        // Loop through each textarea with the .clone_editor class
+        document.querySelectorAll(".clone_editor").forEach((textarea) => {
+            if (!textarea.dataset.ckeditorInitialized) {
+                ClassicEditor.create(textarea)
+                    .then(editor => {
+                        textarea.editorInstance = editor; // Save editor instance for later use
+                    })
+                    .catch(error => console.error(error));
+                textarea.dataset.ckeditorInitialized = true; // Mark as initialized
+            }
+        });
+    }
+
+    // Initialize editors for existing elements on page load
+    initializeEditors();
 });
 
-// CKEditor Initialization
-function initializeEditors() {
-    document.querySelectorAll(".clone_editor").forEach((textarea) => {
-        if (!textarea.dataset.ckeditorInitialized) {
-            ClassicEditor.create(textarea)
-                .then(editor => {
-                    textarea.editorInstance = editor; // Save the CKEditor instance for later use
-                })
-                .catch(error => console.error(error));
-            textarea.dataset.ckeditorInitialized = true; // Mark as initialized
-        }
-    });
-}
-
-// Initialize editors for existing elements on page load
-initializeEditors();
 
 
 </script>
