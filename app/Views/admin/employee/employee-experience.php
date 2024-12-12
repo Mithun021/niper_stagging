@@ -211,7 +211,7 @@ $(document).ready(function () {
         cloneCatrow.appendTo('#clone_content');
 
         // Reset inputs and initialize CKEditor for the cloned textarea
-        $(cloneCatrow).find('input, textarea, select').val('');
+        $(cloneCatrow).find('input, select').val('');
         $(cloneCatrow).find('.ck-editor').remove(); // Ensure old CKEditor instances are cleared
 
         // Reinitialize CKEditor for new clone
