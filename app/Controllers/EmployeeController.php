@@ -97,18 +97,18 @@ use App\Models\Employee_publication_model;
                     $data = [
                         'emplyee_id' => $this->request->getPost('Empid'),
                         'organization_name' => $value,
-                        'start_date' => $this->request->getPost('startdate'),
-                        'end_date' => $this->request->getPost('enddate'),
-                        'exp_description' => $this->request->getPost('expdesc'),
-                        'org_type' => $this->request->getPost('orgtype'),
-                        'work_nature' => $this->request->getPost('natureofwork'),
+                        'start_date' => $this->request->getPost('startdate')[$key],
+                        'end_date' => $this->request->getPost('enddate')[$key],
+                        'exp_description' => $this->request->getPost('expdesc')[$key],
+                        'org_type' => $this->request->getPost('orgtype')[$key],
+                        'work_nature' => $this->request->getPost('natureofwork')[$key],
                         'upload_by' =>  $loggeduserId,
                     ];
     
-                    //echo "<pre>";print_r($data);
-                    $result = $employee_experience_model->add($data);
+                    echo "<pre>";print_r($data);
+                    //$result = $employee_experience_model->add($data);
                 }
-                //die;
+                die;
                 if ($result === true) {
                     return redirect()->to('admin/employee-experience')->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
