@@ -158,9 +158,12 @@
       <form action="<?= base_url() ?>admin/export_emp_experience_sample" method="post">
       <div class="modal-body">
         <div class="alert alert-danger"><p class="m-0">After exporting the CSV, do not delete the top headings from the Excel sheet.</p></div>
-        <?php foreach($employee as $value){ ?>
-            <span><input type="checkbox" name="emp_id[]" value="<?= $value['id'] ?>"> <?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></span> <br>
-        <?php } ?>
+        <div class="card card-body">
+            <h3 class="card-heading m-0">Employee Details</h3>
+            <?php foreach($employee as $value){ ?>
+                <span><input type="checkbox" name="emp_id[]" value="<?= $value['id'] ?>"> <?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></span> <br>
+            <?php } ?>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Download CSV</button>
