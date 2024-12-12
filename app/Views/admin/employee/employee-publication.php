@@ -229,7 +229,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
-        // Initialize clone data variables
+        // Clone data variables
         var cloneLimit = 10;
         var currentClones = 0;
 
@@ -239,7 +239,9 @@
             if (currentClones < cloneLimit) {
                 currentClones++;
                 var cloneCatrow = $('#stockTrow').clone().appendTo('#stockTbody');
-                $(cloneCatrow).find('input').val(''); // Clear input fields in the cloned row
+                $(cloneCatrow).find('input').val(''); // Clear inputs
+            } else {
+                alert('Clone limit reached!');
             }
         });
 
@@ -247,12 +249,13 @@
         $("#addnewexpenserow").click(function (e) {
             e.preventDefault();
             var cloneExpCatrow = $('#expenseTrow').clone().appendTo('#expenseTbody');
-            $(cloneExpCatrow).find('input').val(''); // Clear input fields in the cloned row
+            $(cloneExpCatrow).find('input').val(''); // Clear inputs
         });
 
         // Remove service row
         $('#stockTbody').on('click', '#removenewServicerow', function () {
             $(this).closest('tr').remove();
+            currentClones--; // Decrement clone counter
         });
 
         // Remove expense row
@@ -263,17 +266,23 @@
         // Add clone for employee data
         $("#add-clone").click(function (e) {
             e.preventDefault();
-            var cloneCatrow = $('#clone_employee_data').first().clone();
-            cloneCatrow.find('input, textarea, select').val('');
-            cloneCatrow.find('.ck-editor').remove(); // Remove CKEditor instances from the cloned elements
-            cloneCatrow.appendTo('#clone_content');
-            cloneCatrow.find('.clone_editor').removeAttr('data-ckeditor-initialized');
-            initializeEditors();
+            if (currentClones < cloneLimit) {
+                var cloneCatrow = $('#clone_employee_data').first().clone();
+                cloneCatrow.find('input, textarea, select').val('');
+                cloneCatrow.find('.ck-editor').remove(); // Remove existing CKEditor instances
+                cloneCatrow.appendTo('#clone_content');
+                cloneCatrow.find('.clone_editor').removeAttr('data-ckeditor-initialized'); // Clear CKEditor initialization flag
+                initializeEditors(); // Reinitialize CKEditor for new cloned elements
+                currentClones++;
+            } else {
+                alert('Clone limit reached!');
+            }
         });
 
         // Remove clone for employee data
         $('#clone_content').on('click', '#remove-clone', function () {
             $(this).closest('#clone_employee_data').remove();
+            currentClones--; // Decrement clone counter
         });
 
         // Submit form hook to collect CKEditor data
