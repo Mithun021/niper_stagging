@@ -99,7 +99,7 @@ use App\Models\Employee_publication_model;
                         'organization_name' => $value,
                         'start_date' => $this->request->getPost('startdate')[$key],
                         'end_date' => $this->request->getPost('enddate')[$key],
-                        'exp_description' => $this->request->getPost('expdesc')[$key],
+                        'exp_description' => $this->request->getVar('expdesc')[$key],
                         'org_type' => $this->request->getPost('orgtype')[$key],
                         'work_nature' => $this->request->getPost('natureofwork')[$key],
                         'upload_by' =>  $loggeduserId,
