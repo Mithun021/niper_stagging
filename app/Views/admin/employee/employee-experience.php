@@ -159,7 +159,7 @@
       <div class="modal-body">
         <div class="alert alert-danger"><p class="m-0">After exporting the CSV, do not delete the top headings from the Excel sheet.</p></div>
         <div class="card card-body">
-            <h3 class="card-heading m-0">Employee Details</h3>
+            <h3 class="m-0 p-2 border">Employee Details</h3>
             <?php foreach($employee as $value){ ?>
                 <span><input type="checkbox" name="emp_id[]" value="<?= $value['id'] ?>"> <?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></span> <br>
             <?php } ?>
