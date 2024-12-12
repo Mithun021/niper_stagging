@@ -108,7 +108,7 @@ use App\Models\Employee_publication_model;
                     //echo "<pre>";print_r($data);
                     $result = $employee_experience_model->add($data);
                 }
-                die;
+                //die;
                 if ($result === true) {
                     return redirect()->to('admin/employee-experience')->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
