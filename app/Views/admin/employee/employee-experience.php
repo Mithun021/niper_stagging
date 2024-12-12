@@ -155,13 +155,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="" method="post">
+      <form action="<?= base_url() ?>admin/export_emp_experience_sample" method="post">
       <div class="modal-body">
-        <form action="<?= base_url() ?>admin/export_emp_experience_sample" method="post">
-            <?php foreach($employee as $value){ ?>
-                <span><input type="checkbox" name="exam_id" value="<?= $value['id'] ?>"> <?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></span> <br>
-            <?php } ?>
-        </form>
+        <?php foreach($employee as $value){ ?>
+            <span><input type="checkbox" name="exam_id" value="<?= $value['id'] ?>"> <?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></span> <br>
+        <?php } ?>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary">Download CSV</button>
