@@ -439,7 +439,7 @@ use App\Models\Employee_publication_model;
                         // $employee_projects_model->insert($experienceData);
                     }
                 }
-                die;
+                
                 // return redirect()->back()->with('msg', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully!</div>');
             }
 
