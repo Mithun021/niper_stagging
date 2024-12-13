@@ -291,6 +291,38 @@ use App\Models\Employee_publication_model;
             }
         }
 
+        public function export_emp_project_sample(){
+            $employee_model = new Employee_model();
+            $empIds = $this->request->getPost('emp_id');
+            //echo "<pre>"; print_r($empIds); die;
+            if (empty($empIds) || !is_array($empIds)) {
+                return redirect()->to('admin/employee-projects')->with('msg','<div class="alert alert-danger" role="alert"> No Employee Selected </div>');
+            }
+            //echo "<pre>"; print_r($employees); die;
+            if ($empIds) {
+                $employeeDetails = $employee_model->getEmployeeDetailsByIds($empIds);
+                $csvData = "emp_name,email,emp_phone,project_title,project_description,start_date,start_time,end_date,end_time,project_status,sponsored_by,project_value\n";
+                foreach ($employeeDetails as $employee) {
+                    $csvData .= implode(",", [
+                        $employee['first_name'] . ' ' . $employee['middle_name'] . ' ' . $employee['last_name'],
+                        $employee['official_mail'],
+                        $employee['mobile_no'],
+                        'Project title',
+                        'Project Description',
+                        '2024-01-01',
+                        '06:10.00',
+                        '2024-12-31',
+                        '08:30.00',
+                        'Not Started',
+                        'Sponsored name',
+                        '10000'
+                    ]) . "\n";
+                }
+                // Generate CSV file
+                $this->generateCSV($csvData, 'employee_project_sample.csv');
+            }
+        }
+
         private function generateCSV($csvData, $fileName){
         $response = $this->response->setContentType('text/csv')
                                     ->setHeader('Content-Disposition', 'attachment; filename="' . $fileName . '"')

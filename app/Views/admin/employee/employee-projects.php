@@ -154,14 +154,14 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="" method="post">
+      <form action="<?= base_url() ?>admin/export_emp_project_sample" method="post">
       <div class="modal-body">
         <?php foreach($employee as $value){ ?>
             <span><input type="checkbox" value="<?= $value['id'] ?>"> <?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></span> <br>
         <?php } ?>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Download CSV</button>
+        <button type="submit" class="btn btn-primary">Download CSV</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
       </form>
@@ -178,12 +178,12 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="" method="post">
+      <form action="<?= base_url() ?>admin/upload_emp_project_csv" method="post">
       <div class="modal-body">
         <input type="file" class="dropify" data-height="300" />
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Upload</button>
+        <button type="submit" class="btn btn-primary">Upload</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
       </form>
