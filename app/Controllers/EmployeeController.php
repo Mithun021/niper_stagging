@@ -351,6 +351,37 @@ use App\Models\Employee_publication_model;
             }
         }
 
+        public function export_emp_publication_sample(){
+            $employee_model = new Employee_model();
+            $empIds = $this->request->getPost('emp_id');
+            //echo "<pre>"; print_r($empIds); die;
+            if (empty($empIds) || !is_array($empIds)) {
+                return redirect()->to('admin/employee-awards')->with('msg','<div class="alert alert-danger" role="alert"> No Employee Selected </div>');
+            }
+            //echo "<pre>"; print_r($employees); die;
+            if ($empIds) {
+                $employeeDetails = $employee_model->getEmployeeDetailsByIds($empIds);
+                $csvData = "emp_name,email,emp_phone,title,description,keywords,author_name,doi_details,publication_year,publication_type,status\n";
+                foreach ($employeeDetails as $employee) {
+                    $csvData .= implode(",", [
+                        $employee['first_name'] . ' ' . $employee['middle_name'] . ' ' . $employee['last_name'],
+                        $employee['official_mail'],
+                        $employee['mobile_no'],
+                        'Publication test title',
+                        'Publication Description',
+                        'keywords1.keywords2',
+                        'Name1,Name2,Name3',
+                        'DoI Details',
+                        '2024',
+                        'Review Article',
+                        'In Proceeding/Published'
+                    ]) . "\n";
+                }
+                // Generate CSV file
+                $this->generateCSV($csvData, 'employee_publication_sample.csv');
+            }
+        }
+
         private function generateCSV($csvData, $fileName){
         $response = $this->response->setContentType('text/csv')
                                     ->setHeader('Content-Disposition', 'attachment; filename="' . $fileName . '"')
