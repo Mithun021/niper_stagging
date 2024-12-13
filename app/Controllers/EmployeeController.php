@@ -415,7 +415,7 @@ use App\Models\Employee_publication_model;
                     $data = array_combine($header, $row); // Combine header with row values
         
                     // Validate mandatory fields (email, emp_phone, and organization_name)
-                    if (empty($data['email']) || empty($data['emp_phone']) || empty($data['organization_name'])) {
+                    if (empty($data['email']) || empty($data['emp_phone']) || empty($data['project_title'])) {
                         continue; // Skip if mandatory fields are missing
                     }
         
@@ -445,7 +445,7 @@ use App\Models\Employee_publication_model;
                         // echo "<pre>"; print_r($experienceData);
         
                         // Insert the data into the database (uncomment to enable)
-                        // $employeeProjectsModel->insert($experienceData);
+                        $employeeProjectsModel->insert($experienceData);
                     }
                 }
         
