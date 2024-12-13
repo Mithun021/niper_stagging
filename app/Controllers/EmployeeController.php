@@ -572,5 +572,80 @@ use App\Models\Employee_publication_model;
         }
 
 
+        public function upload_emp_publication_csv(){
+            $employeeModel = new \App\Models\Employee_model();
+            $employee_publication_model = new Employee_publication_model();
+            $employee_publication_author_model = new Employee_publication_author_model();
+            $file = $this->request->getFile('csv_file');
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+
+            // Check if a file is uploaded and is valid
+            if ($file && $file->isValid() && !$file->hasMoved()) {
+                $fileContent = $file->getTempName();
+                $csvData = array_map('str_getcsv', file($fileContent));
+                $header = array_map('trim', array_shift($csvData)); // Extract and trim header row
+
+                foreach ($csvData as $row) {
+                    $data = array_combine($header, $row); // Combine header with row values
+
+                    // Validate mandatory fields
+                    if (empty($data['email']) || empty($data['emp_phone']) || empty($data['award_title'])) {
+                        continue; // Skip if mandatory fields are missing
+                    }
+
+                    // Find the employee_id based on email and phone
+                    $employee = $employeeModel
+                        ->where('official_mail', $data['email'])
+                        ->where('mobile_no', $data['emp_phone'])
+                        ->first();
+
+                        if ($data['status'] == 'In Proceeding') {
+                            $status_value = 0;
+                        } else if ($data['status'] == 'Published') {
+                            $status_value = 1;
+                        }
+                        $author_name = explode(',',$data['author_name']);
+
+                    if ($employee) {
+                        // Prepare data for insertion
+                        $experienceData = [
+                            'emplyee_id'        => $employee['id'],
+                            'title'             => $data['title'],
+                            'description'       => $data['description'],
+                            'keywords'          => $data['keywords'],
+                            'doi_details'       => $data['doi_details'],
+                            'publication_year'  => $data['publication_year'],
+                            'publication_type'  => $data['publication_type'],
+                            'status'            => $data['status'],
+                            'upload_by'         => $status_value,
+                        ];
+
+                        // echo "<pre>"; print_r($experienceData);
+                        // Validate and insert
+                        $save = $employee_publication_model->insert($experienceData);
+
+                        if($save){
+                            foreach ($author_name as $value) {
+                                $data2 = [
+                                    'author_name' => $value,
+                                    'emp_publication_id' => $save,
+                                ];
+                                $employee_publication_author_model->add($data2);
+                            }
+                        }
+
+                    }
+                }
+
+                return redirect()->back()->with('msg', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully!</div>');
+            }
+
+            return redirect()->back()->with('msg', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
+        }
+
+
     }
 ?>
