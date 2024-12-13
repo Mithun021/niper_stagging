@@ -528,16 +528,16 @@ use App\Models\Employee_publication_model;
                             'upload_by'         => $loggeduserId,
                         ];
 
-                        // echo "<pre>"; print_r($experienceData);
+                        echo "<pre>"; print_r($experienceData);
                         // Validate and insert
-                        $employee_awards_model->insert($experienceData);
+                        // $employee_awards_model->insert($experienceData);
                     }
                 }
 
-                return redirect()->back()->with('msg', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully!</div>');
+                // return redirect()->back()->with('msg', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully!</div>');
             }
 
-            return redirect()->back()->with('msg', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
+            // return redirect()->back()->with('msg', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
         }
 
 
