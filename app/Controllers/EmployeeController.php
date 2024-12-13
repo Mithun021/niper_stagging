@@ -442,7 +442,7 @@ use App\Models\Employee_publication_model;
                         ];
         
                         // Debug output (remove in production)
-                        echo "<pre>"; print_r($experienceData);
+                        // echo "<pre>"; print_r($experienceData);
         
                         // Insert the data into the database (uncomment to enable)
                         // $employeeProjectsModel->insert($experienceData);
@@ -450,11 +450,11 @@ use App\Models\Employee_publication_model;
                 }
         
                 // Return success message
-                // return redirect()->back()->with('msg', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully!</div>');
+                return redirect()->back()->with('msg', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully!</div>');
         
             } else {
                 // Return error message if the file is invalid
-                // return redirect()->back()->with('msg', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
+                return redirect()->back()->with('msg', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
             }
         }        
 
