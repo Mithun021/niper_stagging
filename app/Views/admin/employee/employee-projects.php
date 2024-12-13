@@ -157,7 +157,7 @@
       <form action="<?= base_url() ?>admin/export_emp_project_sample" method="post">
       <div class="modal-body">
         <?php foreach($employee as $value){ ?>
-            <span><input type="checkbox" value="<?= $value['id'] ?>"> <?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></span> <br>
+            <span><input type="checkbox" name="emp_id[]" value="<?= $value['id'] ?>"> <?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></span> <br>
         <?php } ?>
       </div>
       <div class="modal-footer">
