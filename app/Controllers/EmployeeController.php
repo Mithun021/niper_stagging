@@ -389,35 +389,42 @@ use App\Models\Employee_publication_model;
             return redirect()->back()->with('msg', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
         }
 
-        public function upload_emp_project_csv(){
+        public function upload_emp_project_csv() {
             $employeeModel = new \App\Models\Employee_model();
-            $employee_projects_model = new Employee_projects_model();
+            $employeeProjectsModel = new Employee_projects_model();
             $file = $this->request->getFile('csv_file');
             $sessionData = session()->get('loggedUserData');
+        
+            // Check if session is valid and if user ID is available
             if ($sessionData) {
-                $loggeduserId = $sessionData['loggeduserId']; 
+                $loggedUserId = $sessionData['loggeduserId']; 
+            } else {
+                return redirect()->back()->with('msg', '<div class="alert alert-danger" role="alert">Session expired. Please log in again.</div>');
             }
-
+        
             // Check if a file is uploaded and is valid
             if ($file && $file->isValid() && !$file->hasMoved()) {
                 $fileContent = $file->getTempName();
+        
+                // Read the CSV data into an array
                 $csvData = array_map('str_getcsv', file($fileContent));
-                $header = array_map('trim', array_shift($csvData)); // Extract and trim header row
-
+                $header = array_map('trim', array_shift($csvData)); // Extract and trim the header row
+        
+                // Loop through each row in the CSV
                 foreach ($csvData as $row) {
                     $data = array_combine($header, $row); // Combine header with row values
-
-                    // Validate mandatory fields
+        
+                    // Validate mandatory fields (email, emp_phone, and organization_name)
                     if (empty($data['email']) || empty($data['emp_phone']) || empty($data['organization_name'])) {
                         continue; // Skip if mandatory fields are missing
                     }
-
-                    // Find the employee_id based on email and phone
+        
+                    // Find the employee by email and phone
                     $employee = $employeeModel
                         ->where('official_mail', $data['email'])
                         ->where('mobile_no', $data['emp_phone'])
                         ->first();
-
+        
                     if ($employee) {
                         // Prepare data for insertion
                         $experienceData = [
@@ -431,20 +438,25 @@ use App\Models\Employee_publication_model;
                             'project_status'    => $data['project_status'],
                             'sponsored_by'      => $data['sponsored_by'],
                             'project_value'     => $data['project_value'],
-                            'upload_by'         => $loggeduserId,
+                            'upload_by'         => $loggedUserId,
                         ];
-
+        
+                        // Debug output (remove in production)
                         echo "<pre>"; print_r($experienceData);
-                        // Validate and insert
-                        // $employee_projects_model->insert($experienceData);
+        
+                        // Insert the data into the database (uncomment to enable)
+                        // $employeeProjectsModel->insert($experienceData);
                     }
                 }
-                
+        
+                // Return success message
                 // return redirect()->back()->with('msg', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully!</div>');
+        
+            } else {
+                // Return error message if the file is invalid
+                // return redirect()->back()->with('msg', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
             }
-
-            // return redirect()->back()->with('msg', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
-        }
+        }        
 
 
 

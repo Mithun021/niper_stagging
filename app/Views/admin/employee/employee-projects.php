@@ -180,7 +180,7 @@
       </div>
       <form action="<?= base_url() ?>admin/upload_emp_project_csv" method="post" enctype="multipart/form-data">
       <div class="modal-body">
-        <input type="file" class="dropify" data-height="300" />
+        <input type="file" name="csv_file" class="dropify" data-height="300" />
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Upload</button>
