@@ -222,7 +222,7 @@
 
 
 <div class="modal fade" tabindex="-1" role="dialog" id="upload_emp_exp_modal">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Upload Employee Experience Data</h5>
@@ -238,8 +238,8 @@
             <p class="m-0">3. Before uploading the CSV, cross-check the employee's official email address and mobile number.</p>
             <p class="m-0">4.Please upload only CSV files.</p>
             <p class="m-0">5.In the Author Name and Publication Keywords section, write the name with commas separating each part. For Example</p>
-            <p class="m-0">Keywords : keywords1,keywords2.....</p>
-            <p class="m-0">Author Name : Name1,Name2, Name3 .....</p>
+            <p class="m-0">Keywords : keywords1, keywords2, keywords3.....</p>
+            <p class="m-0">Author Name : Name1, Name2, Name3 .....</p>
         </div>
         <input type="file" name="csv_file" class="dropify" data-height="300" />
       </div>
