@@ -94,5 +94,8 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->post('export_emp_project_sample', 'EmployeeController::export_emp_project_sample');
     $routes->post('upload_emp_project_csv', 'EmployeeController::upload_emp_project_csv');
 
+    $routes->post('export_emp_award_sample', 'EmployeeController::export_emp_award_sample');
+    $routes->post('upload_emp_award_csv', 'EmployeeController::upload_emp_award_csv');
+
     
 });
