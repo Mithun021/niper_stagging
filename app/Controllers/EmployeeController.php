@@ -487,6 +487,59 @@ use App\Models\Employee_publication_model;
         }        
 
 
+        public function upload_emp_award_csv(){
+            $employeeModel = new \App\Models\Employee_model();
+            $employee_awards_model = new Employee_awards_model();
+            $file = $this->request->getFile('csv_file');
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+
+            // Check if a file is uploaded and is valid
+            if ($file && $file->isValid() && !$file->hasMoved()) {
+                $fileContent = $file->getTempName();
+                $csvData = array_map('str_getcsv', file($fileContent));
+                $header = array_map('trim', array_shift($csvData)); // Extract and trim header row
+
+                foreach ($csvData as $row) {
+                    $data = array_combine($header, $row); // Combine header with row values
+
+                    // Validate mandatory fields
+                    if (empty($data['email']) || empty($data['emp_phone']) || empty($data['organization_name'])) {
+                        continue; // Skip if mandatory fields are missing
+                    }
+
+                    // Find the employee_id based on email and phone
+                    $employee = $employeeModel
+                        ->where('official_mail', $data['email'])
+                        ->where('mobile_no', $data['emp_phone'])
+                        ->first();
+
+                    if ($employee) {
+                        // Prepare data for insertion
+                        $experienceData = [
+                            'emplyee_id'        => $employee['id'],
+                            'award_title'       => $data['award_title'],
+                            'award_year'        => $data['award_year'],
+                            'award_date_time'   => date('Y-m-d H:s:i', strtotime($data['award_date_time'])),
+                            'award_agency_type' => $data['award_agency_type'],
+                            'award_agency_name' => $data['award_agency_name'],
+                            'upload_by'         => $loggeduserId,
+                        ];
+
+                        // echo "<pre>"; print_r($experienceData);
+                        // Validate and insert
+                        $employee_awards_model->insert($experienceData);
+                    }
+                }
+
+                return redirect()->back()->with('msg', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully!</div>');
+            }
+
+            return redirect()->back()->with('msg', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
+        }
+
 
     }
 ?>
