@@ -370,7 +370,7 @@ use App\Models\Employee_publication_model;
                         'Publication test title',
                         'Publication Description',
                         'keywords1.keywords2',
-                        'Name1,Name2,Name3',
+                        'Name1.Name2.Name3',
                         'DoI Details',
                         '2024',
                         'Review Article',
