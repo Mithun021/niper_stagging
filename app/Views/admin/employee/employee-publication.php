@@ -237,6 +237,9 @@
             <p class="m-0">2. The employee's mobile number and official email ID must be available.</p>
             <p class="m-0">3. Before uploading the CSV, cross-check the employee's official email address and mobile number.</p>
             <p class="m-0">4.Please upload only CSV files.</p>
+            <p class="m-0">5.In the Author Name and Publication Keywords section, write the name with commas separating each part.</p>
+            <p class="m-0">Keywords : keywords1,keywords2.....</p>
+            <p class="m-0">Author Name : Name1,Name2, Name3 .....</p>
         </div>
         <input type="file" name="csv_file" class="dropify" data-height="300" />
       </div>
