@@ -46,7 +46,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'departments-section', 'DepartmentController::departments_section');
     $routes->match(['get','post'],'designation', 'DesignationController::designation');
     $routes->match(['get','post'],'program', 'ProgramController::program');
-    $routes->match(['get','post'],'program-dept-mapping', 'AdminControllers::program_dept_mapping');
+    $routes->match(['get','post'],'program-dept-mapping', 'ProgramController::program_dept_mapping');
     $routes->match(['get','post'],'program-dept-std-mapping', 'AdminControllers::program_dept_std_mapping');
     $routes->match(['get','post'],'membership', 'AdminControllers::membership');
     $routes->match(['get','post'],'banner-slider', 'AdminControllers::banner_slider');

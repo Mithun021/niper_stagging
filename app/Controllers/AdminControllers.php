@@ -584,15 +584,6 @@ use App\Models\UserModel;
             }
         }
 
-        public function program_dept_mapping(){
-            $data = ['title' => 'Program Dept. Mapping'];
-            if ($this->request->is("get")) {
-                return view('admin/program-dept-mapping',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
         public function program_dept_std_mapping(){
             $data = ['title' => 'Program Dept. Std. Mapping'];
             if ($this->request->is("get")) {

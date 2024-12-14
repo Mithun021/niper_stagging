@@ -28,6 +28,19 @@ use App\Models\Program_model;
                     return redirect()->to('admin/program')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
+            
         }
+
+
+        public function program_dept_mapping(){
+            $data = ['title' => 'Program Dept. Mapping'];
+            if ($this->request->is("get")) {
+                return view('admin/program-dept-mapping',$data);
+            }else if ($this->request->is("post")) {
+
+            }
+        }
+
+
     }
 ?>
