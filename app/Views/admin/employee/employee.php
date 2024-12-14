@@ -195,8 +195,8 @@ use App\Models\Designation_model;
                                 <td><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></td>
                                 <td><?= $value['official_mail'] ?></td>
                                 <td><?= $value['mobile_no'] ?></td>
-                                <td><?php $designations = $designation_model->get($value['designation_id']); echo (!empty($designations['name'])) ? $designations['name'] : '____';;  ?></td>
-                                <td><?php $department = $department_model->get($value['department_id']); echo (!empty($department['name'])) ? $department['name'] : '____';;  ?></td>
+                                <td><?php $designations = $designation_model->get($value['designation_id']); echo (!empty($designations['name'])) ? $designations['name'] : '____';  ?></td>
+                                <td><?php $department = $department_model->get($value['department_id']); echo (!empty($department['name'])) ? $department['name'] : '____';  ?></td>
                                 <td><?= $value['created_at'] ?></td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
