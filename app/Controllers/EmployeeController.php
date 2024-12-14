@@ -623,27 +623,31 @@ use App\Models\Employee_publication_model;
                             'upload_by'         => $status_value,
                         ];
 
-                        // echo "<pre>"; print_r($experienceData);
-                        // Validate and insert
-                        $save = $employee_publication_model->insert($experienceData);
+                        echo "<pre>"; print_r($experienceData);
 
-                        if($save){
-                            foreach ($author_name as $value) {
-                                $data2 = [
-                                    'author_name' => $value,
-                                    'emp_publication_id' => $save,
-                                ];
-                                $employee_publication_author_model->add($data2);
-                            }
+                        foreach ($author_name as $value) {
+                            $data2 = [
+                                'author_name' => $value,
+                                'emp_publication_id' => 1,
+                            ];
+                            echo "<pre>"; print_r($data2);
+                            // $employee_publication_author_model->add($data2);
                         }
+
+                        // Validate and insert
+                        // $save = $employee_publication_model->insert($experienceData);
+
+                        // if($save){
+                           
+                        // }
 
                     }
                 }
 
-                return redirect()->back()->with('msg', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully!</div>');
+                // return redirect()->back()->with('msg', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully!</div>');
             }
 
-            return redirect()->back()->with('msg', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
+            // return redirect()->back()->with('msg', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
         }
 
 
