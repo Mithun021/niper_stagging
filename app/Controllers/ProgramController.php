@@ -35,7 +35,7 @@ use App\Models\Program_model;
         public function program_dept_mapping(){
             $data = ['title' => 'Program Dept. Mapping'];
             if ($this->request->is("get")) {
-                return view('admin/program-dept-mapping',$data);
+                return view('admin/program/program-dept-mapping',$data);
             }else if ($this->request->is("post")) {
 
             }
