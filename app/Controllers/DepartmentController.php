@@ -39,10 +39,12 @@ use App\Models\Program_model;
 
 
         public function departments_photos() {
+            $department_model = new Department_model();
             $department_photos_model = new Department_photos_model();
             $department_photos_file_model = new Department_photos_file_model();
             $data = ['title' => 'Dept. Photo Album'];
             if ($this->request->is("get")) {
+                $data['department'] = $department_model->activeData();
                 $data['albums'] = $department_photos_model->get();
                 return view('admin/department/departments-photos', $data);
             } else if ($this->request->is("post")) {

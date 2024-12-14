@@ -22,10 +22,14 @@ $photo_album_file_model = new Photo_album_file_model();
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form  action="<?= base_url() ?>admin/photo-album" method="post" enctype="multipart/form-data">
+                <form  action="<?= base_url() ?>admin/departments-photos" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <span for="">Image Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="album_title">
+                        <span for="">Select Department<span class="text-danger">*</span></span>
+                        <select class="form-control form-control-sm" name="album_title">
+                        <?php foreach($department as $value){ ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                        <?php } ?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <span for="">Upload File(JPG,PNG,JPEG)</span>
