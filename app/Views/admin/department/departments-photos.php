@@ -3,8 +3,10 @@
 <?=  $this->section("body-content"); ?>
 <?php
 
+use App\Models\Department_model;
 use App\Models\Department_photos_file_model;
-$department_photos_file_model = new Department_photos_file_model()
+$department_photos_file_model = new Department_photos_file_model();
+$department_model = new Department_model();
 ?>
 <style>
     
@@ -63,7 +65,7 @@ $department_photos_file_model = new Department_photos_file_model()
                     <?php foreach($albums as $key => $value){ ?>
                         <tr>
                             <td><?= ++$key ?></td>
-                            <td><?= $value['dept_id'] ?></td>
+                            <td><?php $department = $department_model->get($value['dept_id']); echo $department['name']; ?></td>
                             <td>
                                 <?php
                                     $albums = $department_photos_file_model->getByAlbumId($value['id']);
