@@ -26,6 +26,13 @@
                         <span for="">Desription</span>
                         <textarea id="editor" name="description"></textarea>
                     </div>
+                    <div class="form-group">
+                        <span for="">Desription</span>
+                        <select name="status" class="form-control form-control-sm">
+                            <option value="0">Inactive</option>
+                            <option value="1">Active</option>
+                        </select>
+                    </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
                     
@@ -45,6 +52,9 @@
                         <tr>
                             <td>SN</td>
                             <td>Dept Name</td>
+                            <td>Status</td>
+                            <td>Upload by</td>
+                            <td>Created at</td>
                             <td>Action</td>
                         </tr>
                     </thead>
@@ -53,6 +63,8 @@
                         <tr>
                             <td><?= ++$key ?></td>
                             <td><?= $value['name'] ?></td>
+                            <td><?= ($data['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($data['status'] == "1") ? "<span class='badge badge-success badge-pill'>Inactive</span>Active" : "") ?></td>
+                            <td><?= $value['upload_by'] ?></td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                     <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>

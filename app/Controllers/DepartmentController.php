@@ -14,10 +14,15 @@ use App\Models\Program_model;
                 $data['department'] = $department_model->get();
                 return view('admin/department/departments-section',$data);
             }else if ($this->request->is("post")) {
-                
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
                 $data = [
                     'name' => $this->request->getPost('dept_name'),
                     'description' => $this->request->getPost('description'),
+                    'status' => $this->request->getPost('status'),
+                    'upload_by' => $loggeduserId,
                 ];
                 $save = $department_model->add($data);
                 
