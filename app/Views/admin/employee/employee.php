@@ -195,7 +195,7 @@ use App\Models\Designation_model;
                                 <td><?= ++$key ?></td>
                                 <td>
                                     <img src="<?= base_url() ?>public/admin/uploads/employee/<?= $value['profile_photo'] ?>" alt="" height="30px" width="30px">
-                                    <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $value['resume_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/cv.png" height="30px"></a>
+                                    <?php if($value['authority']!=="admin"){ ?><a href="<?= base_url() ?>public/admin/uploads/employee/<?= $value['resume_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/cv.png" height="30px"></a><?php } ?>
                                 </td>
                                 <td><?= $value['employee_unique_id'] ?></td>
                                 <td><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></td>
