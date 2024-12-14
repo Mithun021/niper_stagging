@@ -51,6 +51,7 @@
                         <tr>
                             <td>SN</td>
                             <td>Program Name</td>
+                            <td>Status</td>
                             <td>Upload by</td>
                             <td>Create at</td>
                             <td>Action</td>
