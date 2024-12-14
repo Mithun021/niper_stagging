@@ -5,6 +5,8 @@
 
 use App\Models\Department_model;
 use App\Models\Department_photos_file_model;
+use App\Models\Employee_model;
+$employee_model = new Employee_model();
 $department_photos_file_model = new Department_photos_file_model();
 $department_model = new Department_model();
 ?>
@@ -79,7 +81,7 @@ $department_model = new Department_model();
                                     }
                                 ?>
                             </td>
-                            <td><?= $value['upload_by'] ?></td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                             <td><?= $value['created_at'] ?></td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">

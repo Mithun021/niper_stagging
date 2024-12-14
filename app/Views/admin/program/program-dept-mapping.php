@@ -5,6 +5,8 @@
 <?php
     use App\Models\Department_model;
     use App\Models\Program_model;
+    use App\Models\Employee_model;
+    $employee_model = new Employee_model();
     $program_model = new Program_model();
     $department_model = new Department_model();
 ?>
@@ -138,7 +140,7 @@
                                 <td><?= $value['eligibility_criteria'] ?></td>
                                 <td><?= $value['no_of_seats'] ?></td>
                                 <td><?= $value['batch_start']." - ".$value['batch_end'] ?></td>
-                                <td><?= $value['upload_by'] ?></td>
+                                <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                         <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
