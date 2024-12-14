@@ -30,7 +30,7 @@
                     <!-- Program ID -->
                     <div class="form-group">
                         <span for="Progid">Program ID:</span>
-                        <select name="Deptid" id="Deptid" class="form-control form-control-sm" required >
+                        <select name="Progid" id="Progid" class="form-control form-control-sm" required >
                             <option value="">Select Program</option>
                         <?php foreach ($program as $key => $value) { ?>
                             <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
@@ -65,6 +65,14 @@
                         <span for="Syllabus">Upload Syllabus(.pdf,.doc,.docx):</span>
                         <input type="file" name="Syllabus" id="Syllabus" class="form-control form-control-sm" accept=".pdf,.doc,.docx" required>
                     </div>
+
+                    <div class="form-group">
+                        <span>Status</span>
+                        <select name="status" id="status" class="form-control form-control-sm">
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
+                        </select>
+                    </div>
                     
                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
                 </form>
@@ -88,6 +96,7 @@
                                 <td>Dept.</td>
                                 <td>Eligibility Criteria</td>
                                 <td>No. of Seats</td>
+                                <td>Batch</td>
                                 <td>Action</td>
                             </tr>
                         </thead>

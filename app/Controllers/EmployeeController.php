@@ -392,7 +392,7 @@ use App\Models\Employee_publication_model;
 
 
 
-        // Import CSV File of Employees
+        // Import CSV File of Employees ===========================================================
 
         public function upload_emp_experience_csv(){
             $employeeModel = new \App\Models\Employee_model();
@@ -453,8 +453,6 @@ use App\Models\Employee_publication_model;
             $employeeProjectsModel = new Employee_projects_model();
             $file = $this->request->getFile('csv_file');
             $sessionData = session()->get('loggedUserData');
-        
-            // Check if session is valid and if user ID is available
             if ($sessionData) {
                 $loggedUserId = $sessionData['loggeduserId']; 
             } else {

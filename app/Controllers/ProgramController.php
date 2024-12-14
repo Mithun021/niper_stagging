@@ -46,6 +46,40 @@ use App\Models\Program_model;
                 $data['program_dep_mapping'] = $program_department_mapping_model->get();
                 return view('admin/program/program-dept-mapping',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggedUserId = $sessionData['loggeduserId']; 
+                } else {
+                    return redirect()->back()->with('msg', '<div class="alert alert-danger" role="alert">Session expired. Please log in again.</div>');
+                }
+                $syllabus_photo = $this->request->getFile('Syllabus');
+                if ($syllabus_photo->isValid() && ! $syllabus_photo->hasMoved()) {
+                    $syllabusimageName = $syllabus_photo->getRandomName();
+                    $syllabus_photo->move(ROOTPATH . 'public/admin/uploads/program_dep_map', $syllabusimageName);    
+                }else{
+                 $syllabusimageName = "";
+                }
+
+                $data = [
+                    'program_id' => $this->request->getPost('Progid'),
+                    'department_id' => $this->request->getPost('Deptid'),
+                    'eligibility_criteria' => $this->request->getPost('eligibility'),
+                    'no_of_seats' => $this->request->getPost('Noofseats'),
+                    'batch_start' => $this->request->getPost('batchStart'),
+                    'batch_end' => $this->request->getPost('batchEnd'),
+                    'syllabus_files' => $syllabusimageName,
+                    'status' => $this->request->getPost('status'),
+                    'upload_by' =>  $loggedUserId,
+                ]; 
+
+                // echo "<pre>";print_r($data);
+                $result = $program_department_mapping_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/program-dept-mapping')->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                }else{
+                    return redirect()->to('admin/program-dept-mapping')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+
 
             }
         }
