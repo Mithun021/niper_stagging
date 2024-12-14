@@ -3,8 +3,8 @@
 <?=  $this->section("body-content"); ?>
 <?php
 
-use App\Models\Photo_album_file_model;
-$photo_album_file_model = new Photo_album_file_model();
+use App\Models\Department_photos_file_model;
+$department_photos_file_model = new Department_photos_file_model()
 ?>
 <style>
     
@@ -25,7 +25,7 @@ $photo_album_file_model = new Photo_album_file_model();
                 <form  action="<?= base_url() ?>admin/departments-photos" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Select Department<span class="text-danger">*</span></span>
-                        <select class="form-control form-control-sm" name="album_title">
+                        <select class="form-control form-control-sm" name="dept_id">
                         <?php foreach($department as $value){ ?>
                             <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
                         <?php } ?>
@@ -53,7 +53,7 @@ $photo_album_file_model = new Photo_album_file_model();
                     <thead>
                         <tr>
                             <td>SN</td>
-                            <td>Title</td>
+                            <td>Department</td>
                             <td>Files</td>
                             <td>Upload by</td>
                             <td>Action</td>
@@ -63,14 +63,14 @@ $photo_album_file_model = new Photo_album_file_model();
                     <?php foreach($albums as $key => $value){ ?>
                         <tr>
                             <td><?= ++$key ?></td>
-                            <td><?= $value['album_title'] ?></td>
+                            <td><?= $value['dept_id'] ?></td>
                             <td>
                                 <?php
-                                    $albums = $photo_album_file_model->getByAlbumId($value['id']);
+                                    $albums = $department_photos_file_model->getByAlbumId($value['id']);
                                     foreach ($albums as $key => $files) {
-                                        if($value['id'] == $files['album_id']){
+                                        if($value['id'] == $files['dept_photos_id']){
                                 ?>
-                                    <a href="<?= base_url() ?>public/admin/uploads/album/<?= $files['file_name'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/album/<?= $files['file_name'] ?>" alt="<?= $value['album_title'] ?>" height="40px"></a>
+                                    <a href="<?= base_url() ?>public/admin/uploads/department/<?= $files['file_name'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/department/<?= $files['file_name'] ?>" alt="Department Photos" height="40px"></a>
                                 <?php
                                         }
                                     }

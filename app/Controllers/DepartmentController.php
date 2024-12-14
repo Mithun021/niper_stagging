@@ -58,8 +58,8 @@ use App\Models\Program_model;
                     );
                 }
         
-                $album_title = $this->request->getPost('album_title');
-                if (empty($album_title)) {
+                $dept_id = $this->request->getPost('dept_id');
+                if (empty($dept_id)) {
                     return redirect()->to('admin/departments-photos')->with(
                         'status', 
                         '<div class="alert alert-danger" role="alert"> Album title cannot be empty. </div>'
@@ -67,7 +67,7 @@ use App\Models\Program_model;
                 }
         
                 $album_data = [
-                    'album_title' => $album_title,
+                    'dept_id' => $dept_id,
                     'upload_by' => $loggeduserId,
                 ];
         
@@ -84,10 +84,10 @@ use App\Models\Program_model;
                     foreach ($album_files['album_file'] as $file) {
                         if ($file->isValid() && !$file->hasMoved()) {
                             $newName = $file->getRandomName();
-                            $file->move(ROOTPATH . 'public/admin/uploads/album', $newName);
+                            $file->move(ROOTPATH . 'public/admin/uploads/department', $newName);
         
                             $file_data = [
-                                'album_id' => $album_id,
+                                'dept_photos_id' => $album_id,
                                 'file_name' => $newName,
                             ];
                             // echo "<pre>"; print_r($file_data);
