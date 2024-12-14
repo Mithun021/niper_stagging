@@ -592,7 +592,7 @@ use App\Models\Employee_publication_model;
                     $data = array_combine($header, $row); // Combine header with row values
 
                     // Validate mandatory fields
-                    if (empty($data['email']) || empty($data['emp_phone']) || empty($data['award_title'])) {
+                    if (empty($data['email']) || empty($data['emp_phone']) || empty($data['title'])) {
                         continue; // Skip if mandatory fields are missing
                     }
 
