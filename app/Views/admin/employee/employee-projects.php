@@ -115,6 +115,7 @@
                                 <td>Project Date</td>
                                 <td>Sponsored by</td>
                                 <td>Project Value</td>
+                                <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
@@ -128,6 +129,7 @@
                                 <td><?= $value['start_date']." ".$value['start_time']. " - ".$value['end_date']." ".$value['end_time'] ?></td>
                                 <td><?= $value['sponsored_by'] ?></td>
                                 <td><?= $value['project_value'] ?></td>
+                                <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                         <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>

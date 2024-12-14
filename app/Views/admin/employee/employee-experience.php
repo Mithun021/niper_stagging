@@ -128,7 +128,7 @@
                                 <td><?= $value['start_date']. " - ".$value['end_date'] ?></td>
                                 <td><?= $value['org_type'] ?></td>
                                 <td><?= $value['work_nature'] ?></td>
-                                <td><?= $value['upload_by'] ?></td>
+                                <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                         <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
