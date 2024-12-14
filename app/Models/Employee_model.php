@@ -5,7 +5,7 @@
     {
         protected $table         = 'employees';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['employee_unique_id','first_name','middle_name','last_name','designation_id','department_id','mobile_no','landline_no','official_mail','personal_mail','post_charge','employee_type','profile_photo','resume_file','twitter','facebook','linkedin','research','google_h_index','i10_index','scopus_h_index','password','status','upload_by'];
+        protected $allowedFields = ['employee_unique_id','first_name','middle_name','last_name','designation_id','department_id','mobile_no','landline_no','official_mail','personal_mail','post_charge','employee_type','profile_photo','resume_file','twitter','facebook','linkedin','research','google_h_index','i10_index','scopus_h_index','password','status','authority','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

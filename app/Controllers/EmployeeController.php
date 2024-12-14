@@ -65,6 +65,7 @@ use App\Models\Employee_publication_model;
                     'scopus_h_index' => $this->request->getPost('scopus_h_index'),
                     'password' => password_hash($password, PASSWORD_DEFAULT),
                     'status' => $this->request->getPost('status'),
+                    'authority' => 'user',
                     'upload_by' =>  $loggeduserId,
                     // 'first_name' => $this->request->getPost('first_name'),
                 ];
