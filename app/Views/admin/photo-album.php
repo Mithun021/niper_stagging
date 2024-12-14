@@ -2,9 +2,10 @@
 
 <?=  $this->section("body-content"); ?>
 <?php
-
 use App\Models\Photo_album_file_model;
 $photo_album_file_model = new Photo_album_file_model();
+use App\Models\Employee_model;
+$employee_model = new Employee_model();
 ?>
 <style>
     
@@ -72,7 +73,7 @@ $photo_album_file_model = new Photo_album_file_model();
                                     }
                                 ?>
                             </td>
-                            <td><?= $value['upload_by'] ?></td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                     <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>

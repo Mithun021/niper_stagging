@@ -1,6 +1,10 @@
 <?= $this->extend("admin/layouts/master") ?>
 
 <?=  $this->section("body-content"); ?>
+<?php
+    use App\Models\Employee_model;
+    $employee_model = new Employee_model();
+?>
 <style>
     
 </style>
@@ -65,7 +69,7 @@
                             <td><?= $value['image_title'] ?></td>
                             <td><a href="<?= base_url() ?>public/admin/uploads/gallery/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/gallery/<?= $value['upload_file'] ?>" alt="<?= $value['image_title'] ?>" height="40px"></a></td>
                             <td><?= $value['event_start_date']." - ".$value['event_end_date'] ?></td>
-                            <td><?= $value['upload_by'] ?></td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                     <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>

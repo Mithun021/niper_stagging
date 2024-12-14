@@ -1,6 +1,10 @@
 <?= $this->extend("admin/layouts/master") ?>
 
 <?=  $this->section("body-content"); ?>
+<?php
+    use App\Models\Employee_model;
+    $employee_model = new Employee_model();
+?>
 <style>
     
 </style>
@@ -82,7 +86,7 @@
                                     }
                                 ?>
                             </td>
-                            <td><?= $value['upload_by'] ?></td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                             <td><?= $value['created_at'] ?></td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
