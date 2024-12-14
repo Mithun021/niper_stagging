@@ -13,7 +13,7 @@ $department_model = new Department_model();
 </style>
 <!-- start page title -->
 <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-4">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Add <?= $title ?> </h4>
@@ -44,7 +44,7 @@ $department_model = new Department_model();
             </div>
         </div>
     </div>
-    <div class="col-lg-7">
+    <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> List</h4>
@@ -58,6 +58,7 @@ $department_model = new Department_model();
                             <td>Department</td>
                             <td>Files</td>
                             <td>Upload by</td>
+                            <td>Created at</td>
                             <td>Action</td>
                         </tr>
                     </thead>
@@ -79,6 +80,7 @@ $department_model = new Department_model();
                                 ?>
                             </td>
                             <td><?= $value['upload_by'] ?></td>
+                            <td><?= $value['created_at'] ?></td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                     <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
