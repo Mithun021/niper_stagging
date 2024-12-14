@@ -26,7 +26,13 @@
                         <span for="">Desription</span>
                         <textarea id="editor" name="program_description"></textarea>
                     </div>
-
+                    <div class="form-group">
+                        <span>Status</span>
+                        <select name="status" id="status" class="form-control form-control-sm">
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
                     
                 </form>
@@ -55,6 +61,7 @@
                         <tr>
                             <td><?= ++$key ?></td>
                             <td><?= $value['name'] ?></td>
+                            <td><?= ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?></td>
                             <td><?= $value['upload_by'] ?></td>
                             <td><?= $value['created_at'] ?></td>
                             <td>

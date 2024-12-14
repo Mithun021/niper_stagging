@@ -26,6 +26,10 @@
             }
             return $result;
         }
+
+        public function activeData() {
+            $this->where('status',1)->findAll();
+        }
         
     }
 ?>

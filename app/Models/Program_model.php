@@ -5,7 +5,7 @@
     {
         protected $table         = 'program_category';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['name','description','upload_by'];
+        protected $allowedFields = ['name','description','status','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
@@ -25,6 +25,10 @@
                 $result = $this->findAll();
             }
             return $result;
+        }
+
+        public function activeData() {
+            $this->where('status',1)->findAll();
         }
         
     }

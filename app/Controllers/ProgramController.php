@@ -18,6 +18,7 @@ use App\Models\Program_model;
                 $data = [
                     'name' => $this->request->getPost('program_title'),
                     'description' => $this->request->getPost('program_description'),
+                    'status' => $this->request->getPost('status'),
                     'upload_by' => $loggeduserId
                 ];
 

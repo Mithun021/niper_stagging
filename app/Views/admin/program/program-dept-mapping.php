@@ -18,19 +18,19 @@
 
                 <!-- Form Start -->
                 <form action="/programdeptmapping/store" method="post" enctype="multipart/form-data">
-                    <!-- Program ID -->
-                    <div class="form-group">
-                        <span for="Progid">Program ID:</span>
-                        <select name="Deptid" id="Deptid" class="form-control form-control-sm" required >
-                            <option value="">Select Program</option>
-                        </select>
-                    </div>
-
                     <!-- Department ID -->
                     <div class="form-group">
                         <span for="Deptid">Department ID:</span>
                         <select name="Deptid" id="Deptid" class="form-control form-control-sm" required >
                             <option value="">Select Deparrtment</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Program ID -->
+                    <div class="form-group">
+                        <span for="Progid">Program ID:</span>
+                        <select name="Deptid" id="Deptid" class="form-control form-control-sm" required >
+                            <option value="">Select Program</option>
                         </select>
                     </div>
 
