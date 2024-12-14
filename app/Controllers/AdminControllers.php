@@ -18,31 +18,27 @@ use App\Models\UserModel;
     class AdminControllers extends BaseController{
         public function adminLogin(){
             $admin_model = new UserModel();
+            $employee_model = new Employee_model();
             if ($this->request->is("get")) {
-
-                // Check Session Status
-
                 if (isset($_SESSION['adminLoginned'])) {
                     return view("admin/index"); 
                 }
-
-
                 return view('admin/login');
             }
             else if ($this->request->is("post")) {
                 $userId = $this->request->getPost('userId');
                 $userPassword = $this->request->getVar('userPassword');
 
-                $data = $admin_model->where('email',$userId)
-                                    ->orWhere('phoneNumber',$userId)->first();
+                $data = $employee_model->where('official_mail',$userId)
+                                    ->orWhere('mobile_no',$userId)->first();
                 if($data){
                     $session_data = [
-                        'loggeduserFirstName' => $data['firstName'],
-                        'loggeduserPhone' => $data['phoneNumber'],
-                        'loggeduseremail' => $data['email'],
+                        'loggeduserFirstName' => $data['first_name'],
+                        'loggeduserPhone' => $data['mobile_no'],
+                        'loggeduseremail' => $data['official_mail'],
                         'loggeduserId' => $data['userId']
                     ];
-                    $userPhone = $data['phoneNumber'];
+                    $userPhone = $data['mobile_no'];
                     if (password_verify($userPassword, $data['password'])) {
                         $this->session->set('loggedUserData',$session_data);
                         $this->session->set('adminLoginned',"adminLoginned");
