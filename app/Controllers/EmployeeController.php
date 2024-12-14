@@ -619,8 +619,8 @@ use App\Models\Employee_publication_model;
                             'doi_details'       => $data['doi_details'],
                             'publication_year'  => $data['publication_year'],
                             'publication_type'  => $data['publication_type'],
-                            'status'            => $data['status'],
-                            'upload_by'         => $status_value,
+                            'status'            => $status_value,
+                            'upload_by'         => $loggeduserId,
                         ];
 
                         echo "<pre>"; print_r($experienceData);
