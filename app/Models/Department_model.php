@@ -28,7 +28,7 @@
         }
 
         public function activeData() {
-            $this->where('status',1)->orderBy('name','asc')->findAll();
+            return $this->where('status',1)->orderBy('name','asc')->findAll();
         }
         
     }
