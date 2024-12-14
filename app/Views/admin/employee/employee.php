@@ -25,6 +25,10 @@ use App\Models\Designation_model;
                 <form action="<?= base_url() ?>admin/employee" method="post" enctype="multipart/form-data">
                     <!-- Employee Name Fields -->
                     <div class="form-group row">
+                        <div class="col-sm-12">
+                            <span for="EmpFirstName">Employee ID:</span>
+                            <input type="text" name="employee_unique_id" id="employee_unique_id" class="form-control form-control-sm" required minlength="3">
+                        </div>
                         <div class="col-sm-4">
                             <span for="EmpFirstName">First Name:</span>
                             <input type="text" name="first_name" id="first_name" class="form-control form-control-sm" required minlength="3">
@@ -175,6 +179,7 @@ use App\Models\Designation_model;
                             <tr>
                                 <td>SN</td>
                                 <td>Files</td>
+                                <td>Emp. ID</td>
                                 <td>Name</td>
                                 <td>Off. Email</td>
                                 <td>Phone</td>
@@ -192,6 +197,7 @@ use App\Models\Designation_model;
                                     <img src="<?= base_url() ?>public/admin/uploads/employee/<?= $value['profile_photo'] ?>" alt="" height="30px" width="30px">
                                     <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $value['resume_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/cv.png" height="30px"></a>
                                 </td>
+                                <td><?= $value['employee_unique_id'] ?></td>
                                 <td><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></td>
                                 <td><?= $value['official_mail'] ?></td>
                                 <td><?= $value['mobile_no'] ?></td>
