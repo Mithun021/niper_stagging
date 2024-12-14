@@ -5,7 +5,7 @@
     {
         protected $table         = 'program_category';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['name','description'];
+        protected $allowedFields = ['name','description','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

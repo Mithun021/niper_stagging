@@ -11,9 +11,14 @@ use App\Models\Program_model;
                 $data['program'] = $program_model->get();
                 return view('admin/program/program',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
                 $data = [
                     'name' => $this->request->getPost('program_title'),
-                    'description' => $this->request->getPost('program_description')
+                    'description' => $this->request->getPost('program_description'),
+                    'upload_by' => $loggeduserId
                 ];
 
                $result = $program_model->add($data);

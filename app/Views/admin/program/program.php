@@ -45,6 +45,7 @@
                         <tr>
                             <td>SN</td>
                             <td>Program Name</td>
+                            <td>Upload by</td>
                             <td>Create at</td>
                             <td>Action</td>
                         </tr>
@@ -54,6 +55,7 @@
                         <tr>
                             <td><?= ++$key ?></td>
                             <td><?= $value['name'] ?></td>
+                            <td><?= $value['upload_by'] ?></td>
                             <td><?= $value['created_at'] ?></td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
