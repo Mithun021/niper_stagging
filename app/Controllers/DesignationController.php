@@ -17,7 +17,7 @@ use App\Models\Designation_model;
                 }
                 $data = [
                     'name' => $this->request->getPost('designation_title'),
-                    'description' => $this->request->getPost('description'),
+                    // 'description' => $this->request->getPost('description'),
                     'status' => $this->request->getPost('status'),
                     'upload_by' => $loggeduserId
                 ];

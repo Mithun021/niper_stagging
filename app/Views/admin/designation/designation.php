@@ -22,15 +22,15 @@
                         <span for="">Designation Name<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="designation_title" required minlength="3">
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <span for="">Desription</span>
                         <textarea id="editor" name="description"></textarea>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <span>Status</span>
                         <select name="status" id="status" class="form-control form-control-sm">
-                            <option value="1">Publish</option>
-                            <option value="0">Draft</option>
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
                         </select>
                     </div>
 
@@ -52,6 +52,7 @@
                         <tr>
                             <td>SN</td>
                             <td>Title</td>
+                            <td>Status</td>
                             <td>Upload by</td>
                             <td>Create at</td>
                             <td>Action</td>
@@ -62,6 +63,7 @@
                         <tr>
                             <td><?= ++$key ?></td>
                             <td><?= $value['name'] ?></td>
+                            <td><?= ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?></td>
                             <td><?= $value['upload_by'] ?></td>
                             <td><?= $value['created_at'] ?></td>
                             <td>
