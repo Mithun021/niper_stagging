@@ -15,7 +15,7 @@
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/program-dept-mapping'" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/program-dept-mapping" method="post" enctype="multipart/form-data">
                     <!-- Department ID -->
                     <div class="form-group">
                         <span for="Deptid">Department ID:</span>
