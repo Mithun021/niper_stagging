@@ -6,7 +6,7 @@
 </style>
 <!-- start page title -->
 <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-4">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Add <?= $title ?> </h4>
@@ -40,7 +40,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-7">
+    <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> List</h4>
@@ -66,6 +66,7 @@
                             <td><?= ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?>
                             </td>
                             <td><?= $value['upload_by'] ?></td>
+                            <td><?= $value['created_at'] ?></td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                     <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
