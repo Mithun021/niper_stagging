@@ -602,11 +602,7 @@ use App\Models\Employee_publication_model;
                         ->where('mobile_no', $data['emp_phone'])
                         ->first();
 
-                        if ($data['status'] == 'In Proceeding') {
-                            $status_value = 0;
-                        } else if ($data['status'] == 'Published') {
-                            $status_value = 1;
-                        }
+                        
                         $author_name = explode(',',$data['author_name']);
 
                     if ($employee) {
@@ -619,7 +615,7 @@ use App\Models\Employee_publication_model;
                             'doi_details'       => $data['doi_details'],
                             'publication_year'  => $data['publication_year'],
                             'publication_type'  => $data['publication_type'],
-                            'status'            => $data['status'],
+                            'status'            => ($data['status'] == "Published") ? 1 : 0,
                             'upload_by'         => $loggeduserId,
                         ];
 
