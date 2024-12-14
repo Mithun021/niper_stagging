@@ -63,7 +63,7 @@
                         <tr>
                             <td><?= ++$key ?></td>
                             <td><?= $value['name'] ?></td>
-                            <td><?= ($data['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($data['status'] == "1") ? "<span class='badge badge-success badge-pill'>Inactive</span>Active" : "") ?></td>
+                            <td><?= ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Inactive</span>Active" : "") ?></td>
                             <td><?= $value['upload_by'] ?></td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
