@@ -33,7 +33,7 @@ use App\Models\Program_model;
 
 
         public function program_dept_mapping(){
-            echo "ok"; die;
+            // echo "ok"; die;
             $data = ['title' => 'Program Dept. Mapping'];
             if ($this->request->is("get")) {
                 return view('admin/program/program-dept-mapping',$data);
