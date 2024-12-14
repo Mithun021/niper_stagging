@@ -619,7 +619,7 @@ use App\Models\Employee_publication_model;
                             'doi_details'       => $data['doi_details'],
                             'publication_year'  => $data['publication_year'],
                             'publication_type'  => $data['publication_type'],
-                            'status'            => $status_value,
+                            'status'            => $data['status'],
                             'upload_by'         => $loggeduserId,
                         ];
 
