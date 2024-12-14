@@ -11,18 +11,19 @@
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')): ?>
-                    <div class="alert alert-success">
-                        <?= esc(session()->getFlashdata('status')) ?>
-                    </div>
+                    <?= esc(session()->getFlashdata('status')) ?>
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="/programdeptmapping/store" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/program-dept-mapping'" method="post" enctype="multipart/form-data">
                     <!-- Department ID -->
                     <div class="form-group">
                         <span for="Deptid">Department ID:</span>
                         <select name="Deptid" id="Deptid" class="form-control form-control-sm" required >
                             <option value="">Select Deparrtment</option>
+                        <?php foreach ($department as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                        <?php } ?>
                         </select>
                     </div>
                     
@@ -31,19 +32,32 @@
                         <span for="Progid">Program ID:</span>
                         <select name="Deptid" id="Deptid" class="form-control form-control-sm" required >
                             <option value="">Select Program</option>
+                        <?php foreach ($program as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                        <?php } ?>
                         </select>
                     </div>
 
                     <!-- Eligibility Criteria -->
                     <div class="form-group">
                         <span for="Elligibilitycriteria">Eligibility Criteria:</span>
-                        <input type="text" name="eligibility" id="eligibility" class="form-control form-control-sm" required>
+                        <textarea name="eligibility" id="editor" class="form-control form-control-sm"></textarea>
                     </div>
 
                     <!-- Number of Seats -->
                     <div class="form-group">
                         <span for="Noofseats">Number of Seats:</span>
                         <input type="number" name="Noofseats" id="Noofseats" class="form-control form-control-sm" required min="1">
+                    </div>
+
+                    <div class="form-group">
+                        <span for="Noofseats">Batch Sart:</span>
+                        <input type="number" name="batchStart" id="batchStart" class="form-control form-control-sm" required min="2000">
+                    </div>
+
+                    <div class="form-group">
+                        <span for="Noofseats">Batch End:</span>
+                        <input type="number" name="batchEnd" id="batchEnd" class="form-control form-control-sm" required min="2000">
                     </div>
 
                     <!-- Syllabus Upload -->

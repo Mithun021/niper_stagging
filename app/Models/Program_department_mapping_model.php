@@ -1,11 +1,11 @@
 <?php
     namespace App\Models;
     use CodeIgniter\Model;
-    class Program_model extends Model
+    class Program_department_mapping_model extends Model
     {
-        protected $table         = 'program_category';
+        protected $table         = 'pargram_department_mapping';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['name','description','status','upload_by'];
+        protected $allowedFields = ['program_id','department_id','eligibility_criteria','no_of_seats','batch_start','batch_end','syllabus_files','status','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

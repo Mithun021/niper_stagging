@@ -1,6 +1,8 @@
 <?php
     namespace App\Controllers;
 
+use App\Models\Department_model;
+use App\Models\Program_department_mapping_model;
 use App\Models\Program_model;
 
     class ProgramController extends BaseController{
@@ -34,9 +36,14 @@ use App\Models\Program_model;
 
 
         public function program_dept_mapping(){
-            // echo "ok"; die;
+            $program_department_mapping_model = new Program_department_mapping_model();
+            $department_model = new Department_model();
+            $program_model = new Program_model();
             $data = ['title' => 'Program Dept. Mapping'];
             if ($this->request->is("get")) {
+                $data['department'] = $department_model->activeData();
+                $data['program'] = $program_model->activeData();
+                $data['program_dep_mapping'] = $program_department_mapping_model->get();
                 return view('admin/program/program-dept-mapping',$data);
             }else if ($this->request->is("post")) {
 
