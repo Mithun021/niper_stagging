@@ -11,7 +11,7 @@
 
 <div class="row">
     <!-- Form Section for Adding Program-Department Mapping -->
-    <div class="col-lg-4">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Add Program-Department Mapping</h4>
