@@ -36,7 +36,7 @@ use App\Models\UserModel;
                         'loggeduserFirstName' => $data['first_name'],
                         'loggeduserPhone' => $data['mobile_no'],
                         'loggeduseremail' => $data['official_mail'],
-                        'loggeduserId' => $data['userId']
+                        'loggeduserId' => $data['id']
                     ];
                     $userPhone = $data['mobile_no'];
                     if (password_verify($userPassword, $data['password'])) {
