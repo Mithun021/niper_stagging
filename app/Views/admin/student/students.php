@@ -9,48 +9,111 @@
             <div class="card-header">
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
             </div>
+            <form action="/studentdetails/store" method="post">
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')): ?>
-                    <div class="alert alert-success">
-                        <?= esc(session()->getFlashdata('status')) ?>
-                    </div>
+                        <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
-
-                <!-- Form Start -->
-                <form action="/studentdetails/store" method="post">
-                    <!-- Student Enrollment ID -->
-                    <div class="form-group">
-                        <span for="Stdenrollid">Student Enrollment ID: <span class="text-danger">*</span></span>
-                        <input type="text" name="Stdenrollid" id="Stdenrollid" class="form-control form-control-sm" required>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <span>Uload Profile Image <span class="text-danger">*</span></span>
+                            <input type="file" class="form-control form-control-sm" name="std_first_name">
+                        </div>
                     </div>
-
-                    <!-- Student Name -->
-                    <div class="form-group">
-                        <span for="Stdname">Student Name:<span class="text-danger">*</span></span>
-                        <input type="text" name="Stdname" id="Stdname" class="form-control form-control-sm" required>
+                    <div class="col-lg-6">
+                        <!-- Student Enrollment ID -->
+                        <div class="form-group">
+                            <span for="Stdenrollid">Student Enrollment ID: <span class="text-danger">*</span></span>
+                            <input type="text" name="Stdenrollid" id="Stdenrollid" class="form-control form-control-sm" required>
+                        </div>
                     </div>
-
-                    <!-- Student Email ID -->
-                    <div class="form-group">
-                        <span for="Stdemailid">Student Email ID:<span class="text-danger">*</span></span>
-                        <input type="email" name="Stdemailid" id="Stdemailid" class="form-control form-control-sm" required>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <span>First Name <span class="text-danger">*</span></span>
+                            <input type="text" class="form-control form-control-sm" name="std_first_name">
+                        </div>
                     </div>
-
-                    <!-- Student Email ID -->
-                    <div class="form-group">
-                        <span for="Stdemailid">Student Phone No.:<span class="text-danger">*</span></span>
-                        <input type="email" name="Stdphone" id="Stdphone" class="form-control form-control-sm" required>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <span>Middle Name</span>
+                            <input type="text" class="form-control form-control-sm" name="std_first_name">
+                        </div>
                     </div>
-                    
-                    <!-- Submit Button -->
-                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
-                </form>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <span>Last Name</span>
+                            <input type="text" class="form-control form-control-sm" name="std_first_name">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span>Father's Name</span>
+                            <input type="text" class="form-control form-control-sm" name="std_first_name">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span>Mother's Name</span>
+                            <input type="text" class="form-control form-control-sm" name="std_first_name">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span>Date of Birth</span>
+                            <input type="date" class="form-control form-control-sm" name="std_first_name">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span>Blood Group</span>
+                            <input type="text" class="form-control form-control-sm" name="std_first_name">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                         <!-- Student Email ID -->
+                        <div class="form-group">
+                            <span for="Stdemailid">Personal Email ID:<span class="text-danger">*</span></span>
+                            <input type="email" name="Stdemailid" id="Stdemailid" class="form-control form-control-sm" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                         <!-- Student Email ID -->
+                        <div class="form-group">
+                            <span for="Stdemailid">Offical Email ID:<span class="text-danger">*</span></span>
+                            <input type="email" name="Stdemailid" id="Stdemailid" class="form-control form-control-sm" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span for="Stdemailid">Student Phone No.:<span class="text-danger">*</span></span>
+                            <input type="email" name="Stdphone" id="Stdphone" class="form-control form-control-sm" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span for="Stdemailid">Permanent Address:<span class="text-danger">*</span></span>
+                            <textarea name="Stdemailid" id="Stdemailid" class="form-control form-control-sm" required></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span for="Stdemailid">Correspondence Address:<span class="text-danger">*</span></span>
+                            <textarea name="Stdemailid" id="Stdemailid" class="form-control form-control-sm" required></textarea>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary mt-4">Submit</button>
+            </div>
+            </form>
         </div>
     </div>
 
     <!-- Table Section to Display Existing Students (Optional) -->
-    <div class="col-lg-8">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> List</h4>

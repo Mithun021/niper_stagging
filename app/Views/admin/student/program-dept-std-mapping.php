@@ -82,7 +82,7 @@
     </div>
 
     <!-- Table Section to Display Existing Mappings (Optional) -->
-    <div class="col-lg-8">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> List</h4>
