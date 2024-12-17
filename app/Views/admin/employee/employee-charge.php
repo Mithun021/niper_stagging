@@ -84,7 +84,8 @@
 <script>
     function add_emp_charge_btn(emp_id,emp_name) { 
         $('#employee_id').val(emp_id);
-        $('#emp_name').val(emp_name);
+        // $('#emp_name').val(emp_name);
+        console.log(emp_name);
         $('#add_emp_charge_modal').modal('show');
      }
 </script>
