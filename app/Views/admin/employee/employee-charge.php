@@ -59,7 +59,7 @@
     <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">Manage Additional Charge  <span id="emp_name"></span></h5>
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Manage Additional Charge  <span id="employee_name"></span></h5>
                 <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -84,7 +84,7 @@
 <script>
     function add_emp_charge_btn(emp_id,emp_name) { 
         $('#employee_id').val(emp_id);
-        // $('#emp_name').val(emp_name);
+        $('#employee_name').val(emp_name);
         console.log(emp_name);
         $('#add_emp_charge_modal').modal('show');
      }
