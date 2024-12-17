@@ -15,7 +15,7 @@
                         <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="form-group">
                             <span>Uload Profile Image <span class="text-danger">*</span></span>
                             <input type="file" class="form-control form-control-sm" name="std_first_name">
@@ -90,6 +90,7 @@
                             <input type="email" name="Stdphone" id="Stdphone" class="form-control form-control-sm" required>
                         </div>
                     </div>
+                    <div class="col-lg-6"></div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span for="Stdemailid">Permanent Address:<span class="text-danger">*</span></span>
