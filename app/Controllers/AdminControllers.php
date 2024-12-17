@@ -580,23 +580,9 @@ use App\Models\UserModel;
             }
         }
 
-        public function program_dept_std_mapping(){
-            $data = ['title' => 'Program Dept. Std. Mapping'];
-            if ($this->request->is("get")) {
-                return view('admin/program-dept-std-mapping',$data);
-            }else if ($this->request->is("post")) {
+        
 
-            }
-        }
-
-        public function students(){
-            $data = ['title' => 'Students'];
-            if ($this->request->is("get")) {
-                return view('admin/students',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
+        
 
         public function academic_details(){
             $data = ['title' => 'Academic Details'];

@@ -21,11 +21,25 @@
                     <?= csrf_field() ?>
 
                     <!-- Program-Department Mapping ID -->
-                    <div class="form-group">
-                        <span for="Progdeptmapid">Program-Department Mapping ID:</span>
-                        <select name="Progdeptmapid" id="Progdeptmapid" class="form-control form-control-sm" required >
-                            <option value="">Select Program</option>
-                        </select>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <span for="Deptid">Department ID:</span>
+                            <select name="Deptid" id="Deptid" class="form-control form-control-sm" required >
+                                <option value="">Select Deparrtment</option>
+                            <?php foreach ($department as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                            <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Program ID -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <span for="Progid">Program ID:</span>
+                            <select name="Progid" id="Progid" class="form-control form-control-sm" required >
+                                <option value="">Select Program</option>
+                            </select>
+                        </div>
                     </div>
 
                     <!-- Student ID -->
