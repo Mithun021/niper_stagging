@@ -4,7 +4,7 @@
 
 <div class="row">
     <!-- Form Section for Adding Student Details -->
-    <div class="col-lg-4">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
