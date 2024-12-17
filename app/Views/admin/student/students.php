@@ -105,7 +105,7 @@
                 </div>
                 
             </div>
-            <div class="card-footer">
+            <div class="card-footer py-0">
                 <button type="submit" class="btn btn-primary mt-4">Submit</button>
             </div>
             </form>
