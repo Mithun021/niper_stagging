@@ -59,12 +59,13 @@
     <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">Manage Additional Charge  <span id="employee_name"></span></h5>
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Manage Additional Charge </h5>
                 <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
+                <h4 id="employee_name"></h4>
                 <input type="hidden" class="form-control" id="employee_id" name="employee_id">
                 <div class="designation_data">
                 <?php foreach ($designation as $key => $value) { ?>
