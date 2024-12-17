@@ -261,6 +261,21 @@ use App\Models\Employee_publication_model;
             }
         }
 
+        public function employee_charge(){
+            $employee_model = new Employee_model();
+            $employee_projects_model = new Employee_projects_model();
+            $data = ['title' => 'Employee Additonal Charge'];
+            if ($this->request->is("get")) {
+                $data['employee'] = $employee_model->get();
+                $data['employee_projects'] = $employee_projects_model->get();
+                return view('admin/employee/employee-charge',$data);
+            }else if ($this->request->is("post")) {
+
+            }
+        }
+
+
+
 
         // Export Employee Sample Controller function ============================
 

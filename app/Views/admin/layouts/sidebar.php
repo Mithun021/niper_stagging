@@ -83,6 +83,7 @@
                 <li><a href="<?= base_url() ?>admin/employee-projects" class="waves-effect"><span>Emp. Project Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/employee-publication" class="waves-effect"><span>Emp. Publication Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/employee-awards" class="waves-effect"><span>Emp. Awards Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/employee-charge" class="waves-effect"><span>Emp. Additional Charge</span></a></li>
             </ul>
         </li>
 
