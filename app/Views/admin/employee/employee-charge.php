@@ -68,7 +68,7 @@
                 <input type="text" class="form-control" id="employee_id" name="employee_id">
                 <div class="designation_data">
                 <?php foreach ($designation as $key => $value) { ?>
-                    <span><input type="checkbox" name="designation[]" id="designation" value="<?= $value['id'] ?>"><?= htmlspecialchars($value['name']) ?></span>
+                    <span><input type="checkbox" name="designation[]" id="designation" value="<?= $value['id'] ?>"> &nbsp;&nbsp; <?= htmlspecialchars($value['name']) ?></span>
                 <?php } ?>
                 </div>
             </div>
