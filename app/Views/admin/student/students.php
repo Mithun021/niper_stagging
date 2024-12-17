@@ -6,8 +6,12 @@
     <!-- Form Section for Adding Student Details -->
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
+                <div>
+                    <button type="button" class="btn btn-sm btn-danger" id="export_sample_btn">Export Std. Sample</button>
+                    <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>
+                </div>
             </div>
             <form action="/studentdetails/store" method="post">
             <div class="card-body">
