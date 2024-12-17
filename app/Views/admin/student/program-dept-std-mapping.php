@@ -66,12 +66,12 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <span for="Batch">Student Details:</span>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <!-- Submit Button -->
                         <button type="submit" class="btn btn-primary mt-4">Submit</button>
                     </div>
