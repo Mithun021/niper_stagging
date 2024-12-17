@@ -4,62 +4,78 @@
 
 <div class="row">
     <!-- Form Section for Adding  -->
-    <div class="col-lg-4">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')): ?>
-                    <div class="alert alert-success">
-                        <?= esc(session()->getFlashdata('status')) ?>
-                    </div>
+                    <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
 
                 <!-- Form Start -->
                 <form action="/progdeptstudentmap/store" method="post">
-                    <?= csrf_field() ?>
 
-                    <!-- Program-Department Mapping ID -->
-                    <div class="form-group">
-                        <span for="Deptid">Department ID:</span>
-                        <select name="Deptid" id="Deptid" class="form-control form-control-sm" required >
-                            <option value="">Select Deparrtment</option>
-                        <?php foreach ($department as $key => $value) { ?>
-                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
-                        <?php } ?>
-                        </select>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span for="Deptid">Department ID:</span>
+                            <select name="Deptid" id="Deptid" class="form-control form-control-sm" required >
+                                <option value="">Select Deparrtment</option>
+                            <?php foreach ($department as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                            <?php } ?>
+                            </select>
+                        </div>
                     </div>
-                    <!-- Program ID -->
-                    <div class="form-group">
-                        <span for="Progid">Program ID:</span>
-                        <select name="Progid" id="Progid" class="form-control form-control-sm" required >
-                            <option value="">Select Program</option>
-                        </select>
+                    <div class="col-lg-6">
+                        <!-- Program ID -->
+                        <div class="form-group">
+                            <span for="Progid">Program ID:</span>
+                            <select name="Progid" id="Progid" class="form-control form-control-sm" required >
+                                <option value="">Select Program</option>
+                            </select>
+                        </div>
                     </div>
-
-                    <!-- Student ID -->
-                    <div class="form-group">
-                        <span for="Studentid">Student ID:</span>
-                        <select name="Studentid" id="Studentid" class="form-control form-control-sm" required >
-                            <option value="">Select Program</option>
-                        </select>
+                    <div class="col-lg-6">
+                        <!-- Batch -->
+                        <div class="form-group">
+                            <span for="Batch">Batch Strat and End Year:</span>
+                            <div class="input-group">
+                                <input type="number" class="form-control form-control-sm" name="batch_start_year"  placeholder="Start Year" min="2000">
+                                <input type="number" class="form-control form-control-sm" name="batch_end_year"  placeholder="End Year" min="2000">
+                            </div>
+                        </div>
                     </div>
-
-                    <!-- Semester -->
-                    <div class="form-group">
-                        <span for="semester">Semester:</span>
-                        <input type="number" name="semester" id="semester" class="form-control form-control-sm" required min="1" max="12" value="<?= esc(old('semester')) ?>">
+                    <div class="col-lg-6">
+                        <!-- Semester -->
+                        <div class="form-group">
+                            <span for="semester">Semester:</span>
+                            <select name="semester" id="semester" class="form-control form-control-sm" required>
+                                <option value="I">I</option>
+                                <option value="II">II</option>
+                                <option value="III">III</option>
+                                <option value="IV">IV</option>
+                                <option value="V">V</option>
+                                <option value="VI">VI</option>
+                                <option value="VII">IVI</option>
+                                <option value="VIII">VIII</option>
+                                <option value="IX">IX</option>
+                                <option value="X">X</option>
+                            </select>
+                        </div>
                     </div>
-
-                    <!-- Batch -->
-                    <div class="form-group">
-                        <span for="Batch">Batch:</span>
-                        <input type="text" name="Batch" id="Batch" class="form-control form-control-sm" required value="<?= esc(old('Batch')) ?>">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span for="Batch">Student Details:</span>
+                        </div>
                     </div>
-                    
-                    <!-- Submit Button -->
-                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                    <div class="col-lg-6">
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                    </div>
+                </div>
                 </form>
             </div>
         </div>
@@ -77,7 +93,8 @@
                         <thead>
                             <tr>
                                 <td>SN</td>
-                                <td>Program-Dept Map</td>
+                                <td>Department</td>
+                                <td>Program</td>
                                 <td>Student</td>
                                 <td>Semester</td>
                                 <td>Batch</td>
