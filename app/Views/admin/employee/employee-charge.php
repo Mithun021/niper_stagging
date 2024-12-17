@@ -1,15 +1,6 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
-<?php
 
-use App\Models\Department_model;
-use App\Models\Designation_model;
-
-    $department_model = new Department_model();
-    $designation_model = new Designation_model();
-
-    $designation = $designation_model->get();
-?>
 
 <style>
     .designation_data {
