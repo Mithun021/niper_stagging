@@ -52,7 +52,7 @@ use App\Models\Employee_publication_model;
                     'landline_no' => $this->request->getPost('landline_no'),
                     'official_mail' => $this->request->getPost('official_mail'),
                     'personal_mail' => $this->request->getPost('personal_mail'),
-                    'post_charge' => $this->request->getPost('post_charge'),
+                    // 'post_charge' => $this->request->getPost('post_charge'),
                     'employee_type' => $this->request->getPost('employee_type'),
                     'profile_photo' => $imageName,
                     'resume_file' => $resumeimageName,

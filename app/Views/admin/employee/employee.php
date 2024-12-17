@@ -102,11 +102,11 @@ use App\Models\Designation_model;
 
                     <!-- Post Charge and Social Media Links -->
                     <div class="form-group row">
-                        <div class="col-sm-6">
+                        <!-- <div class="col-sm-6">
                             <span for="Emppostcharge">Post Charge:</span>
                             <input type="text" name="post_charge" id="post_charge" class="form-control form-control-sm">
-                        </div>
-                        <div class="col-sm-6">
+                        </div> -->
+                        <div class="col-sm-12">
                             <span for="Emptype">Employee Type:</span>
                             <select name="employee_type" id="employee_type" class="form-control form-control-sm" required>
                                 <option value="Teaching">Teaching</option>
