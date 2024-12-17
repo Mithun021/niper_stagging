@@ -21,25 +21,21 @@
                     <?= csrf_field() ?>
 
                     <!-- Program-Department Mapping ID -->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <span for="Deptid">Department ID:</span>
-                            <select name="Deptid" id="Deptid" class="form-control form-control-sm" required >
-                                <option value="">Select Deparrtment</option>
-                            <?php foreach ($department as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
-                            <?php } ?>
-                            </select>
-                        </div>
+                    <div class="form-group">
+                        <span for="Deptid">Department ID:</span>
+                        <select name="Deptid" id="Deptid" class="form-control form-control-sm" required >
+                            <option value="">Select Deparrtment</option>
+                        <?php foreach ($department as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                        <?php } ?>
+                        </select>
                     </div>
                     <!-- Program ID -->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <span for="Progid">Program ID:</span>
-                            <select name="Progid" id="Progid" class="form-control form-control-sm" required >
-                                <option value="">Select Program</option>
-                            </select>
-                        </div>
+                    <div class="form-group">
+                        <span for="Progid">Program ID:</span>
+                        <select name="Progid" id="Progid" class="form-control form-control-sm" required >
+                            <option value="">Select Program</option>
+                        </select>
                     </div>
 
                     <!-- Student ID -->
