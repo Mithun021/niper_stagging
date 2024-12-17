@@ -42,7 +42,7 @@
                                 <td><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></td>
                                 <td><?php if($value['authority']!=="admin"){ ?> <?= $value['mobile_no'] ?>  <?php }else { echo "_____"; } ?></td>
                                 <td>__</td>
-                                <td><button type="button" class="btn btn-sm btn-dark" onclick="add_emp_charge_btn(<?= $value['id'] ?>)">Manage Charge</button></td>
+                                <td><button type="button" class="btn btn-sm btn-dark" onclick="add_emp_charge_btn(<?= $value['id'] ?>,<?= $value['first_name'].' '.$value['middle_name'].' '.$value['last_name'] ?>)">Manage Charge</button></td>
                             </tr>
                         <?php } ?>
                         </tbody>
@@ -59,7 +59,7 @@
     <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">Manage Additional Charge</h5>
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Manage Additional Charge  <span id="emp_name"></span></h5>
                 <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -82,8 +82,9 @@
 
 
 <script>
-    function add_emp_charge_btn(emp_id) { 
+    function add_emp_charge_btn(emp_id,emp_name) { 
         $('#employee_id').val(emp_id);
+        $('#emp_name').val(emp_name);
         $('#add_emp_charge_modal').modal('show');
      }
 </script>
