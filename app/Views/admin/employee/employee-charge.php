@@ -4,8 +4,12 @@
 
 <style>
     .designation_data {
-        display: flex;
-        flex-wrap: wrap; /* Allows wrapping to a new line when needed */
+        position: relative;
+        width: 100%;
+    }
+    .designation_data span{
+        float: left;
+        width: 30%;
     }
 
 
