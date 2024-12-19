@@ -45,8 +45,11 @@ $employee_additioonal_charge_model = new Employee_additioonal_charge_model();
                         <tbody>
                         <?php foreach ($employee as $key => $value) {?>
                             <?php  
-                                $checked_designations = $employee_additioonal_charge_model->join('designation','designation.id = employee_additional_charge.designation_id')
-                                                        ->where('employee_id',$value['id'])->findAll();
+                                $checked_designations = $employee_additioonal_charge_model
+                                ->select('designation.name') // Specify columns to select
+                                ->join('designation', 'designation.id = employee_additional_charge.designation_id') // Join condition
+                                ->where('employee_additional_charge.employee_id', $value['id']) // Specify the condition
+                                ->findAll();
                             ?>
                             <tr>
                                 <td><?= ++$key ?></td>
