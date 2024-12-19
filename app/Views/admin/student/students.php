@@ -168,10 +168,10 @@
     // If the checkbox is checked, copy the permanent address to the correspondence address
     if (this.checked) {
       correspondenceAddress.value = permanentAddress.value;
-      correspondenceAddress.ariaReadOnly = true; // Disable the correspondence address field
+      correspondenceAddress.readOnly = true; // Disable the correspondence address field
     } else {
       correspondenceAddress.value = ''; // Clear the correspondence address field
-      correspondenceAddress.ariaReadOnly = false; // Enable the correspondence address field
+      correspondenceAddress.readOnly = false; // Enable the correspondence address field
     }
   });
 </script>
