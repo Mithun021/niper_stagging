@@ -674,5 +674,11 @@ use App\Models\Employee_publication_model;
         }
 
 
+        public function getEmployeeDesignations($emp_id){
+            $employee_additioonal_charge_model = new Employee_additioonal_charge_model();
+            $designations = $employee_additioonal_charge_model->where('employee_id',$emp_id)->findAll();
+            return $this->response->setJSON($designations);
+        }
+
     }
 ?>

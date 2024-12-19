@@ -22,6 +22,11 @@
                 <h4 class="card-title m-0"><?= $title; ?> List</h4>
             </div>
             <div class="card-body">
+                <?php
+                    if(session()->getFlashdata('msg')){
+                        echo session()->getFlashdata('msg');
+                    }
+                ?>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover" id="basic-datatable">
                         <thead>
@@ -82,14 +87,44 @@
     </div>
 </div>
 
-
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
-    function add_emp_charge_btn(emp_id,emp_name) { 
+    // function add_emp_charge_btn(emp_id,emp_name) { 
+    //     $('#employee_id').val(emp_id);
+    //     $('#employee_name').text("("+emp_name+")");
+    //     console.log(emp_name);
+    //     $('#add_emp_charge_modal').modal('show');
+
+        
+    //  }
+    function add_emp_charge_btn(emp_id, emp_name) { 
         $('#employee_id').val(emp_id);
-        $('#employee_name').text("("+emp_name+")");
+        $('#employee_name').text("(" + emp_name + ")");
         console.log(emp_name);
-        $('#add_emp_charge_modal').modal('show');
-     }
+
+        // Fetch designations via AJAX
+        $.ajax({
+            url: "<?= base_url('admin/get-employee-designations') ?>/" + emp_id,
+            type: "GET",
+            dataType: "json",
+            success: function(response) {
+                // Clear all previous selections
+                $('input[name="designation[]"]').prop('checked', false);
+
+                // Loop through the response and check the matching designations
+                response.forEach(function(designation) {
+                    $('input[name="designation[]"][value="' + designation.designation_id + '"]').prop('checked', true);
+                });
+
+                // Show the modal
+                $('#add_emp_charge_modal').modal('show');
+            },
+            error: function(xhr, status, error) {
+                console.error("Error fetching designations:", error);
+            }
+        });
+    }
+
 </script>
 
 <?= $this->endSection() ?>
