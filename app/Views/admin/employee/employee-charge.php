@@ -52,7 +52,7 @@ use App\Models\Employee_additioonal_charge_model;
                                 <td><?= $value['employee_unique_id'] ?></td>
                                 <td><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></td>
                                 <td><?php if($value['authority']!=="admin"){ ?> <?= $value['mobile_no'] ?>  <?php }else { echo "_____"; } ?></td>
-                                <td><?php $designation['designation_names'] ?></td>
+                                <td><?php if($designation){ print_r($designation); } ?></td>
                                 <td><button type="button" class="btn btn-sm btn-dark" onclick="add_emp_charge_btn(<?= $value['id'] ?>,'<?= $value['first_name'].' '.$value['middle_name'].' '.$value['last_name'] ?>')">Manage Charge</button></td>
                             </tr>
                         <?php } ?>
