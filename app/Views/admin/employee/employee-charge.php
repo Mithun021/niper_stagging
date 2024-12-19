@@ -1,11 +1,6 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
-<?php
 
-use App\Models\Employee_additioonal_charge_model;
-
-    $employee_additioonal_charge_model = new Employee_additioonal_charge_model();
-?>
 
 <style>
     .designation_data {
@@ -46,7 +41,6 @@ use App\Models\Employee_additioonal_charge_model;
                         </thead>
                         <tbody>
                         <?php foreach ($employee as $key => $value) {?>
-                            <?php  ?>
                             <tr>
                                 <td><?= ++$key ?></td>
                                 <td><?= $value['employee_unique_id'] ?></td>

@@ -51,19 +51,6 @@
             return true;
         }
 
-        public function getDesignationNamesByEmpId($emp_id){
-            $db = \Config\Database::connect();
-            $builder = $db->table('designation');
-            $builder->select('GROUP_CONCAT(designation.name SEPARATOR ", ") as designation_names');
-            $builder->join('employee_additional_charge', 'designation.id = employee_additional_charge.designation_id');
-            $builder->where('employee_additional_charge.employee_id', $emp_id);
-            $query = $builder->get();
-
-            return $query->getRow();
-        }
-
-
-
     }
     
 ?>
