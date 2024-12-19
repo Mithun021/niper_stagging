@@ -92,7 +92,7 @@ use App\Models\Designation_model;
                     <div class="form-group row">
                         <div class="col-sm-6">
                             <span for="Empphotoupload">Photo Upload(.pnd,.jpg,.jpeg):</span>
-                            <input type="file" name="profile_photo" id="profile_photo" class="form-control form-control-sm" accept=".pnd,.jpg,.jpeg">
+                            <input type="file" name="profile_photo" id="profile_photo" class="form-control form-control-sm" accept=".png,.jpg,.jpeg">
                         </div>
                         <div class="col-sm-6">
                             <span for="Empresumeupload">Resume Upload(.pdf,.docx):</span>

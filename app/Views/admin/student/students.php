@@ -13,16 +13,16 @@
                     <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>
                 </div>
             </div>
-            <form action="/studentdetails/store" method="post">
+            <form action="<?= base_url() ?>admin/students" method="post" enctype="multipart/form-data">
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')): ?>
-                        <?= session()->getFlashdata('status') ?>
+                    <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <span>Uload Profile Image <span class="text-danger">*</span></span>
-                            <input type="file" class="form-control form-control-sm" name="std_first_name">
+                            <span>Upload Profile Image <span class="text-danger">*</span></span>
+                            <input type="file" class="form-control form-control-sm" name="std_profile_image" accept=".png,.jpg,.jpeg">
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -41,51 +41,51 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <span>Middle Name</span>
-                            <input type="text" class="form-control form-control-sm" name="std_first_name">
+                            <input type="text" class="form-control form-control-sm" name="std_middle_name">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="form-group">
                             <span>Last Name</span>
-                            <input type="text" class="form-control form-control-sm" name="std_first_name">
+                            <input type="text" class="form-control form-control-sm" name="std_last_name">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span>Father's Name</span>
-                            <input type="text" class="form-control form-control-sm" name="std_first_name">
+                            <input type="text" class="form-control form-control-sm" name="std_father_name">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span>Mother's Name</span>
-                            <input type="text" class="form-control form-control-sm" name="std_first_name">
+                            <input type="text" class="form-control form-control-sm" name="std_mother_name">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span>Date of Birth</span>
-                            <input type="date" class="form-control form-control-sm" name="std_first_name">
+                            <input type="date" class="form-control form-control-sm" name="std_date_of_birth">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span>Blood Group</span>
-                            <input type="text" class="form-control form-control-sm" name="std_first_name">
+                            <input type="text" class="form-control form-control-sm" name="std_blood_group">
                         </div>
                     </div>
                     <div class="col-lg-6">
                          <!-- Student Email ID -->
                         <div class="form-group">
                             <span for="Stdemailid">Personal Email ID:<span class="text-danger">*</span></span>
-                            <input type="email" name="Stdemailid" id="Stdemailid" class="form-control form-control-sm" required>
+                            <input type="email" name="std_personal_mail" id="std_personal_mail" class="form-control form-control-sm" required>
                         </div>
                     </div>
                     <div class="col-lg-6">
                          <!-- Student Email ID -->
                         <div class="form-group">
                             <span for="Stdemailid">Offical Email ID:<span class="text-danger">*</span></span>
-                            <input type="email" name="Stdemailid" id="Stdemailid" class="form-control form-control-sm" required>
+                            <input type="email" name="std_official_mail" id="std_official_mail" class="form-control form-control-sm" required>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -94,17 +94,26 @@
                             <input type="email" name="Stdphone" id="Stdphone" class="form-control form-control-sm" required>
                         </div>
                     </div>
-                    <div class="col-lg-6"></div>
+                    <div class="col-lg-6">
+                    <div class="form-group">
+                        <span for="Stdemailid">Gender:<span class="text-danger">*</span></span>
+                        <select name="gender" id="gender" class="form-control form-control-sm">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span for="Stdemailid">Permanent Address:<span class="text-danger">*</span></span>
-                            <textarea name="Stdemailid" id="Stdemailid" class="form-control form-control-sm" required></textarea>
+                            <textarea name="std_permanent_address" id="std_permanent_address" class="form-control form-control-sm" required></textarea>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span for="Stdemailid">Correspondence Address:<span class="text-danger">*</span></span>
-                            <textarea name="Stdemailid" id="Stdemailid" class="form-control form-control-sm" required></textarea>
+                            <textarea name="std_corrospondence_address" id="std_corrospondence_address" class="form-control form-control-sm" required></textarea>
                         </div>
                     </div>
                 </div>
