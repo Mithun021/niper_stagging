@@ -161,15 +161,20 @@
 
 
 <script>
-    document.getElementById('copyCheckbox').addEventListener('change', function() {
+  document.getElementById('copyCheckbox').addEventListener('change', function() {
+    var permanentAddress = document.getElementById('std_permanent_address');
+    var correspondenceAddress = document.getElementById('std_corrospondence_address');
+
+    // If the checkbox is checked, copy the permanent address to the correspondence address
     if (this.checked) {
-        document.getElementById('std_permanent_address').value = document.getElementById('std_correspondence_address').value;
+      correspondenceAddress.value = permanentAddress.value;
+      correspondenceAddress.disabled = true; // Disable the correspondence address field
     } else {
-        document.getElementById('std_permanent_address').value = '';
+      correspondenceAddress.value = ''; // Clear the correspondence address field
+      correspondenceAddress.disabled = false; // Enable the correspondence address field
     }
-});
-
-
+  });
 </script>
+
 
 <?= $this->endSection() ?>
