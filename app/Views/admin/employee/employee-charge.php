@@ -104,7 +104,7 @@
 
         // Fetch designations via AJAX
         $.ajax({
-            url: "<?= base_url('admin/get-employee-designations') ?>/" + emp_id,
+            url: 'admin/get-employee-designations' + emp_id,
             type: "GET",
             dataType: "json",
             success: function(response) {
