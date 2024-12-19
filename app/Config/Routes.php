@@ -35,7 +35,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'employee-publication', 'EmployeeController::employee_publication');
     $routes->match(['get','post'],'employee-awards', 'EmployeeController::employee_awards');
     $routes->match(['get','post'],'employee-charge', 'EmployeeController::employee_charge');
-    $routes->get('admin/get-employee-designations/(:num)', 'EmployeeController::getEmployeeDesignations/$1');
+    $routes->get('get-employee-designations/(:num)', 'EmployeeController::getEmployeeDesignations/$1');
 
 
     $routes->match(['get','post'],'images', 'AdminControllers::images');
