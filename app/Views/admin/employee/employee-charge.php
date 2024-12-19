@@ -43,6 +43,11 @@ $employee_additioonal_charge_model = new Employee_additioonal_charge_model();
                             </tr>
                         </thead>
                         <tbody>
+                            <?php 
+                                if (!is_array($employee)) {
+                                    die('Error: $employee must be an array.');
+                                }
+                            ?>
                         <?php foreach ($employee as $key => $value) {?>
                             <?php  
                                 $checked_designations = $employee_additioonal_charge_model
