@@ -111,7 +111,7 @@
                             <textarea name="std_permanent_address" id="std_permanent_address" class="form-control form-control-sm" required></textarea>
                         </div>
                         <div class="form-group">
-                            <input type="checkbox" id="copyAddress" /> Check if the Correspondence Address and Permanent Address are the same.
+                            <input type="checkbox" id="copyCheckbox" /> Check if the Correspondence Address and Permanent Address are the same.
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -161,13 +161,14 @@
 
 
 <script>
-        document.getElementById('copyAddress').addEventListener('change', function() {
-        if (this.checked) {
-            document.getElementById('std_permanent_address').value = document.getElementById('std_corrospondence_address').value;
-        } else {
-            document.getElementById('std_permanent_address').value = '';
-        }
-    });
+    document.getElementById('copyCheckbox').addEventListener('change', function() {
+    if (this.checked) {
+        document.getElementById('std_permanent_address').value = document.getElementById('std_correspondence_address').value;
+    } else {
+        document.getElementById('std_permanent_address').value = '';
+    }
+});
+
 
 </script>
 
