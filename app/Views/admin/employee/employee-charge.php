@@ -45,7 +45,7 @@ $employee_additioonal_charge_model = new Employee_additioonal_charge_model();
                         <tbody>
                         <?php foreach ($employee as $key => $value) {?>
                             <?php  
-                                $checked_designations = $employee_additioonal_charge_model->join('designation')
+                                $checked_designations = $employee_additioonal_charge_model->join('designation','designation.id = employee_additional_charge.designation_id')
                                                         ->where('employee_id',$value['id'])->findAll();
                             ?>
                             <tr>
@@ -53,7 +53,15 @@ $employee_additioonal_charge_model = new Employee_additioonal_charge_model();
                                 <td><?= $value['employee_unique_id'] ?></td>
                                 <td><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></td>
                                 <td><?php if($value['authority']!=="admin"){ ?> <?= $value['mobile_no'] ?>  <?php }else { echo "_____"; } ?></td>
-                                <td><?php if($checked_designations){ print_r($checked_designations); } ?></td>
+                                <td>
+                                <?php if (!empty($checked_designations)): ?>
+                                    <ul>
+                                        <?php foreach ($checked_designations as $designation): ?>
+                                            <li><?= htmlspecialchars($designation['name']) ?></li> <!-- Adjust to the actual column name -->
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php endif; ?>
+                                </td>
                                 <td><button type="button" class="btn btn-sm btn-dark" onclick="add_emp_charge_btn(<?= $value['id'] ?>,'<?= $value['first_name'].' '.$value['middle_name'].' '.$value['last_name'] ?>')">Manage Charge</button></td>
                             </tr>
                         <?php } ?>
