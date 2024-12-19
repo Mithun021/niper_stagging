@@ -64,8 +64,8 @@ $employee_additioonal_charge_model = new Employee_additioonal_charge_model();
                                 <td>
                                 <?php if (!empty($checked_designations)): ?>
                                     <ul>
-                                        <?php foreach ($checked_designations as $designation): ?>
-                                            <li><?= htmlspecialchars($designation['name']) ?></li> <!-- Adjust to the actual column name -->
+                                        <?php foreach ($checked_designations as $emp_designation): ?>
+                                            <li><?= htmlspecialchars($emp_designation['name']) ?></li> <!-- Adjust to the actual column name -->
                                         <?php endforeach; ?>
                                     </ul>
                                 <?php endif; ?>
