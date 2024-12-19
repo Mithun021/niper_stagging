@@ -3,6 +3,7 @@
 
 use App\Models\Department_model;
 use App\Models\Designation_model;
+use App\Models\Employee_additioonal_charge_model;
 use App\Models\Employee_awards_model;
 use App\Models\Employee_experience_model;
 use App\Models\Employee_model;
@@ -265,6 +266,7 @@ use App\Models\Employee_publication_model;
             $employee_model = new Employee_model();
             $designation_model = new Designation_model();
             $employee_projects_model = new Employee_projects_model();
+            $employee_additioonal_charge_model = new Employee_additioonal_charge_model();
             $data = ['title' => 'Employee Additonal Charge'];
             if ($this->request->is("get")) {
                 $data['employee'] = $employee_model->get();
@@ -272,7 +274,16 @@ use App\Models\Employee_publication_model;
                 $data['employee_projects'] = $employee_projects_model->get();
                 return view('admin/employee/employee-charge',$data);
             }else if ($this->request->is("post")) {
+                
+                $employeeId = $this->request->getPost('employee_id');
+                $designations = $this->request->getPost('designation') ?? [];
 
+                $save = $employee_additioonal_charge_model->updateEmployeeDesignations((int) $employeeId, $designations);
+                if ($save) {
+                    return redirect()->to('admin/employee-charge')->with('msg','<div class="alert alert-success" role="alert"> Data save successful </div>');
+                } else {
+                    return redirect()->to('admin/employee-charge')->with('msg','<div class="alert alert-danger" role="alert"> Failed to save </div>');
+                }
             }
         }
 

@@ -64,8 +64,9 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <form action="<?= base_url() ?>admin/employee-charge" method="post">
             <div class="modal-body">
-                <input type="hidden" class="form-control" id="employee_id" name="employee_id">
+                <input type="text" class="form-control" id="employee_id" name="employee_id">
                 <div class="designation_data">
                 <?php foreach ($designation as $key => $value) { ?>
                     <span><input type="checkbox" name="designation[]" id="designation" value="<?= $value['id'] ?>"> &nbsp;&nbsp; <?= htmlspecialchars($value['name']) ?></span>
@@ -76,6 +77,7 @@
                 <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
