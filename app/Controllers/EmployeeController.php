@@ -274,16 +274,17 @@ use App\Models\Employee_publication_model;
                 $data['employee_projects'] = $employee_projects_model->get();
                 return view('admin/employee/employee-charge',$data);
             }else if ($this->request->is("post")) {
-                
                 $employeeId = $this->request->getPost('employee_id');
                 $designations = $this->request->getPost('designation') ?? [];
 
                 $save = $employee_additioonal_charge_model->updateEmployeeDesignations((int) $employeeId, $designations);
+
                 if ($save) {
-                    return redirect()->to('admin/employee-charge')->with('msg','<div class="alert alert-success" role="alert"> Data save successful </div>');
+                    return redirect()->to('admin/employee-charge')->with('msg', '<div class="alert alert-success" role="alert">Data saved successfully</div>');
                 } else {
-                    return redirect()->to('admin/employee-charge')->with('msg','<div class="alert alert-danger" role="alert"> Failed to save </div>');
+                    return redirect()->to('admin/employee-charge')->with('msg', '<div class="alert alert-danger" role="alert">Failed to save data</div>');
                 }
+                
             }
         }
 
