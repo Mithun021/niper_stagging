@@ -46,7 +46,7 @@ $employee_additioonal_charge_model = new Employee_additioonal_charge_model();
                         <?php foreach ($employee as $key => $value) {?>
                             <?php  
                                 $checked_designations = $employee_additioonal_charge_model->join('designation')
-                                                        ->where('employee_id',$value['id'])->first();
+                                                        ->where('employee_id',$value['id'])->findAll();
                             ?>
                             <tr>
                                 <td><?= ++$key ?></td>
