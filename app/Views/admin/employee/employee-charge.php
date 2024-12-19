@@ -1,7 +1,10 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
 
-
+<?php
+use App\Models\Employee_additioonal_charge_model;
+$employee_additioonal_charge_model = new Employee_additioonal_charge_model();
+?>
 <style>
     .designation_data {
         position: relative;
@@ -41,12 +44,16 @@
                         </thead>
                         <tbody>
                         <?php foreach ($employee as $key => $value) {?>
+                            <?php  
+                                $checked_designations = $employee_additioonal_charge_model->join('designation')
+                                                        ->where('employee_id',$value['id'])->first();
+                            ?>
                             <tr>
                                 <td><?= ++$key ?></td>
                                 <td><?= $value['employee_unique_id'] ?></td>
                                 <td><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></td>
                                 <td><?php if($value['authority']!=="admin"){ ?> <?= $value['mobile_no'] ?>  <?php }else { echo "_____"; } ?></td>
-                                <td>__</td>
+                                <td><?php if($checked_designations){ print_r($checked_designations); } ?></td>
                                 <td><button type="button" class="btn btn-sm btn-dark" onclick="add_emp_charge_btn(<?= $value['id'] ?>,'<?= $value['first_name'].' '.$value['middle_name'].' '.$value['last_name'] ?>')">Manage Charge</button></td>
                             </tr>
                         <?php } ?>
