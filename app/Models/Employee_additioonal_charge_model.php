@@ -13,6 +13,10 @@
         {
             $db = \Config\Database::connect();
             $builder = $db->table($this->table);
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
     
             // Fetch existing designations for the employee
             $existing = $builder->where('employee_id', $employeeId)->get()->getResultArray();
@@ -31,6 +35,7 @@
                     $insertData[] = [
                         'employee_id' => $employeeId,
                         'designation_id' => $designationId,
+                        'upload_by' => $loggeduserId,
                     ];
                 }
                 $builder->insertBatch($insertData);
