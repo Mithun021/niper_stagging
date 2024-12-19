@@ -275,7 +275,7 @@ use App\Models\Employee_publication_model;
                 return view('admin/employee/employee-charge',$data);
             }else if ($this->request->is("post")) {
                 
-                echo $employeeId = $this->request->getPost('employee_id'); die;
+                $employeeId = $this->request->getPost('employee_id');
                 $designations = $this->request->getPost('designation') ?? [];
 
                 $save = $employee_additioonal_charge_model->updateEmployeeDesignations((int) $employeeId, $designations);
