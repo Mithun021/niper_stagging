@@ -35,7 +35,7 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <span>First Name <span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="std_first_name">
+                            <input type="text" class="form-control form-control-sm" name="std_first_name" required minlength="3">
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -53,19 +53,19 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span>Father's Name</span>
-                            <input type="text" class="form-control form-control-sm" name="std_father_name">
+                            <input type="text" class="form-control form-control-sm" name="std_father_name" required>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span>Mother's Name</span>
-                            <input type="text" class="form-control form-control-sm" name="std_mother_name">
+                            <input type="text" class="form-control form-control-sm" name="std_mother_name" required>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span>Date of Birth</span>
-                            <input type="date" class="form-control form-control-sm" name="std_date_of_birth">
+                            <input type="date" class="form-control form-control-sm" name="std_date_of_birth" required>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -85,29 +85,33 @@
                          <!-- Student Email ID -->
                         <div class="form-group">
                             <span for="Stdemailid">Offical Email ID:<span class="text-danger">*</span></span>
-                            <input type="email" name="std_official_mail" id="std_official_mail" class="form-control form-control-sm" required>
+                            <input type="email" name="std_official_mail" id="std_official_mail" class="form-control form-control-sm" >
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span for="Stdemailid">Student Phone No.:<span class="text-danger">*</span></span>
-                            <input type="email" name="Stdphone" id="Stdphone" class="form-control form-control-sm" required>
+                            <input type="tel" name="Stdphone" id="Stdphone" class="form-control form-control-sm"  pattern="[6-9]{1}[0-9]{9}" required maxlength="10" minlength="10">
                         </div>
                     </div>
                     <div class="col-lg-6">
-                    <div class="form-group">
-                        <span for="Stdemailid">Gender:<span class="text-danger">*</span></span>
-                        <select name="gender" id="gender" class="form-control form-control-sm">
-                            <option value="">Select Gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Others">Others</option>
-                        </select>
+                        <div class="form-group">
+                            <span for="Stdemailid">Gender:<span class="text-danger">*</span></span>
+                            <select name="gender" id="gender" class="form-control form-control-sm" required>
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span for="Stdemailid">Permanent Address:<span class="text-danger">*</span></span>
                             <textarea name="std_permanent_address" id="std_permanent_address" class="form-control form-control-sm" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" id="copyAddress" /> Check if the Correspondence Address and Permanent Address are the same.
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -154,5 +158,17 @@
         </div>
     </div>
 </div>
+
+
+<script>
+        document.getElementById('copyAddress').addEventListener('change', function() {
+        if (this.checked) {
+            document.getElementById('std_permanent_address').value = document.getElementById('std_corrospondence_address').value;
+        } else {
+            document.getElementById('std_permanent_address').value = '';
+        }
+    });
+
+</script>
 
 <?= $this->endSection() ?>
