@@ -38,7 +38,7 @@ use App\Models\UserModel;
                     'blood_group' => $this->request->getPost('std_blood_group'),
                     'personal_mail' => $this->request->getPost('std_personal_mail'),
                     'official_mail' => $this->request->getPost('std_official_mail'),
-                    'phone_no' => $this->request->getPost('std_official_mail'),
+                    'phone_no' => $this->request->getPost('Stdphone'),
                     'gender' => $this->request->getPost('gender'),
                     'permanent_address' => $this->request->getPost('std_permanent_address'),
                     'correspondence_address' => $this->request->getPost('std_corrospondence_address'),

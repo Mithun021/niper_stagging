@@ -161,7 +161,7 @@
                                 <td><?= ++$key ?></td>
                                 <td>
                                     <?php if (!empty($value['profile_image']) && file_exists('public/admin/uploads/students/' . $value['profile_image'])): ?>
-                                        <img src="<?= base_url() ?>public/admin/uploads/students/<?= $value['profile_image'] ?>" alt="" height="40px">
+                                        <a href="<?= base_url() ?>public/admin/uploads/students/<?= $value['profile_image'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/students/<?= $value['profile_image'] ?>" alt="" height="40px"></a>
                                     <?php else: ?>
                                         <img src="<?= base_url() ?>public/admin/uploads/students/invalid_image.png" alt="" height="40px">
                                     <?php endif; ?>
