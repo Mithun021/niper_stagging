@@ -169,7 +169,7 @@
                                 <td><?= $value['enrollment_no'] ?></td>
                                 <td><?= $value['first_name'].' '.$value['middle_name'].' '.$value['last_name'] ?></td>
                                 <td><?= $value['father_name'] ?></td>
-                                <td><?= date("d-m-Y", strtotime($value['date_of_birth'])) ?></td>
+                                <td><?= date("d-M-Y", strtotime($value['date_of_birth'])) ?></td>
                                 <td><?= $value['personal_mail'] ?></td>
                                 <td><?= $value['phone_no'] ?></td>
                                 <td>
