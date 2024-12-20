@@ -1,5 +1,5 @@
 <!-- app/Views/studentdetails_form.php -->
-<?= $this->extend("admin/layouts/master") ?>
+<?= $this->extend("admin/layouts/master") ?> 
 <?= $this->section("body-content"); ?>
 
 <div class="row">
@@ -159,6 +159,59 @@
     </div>
 </div>
 
+<div class="modal fade" tabindex="-1" role="dialog" id="export_emp_sample_modal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Export Employee Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?= base_url() ?>admin/export_emp_award_sample" method="post">
+      <div class="modal-body">
+        <div class="alert alert-danger"><p class="m-0">Note : After exporting the CSV, do not delete the top headings from the Excel sheet.</p></div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Download CSV</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="upload_emp_exp_modal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Upload Employee Awards Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?= base_url() ?>admin/upload_emp_award_csv" method="post" enctype="multipart/form-data">
+      <div class="modal-body">
+        <div class="alert alert-danger">
+            <p class="m-0">1. Ensure that the employee is available before uploading the CSV file. Please verify employee details beforehand.</p>
+            <p class="m-0">2. The employee's mobile number and official email ID must be available.</p>
+            <p class="m-0">3. Before uploading the CSV, cross-check the employee's official email address and mobile number.</p>
+            <p class="m-0">4.Please upload only CSV files.</p>
+        </div>
+        <input type="file" name="csv_file" class="dropify" data-height="300" />
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Upload</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- jQuery Script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
   document.getElementById('copyCheckbox').addEventListener('change', function() {
@@ -174,6 +227,20 @@
       correspondenceAddress.readOnly = false; // Enable the correspondence address field
     }
   });
+
+  $(document).ready(function () {
+    // Modal Trigger (Optional Example for Context)
+    $('#upload_emp_exp_btn').on('click', function (e) {
+        e.preventDefault();
+        $('#upload_emp_exp_modal').modal('show');
+    });
+
+    $('#export_sample_btn').on('click',function (e) { 
+        e.preventDefault();
+        $('#export_emp_sample_modal').modal('show');
+    });
+  });
+
 </script>
 
 
