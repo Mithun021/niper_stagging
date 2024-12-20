@@ -39,8 +39,8 @@ use App\Models\UserModel;
                     'official_mail' => $this->request->getPost('std_official_mail'),
                     'phone_no' => $this->request->getPost('std_official_mail'),
                     'gender' => $this->request->getPost('gender'),
-                    'parmanent_Address' => $this->request->getPost('std_permanent_address'),
-                    'corrospondance_address' => $this->request->getPost('std_corrospondence_address'),
+                    'permanent_address' => $this->request->getPost('std_permanent_address'),
+                    'correspondence_address' => $this->request->getPost('std_corrospondence_address'),
                     'profile_image' => $studentFileName ?? '',
                     'upload_by' => $loggeduserId ?? ''
                 ];
