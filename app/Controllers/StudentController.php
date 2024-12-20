@@ -89,7 +89,7 @@ use App\Models\UserModel;
                 return $response;
         }
 
-        public function upload_student_csv() {
+        public function upload_student_csv(){
             $student_model = new Student_model();
             $file = $this->request->getFile('csv_file');
             $sessionData = session()->get('loggedUserData');
@@ -105,70 +105,80 @@ use App\Models\UserModel;
             if ($file && $file->isValid() && !$file->hasMoved()) {
                 $fileContent = $file->getTempName();
         
-                // Read the CSV data into an array
-                $csvData = array_map('str_getcsv', file($fileContent));
+                // Open the CSV file for reading
+                if (($handle = fopen($fileContent, 'r')) !== false) {
+                    $csvData = [];
+                    $header = fgetcsv($handle, 1000, ","); // Get the header (first row)
         
-                if (count($csvData) == 0) {
-                    return redirect()->back()->with('status', '<div class="alert alert-danger" role="alert">The CSV file is empty.</div>');
+                    if (!$header) {
+                        return redirect()->back()->with('status', '<div class="alert alert-danger" role="alert">The CSV file is empty or not in the correct format.</div>');
+                    }
+        
+                    $successCount = 0;  // To keep track of successful uploads
+                    $skippedCount = 0;  // To keep track of skipped rows due to errors
+        
+                    // Loop through each row in the CSV
+                    while (($row = fgetcsv($handle, 1000, ",")) !== false) {
+                        // Ensure row has the correct number of columns
+                        if (count($row) !== count($header)) {
+                            $skippedCount++;
+                            continue; // Skip row if it doesn't match header length
+                        }
+        
+                        $data = array_combine($header, $row);
+        
+                        // Skip row if mandatory fields are missing (first name or enrollment number)
+                        if (empty($data['first_name']) || empty($data['enrollment_no'])) {
+                            $skippedCount++;
+                            continue; 
+                        }
+        
+                        // Handle date format if necessary (convert to Y-m-d)
+                        $dateOfBirth = !empty($data['date_of_birth']) ? date('Y-m-d', strtotime($data['date_of_birth'])) : null;
+        
+                        $studentData = [
+                            'first_name'        => $data['first_name'],
+                            'middle_name'       => $data['middle_name'] ?? '',
+                            'last_name'         => $data['last_name'] ?? '',
+                            'enrollment_no'     => $data['enrollment_no'],
+                            'father_name'       => $data['father_name'] ?? '',
+                            'mother_name'       => $data['mother_name'] ?? '',
+                            'date_of_birth'     => $dateOfBirth,
+                            'blood_group'       => $data['blood_group'] ?? '',
+                            'personal_mail'     => $data['personal_mail'] ?? '',
+                            'official_mail'     => $data['official_mail'] ?? '',
+                            'phone_no'          => $data['phone_no'] ?? '',
+                            'gender'            => $data['gender'] ?? '',
+                            'permanent_address' => $data['permanent_address'] ?? '',
+                            'correspondence_address' => $data['correspondence_address'] ?? '',
+                            'upload_by'         => $loggedUserId,
+                        ];
+        
+                        // Insert the data into the database
+                        try {
+                            $student_model->insert($studentData);
+                            $successCount++;  // Increment on successful insert
+                        } catch (\Exception $e) {
+                            // Log the error and skip the record
+                            log_message('error', 'Error inserting student: ' . $e->getMessage());
+                            $skippedCount++;
+                            continue;
+                        }
+                    }
+        
+                    fclose($handle);
+        
+                    // Return success message with the total number of records uploaded and skipped
+                    return redirect()->back()->with('status', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully! Total records uploaded: ' . $successCount . '. Skipped rows due to errors: ' . $skippedCount . '.</div>');
+        
+                } else {
+                    // Return error message if the file could not be opened
+                    return redirect()->back()->with('status', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
                 }
-        
-                // Get header and trim whitespace
-                $header = array_map('trim', array_shift($csvData));
-        
-                $successCount = 0;  // To keep track of successful uploads
-        
-                // Loop through each row in the CSV
-                foreach ($csvData as $row) {
-                    // Ensure row has the correct number of columns
-                    if (count($row) !== count($header)) {
-                        continue; // Skip row if it doesn't match header length
-                    }
-        
-                    $data = array_combine($header, $row);
-        
-                    // Skip row if mandatory fields are missing
-                    if (empty($data['first_name']) || empty($data['enrollment_no'])) {
-                        continue; 
-                    }
-        
-                    // Handle date format if necessary (convert to Y-m-d)
-                    $dateOfBirth = !empty($data['date_of_birth']) ? date('Y-m-d', strtotime($data['date_of_birth'])) : null;
-        
-                    $studentData = [
-                        'first_name'        => $data['first_name'],
-                        'middle_name'       => $data['middle_name'] ?? '',
-                        'last_name'         => $data['last_name'] ?? '',
-                        'enrollment_no'     => $data['enrollment_no'],
-                        'father_name'       => $data['father_name'] ?? '',
-                        'mother_name'       => $data['mother_name'] ?? '',
-                        'date_of_birth'     => $dateOfBirth,
-                        'blood_group'       => $data['blood_group'] ?? '',
-                        'personal_mail'     => $data['personal_mail'] ?? '',
-                        'official_mail'     => $data['official_mail'] ?? '',
-                        'phone_no'          => $data['phone_no'] ?? '',
-                        'gender'            => $data['gender'] ?? '',
-                        'permanent_address' => $data['permanent_address'] ?? '',
-                        'correspondence_address' => $data['correspondence_address'] ?? '',
-                        'upload_by'         => $loggedUserId,
-                    ];
-        
-                    // Insert the data into the database
-                    try {
-                        $student_model->insert($studentData);
-                        $successCount++;  // Increment on successful insert
-                    } catch (\Exception $e) {
-                        // Handle any exceptions (optional)
-                        // You can log the error or handle it in a different way if needed
-                        continue;
-                    }
-                }
-        
-                // Return success message with the total number of records uploaded
-                return redirect()->back()->with('status', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully! Total records uploaded: ' . $successCount . '.</div>');
         
             } else {
-                // Return error message if the file is invalid
-                return redirect()->back()->with('status', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
+                // Return error message if no valid file is uploaded
+                return redirect()->back()->with('status', '<div class="alert alert-danger" role="alert">Please upload a valid CSV file.</div>');
             }
         }
         
