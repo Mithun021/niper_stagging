@@ -48,9 +48,9 @@ use App\Models\UserModel;
                 // Save the data
                 $result = $student_model->add($data);
                 if ($result === true) {
-                    return redirect()->to('admin/students')->with('status', 'Student added successfully.');
+                    return redirect()->to('admin/students')->with('status', '<div class="alert alert-success" role="alert">Student added successfully.</div>');
                 } else {
-                    return redirect()->back()->withInput()->with('status', $result);
+                    return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
                 }
             }
         }
@@ -88,6 +88,68 @@ use App\Models\UserModel;
                                         ->send();
                 return $response;
         }
+
+        public function upload_emp_project_csv() {
+            $student_model = new Student_model();
+            $file = $this->request->getFile('csv_file');
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggedUserId = $sessionData['loggeduserId']; 
+            } else {
+                return redirect()->back()->with('status', '<div class="alert alert-danger" role="alert">Session expired. Please log in again.</div>');
+            }
+        
+            // Check if a file is uploaded and is valid
+            if ($file && $file->isValid() && !$file->hasMoved()) {
+                $fileContent = $file->getTempName();
+        
+                // Read the CSV data into an array
+                $csvData = array_map('str_getcsv', file($fileContent));
+                $header = array_map('trim', array_shift($csvData));
+        
+                // Loop through each row in the CSV
+                foreach ($csvData as $row) {
+                    $data = array_combine($header, $row);
+        
+                    if (empty($data['first_name']) || empty($data['enrollment_no'])) {
+                        continue; // Skip if mandatory fields are missing
+                    }
+                    $studentData = [
+                        'first_name'        => $data['first_name'],
+                        'middle_name'       => $data['middle_name'] ?? '',
+                        'last_name'         => $data['last_name'] ?? '',
+                        'enrollment_no'     => $data['enrollment_no'],
+                        'father_name'       => $data['father_name'],
+                        'mother_name'       => $data['mother_name'],
+                        'date_of_birth'     => date('Y-m-d', strtotime($data['date_of_birth'])),
+                        'blood_group'       => $data['blood_group'],
+                        'personal_mail'     => $data['personal_mail'],
+                        'official_mail'     => $data['official_mail'],
+                        'phone_no'          => $data['phone_no'],
+                        'gender'            => $data['gender'],
+                        'parmanent_Address' => $data['permanent_address'],
+                        'corrospondance_address'     => $data['correspondence_address'],
+                        'upload_by'         => $loggedUserId,
+                    ];
+        
+                        // Debug output (remove in production)
+                        // echo "<pre>"; print_r($experienceData);
+        
+                        // Insert the data into the database (uncomment to enable)
+                        $student_model->insert($studentData);
+                    
+                }
+        
+                // Return success message
+                return redirect()->back()->with('status', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully!</div>');
+        
+            } else {
+                // Return error message if the file is invalid
+                return redirect()->back()->with('status', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
+            }
+        }   
+
+
 
 
         public function program_dept_std_mapping(){

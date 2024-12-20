@@ -166,12 +166,12 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Upload Employee Awards Data</h5>
+        <h5 class="modal-title">Upload Student Data</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url() ?>admin/upload_emp_award_csv" method="post" enctype="multipart/form-data">
+      <form action="<?= base_url() ?>admin/upload_student_csv" method="post" enctype="multipart/form-data">
       <div class="modal-body">
         <div class="alert alert-danger">
             <p class="m-0">1. Ensure that the student is available before uploading the CSV file. Please verify student details beforehand.</p>
