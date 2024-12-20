@@ -93,11 +93,13 @@ use App\Models\UserModel;
             $student_model = new Student_model();
             $file = $this->request->getFile('csv_file');
             $sessionData = session()->get('loggedUserData');
-            if ($sessionData) {
-                $loggedUserId = $sessionData['loggeduserId']; 
-            } else {
+        
+            // Check if user is logged in
+            if (!$sessionData) {
                 return redirect()->back()->with('status', '<div class="alert alert-danger" role="alert">Session expired. Please log in again.</div>');
             }
+        
+            $loggedUserId = $sessionData['loggeduserId']; 
         
             // Check if a file is uploaded and is valid
             if ($file && $file->isValid() && !$file->hasMoved()) {
@@ -105,49 +107,71 @@ use App\Models\UserModel;
         
                 // Read the CSV data into an array
                 $csvData = array_map('str_getcsv', file($fileContent));
+        
+                if (count($csvData) == 0) {
+                    return redirect()->back()->with('status', '<div class="alert alert-danger" role="alert">The CSV file is empty.</div>');
+                }
+        
+                // Get header and trim whitespace
                 $header = array_map('trim', array_shift($csvData));
+        
+                $successCount = 0;  // To keep track of successful uploads
         
                 // Loop through each row in the CSV
                 foreach ($csvData as $row) {
+                    // Ensure row has the correct number of columns
+                    if (count($row) !== count($header)) {
+                        continue; // Skip row if it doesn't match header length
+                    }
+        
                     $data = array_combine($header, $row);
         
+                    // Skip row if mandatory fields are missing
                     if (empty($data['first_name']) || empty($data['enrollment_no'])) {
-                        continue; // Skip if mandatory fields are missing
+                        continue; 
                     }
+        
+                    // Handle date format if necessary (convert to Y-m-d)
+                    $dateOfBirth = !empty($data['date_of_birth']) ? date('Y-m-d', strtotime($data['date_of_birth'])) : null;
+        
                     $studentData = [
                         'first_name'        => $data['first_name'],
                         'middle_name'       => $data['middle_name'] ?? '',
                         'last_name'         => $data['last_name'] ?? '',
                         'enrollment_no'     => $data['enrollment_no'],
-                        'father_name'       => $data['father_name'],
-                        'mother_name'       => $data['mother_name'],
-                        'date_of_birth'     => date('Y-m-d', strtotime($data['date_of_birth'])),
-                        'blood_group'       => $data['blood_group'],
-                        'personal_mail'     => $data['personal_mail'],
-                        'official_mail'     => $data['official_mail'],
-                        'phone_no'          => $data['phone_no'],
-                        'gender'            => $data['gender'],
-                        'parmanent_Address' => $data['permanent_address'],
-                        'corrospondance_address'     => $data['correspondence_address'],
+                        'father_name'       => $data['father_name'] ?? '',
+                        'mother_name'       => $data['mother_name'] ?? '',
+                        'date_of_birth'     => $dateOfBirth,
+                        'blood_group'       => $data['blood_group'] ?? '',
+                        'personal_mail'     => $data['personal_mail'] ?? '',
+                        'official_mail'     => $data['official_mail'] ?? '',
+                        'phone_no'          => $data['phone_no'] ?? '',
+                        'gender'            => $data['gender'] ?? '',
+                        'permanent_address' => $data['permanent_address'] ?? '',
+                        'correspondence_address' => $data['correspondence_address'] ?? '',
                         'upload_by'         => $loggedUserId,
                     ];
         
-                        // Debug output (remove in production)
-                        // echo "<pre>"; print_r($experienceData);
-        
-                        // Insert the data into the database (uncomment to enable)
+                    // Insert the data into the database
+                    try {
                         $student_model->insert($studentData);
-                    
+                        $successCount++;  // Increment on successful insert
+                    } catch (\Exception $e) {
+                        // Handle any exceptions (optional)
+                        // You can log the error or handle it in a different way if needed
+                        continue;
+                    }
                 }
         
-                // Return success message
-                return redirect()->back()->with('status', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully!</div>');
+                // Return success message with the total number of records uploaded
+                return redirect()->back()->with('status', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully! Total records uploaded: ' . $successCount . '.</div>');
         
             } else {
                 // Return error message if the file is invalid
                 return redirect()->back()->with('status', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
             }
-        }   
+        }
+        
 
 
 
