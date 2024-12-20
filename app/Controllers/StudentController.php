@@ -89,7 +89,7 @@ use App\Models\UserModel;
                 return $response;
         }
 
-        public function upload_emp_project_csv() {
+        public function upload_student_csv() {
             $student_model = new Student_model();
             $file = $this->request->getFile('csv_file');
             $sessionData = session()->get('loggedUserData');
