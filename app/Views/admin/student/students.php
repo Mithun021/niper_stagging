@@ -9,7 +9,9 @@
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
                 <div>
-                    <button type="button" class="btn btn-sm btn-danger" id="export_sample_btn">Export Std. Sample</button>
+                    <form action="<?= base_url() ?>admin/export_student">
+                    <button type="submit" class="btn btn-sm btn-danger" id="export_sample_btn" onclick="return confirm('Are you sure...')">Export Std. Sample</button>
+                    </form>
                     <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>
                 </div>
             </div>
@@ -159,29 +161,6 @@
     </div>
 </div>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="export_emp_sample_modal">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Export Employee Data</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form action="<?= base_url() ?>admin/export_emp_award_sample" method="post">
-      <div class="modal-body">
-        <div class="alert alert-danger"><p class="m-0">Note : After exporting the CSV, do not delete the top headings from the Excel sheet.</p></div>
-        
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Download CSV</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
-
 <div class="modal fade" tabindex="-1" role="dialog" id="upload_emp_exp_modal">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -194,9 +173,9 @@
       <form action="<?= base_url() ?>admin/upload_emp_award_csv" method="post" enctype="multipart/form-data">
       <div class="modal-body">
         <div class="alert alert-danger">
-            <p class="m-0">1. Ensure that the employee is available before uploading the CSV file. Please verify employee details beforehand.</p>
-            <p class="m-0">2. The employee's mobile number and official email ID must be available.</p>
-            <p class="m-0">3. Before uploading the CSV, cross-check the employee's official email address and mobile number.</p>
+            <p class="m-0">1. Ensure that the student is available before uploading the CSV file. Please verify student details beforehand.</p>
+            <p class="m-0">2. The student's mobile number and official email ID must be available.</p>
+            <p class="m-0">3. Before uploading the CSV, cross-check the student's official email address and mobile number.</p>
             <p class="m-0">4.Please upload only CSV files.</p>
         </div>
         <input type="file" name="csv_file" class="dropify" data-height="300" />
@@ -235,10 +214,6 @@
         $('#upload_emp_exp_modal').modal('show');
     });
 
-    $('#export_sample_btn').on('click',function (e) { 
-        e.preventDefault();
-        $('#export_emp_sample_modal').modal('show');
-    });
   });
 
 </script>

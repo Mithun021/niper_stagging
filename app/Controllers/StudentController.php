@@ -55,6 +55,41 @@ use App\Models\UserModel;
             }
         }
 
+        public function export_student(){
+            $student_model = new Student_model();
+            // CSV Header
+            $csvData = "first_name,middle_name,last_name,enrollment_no,father_name,mother_name,date_of_birth,blood_group,personal_mail,official_mail,phone_no,gender,permanent_address,correspondence_address\n";
+
+            // Sample data - this should be dynamically retrieved from the database or an input source
+            $csvData .= implode(",", [
+                'John',             // first_name
+                'A',                // middle_name
+                'Doe',              // last_name
+                '123456',           // enrollment_no
+                'Richard Doe',      // father_name
+                'Jane Doe',         // mother_name
+                '2000-01-01',       // date_of_birth
+                'O+',               // blood_group
+                'john.doe@example.com',  // personal_mail
+                'john.doe@school.com',   // official_mail
+                '9876543210',       // phone_no
+                'Male',             // gender
+                '123 Main St, City', // permanent_address
+                '456 Elm St, City'   // correspondence_address
+            ]) . "\n";
+
+            $this->generateCSV($csvData, 'student_import_sample.csv');
+        
+        }
+        private function generateCSV($csvData, $fileName){
+            $response = $this->response->setContentType('text/csv')
+                                        ->setHeader('Content-Disposition', 'attachment; filename="' . $fileName . '"')
+                                        ->setBody($csvData)
+                                        ->send();
+                return $response;
+        }
+
+
         public function program_dept_std_mapping(){
             $department_model = new Department_model();
             $program_model = new Program_model();

@@ -74,7 +74,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     // Student Routes /----------------------------
     $routes->match(['get', 'post'], 'students', 'StudentController::students');
     $routes->match(['get','post'],'program-dept-std-mapping', 'StudentController::program_dept_std_mapping');
-
+    $routes->match(['get', 'post'], 'export_student', 'StudentController::export_student');
 
     $routes->match(['get', 'post'], 'convocation', 'AdminControllers::convocation');
 
