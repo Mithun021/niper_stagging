@@ -8,7 +8,8 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
-                <div>
+                <div class="d-flex">
+                    
                     <form action="<?= base_url() ?>admin/export_student">
                     <button type="submit" class="btn btn-sm btn-danger" id="export_sample_btn" onclick="return confirm('Are you sure...')">Export Std. Sample</button>
                     </form>
