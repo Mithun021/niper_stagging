@@ -159,7 +159,13 @@
                         <?php foreach ($students as $key => $value) { ?>
                             <tr>
                                 <td><?= ++$key ?></td>
-                                <td><img src="<?= base_url() ?>public/admin/uploads/students/<?= $value['profile_image'] ?>" alt="" height="40px"></td>
+                                <td>
+                                    <?php if (!empty($value['profile_image']) && file_exists('public/admin/uploads/students/' . $value['profile_image'])): ?>
+                                        <img src="<?= base_url() ?>public/admin/uploads/students/<?= $value['profile_image'] ?>" alt="" height="40px">
+                                    <?php else: ?>
+                                        <img src="<?= base_url() ?>public/admin/uploads/students/invalid_image.png" alt="" height="40px">
+                                    <?php endif; ?>
+                                </td>
                                 <td><?= $value['enrollment_no'] ?></td>
                                 <td><?= $value['first_name'].' '.$value['middle_name'].' '.$value['last_name'] ?></td>
                                 <td><?= $value['father_name'] ?></td>
