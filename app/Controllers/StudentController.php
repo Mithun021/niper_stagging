@@ -74,8 +74,8 @@ use App\Models\UserModel;
                 'john.doe@school.com',   // official_mail
                 '9876543210',       // phone_no
                 'Male',             // gender
-                '123 Main St, City', // permanent_address
-                '456 Elm St, City'   // correspondence_address
+                '123 Main St City', // permanent_address
+                '456 Elm St City'   // correspondence_address
             ]) . "\n";
 
             $this->generateCSV($csvData, 'student_import_sample.csv');
