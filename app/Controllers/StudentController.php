@@ -128,10 +128,10 @@ use App\Models\UserModel;
                         $data = array_combine($header, $row);
         
                         // Skip row if mandatory fields are missing (first name or enrollment number)
-                        if (empty($data['first_name']) || empty($data['enrollment_no'])) {
-                            $skippedCount++;
-                            continue; 
-                        }
+                        // if (empty($data['first_name']) || empty($data['enrollment_no'])) {
+                        //     $skippedCount++;
+                        //     continue; 
+                        // }
         
                         // Handle date format if necessary (convert to Y-m-d)
                         $dateOfBirth = !empty($data['date_of_birth']) ? date('Y-m-d', strtotime($data['date_of_birth'])) : null;
