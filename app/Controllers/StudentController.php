@@ -128,10 +128,10 @@ use App\Models\UserModel;
                         $data = array_combine($header, $row);
         
                         // Skip row if mandatory fields are missing (first name or enrollment number)
-                        // if (empty($data['first_name']) || empty($data['enrollment_no'])) {
-                        //     $skippedCount++;
-                        //     continue; 
-                        // }
+                        if (empty($data['first_name']) || empty($data['enrollment_no'])) {
+                            $skippedCount++;
+                            continue; 
+                        }
         
                         // Handle date format if necessary (convert to Y-m-d)
                         $dateOfBirth = !empty($data['date_of_birth']) ? date('Y-m-d', strtotime($data['date_of_birth'])) : null;
@@ -156,8 +156,8 @@ use App\Models\UserModel;
         
                         // Insert the data into the database
                         try {
-                            echo "<pre>"; print_r($studentData);
-                            // $student_model->insert($studentData);
+                            // echo "<pre>"; print_r($studentData);
+                            $student_model->insert($studentData);
                             $successCount++;  // Increment on successful insert
                         } catch (\Exception $e) {
                             // Log the error and skip the record
@@ -170,16 +170,16 @@ use App\Models\UserModel;
                     fclose($handle);
         
                     // Return success message with the total number of records uploaded and skipped
-                    // return redirect()->back()->with('status', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully! Total records uploaded: ' . $successCount . '. Skipped rows due to errors: ' . $skippedCount . '.</div>');
+                    return redirect()->back()->with('status', '<div class="alert alert-success" role="alert">Data uploaded and saved successfully! Total records uploaded: ' . $successCount . '. Skipped rows due to errors: ' . $skippedCount . '.</div>');
         
                 } else {
                     // Return error message if the file could not be opened
-                    // return redirect()->back()->with('status', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
+                    return redirect()->back()->with('status', '<div class="alert alert-danger" role="alert">Failed to process the CSV file. Please ensure the file is valid and try again.</div>');
                 }
         
             } else {
                 // Return error message if no valid file is uploaded
-                // return redirect()->back()->with('status', '<div class="alert alert-danger" role="alert">Please upload a valid CSV file.</div>');
+                return redirect()->back()->with('status', '<div class="alert alert-danger" role="alert">Please upload a valid CSV file.</div>');
             }
         }
         
