@@ -14,6 +14,7 @@ use App\Models\UserModel;
             $student_model = new Student_model();
             $data = ['title' => 'Students'];
             if ($this->request->is("get")) {
+                $data['students'] = $student_model->get();
                 return view('admin/student/students',$data);
             }else if ($this->request->is("post")) {
                 // Prepare data for insertion

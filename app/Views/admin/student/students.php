@@ -145,15 +145,37 @@
                         <thead>
                             <tr>
                                 <td>SN</td>
+                                <td>Image</td>
                                 <td>Enroll ID</td>
                                 <td>Std Name</td>
-                                <td>Email ID</td>
+                                <td>Father's Name</td>
+                                <td>D.O.B</td>
+                                <td>Personal Email</td>
                                 <td>Phone no.</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Dynamically populated rows go here -->
+                        <?php foreach ($students as $key => $value) { ?>
+                            <tr>
+                                <td><?= ++$key ?></td>
+                                <td><img src="<?= base_url() ?>public/admin/uploads/students/<?= $value['profile_image'] ?>" alt="" height="40px"></td>
+                                <td><?= $value['enrollment_no'] ?></td>
+                                <td><?= $value['first_name'].' '.$value['middle_name'].' '.$value['last_name'] ?></td>
+                                <td><?= $value['father_name'] ?></td>
+                                <td><?= $value['date_of_birth'] ?></td>
+                                <td><?= $value['personal_mail'] ?></td>
+                                <td><?= $value['phone_no'] ?></td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        
                         </tbody>
                     </table>
                 </div>
