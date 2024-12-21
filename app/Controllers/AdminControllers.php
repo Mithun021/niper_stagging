@@ -629,11 +629,11 @@ use App\Models\Youtube_link_model;
             $bog_members_model = new Bog_members_model();
             $data = ['title' => 'BoG Member'];
             if ($this->request->is("get")) {
+                $data['bog_members'] = $bog_members_model->get();
                 return view('admin/bog-member',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
-                $loggeduserId = $sessionData['loggeduserId'] ?? null;
-        
+                $loggeduserId = $sessionData['loggeduserId'] ?? null;        
                 if (!$loggeduserId) {
                     return redirect()->to('admin/bog-member')->with(
                         'status', 
@@ -648,7 +648,6 @@ use App\Models\Youtube_link_model;
                     'term_end_year' => $this->request->getPost('termyearend'),
                     'upload_by' => $loggeduserId
                 ];
-
                 $result = $bog_members_model->add($data);
                 if ($result === true) {
                     return redirect()->to('admin/bog-member')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
