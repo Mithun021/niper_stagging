@@ -47,7 +47,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                    
+                        <?php $i = 1; foreach($youtube_links as $youtube_link): ?>
+                            <tr>
+                                <td><?= $i++ ?></td>
+                                <td><?= $youtube_link['link_url'] ?></td>
+                                <td><?= date('d M Y', strtotime($youtube_link['created_at'])) ?></td>
+                                <td><?= $youtube_link['upload_by'] ?></td>
+                                <td>
+                                    <a href="<?= base_url() ?>admin/youtube-link/<?= $youtube_link['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="<?= base_url() ?>admin/youtube-link/<?= $youtube_link['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+
                     </tbody>
                 </table>
                 </div>
