@@ -3,6 +3,7 @@
 
 use App\Models\About_niper_model;
 use App\Models\Banner_slider_model;
+use App\Models\Bog_members_model;
 use App\Models\Bog_model;
 use App\Models\Contact_model;
 use App\Models\Department_model;
@@ -625,12 +626,35 @@ use App\Models\Youtube_link_model;
         }
 
         public function bog_member(){
-            
+            $bog_members_model = new Bog_members_model();
             $data = ['title' => 'BoG Member'];
             if ($this->request->is("get")) {
                 return view('admin/bog-member',$data);
             }else if ($this->request->is("post")) {
-                
+                $sessionData = session()->get('loggedUserData');
+                $loggeduserId = $sessionData['loggeduserId'] ?? null;
+        
+                if (!$loggeduserId) {
+                    return redirect()->to('admin/bog-member')->with(
+                        'status', 
+                        '<div class="alert alert-danger" role="alert"> User session is not valid. Please log in again. </div>'
+                    );
+                }
+                $data = [
+                    'member_name' => $this->request->getPost('membername'),
+                    'affiliation' => $this->request->getPost('affiliation'),
+                    'designation' => $this->request->getPost('designation'),
+                    'term_start_year' => $this->request->getPost('termyearstart'),
+                    'term_end_year' => $this->request->getPost('termyearend'),
+                    'upload_by' => $loggeduserId
+                ];
+
+                $result = $bog_members_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/bog-member')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                } else {
+                    return redirect()->to('admin/bog-member')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 

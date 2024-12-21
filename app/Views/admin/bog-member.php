@@ -9,43 +9,36 @@
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')) : ?>
-                    <div class="alert alert-info"><?= session()->getFlashdata('status') ?></div>
+                    <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
 
-                <form action="/bogmembers/store" method="post">
-                    <?= csrf_field() ?>
-
-                    <!-- Member Name -->
+                <form action="<?= base_url() ?>admin/bog-member" method="post">
+                    
                     <div class="form-group">
                         <span for="membername">Member Name:</span>
-                        <input type="text" name="membername" id="membername" class="form-control form-control-sm" value="<?= old('membername') ?>" required>
+                        <input type="text" name="membername" id="membername" class="form-control form-control-sm" required>
                     </div>
 
-                    <!-- Affiliation -->
                     <div class="form-group">
                         <span for="affiliation">Affiliation:</span>
-                        <input type="text" name="affiliation" id="affiliation" class="form-control form-control-sm" value="<?= old('affiliation') ?>" required>
+                        <input type="text" name="affiliation" id="affiliation" class="form-control form-control-sm" required>
                     </div>
 
-                    <!-- Designation -->
                     <div class="form-group">
                         <span for="designation">Designation:</span>
-                        <input type="text" name="designation" id="designation" class="form-control form-control-sm" value="<?= old('designation') ?>" required>
+                        <input type="text" name="designation" id="designation" class="form-control form-control-sm" required>
                     </div>
 
-                    <!-- Term Year Start -->
                     <div class="form-group">
                         <span for="termyearstart">Term Year Start:</span>
-                        <input type="number" name="termyearstart" id="termyearstart" class="form-control form-control-sm" min="1900" max="<?= date('Y') ?>" value="<?= old('termyearstart') ?>" required>
+                        <input type="number" name="termyearstart" id="termyearstart" class="form-control form-control-sm" min="2000" required>
                     </div>
 
-                    <!-- Term Year End -->
                     <div class="form-group">
                         <span for="termyearend">Term Year End:</span>
-                        <input type="number" name="termyearend" id="termyearend" class="form-control form-control-sm" min="<?= date('Y') ?>" value="<?= old('termyearend') ?>" required>
+                        <input type="number" name="termyearend" id="termyearend" class="form-control form-control-sm" min="2000" required>
                     </div>
 
-                    <!-- Submit Button -->
                     <div class="form-group text-left">
                         <button type="submit" class="btn btn-primary btn-sm">Submit</button>
                     </div>
