@@ -534,7 +534,7 @@ use App\Models\Youtube_link_model;
                         }
                     }
                 }
-                if ($result === true) {
+                if ($result) {
                     return redirect()->to('admin/banner-slider')->with('status', '<div class="alert alert-success" role="alert">Student added successfully.</div>');
                 } else {
                     return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
