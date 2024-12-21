@@ -1,6 +1,9 @@
 <?= $this->extend("admin/layouts/master") ?>
-
 <?=  $this->section("body-content"); ?>
+<?php
+    use App\Models\Employee_model;
+    $employee_model = new Employee_model();
+?>
 <style>
     
 </style>
@@ -52,7 +55,7 @@
                                 <td><?= $i++ ?></td>
                                 <td><a href="<?= $link['link_url'] ?>" target="_blank"><?= $link['link_url'] ?></a></td>
                                 <td><?= date('d M Y', strtotime($link['created_at'])) ?></td>
-                                <td><?= $link['upload_by'] ?></td>
+                                <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td>
                                     <a href="<?= base_url() ?>admin/youtube-link/<?= $link['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
                                     <a href="<?= base_url() ?>admin/youtube-link/<?= $link['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
