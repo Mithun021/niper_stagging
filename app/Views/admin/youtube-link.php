@@ -50,7 +50,7 @@
                         <?php $i = 1; foreach($youtube_link as $link): ?>
                             <tr>
                                 <td><?= $i++ ?></td>
-                                <td><?= $link['link_url'] ?></td>
+                                <td><a href="<?= $link['link_url'] ?>" target="_blank"><?= $link['link_url'] ?></a></td>
                                 <td><?= date('d M Y', strtotime($link['created_at'])) ?></td>
                                 <td><?= $link['upload_by'] ?></td>
                                 <td>
