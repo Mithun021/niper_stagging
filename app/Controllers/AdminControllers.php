@@ -511,36 +511,55 @@ use App\Models\Youtube_link_model;
             }
         }
 
-        public function banner_slider(){
+        public function banner_slider() {
             $banner_slider_model = new Banner_slider_model();
             $data = ['title' => 'Banner Slider'];
+        
             if ($this->request->is("get")) {
-                return view('admin/banner-slider',$data);
-            }else if ($this->request->is("post")) {
+                return view('admin/banner-slider', $data);
+            } else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
                 $loggeduserId = $sessionData['loggeduserId'] ?? null;
+        
                 $slider_files = $this->request->getFiles();
+                $result = false;
+        
                 if ($slider_files && isset($slider_files['slider_file'])) {
                     foreach ($slider_files['slider_file'] as $file) {
                         if ($file->isValid() && !$file->hasMoved()) {
                             $newName = $file->getRandomName();
-                            $file->move(ROOTPATH . 'public/admin/uploads/slider', $newName);
+                            $uploadPath = ROOTPATH . 'public/admin/uploads/slider/';
         
-                            $file_data = [
-                                'slider_photo' => $newName,
-                                'upload_by' => $loggeduserId,
-                            ];
-                            $result = $banner_slider_model->add($file_data);
+                            if (!is_dir($uploadPath)) {
+                                mkdir($uploadPath, 0777, true);
+                            }
+        
+                            if ($file->move($uploadPath, $newName)) {
+                                $file_data = [
+                                    'slider_photo' => $newName,
+                                    'upload_by' => $loggeduserId,
+                                ];
+                                $result = $banner_slider_model->add($file_data);
+                            } else {
+                                $result = 'File move failed!';
+                            }
+                        } else {
+                            $result = 'Invalid file or file has already been moved.';
+                            break;
                         }
                     }
-                }
-                if ($result) {
-                    return redirect()->to('admin/banner-slider')->with('status', '<div class="alert alert-success" role="alert">Student added successfully.</div>');
                 } else {
-                    return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+                    $result = 'No file selected.';
+                }
+        
+                if ($result === true) {
+                    return redirect()->to('admin/banner-slider')->with('status', '<div class="alert alert-success" role="alert">Banner image added successfully.</div>');
+                } else {
+                    return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">' . $result . '</div>');
                 }
             }
         }
+        
 
         public function about(){
             $about_niper_model = new About_niper_model();
