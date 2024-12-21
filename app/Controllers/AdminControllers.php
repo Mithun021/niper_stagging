@@ -10,6 +10,7 @@ use App\Models\Department_model;
 use App\Models\Designation_model;
 use App\Models\Employee_model;
 use App\Models\Image_gallery_model;
+use App\Models\Leadership_media_link_model;
 use App\Models\Media_model;
 use App\Models\Permission_model;
 use App\Models\Photo_album_file_model;
@@ -658,11 +659,43 @@ use App\Models\Youtube_link_model;
         }
 
         public function leadership_and_media_link(){
+            $leadership_media_link_model = new Leadership_media_link_model();
             $data = ['title' => 'Leadership & Media Links'];
             if ($this->request->is("get")) {
+                $data['leadership_media_link'] = $leadership_media_link_model->get();
                 return view('admin/leadership-and-media-link',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $leadership_photo = $this->request->getFile('leadership_file');
+                if ($leadership_photo->isValid() && ! $leadership_photo->hasMoved()) {
+                    $leadershipImageName = $leadership_photo->getRandomName();
+                    $leadership_photo->move(ROOTPATH . 'public/admin/uploads/leader', $leadershipImageName);    
+                }else{
+                 $leadershipImageName = "";
+                }
+                $data = [
+                    'name' => $this->request->getPost('leadership_name'),
+                    'designition' => $this->request->getPost('leadership_designation'),
+                    'upload_file' => $leadershipImageName,
+                    'description' => $this->request->getPost('description'),
+                    'link_url' => $this->request->getPost('link_url'),
+                    'facebook_link' => $this->request->getPost('facebook_url'),
+                    'instagram_link' => $this->request->getPost('instagram_url'),
+                    'twitter_link' => $this->request->getPost('twitter_url'),
+                    'youtube_link' => $this->request->getPost('youtube_url'),
+                    'linkedin_link' => $this->request->getPost('linkedin_url'),
+                    'upload_by' =>  $loggeduserId,
+                ];
 
+                $result = $leadership_media_link_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/leadership-and-media-link')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                } else {
+                    return redirect()->to('admin/leadership-and-media-link')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 

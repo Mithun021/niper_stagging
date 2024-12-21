@@ -1,6 +1,9 @@
 <?= $this->extend("admin/layouts/master") ?>
-
 <?=  $this->section("body-content"); ?>
+<?php
+    use App\Models\Employee_model;
+    $employee_model = new Employee_model();
+?>
 <style>
     
 </style>
@@ -17,48 +20,49 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form id="noticeBoardForm">
+                <form method="post" action="<?= base_url() ?>admin/leadership-and-media-link" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Name<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="notice_title">
+                        <input type="text" class="form-control form-control-sm" name="leadership_name" minlength="3" required>
                     </div>
                     <div class="form-group">
                         <span for="">Designation<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="notice_title">
+                        <input type="text" class="form-control form-control-sm" name="leadership_designation" minlength="3" required>
                     </div>
                     <div class="form-group">
                         <span for="">Upload File(JPG,PNG)</span>
-                        <input type="file" class="form-control form-control-sm" name="notice_file" accept=".jpg, .png" required>
+                        <input type="file" class="form-control form-control-sm" name="leadership_file" accept=".jpg, .png, .jpeg" required>
                     </div>
 
                     <div class="form-group">
                         <span for="">Description/Message</span>
-                        <textarea id="editor" name="content"></textarea>
+                        <textarea id="editor" name="description"></textarea>
                     </div>
                     <div class="form-group">
                         <span for="">Link URL</span>
-                        <input type="url" class="form-control form-control-sm" name="notice_title">
+                        <input type="url" class="form-control form-control-sm" name="link_url">
                     </div>
                     <div class="form-group">
                         <span for="">Facebook</span>
-                        <input type="url" class="form-control form-control-sm" name="notice_title">
+                        <input type="url" class="form-control form-control-sm" name="facebook_url">
                     </div>
                     <div class="form-group">
                         <span for="">Instagram</span>
-                        <input type="url" class="form-control form-control-sm" name="notice_title">
+                        <input type="url" class="form-control form-control-sm" name="instagram_url">
                     </div>
                     <div class="form-group">
                         <span for="">Twitter</span>
-                        <input type="url" class="form-control form-control-sm" name="notice_title">
+                        <input type="url" class="form-control form-control-sm" name="twitter_url">
                     </div>
                     <div class="form-group">
                         <span for="">Youtube</span>
-                        <input type="url" class="form-control form-control-sm" name="notice_title">
+                        <input type="url" class="form-control form-control-sm" name="youtube_url">
                     </div>
                     <div class="form-group">
                         <span for="">Linkedin</span>
-                        <input type="url" class="form-control form-control-sm" name="notice_title">
+                        <input type="url" class="form-control form-control-sm" name="linkedin_url">
                     </div>
+
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
                     
                 </form>
@@ -76,14 +80,28 @@
                     <thead>
                         <tr>
                             <td>SN</td>
+                            <td>Image</td>
                             <td>Name</td>
                             <td>Designation</td>
-                            <td>Image</td>
+                            <td>Upload by</td>
                             <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    <?php foreach ($leadership_media_link as $key => $value) { ?>
+                        <tr>
+                            <td><?= ++$key ?></td>
+                            <td><img src="<?= base_url() ?>public/admin/uploads/leader/<?= $value['upload_file'] ?>" alt="<?= $value['name'] ?>" style="width: 100px; height: 100px;"></td>
+                            <td><?= $value['name'] ?></td>
+                            <td><?= $value['designition'] ?></td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                            <td>
+                            <a href="<?= base_url() ?>admin/leadership-and-media-link/<?= $value['id'] ?>" class="btn btn-sm btn-danger">View</a>
+                                <a href="<?= base_url() ?>admin/leadership-and-media-link/<?= $value['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                <a href="<?= base_url() ?>admin/leadership-and-media-link/<?= $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 </div>
