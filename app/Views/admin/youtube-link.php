@@ -17,10 +17,10 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form id="noticeBoardForm">
+                <form method="post" action="<?= base_url() ?>admin/youtube-link">
                     <div class="form-group">
-                        <span for="">Embeded Youtube Link<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="notice_title">
+                        <span for="">Youtube Video URL<span class="text-danger">*</span></span>
+                        <input type="url" class="form-control form-control-sm" name="youtube_url" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
@@ -40,8 +40,9 @@
                     <thead>
                         <tr>
                             <td>SN</td>
-                            <td>Embeded Link</td>
+                            <td>Video URL</td>
                             <td>Create at</td>
+                            <td>Upload by</td>
                             <td>Action</td>
                         </tr>
                     </thead>

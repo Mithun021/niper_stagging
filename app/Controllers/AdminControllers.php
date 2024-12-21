@@ -14,8 +14,8 @@ use App\Models\Photo_album_model;
 use App\Models\Quick_link_model;
 use App\Models\Roles_model;
 use App\Models\UserModel;
+use App\Models\Youtube_link_model;
 
-    
     class AdminControllers extends BaseController{
         public function adminLogin(){
             $admin_model = new UserModel();
@@ -438,11 +438,28 @@ use App\Models\UserModel;
         }
 
         public function youtube_link(){
+            $youtube_link_model = new Youtube_link_model();
             $data = ['title' => 'Youtube Link'];
             if ($this->request->is("get")) {
+                $data['youtube_link'] = $youtube_link_model->get();
                 return view('admin/youtube-link',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $data = [
+                    'link_url' => $this->request->getPost('youtube_url'),
+                    'upload_by' =>  $loggeduserId,
+                ]; 
 
+                // echo "<pre>";print_r($data);
+                $result = $youtube_link_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/youtube-link')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/youtube-link')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 
