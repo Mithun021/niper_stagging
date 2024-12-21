@@ -101,7 +101,7 @@
                             </td>
                             <td><?= $value['name'] ?></td>
                             <td><?= $value['designition'] ?></td>
-                            <td><a href="<?= $value['designition'] ?>" target="_blank">View Page</a></td>
+                            <td><a href="<?= $value['link_url'] ?>" target="_blank">View Page</a></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
