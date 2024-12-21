@@ -47,7 +47,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 1; foreach($links as $link): ?>
+                        <?php $i = 1; foreach($youtube_link as $link): ?>
                             <tr>
                                 <td><?= $i++ ?></td>
                                 <td><?= $link['link_url'] ?></td>
