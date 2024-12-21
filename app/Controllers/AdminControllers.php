@@ -516,6 +516,7 @@ use App\Models\Youtube_link_model;
             $data = ['title' => 'Banner Slider'];
         
             if ($this->request->is("get")) {
+                $data['banner_slider'] = $banner_slider_model->get();
                 return view('admin/banner-slider', $data);
             } else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');

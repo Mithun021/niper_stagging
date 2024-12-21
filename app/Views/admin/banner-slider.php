@@ -1,6 +1,9 @@
 <?= $this->extend("admin/layouts/master") ?>
-
 <?=  $this->section("body-content"); ?>
+<?php
+    use App\Models\Employee_model;
+    $employee_model = new Employee_model();
+?>
 <style>
     
 </style>
@@ -40,12 +43,30 @@
                     <thead>
                         <tr>
                             <td>SN</td>
-                            <td>Title</td>
+                            <td>Image</td>
+                            <td>Upload by</td>
+                            <td>Upload Date</td>
                             <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    <?php foreach ($variable as $key => $value) { ?>
+                        <tr>
+                            <td><?= $key+1 ?></td>
+                            <td>
+                                <?php if (!empty($value['slider_photo']) && file_exists('public/admin/uploads/slider/' . $value['slider_photo'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/slider/<?= $value['slider_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/slider/<?= $value['slider_photo'] ?>" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/slider/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
+                            </td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                            <td><?= date('d-m-Y',strtotime($value['created_at'])) ?></td>
+                            <td>
+                                <a href="<?= base_url() ?>admin/banner-slider/<?= $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 </div>
