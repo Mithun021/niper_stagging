@@ -539,16 +539,18 @@ use App\Models\Youtube_link_model;
                                 'slider_photo' => $newName,
                                 'upload_by' => $loggeduserId,
                             ];
+
+                            echo "<pre>"; print_r($file_data);
                             
-                            $banner_slider_model->add($file_data);
+                            // $banner_slider_model->add($file_data);
                         }
                     }
                 }
 
-                return redirect()->to('admin/banner-slider')->with(
-                    'status', 
-                    '<div class="alert alert-success" role="alert"> Data added successfully. </div>'
-                );
+                // return redirect()->to('admin/banner-slider')->with(
+                //     'status', 
+                //     '<div class="alert alert-success" role="alert"> Data added successfully. </div>'
+                // );
 
 
 
