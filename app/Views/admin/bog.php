@@ -5,19 +5,17 @@
 </style>
 
 <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-7">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> Details</h4>
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')) : ?>
-                    <div class="alert alert-info"><?= session()->getFlashdata('status') ?></div>
+                    <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
 
-                <form action="/bogpages/store" method="post">
-                    <?= csrf_field() ?>
-
+                <form action="<?= base_url() ?>admin/bog" method="post">
                     <!-- BoG Title -->
                     <div class="form-group">
                         <span for="bogtitle">BoG Title:</span>
@@ -26,14 +24,14 @@
                             name="bogtitle"
                             id="bogtitle"
                             class="form-control form-control-sm"
-                            value="<?= old('bogtitle') ?>"
+                            value="<?= $bog['title'] ?>"
                             required>
                     </div>
 
                     <!-- BoG Description -->
                     <div class="form-group">
                         <span for="bogdesc">BoG Description:</span>
-                        <textarea id="editor" name="content" class="form-control form-control-sm"></textarea>
+                        <textarea id="editor" name="bog_description" class="form-control form-control-sm"><?= $bog['description'] ?></textarea>
 
                     </div>
 
@@ -45,8 +43,8 @@
                             id="bogstatus"
                             class="form-control form-control-sm"
                             required>
-                            <option value="Publish">Publish</option>
-                            <option value="Draft">Draft</option>
+                            <option value="1" <?php if($bog['status'] == 1){ echo "selected"; } ?>>Publish</option>
+                            <option value="0"<?php if($bog['status'] == 0){ echo "selected"; } ?>>Draft</option>
                         </select>
                     </div>
 
@@ -58,30 +56,6 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-7">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title m-0"><?= $title ?> List</h4>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover"  id="basic-datatable">
-                        <thead>
-                            <tr>
-                                <td>SN</td>
-                                <td>Title</td>
-                                <td>Description</td>
-                                <td>Status</td>
-                                <td>Actions</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Data to be dynamically populated -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </div>
 <?= $this->endSection() ?>

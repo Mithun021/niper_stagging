@@ -3,6 +3,7 @@
 
 use App\Models\About_niper_model;
 use App\Models\Banner_slider_model;
+use App\Models\Bog_model;
 use App\Models\Contact_model;
 use App\Models\Department_model;
 use App\Models\Designation_model;
@@ -603,20 +604,33 @@ use App\Models\Youtube_link_model;
         }
 
         public function bog(){
+            $bog_model = new Bog_model();
             $data = ['title' => 'BoG Page'];
             if ($this->request->is("get")) {
+                $data['bog'] = $bog_model->get(1);
                 return view('admin/bog',$data);
             }else if ($this->request->is("post")) {
-
+                $data = [
+                    'title' => $this->request->getPost('bogtitle'),
+                    'description' => $this->request->getPost('bog_description'),
+                    'status' => $this->request->getPost('bogstatus'),
+                ];
+                $result = $bog_model->add($data,1);
+                if ($result === true) {
+                    return redirect()->to('admin/bog')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                } else {
+                    return redirect()->to('admin/bog')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 
         public function bog_member(){
+            
             $data = ['title' => 'BoG Member'];
             if ($this->request->is("get")) {
                 return view('admin/bog-member',$data);
             }else if ($this->request->is("post")) {
-
+                
             }
         }
 
