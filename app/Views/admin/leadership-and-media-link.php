@@ -9,7 +9,7 @@
 </style>
 <!-- start page title -->
 <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-4">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Add <?= $title ?> </h4>
@@ -69,7 +69,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-7">
+    <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> List</h4>
@@ -91,7 +91,13 @@
                     <?php foreach ($leadership_media_link as $key => $value) { ?>
                         <tr>
                             <td><?= ++$key ?></td>
-                            <td><img src="<?= base_url() ?>public/admin/uploads/leader/<?= $value['upload_file'] ?>" alt="<?= $value['name'] ?>" style="width: 100px; height: 100px;"></td>
+                            <td>
+                                <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/leader/' . $value['upload_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/leader/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/leader/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/leader/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
+                            </td>
                             <td><?= $value['name'] ?></td>
                             <td><?= $value['designition'] ?></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
