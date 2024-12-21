@@ -17,22 +17,22 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form id="noticeBoardForm">
+                <form method="post" action="<?= base_url() ?>admin/media" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Media Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="notice_title">
+                        <input type="text" class="form-control form-control-sm" name="media_title">
                     </div>
                     <div class="form-group">
                         <span for="">Upload Image(JPG,PNG)<span class="text-danger">*</span></span>
-                        <input type="file" class="form-control form-control-sm" name="notice_file" accept=".jpg, .png, .pdf" required>
+                        <input type="file" class="form-control form-control-sm" name="media_photo" accept=".jpg, .png, .jpeg" required>
                     </div>
                     <div class="form-group">
                         <span for="">Upload File(PDF)</span>
-                        <input type="file" class="form-control form-control-sm" name="notice_file" accept=".jpg, .png, .pdf" required>
+                        <input type="file" class="form-control form-control-sm" name="media_file" accept=".pdf" required>
                     </div>
                     <div class="form-group">
                         <span for="resultdesc">Result Description:</span>
-                        <textarea name="resultdesc" id="editor" class="form-control form-control-sm" required><?= old('resultdesc') ?></textarea>
+                        <textarea name="mediadesc" id="editor" class="form-control form-control-sm"></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>

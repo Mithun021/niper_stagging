@@ -7,6 +7,7 @@ use App\Models\Department_model;
 use App\Models\Designation_model;
 use App\Models\Employee_model;
 use App\Models\Image_gallery_model;
+use App\Models\Media_model;
 use App\Models\Permission_model;
 use App\Models\Photo_album_file_model;
 use App\Models\Photo_album_model;
@@ -392,11 +393,46 @@ use App\Models\UserModel;
         }
         
         public function media(){
+            $media_model = new Media_model();
             $data = ['title' => 'Media'];
             if ($this->request->is("get")) {
                 return view('admin/media',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $media_photo = $this->request->getFile('media_photo');
+                $media_file = $this->request->getFile('media_file');
+                if ($media_photo->isValid() && ! $media_photo->hasMoved()) {
+                    $media_photoNewName = 'photo_' .$media_photo->getRandomName();
+                    $media_photo->move(ROOTPATH . 'public/admin/uploads/media', $media_photoNewName);    
+                }else{
+                 $media_photoNewName = "";
+                }
 
+                if ($media_file->isValid() && ! $media_file->hasMoved()) {
+                    $media_fileNewName = 'file_' .$media_file->getRandomName();
+                    $media_file->move(ROOTPATH . 'public/admin/uploads/media', $media_fileNewName);    
+                }else{
+                 $media_fileNewName = "";
+                }
+
+                $data = [
+                    'title' => $this->request->getPost('media_title'),
+                    'photo_image' => $media_photoNewName,
+                    'upload_file' => $media_fileNewName,
+                    'description' => $this->request->getPost('mediadesc'),
+                    'upload_by' =>  $loggeduserId,
+                ]; 
+
+                // echo "<pre>";print_r($data);
+                $result = $media_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/quick-link')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/quick-link')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 

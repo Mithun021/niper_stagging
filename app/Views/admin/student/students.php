@@ -1,6 +1,10 @@
 <!-- app/Views/studentdetails_form.php -->
 <?= $this->extend("admin/layouts/master") ?> 
 <?= $this->section("body-content"); ?>
+<?php
+    use App\Models\Employee_model;
+    $employee_model = new Employee_model();
+?>
 
 <div class="row">
     <!-- Form Section for Adding Student Details -->
@@ -152,6 +156,7 @@
                                 <td>D.O.B</td>
                                 <td>Personal Email</td>
                                 <td>Phone no.</td>
+                                <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
@@ -172,6 +177,7 @@
                                 <td><?= date("d-M-Y", strtotime($value['date_of_birth'])) ?></td>
                                 <td><?= $value['personal_mail'] ?></td>
                                 <td><?= $value['phone_no'] ?></td>
+                                <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                         <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
