@@ -20,7 +20,7 @@
                 <form method="post" action="<?= base_url() ?>admin/banner-slider" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Upload File(JPG,PNG)</span>
-                        <input type="file" class="form-control form-control-sm" name="slider_file" accept=".jpg, .png, .jpeg" required multiple>
+                        <input type="file" class="form-control form-control-sm" name="slider_file[]" accept=".jpg, .png, .jpeg" required multiple>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
