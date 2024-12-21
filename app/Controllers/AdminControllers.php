@@ -521,43 +521,38 @@ use App\Models\Youtube_link_model;
                 $sessionData = session()->get('loggedUserData');
                 $loggeduserId = $sessionData['loggeduserId'] ?? null;
         
-                $slider_files = $this->request->getFiles();
-                $result = false;
+                if (!$loggeduserId) {
+                    return redirect()->to('admin/banner-slider')->with(
+                        'status', 
+                        '<div class="alert alert-danger" role="alert"> User session is not valid. Please log in again. </div>'
+                    );
+                }
         
+                $slider_files = $this->request->getFiles();
                 if ($slider_files && isset($slider_files['slider_file'])) {
                     foreach ($slider_files['slider_file'] as $file) {
                         if ($file->isValid() && !$file->hasMoved()) {
                             $newName = $file->getRandomName();
-                            $uploadPath = ROOTPATH . 'public/admin/uploads/slider/';
+                            $file->move(ROOTPATH . 'public/admin/uploads/slider', $newName);
         
-                            if (!is_dir($uploadPath)) {
-                                mkdir($uploadPath, 0777, true);
-                            }
-        
-                            if ($file->move($uploadPath, $newName)) {
-                                $file_data = [
-                                    'slider_photo' => $newName,
-                                    'upload_by' => $loggeduserId,
-                                ];
-                                $result = $banner_slider_model->add($file_data);
-                            } else {
-                                $result = 'File move failed!';
-                            }
-                        } else {
-                            $result = 'Invalid file or file has already been moved.';
-                            break;
+                            $file_data = [
+                                'slider_photo' => $newName,
+                                'upload_by' => $loggeduserId,
+                            ];
+                            
+                            $banner_slider_model->add($file_data);
                         }
                     }
-                } else {
-                    $result = 'No file selected.';
                 }
-        
-                if ($result === true) {
-                    return redirect()->to('admin/banner-slider')->with('status', '<div class="alert alert-success" role="alert">Banner image added successfully.</div>');
-                } else {
-                    return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">' . $result . '</div>');
-                }
-            }
+
+                return redirect()->to('admin/banner-slider')->with(
+                    'status', 
+                    '<div class="alert alert-success" role="alert"> Data added successfully. </div>'
+                );
+
+
+
+            } // end else if
         }
         
 
