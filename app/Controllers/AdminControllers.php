@@ -396,6 +396,7 @@ use App\Models\UserModel;
             $media_model = new Media_model();
             $data = ['title' => 'Media'];
             if ($this->request->is("get")) {
+                $data['media'] = $media_model->get();
                 return view('admin/media',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
@@ -429,9 +430,9 @@ use App\Models\UserModel;
                 // echo "<pre>";print_r($data);
                 $result = $media_model->add($data);
                 if ($result === true) {
-                    return redirect()->to('admin/quick-link')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                    return redirect()->to('admin/media')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
-                    return redirect()->to('admin/quick-link')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                    return redirect()->to('admin/media')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
         }

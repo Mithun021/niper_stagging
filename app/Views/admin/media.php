@@ -31,7 +31,7 @@
                         <input type="file" class="form-control form-control-sm" name="media_file" accept=".pdf" required>
                     </div>
                     <div class="form-group">
-                        <span for="resultdesc">Result Description:</span>
+                        <span for="">Description:</span>
                         <textarea name="mediadesc" id="editor" class="form-control form-control-sm"></textarea>
                     </div>
 
@@ -60,7 +60,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    <?php foreach ($media as $key => $value) { ?>
+                        <tr>
+                            <td><?= ++$key ?></td>
+                            <td><?= $value['title'] ?></td>
+                            <td>
+                                <?php if (!empty($value['photo_image']) && file_exists('public/admin/uploads/media/' . $value['photo_image'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/media/<?= $value['photo_image'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/media/<?= $value['photo_image'] ?>" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/media/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
+
+                                <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/media/' . $value['upload_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/media/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/media/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
+                            </td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                            <td><?= $value['created_at'] ?></td>
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                    <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                    <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                    <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 </div>
