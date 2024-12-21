@@ -50,7 +50,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($variable as $key => $value) { ?>
+                    <?php foreach ($banner_slider as $key => $value) { ?>
                         <tr>
                             <td><?= $key+1 ?></td>
                             <td>
