@@ -78,7 +78,7 @@
                             <tr>
                                 <td><?= $key+1 ?></td>
                                 <td>
-                                <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/media/' . $value['upload_file'])): ?>
+                                <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/act_rules/' . $value['upload_file'])): ?>
                                     <a href="<?= base_url() ?>public/admin/uploads/act_rules/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/act_rules/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
                                 <?php else: ?>
                                     <img src="<?= base_url() ?>public/admin/uploads/act_rules/invalid_image.png" alt="" height="40px">
