@@ -198,7 +198,7 @@ use App\Models\UserModel;
                 $data['department'] = $department_model->activeData();
                 $data['program'] = $program_model->activeData();
                 $data['students'] = $student_model->getUnmappedStudents();
-                echo "<pre>"; print_r($data['students']); die;
+                // echo "<pre>"; print_r($data['students']); die;
                 return view('admin/student/program-dept-std-mapping',$data);
             }else if ($this->request->is("post")) {
 

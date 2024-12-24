@@ -29,10 +29,10 @@
 
         public function getUnmappedStudents(){
             $sql = "
-                SELECT students.id,students.first_name, students.middle_name, students.last_name, students.enrollment_no 
+                SELECT students.id as matched_std_id,students.first_name, students.middle_name, students.last_name, students.enrollment_no 
                 FROM students 
                 LEFT JOIN student_prog_dept_mapping ON students.id = student_prog_dept_mapping.student_id 
-                WHERE student_prog_dept_mapping.student_id IS NULL
+                WHERE student_prog_dept_mapping.student_id IS NULL ORDER BY students.enrollment_no ASC
             ";
             $query = $this->db->query($sql);
             return $query->getResultArray();

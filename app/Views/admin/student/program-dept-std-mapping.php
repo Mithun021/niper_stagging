@@ -2,6 +2,17 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
 
+<style>
+    .student-details{
+        position: relative;
+    }
+    .student-details span{
+        float: left;
+        width: 32%;
+        margin-bottom: 10px;
+    }
+</style>
+
 <div class="row">
     <!-- Form Section for Adding  -->
     <div class="col-lg-12">
@@ -60,6 +71,11 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <span for="Batch">Student Details:</span>
+                            <div class="student-details">
+                                <?php foreach ($students as $key => $value) { ?>
+                                    <span><input type="checkbox" name="student_id[]" id="" value="<?= $value['matched_std_id'] ?>"> <?= $value['first_name']." ".$value['middle_name']." ".$value['last_name']. " - ".$value['enrollment_no'] ?></span>
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-12">
