@@ -39,7 +39,7 @@
                     <!-- Act Rules Description -->
                     <div class="form-group">
                         <span for="Actrulesdesc">Act Rules Description:</span>
-                        <textarea name="Actrulesdesc" id="editor" class="form-control form-control-sm" rows="4" required></textarea>
+                        <textarea name="Actrulesdesc" id="editor" class="form-control form-control-sm" rows="4"></textarea>
                     </div>
 
                     <!-- Act Rules File Upload -->
