@@ -19,6 +19,7 @@ use App\Models\Photo_album_file_model;
 use App\Models\Photo_album_model;
 use App\Models\Quick_link_model;
 use App\Models\Roles_model;
+use App\Models\Testimonials_model;
 use App\Models\UserModel;
 use App\Models\Youtube_link_model;
 
@@ -199,10 +200,38 @@ use App\Models\Youtube_link_model;
         // }
 
         public function testimonial(){
+            $testimonials_model = new Testimonials_model();
             $data = ['title' => 'Testimonial'];
             if ($this->request->is("get")) {
+                $data['testimonial'] = $testimonials_model->get();
                 return view('admin/testimonial',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $userPhoto = $this->request->getFile('userphoto');
+                if ($userPhoto->isValid() && ! $userPhoto->hasMoved()) {
+                    $userPhotoImageName = "admission".$userPhoto->getRandomName();
+                    $userPhoto->move(ROOTPATH . 'public/admin/uploads/testimonials', $userPhotoImageName);    
+                }else{
+                 $userPhotoImageName = "";
+                }
+
+                $data = [
+                    'name' => $this->request->getPost('name'),
+                    'designation' => $this->request->getPost('designation'),
+                    'upload_file' => $userPhotoImageName,
+                    'feedback' => $this->request->getPost('feedback'),
+                    'upload_by' =>  $loggeduserId,
+                ];
+
+                $result = $testimonials_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/testimonial')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/testimonial')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
 
             }
         }
