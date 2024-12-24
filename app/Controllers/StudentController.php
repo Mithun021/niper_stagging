@@ -192,10 +192,13 @@ use App\Models\UserModel;
         public function program_dept_std_mapping(){
             $department_model = new Department_model();
             $program_model = new Program_model();
+            $student_model = new Student_model();
             $data = ['title' => 'Program Dept. Std. Mapping'];
             if ($this->request->is("get")) {
                 $data['department'] = $department_model->activeData();
                 $data['program'] = $program_model->activeData();
+                $data['students'] = $student_model->getUnmappedStudents();
+                echo "<pre>"; print_r($data['students']); die;
                 return view('admin/student/program-dept-std-mapping',$data);
             }else if ($this->request->is("post")) {
 
