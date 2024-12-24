@@ -22,7 +22,7 @@
             if($id != null){
                 $result = $this->where('id',$id)->first();
             }else{
-                $result = $this->orderBy('enrollment_no','asc')->findAll();
+                $result = $this->orderBy('rules_type','asc')->findAll();
             }
             return $result;
         }
