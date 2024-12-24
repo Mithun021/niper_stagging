@@ -18,7 +18,7 @@
                 <form action="/progdeptstudentmap/store" method="post">
 
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <div class="form-group">
                             <span for="Deptid">Department ID:</span>
                             <select name="Deptid" id="Deptid" class="form-control form-control-sm" required >
@@ -29,7 +29,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <!-- Program ID -->
                         <div class="form-group">
                             <span for="Progid">Program ID:</span>
@@ -38,17 +38,8 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <!-- Batch -->
-                        <div class="form-group">
-                            <span for="Batch">Batch Strat and End Year:</span>
-                            <div class="input-group">
-                                <input type="number" class="form-control form-control-sm" name="batch_start_year"  placeholder="Start Year" min="2000">
-                                <input type="number" class="form-control form-control-sm" name="batch_end_year"  placeholder="End Year" min="2000">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
+                    
+                    <div class="col-lg-4">
                         <!-- Semester -->
                         <div class="form-group">
                             <span for="semester">Semester:</span>
