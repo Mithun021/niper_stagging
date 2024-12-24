@@ -70,7 +70,7 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <h3 class="mb-2">Student Details:</span>
+                            <h3 class="mb-2">Student Details:</h3>
                             <div class="student-details">
                                 <?php foreach ($students as $key => $value) { ?>
                                     <span><input type="checkbox" name="student_id[]" id="" value="<?= $value['matched_std_id'] ?>"> <?= $value['first_name']." ".$value['middle_name']." ".$value['last_name']. " - ".$value['enrollment_no'] ?></span>
