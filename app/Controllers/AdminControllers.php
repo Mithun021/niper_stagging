@@ -2,6 +2,7 @@
     namespace App\Controllers;
 
 use App\Models\About_niper_model;
+use App\Models\Admission_model;
 use App\Models\Banner_slider_model;
 use App\Models\Bog_members_model;
 use App\Models\Bog_model;
@@ -794,11 +795,38 @@ use App\Models\Youtube_link_model;
         }
 
         public function admission(){
+            $admission_model = new Admission_model();
             $data = ['title' => 'Admission'];
             if ($this->request->is("get")) {
+                $data['admission'] = $admission_model->get();
                 return view('admin/admission',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $admission_file = $this->request->getFile('admission_file');
+                if ($admission_file->isValid() && ! $admission_file->hasMoved()) {
+                    $admission_fileImageName = "admission".$admission_file->getRandomName();
+                    $admission_file->move(ROOTPATH . 'public/admin/uploads/admission', $admission_fileImageName);    
+                }else{
+                 $admission_fileImageName = "";
+                }
+                $data = [
+                    'title' => $this->request->getPost('admission_title'),
+                    'files' => $admission_fileImageName,
+                    'description' => $this->request->getPost('Performance_description'),
+                    'status' => $this->request->getPost('status'),
+                    'upload_by' =>  $loggeduserId,
+                ];
 
+                $result = $admission_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/admission')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/admission')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+                    
             }
         }
 
