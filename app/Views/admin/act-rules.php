@@ -2,6 +2,11 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
 
+<?php
+    use App\Models\Employee_model;
+    $employee_model = new Employee_model();
+?>
+
 <div class="row">
     <!-- Form Section for Adding Act Rules Details -->
     <div class="col-lg-4">
@@ -70,6 +75,7 @@
                                 <td>File</td>
                                 <td>Act Rules Type</td>
                                 <td>Act Rules Title</td>
+                                <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
@@ -86,6 +92,7 @@
                                 </td>
                                 <td><?= $value['rules_type'] ?></td>
                                 <td><?= $value['rules_title'] ?></td>
+                                <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                         <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
