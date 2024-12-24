@@ -70,8 +70,8 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <span for="Batch">Student Details:</span>
-                            <div class="student-details" style="border: 1px solid rgb(156, 154, 154); padding: 20px 10px; border-radius : 5px;">
+                            <h3 class="mb-2">Student Details:</span>
+                            <div class="student-details">
                                 <?php foreach ($students as $key => $value) { ?>
                                     <span><input type="checkbox" name="student_id[]" id="" value="<?= $value['matched_std_id'] ?>"> <?= $value['first_name']." ".$value['middle_name']." ".$value['last_name']. " - ".$value['enrollment_no'] ?></span>
                                 <?php } ?>
