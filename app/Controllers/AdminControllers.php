@@ -220,7 +220,7 @@ use App\Models\Youtube_link_model;
 
                 $data = [
                     'name' => $this->request->getPost('name'),
-                    'designation' => $this->request->getPost('designation'),
+                    'designition' => $this->request->getPost('designation'),
                     'upload_file' => $userPhotoImageName,
                     'feedback' => $this->request->getPost('feedback'),
                     'upload_by' =>  $loggeduserId,
