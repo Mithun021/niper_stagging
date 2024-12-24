@@ -14,7 +14,7 @@
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
                 <div class="d-flex">
                     
-                    <form action="<?= base_url() ?>admin/export_student">
+                    <form action="<?= base_url() ?>admin/export_student" method="post">
                     <button type="submit" class="btn btn-sm btn-danger" id="export_sample_btn" onclick="return confirm('Are you sure...')">Export Std. Sample</button>
                     </form>
                     <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>

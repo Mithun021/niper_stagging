@@ -58,7 +58,7 @@ use App\Models\UserModel;
 
         public function export_student(){
             $student_model = new Student_model();
-            echo "ok";
+            // echo "ok";
             // CSV Header
             $csvData = "first_name,middle_name,last_name,enrollment_no,father_name,mother_name,date_of_birth,blood_group,personal_mail,official_mail,phone_no,gender,permanent_address,correspondence_address\n";
 
