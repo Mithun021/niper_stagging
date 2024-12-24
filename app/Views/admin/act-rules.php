@@ -11,15 +11,12 @@
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')): ?>
-                    <div class="alert alert-success">
-                        <?= esc(session()->getFlashdata('status')) ?>
-                    </div>
+                    <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="/actrulesdetails/store" method="post" enctype="multipart/form-data">
-                    <?= csrf_field() ?>
-
+                <form action="<?= base_url() ?>admin/act-rules" method="post" enctype="multipart/form-data">
+                    
                     <!-- Act Rules Type -->
                     <div class="form-group">
                         <span for="Actrulestype">Act Rules Type:</span>
@@ -47,8 +44,8 @@
 
                     <!-- Act Rules File Upload -->
                     <div class="form-group">
-                        <span for="Actrulesfileupload">Upload Act Rules File:(.pdf,.doc,.docx,.xls,.xlsx,.jpg,.png)</span>
-                        <input type="file" name="Actrulesfileupload" id="Actrulesfileupload" class="form-control form-control-sm" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.png" required>
+                        <span for="Actrulesfileupload">Upload Act Rules File:(.pdf,.jpg,.png)</span>
+                        <input type="file" name="Actrulesfileupload" id="Actrulesfileupload" class="form-control form-control-sm" accept=".pdf,.jpg,.png" required>
                     </div>
 
                     <!-- Submit Button -->
@@ -70,14 +67,34 @@
                         <thead>
                             <tr>
                                 <td>SN</td>
+                                <td>File</td>
                                 <td>Act Rules Type</td>
                                 <td>Act Rules Title</td>
-                                <td>Act Rules File</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            
+                        <?php foreach ($act_rules as $key => $value) { ?>
+                            <tr>
+                                <td><?= $key+1 ?></td>
+                                <td>
+                                <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/media/' . $value['upload_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/act_rules/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/act_rules/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/act_rules/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
+                                </td>
+                                <td><?= $value['rules_type'] ?></td>
+                                <td><?= $value['rules_title'] ?></td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>

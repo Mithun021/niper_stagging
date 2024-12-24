@@ -2,6 +2,7 @@
     namespace App\Controllers;
 
 use App\Models\About_niper_model;
+use App\Models\Act_rules_model;
 use App\Models\Admission_model;
 use App\Models\Banner_slider_model;
 use App\Models\Bog_members_model;
@@ -831,11 +832,37 @@ use App\Models\Youtube_link_model;
         }
 
         public function act_rules(){
+            $act_rules_model = new Act_rules_model();
             $data = ['title' => 'Act Rules'];
             if ($this->request->is("get")) {
+                $data['act_rules'] = $act_rules_model->get();
                 return view('admin/act-rules',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $rules_file = $this->request->getFile('Actrulesfileupload');
+                if ($rules_file->isValid() && ! $rules_file->hasMoved()) {
+                    $rules_fileImageName = "admission".$rules_file->getRandomName();
+                    $rules_file->move(ROOTPATH . 'public/admin/uploads/act_rules', $rules_fileImageName);    
+                }else{
+                 $rules_fileImageName = "";
+                }
+                $data = [
+                    'rules_type' => $this->request->getPost('Actrulestype'),
+                    'rules_title' => $this->request->getPost('Actrulestitle'),
+                    'upload_file' => $rules_fileImageName,
+                    'rules_description' => $this->request->getPost('Actrulesdesc'),
+                    'upload_by' =>  $loggeduserId,
+                ];
 
+                $result = $act_rules_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/act-rules')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/act-rules')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 
