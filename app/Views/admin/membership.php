@@ -68,7 +68,6 @@
                                 <td>Start Date</td>
                                 <td>End Date</td>
                                 <td>Upload by</td>
-                                <td>Create at</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
@@ -80,10 +79,12 @@
                                 <td><?= date("d-m-Y", strtotime($value['start_date'])) ?></td>
                                 <td><?= date("d-m-Y", strtotime($value['end_date'])) ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
-                                <td><?= $value['created_at'] ?></td>
                                 <td>
-                                    <a href="<?= base_url() ?>admin/membership/<?= $value['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
-                                    <a href="<?= base_url() ?>admin/membership/<?= $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
                                 </td>
                             </tr>
                         <?php } ?>
