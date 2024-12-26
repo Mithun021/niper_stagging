@@ -122,8 +122,8 @@
                                 <td><?= $value['department_name'] ?></td>
                                 <td><?= $value['program_name'] ?></td>
                                 <td><?= $value['semester'] ?></td>
-                                <td><?= $value['upload_by'] ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                                <td><?= $value['created_at'] ?></td>
                                 <td>
                                     <a href="<?= base_url() ?>admin/edit-program-dept-std-mapping/<?= $value['student_mapping_id'] ?>" class="btn btn-sm btn-primary">Edit</a>
                                     <a href="<?= base_url() ?>admin/delete-program-dept-std-mapping/<?= $value['student_mapping_id'] ?>" class="btn btn-sm btn-danger">Delete</a>
