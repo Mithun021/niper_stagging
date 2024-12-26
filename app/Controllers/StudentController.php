@@ -211,7 +211,7 @@ use App\Models\UserModel;
                 if (empty($student_id)) {
                     return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">Please select at least one student.</div>');
                 }
-                $num = 1;
+                $num = 0;
                 foreach ($student_id as $value) {
                     $data = [
                         'student_id' => $value,
