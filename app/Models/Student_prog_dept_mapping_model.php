@@ -49,6 +49,10 @@
             $builder->join('department', 'student_prog_dept_mapping.department_id = department.id', 'left');
             $builder->join('program_category', 'student_prog_dept_mapping.program_id = program_category.id', 'left');
             
+            $builder->orderBy('student_prog_dept_mapping.department_id', 'ASC');
+            $builder->orderBy('student_prog_dept_mapping.program_id', 'ASC');
+            $builder->orderBy('student_prog_dept_mapping.student_id', 'ASC');
+
             // Execute and get the result
             $query = $builder->get();
             return $query->getResultArray();
