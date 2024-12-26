@@ -126,7 +126,7 @@
         $('#Deptid').change(function(){
             var dept_id = $(this).val();
             $.ajax({
-                url: <?= base_url() ?>'fetch-programs',
+                url: '<?= base_url() ?>fetch-programs',
                 type: 'post',
                 data: {dept_id: dept_id},
                 success: function(response){
