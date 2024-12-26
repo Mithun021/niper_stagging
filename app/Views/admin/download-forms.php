@@ -70,8 +70,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if ($downloadForms): ?>
-                                <?php foreach ($downloadForms as $key => $form): ?>
+                            <?php if ($download_forms): ?>
+                                <?php foreach ($download_forms as $key => $form): ?>
                                     <tr>
                                         <td><?= $key + 1 ?></td>
                                         <td>
