@@ -37,6 +37,8 @@
                 FROM program_category 
                 LEFT JOIN pargram_department_mapping ON program_category.id = pargram_department_mapping.program_id 
                 WHERE pargram_department_mapping.department_id = $departmentId
+                AND program_category.status = 1 
+                AND pargram_department_mapping.status = 1
             ";
             $query = $this->db->query($sql);
             return $query->getResultArray();
