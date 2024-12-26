@@ -2,6 +2,11 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
 
+<?php
+    use App\Models\Employee_model;
+    $employee_model = new Employee_model();
+?>
+
 <style>
     .student-details{
         position: relative;
@@ -100,16 +105,31 @@
                         <thead>
                             <tr>
                                 <td>SN</td>
+                                <td>Student</td>
                                 <td>Department</td>
                                 <td>Program</td>
-                                <td>Student</td>
                                 <td>Semester</td>
-                                <td>Batch</td>
+                                <td>Upload by</td>
+                                <td>Upload Date</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Dynamically populated rows go here -->
+                        <?php foreach ($variable as $key => $value) { ?>
+                            <tr>
+                                <td><?= $key+1 ?></td>
+                                <td><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></td>
+                                <td><?= $value['department_name'] ?></td>
+                                <td><?= $value['program_name'] ?></td>
+                                <td><?= $value['semester'] ?></td>
+                                <td><?= $value['upload_by'] ?></td>
+                                <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                                <td>
+                                    <a href="<?= base_url() ?>admin/edit-program-dept-std-mapping/<?= $value['student_mapping_id'] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="<?= base_url() ?>admin/delete-program-dept-std-mapping/<?= $value['student_mapping_id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>

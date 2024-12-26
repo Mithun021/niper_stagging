@@ -201,7 +201,7 @@ use App\Models\UserModel;
                 $data['program'] = $program_model->activeData();
                 $data['students'] = $student_model->getUnmappedStudents();
                 $data['students_mapped_data'] = $student_prog_dept_mapping_model->getStudentProgramDeptData();
-                echo "<pre>"; print_r($data['students_mapped_data']); die;
+                // echo "<pre>"; print_r($data['students_mapped_data']); die;
                 return view('admin/student/program-dept-std-mapping',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
