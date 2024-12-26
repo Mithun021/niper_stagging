@@ -26,7 +26,7 @@
                     <!-- Form Description -->
                     <div class="form-group mt-3">
                         <span for="Formdesc">Form Description:</span>
-                        <textarea name="Formdesc" id="editor" class="form-control form-control-sm" rows="4" required><?= esc(old('Formdesc')) ?></textarea>
+                        <textarea name="Formdesc" id="editor" class="form-control form-control-sm" rows="4"><?= esc(old('Formdesc')) ?></textarea>
                     </div>
 
                     <!-- Form File Upload -->
