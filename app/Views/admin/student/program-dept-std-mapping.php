@@ -115,7 +115,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($variable as $key => $value) { ?>
+                        <?php foreach ($students_mapped_data as $key => $value) { ?>
                             <tr>
                                 <td><?= $key+1 ?></td>
                                 <td><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></td>
