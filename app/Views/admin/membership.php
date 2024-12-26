@@ -2,6 +2,11 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
 
+<?php
+    use App\Models\Employee_model;
+    $employee_model = new Employee_model();
+?>
+
 <div class="row">
     <!-- Form Section for Adding Membership Details -->
     <div class="col-lg-4">
@@ -62,11 +67,26 @@
                                 <td>Title</td>
                                 <td>Start Date</td>
                                 <td>End Date</td>
+                                <td>Upload by</td>
+                                <td>Create at</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Dynamically populated rows go here -->
+                        <?php foreach ($variable as $key => $value) { ?>
+                            <tr>
+                                <td><?= $key+1 ?></td>
+                                <td><?= $value['title'] ?></td>
+                                <td><?= date("d-m-Y", strtotime($value['start_date'])) ?></td>
+                                <td><?= date("d-m-Y", strtotime($value['end_date'])) ?></td>
+                                <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                                <td><?= $value['created_at'] ?></td>
+                                <td>
+                                    <a href="<?= base_url() ?>admin/membership/<?= $value['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="<?= base_url() ?>admin/membership/<?= $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>

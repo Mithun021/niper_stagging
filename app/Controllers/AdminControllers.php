@@ -771,6 +771,7 @@ use App\Models\Youtube_link_model;
             $membership_model = new Membership_model();
             $data = ['title' => 'Membership'];
             if ($this->request->is("get")) {
+                $data['membership'] = $membership_model->get();
                 return view('admin/membership',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
