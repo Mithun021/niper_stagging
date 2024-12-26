@@ -10,7 +10,9 @@
                 <h4 class="card-title m-0">Add Annual Report</h4>
             </div>
             <div class="card-body">
-
+                <?php if (session()->getFlashdata('status')): ?>
+                    <?= session()->getFlashdata('status') ?>
+                <?php endif; ?>
                 <!-- Form Start -->
                 <form action="<?= base_url() ?>admin/annual-report" method="post" enctype="multipart/form-data">
                     <!-- Annual Report Title -->
