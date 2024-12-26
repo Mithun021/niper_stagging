@@ -30,7 +30,7 @@
         public function getStudentProgramDeptData(){
             $builder = $this->db->table('student_prog_dept_mapping');
             $builder->select('
-                student_prog_dept_mapping.id,
+                student_prog_dept_mapping.id as student_mapping_id,
                 student_prog_dept_mapping.student_id,
                 student_prog_dept_mapping.department_id,
                 student_prog_dept_mapping.program_id,
