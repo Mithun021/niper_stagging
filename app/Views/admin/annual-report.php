@@ -12,7 +12,7 @@
             <div class="card-body">
 
                 <!-- Form Start -->
-                <form action="/annualreports/store" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/annual-report" method="post" enctype="multipart/form-data">
                     <!-- Annual Report Title -->
                     <div class="form-group">
                         <span for="Annualreporttitle">Annual Report Title:</span>
@@ -33,8 +33,8 @@
 
                     <!-- Annual Report File Upload -->
                     <div class="form-group">
-                        <span for="Annualreportfileupload">Upload Report File(.pdf,.docx,.xlsx):</span>
-                        <input type="file" name="Annualreportfileupload" id="Annualreportfileupload" class="form-control form-control-sm" accept=".pdf,.docx,.xlsx" required>
+                        <span for="Annualreportfileupload">Upload Report File(.pdf):</span>
+                        <input type="file" name="Annualreportfileupload" id="Annualreportfileupload" class="form-control form-control-sm" accept=".pdf" required>
                     </div>
                     <!-- Submit Button -->
                     <button type="submit" class="btn btn-primary mt-4">Submit</button>

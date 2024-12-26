@@ -4,6 +4,7 @@
 use App\Models\About_niper_model;
 use App\Models\Act_rules_model;
 use App\Models\Admission_model;
+use App\Models\Annual_report_model;
 use App\Models\Banner_slider_model;
 use App\Models\Bog_members_model;
 use App\Models\Bog_model;
@@ -946,11 +947,44 @@ use App\Models\Youtube_link_model;
         }
 
         public function annual_report(){
+            $annual_report_model = new Annual_report_model();
             $data = ['title' => 'Annual Report'];
             if ($this->request->is("get")) {
+                $data['annual_report'] = $annual_report_model->get();
                 return view('admin/annual-report',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $report_photo = $this->request->getFile('Annualreportphotoupload');
+                if ($report_photo->isValid() && ! $report_photo->hasMoved()) {
+                    $report_photoImageName = "photo".$report_photo->getRandomName();
+                    $report_photo->move(ROOTPATH . 'public/admin/uploads/annual_report', $report_photoImageName);    
+                }else{
+                 $report_photoImageName = "";
+                }
+                $report_file = $this->request->getFile('Annualreportfileupload');
+                if ($report_file->isValid() && ! $report_file->hasMoved()) {
+                    $report_fileImageName = "file".$report_file->getRandomName();
+                    $report_file->move(ROOTPATH . 'public/admin/uploads/annual_report', $report_fileImageName);    
+                }else{
+                 $report_fileImageName = "";
+                }
+                $data = [
+                    'title' => $this->request->getPost('Annualreporttitle'),
+                    'upload_photo' => $report_photoImageName,
+                    'upload_file' => $report_fileImageName,
+                    'description' => $this->request->getPost('Annualreportdesc'),
+                    'upload_by' =>  $loggeduserId,
+                ];
 
+                $result = $annual_report_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/annual-report')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/annual-report')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
         public function placement_details(){
