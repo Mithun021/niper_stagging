@@ -51,7 +51,7 @@
             
             // Execute and get the result
             $query = $builder->get();
-            return $query->getResult();
+            return $query->getResultArray();
         }
 
     }
