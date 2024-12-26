@@ -65,7 +65,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Dynamically populated rows go here -->
+                        <?php foreach ($annual_report as $key => $value) { ?>
+                            <tr>
+                                <td><?= $key+1 ?></td>
+                                <td><?= $value['title'] ?></td>
+                                <td><?= $value['description'] ?></td>
+                                <td>
+                                <?php if (!empty($value['upload_photo']) && file_exists('public/admin/uploads/annual_report/' . $value['upload_photo'])): ?>
+                                        <a href="<?= base_url() ?>public/admin/uploads/annual_report/<?= $value['upload_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/annual_report/<?= $value['upload_photo'] ?>" alt="" height="30px"></a>
+                                    <?php else: ?>
+                                        <img src="<?= base_url() ?>public/admin/uploads/annual_report/invalid_image.png" alt="" height="40px">
+                                    <?php endif; ?>
+
+                                    <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/annual_report/' . $value['upload_file'])): ?>
+                                        <a href="<?= base_url() ?>public/admin/uploads/annual_report/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                    <?php else: ?>
+                                        <img src="<?= base_url() ?>public/admin/uploads/annual_report/invalid_image.png" alt="" height="40px">
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <a href="<?= base_url() ?>admin/annual-report/<?= $value['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="<?= base_url() ?>admin/annual-report/<?= $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
