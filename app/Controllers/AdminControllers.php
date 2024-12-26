@@ -14,6 +14,7 @@ use App\Models\Employee_model;
 use App\Models\Image_gallery_model;
 use App\Models\Leadership_media_link_model;
 use App\Models\Media_model;
+use App\Models\Membership_model;
 use App\Models\Permission_model;
 use App\Models\Photo_album_file_model;
 use App\Models\Photo_album_model;
@@ -767,11 +768,30 @@ use App\Models\Youtube_link_model;
         }
 
         public function membership(){
+            $membership_model = new Membership_model();
             $data = ['title' => 'Membership'];
             if ($this->request->is("get")) {
                 return view('admin/membership',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                
+                $data = [
+                    'title' => $this->request->getPost('Membershiptitle'),
+                    'description' => $this->request->getPost('description'),
+                    'start_date' => $this->request->getPost('Membershipstartdate'),
+                    'end_date' => $this->request->getPost('Membershipenddate'),
+                    'upload_by' =>  $loggeduserId,
+                ];
 
+                $result = $membership_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/membership')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                } else {
+                    return redirect()->to('admin/membership')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 

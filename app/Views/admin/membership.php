@@ -4,20 +4,18 @@
 
 <div class="row">
     <!-- Form Section for Adding Membership Details -->
-    <div class="col-lg-5">
+    <div class="col-lg-4">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Add Membership Details</h4>
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')): ?>
-                    <div class="alert alert-success">
-                        <?= esc(session()->getFlashdata('status')) ?>
-                    </div>
+                    <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="/membershipdetails/store" method="post">
+                <form action="<?= base_url() ?>admin/membership" method="post">
 
                     <div class="form-group mt-3">
                         <span for="Membershiptitle"> Title:</span>
@@ -27,7 +25,7 @@
                     <!-- Membership Description -->
                     <div class="form-group mt-3">
                         <span for="Membershipdesc"> Description:</span>
-                        <textarea id="editor" name="content"></textarea>
+                        <textarea id="editor" name="description"></textarea>
                     </div>
 
                     <!-- Membership Start Date -->
@@ -39,7 +37,7 @@
                     <!-- Membership End Date -->
                     <div class="form-group mt-3">
                         <span for="Membershipenddate">Membership End Date:</span>
-                        <input type="date" name="Membershipenddate" id="Membershipenddate" class="form-control form-control-sm" required>
+                        <input type="date" name="Membershipenddate" id="Membershipenddate" class="form-control form-control-sm">
                     </div>
                     
                     <!-- Submit Button -->
@@ -50,7 +48,7 @@
     </div>
 
     <!-- Table Section to Display Existing Memberships (Optional) -->
-    <div class="col-lg-7">
+    <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Membership List</h4>
