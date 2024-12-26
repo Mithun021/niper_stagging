@@ -60,7 +60,6 @@
                                 <td>Report Title</td>
                                 <td>Description</td>
                                 <td>File</td>
-                                <td>Photo</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
