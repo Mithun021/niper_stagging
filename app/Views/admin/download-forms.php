@@ -83,7 +83,7 @@
                                         </td>
                                         <td><?= $form['title'] ?></td>
                                         <td><?= $form['description'] ?></td>
-                                        <td><?= $form['status'] == 1 ? 'Active' : 'Inactive' ?></td>
+                                        <td><?= ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?></td>
                                         <td>
                                             <a href="<?= base_url() ?>admin/download-forms/<?= $form['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
                                             <a href="<?= base_url() ?>admin/download-forms/<?= $form['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
