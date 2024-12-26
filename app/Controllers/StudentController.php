@@ -6,6 +6,7 @@ use App\Models\Designation_model;
 use App\Models\Employee_model;
 use App\Models\Program_model;
 use App\Models\Student_model;
+use App\Models\Student_prog_dept_mapping_model;
 use App\Models\UserModel;
 
     
@@ -193,6 +194,7 @@ use App\Models\UserModel;
             $department_model = new Department_model();
             $program_model = new Program_model();
             $student_model = new Student_model();
+            $student_prog_dept_mapping_model = new Student_prog_dept_mapping_model();
             $data = ['title' => 'Program Dept. Std. Mapping'];
             if ($this->request->is("get")) {
                 $data['department'] = $department_model->activeData();
@@ -201,7 +203,31 @@ use App\Models\UserModel;
                 // echo "<pre>"; print_r($data['students']); die;
                 return view('admin/student/program-dept-std-mapping',$data);
             }else if ($this->request->is("post")) {
-
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $student_id = $this->request->getPost('student_id');
+                if (empty($student_id)) {
+                    return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">Please select at least one student.</div>');
+                }
+                $num = 1;
+                foreach ($student_id as $value) {
+                    $data = [
+                        'student_id' => $value,
+                        'department_id' => $this->request->getPost('Deptid'),
+                        'program_id' => $this->request->getPost('Progid'),
+                        'semester' => $this->request->getPost('semester'),
+                        'upload_by' => $loggeduserId
+                    ];
+                    $num++;
+                    $result = $student_prog_dept_mapping_model->add($data);
+                }
+                if ($result) {
+                    return redirect()->back()->with('status', '<div class="alert alert-success" role="alert">'.$num.' Student mapped successfully.</div>');
+                } else {
+                    return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+                }
             }
         }
     }

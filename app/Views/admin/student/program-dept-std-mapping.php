@@ -26,7 +26,7 @@
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="/progdeptstudentmap/store" method="post">
+                <form action="<?= base_url() ?>admin/program-dept-std-mapping" method="post">
 
                 <div class="row">
                     <div class="col-lg-4">
