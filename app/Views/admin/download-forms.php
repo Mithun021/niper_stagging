@@ -62,15 +62,39 @@
                         <thead>
                             <tr>
                                 <td>SN</td>
+                                <td>File</td>
                                 <td>Form Title</td>
                                 <td>Description</td>
                                 <td>Status</td>
-                                <td>File</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Dynamically populated rows go here -->
+                            <?php if ($downloadForms): ?>
+                                <?php foreach ($downloadForms as $key => $form): ?>
+                                    <tr>
+                                        <td><?= $key + 1 ?></td>
+                                        <td>
+                                        <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/forms/' . $value['upload_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/forms/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/forms/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/forms/invalid_image.png" alt="" height="40px">
+                                        <?php endif; ?>
+                                        </td>
+                                        <td><?= $form['title'] ?></td>
+                                        <td><?= $form['description'] ?></td>
+                                        <td><?= $form['status'] == 1 ? 'Active' : 'Inactive' ?></td>
+                                        <td>
+                                            <a href="<?= base_url() ?>admin/download-forms/<?= $form['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                            <a href="<?= base_url() ?>admin/download-forms/<?= $form['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="6">No Record Found</td>
+                                </tr>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
