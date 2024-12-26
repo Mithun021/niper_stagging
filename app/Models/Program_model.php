@@ -35,8 +35,8 @@
             $sql = "
                 SELECT program_category.id, program_category.name 
                 FROM program_category 
-                LEFT JOIN program_department_mapping ON program_category.id = program_department_mapping.program_id 
-                WHERE program_department_mapping.department_id = $departmentId
+                LEFT JOIN pargram_department_mapping ON program_category.id = pargram_department_mapping.program_id 
+                WHERE pargram_department_mapping.department_id = $departmentId
             ";
             $query = $this->db->query($sql);
             return $query->getResultArray();
