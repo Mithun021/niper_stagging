@@ -33,7 +33,7 @@
 
         public function getProgramCategoriesByDepartment($departmentId) {
             $sql = "
-                SELECT program_category.id, program_category.name 
+                SELECT program_category.id as program_id, program_category.name as program_name
                 FROM program_category 
                 LEFT JOIN pargram_department_mapping ON program_category.id = pargram_department_mapping.program_id 
                 WHERE pargram_department_mapping.department_id = $departmentId
