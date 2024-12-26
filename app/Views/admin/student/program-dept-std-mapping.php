@@ -130,8 +130,13 @@
                 type: 'post',
                 data: {dept_id: dept_id},
                 success: function(response){
-                    // $('#Progid').html(response);
-                    console.log(response);
+                    // console.log(response);
+                    var programs = JSON.parse(response);
+                    var programOptions = '<option value="">Select Program</option>'; 
+                    $.each(programs, function(index, program){
+                        programOptions += '<option value="' + program.id + '">' + program.name + '</option>';
+                    });
+                    $('#Progid').html(programOptions);
                 }
             });
         });
