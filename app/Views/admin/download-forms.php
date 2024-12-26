@@ -4,22 +4,19 @@
 
 <div class="row">
     <!-- Form Section for Adding Download Form -->
-    <div class="col-lg-5">
+    <div class="col-lg-4">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Add Download Form</h4>
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')): ?>
-                    <div class="alert alert-success">
-                        <?= esc(session()->getFlashdata('status')) ?>
-                    </div>
+                    <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="/downloadforms/store" method="post" enctype="multipart/form-data">
-                    <?= csrf_field() ?>
-
+                <form action="<?= base_url() ?>admin/download-forms" method="post" enctype="multipart/form-data">
+                    
                     <!-- Form Title -->
                     <div class="form-group">
                         <span for="Formtitle">Form Title:</span>
@@ -42,8 +39,8 @@
                     <div class="form-group mt-3">
                         <span for="Formstatus">Form Status:</span>
                         <select name="Formstatus" id="Formstatus" class="form-control form-control-sm" required>
-                            <option value="active">Active</option>
-                            <option value="inactive">Inactive</option>
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
                         </select>
                     </div>
                     <!-- Submit Button -->
@@ -54,7 +51,7 @@
     </div>
 
     <!-- Table Section to Display Existing Download Forms (Optional) -->
-    <div class="col-lg-7">
+    <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Download Forms List</h4>

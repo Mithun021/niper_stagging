@@ -10,6 +10,7 @@ use App\Models\Bog_model;
 use App\Models\Contact_model;
 use App\Models\Department_model;
 use App\Models\Designation_model;
+use App\Models\Download_form_model;
 use App\Models\Employee_model;
 use App\Models\Image_gallery_model;
 use App\Models\Leadership_media_link_model;
@@ -352,11 +353,39 @@ use App\Models\Youtube_link_model;
             }
         }
         public function download_forms(){
+            $download_form_model = new Download_form_model();
             $data = ['title' => 'Download Forms'];
             if ($this->request->is("get")) {
+                $data['download_forms'] = $download_form_model->get();
                 return view('admin/download-forms',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $form_file = $this->request->getFile('Formfileupload');
+                if ($form_file->isValid() && ! $form_file->hasMoved()) {
+                    $form_fileName = $form_file->getRandomName();
+                    $form_file->move(ROOTPATH . 'public/admin/uploads/forms', $form_fileName);    
+                }else{
+                 $form_fileName = "";
+                }
 
+                $data = [
+                    'title' => $this->request->getPost('Formtitle'),
+                    'description' => $this->request->getPost('Formdesc'),
+                    'upload_file' => $form_fileName,
+                    'status' => $this->request->getPost('Formstatus'),
+                    'upload_by' =>  $loggeduserId,
+                ]; 
+
+                // echo "<pre>";print_r($data);
+                $result = $download_form_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/download-forms')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/download-forms')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
         public function photo_album() {
