@@ -31,16 +31,17 @@
             return $this->where('status',1)->findAll();
         }
 
-        public function getProgramCategoriesByDepartment($departmentId){
+        public function getProgramCategoriesByDepartment($departmentId) {
             return $this->db->table('program_category')
-                ->join('program_department_mapping', 'program_category.id = program_department_mapping.program_id', 'inner')
+                ->join('program_department_mapping', 'program_category.id = program_department_mapping.program_category_id', 'inner') // Correct the join condition
                 ->where('program_category.status', 1)
                 ->where('program_department_mapping.status', 1)
                 ->where('program_department_mapping.department_id', $departmentId)
-                ->select('program_category.name as program_name, program_category.id as program_id')
-                ->get() 
+                ->select('program_category.name as program_name, program_category.id as program_id') // Explicit field selection
+                ->get()
                 ->getResult();
         }
+        
 
         
     }
