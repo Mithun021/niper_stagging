@@ -118,4 +118,23 @@
     </div>
 </div>
 
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        // Fetch Programs based on Department
+        $('#Deptid').change(function(){
+            var dept_id = $(this).val();
+            $.ajax({
+                url: <?= base_url() ?>'fetch-programs',
+                type: 'post',
+                data: {dept_id: dept_id},
+                success: function(response){
+                    // $('#Progid').html(response);
+                    console.log(response);
+                }
+            });
+        });
+    });
+
 <?= $this->endSection() ?>
