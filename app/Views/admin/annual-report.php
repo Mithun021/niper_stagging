@@ -22,7 +22,7 @@
                     <!-- Annual Report Description -->
                     <div class="form-group">
                         <span for="Annualreportdesc">Annual Report Description:</span>
-                        <textarea name="Annualreportdesc" id="editor" class="form-control form-control-sm" rows="4" required></textarea>
+                        <textarea name="Annualreportdesc" id="editor" class="form-control form-control-sm" rows="4"></textarea>
                     </div>
 
                     <!-- Annual Report Photo Upload -->
