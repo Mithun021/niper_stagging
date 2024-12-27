@@ -11,18 +11,19 @@
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')): ?>
-                    <div class="alert alert-success">
-                        <?= esc(session()->getFlashdata('status')) ?>
-                    </div>
+                    <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="/recruiterdetails/store" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/instrument-rates" method="post">
                     <!-- Recruiter Title -->
                     <div class="form-group">
                         <span for="Recruitertitle">Instrument ID:</span>
                         <select name="Recruitertitle" id="Recruitertitle" class="form-control form-control-sm" required>
                             <option value="">--Select--</option>
+                        <?php foreach ($instruments as $instrument): ?>
+                            <option value="<?= $instrument['id'] ?>"><?= $instrument['title'] ?></option>
+                        <?php endforeach; ?>
                         </select>
                     </div>
 

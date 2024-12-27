@@ -14,6 +14,7 @@ use App\Models\Designation_model;
 use App\Models\Download_form_model;
 use App\Models\Employee_model;
 use App\Models\Image_gallery_model;
+use App\Models\Instrument_rates_model;
 use App\Models\Instruments_model;
 use App\Models\Leadership_media_link_model;
 use App\Models\Media_model;
@@ -1085,8 +1086,12 @@ use App\Models\Youtube_link_model;
             }
         }
         public function instrument_rates(){
+            $instruments_model = new Instruments_model();
+            $instrument_rates_model = new Instrument_rates_model();
             $data = ['title' => 'Instrument Rates'];
             if ($this->request->is("get")) {
+                $data['instrument_rates'] = $instrument_rates_model->get();
+                $data['instruments'] = $instruments_model->get();
                 return view('admin/instrument-rates',$data);
             }else if ($this->request->is("post")) {
 
