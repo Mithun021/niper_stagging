@@ -102,8 +102,10 @@
                                 <td><?php echo $value['not_interest_student']; ?></td>
                                 <td><?php echo $value['phd_students']; ?></td>
                                 <td>
-                                    <a href="<?= base_url() ?>admin/placement-details/<?= $value['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
-                                    <a href="<?= base_url() ?>admin/placement-details/<?= $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
                                 </td>
                             </tr>
                         <?php } ?>
