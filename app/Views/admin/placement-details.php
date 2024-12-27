@@ -100,7 +100,7 @@
                                 <td><?php echo $value['total_students']; ?></td>
                                 <td><?php echo $value['no_of_placed_students']; ?></td>
                                 <td><?php echo $value['not_interest_student']; ?></td>
-                                <td><?php echo $value['phd_student']; ?></td>
+                                <td><?php echo $value['phd_students']; ?></td>
                                 <td>
                                     <a href="<?= base_url() ?>admin/placement-details/<?= $value['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
                                     <a href="<?= base_url() ?>admin/placement-details/<?= $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
