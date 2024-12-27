@@ -1094,7 +1094,22 @@ use App\Models\Youtube_link_model;
                 $data['instruments'] = $instruments_model->get();
                 return view('admin/instrument-rates',$data);
             }else if ($this->request->is("post")) {
-
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $data = [
+                    'instrument_id' => $this->request->getPost('instrument_id'),
+                    'experiment_name' => $this->request->getPost('experiment_name'),
+                    'govt_rate' => $this->request->getPost('govt_rate'),
+                    'upload_by' =>  $loggeduserId,
+                ];
+                $result = $instrument_rates_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/instrument-rates')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/instrument-rates')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
         public function private_research_labs(){
