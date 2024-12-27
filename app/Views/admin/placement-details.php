@@ -2,6 +2,11 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
 
+<?php
+    use App\Models\Department_model;
+    $department_model = new Department_model();
+?>
+
 <div class="row">
     <!-- Form Section for Adding Placement Details -->
     <div class="col-lg-4">
@@ -87,7 +92,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Dynamically populated rows go here -->
+                        <?php foreach ($placement_details as $key => $value) { ?>
+                            <tr>
+                                <td><?php echo $key+1; ?></td>
+                                <td><?php echo $value['placement_batch']; ?></td>
+                                <td><?php $department = $department_model->get($value['department_id']); echo isset($department['name']) ? $department['name'] : '___'; ?></td>
+                                <td><?php echo $value['total_students']; ?></td>
+                                <td><?php echo $value['no_of_placed_students']; ?></td>
+                                <td><?php echo $value['not_interest_student']; ?></td>
+                                <td><?php echo $value['phd_student']; ?></td>
+                                <td>
+                                    <a href="<?= base_url() ?>admin/placement-details/<?= $value['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="<?= base_url() ?>admin/placement-details/<?= $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
