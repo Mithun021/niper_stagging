@@ -1040,7 +1040,7 @@ use App\Models\Youtube_link_model;
                 $data = [
                     'title' => $this->request->getPost('Recruitertitle'),
                     'description' => $this->request->getPost('Recruiterdsc'),
-                    'upload_file' => $Recruiterimage,
+                    'upload_file' => $RecruiterImageName,
                     'upload_by' =>  $loggeduserId,
                 ];
                 $result = $recruiter_details_model->add($data);
