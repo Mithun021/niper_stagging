@@ -37,7 +37,7 @@
                     <!-- Recruiter Description -->
                     <div class="form-group">
                         <span>Experiment name:</span>
-                        <input type="text" name="experiment_names" id="editor" class="form-control form-control-sm">
+                        <textarea type="text" name="experiment_names" id="editor" class="form-control form-control-sm"></textarea>
                     </div>
 
                     <!-- Recruiter Image Upload -->
