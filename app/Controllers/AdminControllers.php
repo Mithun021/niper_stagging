@@ -1100,7 +1100,7 @@ use App\Models\Youtube_link_model;
                 }
                 $data = [
                     'instrument_id' => $this->request->getPost('instrument_id'),
-                    'experiment_name' => $this->request->getPost('experiment_name'),
+                    'experiment_name' => $this->request->getPost('experiment_names'),
                     'govt_rate' => $this->request->getPost('govt_rate'),
                     'upload_by' =>  $loggeduserId,
                 ];

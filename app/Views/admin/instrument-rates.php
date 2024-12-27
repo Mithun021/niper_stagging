@@ -36,8 +36,8 @@
 
                     <!-- Recruiter Description -->
                     <div class="form-group">
-                        <span for="experiment_name">Experiment name:</span>
-                        <input type="text" name="experiment_name" id="editor" class="form-control form-control-sm">
+                        <span>Experiment name:</span>
+                        <input type="text" name="experiment_names" id="editor" class="form-control form-control-sm">
                     </div>
 
                     <!-- Recruiter Image Upload -->
