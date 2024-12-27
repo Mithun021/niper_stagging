@@ -30,8 +30,8 @@
 
                     <!-- Recruiter Description -->
                     <div class="form-group">
-                        <span for="Recruiterdsc">Recruiter Description:</span>
-                        <textarea name="Recruiterdsc" id="editor" class="form-control form-control-sm" rows="4"></textarea>
+                        <span>Recruiter Description:</span>
+                        <textarea name="Recruiterdsc" id="editor" class="form-control form-control-sm"></textarea>
                     </div>
 
                     <!-- Recruiter Image Upload -->
