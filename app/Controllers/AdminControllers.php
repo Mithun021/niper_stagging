@@ -20,6 +20,7 @@ use App\Models\Membership_model;
 use App\Models\Permission_model;
 use App\Models\Photo_album_file_model;
 use App\Models\Photo_album_model;
+use App\Models\Placement_details_model;
 use App\Models\Quick_link_model;
 use App\Models\Roles_model;
 use App\Models\Testimonials_model;
@@ -988,11 +989,33 @@ use App\Models\Youtube_link_model;
             }
         }
         public function placement_details(){
+            $placement_details_model = new Placement_details_model();
+            $department_model = new Department_model();
             $data = ['title' => 'Placement Details'];
             if ($this->request->is("get")) {
+                $data['placement_details'] = $placement_details_model->get();
+                $data['department'] = $department_model->get();
                 return view('admin/placement-details',$data);
             }else if ($this->request->is("post")) {
-
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $data = [
+                    'placement_batch' => $this->request->getPost('Plcbatch'),
+                    'department_id' => $this->request->getPost('Deptname'),
+                    'total_students' => $this->request->getPost('Totalstudents'),
+                    'no_of_placed_students' => $this->request->getPost('Numberofplacedstudent'),
+                    'not_interest_student' => $this->request->getPost('Notinterested'),
+                    'phd_students' => $this->request->getPost('phd_student'),
+                    'upload_by' =>  $loggeduserId,
+                ];
+                $result = $placement_details_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/annual-report')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/annual-report')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
         public function recuiter_details(){

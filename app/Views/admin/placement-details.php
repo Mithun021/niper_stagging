@@ -11,14 +11,11 @@
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')): ?>
-                    <div class="alert alert-success">
-                        <?= esc(session()->getFlashdata('status')) ?>
-                    </div>
+                    <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="/placementdetails/store" method="post">
-                    <?= csrf_field() ?>
+                <form action="<?= base_url() ?>admin/placement-details" method="post">
 
                     <!-- Placement Batch -->
                     <div class="form-group">
@@ -29,7 +26,12 @@
                     <!-- Department Name -->
                     <div class="form-group">
                         <span for="Deptname">Department Name:</span>
-                        <input type="text" name="Deptname" id="Deptname" class="form-control form-control-sm" required>
+                        <select name="Deptname" id="Deptname" class="form-control form-control-sm" required>
+                            <option value="">Select Department</option>
+                        <?php foreach ($department as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                        <?php } ?>
+                        </select>
                     </div>
 
                     <!-- Total Students -->
@@ -47,13 +49,13 @@
                     <!-- Not Interested Students -->
                     <div class="form-group">
                         <span for="Notinterested">Not Interested Students:</span>
-                        <input type="number" name="Notinterested" id="Notinterested" class="form-control form-control-sm" required>
+                        <input type="number" name="Notinterested" id="Notinterested" class="form-control form-control-sm">
                     </div>
 
                     <!-- PhD Students -->
                     <div class="form-group">
                         <span for="phd">PhD Students:</span>
-                        <input type="number" name="phd" id="phd" class="form-control form-control-sm" required >
+                        <input type="number" name="phd_student" id="phd_student" class="form-control form-control-sm" >
                     </div>
 
                     <!-- Submit Button -->
