@@ -14,6 +14,7 @@ use App\Models\Designation_model;
 use App\Models\Download_form_model;
 use App\Models\Employee_model;
 use App\Models\Image_gallery_model;
+use App\Models\Instruments_model;
 use App\Models\Leadership_media_link_model;
 use App\Models\Media_model;
 use App\Models\Membership_model;
@@ -1052,11 +1053,35 @@ use App\Models\Youtube_link_model;
             }
         }
         public function instrument_facility(){
+            $instruments_model = new Instruments_model();
             $data = ['title' => 'Instrument Facility'];
             if ($this->request->is("get")) {
+                $data['instruments'] = $instruments_model->get();
                 return view('admin/instrument-facility',$data);
             }else if ($this->request->is("post")) {
-
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $Recruiterimage = $this->request->getFile('upload_file');
+                if ($Recruiterimage->isValid() && ! $Recruiterimage->hasMoved()) {
+                    $RecruiterImageName = "photo".$Recruiterimage->getRandomName();
+                    $Recruiterimage->move(ROOTPATH . 'public/admin/uploads/instrument', $RecruiterImageName);    
+                }else{
+                 $RecruiterImageName = "";
+                }
+                $data = [
+                    'title' => $this->request->getPost('Recruitertitle'),
+                    'description' => $this->request->getPost('description'),
+                    'upload_file' => $RecruiterImageName,
+                    'upload_by' =>  $loggeduserId,
+                ];
+                $result = $instruments_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/instrument-facility')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/instrument-facility')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
         public function instrument_rates(){
