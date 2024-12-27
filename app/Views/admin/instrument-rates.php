@@ -79,7 +79,7 @@
                                 <td><?php $instrument = $Instruments_model->get($instrument_rate['instrument_id']); echo !empty($instrument['title']) ? $instrument['title'] : '___';   ?></td>
                                 <td><?= $instrument_rate['experiment_name'] ?></td>
                                 <td><?= $instrument_rate['govt_rate'] ?></td>
-                                <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                                <td><?php $emp = $employee_model->get($instrument_rate['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td>
                                     <a href="<?= base_url() ?>admin/instrument-rates/<?= $instrument_rate['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
                                     <a href="<?= base_url() ?>admin/instrument-rates/delete/<?= $instrument_rate['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
