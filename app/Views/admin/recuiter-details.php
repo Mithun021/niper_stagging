@@ -67,7 +67,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($variable as $key => $value) { ?>
+                        <?php foreach ($recruiter_details as $key => $value) { ?>
                             <tr>
                                 <td><?= $key + 1 ?></td>
                                 <td>
