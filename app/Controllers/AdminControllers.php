@@ -22,6 +22,7 @@ use App\Models\Photo_album_file_model;
 use App\Models\Photo_album_model;
 use App\Models\Placement_details_model;
 use App\Models\Quick_link_model;
+use App\Models\Recruiter_details_model;
 use App\Models\Roles_model;
 use App\Models\Testimonials_model;
 use App\Models\UserModel;
@@ -1019,11 +1020,35 @@ use App\Models\Youtube_link_model;
             }
         }
         public function recuiter_details(){
+            $recruiter_details_model = new Recruiter_details_model();
             $data = ['title' => 'Recuiter Details'];
             if ($this->request->is("get")) {
+                $data['recruiter_details'] = $recruiter_details_model->get();
                 return view('admin/recuiter-details',$data);
             }else if ($this->request->is("post")) {
-
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $Recruiterimage = $this->request->getFile('Recruiterimage');
+                if ($Recruiterimage->isValid() && ! $Recruiterimage->hasMoved()) {
+                    $RecruiterImageName = "photo".$Recruiterimage->getRandomName();
+                    $Recruiterimage->move(ROOTPATH . 'public/admin/uploads/recruiter', $RecruiterImageName);    
+                }else{
+                 $RecruiterImageName = "";
+                }
+                $data = [
+                    'title' => $this->request->getPost('Recruitertitle'),
+                    'description' => $this->request->getPost('Recruiterdsc'),
+                    'upload_file' => $Recruiterimage,
+                    'upload_by' =>  $loggeduserId,
+                ];
+                $result = $recruiter_details_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/recuiter-details')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/recuiter-details')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
         public function instrument_facility(){
