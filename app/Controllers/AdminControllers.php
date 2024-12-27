@@ -1012,9 +1012,9 @@ use App\Models\Youtube_link_model;
                 ];
                 $result = $placement_details_model->add($data);
                 if ($result === true) {
-                    return redirect()->to('admin/annual-report')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                    return redirect()->to('admin/placement-details')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
-                    return redirect()->to('admin/annual-report')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                    return redirect()->to('admin/placement-details')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
         }
