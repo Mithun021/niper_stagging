@@ -70,7 +70,7 @@
                                 <td><?= $value['title'] ?></td>
                                 <td><?= $value['description'] ?></td>
                                 <td>
-                                <?php if (!empty($value['upload_photo']) && file_exists('public/admin/uploads/annual_report/' . $value['upload_photo'])): ?>
+                                    <?php if (!empty($value['upload_photo']) && file_exists('public/admin/uploads/annual_report/' . $value['upload_photo'])): ?>
                                         <a href="<?= base_url() ?>public/admin/uploads/annual_report/<?= $value['upload_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/annual_report/<?= $value['upload_photo'] ?>" alt="" height="30px"></a>
                                     <?php else: ?>
                                         <img src="<?= base_url() ?>public/admin/uploads/annual_report/invalid_image.png" alt="" height="40px">

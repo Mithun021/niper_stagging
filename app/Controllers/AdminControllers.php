@@ -23,6 +23,7 @@ use App\Models\Permission_model;
 use App\Models\Photo_album_file_model;
 use App\Models\Photo_album_model;
 use App\Models\Placement_details_model;
+use App\Models\Private_research_lab_model;
 use App\Models\Quick_link_model;
 use App\Models\Recruiter_details_model;
 use App\Models\Roles_model;
@@ -1113,11 +1114,47 @@ use App\Models\Youtube_link_model;
             }
         }
         public function private_research_labs(){
+            $private_research_lab_model = new Private_research_lab_model();
+            $instruments_model = new Instruments_model();
             $data = ['title' => 'Private Research Labs'];
             if ($this->request->is("get")) {
+                $data['private_research_labs'] = $private_research_lab_model->get();
+                $data['instruments'] = $instruments_model->get();
                 return view('admin/private-research-labs',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $report_photo = $this->request->getFile('researchimage');
+                if ($report_photo->isValid() && ! $report_photo->hasMoved()) {
+                    $report_photoImageName = "photo".$report_photo->getRandomName();
+                    $report_photo->move(ROOTPATH . 'public/admin/uploads/private_research', $report_photoImageName);    
+                }else{
+                 $report_photoImageName = "";
+                }
+                $report_file = $this->request->getFile('researchFile');
+                if ($report_file->isValid() && ! $report_file->hasMoved()) {
+                    $report_fileImageName = "file".$report_file->getRandomName();
+                    $report_file->move(ROOTPATH . 'public/admin/uploads/private_research', $report_fileImageName);    
+                }else{
+                 $report_fileImageName = "";
+                }
+                $data = [
+                    'title' => $this->request->getPost('researchtitle'),
+                    'upload_photo' => $report_photoImageName,
+                    'upload_file' => $report_fileImageName,
+                    'description' => $this->request->getPost('researchdsc'),
+                    'instrument_id' => $this->request->getPost('instrument_id'),
+                    'upload_by' =>  $loggeduserId,
+                ];
 
+                $result = $private_research_lab_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/private-research-labs')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/private-research-labs')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
         
