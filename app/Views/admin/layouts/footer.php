@@ -72,33 +72,37 @@
     $(document).ready(function () {
         // Enable sortable for #sortableTable
         $('[id^=sortableTable]').sortable({
-            items: "tr",
-            cursor: "move",
-            update: function (event, ui) {
-                const sortedData = [];
-                $(this).find('tr').each(function (index) {
-                    const headingId = $(this).data('heading-id');
-                    if (headingId) {
-                        sortedData.push({ id: headingId, sort_order: index + 1 });
-                    }
-                });
-                // console.log("Updated #sortableTable order:", sortedData);
-
-                // Send sorted data to the controller
-                $.ajax({
-                    url: "<?= base_url() ?>admin/save_menu_heading_sort_order",
-                    method: "GET",
-                    contentType: "application/json", // Set proper content type
-                    data: JSON.stringify({ sortedData: sortedData }),
-                    success: function (response) {
-                        console.log(response);
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Error saving menu heading sort order:", error);
-                    }
-                });
+    items: "tr",
+    cursor: "move",
+    update: function (event, ui) {
+        const sortedData = [];
+        $(this).find('tr').each(function (index) {
+            const headingId = $(this).data('heading-id');
+            if (headingId) {
+                sortedData.push({ id: headingId, sort_order: index + 1 });
             }
         });
+
+        // Send sorted data to the controller
+        $.ajax({
+            url: "<?= base_url('admin/save_menu_heading_sort_order') ?>",
+            method: "POST", // Use POST for better security and standards
+            contentType: "application/json", // Proper content type for JSON data
+            data: JSON.stringify({ sortedData: sortedData }),
+            success: function (response) {
+                if (response.success) {
+                    console.log("Menu heading sort order saved successfully.");
+                } else {
+                    console.error("Failed to save menu heading sort order:", response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error saving menu heading sort order:", error);
+            }
+        });
+    }
+});
+
 
         // Enable sortable for .mytable within #sortableTable rows
         $('.mytable').sortable({
