@@ -151,44 +151,4 @@
     </div> <!-- end col -->
 </div>
 
-<!-- jQuery Library -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- jQuery UI Library (must be loaded after jQuery) -->
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-
-<!-- jQuery UI Stylesheet (for sortable styling) -->
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-
-<!-- jQuery UI Sortable Script -->
-<script>
-    $(document).ready(function() {
-        // Make the table rows sortable for each accordion section
-        <?php for ($i = 1; $i <= count($menu_name); $i++) { ?>
-            $("#sortableTable<?= $i ?> tbody").sortable({
-                placeholder: "ui-state-highlight", // Placeholder when dragging
-                handle: "td", // Optionally set a specific handle to drag the rows
-                update: function(event, ui) {
-                    // This will be triggered whenever the order of rows is changed
-                    console.log("Table order updated!");
-                }
-            });
-        <?php } ?>
-
-        // Make the nested tables inside each row also sortable
-        $(".mytable").each(function() {
-            $(this).sortable({
-                placeholder: "ui-state-highlight", // Placeholder for nested tables
-                handle: "td",  // You can make it draggable by clicking on any td
-                update: function(event, ui) {
-                    console.log("Nested table order updated!");
-                }
-            });
-        });
-    });
-</script>
-
-
-
 <?= $this->endSection() ?>

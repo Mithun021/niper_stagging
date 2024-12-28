@@ -34,6 +34,9 @@
         <link href="<?= base_url() ?>public/admin/plugins/datatables/responsive.bootstrap4.css" rel="stylesheet" type="text/css" />
         <link href="<?= base_url() ?>public/admin/plugins/datatables/buttons.bootstrap4.css" rel="stylesheet" type="text/css" />
         <link href="<?= base_url() ?>public/admin/plugins/datatables/select.bootstrap4.css" rel="stylesheet" type="text/css" />
+        <!-- jQuery UI Stylesheet (for sortable styling) -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        
         <style>
             /* .ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred {
                 height: 250px;
