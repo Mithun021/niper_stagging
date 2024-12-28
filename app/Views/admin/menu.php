@@ -7,7 +7,7 @@
 ?>
 <div class="row">
     <!-- Form Section for Adding <?= $title ?> -->
-    <div class="col-lg-4">
+    <div class="col-lg-5">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> Name</h4>
@@ -51,7 +51,7 @@
         </div>
     </div>
 
-    <div class="col-lg-6">
+    <div class="col-lg-7">
         <div id="accordion" class="custom-accordion mb-4">
             <div class="card mb-0">
                 <div class="card-header" id="headingOne">
