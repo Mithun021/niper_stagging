@@ -129,7 +129,7 @@
                         console.log(response);
                     },
                     error: function (xhr, status, error) {
-                        console.error("Error saving menu page sort order:", error);
+                        console.error("Error saving menu page sort order:", xhr);
                     }
                 });
             }
