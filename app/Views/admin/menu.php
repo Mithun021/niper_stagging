@@ -197,7 +197,7 @@
                     </div>
                     <div class="form-group page_lists">
                     <?php foreach ($viewFiles as $key => $pages) { ?>
-                        <span><input type="checkbox" name="page_name" value="<?= $pages ?>"> <?= $pages ?></span>
+                        <span><input type="checkbox" name="page_name[]" value="<?= $pages ?>"> <?= $pages ?></span>
                     <?php } ?>
                     </div>
                     <div class="form-group">
