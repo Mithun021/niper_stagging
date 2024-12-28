@@ -72,29 +72,57 @@
             <!-- jQuery UI Sortable Script -->
             <script>
                 $(document).ready(function() {
-                    // Make the table rows sortable for each accordion section
-                    <?php for ($i = 1; $i <= count($menu_name); $i++) { ?>
-                        $("#sortableTable<?= $i ?> tbody").sortable({
-                            placeholder: "ui-state-highlight", // Placeholder when dragging
-                            handle: "td", // Optionally set a specific handle to drag the rows
-                            update: function(event, ui) {
-                                // This will be triggered whenever the order of rows is changed
-                                console.log("Table order updated!");
-                            }
-                        });
-                    <?php } ?>
+    // Make the table rows sortable for each accordion section
+    <?php for ($i = 1; $i <= count($menu_name); $i++) { ?>
+        $("#sortableTable<?= $i ?> tbody").sortable({
+            placeholder: "ui-state-highlight", // Placeholder when dragging
+            handle: "td", // Optionally set a specific handle to drag the rows
+            update: function(event, ui) {
+                // This will be triggered whenever the order of rows is changed
 
-                    // Make the nested tables inside each row also sortable
-                    $(".mytable").each(function() {
-                        $(this).sortable({
-                            placeholder: "ui-state-highlight", // Placeholder for nested tables
-                            handle: "td",  // You can make it draggable by clicking on any td
-                            update: function(event, ui) {
-                                console.log("Nested table order updated!");
-                            }
-                        });
-                    });
+                // Find the new order of the rows for the heading table
+                let sortedHeadings = [];
+                $("#sortableTable<?= $i ?> tbody tr").each(function(index) {
+                    let headingId = $(this).find("td[data-heading-id]").data("heading-id");
+                    sortedHeadings.push({ order: index + 1, headingId: headingId });
                 });
+
+                // Output sorted headings with a formatted message
+                let headingOutput = sortedHeadings.map(function(item) {
+                    return `Order: ${item.order}, Heading ID: ${item.headingId}`;
+                }).join("\n");
+
+                console.log("Sorted Headings:\n" + headingOutput);
+            }
+        });
+    <?php } ?>
+
+    // Make the nested tables inside each row also sortable
+    $(".mytable").each(function() {
+        $(this).sortable({
+            placeholder: "ui-state-highlight", // Placeholder for nested tables
+            handle: "td",  // You can make it draggable by clicking on any td
+            update: function(event, ui) {
+                // This will be triggered whenever the order of rows is changed
+
+                // Find the new order of the rows for the pages inside each heading
+                let sortedPages = [];
+                $(this).find("tr").each(function(index) {
+                    let pageId = $(this).data("page-id");
+                    sortedPages.push({ order: index + 1, pageId: pageId });
+                });
+
+                // Output sorted pages with a formatted message
+                let pageOutput = sortedPages.map(function(item) {
+                    return `Order: ${item.order}, Page ID: ${item.pageId}`;
+                }).join("\n");
+
+                console.log("Sorted Pages:\n" + pageOutput);
+            }
+        });
+    });
+});
+
             </script>
         
         <script>
