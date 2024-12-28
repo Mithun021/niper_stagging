@@ -72,83 +72,36 @@
             <!-- jQuery UI Sortable Script -->
             <script>
                $(document).ready(function() {
-    // Make the main table rows sortable (for each accordion section)
-    $("table.mytable2").each(function() {
-        var collapseId = $(this).data("collapse-id");
-        var menuId = $(this).data("menu-id");
+                    // Make the main table rows sortable (for each accordion section)
+                    $("table.mytable2").each(function() {
+                        var collapseId = $(this).data("collapse-id");
+                        var menuId = $(this).data("menu-id");
 
-        // Apply sortable to each main table (mytable2)
-        $(this).find("tbody").sortable({
-            placeholder: "ui-state-highlight", // Placeholder when dragging
-            handle: "td", // Optionally set a specific handle to drag the rows
-            update: function(event, ui) {
-                // Triggered when the order of rows is changed in the main table
-                let sortedHeadings = [];
-                $(this).find("tr").each(function(index) {
-                    let headingId = $(this).data("heading-id");
-                    if (headingId !== undefined) {
-                        sortedHeadings.push({ order: index + 1, headingId: headingId });
-                    } else {
-                        console.log("Missing heading-id for row at index " + index);
-                    }
+                        // Apply sortable to each main table (mytable2)
+                        $(this).find("tbody").sortable({
+                            placeholder: "ui-state-highlight", // Placeholder when dragging
+                            handle: "td", // Optionally set a specific handle to drag the rows
+                            update: function(event, ui) {
+                                // Triggered when the order of rows is changed in the main table
+                                let sortedHeadings = [];
+                                $(this).find("tr").each(function(index) {
+                                    let headingId = $(this).data("heading-id");
+                                    if (headingId !== undefined) {
+                                        sortedHeadings.push({ order: index + 1, headingId: headingId });
+                                    } else {
+                                        console.log("Missing heading-id for row at index " + index);
+                                    }
+                                });
+
+                                let headingOutput = sortedHeadings.map(function(item) {
+                                    return `Order: ${item.order}, Heading ID: ${item.headingId}`;
+                                }).join("\n");
+
+                                console.log("Sorted Headings for Collapse " + collapseId + " (Menu ID " + menuId + "):\n" + headingOutput);
+                            }
+                        });
+                    });
                 });
-
-                let headingOutput = sortedHeadings.map(function(item) {
-                    return `Order: ${item.order}, Heading ID: ${item.headingId}`;
-                }).join("\n");
-
-                console.log("Sorted Headings for Collapse " + collapseId + " (Menu ID " + menuId + "):\n" + headingOutput);
-            }
-        });
-    });
-
-    // Make the nested tables inside each row also sortable (pages inside mytable)
-    $(".mytable").each(function() {
-        $(this).sortable({
-            placeholder: "ui-state-highlight", // Placeholder for nested tables
-            handle: "td", // Handle dragging by clicking on any td
-            update: function(event, ui) {
-                // Triggered when the order of rows is changed in nested tables (pages)
-                let sortedPages = [];
-                $(this).find("tr").each(function(index) {
-                    let pageId = $(this).data("page-id");
-                    // Check if pageId is missing
-                    if (pageId === undefined) {
-                        console.log("Missing page-id for row:", $(this));
-                    } else {
-                        sortedPages.push({ order: index + 1, pageId: pageId });
-                    }
-                });
-
-                // Output sorted pages with a formatted message
-                let pageOutput = sortedPages.map(function(item) {
-                    return `Order: ${item.order}, Page ID: ${item.pageId}`;
-                }).join("\n");
-
-                console.log("Sorted Pages:\n" + pageOutput);  // Log the sorted pages
-            }
-        });
-    });
-
-    // Fix the missing heading-id issue for nested pages sorting
-    $(".mytable").each(function() {
-        $(this).on("sortupdate", function(event, ui) {
-            // Access the parent tr in the .mytable2 to get the heading-id
-            var parentRow = ui.item.closest('tr');  // Get the parent row from mytable2
-            var headingId = parentRow.data('heading-id'); // Get the heading-id from the parent row
-            if (!headingId) {
-                console.log("Missing heading-id for parent row of page");
-            } else {
-                console.log("Heading ID for pages row: " + headingId);
-            }
-        });
-    });
-});
-
-
-
-
-
             </script>
         
         <script>
