@@ -95,6 +95,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get', 'post'], 'modules', 'AdminControllers::modules');
     $routes->match(['get', 'post'], 'roles-permissions', 'AdminControllers::roles_permissions');
     $routes->match(['get', 'post'], 'permission/(:num)', 'AdminControllers::permission/$1');
+    $routes->match(['get', 'post'], 'menu', 'AdminControllers::menu');
 
 
     // Export and Import routes

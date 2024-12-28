@@ -1205,6 +1205,15 @@ use App\Models\Youtube_link_model;
             }
         }
 
+        public function menu(){
+            $data = ['title' => 'Permissions'];
+            if ($this->request->is("get")) {
+                return view('admin/menu',$data);
+            }else if ($this->request->is("post")) {
+
+            }
+        }
+
 
     }
 
