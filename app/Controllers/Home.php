@@ -8,4 +8,8 @@ class Home extends BaseController
     {
         return view('index');
     }
+    public function about()
+    {
+        echo "h1>This is About Us page</h1>";
+    }
 }

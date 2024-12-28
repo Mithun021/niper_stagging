@@ -6,6 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
+$routes->get('about', 'Home::about');
 $routes->post('fetch-programs', 'UniversalController::fetch_programs');
 $routes->post('fetch_menu_heading', 'UniversalController::fetch_menu_heading');
 
