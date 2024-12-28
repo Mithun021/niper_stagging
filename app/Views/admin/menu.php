@@ -65,17 +65,18 @@
 
     <div class="col-lg-7">
     <div id="accordion" class="custom-accordion mb-4">
+    <?php $heading = 1; $collapse = 1 ?>
     <?php foreach ($menu_name as $key => $value) { ?>
         
             <div class="card mb-0">
-                <div class="card-header" id="heading<?= ++$key ?>">
+                <div class="card-header" id="heading<?= $heading ?>">
                     <h5 class="m-0 font-size-15">
-                        <a class="d-block m-0 text-dark" data-toggle="collapse" href="#collapse<?= ++$key ?>" aria-expanded="true" aria-controls="collapse<?= ++$key ?>">
+                        <a class="d-block m-0 text-dark" data-toggle="collapse" href="#collapse<?= $collapse?>" aria-expanded="true" aria-controls="collapse<?= ++$key ?>">
                             <?= $value['name'] ?> <span class="float-right"><i class="mdi mdi-chevron-down accordion-arrow"></i></span>
                         </a>
                     </h5>
                 </div>
-                <div id="collapse<?= ++$key ?>" class="collapse" aria-labelledby="heading<?= ++$key ?>" data-parent="#accordion">
+                <div id="collapse<?= $collapse ?>" class="collapse" aria-labelledby="heading<?= $heading ?>" data-parent="#accordion">
                     <div class="card-body">
                         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
                         non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
@@ -87,7 +88,7 @@
                 </div>
             </div> <!-- end card-->
         
-    <?php } ?>
+    <?php $heading++; $collapse++; } ?>
     </div> <!-- end custom accordions-->
     </div> <!-- end col -->
 
