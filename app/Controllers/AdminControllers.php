@@ -1206,7 +1206,7 @@ use App\Models\Youtube_link_model;
         }
 
         public function menu(){
-            $data = ['title' => 'Menu Details'];
+            $data = ['title' => 'Menu'];
             if ($this->request->is("get")) {
                 return view('admin/menu',$data);
             }else if ($this->request->is("post")) {
