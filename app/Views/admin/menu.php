@@ -80,13 +80,15 @@
                     <div class="card-body">
                         <form action="<?= base_url() ?>admin/menu-heading" method="post">
                             <input type="text" name="menu_id" value="<?= $value['id'] ?>">
-                            <div class="form-group">
-                                <span for="heading">Heading<span class="text-danger">*</span></span>
-                                <input type="text" name="heading" id="heading" class="form-control form-control-sm" required>   
-                            </div>
-                            <div class="form-group">
-                                <span for="heading">Custom Link</span>
-                                <input type="url" name="heading" id="heading" class="form-control form-control-sm">   
+                            <div class="input-group">
+                                <div class="form-group">
+                                    <span for="heading">Heading<span class="text-danger">*</span></span>
+                                    <input type="text" name="heading" id="heading" class="form-control form-control-sm" required>   
+                                </div>
+                                <div class="form-group">
+                                    <span for="heading">Custom Link</span>
+                                    <input type="url" name="heading" id="heading" class="form-control form-control-sm">   
+                                </div>
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Save Heading" class="btn btn-primary">
