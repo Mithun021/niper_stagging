@@ -3,7 +3,10 @@
 <?= $this->section("body-content"); ?>
 <?php
     use App\Models\Employee_model;
+    use App\Models\Menu_pages_model;
+
     $employee_model = new Employee_model();
+    $menu_pages_model = new Menu_pages_model();
 
     $viewsPath = ROOTPATH . 'app/Views/';
 
@@ -139,25 +142,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php foreach ($menu_heading as $key2 => $pages) { ?>
-                                    <?php if ($value['id'] == $pages['menu_id']) { ?>
+                                <?php foreach ($menu_heading as $key2 => $pages_heading) { ?>
+                                    <?php if ($value['id'] == $pages_heading['menu_id']) { ?>
+                                    <?php $page_name = $menu_pages_model->getPagesByMenuAndHeading($value['id'],$pages_heading['id']);  ?>
                                     <tr>
                                         <td><?= ++$key2 ?></td>
-                                        <td><?= $pages['heading'] ?></td>
+                                        <td><?= $pages_heading['heading'] ?></td>
                                         <td>
                                             <table class="mytable">
+                                            <?php foreach ($page_name as $key2 => $pages) { ?>
                                                 <tr>
-                                                    <td>Page Name</td>
+                                                    <td><?= $pages['page_name'] ?></td>
                                                     <td><i class="fa fa-trash" aria-hidden="true"></i></td>
                                                 </tr>
-                                                <tr>
-                                                    <td>Page Name</td>
-                                                    <td><i class="fa fa-trash" aria-hidden="true"></i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Page Name</td>
-                                                    <td><i class="fa fa-trash" aria-hidden="true"></i></td>
-                                                </tr>
+                                            <?php } ?>
                                             </table>
                                         </td>
                                     </tr>
