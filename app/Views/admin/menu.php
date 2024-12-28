@@ -110,8 +110,8 @@
                                 <input type="text" name="heading" id="heading" class="form-control form-control-sm" placeholder="Menu Heading *" required>
                                 <select name="custom_link" id="custom_link" class="form-control form-control-sm">
                                     <option value="">Custom Link</option>
-                                <?php foreach ($viewFiles as $key => $value) { ?>
-                                    <option value="<?= $value ?>"><?= $value ?></option>
+                                <?php foreach ($viewFiles as $key => $webpage) { ?>
+                                    <option value="<?= $webpage ?>"><?= $webpage ?></option>
                                 <?php } ?>
                                 </select>
                             </div>
