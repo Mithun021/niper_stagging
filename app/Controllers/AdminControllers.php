@@ -1249,8 +1249,7 @@ use App\Models\Youtube_link_model;
             $menu_heading_model = new Menu_heading_model();
             // Get JSON payload and decode it
             $sortedDataJson = $this->request->getPost('sortedData');
-            $sortedData = json_decode($sortedDataJson, true);
-            print_r($sortedData);die;
+            print_r($sortedDataJson);die;
             
     
             return $this->response->setJSON(['status' => 'success', 'message' => 'Data updated successfully']);
