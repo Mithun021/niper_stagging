@@ -105,11 +105,11 @@
     </div>
 
     <div class="col-lg-7">
-    <div id="accordion" class="custom-accordion mb-4">
-    <?php $heading = 1; $collapse = 1 ?>
-    <?php foreach ($menu_name as $key => $value) { $num = 0; ?>
-        
-            <div class="card mb-2">
+        <div id="accordion" class="custom-accordion mb-4">
+        <?php $heading = 1; $collapse = 1; ?>
+        <?php foreach ($menu_name as $key => $value): ?>
+            
+            <div class="card custom-card mb-2">
                 <div class="card-header" id="heading<?= $heading ?>">
                     <h5 class="m-0 font-size-15">
                         <a class="d-block m-0 text-dark" data-toggle="collapse" href="#collapse<?= $collapse?>" aria-expanded="true" aria-controls="collapse<?= ++$key ?>">
@@ -125,9 +125,9 @@
                                 <input type="text" name="heading" id="heading" class="form-control form-control-sm" placeholder="Menu Heading *" required>
                                 <select name="custom_link" id="custom_link" class="form-control form-control-sm">
                                     <option value="">Custom Link</option>
-                                <?php foreach ($viewFiles as $key => $webpage) { ?>
-                                    <option value="<?= $webpage ?>"><?= $webpage ?></option>
-                                <?php } ?>
+                                    <?php foreach ($viewFiles as $key => $webpage): ?>
+                                        <option value="<?= $webpage ?>"><?= $webpage ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
 
@@ -137,7 +137,7 @@
                         </form>
 
                         <div class="table-responsive">
-                            <table class="mytable2" id="sortableTable<?= $collapse ?>">
+                            <table class="mytable2" id="sortableTable<?= $collapse ?>" data-collapse-id="<?= $collapse ?>" data-menu-id="<?= $value['id'] ?>">
                                 <thead>
                                     <tr>
                                         <td>SN</td>
@@ -146,34 +146,34 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php $num = 1; foreach ($menu_heading as $key2 => $pages_heading) { ?>
-                                    <?php if ($value['id'] == $pages_heading['menu_id']) { ?>
-                                    <?php $page_name = $menu_pages_model->getPagesByMenuAndHeading($value['id'],$pages_heading['id']);  ?>
-                                    <tr>
-                                        <td><?= $num ?></td>
-                                        <td data-heading-id="<?= $pages_heading['id'] ?>">
-                                        <a href="<?php 
-                                            if (empty($pages_heading['custom_link']) || $pages_heading['custom_link'] == "") {
-                                                echo "javascript:void(0)";
-                                            } elseif ($pages_heading['custom_link'] == "index") {
-                                                echo base_url();
-                                            } else {
-                                                echo base_url() . $pages_heading['custom_link'];
-                                            }
-                                        ?>" target="_blank"><?= $pages_heading['heading'] ?></a>
-                                        </td>
-                                        <td>
-                                            <table class="mytable">
-                                            <?php foreach ($page_name as $key2 => $pages) { ?>
-                                                <tr data-page-id="<?= $pages['id'] ?>">
-                                                    <td width="85%"><a href="<?= base_url() ?><?php echo ($pages['page_name'] === 'index' || empty($pages['page_name'])) ? null : $pages['page_name']; ?>" target="_blank"><?= $pages['page_name'] ?></a></td>
-                                                    <td><i class="fa fa-trash" aria-hidden="true"></i></td>
-                                                </tr>
-                                            <?php } ?>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                <?php $num++; } } ?>
+                                <?php $num = 1; foreach ($menu_heading as $key2 => $pages_heading): ?>
+                                    <?php if ($value['id'] == $pages_heading['menu_id']): ?>
+                                        <?php $page_name = $menu_pages_model->getPagesByMenuAndHeading($value['id'], $pages_heading['id']); ?>
+                                        <tr data-heading-id="<?= $pages_heading['id'] ?>">
+                                            <td><?= $num ?></td>
+                                            <td>
+                                            <a href="<?php 
+                                                if (empty($pages_heading['custom_link']) || $pages_heading['custom_link'] == "") {
+                                                    echo "javascript:void(0)";
+                                                } elseif ($pages_heading['custom_link'] == "index") {
+                                                    echo base_url();
+                                                } else {
+                                                    echo base_url() . $pages_heading['custom_link'];
+                                                }
+                                            ?>" target="_blank"><?= $pages_heading['heading'] ?></a>
+                                            </td>
+                                            <td>
+                                                <table class="mytable">
+                                                <?php foreach ($page_name as $pages): ?>
+                                                    <tr data-page-id="<?= $pages['id'] ?>">
+                                                        <td width="85%"><a href="<?= base_url() ?><?php echo ($pages['page_name'] === 'index' || empty($pages['page_name'])) ? null : $pages['page_name']; ?>" target="_blank"><?= $pages['page_name'] ?></a></td>
+                                                        <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    <?php $num++; endif; endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -182,9 +182,10 @@
                 </div>
             </div> <!-- end card-->
         
-    <?php $heading++; $collapse++; } ?>
-    </div> <!-- end custom accordions-->
+        <?php $heading++; $collapse++; endforeach; ?>
+        </div> <!-- end custom accordions-->
     </div> <!-- end col -->
+
 </div>
 
 

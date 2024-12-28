@@ -72,17 +72,20 @@
             <!-- jQuery UI Sortable Script -->
             <script>
                 $(document).ready(function() {
-    // Make the table rows sortable for each accordion section
-    <?php for ($i = 1; $i <= count($menu_name); $i++) { ?>
-        $("#sortableTable<?= $i ?> tbody").sortable({
+    // Loop through all the tables to make each one sortable
+    $("table.mytable2").each(function() {
+        var collapseId = $(this).data("collapse-id");
+        var menuId = $(this).data("menu-id");
+
+        // Apply sortable to each table
+        $(this).find("tbody").sortable({
             placeholder: "ui-state-highlight", // Placeholder when dragging
             handle: "td", // Optionally set a specific handle to drag the rows
             update: function(event, ui) {
                 // This will be triggered whenever the order of rows is changed
-
                 let sortedHeadings = [];
-                $("#sortableTable<?= $i ?> tbody tr").each(function(index) {
-                    let headingId = $(this).find("td[data-heading-id]").data("heading-id");
+                $(this).find("tr").each(function(index) {
+                    let headingId = $(this).data("heading-id");
                     sortedHeadings.push({ order: index + 1, headingId: headingId });
                 });
 
@@ -90,19 +93,18 @@
                     return `Order: ${item.order}, Heading ID: ${item.headingId}`;
                 }).join("\n");
 
-                console.log("Sorted Headings:\n" + headingOutput);
+                console.log("Sorted Headings for Collapse " + collapseId + " (Menu ID " + menuId + "):\n" + headingOutput);
             }
         });
-    <?php } ?>
+    });
 
     // Make the nested tables inside each row also sortable
-    $(".mytable2 table.mytable").each(function() { // Target nested tables inside rows
+    $(".mytable2 table.mytable").each(function() {
         $(this).sortable({
             placeholder: "ui-state-highlight", // Placeholder for nested tables
             handle: "td",  // You can make it draggable by clicking on any td
             update: function(event, ui) {
                 // This will be triggered whenever the order of rows is changed
-
                 let sortedPages = [];
                 $(this).find("tr").each(function(index) {
                     let pageId = $(this).data("page-id");
@@ -125,9 +127,6 @@
         });
     });
 });
-
-
-
             </script>
         
         <script>
