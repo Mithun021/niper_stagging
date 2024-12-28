@@ -152,7 +152,7 @@
                                             <table class="mytable">
                                             <?php foreach ($page_name as $key2 => $pages) { ?>
                                                 <tr>
-                                                    <td width="85%"><?= $pages['page_name'] ?></td>
+                                                    <td width="85%"><a href="<?= base_url() ?><?= $pages['page_name'] ?>" target="_blank"><?= $pages['page_name'] ?></a></td>
                                                     <td><i class="fa fa-trash" aria-hidden="true"></i></td>
                                                 </tr>
                                             <?php } ?>
