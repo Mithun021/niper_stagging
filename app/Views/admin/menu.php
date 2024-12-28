@@ -111,6 +111,7 @@
                                 </thead>
                                 <tbody>
                                 <?php foreach ($menu_heading as $key2 => $pages) { ?>
+                                    <?php if ($value['id'] == $pages['menu_id']) { ?>
                                     <tr>
                                         <td><?= ++$key2 ?></td>
                                         <td><?= $pages['heading'] ?></td>
@@ -123,7 +124,7 @@
                                             </table>
                                         </td>
                                     </tr>
-                                <?php } ?>
+                                <?php } } ?>
                                 </tbody>
                             </table>
                         </div>
