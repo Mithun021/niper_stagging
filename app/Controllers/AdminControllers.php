@@ -1254,7 +1254,15 @@ use App\Models\Youtube_link_model;
                 echo json_encode(['success' => false, 'message' => 'No sort data provided.']);
                 return;
             }
-            print_r($input_data);die;
+            // print_r($input_data);die;
+            foreach ($input_data['sortedData'] as $item) {
+                $save = $menu_heading_model->update($item['id'], ['heading_sort_list' => $item['sort_order']]);
+            }
+            if($save == true){
+                echo json_encode(['success' => true, 'message' => 'Menu heading sort order saved successfully.']);
+            }else{
+                echo json_encode(['success' => false, 'message' => 'Failed to save menu heading sort order.']);
+            }
         }
         public function save_menu_page_sort_order(){
             $menu_pages_model = new Menu_pages_model();
