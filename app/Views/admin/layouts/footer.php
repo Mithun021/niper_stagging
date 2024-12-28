@@ -111,7 +111,7 @@
                         sortedPagesData.push({ id: pageId, sort_order: index + 1 });
                     }
                 });
-                console.log("Updated .mytable order:", sortedPagesData);
+                // console.log("Updated .mytable order:", sortedPagesData);
 
                 // Send sorted data to the controller
                 $.ajax({
@@ -119,7 +119,7 @@
                     method: "GET",
                     data: { sortedData: sortedPagesData },
                     success: function (response) {
-                        console.log("Menu page sort order saved successfully.", response);
+                        console.log(response);
                     },
                     error: function (xhr, status, error) {
                         console.error("Error saving menu page sort order:", error);
