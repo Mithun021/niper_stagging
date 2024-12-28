@@ -71,37 +71,43 @@
             <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
             <!-- jQuery UI Sortable Script -->
             <script>
-               $(document).ready(function() {
-                    // Make the main table rows sortable (for each accordion section)
-                    $("table.mytable2").each(function() {
-                        var collapseId = $(this).data("collapse-id");
-                        var menuId = $(this).data("menu-id");
+               $(document).ready(function () {
+    // Enable sortable for #sortableTable
+    $('[id^=sortableTable]').sortable({
+        items: "tr",
+        cursor: "move",
+        update: function (event, ui) {
+            const sortedData = [];
+            $(this).find('tr').each(function (index) {
+                const headingId = $(this).data('heading-id');
+                if (headingId) {
+                    sortedData.push({ order: index + 1, id: headingId });
+                }
+            });
+            console.log("Updated #sortableTable order:", sortedData);
+            // Send sortedData to the server via AJAX if required
+        }
+    });
 
-                        // Apply sortable to each main table (mytable2)
-                        $(this).find("tbody").sortable({
-                            placeholder: "ui-state-highlight", // Placeholder when dragging
-                            handle: "td", // Optionally set a specific handle to drag the rows
-                            update: function(event, ui) {
-                                // Triggered when the order of rows is changed in the main table
-                                let sortedHeadings = [];
-                                $(this).find("tr").each(function(index) {
-                                    let headingId = $(this).data("heading-id");
-                                    if (headingId !== undefined) {
-                                        sortedHeadings.push({ order: index + 1, headingId: headingId });
-                                    } else {
-                                        console.log("Missing heading-id for row at index " + index);
-                                    }
-                                });
+    // Enable sortable for .mytable within #sortableTable rows
+    $('.mytable').sortable({
+        items: "tr",
+        cursor: "move",
+        update: function (event, ui) {
+            const sortedPagesData = [];
+            $(this).find('tr').each(function (index) {
+                const pageId = $(this).data('page-id');
+                if (pageId) {
+                    sortedPagesData.push({ order: index + 1, id: pageId });
+                }
+            });
+            console.log("Updated .mytable order:", sortedPagesData);
+            // Send sortedPagesData to the server via AJAX if required
+        }
+    });
+});
 
-                                let headingOutput = sortedHeadings.map(function(item) {
-                                    return `Order: ${item.order}, Heading ID: ${item.headingId}`;
-                                }).join("\n");
 
-                                console.log("Sorted Headings for Collapse " + collapseId + " (Menu ID " + menuId + "):\n" + headingOutput);
-                            }
-                        });
-                    });
-                });
             </script>
         
         <script>
