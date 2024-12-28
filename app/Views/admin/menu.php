@@ -101,7 +101,7 @@
                         </form>
 
                         <div class="table-responsive">
-                            <table class="mytable">
+                            <table class="mytable" id="sortableTable">
                                 <thead>
                                     <tr>
                                         <td>SN</td>
@@ -144,8 +144,25 @@
     <?php $heading++; $collapse++; } ?>
     </div> <!-- end custom accordions-->
     </div> <!-- end col -->
-
-
-
 </div>
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+      // Make table rows draggable
+      $("#sortableTable tbody").sortable({
+        placeholder: "ui-state-highlight", // This creates a visual placeholder when dragging
+        update: function(event, ui) {
+          // Optional: This function can be used to capture the order after drag
+          console.log("Table order updated!");
+        }
+      });
+    });
+  </script>
+
+
+
 <?= $this->endSection() ?>
