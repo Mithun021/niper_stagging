@@ -1251,6 +1251,7 @@ use App\Models\Youtube_link_model;
             $input = $this->request->getJSON(true);
 
             $sortedData = $input['sortedData'] ?? [];
+            print_r($sortedData);die;
             foreach ($sortedData as $item) {
                 $menu_heading_model->update($item['id'], ['heading_sort_list' => $item['sort_order']]);
             }
