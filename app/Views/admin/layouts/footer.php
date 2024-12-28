@@ -82,7 +82,7 @@
                         sortedData.push({ id: headingId, sort_order: index + 1 });
                     }
                 });
-                console.log("Updated #sortableTable order:", sortedData);
+                // console.log("Updated #sortableTable order:", sortedData);
 
                 // Send sorted data to the controller
                 $.ajax({
@@ -90,7 +90,7 @@
                     method: "GET",
                     data: { sortedData: sortedData },
                     success: function (response) {
-                        console.log("Menu heading sort order saved successfully.", response);
+                        console.log(response);
                     },
                     error: function (xhr, status, error) {
                         console.error("Error saving menu heading sort order:", error);
