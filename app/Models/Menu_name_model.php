@@ -22,7 +22,7 @@
             if($id != null){
                 $result = $this->where('id',$id)->first();
             }else{
-                $result = $this->orderBy('instrument_id','asc')->findAll();
+                $result = $this->orderBy('name','asc')->findAll();
             }
             return $result;
         }
