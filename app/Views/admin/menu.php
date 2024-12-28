@@ -127,7 +127,7 @@
                                     <tr>
                                         <td>SN</td>
                                         <td>Heading</td>
-                                        <td colspan="2"><span class="d-flex justify-content-between"><span>Pages</span><span><i class="fa fa-plus" aria-hidden="true"></i></span></span></td>
+                                        <td colspan="2"><span class="d-flex justify-content-between"><span>Pages</span><span><i class="fa fa-plus"></i></span></span></td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -186,14 +186,15 @@
 </div>
 
 
-<!-- <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 
 <script>
     $(document).ready(function() {
         $('#assign_page_btn').on('click', function() {
-            $('#assign_page_model').modal('show');
+            alert('ok');
+            // $('#assign_page_model').modal('show');
         });
     });
-</script> -->
+</script>
 
 <?= $this->endSection() ?>

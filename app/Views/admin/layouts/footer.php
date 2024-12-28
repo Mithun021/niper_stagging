@@ -136,9 +136,9 @@
                     $(this).closest('tr').remove();
                 });
 
-                $('#assign_page_btn').on('click', function() {
-                    $('#assign_page_model').modal('show');
-                });
+                // $('#assign_page_btn').on('click', function() {
+                //     $('#assign_page_model').modal('show');
+                // });
 
 
             });
