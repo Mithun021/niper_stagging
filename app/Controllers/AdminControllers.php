@@ -1249,23 +1249,20 @@ use App\Models\Youtube_link_model;
             $menu_heading_model = new Menu_heading_model();
             // Get JSON payload and decode it
             $sortedData = $this->request->getPost('sortedData');
-            // print_r($input_data);die;
-            if ($sortedData && is_array($sortedData)) {
-                foreach ($sortedData as $item) {
-                    if (isset($item['id'], $item['sort_order'])) {
-                        $data = [
-                            'id' => $item['id'],
-                            'heading_sort_list' => $item['sort_order'],
-                        ];
-                        print_r($data);
-                        // $menu_heading_model->update($item['id'], [
-                        //     'heading_sort_list' => $item['sort_order']
-                        // ]);
-                    }
-                }
-                die;
-                // return $this->response->setJSON(['success' => true, 'message' => 'Sort order updated successfully']);
+            if (!$sortedData || !is_array($sortedData)) {
+                return $this->response->setStatusCode(400, 'Invalid data received');
             }
+            // print_r($input_data);die;
+            foreach ($sortedData as $item) {
+                if (isset($item['id'], $item['sort_order'])) {
+                    // Update the database
+                    $menu_heading_model->update($item['id'], [
+                        'heading_sort_list' => $item['sort_order']
+                    ]);
+                }
+            }
+    
+            return $this->response->setJSON(['status' => 'success', 'message' => 'Data updated successfully']);
         
             // return $this->response->setJSON(['success' => false, 'message' => 'Invalid data received']);
         }
