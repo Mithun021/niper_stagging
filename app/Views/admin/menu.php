@@ -5,6 +5,16 @@
     use App\Models\Employee_model;
     $employee_model = new Employee_model();
 ?>
+
+<style>
+    .mytable{
+        width: 100%;
+    }
+    .mytable tr td, tr th{
+        border: 1px solid #ddd;
+        padding: 5px;
+    }
+</style>
 <div class="row">
     <div class="col-lg-12">
         <?php if (session()->getFlashdata('status')): ?>
@@ -91,7 +101,7 @@
                         </form>
 
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table class="mytable">
                                 <thead>
                                     <tr>
                                         <td>SN</td>
@@ -105,7 +115,7 @@
                                         <td><?= ++$key2 ?></td>
                                         <td><?= $pages['heading'] ?></td>
                                         <td>
-                                            <table class="table table-striped table-hover">
+                                            <table class="mytable">
                                                 <tr>
                                                     <td>Page Name</td>
                                                     <td><i class="fa fa-trash" aria-hidden="true"></i></td>
