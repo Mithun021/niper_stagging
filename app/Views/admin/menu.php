@@ -148,13 +148,15 @@
                                     <tr>
                                         <td><?= ++$key2 ?></td>
                                         <td>
-                                            <a href="<?php 
-                                                if (empty($pages_heading['custom_link']) || $pages_heading['custom_link'] === 'index') {
-                                                    echo base_url();
-                                                } else {
-                                                    echo base_url() . $pages_heading['custom_link'];
-                                                }
-                                            ?>" target="_blank"><?= $pages_heading['heading'] ?></a>
+                                        <a href="<?php 
+                                            if (empty($pages_heading['custom_link']) || $pages_heading['custom_link'] == "") {
+                                                echo "javascript:void(0)";
+                                            } elseif ($pages_heading['custom_link'] == "index") {
+                                                echo base_url();
+                                            } else {
+                                                echo base_url() . $pages_heading['custom_link'];
+                                            }
+                                        ?>" target="_blank"><?= $pages_heading['heading'] ?></a>
                                         </td>
                                         <td>
                                             <table class="mytable">
