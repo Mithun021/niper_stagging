@@ -81,14 +81,8 @@
                         <form action="<?= base_url() ?>admin/menu-heading" method="post">
                             <input type="text" name="menu_id" value="<?= $value['id'] ?>">
                             <div class="input-group">
-                                <div class="form-group">
-                                    <label for="heading">Heading<span class="text-danger">*</span></label>
-                                    <input type="text" name="heading" id="heading" class="form-control form-control-sm" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="custom_link">Custom Link</label>
-                                    <input type="url" name="custom_link" id="custom_link" class="form-control form-control-sm">
-                                </div>
+                                <input type="text" name="heading" id="heading" class="form-control form-control-sm" required>
+                                <input type="url" name="custom_link" id="custom_link" class="form-control form-control-sm">
                             </div>
 
                             <div class="form-group">
