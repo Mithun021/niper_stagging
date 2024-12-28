@@ -1248,7 +1248,7 @@ use App\Models\Youtube_link_model;
         public function save_menu_heading_sort_order(){
             $menu_heading_model = new Menu_heading_model();
             $sortedData = $this->request->getPost('sortedData');
-            print_r("ok");die;
+            print_r($sortedData);die;
             foreach ($sortedData as $item) {
                 $menu_heading_model->update($item['id'], ['heading_sort_list' => $item['sort_order']]);
             }
