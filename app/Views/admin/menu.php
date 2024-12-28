@@ -4,6 +4,14 @@
 <?php
     use App\Models\Employee_model;
     $employee_model = new Employee_model();
+
+    $viewsPath = ROOTPATH . 'app/Views/';
+
+    // Get all PHP files from the views directory
+    $viewFiles = array_filter(scandir($viewsPath), function ($file) use ($viewsPath) {
+        $filePath = $viewsPath . DIRECTORY_SEPARATOR . $file;
+        return is_file($filePath) && pathinfo($file, PATHINFO_EXTENSION) === 'php';
+    });
 ?>
 <style>
     .ui-state-highlight {
@@ -25,6 +33,8 @@
         <?php if (session()->getFlashdata('status')): ?>
             <?= session()->getFlashdata('status') ?>
         <?php endif; ?>
+
+        <?php  echo "<pre>"; print_r($viewFiles); ?>
     </div>
     <div class="col-lg-5">
         <div class="card">
