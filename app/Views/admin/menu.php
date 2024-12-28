@@ -186,7 +186,7 @@
 </div>
 
 
-<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+<!-- <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -194,6 +194,6 @@
             $('#assign_page_model').modal('show');
         });
     });
-</script>
+</script> -->
 
 <?= $this->endSection() ?>
