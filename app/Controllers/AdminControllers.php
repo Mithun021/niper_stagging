@@ -1252,12 +1252,20 @@ use App\Models\Youtube_link_model;
             $postData = $this->request->getPost('sortedData'); // Get the 'sortedData' from POST request
             if ($postData) {
                 $headingSortList = json_decode($postData, true); // Decode JSON
-                print_r($headingSortList); // Optionally print to check the data structure
+                
+                // Check if decoding was successful and print the result
+                if (is_array($headingSortList)) {
+                    print_r($headingSortList); // Print the sorted data
+                    // Further processing with $headingSortList
+                } else {
+                    echo json_encode(['error' => 'Decoded data is not a valid array.']);
+                }
             } else {
-                // Handle error if $postData is empty or not set
                 echo json_encode(['error' => 'Invalid or missing sorted data']);
             }
         }
+        
+
         public function save_menu_page_sort_order(){
             $menu_pages_model = new Menu_pages_model();
             $sortedData = $this->request->getPost('sortedData');
