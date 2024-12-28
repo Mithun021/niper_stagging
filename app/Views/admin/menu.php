@@ -108,7 +108,12 @@
                             <input type="hidden" name="menu_id" value="<?= $value['id'] ?>" class="form-control form-control-sm">
                             <div class="input-group">
                                 <input type="text" name="heading" id="heading" class="form-control form-control-sm" placeholder="Menu Heading *" required>
-                                <input type="url" name="custom_link" id="custom_link" class="form-control form-control-sm" placeholder="Custom Link">
+                                <select name="custom_link" id="custom_link" class="form-control form-control-sm">
+                                    <option value="">Custom Link</option>
+                                <?php foreach ($viewFiles as $key => $value) { ?>
+                                    <option value="<?= $value ?>"><?= $value ?></option>
+                                <?php } ?>
+                                </select>
                             </div>
 
                             <div class="form-group">
