@@ -72,40 +72,64 @@
             <!-- jQuery UI Sortable Script -->
             <script>
                $(document).ready(function () {
-    // Enable sortable for #sortableTable
-    $('[id^=sortableTable]').sortable({
-        items: "tr",
-        cursor: "move",
-        update: function (event, ui) {
-            const sortedData = [];
-            $(this).find('tr').each(function (index) {
-                const headingId = $(this).data('heading-id');
-                if (headingId) {
-                    sortedData.push({ order: index + 1, id: headingId });
-                }
-            });
-            console.log("Updated #sortableTable order:", sortedData);
-            // Send sortedData to the server via AJAX if required
-        }
-    });
+                    // Enable sortable for #sortableTable
+                    $('[id^=sortableTable]').sortable({
+                        items: "tr",
+                        cursor: "move",
+                        update: function (event, ui) {
+                            const sortedData = [];
+                            $(this).find('tr').each(function (index) {
+                                const headingId = $(this).data('heading-id');
+                                if (headingId) {
+                                    sortedData.push({ id: headingId, sort_order: index + 1 });
+                                }
+                            });
+                            console.log("Updated #sortableTable order:", sortedData);
 
-    // Enable sortable for .mytable within #sortableTable rows
-    $('.mytable').sortable({
-        items: "tr",
-        cursor: "move",
-        update: function (event, ui) {
-            const sortedPagesData = [];
-            $(this).find('tr').each(function (index) {
-                const pageId = $(this).data('page-id');
-                if (pageId) {
-                    sortedPagesData.push({ order: index + 1, id: pageId });
-                }
-            });
-            console.log("Updated .mytable order:", sortedPagesData);
-            // Send sortedPagesData to the server via AJAX if required
-        }
-    });
-});
+                            // Send sorted data to the controller
+                            $.ajax({
+                                url: "<?= base_url('admin/save_menu_heading_sort_order') ?>",
+                                type: "POST",
+                                data: { sortedData: sortedData },
+                                success: function (response) {
+                                    console.log("Menu heading sort order saved successfully.", response);
+                                },
+                                error: function (xhr, status, error) {
+                                    console.error("Error saving menu heading sort order:", error);
+                                }
+                            });
+                        }
+                    });
+
+                    // Enable sortable for .mytable within #sortableTable rows
+                    $('.mytable').sortable({
+                        items: "tr",
+                        cursor: "move",
+                        update: function (event, ui) {
+                            const sortedPagesData = [];
+                            $(this).find('tr').each(function (index) {
+                                const pageId = $(this).data('page-id');
+                                if (pageId) {
+                                    sortedPagesData.push({ id: pageId, sort_order: index + 1 });
+                                }
+                            });
+                            console.log("Updated .mytable order:", sortedPagesData);
+
+                            // Send sorted data to the controller
+                            $.ajax({
+                                url: "<?= base_url('admin/save_menu_page_sort_order') ?>",
+                                type: "POST",
+                                data: { sortedData: sortedPagesData },
+                                success: function (response) {
+                                    console.log("Menu page sort order saved successfully.", response);
+                                },
+                                error: function (xhr, status, error) {
+                                    console.error("Error saving menu page sort order:", error);
+                                }
+                            });
+                        }
+                    });
+                });
 
 
             </script>
