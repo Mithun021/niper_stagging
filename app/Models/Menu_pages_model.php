@@ -26,7 +26,7 @@
             }
             return $result;
         }
-        public function getAllMenuPages($menu_id,$heading_id){
+        public function getPagesByMenuAndHeading($menu_id,$heading_id){
             $result = $this->where('menu_id',$menu_id)
                             ->where('menu_heading_id',$heading_id)->orderBy('page_name','asc')->findAll();
             return $result;
