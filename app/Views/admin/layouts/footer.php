@@ -84,15 +84,30 @@
                 let sortedHeadings = [];
                 $("#sortableTable<?= $i ?> tbody tr").each(function(index) {
                     let headingId = $(this).find("td[data-heading-id]").data("heading-id");
-                    sortedHeadings.push({ order: index + 1, headingId: headingId });
+                    
+                    // Only add heading to sortedHeadings if headingId is defined and not empty
+                    if (headingId !== undefined && headingId !== "") {
+                        sortedHeadings.push({ order: index + 1, headingId: headingId });
+                    }
                 });
 
-                // Output sorted headings with a formatted message
-                let headingOutput = sortedHeadings.map(function(item) {
-                    return `Order: ${item.order}, Heading ID: ${item.headingId}`;
-                }).join("\n");
-
-                console.log("Sorted Headings:\n" + headingOutput);
+                // Send the sorted headings order to the server if there are valid headings to update
+                if (sortedHeadings.length > 0) {
+                    $.ajax({
+                        url: '<?= base_url() ?>admin/save_menu_heading_sort_order',  // URL to send the request to
+                        method: 'POST',
+                        data: {
+                            menu_id: <?= $menu_id ?>,  // Pass menu_id (if needed)
+                            sorted_headings: sortedHeadings  // Pass the sorted headings data
+                        },
+                        success: function(response) {
+                            console.log("Sorted headings updated successfully.");
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Error updating headings sort order: ", error);
+                        }
+                    });
+                }
             }
         });
     <?php } ?>
@@ -109,15 +124,30 @@
                 let sortedPages = [];
                 $(this).find("tr").each(function(index) {
                     let pageId = $(this).data("page-id");
-                    sortedPages.push({ order: index + 1, pageId: pageId });
+                    
+                    // Only add page to sortedPages if pageId is defined and not empty
+                    if (pageId !== undefined && pageId !== "") {
+                        sortedPages.push({ order: index + 1, pageId: pageId });
+                    }
                 });
 
-                // Output sorted pages with a formatted message
-                let pageOutput = sortedPages.map(function(item) {
-                    return `Order: ${item.order}, Page ID: ${item.pageId}`;
-                }).join("\n");
-
-                console.log("Sorted Pages:\n" + pageOutput);
+                // Send the sorted pages order to the server if there are valid pages to update
+                if (sortedPages.length > 0) {
+                    $.ajax({
+                        url: '<?= base_url() ?>admin/save_menu_page_sort_order',  // URL to send the request to
+                        method: 'POST',
+                        data: {
+                            heading_id: $(this).closest('tr').data('heading-id'),  // Pass heading ID
+                            sorted_pages: sortedPages  // Pass the sorted pages data
+                        },
+                        success: function(response) {
+                            console.log("Sorted pages updated successfully.");
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Error updating pages sort order: ", error);
+                        }
+                    });
+                }
             }
         });
     });

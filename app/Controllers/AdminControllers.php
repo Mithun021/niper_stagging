@@ -1247,9 +1247,49 @@ use App\Models\Youtube_link_model;
 
         public function save_menu_heading_sort_order(){
             $menu_heading_model = new Menu_heading_model();
+            $menu_id = $this->request->getPost('menu_id');
+            $sorted_headings = $this->request->getPost('sorted_headings');
+            if (!empty($sorted_headings)) {
+                // Update the database with the new sort order for each heading
+                foreach ($sorted_headings as $heading) {
+                    if (!empty($heading['headingId'])) {
+                        $data = [
+                            'heading_sort_list' => $heading['order']
+                        ];
+                        
+                        $builder = $menu_heading_model->builder();
+                        $builder->set($data)
+                                ->where('id', $heading['headingId'])
+                                ->where('menu_id', $menu_id)
+                                ->update();
+                        
+                    }
+                }
+            }
+    
+            // Return success message
+            echo json_encode(['status' => 'success']);
         }
         public function save_menu_page_sort_order(){
             $menu_pages_model = new Menu_pages_model();
+            $heading_id = $this->request->getPost('heading_id');
+            $sorted_pages = $this->request->getPost('sorted_pages');
+            if (!empty($sorted_pages)) {
+                // Update the database with the new sort order for each page
+                foreach ($sorted_pages as $page) {
+                    if (!empty($page['pageId'])) {
+                        $data = [
+                            'page_sort_list' => $page['order']
+                        ];
+                        
+                        $builder = $menu_pages_model;  // Load the table
+                        $builder->where('id', $page['pageId']);    // Add 'where' condition for id
+                        $builder->where('heading_id', $heading_id); // Add 'where' condition for heading_id
+                        $builder->update($data);  // Update the record
+                    }
+                }
+            }
+            echo json_encode(['status' => 'success']);
         }
 
         public function save_pages(){
