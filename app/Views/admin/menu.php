@@ -147,7 +147,7 @@
                                     <?php $page_name = $menu_pages_model->getPagesByMenuAndHeading($value['id'],$pages_heading['id']);  ?>
                                     <tr>
                                         <td><?= ++$key2 ?></td>
-                                        <td><?= $pages_heading['heading'] ?></td>
+                                        <td><a href="<?= base_url() ?><?php echo ($pages_heading['heading'] === 'index' || empty($pages_heading['heading'])) ? null : $pages_heading['heading']; ?>" target="_blank"><?= $pages_heading['heading'] ?></a></td>
                                         <td>
                                             <table class="mytable">
                                             <?php foreach ($page_name as $key2 => $pages) { ?>
