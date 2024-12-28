@@ -112,7 +112,6 @@
                 let sortedPages = [];
                 $(this).find("tr").each(function(index) {
                     let pageId = $(this).data("page-id");
-
                     // Check if pageId is missing
                     if (pageId === undefined) {
                         console.log("Missing page-id for row:", $(this));
@@ -127,6 +126,20 @@
                 }).join("\n");
 
                 console.log("Sorted Pages:\n" + pageOutput);  // Log the sorted pages
+            }
+        });
+    });
+
+    // Fix the missing heading-id issue for nested pages sorting
+    $(".mytable").each(function() {
+        $(this).on("sortupdate", function(event, ui) {
+            // Access the parent tr in the .mytable2 to get the heading-id
+            var parentRow = ui.item.closest('tr');  // Get the parent row from mytable2
+            var headingId = parentRow.data('heading-id'); // Get the heading-id from the parent row
+            if (!headingId) {
+                console.log("Missing heading-id for parent row of page");
+            } else {
+                console.log("Heading ID for pages row: " + headingId);
             }
         });
     });
