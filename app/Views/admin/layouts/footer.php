@@ -83,22 +83,7 @@
                         sortedData.push({ id: headingId, sort_order: index + 1 }); // Append sorted data
                     }
                 });
-
-                // Send sorted data to the controller
-                $.ajax({
-                    url: "<?= base_url('admin/save_menu_heading_sort_order') ?>",
-                    method: "GET",
-                    contentType: "application/json",
-                    data: JSON.stringify({ sortedData: sortedData }), // Convert to JSON
-                    dataType: "json",
-                    success: function(response) {
-                        console.log(response);
-                        // You can handle success response here if needed
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("Error saving menu heading sort order:", error);
-                    }
-                });
+                console.log(sortedData);
             }
         });
 
