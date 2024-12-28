@@ -88,7 +88,8 @@
                 $.ajax({
                     url: "<?= base_url() ?>admin/save_menu_heading_sort_order",
                     method: "GET",
-                    data: { sortedData: sortedData },
+                    contentType: "application/json", // Set proper content type
+                    data: JSON.stringify({ sortedData: sortedData }),
                     success: function (response) {
                         console.log(response);
                     },
