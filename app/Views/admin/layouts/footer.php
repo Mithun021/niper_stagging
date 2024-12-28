@@ -87,14 +87,16 @@
                 $.ajax({
                     url: "<?= base_url('admin/save_menu_heading_sort_order') ?>",
                     method: "POST", // POST method is secure and preferred
-                    data: { sortedData: sortedData },
-                    dataType: "json", // Expect JSON response
+                    contentType: "application/json", // Specify content type as JSON
+                    data: JSON.stringify({ sortedData: sortedData }),
+                    dataType: "json",
                     success: function (response) {
-                        if (response.success) {
-                            console.log("Menu heading sort order saved successfully.");
-                        } else {
-                            console.error("Failed to save menu heading sort order:", response.message);
-                        }
+                        console.log(response);
+                        // if (response.success) {
+                        //     console.log("Menu heading sort order saved successfully.");
+                        // } else {
+                        //     console.error("Failed to save menu heading sort order:", response.message);
+                        // }
                     },
                     error: function (xhr, status, error) {
                         console.error("Error saving menu heading sort order:", error);
