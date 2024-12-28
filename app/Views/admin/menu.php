@@ -135,7 +135,7 @@
                                     <tr>
                                         <td>SN</td>
                                         <td>Heading</td>
-                                        <td colspan="2"><span class="d-flex justify-content-between"><span>Pages</span><span><i class="fa fa-plus" onclick="openAssignPage()"></i></span></span></td>
+                                        <td colspan="2"><span class="d-flex justify-content-between"><span>Pages</span><span><i class="fa fa-plus" onclick="openAssignPage(<?= $value['id'] ?>)"></i></span></span></td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -207,7 +207,16 @@
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 
 <script>
-    function openAssignPage() { 
+    function openAssignPage(menu_id) { 
+        $.ajax({
+            type: "post",
+            url: "<?= base_url() ?>fetch_menu_heading",
+            data: {menu_id : menu_id},
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+            }
+        });
         $('#assign_page_model').modal('show');
      }
 </script>

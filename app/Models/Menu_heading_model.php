@@ -26,5 +26,11 @@
             }
             return $result;
         }
+
+        public function getAllMenuHeading($menu_id){
+            $result = $this->where('menu_id',$menu_id)->orderBy('heading','asc')->findAll();
+            return $result;
+        }
+
     }
 ?>

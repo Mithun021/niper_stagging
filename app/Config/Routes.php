@@ -7,6 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 $routes->post('fetch-programs', 'UniversalController::fetch_programs');
+$routes->post('fetch_menu_heading', 'UniversalController::fetch_menu_heading');
 
 $routes->match(['get','post'],'admin/login', 'AdminControllers::adminLogin');
 $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
