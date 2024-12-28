@@ -152,16 +152,27 @@
 
 <script>
     $(document).ready(function(){
-      // Make table rows draggable
-      $("#sortableTable tbody").sortable({
-        placeholder: "ui-state-highlight", // This creates a visual placeholder when dragging
-        update: function(event, ui) {
-          // Optional: This function can be used to capture the order after drag
-          console.log("Table order updated!");
-        }
-      });
+        // Make table rows draggable
+        $("#sortableTable tbody").sortable({
+            placeholder: "ui-state-highlight", // This creates a visual placeholder when dragging
+            handle: "td",  // Dragging happens when any td is clicked (or you can specify a specific column/handle)
+            update: function(event, ui) {
+                console.log("Table order updated!");
+            }
+        });
+
+        // Make nested table rows draggable as well
+        $("#sortableTable tbody .mytable").each(function() {
+            $(this).sortable({
+                placeholder: "ui-state-highlight", // Nested table rows also have a placeholder
+                handle: "td",  // You can also make it draggable by clicking any td inside the nested table
+                update: function(event, ui) {
+                    console.log("Nested table order updated!");
+                }
+            });
+        });
     });
-  </script>
+</script>
 
 
 
