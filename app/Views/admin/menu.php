@@ -56,7 +56,7 @@
             <div class="card mb-0">
                 <div class="card-header" id="headingOne">
                     <h5 class="m-0 font-size-15">
-                        <a class="d-block pt-0 pb-0 text-dark" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <a class="d-block m-0 text-dark" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             Collapsible Group Item #1 <span class="float-right"><i class="mdi mdi-chevron-down accordion-arrow"></i></span>
                         </a>
                     </h5>
@@ -76,7 +76,7 @@
             <div class="card mb-0">
                 <div class="card-header" id="headingTwo">
                     <h5 class="m-0 font-size-15">
-                        <a class="collapsed d-block pt-0 pb-0 text-dark" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <a class="collapsed d-block m-0 text-dark" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             Collapsible Group Item #2 <span class="float-right"><i class="mdi mdi-chevron-down accordion-arrow"></i></span>
                         </a>
                     </h5>
@@ -96,7 +96,7 @@
             <div class="card mb-0">
                 <div class="card-header" id="headingThree">
                     <h5 class="m-0 font-size-15">
-                        <a class="collapsed d-block pt-0 pb-0 text-dark" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <a class="collapsed d-block m-0 text-dark" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                             Collapsible Group Item #3 <span class="float-right"><i class="mdi mdi-chevron-down accordion-arrow"></i></span>
                         </a>
                     </h5>
