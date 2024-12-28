@@ -1245,18 +1245,18 @@ use App\Models\Youtube_link_model;
             }
         }
 
-        public function save_menu_heading_sort_order(){
+        public function save_menu_heading_sort_order() {
             $menu_heading_model = new Menu_heading_model();
+        
             // Get JSON payload and decode it
-            // $sortedDataJson = $this->request->getPost('sortedData');
-            // print_r($sortedDataJson);die;
-
-            $postData = $this->request->getPost('sortedData');
+            $postData = $this->request->getPost('sortedData'); // Get the 'sortedData' from POST request
             if ($postData) {
-                $headingSortList = json_decode($postData, true);
-                print_r($headingSortList);
+                $headingSortList = json_decode($postData, true); // Decode JSON
+                print_r($headingSortList); // Optionally print to check the data structure
+            } else {
+                // Handle error if $postData is empty or not set
+                echo json_encode(['error' => 'Invalid or missing sorted data']);
             }
-            
         }
         public function save_menu_page_sort_order(){
             $menu_pages_model = new Menu_pages_model();
