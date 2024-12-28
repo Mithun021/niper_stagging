@@ -1248,22 +1248,29 @@ use App\Models\Youtube_link_model;
         public function save_menu_heading_sort_order() {
             $menu_heading_model = new Menu_heading_model();
         
-            // Get JSON payload and decode it
-            $postData = $this->request->getPost('sortedData'); // Get the 'sortedData' from POST request
-            if ($postData) {
-                $headingSortList = json_decode($postData, true); // Decode JSON
-                
-                // Check if decoding was successful and print the result
-                if (is_array($headingSortList)) {
-                    print_r($headingSortList); // Print the sorted data
-                    // Further processing with $headingSortList
-                } else {
-                    echo json_encode(['error' => 'Decoded data is not a valid array.']);
+            // Retrieve the JSON payload from the request body
+            $rawData = file_get_contents("php://input"); // Get raw POST data
+            $postData = json_decode($rawData, true); // Decode JSON
+        
+            // Validate and process the sorted data
+            if (isset($postData['sortedData']) && is_array($postData['sortedData'])) {
+                $headingSortList = $postData['sortedData'];
+        
+                // Process the data (e.g., save to the database)
+                foreach ($headingSortList as $heading) {
+                    if (isset($heading['id']) && isset($heading['sort_order'])) {
+                        // Update sort order in the database (pseudo-code)
+                        $menu_heading_model->updateSortOrder($heading['id'], $heading['sort_order']);
+                    }
                 }
+        
+                // Respond with a success message
+                echo json_encode(['success' => true, 'message' => 'Sort order saved successfully']);
             } else {
+                // Respond with an error message
                 echo json_encode(['error' => 'Invalid or missing sorted data']);
             }
-        }
+        }        
         
 
         public function save_menu_page_sort_order(){
