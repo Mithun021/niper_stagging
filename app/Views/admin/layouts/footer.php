@@ -80,14 +80,12 @@
             update: function(event, ui) {
                 // This will be triggered whenever the order of rows is changed
 
-                // Find the new order of the rows for the heading table
                 let sortedHeadings = [];
                 $("#sortableTable<?= $i ?> tbody tr").each(function(index) {
                     let headingId = $(this).find("td[data-heading-id]").data("heading-id");
                     sortedHeadings.push({ order: index + 1, headingId: headingId });
                 });
 
-                // Output sorted headings with a formatted message
                 let headingOutput = sortedHeadings.map(function(item) {
                     return `Order: ${item.order}, Heading ID: ${item.headingId}`;
                 }).join("\n");
@@ -98,14 +96,13 @@
     <?php } ?>
 
     // Make the nested tables inside each row also sortable
-    $(".mytable").each(function() {
+    $(".mytable table.mytable").each(function() { // Target nested tables inside rows
         $(this).sortable({
             placeholder: "ui-state-highlight", // Placeholder for nested tables
             handle: "td",  // You can make it draggable by clicking on any td
             update: function(event, ui) {
                 // This will be triggered whenever the order of rows is changed
 
-                // Find the new order of the rows for the pages inside each heading
                 let sortedPages = [];
                 $(this).find("tr").each(function(index) {
                     let pageId = $(this).data("page-id");
@@ -128,6 +125,7 @@
         });
     });
 });
+
 
 
             </script>
