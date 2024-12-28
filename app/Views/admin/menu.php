@@ -82,14 +82,15 @@
                             <input type="text" name="menu_id" value="<?= $value['id'] ?>">
                             <div class="input-group">
                                 <div class="form-group">
-                                    <span for="heading">Heading<span class="text-danger">*</span></span>
-                                    <input type="text" name="heading" id="heading" class="form-control form-control-sm" required>   
+                                    <label for="heading">Heading<span class="text-danger">*</span></label>
+                                    <input type="text" name="heading" id="heading" class="form-control form-control-sm" required>
                                 </div>
                                 <div class="form-group">
-                                    <span for="heading">Custom Link</span>
-                                    <input type="url" name="heading" id="heading" class="form-control form-control-sm">   
+                                    <label for="custom_link">Custom Link</label>
+                                    <input type="url" name="custom_link" id="custom_link" class="form-control form-control-sm">
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <input type="submit" value="Save Heading" class="btn btn-primary">
                             </div>
