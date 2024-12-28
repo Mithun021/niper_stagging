@@ -72,38 +72,35 @@
     $(document).ready(function () {
         // Enable sortable for #sortableTable
         $('[id^=sortableTable]').sortable({
-            items: "tr",
-            cursor: "move",
-            update: function (event, ui) {
+            items: "tr", // Target table rows
+            cursor: "move", // Cursor style when dragging
+            update: function(event, ui) {
                 const sortedData = [];
-                $(this).find('tr').each(function (index) {
-                    const headingId = $(this).data('heading-id');
+                $(this).find('tr').each(function(index) {
+                    const headingId = $(this).data('heading-id'); // Get the heading id from the row's data attribute
                     if (headingId) {
-                        sortedData.push({ id: headingId, sort_order: index + 1 });
+                        sortedData.push({ id: headingId, sort_order: index + 1 }); // Append sorted data
                     }
                 });
 
                 // Send sorted data to the controller
                 $.ajax({
                     url: "<?= base_url('admin/save_menu_heading_sort_order') ?>",
-                    method: "POST", // POST method is secure and preferred
-                    contentType: "application/json", // Specify content type as JSON
-                    data: JSON.stringify({ sortedData: sortedData }),
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ sortedData: sortedData }), // Convert to JSON
                     dataType: "json",
-                    success: function (response) {
+                    success: function(response) {
                         console.log(response);
-                        // if (response.success) {
-                        //     console.log("Menu heading sort order saved successfully.");
-                        // } else {
-                        //     console.error("Failed to save menu heading sort order:", response.message);
-                        // }
+                        // You can handle success response here if needed
                     },
-                    error: function (xhr, status, error) {
+                    error: function(xhr, status, error) {
                         console.error("Error saving menu heading sort order:", error);
                     }
                 });
             }
         });
+
 
 
         // Enable sortable for .mytable within #sortableTable rows
