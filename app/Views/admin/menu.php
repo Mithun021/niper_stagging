@@ -106,7 +106,7 @@
                                     <tr>
                                         <td>SN</td>
                                         <td>Heading</td>
-                                        <td colspan="2">Pages</td>
+                                        <td colspan="2"><span class="d-flex justify-content-between"><span>Pages</span><span><i class="fa fa-plus" aria-hidden="true"></i></span></span></td>
                                     </tr>
                                 </thead>
                                 <tbody>
