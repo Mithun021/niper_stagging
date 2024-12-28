@@ -87,7 +87,7 @@
                 // Send sorted data to the controller
                 $.ajax({
                     url: "<?= base_url('admin/save_menu_heading_sort_order') ?>",
-                    method: "POST",
+                    method: "GET",
                     contentType: "application/json",
                     data: JSON.stringify({ sortedData: sortedData }), // Convert to JSON
                     dataType: "json",
