@@ -88,7 +88,7 @@
 
                             // Send sorted data to the controller
                             $.ajax({
-                                url: "<?= base_url('admin/save_menu_heading_sort_order') ?>",
+                                url: "<?= base_url('save_menu_heading_sort_order') ?>",
                                 type: "POST",
                                 data: { sortedData: sortedData },
                                 success: function (response) {
@@ -117,7 +117,7 @@
 
                             // Send sorted data to the controller
                             $.ajax({
-                                url: "<?= base_url('admin/save_menu_page_sort_order') ?>",
+                                url: "<?= base_url('save_menu_page_sort_order') ?>",
                                 type: "POST",
                                 data: { sortedData: sortedPagesData },
                                 success: function (response) {
