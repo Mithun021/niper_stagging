@@ -6,17 +6,17 @@
     $employee_model = new Employee_model();
 ?>
 <div class="row">
-    <!-- Form Section for Adding <?= $title ?> -->
+    <div class="col-lg-12">
+        <?php if (session()->getFlashdata('status')): ?>
+            <?= session()->getFlashdata('status') ?>
+        <?php endif; ?>
+    </div>
     <div class="col-lg-5">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> Name</h4>
             </div>
             <div class="card-body">
-                <?php if (session()->getFlashdata('status')): ?>
-                    <?= session()->getFlashdata('status') ?>
-                <?php endif; ?>
-
                 <!-- Form Start -->
                 <form action="<?= base_url() ?>admin/menu" method="post">
                     <!-- Recruiter Title -->
@@ -81,7 +81,7 @@
                         <form action="<?= base_url() ?>admin/menu-heading" method="post">
                             <input type="text" name="menu_id" value="<?= $value['id'] ?>" class="form-control form-control-sm">
                             <div class="input-group">
-                                <input type="text" name="heading" id="heading" class="form-control form-control-sm" placeholder="Menu Heading" required>
+                                <input type="text" name="heading" id="heading" class="form-control form-control-sm" placeholder="Menu Heading *" required>
                                 <input type="url" name="custom_link" id="custom_link" class="form-control form-control-sm" placeholder="Custom Link">
                             </div>
 
@@ -89,6 +89,24 @@
                                 <input type="submit" value="Save Heading" class="btn btn-primary">
                             </div>
                         </form>
+
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <td>SN</td>
+                                        <td>Heading</td>
+                                        <td>Pages</td>
+                                        <td>Action</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php foreach ($menu_heading as $key => $pages) { ?>
+                                <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                 </div>
             </div> <!-- end card-->
