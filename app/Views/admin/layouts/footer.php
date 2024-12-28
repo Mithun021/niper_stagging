@@ -86,7 +86,11 @@
                 let sortedHeadings = [];
                 $(this).find("tr").each(function(index) {
                     let headingId = $(this).data("heading-id");
-                    sortedHeadings.push({ order: index + 1, headingId: headingId });
+                    if (headingId !== undefined) {
+                        sortedHeadings.push({ order: index + 1, headingId: headingId });
+                    } else {
+                        console.log("Missing heading-id for row at index " + index);
+                    }
                 });
 
                 let headingOutput = sortedHeadings.map(function(item) {
@@ -127,6 +131,10 @@
         });
     });
 });
+
+
+
+
             </script>
         
         <script>
