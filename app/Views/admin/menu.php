@@ -105,7 +105,7 @@
                                         <td><?= ++$key2 ?></td>
                                         <td><?= $pages['heading'] ?></td>
                                         <td>
-                                            <table>
+                                            <table class="table table-striped table-hover">
                                                 <tr>
                                                     <td>Page Name</td>
                                                     <td><i class="fa fa-trash" aria-hidden="true"></i></td>
