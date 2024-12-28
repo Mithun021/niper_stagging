@@ -5,7 +5,6 @@
     use App\Models\Employee_model;
     $employee_model = new Employee_model();
 ?>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style>
     .ui-state-highlight {
         background-color: #ffeb3b;
@@ -152,8 +151,15 @@
     </div> <!-- end col -->
 </div>
 
+<!-- jQuery Library -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- jQuery UI Library (must be loaded after jQuery) -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<!-- jQuery UI Stylesheet (for sortable styling) -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 
 <!-- jQuery UI Sortable Script -->
 <script>
