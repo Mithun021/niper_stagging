@@ -21,6 +21,7 @@ use App\Models\Media_model;
 use App\Models\Membership_model;
 use App\Models\Menu_heading_model;
 use App\Models\Menu_name_model;
+use App\Models\Menu_pages_model;
 use App\Models\Permission_model;
 use App\Models\Photo_album_file_model;
 use App\Models\Photo_album_model;
@@ -1237,6 +1238,24 @@ use App\Models\Youtube_link_model;
             ];
             // echo "<pre>";print_r($data); die;
             $result = $menu_heading_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/menu')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/menu')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+
+        public function save_pages(){
+            $menu_pages_model = new Menu_pages_model();
+            $page_name = $this->request->getPost('page_name');
+            foreach ($page_name as $key => $value) {
+                $data = [
+                    'menu_id' => $this->request->getPost('assign_menu_id'),
+                    'menu_heading_id' => $this->request->getPost('heading_id'),
+                    'page_name' => $value,
+                ];
+                $result = $menu_pages_model->add($data);
+            }
             if ($result === true) {
                 return redirect()->to('admin/menu')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {

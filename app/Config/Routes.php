@@ -98,6 +98,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get', 'post'], 'permission/(:num)', 'AdminControllers::permission/$1');
     $routes->match(['get', 'post'], 'menu', 'AdminControllers::menu');
     $routes->post('menu-heading', 'AdminControllers::menu_heading');
+    $routes->post('save_pages', 'AdminControllers::save_pages');
 
 
     // Export and Import routes

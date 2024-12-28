@@ -181,27 +181,30 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title h4" id="myExtraLargeModalLabel">Extra large modal</h5>
+                <h5 class="modal-title h4" id="myExtraLargeModalLabel">Assign Page</h5>
                 <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <span>Page Heading</span>
-                    <select name="heading_id" id="heading_id" class="form-control form-control-sm">
-                        <option value=""></option>
-                    </select>
+            <form action="<?= base_url() ?>admin/save_pages" method="post">
+                <div class="modal-body">
+                    <input type="text" class="form-control form-control-sm" name="assign_menu_id" id="assign_menu_id" value="" hidden>
+                    <div class="form-group">
+                        <span>Page Heading</span>
+                        <select name="heading_id" id="heading_id" class="form-control form-control-sm">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="form-group page_lists">
+                    <?php foreach ($viewFiles as $key => $pages) { ?>
+                        <span><input type="checkbox" name="page_name" value="<?= $pages ?>"> <?= $pages ?></span>
+                    <?php } ?>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" value="Save Pages">
+                    </div>
                 </div>
-                <div class="form-group page_lists">
-                <?php foreach ($viewFiles as $key => $pages) { ?>
-                    <span><input type="checkbox" name="page_name" value="<?= $pages ?>"> <?= $pages ?></span>
-                <?php } ?>
-                </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-primary" value="Save Pages">
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -210,8 +213,9 @@
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 
 <script>
-    function openAssignPage(menu_id) { 
+    function openAssignPage(menu_id) {
         // alert(menu_id); return false;
+        $('#assign_menu_id').val(menu_id);
         $.ajax({
             type: "post",
             url: "<?= base_url() ?>fetch_menu_heading",
