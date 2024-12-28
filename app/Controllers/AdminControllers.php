@@ -1253,16 +1253,21 @@ use App\Models\Youtube_link_model;
             if ($sortedData && is_array($sortedData)) {
                 foreach ($sortedData as $item) {
                     if (isset($item['id'], $item['sort_order'])) {
-                        // Update the database record for the current item
-                        $menu_heading_model->update($item['id'], [
-                            'heading_sort_list' => $item['sort_order']
-                        ]);
+                        $data = [
+                            'id' => $item['id'],
+                            'heading_sort_list' => $item['sort_order'],
+                        ];
+                        print_r($data);
+                        // $menu_heading_model->update($item['id'], [
+                        //     'heading_sort_list' => $item['sort_order']
+                        // ]);
                     }
                 }
-                return $this->response->setJSON(['success' => true, 'message' => 'Sort order updated successfully']);
+                die;
+                // return $this->response->setJSON(['success' => true, 'message' => 'Sort order updated successfully']);
             }
         
-            return $this->response->setJSON(['success' => false, 'message' => 'Invalid data received']);
+            // return $this->response->setJSON(['success' => false, 'message' => 'Invalid data received']);
         }
         public function save_menu_page_sort_order(){
             $menu_pages_model = new Menu_pages_model();
