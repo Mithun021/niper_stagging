@@ -35,7 +35,7 @@
             <?= session()->getFlashdata('status') ?>
         <?php endif; ?>
 
-        <?php  echo "<pre>"; print_r($viewFiles); ?>
+        <?php  echo ""; //"<pre>"; print_r($viewFiles); ?>
     </div>
     <div class="col-lg-5">
         <div class="card">
