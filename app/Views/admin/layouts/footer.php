@@ -96,7 +96,7 @@
     <?php } ?>
 
     // Make the nested tables inside each row also sortable
-    $(".mytable table.mytable").each(function() { // Target nested tables inside rows
+    $(".mytable2 table.mytable").each(function() { // Target nested tables inside rows
         $(this).sortable({
             placeholder: "ui-state-highlight", // Placeholder for nested tables
             handle: "td",  // You can make it draggable by clicking on any td
