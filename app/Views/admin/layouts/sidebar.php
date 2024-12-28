@@ -156,7 +156,7 @@
             <ul class="sub-menu" aria-expanded="false">
                 <li><a href="<?= base_url() ?>admin/modules">Module</a></li>
                 <li><a href="<?= base_url() ?>admin/roles-permissions">Roles & Permissions</a></li>
-                <li><a href="<?= base_url() ?>admin/menu">Module</a></li>
+                <li><a href="<?= base_url() ?>admin/menu">Menu</a></li>
             </ul>
         </li>
         <li>
