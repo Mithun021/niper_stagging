@@ -109,7 +109,13 @@
                 let sortedPages = [];
                 $(this).find("tr").each(function(index) {
                     let pageId = $(this).data("page-id");
-                    sortedPages.push({ order: index + 1, pageId: pageId });
+
+                    // Check if pageId is missing
+                    if (pageId === undefined) {
+                        console.log("Missing page-id for row:", $(this));
+                    } else {
+                        sortedPages.push({ order: index + 1, pageId: pageId });
+                    }
                 });
 
                 // Output sorted pages with a formatted message
@@ -122,6 +128,7 @@
         });
     });
 });
+
 
             </script>
         
