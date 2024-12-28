@@ -121,6 +121,14 @@
                                                     <td>Page Name</td>
                                                     <td><i class="fa fa-trash" aria-hidden="true"></i></td>
                                                 </tr>
+                                                <tr>
+                                                    <td>Page Name</td>
+                                                    <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Page Name</td>
+                                                    <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+                                                </tr>
                                             </table>
                                         </td>
                                     </tr>
