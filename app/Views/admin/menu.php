@@ -198,6 +198,9 @@
                     <span><input type="checkbox" name="page_name" value="<?= $pages ?>"> <?= $pages ?></span>
                 <?php } ?>
                 </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Save Pages">
+                </div>
             </div>
         </div>
     </div>
@@ -219,7 +222,7 @@
                 if (response) {
                     let dataList = $('#heading_id');
                     dataList.empty();
-                    dataList.append('<option value="">Select Menu Heading</option>');
+                    dataList.append('<option value="">Select Page Heading</option>');
                     $.each(response, function(index, item) {
                         dataList.append('<option value="'+ item.id +'">'+ item.heading +'</option>');
                     });   
