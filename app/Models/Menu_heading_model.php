@@ -22,7 +22,7 @@
             if($id != null){
                 $result = $this->where('id',$id)->first();
             }else{
-                $result = $this->orderBy('name','asc')->findAll();
+                $result = $this->orderBy('menu_id','asc')->orderBy('heading','asc')->findAll();
             }
             return $result;
         }
