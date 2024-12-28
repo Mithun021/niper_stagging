@@ -7,11 +7,12 @@
 
     $viewsPath = ROOTPATH . 'app/Views/';
 
-    // Get all PHP files from the views directory
-    $viewFiles = array_filter(scandir($viewsPath), function ($file) use ($viewsPath) {
+    $viewFiles = array_map(function ($file) {
+        return pathinfo($file, PATHINFO_FILENAME);
+    }, array_filter(scandir($viewsPath), function ($file) use ($viewsPath) {
         $filePath = $viewsPath . DIRECTORY_SEPARATOR . $file;
         return is_file($filePath) && pathinfo($file, PATHINFO_EXTENSION) === 'php';
-    });
+    }));
 ?>
 <style>
     .ui-state-highlight {
@@ -34,7 +35,7 @@
             <?= session()->getFlashdata('status') ?>
         <?php endif; ?>
 
-        <?php  echo "<pre>"; print_r(esc($viewFiles)); ?>
+        <?php  echo "<pre>"; print_r($viewFiles); ?>
     </div>
     <div class="col-lg-5">
         <div class="card">
