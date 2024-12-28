@@ -1247,37 +1247,9 @@ use App\Models\Youtube_link_model;
 
         public function save_menu_heading_sort_order(){
             $menu_heading_model = new Menu_heading_model();
-            $menu_id = $this->request->getPost('menu_id');
-            $new_order = $this->request->getPost('new_order');
-
-            if ($new_order) {
-                foreach ($new_order as $index => $heading) {
-                    $menu_heading_model->update($heading['id'], [
-                        'heading_sort_list' => $heading['sort_order']
-                    ]);
-                }
-
-                return $this->response->setJSON(['status' => 'success']);
-            }
-
-            return $this->response->setJSON(['status' => 'error']);
         }
         public function save_menu_page_sort_order(){
             $menu_pages_model = new Menu_pages_model();
-            $menu_id = $this->request->getPost('menu_id');
-            $heading_id = $this->request->getPost('heading_id');
-            $new_order = $this->request->getPost('new_order');
-            if ($new_order) {
-                foreach ($new_order as $index => $page) {
-                    $menu_pages_model->update($page['id'], [
-                        'page_sort_list' => $page['sort_order']
-                    ]);
-                }
-    
-                return $this->response->setJSON(['status' => 'success']);
-            }
-    
-            return $this->response->setJSON(['status' => 'error']);
         }
 
         public function save_pages(){

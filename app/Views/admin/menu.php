@@ -147,7 +147,7 @@
                                     <?php $page_name = $menu_pages_model->getPagesByMenuAndHeading($value['id'],$pages_heading['id']);  ?>
                                     <tr>
                                         <td><?= $num ?></td>
-                                        <td>
+                                        <td data-heading-id="<?= $pages_heading['id'] ?>">
                                         <a href="<?php 
                                             if (empty($pages_heading['custom_link']) || $pages_heading['custom_link'] == "") {
                                                 echo "javascript:void(0)";
@@ -161,7 +161,7 @@
                                         <td>
                                             <table class="mytable">
                                             <?php foreach ($page_name as $key2 => $pages) { ?>
-                                                <tr>
+                                                <tr data-page-id="<?= $pages['id'] ?>">
                                                     <td width="85%"><a href="<?= base_url() ?><?php echo ($pages['page_name'] === 'index' || empty($pages['page_name'])) ? null : $pages['page_name']; ?>" target="_blank"><?= $pages['page_name'] ?></a></td>
                                                     <td><i class="fa fa-trash" aria-hidden="true"></i></td>
                                                 </tr>
