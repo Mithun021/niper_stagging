@@ -169,7 +169,7 @@
                                             </table>
                                         </td>
                                     </tr>
-                                <?php  $key2 = 0; } } ?>
+                                <?php } }  $key2 = 0; ?>
                                 </tbody>
                             </table>
                         </div>
