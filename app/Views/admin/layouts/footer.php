@@ -87,8 +87,12 @@
                     sortedHeadings.push({ order: index + 1, headingId: headingId });
                 });
 
-                // Log the order of headings for debugging
-                console.log("Sorted Headings:", sortedHeadings);
+                // Output sorted headings with a formatted message
+                let headingOutput = sortedHeadings.map(function(item) {
+                    return `Order: ${item.order}, Heading ID: ${item.headingId}`;
+                }).join("\n");
+
+                console.log("Sorted Headings:\n" + headingOutput);
             }
         });
     <?php } ?>
@@ -108,8 +112,12 @@
                     sortedPages.push({ order: index + 1, pageId: pageId });
                 });
 
-                // Log the order of pages for debugging
-                console.log("Sorted Pages:", sortedPages);
+                // Output sorted pages with a formatted message
+                let pageOutput = sortedPages.map(function(item) {
+                    return `Order: ${item.order}, Page ID: ${item.pageId}`;
+                }).join("\n");
+
+                console.log("Sorted Pages:\n" + pageOutput);
             }
         });
     });
