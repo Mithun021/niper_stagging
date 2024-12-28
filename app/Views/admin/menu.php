@@ -142,7 +142,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php $key2 = 0; foreach ($menu_heading as $key2 => $pages_heading) { ?>
+                                <?php foreach ($menu_heading as $key2 => $pages_heading) { ?>
                                     <?php if ($value['id'] == $pages_heading['menu_id']) { ?>
                                     <?php $page_name = $menu_pages_model->getPagesByMenuAndHeading($value['id'],$pages_heading['id']);  ?>
                                     <tr>
@@ -169,7 +169,7 @@
                                             </table>
                                         </td>
                                     </tr>
-                                <?php } } ?>
+                                <?php  $key2 = 0; } } ?>
                                 </tbody>
                             </table>
                         </div>
