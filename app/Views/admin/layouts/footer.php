@@ -88,7 +88,7 @@
                 $.ajax({
                     url: "<?= base_url() ?>admin/save_menu_heading_sort_order",
                     method: "GET",
-                    data: { sortedData: sortedData },
+                    data: JSON.stringify({ sortedData: sortedData }),
                     success: function (response) {
                         console.log("Menu heading sort order saved successfully.", response);
                     },
@@ -117,7 +117,7 @@
                 $.ajax({
                     url: "<?= base_url() ?>admin/save_menu_page_sort_order",
                     method: "GET",
-                    data: { sortedData: sortedPagesData },
+                    data: JSON.stringify({ sortedData: sortedData }),
                     success: function (response) {
                         console.log("Menu page sort order saved successfully.", response);
                     },
