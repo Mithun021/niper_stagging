@@ -103,7 +103,7 @@
     <div class="col-lg-7">
     <div id="accordion" class="custom-accordion mb-4">
     <?php $heading = 1; $collapse = 1 ?>
-    <?php foreach ($menu_name as $key => $value) { ?>
+    <?php foreach ($menu_name as $key => $value) { $num = 0; ?>
         
             <div class="card mb-2">
                 <div class="card-header" id="heading<?= $heading ?>">
@@ -142,11 +142,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php foreach ($menu_heading as $key2 => $pages_heading) { ?>
+                                <?php $num = 1; foreach ($menu_heading as $key2 => $pages_heading) { ?>
                                     <?php if ($value['id'] == $pages_heading['menu_id']) { ?>
                                     <?php $page_name = $menu_pages_model->getPagesByMenuAndHeading($value['id'],$pages_heading['id']);  ?>
                                     <tr>
-                                        <td><?= ++$key2 ?></td>
+                                        <td><?= $num ?></td>
                                         <td>
                                         <a href="<?php 
                                             if (empty($pages_heading['custom_link']) || $pages_heading['custom_link'] == "") {
@@ -169,7 +169,7 @@
                                             </table>
                                         </td>
                                     </tr>
-                                <?php } }  $key2 = 0; ?>
+                                <?php $num++; } } ?>
                                 </tbody>
                             </table>
                         </div>
