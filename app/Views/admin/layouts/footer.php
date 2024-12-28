@@ -72,87 +72,29 @@
             <!-- jQuery UI Sortable Script -->
             <script>
                 $(document).ready(function() {
-    // Make the table rows sortable for each accordion section
-    <?php for ($i = 1; $i <= count($menu_name); $i++) { ?>
-        $("#sortableTable<?= $i ?> tbody").sortable({
-            placeholder: "ui-state-highlight", // Placeholder when dragging
-            handle: "td", // Optionally set a specific handle to drag the rows
-            update: function(event, ui) {
-                // This will be triggered whenever the order of rows is changed
+                    // Make the table rows sortable for each accordion section
+                    <?php for ($i = 1; $i <= count($menu_name); $i++) { ?>
+                        $("#sortableTable<?= $i ?> tbody").sortable({
+                            placeholder: "ui-state-highlight", // Placeholder when dragging
+                            handle: "td", // Optionally set a specific handle to drag the rows
+                            update: function(event, ui) {
+                                // This will be triggered whenever the order of rows is changed
+                                console.log("Table order updated!");
+                            }
+                        });
+                    <?php } ?>
 
-                // Find the new order of the rows for the heading table
-                let sortedHeadings = [];
-                $("#sortableTable<?= $i ?> tbody tr").each(function(index) {
-                    let headingId = $(this).find("td[data-heading-id]").data("heading-id");
-                    
-                    // Only add heading to sortedHeadings if headingId is defined and not empty
-                    if (headingId !== undefined && headingId !== "") {
-                        sortedHeadings.push({ order: index + 1, headingId: headingId });
-                    }
-                });
-
-                // Send the sorted headings order to the server if there are valid headings to update
-                if (sortedHeadings.length > 0) {
-                    $.ajax({
-                        url: '<?= base_url() ?>admin/save_menu_heading_sort_order',  // URL to send the request to
-                        method: 'POST',
-                        data: {
-                            menu_id: <?= $menu_id ?>,  // Pass menu_id (if needed)
-                            sorted_headings: sortedHeadings  // Pass the sorted headings data
-                        },
-                        success: function(response) {
-                            console.log("Sorted headings updated successfully.");
-                        },
-                        error: function(xhr, status, error) {
-                            console.error("Error updating headings sort order: ", error);
-                        }
+                    // Make the nested tables inside each row also sortable
+                    $(".mytable").each(function() {
+                        $(this).sortable({
+                            placeholder: "ui-state-highlight", // Placeholder for nested tables
+                            handle: "td",  // You can make it draggable by clicking on any td
+                            update: function(event, ui) {
+                                console.log("Nested table order updated!");
+                            }
+                        });
                     });
-                }
-            }
-        });
-    <?php } ?>
-
-    // Make the nested tables inside each row also sortable
-    $(".mytable").each(function() {
-        $(this).sortable({
-            placeholder: "ui-state-highlight", // Placeholder for nested tables
-            handle: "td",  // You can make it draggable by clicking on any td
-            update: function(event, ui) {
-                // This will be triggered whenever the order of rows is changed
-
-                // Find the new order of the rows for the pages inside each heading
-                let sortedPages = [];
-                $(this).find("tr").each(function(index) {
-                    let pageId = $(this).data("page-id");
-                    
-                    // Only add page to sortedPages if pageId is defined and not empty
-                    if (pageId !== undefined && pageId !== "") {
-                        sortedPages.push({ order: index + 1, pageId: pageId });
-                    }
                 });
-
-                // Send the sorted pages order to the server if there are valid pages to update
-                if (sortedPages.length > 0) {
-                    $.ajax({
-                        url: '<?= base_url() ?>admin/save_menu_page_sort_order',  // URL to send the request to
-                        method: 'POST',
-                        data: {
-                            heading_id: $(this).closest('tr').data('heading-id'),  // Pass heading ID
-                            sorted_pages: sortedPages  // Pass the sorted pages data
-                        },
-                        success: function(response) {
-                            console.log("Sorted pages updated successfully.");
-                        },
-                        error: function(xhr, status, error) {
-                            console.error("Error updating pages sort order: ", error);
-                        }
-                    });
-                }
-            }
-        });
-    });
-});
-
             </script>
         
         <script>
