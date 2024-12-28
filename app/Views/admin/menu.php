@@ -140,7 +140,7 @@
                                             <table class="mytable">
                                                 <tr>
                                                     <td>Page Name</td>
-                                                    <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+                                                    <td><i class="fa fa-trash" aria-hidden="true" id="assign_page_btn"></i></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Page Name</td>
@@ -166,5 +166,34 @@
     </div> <!-- end custom accordions-->
     </div> <!-- end col -->
 </div>
+
+
+<!-- Add Pages Model -->
+<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" id="assign_page_model">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title h4" id="myExtraLargeModalLabel">Extra large modal</h5>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#assign_page_btn').on('click', function() {
+            $('#assign_page_model').modal('show');
+        });
+    });
+</script>
 
 <?= $this->endSection() ?>
