@@ -1248,19 +1248,10 @@ use App\Models\Youtube_link_model;
         public function save_menu_heading_sort_order(){
             $menu_heading_model = new Menu_heading_model();
             // Get JSON payload and decode it
-            $sortedData = $this->request->getPost('sortedData');
-            if (!$sortedData || !is_array($sortedData)) {
-                return $this->response->setStatusCode(400, 'Invalid data received');
-            }
+            $sortedDataJson = $this->request->getPost('sortedData');
+            $sortedData = json_decode($sortedDataJson, true);
             // print_r($input_data);die;
-            foreach ($sortedData as $item) {
-                if (isset($item['id'], $item['sort_order'])) {
-                    // Update the database
-                    $menu_heading_model->update($item['id'], [
-                        'heading_sort_list' => $item['sort_order']
-                    ]);
-                }
-            }
+            
     
             return $this->response->setJSON(['status' => 'success', 'message' => 'Data updated successfully']);
         
