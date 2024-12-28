@@ -96,12 +96,23 @@
                                     <tr>
                                         <td>SN</td>
                                         <td>Heading</td>
-                                        <td>Pages</td>
-                                        <td>Action</td>
+                                        <td colspan="2">Pages</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php foreach ($menu_heading as $key => $pages) { ?>
+                                <?php foreach ($menu_heading as $key2 => $pages) { ?>
+                                    <tr>
+                                        <td><?= ++$key2 ?></td>
+                                        <td><?= $pages['heading'] ?></td>
+                                        <td>
+                                            <table>
+                                                <tr>
+                                                    <td>Page Name</td>
+                                                    <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
                                 <?php } ?>
                                 </tbody>
                             </table>
