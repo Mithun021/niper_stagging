@@ -68,7 +68,7 @@
     <?php $heading = 1; $collapse = 1 ?>
     <?php foreach ($menu_name as $key => $value) { ?>
         
-            <div class="card mb-0">
+            <div class="card mb-2">
                 <div class="card-header" id="heading<?= $heading ?>">
                     <h5 class="m-0 font-size-15">
                         <a class="d-block m-0 text-dark" data-toggle="collapse" href="#collapse<?= $collapse?>" aria-expanded="true" aria-controls="collapse<?= ++$key ?>">
