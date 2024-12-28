@@ -105,10 +105,9 @@
     </div>
 
     <div class="col-lg-7">
-        <div id="accordion" class="custom-accordion mb-4">
+    <div id="accordion" class="custom-accordion mb-4">
         <?php $heading = 1; $collapse = 1; ?>
         <?php foreach ($menu_name as $key => $value): ?>
-            
             <div class="card custom-card mb-2">
                 <div class="card-header" id="heading<?= $heading ?>">
                     <h5 class="m-0 font-size-15">
@@ -125,12 +124,11 @@
                                 <input type="text" name="heading" id="heading" class="form-control form-control-sm" placeholder="Menu Heading *" required>
                                 <select name="custom_link" id="custom_link" class="form-control form-control-sm">
                                     <option value="">Custom Link</option>
-                                    <?php foreach ($viewFiles as $key => $webpage): ?>
+                                    <?php foreach ($viewFiles as $webpage): ?>
                                         <option value="<?= $webpage ?>"><?= $webpage ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-
                             <div class="form-group">
                                 <input type="submit" value="Save Heading" class="btn btn-sm btn-primary">
                             </div>
@@ -142,49 +140,55 @@
                                     <tr>
                                         <td>SN</td>
                                         <td>Heading</td>
-                                        <td colspan="2"><span class="d-flex justify-content-between"><span>Pages</span><span><i class="fa fa-plus" onclick="openAssignPage(<?= $value['id'] ?>)"></i></span></span></td>
+                                        <td colspan="2">
+                                            <span class="d-flex justify-content-between">
+                                                <span>Pages</span>
+                                                <span><i class="fa fa-plus" onclick="openAssignPage(<?= $value['id'] ?>)"></i></span>
+                                            </span>
+                                        </td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php $num = 1; foreach ($menu_heading as $key2 => $pages_heading): ?>
-                                    <?php if ($value['id'] == $pages_heading['menu_id']): ?>
-                                        <?php $page_name = $menu_pages_model->getPagesByMenuAndHeading($value['id'], $pages_heading['id']); ?>
-                                        <tr data-heading-id="<?= $pages_heading['id'] ?>">
-                                            <td><?= $num ?></td>
-                                            <td>
-                                            <a href="<?php 
-                                                if (empty($pages_heading['custom_link']) || $pages_heading['custom_link'] == "") {
-                                                    echo "javascript:void(0)";
-                                                } elseif ($pages_heading['custom_link'] == "index") {
-                                                    echo base_url();
-                                                } else {
-                                                    echo base_url() . $pages_heading['custom_link'];
-                                                }
-                                            ?>" target="_blank"><?= $pages_heading['heading'] ?></a>
-                                            </td>
-                                            <td>
-                                                <table class="mytable">
-                                                <?php foreach ($page_name as $pages): ?>
-                                                    <tr data-page-id="<?= $pages['id'] ?>">
-                                                        <td width="85%"><a href="<?= base_url() ?><?php echo ($pages['page_name'] === 'index' || empty($pages['page_name'])) ? null : $pages['page_name']; ?>" target="_blank"><?= $pages['page_name'] ?></a></td>
-                                                        <td><i class="fa fa-trash" aria-hidden="true"></i></td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    <?php $num++; endif; endforeach; ?>
+                                    <?php $num = 1; foreach ($menu_heading as $pages_heading): ?>
+                                        <?php if ($value['id'] == $pages_heading['menu_id']): ?>
+                                            <?php $page_name = $menu_pages_model->getPagesByMenuAndHeading($value['id'], $pages_heading['id']); ?>
+                                            <tr data-heading-id="<?= $pages_heading['id'] ?>">
+                                                <td><?= $num ?></td>
+                                                <td>
+                                                    <a href="<?php
+                                                        if (empty($pages_heading['custom_link'])) {
+                                                            echo "javascript:void(0)";
+                                                        } elseif ($pages_heading['custom_link'] == "index") {
+                                                            echo base_url();
+                                                        } else {
+                                                            echo base_url() . $pages_heading['custom_link'];
+                                                        }
+                                                    ?>" target="_blank"><?= $pages_heading['heading'] ?></a>
+                                                </td>
+                                                <td>
+                                                    <table class="mytable">
+                                                        <?php foreach ($page_name as $pages): ?>
+                                                            <tr data-page-id="<?= $pages['id'] ?>">
+                                                                <td width="85%">
+                                                                    <a href="<?= base_url() ?><?php echo ($pages['page_name'] === 'index' || empty($pages['page_name'])) ? null : $pages['page_name']; ?>" target="_blank"><?= $pages['page_name'] ?></a>
+                                                                </td>
+                                                                <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+                                                            </tr>
+                                                        <?php endforeach; ?>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        <?php $num++; endif; endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div> <!-- end card-->
-        
         <?php $heading++; $collapse++; endforeach; ?>
-        </div> <!-- end custom accordions-->
-    </div> <!-- end col -->
+    </div> <!-- end custom accordions-->
+</div> <!-- end col -->
+
 
 </div>
 
