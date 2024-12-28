@@ -87,8 +87,8 @@
         $.ajax({
             url: "<?= base_url('admin/save_menu_heading_sort_order') ?>",
             method: "POST", // Use POST for better security and standards
-            contentType: "application/json", // Proper content type for JSON data
-            data: JSON.stringify({ sortedData: sortedData }),
+            dataType : "json",// Proper content type for JSON data
+            data: { sortedData: sortedData },
             success: function (response) {
                 console.log(response);
                 // if (response.success) {

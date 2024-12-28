@@ -1245,39 +1245,12 @@ use App\Models\Youtube_link_model;
             }
         }
 
-        public function save_menu_heading_sort_order()
-{
-    // Load the model
-    $menu_heading_model = new Menu_heading_model();
-
-    // Get JSON payload and decode it
-    $input_data = json_decode(file_get_contents('php://input'), true);
-
-    // Validate the input data
-    if (!isset($input_data['sortedData']) || empty($input_data['sortedData'])) {
-        echo json_encode(['success' => false, 'message' => 'No sort data provided.']);
-        return;
-    }
-
-    // Initialize a flag to track the overall success of updates
-    $all_saved = true;
-
-    // Loop through the input data and update each record
-    foreach ($input_data['sortedData'] as $item) {
-        $update_result = $menu_heading_model->update($item['id'], ['heading_sort_list' => $item['sort_order']]);
-        if (!$update_result) {
-            $all_saved = false; // If any update fails, set the flag to false
+        public function save_menu_heading_sort_order(){
+            $menu_heading_model = new Menu_heading_model();
+            // Get JSON payload and decode it
+            $input_data = $this->request->getPost('sortedData');
+            print_r($input_data);die;
         }
-    }
-
-    // Respond based on the success of all updates
-    if ($all_saved) {
-        echo json_encode(['success' => true, 'message' => 'Menu heading sort order saved successfully.']);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Failed to save some or all menu heading sort orders.']);
-    }
-}
-
         public function save_menu_page_sort_order(){
             $menu_pages_model = new Menu_pages_model();
             $sortedData = $this->request->getPost('sortedData');
