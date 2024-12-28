@@ -22,7 +22,7 @@
                     <!-- Recruiter Title -->
                     <div class="form-group">
                         <span for="Recruitertitle">Menu Title<span class="text-danger">*</span>:</span>
-                        <input type="text" name="researchtitle" id="researchtitle" class="form-control form-control-sm" required>
+                        <input type="text" name="menu_name" id="menu_name" class="form-control form-control-sm" required>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Save Menu" class="btn btn-primary">
@@ -44,6 +44,18 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php foreach ($menu_name as $key => $value) { ?>
+                            <tr>
+                                <td><?= $key+1 ?></td>
+                                <td><?= $value['name'] ?></td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>

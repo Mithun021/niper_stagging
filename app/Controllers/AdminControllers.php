@@ -19,6 +19,7 @@ use App\Models\Instruments_model;
 use App\Models\Leadership_media_link_model;
 use App\Models\Media_model;
 use App\Models\Membership_model;
+use App\Models\Menu_name_model;
 use App\Models\Permission_model;
 use App\Models\Photo_album_file_model;
 use App\Models\Photo_album_model;
@@ -1206,11 +1207,21 @@ use App\Models\Youtube_link_model;
         }
 
         public function menu(){
+            $menu_name_model = new Menu_name_model();
             $data = ['title' => 'Menu'];
             if ($this->request->is("get")) {
+                $data['menu_name'] = $menu_name_model->get();
                 return view('admin/menu',$data);
             }else if ($this->request->is("post")) {
-
+                $data = [
+                    'name' => $this->request->getPost('menu_name'),
+                ];
+                $result = $menu_name_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/menu')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/menu')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 
