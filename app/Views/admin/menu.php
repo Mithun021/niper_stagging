@@ -208,7 +208,7 @@
 
 <script>
     function openAssignPage(menu_id) { 
-        alert(menu_id); return false;
+        // alert(menu_id); return false;
         $.ajax({
             type: "post",
             url: "<?= base_url() ?>fetch_menu_heading",
