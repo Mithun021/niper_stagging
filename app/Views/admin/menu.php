@@ -28,6 +28,14 @@
         border: 1px solid #ddd;
         padding: 5px;
     }
+    .page_lists{
+        position: relative;
+        width: 100%;
+    }
+    .page_lists span{
+        float: left;
+        width: 31%;
+    }
 </style>
 <div class="row">
     <div class="col-lg-12">
@@ -179,7 +187,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <div class="form-group">
+                    <span>Page Heading</span>
+                    <select name="heading_id" id="heading_id" class="form-control form-control-sm">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="form-group page_lists">
+                <?php foreach ($viewFiles as $key => $pages) { ?>
+                    <span><input type="checkbox" name="page_name" value="<?= $pages ?>"> <?= $pages ?></span>
+                <?php } ?>
+                </div>
             </div>
         </div>
     </div>
