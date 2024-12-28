@@ -1235,7 +1235,7 @@ use App\Models\Youtube_link_model;
                 'heading' => $this->request->getPost('heading'),
                 'custom_link' => $this->request->getPost('custom_link'),
             ];
-            echo "<pre>";print_r($data); die;
+            // echo "<pre>";print_r($data); die;
             $result = $menu_heading_model->add($data);
             if ($result === true) {
                 return redirect()->to('admin/menu')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
