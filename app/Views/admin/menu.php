@@ -5,10 +5,16 @@
     use App\Models\Employee_model;
     $employee_model = new Employee_model();
 ?>
-
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style>
+    .ui-state-highlight {
+        background-color: #ffeb3b;
+        height: 40px;
+        line-height: 40px;
+    }
     .mytable{
         width: 100%;
+        border-collapse: collapse;
     }
     .mytable tr td, tr th{
         border: 1px solid #ddd;
@@ -101,7 +107,7 @@
                         </form>
 
                         <div class="table-responsive">
-                            <table class="mytable" id="sortableTable">
+                            <table class="mytable" id="sortableTable<?= $collapse ?>">
                                 <thead>
                                     <tr>
                                         <td>SN</td>
@@ -146,26 +152,29 @@
     </div> <!-- end col -->
 </div>
 
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
+<!-- jQuery UI Sortable Script -->
 <script>
-    $(document).ready(function(){
-        // Make table rows draggable
-        $("#sortableTable tbody").sortable({
-            placeholder: "ui-state-highlight", // This creates a visual placeholder when dragging
-            handle: "td",  // Dragging happens when any td is clicked (or you can specify a specific column/handle)
-            update: function(event, ui) {
-                console.log("Table order updated!");
-            }
-        });
+    $(document).ready(function() {
+        // Make the table rows sortable for each accordion section
+        <?php for ($i = 1; $i <= count($menu_name); $i++) { ?>
+            $("#sortableTable<?= $i ?> tbody").sortable({
+                placeholder: "ui-state-highlight", // Placeholder when dragging
+                handle: "td", // Optionally set a specific handle to drag the rows
+                update: function(event, ui) {
+                    // This will be triggered whenever the order of rows is changed
+                    console.log("Table order updated!");
+                }
+            });
+        <?php } ?>
 
-        // Make nested table rows draggable as well
-        $("#sortableTable tbody .mytable").each(function() {
+        // Make the nested tables inside each row also sortable
+        $(".mytable").each(function() {
             $(this).sortable({
-                placeholder: "ui-state-highlight", // Nested table rows also have a placeholder
-                handle: "td",  // You can also make it draggable by clicking any td inside the nested table
+                placeholder: "ui-state-highlight", // Placeholder for nested tables
+                handle: "td",  // You can make it draggable by clicking on any td
                 update: function(event, ui) {
                     console.log("Nested table order updated!");
                 }
