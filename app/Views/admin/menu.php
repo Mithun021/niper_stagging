@@ -127,7 +127,7 @@
                                     <tr>
                                         <td>SN</td>
                                         <td>Heading</td>
-                                        <td colspan="2"><span class="d-flex justify-content-between"><span>Pages</span><span><i class="fa fa-plus"></i></span></span></td>
+                                        <td colspan="2"><span class="d-flex justify-content-between"><span>Pages</span><span><i class="fa fa-plus" id="assign_page_btn"></i></span></span></td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -140,7 +140,7 @@
                                             <table class="mytable">
                                                 <tr>
                                                     <td>Page Name</td>
-                                                    <td><i class="fa fa-trash" aria-hidden="true" id="assign_page_btn"></i></td>
+                                                    <td><i class="fa fa-trash" aria-hidden="true"></i></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Page Name</td>
