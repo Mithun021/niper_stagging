@@ -215,10 +215,19 @@
             data: {menu_id : menu_id},
             dataType: "json",
             success: function (response) {
-                console.log(response);
+                // console.log(response);
+                if (response) {
+                    let dataList = $('#heading_id');
+                    dataList.empty();
+                    dataList.append('<option value="">Select Menu Heading</option>');
+                    $.each(response, function(index, item) {
+                        dataList.append('<option value="'+ item.id +'">'+ item.heading +'</option>');
+                    });   
+                    $('#assign_page_model').modal('show');
+                }
             }
         });
-        // $('#assign_page_model').modal('show');
+        
      }
 </script>
 
