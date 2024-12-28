@@ -190,7 +190,7 @@
 
 <script>
     function openAssignPage() { 
-        alert('ok');
+        $('#assign_page_model').modal('show');
      }
 </script>
 
