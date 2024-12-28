@@ -90,11 +90,12 @@
             contentType: "application/json", // Proper content type for JSON data
             data: JSON.stringify({ sortedData: sortedData }),
             success: function (response) {
-                if (response.success) {
-                    console.log("Menu heading sort order saved successfully.");
-                } else {
-                    console.error("Failed to save menu heading sort order:", response.message);
-                }
+                console.log(response);
+                // if (response.success) {
+                //     console.log("Menu heading sort order saved successfully.");
+                // } else {
+                //     console.error("Failed to save menu heading sort order:", response.message);
+                // }
             },
             error: function (xhr, status, error) {
                 console.error("Error saving menu heading sort order:", error);
