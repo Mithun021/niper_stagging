@@ -79,7 +79,32 @@
                             handle: "td", // Optionally set a specific handle to drag the rows
                             update: function(event, ui) {
                                 // This will be triggered whenever the order of rows is changed
-                                console.log("Table order updated!");
+                                var newOrder = [];
+                                
+                                // Collect the new order of the rows
+                                $("#sortableTable<?= $i ?> tbody tr").each(function(index) {
+                                    var headingId = $(this).data('heading-id'); // Make sure you set data-heading-id in your rows
+                                    newOrder.push({
+                                        id: headingId,
+                                        sort_order: index + 1 // Starting from 1
+                                    });
+                                });
+
+                                // Send the updated order to the server via AJAX
+                                $.ajax({
+                                    url: "<?= base_url('admin/save_menu_heading_sort_order') ?>",
+                                    type: "POST",
+                                    data: {
+                                        menu_id: <?= $value['id'] ?>,
+                                        new_order: newOrder
+                                    },
+                                    success: function(response) {
+                                        console.log("Table order updated!");
+                                    },
+                                    error: function(error) {
+                                        console.error("Error updating order", error);
+                                    }
+                                });
                             }
                         });
                     <?php } ?>
@@ -90,11 +115,38 @@
                             placeholder: "ui-state-highlight", // Placeholder for nested tables
                             handle: "td",  // You can make it draggable by clicking on any td
                             update: function(event, ui) {
-                                console.log("Nested table order updated!");
+                                var newOrder = [];
+
+                                // Collect the new order of the rows
+                                $(this).find('tr').each(function(index) {
+                                    var pageId = $(this).data('page-id'); // Make sure you set data-page-id in your rows
+                                    newOrder.push({
+                                        id: pageId,
+                                        sort_order: index + 1 // Starting from 1
+                                    });
+                                });
+
+                                // Send the updated order to the server via AJAX
+                                $.ajax({
+                                    url: "<?= base_url('admin/save_menu_page_sort_order') ?>",
+                                    type: "POST",
+                                    data: {
+                                        menu_id: <?= $value['id'] ?>,
+                                        heading_id: $(this).closest('tr').data('heading-id'),
+                                        new_order: newOrder
+                                    },
+                                    success: function(response) {
+                                        console.log("Nested table order updated!");
+                                    },
+                                    error: function(error) {
+                                        console.error("Error updating page order", error);
+                                    }
+                                });
                             }
                         });
                     });
                 });
+
             </script>
         
         <script>
