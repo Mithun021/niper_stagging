@@ -68,14 +68,14 @@
     <?php foreach ($menu_name as $key => $value) { ?>
         <div id="accordion" class="custom-accordion mb-4">
             <div class="card mb-0">
-                <div class="card-header" id="headingOne">
+                <div class="card-header" id="headingOne<?= ++$key ?>">
                     <h5 class="m-0 font-size-15">
                         <a class="d-block m-0 text-dark" data-toggle="collapse" href="#collapseOne<?= ++$key ?>" aria-expanded="true" aria-controls="collapseOne<?= ++$key ?>">
                             <?= $value['name'] ?> <span class="float-right"><i class="mdi mdi-chevron-down accordion-arrow"></i></span>
                         </a>
                     </h5>
                 </div>
-                <div id="collapseOne<?= ++$key ?>" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div id="collapseOne<?= ++$key ?>" class="collapse" aria-labelledby="headingOne<?= ++$key ?>" data-parent="#accordion">
                     <div class="card-body">
                         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
                         non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
