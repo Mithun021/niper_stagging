@@ -23,11 +23,15 @@
         height: 40px;
         line-height: 40px;
     }
-    .mytable{
+    .mytable,.mytable2{
         width: 100%;
         border-collapse: collapse;
     }
-    .mytable tr td, tr th{
+    .mytable tr td, .mytable tr th{
+        border: 1px solid #ddd;
+        padding: 5px;
+    }
+    .mytable2 tr td, .mytable2 tr th{
         border: 1px solid #ddd;
         padding: 5px;
     }
@@ -133,7 +137,7 @@
                         </form>
 
                         <div class="table-responsive">
-                            <table class="mytable" id="sortableTable<?= $collapse ?>">
+                            <table class="mytable2" id="sortableTable<?= $collapse ?>">
                                 <thead>
                                     <tr>
                                         <td>SN</td>
