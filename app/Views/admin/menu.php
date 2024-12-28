@@ -89,14 +89,14 @@
                 <div id="collapse<?= $collapse ?>" class="collapse" aria-labelledby="heading<?= $heading ?>" data-parent="#accordion">
                     <div class="card-body">
                         <form action="<?= base_url() ?>admin/menu-heading" method="post">
-                            <input type="text" name="menu_id" value="<?= $value['id'] ?>" class="form-control form-control-sm">
+                            <input type="hidden" name="menu_id" value="<?= $value['id'] ?>" class="form-control form-control-sm">
                             <div class="input-group">
                                 <input type="text" name="heading" id="heading" class="form-control form-control-sm" placeholder="Menu Heading *" required>
                                 <input type="url" name="custom_link" id="custom_link" class="form-control form-control-sm" placeholder="Custom Link">
                             </div>
 
                             <div class="form-group">
-                                <input type="submit" value="Save Heading" class="btn btn-primary">
+                                <input type="submit" value="Save Heading" class="btn btn-sm btn-primary">
                             </div>
                         </form>
 
