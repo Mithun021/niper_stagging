@@ -17,7 +17,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form id="noticeBoardForm">
+                <form method="post" action="<?= base_url() ?>admin/news-post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -28,27 +28,30 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Title<span class="text-danger">*</span></span>
-                                <input type="text" class="form-control form-control-sm" name="notice_title">
+                                <input type="text" class="form-control form-control-sm" name="news_title" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <span for="">Upload File(JPG,PNG,PDF)</span>
-                                <input type="file" class="form-control form-control-sm" name="notice_file" accept=".jpg, .png, .pdf" required>
+                                <span for="">Upload File(JPG,PNG)</span>
+                                <input type="file" class="form-control form-control-sm" name="news_file" accept=".jpg, .png" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span>Department</span>
-                                <select name="" id="" class="form-control form-control-sm">
+                                <select name="department_id" id="department_id" class="form-control form-control-sm">
                                     <option value="">Select Department</option>
+                                <?php foreach ($departments as $key => $value) { ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                <?php } ?>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span>Marquee Status</span>
-                                <select name="" id="" class="form-control form-control-sm">
+                                <select name="marquee_status" id="marquee_status" class="form-control form-control-sm">
                                     <option value="0" selected>Inactive</option>
                                     <option value="1">Active</option>
                                 </select>
@@ -57,7 +60,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span>News Status</span>
-                                <select name="" id="" class="form-control form-control-sm">
+                                <select name="status" id="status" class="form-control form-control-sm">
                                     <option value="1">Publish</option>
                                     <option value="2">Archive</option>
                                     <option value="3">Draft</option>
@@ -67,7 +70,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <span for="">Desription</span>
-                                <textarea id="editor" name="content"></textarea>
+                                <textarea id="editor" name="description"></textarea>
                             </div>
                         </div>
                     </div>
