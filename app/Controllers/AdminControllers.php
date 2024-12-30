@@ -84,17 +84,6 @@ use App\Models\Youtube_link_model;
             session_destroy();
             return redirect()->to(base_url('admin/login'));
         }
-
-
-        public function news_post(){
-            $data = ['title' => 'News Post'];
-            if ($this->request->is("get")) {
-                return view('admin/news-post',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
         public function event_post(){
             $data = ['title' => 'Event Post'];
             if ($this->request->is("get")) {
