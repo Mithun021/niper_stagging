@@ -109,7 +109,7 @@ use App\Models\Employee_model;
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($variable as $key => $value) { ?>
+                    <?php foreach ($news as $key => $value) { ?>
                         <tr>
                             <td><?php echo $key+1; ?></td>
                             <td>
