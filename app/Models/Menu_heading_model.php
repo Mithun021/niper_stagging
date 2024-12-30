@@ -5,7 +5,7 @@
     {
         protected $table         = 'menu_heading';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['menu_id','heading','custom_link'];
+        protected $allowedFields = ['menu_id','heading','custom_link','heading_sort_list'];
         // protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

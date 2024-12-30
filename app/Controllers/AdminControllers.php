@@ -1259,13 +1259,13 @@ use App\Models\Youtube_link_model;
                 //     'sort_order' => $sort_order,
                 // ];
                 // $result = $menu_heading_model->update($id,$data);
-                $menu_heading_model->update($id, ['heading_sort_list' => $sort_order]);
+                $result = $menu_heading_model->update($id, ['heading_sort_list' => $sort_order]);
             }
-            // if ($result === true) {
-            //     return $this->response->setStatusCode(200)->setJSON(['message' => 'Data updated successfully']);
-            // } else {
-            //     return $this->response->setStatusCode(400)->setJSON(['error' => $result]);
-            // }
+            if ($result === true) {
+                return $this->response->setStatusCode(200)->setJSON(['message' => 'Data updated successfully']);
+            } else {
+                return $this->response->setStatusCode(400)->setJSON(['error' => $result]);
+            }
         }
          
         
