@@ -1253,7 +1253,16 @@ use App\Models\Youtube_link_model;
             if (empty($sortedData)) {
                 return $this->response->setStatusCode(400)->setJSON(['error' => 'Invalid data provided']);
             }
-            echo "<pre>";print_r($sortedData); die;
+            // echo "<pre>";print_r($sortedData); die;
+            foreach ($sortedData as $row) {
+                if (isset($row['id']) && isset($row['sort_order'])) {
+                    $data = [
+                        'id' => $row['id'],
+                        'sort_order' => $row['sort_order']
+                    ];
+                    echo "<pre>";print_r($data);
+                }
+            }
         }        
         
 
