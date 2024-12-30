@@ -70,31 +70,36 @@
 <!-- jQuery UI Sortable Script -->
 <script>
     $(document).ready(function () {
-        // Enable sortable for #sortableTable
         $('[id^=sortableTable]').sortable({
-            items: "tr", // Target table rows
-            cursor: "move", // Cursor style when dragging
+            items: "tr",
+            cursor: "move",
             update: function(event, ui) {
                 const sortedData = [];
                 $(this).find('tr').each(function(index) {
-                    const headingId = $(this).data('heading-id'); // Get the heading id from the row's data attribute
+                    const headingId = $(this).data('heading-id'); // Ensure `data-heading-id` is set correctly
                     if (headingId) {
-                        sortedData.push({ id: headingId, sort_order: index + 1 }); // Append sorted data
+                        sortedData.push({ id: headingId, sort_order: index + 1 });
                     }
                 });
-                console.log(sortedData);
-                $.ajax({
-                    url: '<?= base_url() ?>admin/save_menu_heading_sort_order', // Update with your route
-                    method: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify(sortedData),
-                    success: function(response) {
-                        console.log(response);
-                    },
-                    error: function(xhr) {
-                        console.error(xhr.responseJSON.error);
-                    }
-                });
+
+                console.log(sortedData); // Debug the data being sent
+                
+                if (sortedData.length > 0) {
+                    $.ajax({
+                        url: '<?= base_url() ?>admin/save_menu_heading_sort_order', // Update with your route
+                        method: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(sortedData),
+                        success: function(response) {
+                            console.log(response.success);
+                        },
+                        error: function(xhr) {
+                            console.error(xhr.responseJSON.error);
+                        }
+                    });
+                } else {
+                    console.error("No data to send");
+                }
             }
         });
 
