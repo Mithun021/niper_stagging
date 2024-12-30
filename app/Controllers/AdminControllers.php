@@ -1272,16 +1272,16 @@ use App\Models\Youtube_link_model;
                 return $this->response->setStatusCode(400)->setJSON(['error' => 'Invalid data provided']);
             }
             foreach ($sortedData as $key => $value) {
-                // print_r($value);
-                $id = $value['id'];
-                $sort_order = $value['sort_order'];
-                $result = $menu_pages_model->update($id, ['page_sort_list' => $sort_order]);
+                print_r($value);
+                // $id = $value['id'];
+                // $sort_order = $value['sort_order'];
+                // $result = $menu_pages_model->update($id, ['page_sort_list' => $sort_order]);
             }
-            if ($result === true) {
-                return $this->response->setStatusCode(200)->setJSON(['message' => 'Data updated successfully']);
-            } else {
-                return $this->response->setStatusCode(400)->setJSON(['error' => $result]);
-            }
+            // if ($result === true) {
+            //     return $this->response->setStatusCode(200)->setJSON(['message' => 'Data updated successfully']);
+            // } else {
+            //     return $this->response->setStatusCode(400)->setJSON(['error' => $result]);
+            // }
             
         }
 
