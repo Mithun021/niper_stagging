@@ -101,7 +101,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->post('menu-heading', 'AdminControllers::menu_heading');
     $routes->post('save_menu_heading_sort_order', 'AdminControllers::save_menu_heading_sort_order');
     $routes->post('save_pages', 'AdminControllers::save_pages');
-    $routes->get('save_menu_page_sort_order', 'AdminControllers::save_menu_page_sort_order');
+    $routes->post('save_menu_page_sort_order', 'AdminControllers::save_menu_page_sort_order');
 
 
     // Export and Import routes
