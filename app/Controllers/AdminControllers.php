@@ -1247,20 +1247,34 @@ use App\Models\Youtube_link_model;
 
         public function save_menu_heading_sort_order() {
             $menu_heading_model = new Menu_heading_model();
-            // echo "post data: ";
-            $sortedData = $this->request->getJSON(true); // Fetch the JSON input as an array
-
+            
+            // Get JSON data from the request
+            $sortedData = $this->request->getJSON(true); 
+        
+            // Check if the data is empty
             if (empty($sortedData)) {
                 return $this->response->setStatusCode(400)->setJSON(['error' => 'Invalid data provided']);
             }
-            // echo "<pre>";print_r($sortedData); die;
+        
+            // Process each row and update the sort order
             foreach ($sortedData as $row) {
+                // Ensure both id and sort_order are set
                 if (isset($row['id']) && isset($row['sort_order'])) {
-                    $menu_heading_model->update($row['id'], ['heading_sort_list' => $row['sort_order']]);
+                    $updateSuccess = $menu_heading_model->update($row['id'], ['heading_sort_list' => $row['sort_order']]);
+                    
+                    // If update fails, return an error
+                    if (!$updateSuccess) {
+                        return $this->response->setStatusCode(500)->setJSON(['error' => 'Failed to update sort order for ID ' . $row['id']]);
+                    }
+                } else {
+                    return $this->response->setStatusCode(400)->setJSON(['error' => 'Missing required fields']);
                 }
             }
+        
+            // Return success response
             return $this->response->setStatusCode(200)->setJSON(['success' => 'Sort order updated successfully']);
-        }        
+        }
+         
         
 
         public function save_menu_page_sort_order(){
