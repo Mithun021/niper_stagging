@@ -17,9 +17,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                 <?php foreach ($department as $key => $value2) { ?>
-                    <span value="<?= $value2['id'] ?>"><?= $value2['name'] ?></span>
-                <?php } ?>
+                 <?php print_r($department); ?>
                 <form method="post" action="<?= base_url() ?>admin/news-post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
