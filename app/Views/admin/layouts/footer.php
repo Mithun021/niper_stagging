@@ -71,7 +71,6 @@
 <script>
     $(document).ready(function () {
         // Enable sortable for #sortableTable
-        // Enable sortable for #sortableTable
         $('[id^=sortableTable]').sortable({
             items: "tr", // Target table rows
             cursor: "move", // Cursor style when dragging
@@ -84,6 +83,18 @@
                     }
                 });
                 console.log(sortedData);
+                $.ajax({
+                    url: '<?= base_url() ?>admin/save_menu_heading_sort_order', // Update with your route
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(sortedData),
+                    success: function(response) {
+                        console.log(response.success);
+                    },
+                    error: function(xhr) {
+                        console.error(xhr.responseJSON.error);
+                    }
+                });
             }
         });
 
@@ -102,20 +113,8 @@
                         sortedPagesData.push({ id: pageId, sort_order: index + 1 });
                     }
                 });
-                // console.log("Updated .mytable order:", sortedPagesData);
+                console.log("Updated .mytable order:", sortedPagesData);
 
-                // Send sorted data to the controller
-                $.ajax({
-                    url: "<?= base_url() ?>admin/save_menu_page_sort_order",
-                    method: "GET",
-                    data: { sortedData: sortedPagesData },
-                    success: function (response) {
-                        console.log(response);
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Error saving menu page sort order:", error);
-                    }
-                });
             }
         });
     });

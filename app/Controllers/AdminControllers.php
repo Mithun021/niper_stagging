@@ -1247,41 +1247,20 @@ use App\Models\Youtube_link_model;
 
         public function save_menu_heading_sort_order() {
             $menu_heading_model = new Menu_heading_model();
-        
-            // Retrieve the JSON payload from the request body
-            $rawData = file_get_contents("php://input"); // Get raw POST data
-            $postData = json_decode($rawData, true); // Decode JSON
-        
-            // Validate and process the sorted data
-            if (isset($postData['sortedData']) && is_array($postData['sortedData'])) {
-                $headingSortList = $postData['sortedData'];
-        
-                // Process the data (e.g., save to the database)
-                foreach ($headingSortList as $heading) {
-                    if (isset($heading['id']) && isset($heading['sort_order'])) {
-                        // Update sort order in the database (pseudo-code)
-                        $menu_heading_model->updateSortOrder($heading['id'], $heading['sort_order']);
-                    }
-                }
-        
-                // Respond with a success message
-                echo json_encode(['success' => true, 'message' => 'Sort order saved successfully']);
-            } else {
-                // Respond with an error message
-                echo json_encode(['error' => 'Invalid or missing sorted data']);
+            $sortedData = $this->request->getJSON(true); // Fetch JSON input as an array
+
+            if (empty($sortedData)) {
+                return $this->response->setStatusCode(400)->setJSON(['error' => 'Invalid data provided']);
             }
+
+            echo "<pre>"; print_r($sortedData); die;
+
         }        
         
 
         public function save_menu_page_sort_order(){
             $menu_pages_model = new Menu_pages_model();
-            $sortedData = $this->request->getPost('sortedData');
-            print_r($sortedData);die;
-            foreach ($sortedData as $item) {
-                $menu_pages_model->update($item['id'], ['page_sort_list' => $item['sort_order']]);
-            }
-    
-            return $this->response->setJSON(['status' => 'success', 'message' => 'Menu page sort order saved successfully.']);
+            
             
         }
 
