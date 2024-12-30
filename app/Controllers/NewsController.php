@@ -10,7 +10,7 @@ use App\Models\News_model;
             $news_model = new News_model();
             $data = ['title' => 'News Post'];
             if ($this->request->is("get")) {
-                
+                $data['department'] = $department_model->activeData();
                 // print_r($data['department']);die;
                 return view('admin/news_post/news-post',$data);
             }else if ($this->request->is("post")) {

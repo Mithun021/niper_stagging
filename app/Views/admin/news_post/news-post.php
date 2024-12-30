@@ -2,10 +2,6 @@
 <?=  $this->section("body-content"); ?>
 <?php
 
-use App\Models\Department_model;
-
-$department_model = new Department_model();
-    $department = $department_model->activeData();
 ?>
 <style>
     
@@ -23,7 +19,6 @@ $department_model = new Department_model();
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                 <?php print_r($department); ?>
                 <form method="post" action="<?= base_url() ?>admin/news-post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
@@ -49,7 +44,9 @@ $department_model = new Department_model();
                                 <span>Department</span>
                                 <select name="Deptid" id="Deptid" class="form-control form-control-sm" required >
                                 <option value="">Select Deparrtment</option>
-                               
+                                <?php foreach ($department as $key => $value) { ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                <?php } ?>
                                 </select>
                             </div>
                         </div>
