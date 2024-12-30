@@ -12,7 +12,7 @@ use App\Models\News_model;
             if ($this->request->is("get")) {
                 
                 // print_r($data['department']);die;
-                return view('admin/news/news-post',$data);
+                return view('admin/news_post/news-post',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
                 if ($sessionData) {
