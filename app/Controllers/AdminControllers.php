@@ -1247,8 +1247,18 @@ use App\Models\Youtube_link_model;
 
         public function save_menu_heading_sort_order() {
             $menu_heading_model = new Menu_heading_model();
-            $sort_order = $this->request->getPost('sortedData');
-            echo "<pre>";print_r($sort_order); die;
+            // Get the JSON data from the request body
+            $requestData = $this->request->getJSON(true); // True converts it to an associative array
+
+            // Log the received data
+            log_message('info', 'Received Data: ' . print_r($requestData, true));
+
+            // Return a JSON response
+            return $this->response->setJSON([
+                'status' => 200,
+                'message' => 'Data received and logged successfully!',
+                'data' => $requestData
+            ]);
         }        
         
 
