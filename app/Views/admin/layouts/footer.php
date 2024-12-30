@@ -88,8 +88,7 @@
                     $.ajax({
                         url: '<?= base_url() ?>admin/save_menu_heading_sort_order', // Update with your route
                         method: 'POST',
-                        contentType: 'application/json',
-                        data: JSON.stringify(sortedData),
+                        data: {sortedData : sortedData},
                         success: function(response) {
                             console.log(response);
                         },

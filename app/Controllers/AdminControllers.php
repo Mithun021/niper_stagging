@@ -1246,25 +1246,9 @@ use App\Models\Youtube_link_model;
         }
 
         public function save_menu_heading_sort_order() {
-            $sortedData = $this->request->getJSON(true); // Fetch the JSON input as an array
-
-            if (empty($sortedData)) {
-                return $this->response->setStatusCode(400)->setJSON(['error' => 'Invalid data provided']);
-            }
-
-            $model = new Menu_heading_model();
-
-            foreach ($sortedData as $row) {
-                if (isset($row['id']) && isset($row['sort_order'])) {
-                    // $model->update($row['id'], ['sort_order' => $row['sort_order']]);
-                    $data = [
-                        'id' => $row['id'],
-                        'sort_order' => $row['sort_order']
-                    ];
-                    echo "<pre>";print_r($data);
-                }
-            }
-
+            $menu_heading_model = new Menu_heading_model();
+            $sort_order = $this->request->getPost('sort_order');
+            echo "<pre>";print_r($sort_order); die;
         }        
         
 
