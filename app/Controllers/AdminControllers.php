@@ -1246,15 +1246,24 @@ use App\Models\Youtube_link_model;
         }
 
         public function save_menu_heading_sort_order() {
-            $sortedData = $this->request->getJSON(true);
+            $sortedData = $this->request->getJSON(true); // Fetch the JSON input as an array
 
             if (empty($sortedData)) {
-                // Log the input for debugging
-                log_message('error', 'Invalid input data: ' . json_encode($this->request->getBody()));
                 return $this->response->setStatusCode(400)->setJSON(['error' => 'Invalid data provided']);
             }
 
-            echo "<pre>"; print_r($sortedData); die;
+            $model = new Menu_heading_model();
+
+            foreach ($sortedData as $row) {
+                if (isset($row['id']) && isset($row['sort_order'])) {
+                    // $model->update($row['id'], ['sort_order' => $row['sort_order']]);
+                    $data = [
+                        'id' => $row['id'],
+                        'sort_order' => $row['sort_order']
+                    ];
+                    echo "<pre>";print_r($data);
+                }
+            }
 
         }        
         
