@@ -1254,7 +1254,7 @@ use App\Models\Youtube_link_model;
             // print_r($sortedData);
             foreach ($sortedData as $key => $value) {
                 echo $value['id'];
-                echo "<br>";
+                echo " new data ";
                 echo $value['sort_order'];
             }
         }
