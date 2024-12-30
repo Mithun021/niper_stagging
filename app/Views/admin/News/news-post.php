@@ -1,6 +1,12 @@
 <?= $this->extend("admin/layouts/master") ?>
-
 <?=  $this->section("body-content"); ?>
+<?php
+
+use App\Models\Department_model;
+
+$department_model = new Department_model();
+    $department = $department_model->activeData();
+?>
 <style>
     
 </style>
