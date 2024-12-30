@@ -11,7 +11,7 @@ use App\Models\News_model;
             $data = ['title' => 'News Post'];
             if ($this->request->is("get")) {
                 $data['departments'] = $department_model->activeData();
-                print_r($data['departments']);
+                print_r($data['departments']);die;
                 return view('admin/news/news-post',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
