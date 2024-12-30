@@ -32,14 +32,14 @@ use App\Models\Employee_publication_model;
                     $imageName = $profile_image->getRandomName();
                     $profile_image->move(ROOTPATH . 'public/admin/uploads/employee', $imageName);    
                 }else{
-                 $imageName = "invalidImage.png";
+                 $imageName = "";
                 }
                 $resume_file = $this->request->getFile('resume_file');
                 if ($resume_file->isValid() && ! $resume_file->hasMoved()) {
                     $resumeimageName = $resume_file->getRandomName();
                     $resume_file->move(ROOTPATH . 'public/admin/uploads/employee', $resumeimageName);    
                 }else{
-                 $resumeimageName = "invalidImage.png";
+                 $resumeimageName = "";
                 }
                 $password = "123456";
                 $data = [
@@ -180,7 +180,7 @@ use App\Models\Employee_publication_model;
                     $publicationimageName = $publication_photo->getRandomName();
                     $publication_photo->move(ROOTPATH . 'public/admin/uploads/publication', $publicationimageName);    
                 }else{
-                 $publicationimageName = "invalidImage.png";
+                 $publicationimageName = "";
                 }
 
                 $author_name = $this->request->getPost('author_name');
