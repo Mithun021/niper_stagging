@@ -11,7 +11,9 @@ use App\Models\News_model;
             $data = ['title' => 'News Post'];
             if ($this->request->is("get")) {
                 $data['department'] = $department_model->activeData();
+                $data['news'] = $news_model->get();
                 // print_r($data['department']);die;
+
                 return view('admin/news_post/news-post',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
@@ -37,9 +39,9 @@ use App\Models\News_model;
                 ];
                 $result = $news_model->add($data);
                 if ($result === true) {
-                    return redirect()->to(base_url('admin/news-post'))->with('success','News added successfully.');
-                }else{
-                    return redirect()->to(base_url('admin/news-post'))->with('error',$result);
+                    return redirect()->to('admin/news-post')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/news-post')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
         }

@@ -2,6 +2,10 @@
 <?=  $this->section("body-content"); ?>
 <?php
 
+use App\Models\Department_model;
+use App\Models\Employee_model;
+    $employee_model = new Employee_model();
+    $department_model = new Department_model();
 ?>
 <style>
     
@@ -65,7 +69,7 @@
                                 <select name="status" id="status" class="form-control form-control-sm">
                                     <option value="1">Publish</option>
                                     <option value="2">Archive</option>
-                                    <option value="3">Draft</option>
+                                    <option value="0">Draft</option>
                                 </select>
                             </div>
                         </div>
@@ -94,15 +98,41 @@
                     <thead>
                         <tr>
                             <td>SN</td>
-                            <td>Status</td>
-                            <td>Title</td>
                             <td>Files</td>
-                            <td>Create at</td>
+                            <td>Title</td>
+                            <td>Department</td>
+                            <td>News Date</td>
+                            <td>Status</td>
+                            <td>Marquee Status</td>
+                            <td>Upload by</td>
                             <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    <?php foreach ($variable as $key => $value) { ?>
+                        <tr>
+                            <td><?php echo $key+1; ?></td>
+                            <td>
+                                <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/news/' . $value['upload_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/news/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/news/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/news/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
+                            </td>
+                            <td><?= $value['title'] ?></td>
+                            <td><?php $department = $department_model->get($value['department_id']); echo $department['name']; ?></td>
+                            <td><?= date("d-m-Y", strtotime($value['publish_date'])) ?></td>
+                            <td>
+                                <?= 
+                                    ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Draft</span>" : 
+                                    (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : 
+                                    (($value['status'] == "2") ? "<span class='badge badge-warning badge-pill'>Pending</span>" : ""))
+                                ?>
+                            </td>
+                            <td><td><?= ($value['marquee_status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($value['marquee_status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?></td></td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 </div>
