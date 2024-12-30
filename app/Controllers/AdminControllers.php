@@ -1256,14 +1256,7 @@ use App\Models\Youtube_link_model;
             // echo "<pre>";print_r($sortedData); die;
             foreach ($sortedData as $row) {
                 if (isset($row['id']) && isset($row['sort_order'])) {
-                    // $data = [
-                    //     'id' => $row['id'],
-                    //     'heading_sort_list' => $row['sort_order']
-                    // ];
-                    $data = [
-                        'heading_sort_list' => $row['sort_order']
-                    ];
-                    $result = $menu_heading_model->update($row['id'], $data);
+                    $menu_heading_model->update($row['id'], ['heading_sort_list' => $row['sort_order']]);
                 }
             }
             return $this->response->setStatusCode(200)->setJSON(['success' => 'Sort order updated successfully']);
