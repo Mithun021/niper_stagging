@@ -34,7 +34,7 @@ $department_model = new Department_model();
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <span for="">Title<span class="text-danger">*</span></span>
+                                <span for="">Titles<span class="text-danger">*</span></span>
                                 <input type="text" class="form-control form-control-sm" name="news_title" required>
                             </div>
                         </div>
