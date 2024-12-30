@@ -126,7 +126,7 @@ use App\Models\Employee_model;
                                 <?= 
                                     ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Draft</span>" : 
                                     (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : 
-                                    (($value['status'] == "2") ? "<span class='badge badge-warning badge-pill'>Pending</span>" : ""))
+                                    (($value['status'] == "2") ? "<span class='badge badge-warning badge-pill'>Archive</span>" : ""))
                                 ?>
                             </td>
                             <td><?= ($value['marquee_status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($value['marquee_status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?></td>
