@@ -15,7 +15,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('/', 'AdminControllers::adminDashboard');
     $routes->get('logout', 'AdminControllers::logout');
 
-    $routes->match(['get','post'],'news-post', 'AdminControllers::news_post');
+    $routes->match(['get','post'],'news-post', 'NewsController::news_post');
     $routes->match(['get','post'],'event-post', 'AdminControllers::event_post');
     $routes->match(['get','post'],'event-members', 'AdminControllers::event_members');
     $routes->match(['get','post'],'event-organizer', 'AdminControllers::event_organizer');
