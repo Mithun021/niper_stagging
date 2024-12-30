@@ -1251,14 +1251,9 @@ use App\Models\Youtube_link_model;
             if (empty($sortedData)) {
                 return $this->response->setStatusCode(400)->setJSON(['error' => 'Invalid data provided']);
             }
-            // print_r($sortedData);
             foreach ($sortedData as $key => $value) {
                 $id = $value['id'];
                 $sort_order = $value['sort_order'];
-                // $data = [
-                //     'sort_order' => $sort_order,
-                // ];
-                // $result = $menu_heading_model->update($id,$data);
                 $result = $menu_heading_model->update($id, ['heading_sort_list' => $sort_order]);
             }
             if ($result === true) {
@@ -1272,7 +1267,20 @@ use App\Models\Youtube_link_model;
 
         public function save_menu_page_sort_order(){
             $menu_pages_model = new Menu_pages_model();
-            
+            $sortedData = $this->request->getJSON(true); 
+            if (empty($sortedData)) {
+                return $this->response->setStatusCode(400)->setJSON(['error' => 'Invalid data provided']);
+            }
+            foreach ($sortedData as $key => $value) {
+                $id = $value['id'];
+                $sort_order = $value['sort_order'];
+                $result = $menu_pages_model->update($id, ['page_sort_list' => $sort_order]);
+            }
+            if ($result === true) {
+                return $this->response->setStatusCode(200)->setJSON(['message' => 'Data updated successfully']);
+            } else {
+                return $this->response->setStatusCode(400)->setJSON(['error' => $result]);
+            }
             
         }
 

@@ -119,7 +119,22 @@
                     }
                 });
                 console.log("Updated .mytable order:", sortedPagesData);
-
+                if (sortedPagesData.length > 0) {
+                    $.ajax({
+                        url: '<?= base_url() ?>admin/save_menu_page_sort_order', // Update with your route
+                        method: 'POST',
+                        data: JSON.stringify(sortedPagesData), // Convert the array into JSON string
+                        contentType: 'application/json', 
+                        success: function(response) {
+                            console.log(response);
+                        },
+                        error: function(xhr) {
+                            console.error(xhr.responseJSON.error);
+                        }
+                    });
+                } else {
+                    console.error("No data to send");
+                }
             }
         });
     });
