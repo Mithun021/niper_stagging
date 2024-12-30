@@ -87,7 +87,7 @@
                 if (sortedData.length > 0) {
                     $.ajax({
                         url: '<?= base_url() ?>admin/save_menu_heading_sort_order', // Update with your route
-                        method: 'GET',
+                        method: 'POST',
                         data: JSON.stringify(sortedData), // Convert the array into JSON string
                         contentType: 'application/json', 
                         success: function(response) {
