@@ -99,7 +99,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get', 'post'], 'permission/(:num)', 'AdminControllers::permission/$1');
     $routes->match(['get', 'post'], 'menu', 'AdminControllers::menu');
     $routes->post('menu-heading', 'AdminControllers::menu_heading');
-    $routes->post('save_menu_heading_sort_order', 'AdminControllers::save_menu_heading_sort_order');
+    $routes->get('save_menu_heading_sort_order', 'AdminControllers::save_menu_heading_sort_order');
     $routes->post('save_pages', 'AdminControllers::save_pages');
     $routes->get('save_menu_page_sort_order', 'AdminControllers::save_menu_page_sort_order');
 
