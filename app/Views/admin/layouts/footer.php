@@ -91,7 +91,7 @@
                         contentType: 'application/json',
                         data: JSON.stringify(sortedData),
                         success: function(response) {
-                            console.log(response.success);
+                            console.log(response);
                         },
                         error: function(xhr) {
                             console.error(xhr.responseJSON.error);
