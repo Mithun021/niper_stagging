@@ -17,6 +17,9 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
+                 <?php foreach ($department as $key => $value2) { ?>
+                    <span value="<?= $value2['id'] ?>"><?= $value2['name'] ?></span>
+                <?php } ?>
                 <form method="post" action="<?= base_url() ?>admin/news-post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
@@ -42,9 +45,7 @@
                                 <span>Department</span>
                                 <select name="Deptid" id="Deptid" class="form-control form-control-sm" required >
                                 <option value="">Select Deparrtment</option>
-                                <?php foreach ($department as $key => $value2) { ?>
-                                    <option value="<?= $value2['id'] ?>"><?= $value2['name'] ?></option>
-                                <?php } ?>
+                               
                                 </select>
                             </div>
                         </div>
