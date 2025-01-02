@@ -155,7 +155,7 @@
                     dataList.empty();
                     dataList.append('<option value="">Select Program</option>');
                     $.each(response, function(index, item) {
-                        dataList.append('<option value="'+ item.program_id +'">'+ item.program_name +'</option>');
+                        dataList.append('<option value="'+ item.program_id +'">'+ item.program_name + "("+ item.batch_start + "-" + item.batch_end +")" +'</option>');
                     });
                 }
             });
