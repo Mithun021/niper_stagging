@@ -163,8 +163,8 @@
                 <h4 class="card-title m-0"><?= $title ?> List</h4>
             </div>
             <div class="card-body">
-                <div class="table-responsive" style="width: 150%;">
-                <table class="table table-striped table-hover" id="basic-datatable">
+                <div class="table-responsive">
+                <table class="table table-striped table-hover" id="basic-datatable" style="width: 150%;">
                     <thead>
                         <tr>
                             <td>SN</td>
