@@ -25,6 +25,9 @@
                         <span>Event ID:</span>
                         <select name="event_id" class="form-control form-control-sm">
                             <option value="">Select Event</option>
+                        <?php foreach ($events as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                        <?php } ?>
                         </select>
                     </div>
 
