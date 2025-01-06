@@ -45,7 +45,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    <?php foreach ($variable as $key => $value) { ?>
+                        <tr>
+                            <td><?= $key+1 ?></td>
+                            <td><?= $value['name'] ?></td>
+                            <td>
+                                <a href="<?= base_url('admin/event-category/'.$value['id']) ?>" class="btn btn-sm btn-primary">Edit</a>
+                                <a href="<?= base_url('admin/event-category/'.$value['id']) ?>" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 </div>
