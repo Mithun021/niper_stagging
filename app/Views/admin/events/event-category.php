@@ -17,10 +17,10 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form id="noticeBoardForm">
+                <form method="post" action="<?= base_url('admin/event-category') ?>">
                     <div class="form-group">
                         <span for="">Category Name<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="notice_title">
+                        <input type="text" class="form-control form-control-sm" name="event_category" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
