@@ -36,10 +36,11 @@
                                 <span>Event Category<span class="text-danger">*</span></span>
                                 <select name="event_category" id="event_category" class="form-control form-control-sm">
                                     <option value="">Select Event Type</option>
-                                <?php foreach ($event_categories as $value) { ?>
-                                    <option value="<?php $value['id'] ?>"><?php $value['name'] ?></option>
-                                <?php } ?>
+                                    <?php foreach ($event_category as $value) { ?>
+                                        <option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
+                                    <?php } ?>
                                 </select>
+
                             </div>
                         </div>
                         <div class="col-md-6">
