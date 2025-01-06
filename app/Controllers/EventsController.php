@@ -5,6 +5,7 @@
     use App\Models\Employee_model;
 use App\Models\Event_category_model;
 use App\Models\Event_members_model;
+use App\Models\Event_organizer_model;
 use App\Models\Events_model;
 use App\Models\Program_department_mapping_model;
     use App\Models\Program_model;
@@ -115,11 +116,32 @@ use App\Models\Program_department_mapping_model;
         }
 
         public function event_organizer(){
+            $events_model = new Events_model();
+            $event_organizer_model = new Event_organizer_model();
             $data = ['title' => 'Event Organizer'];
             if ($this->request->is("get")) {
+                $data['events'] = $events_model->get();
+                $data['event_organizers'] = $event_organizer_model->get();
                 return view('admin/events/event-organizer',$data);
             }else if ($this->request->is("post")) {
-
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }else{
+                    return redirect()->to(base_url('admin/login'));
+                }
+                $data = [
+                    'event_id' => $this->request->getPost('event_id'),
+                    'organizer_type' => $this->request->getPost('evtorg_type'),
+                    'organizer_name' => $this->request->getPost('evtorg_name'),
+                    'upload_by' => $loggeduserId,
+                ];
+                $result = $event_organizer_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/event-organizer')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/event-organizer')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 

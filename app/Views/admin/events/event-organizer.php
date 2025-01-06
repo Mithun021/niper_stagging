@@ -1,5 +1,12 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
+<?php
+    use App\Models\Employee_model;
+    use App\Models\Events_model;
+
+    $employee_model = new Employee_model();
+    $events_model = new Events_model();
+?>
 <style>
 </style>
 
@@ -14,13 +21,16 @@
                     <?= session()->getFlashdata('status'); ?>
                 <?php endif; ?>
 
-                <form action="/eventorganizers/store" method="post">
+                <form action="<?= base_url() ?>admin/event-organizer" method="post">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span>Event ID:</span>
                                 <select name="event_id" class="form-control form-control-sm">
                                     <option value="">Select Event</option>
+                                <?php foreach ($events as $key => $value) { ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                                <?php } ?>
                                 </select>
                             </div>
                         </div>
@@ -67,28 +77,30 @@
                     <table class="table table-striped table-hover" id="basic-datatable">
 
                         <thead>
-
                             <tr>
-
                                 <td>SN</td>
-
                                 <td>Event ID</td>
-
                                 <td>Organizer Type</td>
-
                                 <td>Organizer Name</td>
+                                <td>Upload By</td>
                                 <td>Action</td>
-
                             </tr>
-
                         </thead>
-
                         <tbody>
-
-
-
+                            <?php foreach ($event_organizers as $key => $value) { ?>
+                                <tr>
+                                    <td><?= $key + 1 ?></td>
+                                    <td><?= $events_model->get($value['event_id'])['title'] ?></td>
+                                    <td><?= $value['organizer_type'] ?></td>
+                                    <td><?= $value['organizer_name'] ?></td>
+                                    <td><?= $employee_model->get($value['upload_by'])['name'] ?></td>
+                                    <td>
+                                        <a href="<?= base_url() ?>admin/event-organizer/<?= $value['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                        <a href="<?= base_url() ?>admin/event-organizer/<?= $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
-
                     </table>
 
                 </div>
