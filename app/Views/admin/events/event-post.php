@@ -2,7 +2,10 @@
 <?=  $this->section("body-content"); ?>
 <?php
     use App\Models\Employee_model;
+    use App\Models\Event_category_model;
+
     $employee_model = new Employee_model();
+    $event_category_model = new Event_category_model();
 ?>
 <!-- start page title -->
 <div class="row">
@@ -165,17 +168,59 @@
                     <thead>
                         <tr>
                             <td>SN</td>
-                            <td>Status</td>
-                            <td>Title</td>
                             <td>Files</td>
+                            <td>Status / Marquee</td>
+                            <td>Title</td>
+                            <td>Event Type</td>
                             <td>Event Date</td>
                             <td>Reg. Date & Time</td>
+                            <td>Participant Seats</td>
+                            <td>Upload by</td>
                             <td>Create at</td>
                             <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    <?php foreach ($events as $key => $value) { ?>
+                        <tr>
+                            <td><?= ++$key ?></td>
+                            <td>
+                                <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/events/' . $value['upload_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/events/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/events/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/events/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
+
+                                <?php if (!empty($value['extension_notice_file']) && file_exists('public/admin/uploads/events/' . $value['extension_notice_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/events/<?= $value['extension_notice_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/events/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <?= 
+                                    ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Draft</span>" : 
+                                    (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : 
+                                    (($value['status'] == "2") ? "<span class='badge badge-warning badge-pill'>Archive</span>" : ""))
+                                ?> / <br>
+                                <?= ($value['marquee_status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($value['marquee_status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?>
+                            </td>
+                            <td><?= $value['title'] ?></td>
+                            <td><?php $event_category = $event_category_model->get($value['event_category']); echo $event_category['name']; ?></td>
+                            <td><?= date("d-m-Y", strtotime($value['event_start_date'])) ?> - <?= date("d-m-Y", strtotime($value['event_end_date'])) ?></td>
+                            <td><?= date("d-m-Y", strtotime($value['reg_start_date'])) ?> - <?= date("d-m-Y", strtotime($value['reg_end_date'])) ?> <br> <?= date("h:i A", strtotime($value['reg_start_time'])) ?> - <?= date("h:i A", strtotime($value['reg_end_time'])) ?></td>
+                            <td><?= $value['participant_seats'] ?></td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                            <td><?= date("d-m-Y", strtotime($value['created_at'])) ?></td>
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                    <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                    <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                    <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 </div>
