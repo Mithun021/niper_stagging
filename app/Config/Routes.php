@@ -16,12 +16,12 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('logout', 'AdminControllers::logout');
 
     $routes->match(['get','post'],'news-post', 'NewsController::news_post');
-    $routes->match(['get','post'],'event-post', 'AdminControllers::event_post');
-    $routes->match(['get','post'],'event-members', 'AdminControllers::event_members');
-    $routes->match(['get','post'],'event-organizer', 'AdminControllers::event_organizer');
-    $routes->match(['get','post'],'event-fees', 'AdminControllers::event_fees');
-    $routes->match(['get','post'],'event-highlight', 'AdminControllers::event_highlight');
-    $routes->match(['get','post'],'event-category', 'AdminControllers::event_category');
+    $routes->match(['get','post'],'event-post', 'EventsController::event_post');
+    $routes->match(['get','post'],'event-members', 'EventsController::event_members');
+    $routes->match(['get','post'],'event-organizer', 'EventsController::event_organizer');
+    $routes->match(['get','post'],'event-fees', 'EventsController::event_fees');
+    $routes->match(['get','post'],'event-highlight', 'EventsController::event_highlight');
+    $routes->match(['get','post'],'event-category', 'EventsController::event_category');
     $routes->match(['get','post'],'accouncement', 'AdminControllers::accouncement');
     $routes->match(['get','post'],'academic-details', 'AdminControllers::academic_details');
     $routes->match(['get','post'],'achievements', 'AdminControllers::achievements');

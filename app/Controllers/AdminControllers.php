@@ -84,59 +84,6 @@ use App\Models\Youtube_link_model;
             session_destroy();
             return redirect()->to(base_url('admin/login'));
         }
-        public function event_post(){
-            $data = ['title' => 'Event Post'];
-            if ($this->request->is("get")) {
-                return view('admin/event-post',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
-        public function event_members(){
-            $data = ['title' => 'Event Members'];
-            if ($this->request->is("get")) {
-                return view('admin/event-members',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
-        public function event_organizer(){
-            $data = ['title' => 'Event Organizer'];
-            if ($this->request->is("get")) {
-                return view('admin/event-organizer',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
-        public function event_fees(){
-            $data = ['title' => 'Event Fees'];
-            if ($this->request->is("get")) {
-                return view('admin/event-fees',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
-        public function event_highlight(){
-            $data = ['title' => 'Event Highlight'];
-            if ($this->request->is("get")) {
-                return view('admin/event-highlight',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
-        public function event_category(){
-            $data = ['title' => 'Event Category'];
-            if ($this->request->is("get")) {
-                return view('admin/event-category',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
 
         public function tendor_details(){
             $data = ['title' => 'Tendor Details'];
