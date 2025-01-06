@@ -2,6 +2,13 @@
 <?= $this->section("body-content"); ?>
 <style>
 </style>
+<?php
+    use App\Models\Employee_model;
+    use App\Models\Events_model;
+
+    $employee_model = new Employee_model();
+    $events_model = new Events_model();
+?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -92,29 +99,38 @@
                     <table class="table table-striped table-hover" id="basic-datatable">
 
                         <thead>
-
                             <tr>
-
                                 <td>SN</td>
-
                                 <td>Event ID</td>
-
                                 <td>Employee ID</td>
-
                                 <td>Member Type</td>
                                 <td>Member Designation</td>
+                                <td>Upload by</td>
                                 <td>Action</td>
-
                             </tr>
-
-                        </thead>
-
                         <tbody>
-
-
-
+                            <?php foreach ($event_members as $key => $value) { ?>
+                                <tr>
+                                    <td><?= $key+1 ?></td>
+                                    <td><?php $event = $events_model->get($value['event_id']); echo $event['title'] ?></td>
+                                    <td><?php $emp = $employee_model->get($value['employee_id']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name'] ?></td>
+                                    <td><?= $value['member_type'] ?></td>
+                                    <td><?= $value['member_designation'] ?>
+                                        <?php if ($value['member_designation'] == "Any Other") {
+                                            echo " - ".$value['other_designation'];
+                                        } ?>
+                                    </td>
+                                    <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name'] ?></td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                            <!-- <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a> -->
+                                            <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                            <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
-
                     </table>
 
                 </div>
