@@ -16,6 +16,7 @@ use App\Models\Program_department_mapping_model;
             $data = ['title' => 'Event Post'];
             if ($this->request->is("get")) {
                 $data['event_categories'] = $event_category_model->get();
+                print_r($data['event_categories']); die;
                 $data['events'] = $events_model->get();
                 return view('admin/events/event-post',$data);
             }else if ($this->request->is("post")) {
