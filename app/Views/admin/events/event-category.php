@@ -45,7 +45,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($variable as $key => $value) { ?>
+                    <?php foreach ($event_categories as $key => $value) { ?>
                         <tr>
                             <td><?= $key+1 ?></td>
                             <td><?= $value['name'] ?></td>
