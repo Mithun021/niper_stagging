@@ -4,16 +4,75 @@
     use App\Models\Designation_model;
     use App\Models\Employee_model;
 use App\Models\Event_category_model;
+use App\Models\Events_model;
 use App\Models\Program_department_mapping_model;
     use App\Models\Program_model;
 
     
     class EventsController extends BaseController{
         public function event_post(){
+            $events_model = new Events_model();
+            $event_category_model = new Event_category_model();
             $data = ['title' => 'Event Post'];
             if ($this->request->is("get")) {
+                $data['event_categories'] = $event_category_model->get();
+                $data['events'] = $events_model->get();
                 return view('admin/events/event-post',$data);
             }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }else{
+                    return redirect()->to(base_url('admin/login'));
+                }
+
+                $event_file = $this->request->getFile('event_file');
+                if ($event_file->isValid() && ! $event_file->hasMoved()) {
+                    $event_fileNewName = "file".$event_file->getRandomName();
+                    $event_file->move(ROOTPATH . 'public/admin/uploads/events', $event_fileNewName);    
+                }else{
+                 $event_fileNewName = "";
+                }
+
+                $extension_file = $this->request->getFile('extension_file');
+                if ($extension_file->isValid() && ! $extension_file->hasMoved()) {
+                    $extension_fileNewName = "ext".$extension_file->getRandomName();
+                    $extension_file->move(ROOTPATH . 'public/admin/uploads/events', $extension_fileNewName);    
+                }else{
+                 $extension_fileNewName = "";
+                }
+
+                $data = [
+                    'title' => $this->request->getPost('event_title'),
+                    'description' => $this->request->getPost('description'),
+                    'event_category' => $this->request->getPost('event_category'),
+                    'registration_link' => $this->request->getPost('reg_link'),
+                    'venue' => $this->request->getPost('event_venue'),
+                    'upload_file' => $event_fileNewName,
+                    'event_start_date' => $this->request->getPost('event_start_date'),
+                    'event_end_date' => $this->request->getPost('event_end_date'),
+                    'reg_start_date' => $this->request->getPost('reg_start_date'),
+                    'reg_start_time' => $this->request->getPost('reg_start_time'),
+                    'reg_end_date' => $this->request->getPost('reg_end_date'),
+                    'reg_end_time' => $this->request->getPost('reg_end_time'),
+                    'payment_link' => $this->request->getPost('payment_link'),
+                    'participant_seats' => $this->request->getPost('participant_seats'),
+                    'participant_eligibility' => $this->request->getPost('participant_eligibility'),
+                    'extension_status' => $this->request->getPost('extension_status'),
+                    'extension_notice_file' => $extension_fileNewName,
+                    'extension_end_date' => $this->request->getPost('extension_end_date'),
+                    'extension_end_time' => $this->request->getPost('extension_end_time'),
+                    'marquee_status' => $this->request->getPost('marquee_status'),
+                    'status' => $this->request->getPost('status'),
+                    'upload_by' => $loggeduserId,
+                ];
+
+                $result = $events_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/event-post')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/event-post')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
 
             }
         }

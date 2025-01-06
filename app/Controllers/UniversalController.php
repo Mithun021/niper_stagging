@@ -8,9 +8,7 @@ use App\Models\Menu_heading_model;
 use App\Models\Menu_name_model;
 use App\Models\Program_department_mapping_model;
 use App\Models\Program_model;
-use App\Models\Student_model;
-
-    
+use App\Models\Student_model;   
     class UniversalController extends BaseController{
         public function fetch_programs(){
             $program_model = new Program_model();

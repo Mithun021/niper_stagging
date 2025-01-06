@@ -1,9 +1,9 @@
 <?= $this->extend("admin/layouts/master") ?>
-
 <?=  $this->section("body-content"); ?>
-<style>
-    
-</style>
+<?php
+    use App\Models\Employee_model;
+    $employee_model = new Employee_model();
+?>
 <!-- start page title -->
 <div class="row">
     <div class="col-lg-12">
@@ -22,47 +22,50 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <span for="">Title<span class="text-danger">*</span></span>
-                                <input type="text" class="form-control form-control-sm" name="notice_title">
+                                <input type="text" class="form-control form-control-sm" name="event_title" required minlength="5">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <span for="">Desription</span>
-                                <textarea id="editor" name="content"></textarea>
+                                <textarea id="editor" name="description"></textarea>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <span>Event Type<span class="text-danger">*</span></span>
-                                <select name="" id="" class="form-control form-control-sm">
+                                <span>Event Category<span class="text-danger">*</span></span>
+                                <select name="event_category" id="event_category" class="form-control form-control-sm">
                                     <option value="">Select Event Type</option>
+                                <?php foreach ($event_categories as $value) { ?>
+                                    <option value="<?php $value['id'] ?>"><?php $value['name'] ?></option>
+                                <?php } ?>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Registration Link</span>
-                                <input type="url" class="form-control form-control-sm" name="news_date">
+                                <input type="url" class="form-control form-control-sm" name="reg_link">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Event Venue</span>
-                                <input type="text" class="form-control form-control-sm" name="news_date">
+                                <input type="text" class="form-control form-control-sm" name="event_venue">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <span for="">Upload File(JPG,PNG,PDF)<span class="text-danger">*</span></span>
-                                <input type="file" class="form-control form-control-sm" name="notice_file" accept=".jpg, .png, .pdf" required>
+                                <span for="">Upload File(JPG,PNG)<span class="text-danger">*</span></span>
+                                <input type="file" class="form-control form-control-sm" name="event_file" accept=".jpg, .png, .jpeg" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Event Start and End Date<span class="text-danger">*</span></span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="news_date"  placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                    <input type="text" class="form-control form-control-sm" name="news_date"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="event_start_date"  placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="event_end_date"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
                                 </div>
                             </div>
                         </div>
@@ -70,8 +73,8 @@
                             <div class="form-group">
                                 <span for="">Registration Start Date & Time<span class="text-danger">*</span></span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="news_date"  placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                    <input type="text" class="form-control form-control-sm" name="news_date"  placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="reg_start_date"  placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="reg_start_time"  placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')">
                                 </div>
                             </div>
                         </div>
@@ -79,54 +82,54 @@
                             <div class="form-group">
                                 <span for="">Registration End Date & Time<span class="text-danger">*</span></span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="news_date"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                    <input type="text" class="form-control form-control-sm" name="news_date"  placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="reg_end_date"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="reg_end_time"  placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Payment Link</span>
-                                <input type="text" class="form-control form-control-sm" name="news_date">
+                                <input type="url" class="form-control form-control-sm" name="payment_link">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Participant Seats</span>
-                                <input type="text" class="form-control form-control-sm" name="news_date">
+                                <input type="text" class="form-control form-control-sm" name="participant_seats">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Participant Eligibility</span>
-                                <input type="text" class="form-control form-control-sm" name="news_date">
+                                <input type="text" class="form-control form-control-sm" name="participant_eligibility">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Extension Status</span>
-                                <input type="text" class="form-control form-control-sm" name="news_date">
+                                <input type="text" class="form-control form-control-sm" name="extension_status">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <span for="">Extension Notice File(JPG,PNG,PDF)<span class="text-danger">*</span></span>
-                                <input type="file" class="form-control form-control-sm" name="notice_file" accept=".jpg, .png, .pdf" required>
+                                <span for="">Extension Notice File(PDF)<span class="text-danger">*</span></span>
+                                <input type="file" class="form-control form-control-sm" name="extension_file" accept=".pdf" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Extension End Date & Time<span class="text-danger">*</span></span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="news_date"  placeholder="Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                    <input type="text" class="form-control form-control-sm" name="news_date"  placeholder="Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="extension_end_date"  placeholder="Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="extension_end_time"  placeholder="Time" onfocus="(this.type='time')" onblur="(this.type='text')">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span>Marquee Status</span>
-                                <select name="" id="" class="form-control form-control-sm">
+                                <select name="marquee_status" id="marquee_status" class="form-control form-control-sm">
                                     <option value="0" selected>Inactive</option>
                                     <option value="1">Active</option>
                                 </select>
@@ -134,11 +137,11 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <span>New Status</span>
-                                <select name="" id="" class="form-control form-control-sm">
+                                <span>Status</span>
+                                <select name="status" id="status" class="form-control form-control-sm">
                                     <option value="1">Publish</option>
                                     <option value="2">Archive</option>
-                                    <option value="3">Draft</option>
+                                    <option value="0">Draft</option>
                                 </select>
                             </div>
                         </div>
