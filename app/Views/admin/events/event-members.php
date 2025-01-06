@@ -14,18 +14,24 @@
                     <?= session()->getFlashdata('status'); ?>
                 <?php endif; ?>
 
-                <form action="/eventmembers/store" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/event-members" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-4">
                             <span>Event ID:</span>
                             <select name="event_id" class="form-control form-control-sm">
                                 <option value="">Select Event</option>
+                            <?php foreach ($events as $key => $value) { ?>
+                               <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                            <?php } ?>
                             </select>
                         </div>
                         <div class="col-md-4">
                             <span>Employee ID:</span>
                             <select name="emp_id" class="form-control form-control-sm">
                                 <option value="">Select Employee</option>
+                            <?php foreach ($employees as $key => $value) { ?>
+                               <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                            <?php } ?>
                             </select>
                         </div>
                         <div class="col-md-4">
