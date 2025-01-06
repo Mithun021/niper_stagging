@@ -202,8 +202,8 @@
                                     ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Draft</span>" : 
                                     (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : 
                                     (($value['status'] == "2") ? "<span class='badge badge-warning badge-pill'>Archive</span>" : ""))
-                                ?> / <br>
-                                <?= ($value['marquee_status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($value['marquee_status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?>
+                                ?> /
+                                <?= ($value['marquee_status'] == "0") ? "<span class='badge badge-danger badge-pill'>Marquee Inactive</span>" : (($value['marquee_status'] == "1") ? "<span class='badge badge-success badge-pill'>Marquee Active</span>" : "") ?>
                             </td>
                             <td><?= $value['title'] ?></td>
                             <td><?php $event_category = $event_category_model->get($value['event_category']); echo $event_category['name']; ?></td>
