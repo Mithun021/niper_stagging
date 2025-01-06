@@ -5,6 +5,7 @@
     use App\Models\Employee_model;
 use App\Models\Event_category_model;
 use App\Models\Event_fees_model;
+use App\Models\Event_highlights_model;
 use App\Models\Event_members_model;
 use App\Models\Event_organizer_model;
 use App\Models\Events_model;
@@ -177,11 +178,31 @@ use App\Models\Program_department_mapping_model;
         }
 
         public function event_highlight(){
+            $events_model = new Events_model();
+            $event_highlights_model = new Event_highlights_model();
             $data = ['title' => 'Event Highlight'];
             if ($this->request->is("get")) {
+                $data['events'] = $events_model->get();
+                $data['event_highlights'] = $event_highlights_model->get();
                 return view('admin/events/event-highlight',$data);
             }else if ($this->request->is("post")) {
-
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }else{
+                    return redirect()->to(base_url('admin/login'));
+                }
+                $data = [
+                    'event_id' => $this->request->getPost('event_id'),
+                    'highlight_title' => $this->request->getPost('evthightitle'),
+                    'upload_by' => $loggeduserId,
+                ];
+                $result = $event_highlights_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/event-highlight')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/event-highlight')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 
