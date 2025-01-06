@@ -1,21 +1,25 @@
 <?= $this->extend("admin/layouts/master") ?>
-
 <?= $this->section("body-content") ?>
+<?php
+    use App\Models\Employee_model;
+    use App\Models\Events_model;
+
+    $employee_model = new Employee_model();
+    $events_model = new Events_model();
+?>
 
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-4">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Event Fees Details</h4>
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')) : ?>
-                    <div class="alert alert-info">
-                        <?= session()->getFlashdata('status') ?>
-                    </div>
+                    <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
 
-                <form id="eventFeesForm">
+                <form action="<?= base_url() ?>admin/event-fees" method="post">
                     <!-- Event ID -->
                     <div class="form-group">
                         <span>Event ID:</span>
@@ -56,7 +60,7 @@
         </div>
     </div>
 
-    <div class="col-lg-6">
+    <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Event Fees List</h4>
@@ -70,11 +74,30 @@
                                 <td>Event ID</td>
                                 <td>Fee Type</td>
                                 <td>Fees</td>
+                                <td>Upload by</td>
                                 <td>Actions</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Data to be dynamically populated -->
+                            <?php if ($event_fees) : ?>
+                                <?php foreach ($event_fees as $key => $value) : ?>
+                                    <tr>
+                                        <td><?= $key + 1 ?></td>
+                                        <td><?= $events_model->get($value['event_id'])['title'] ?></td>
+                                        <td><?= $value['fee_type'] ?></td>
+                                        <td><?= $value['event_fees'] ?></td>
+                                        <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name'] ?></td>
+                                        <td>
+                                            <a href="<?= base_url() ?>admin/event-fees/<?= $value['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                            <a href="<?= base_url() ?>admin/event-fees/delete/<?= $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else : ?>
+                                <tr>
+                                    <td colspan="6" class="text-center">No data found</td>
+                                </tr>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
