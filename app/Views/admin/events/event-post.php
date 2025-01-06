@@ -17,7 +17,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/event-category') ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url('admin/event-post') ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
