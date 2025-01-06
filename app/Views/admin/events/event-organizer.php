@@ -93,7 +93,7 @@
                                     <td><?= $events_model->get($value['event_id'])['title'] ?></td>
                                     <td><?= $value['organizer_type'] ?></td>
                                     <td><?= $value['organizer_name'] ?></td>
-                                    <td><?= $employee_model->get($value['upload_by'])['name'] ?></td>
+                                    <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name'] ?></td>
                                     <td>
                                         <a href="<?= base_url() ?>admin/event-organizer/<?= $value['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
                                         <a href="<?= base_url() ?>admin/event-organizer/<?= $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
