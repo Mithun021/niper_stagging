@@ -90,7 +90,27 @@ use App\Models\Program_department_mapping_model;
                 $data['event_members'] = $event_members_model->get();
                 return view('admin/events/event-members',$data);
             }else if ($this->request->is("post")) {
-
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }else{
+                    return redirect()->to(base_url('admin/login'));
+                }
+                $data =[
+                    'event_id' => $this->request->getPost('event_id'),
+                    'employee_id' => $this->request->getPost('emp_id'),
+                    'member_type' => $this->request->getPost('member_type'),
+                    'member_designation' => $this->request->getPost('member_designation'),
+                    'other_designation' => $this->request->getPost('other_designation'),
+                    'member_affiliation' => $this->request->getPost('member_affiliation'),
+                    'upload_by' => $loggeduserId,
+                ];
+                $result = $event_members_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/event-members')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/event-members')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 
