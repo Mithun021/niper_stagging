@@ -714,15 +714,6 @@ use App\Models\Youtube_link_model;
             }
         }
 
-        public function committee_details(){
-            $data = ['title' => 'Committee Details'];
-            if ($this->request->is("get")) {
-                return view('admin/committee-details',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
         public function patent_details(){
             $data = ['title' => 'Patent Details'];
             if ($this->request->is("get")) {

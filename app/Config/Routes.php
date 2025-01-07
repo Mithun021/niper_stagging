@@ -71,7 +71,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'leadership-and-media-link', 'AdminControllers::leadership_and_media_link');
 
     $routes->match(['get', 'post'], 'collaboration', 'AdminControllers::collaboration');
-    $routes->match(['get', 'post'], 'committee-details', 'AdminControllers::committee_details');
+    $routes->match(['get', 'post'], 'committee-details', 'CommitteeController::committee_details');
     $routes->match(['get', 'post'], 'copyright-details', 'AdminControllers::copyright_details');
     $routes->match(['get', 'post'], 'patent-details', 'AdminControllers::patent_details');
 
