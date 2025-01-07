@@ -10,6 +10,7 @@ class CommitteeController extends BaseController
         $committee_model = new Committee_model();
         $data = ['title' => 'Committee Details'];
         if ($this->request->is("get")) {
+            $data['committee'] = $committee_model->get();
             return view('admin/committee/committee-details',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
