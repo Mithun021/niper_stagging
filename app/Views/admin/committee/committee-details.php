@@ -31,8 +31,8 @@
                         <textarea id="editor" name="description"></textarea>
                     </div>
                     <div class="form-group">
-                        <span for="Committeefileupload">File Upload:</span>
-                        <input type="file" name="Committeefileupload" id="Committeefileupload" class="form-control form-control-sm" accept=".pdf,.docx,.zip">
+                        <span for="Committeefileupload">File Upload(pdf):</span>
+                        <input type="file" name="Committeefileupload" id="Committeefileupload" class="form-control form-control-sm" accept=".pdf">
                     </div>
                     <div class="form-group">
                         <span for="Committeestatus">Status:</span>
