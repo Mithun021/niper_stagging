@@ -713,16 +713,7 @@ use App\Models\Youtube_link_model;
 
             }
         }
-
-        public function patent_details(){
-            $data = ['title' => 'Patent Details'];
-            if ($this->request->is("get")) {
-                return view('admin/patent-details',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
+        
         public function copyright_details(){
             $data = ['title' => 'Copyright Details'];
             if ($this->request->is("get")) {
