@@ -15,7 +15,7 @@ class PatentController extends BaseController
         if ($this->request->is("get")) {
             $data['employees'] = $employee_model->get();
             $data['patent'] = $patent_model->get();
-            return view('admin/patent-details',$data);
+            return view('admin/patent/patent-details',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
             if ($sessionData) {
