@@ -71,8 +71,8 @@
                     <div class="col-lg-6 form-group">
                         <span>Copyright Status <span class="text-danger">*</span></span>
                         <select class="form-control form-control-sm" name="Copyright_status" required>
-                            <option value="Draft">Draft</option>
-                            <option value="Active">Active</option>
+                            <option value="0">Draft</option>
+                            <option value="1">Active</option>
                         </select>
                     </div>
                     <div class="col-lg-12 form-group">
