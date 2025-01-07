@@ -89,7 +89,7 @@
                                     <?php endif; ?>
                                 </td>
                                 <td><?= $value['title'] ?></td>
-                                <td><?php $sub_comm = $committee_model->get($value['sub_committee']); echo $sub_comm['title']; ?></td>
+                                <td><?php $sub_comm = $committee_model->get($value['sub_committee']); echo isset($sub_comm['title']) && !empty($sub_comm['title']) ? $sub_comm['title'] : '__'; ?></td>
                                 <td><?= ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Draft</span>" : (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?></td>
                                 
                                 <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name'] ?></td>
