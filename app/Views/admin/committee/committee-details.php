@@ -11,13 +11,11 @@
 
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')): ?>
-                    <div class="alert alert-success">
-                        <?= session()->getFlashdata('status') ?>
-                    </div>
+                    <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="/committee/store" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/committee-details" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="Committeetitle">Committee Title:</span>
                         <input type="text" name="Committeetitle" id="Committeetitle" class="form-control form-control-sm" required>
@@ -30,7 +28,7 @@
                     </div>
                     <div class="form-group">
                         <span for="Committeedesc">Committee Description:</span>
-                        <textarea id="editor" name="content"></textarea>
+                        <textarea id="editor" name="description"></textarea>
                     </div>
                     <div class="form-group">
                         <span for="Committeefileupload">File Upload:</span>
