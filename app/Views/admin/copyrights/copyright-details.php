@@ -11,11 +11,9 @@
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')): ?>
-                    <div class="alert alert-success">
-                        <?= session()->getFlashdata('status'); ?>
-                    </div>
+                    <?= session()->getFlashdata('status'); ?>
                 <?php endif; ?>
-                <form id="CopyrightForm" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/copyright-details" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-lg-6 form-group">
                         <span>Copyright Title <span class="text-danger">*</span></span>
@@ -27,14 +25,14 @@
                     </div>
                     <div class="col-lg-12 form-group">
                         <span>Copyright Description</span>
-                        <textarea id="editor" name="content"></textarea>
+                        <textarea id="editor" name="description"></textarea>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <span for="">Copyright start datetime<span class="text-danger">*</span></span>
                             <div class="input-group">
-                                <input type="text" class="form-control form-control-sm" name="news_date"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                <input type="text" class="form-control form-control-sm" name="news_date"  placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                <input type="text" class="form-control form-control-sm" name="copyright_start_date"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                <input type="text" class="form-control form-control-sm" name="copyright_start_time"  placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
                             </div>
                         </div>
                     </div>
@@ -43,8 +41,8 @@
                         <div class="form-group">
                             <span for="">Copyright end datetime<span class="text-danger">*</span></span>
                             <div class="input-group">
-                                <input type="text" class="form-control form-control-sm" name="news_date"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                <input type="text" class="form-control form-control-sm" name="news_date"  placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                <input type="text" class="form-control form-control-sm" name="copyright_end_date"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                <input type="text" class="form-control form-control-sm" name="copyright_end_time"  placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
                             </div>
                         </div>
                     </div>
@@ -57,11 +55,14 @@
                         <span>Employee ID <span class="text-danger">*</span></span>
                         <select class="form-control form-control-sm" name="emp_id" required>
                             <option value="">--Select--</option>
+                        <?php foreach ($employees as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                        <?php } ?>
                         </select>
                     </div>
                     <div class="col-lg-6 form-group">
                         <span>Author Name <span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="Copyright_date" required>
+                        <input type="text" class="form-control form-control-sm" name="author_name" required>
                     </div>
                     <div class="col-lg-6 form-group">
                         <span>Copyright Status <span class="text-danger">*</span></span>

@@ -72,7 +72,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
 
     $routes->match(['get', 'post'], 'collaboration', 'AdminControllers::collaboration');
     $routes->match(['get', 'post'], 'committee-details', 'CommitteeController::committee_details');
-    $routes->match(['get', 'post'], 'copyright-details', 'AdminControllers::copyright_details');
+    $routes->match(['get', 'post'], 'copyright-details', 'CopyrightController::copyright_details');
     $routes->match(['get', 'post'], 'patent-details', 'PatentController::patent_details');
 
     // Student Routes /----------------------------

@@ -713,15 +713,6 @@ use App\Models\Youtube_link_model;
 
             }
         }
-        
-        public function copyright_details(){
-            $data = ['title' => 'Copyright Details'];
-            if ($this->request->is("get")) {
-                return view('admin/copyright-details',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
 
         public function membership(){
             $membership_model = new Membership_model();
