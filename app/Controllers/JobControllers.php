@@ -2,7 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\Department_model;
 use App\Models\Job_category_model;
+use App\Models\Job_detail_model;
 
 class JobControllers extends BaseController
 {
@@ -25,8 +27,14 @@ class JobControllers extends BaseController
         }
     }
     public function job_details(){
+        $department_model = new Department_model();
+        $job_category_model = new Job_category_model();
+        $job_detail_model = new Job_detail_model();
         $data = ['title' => 'Job Details'];
         if ($this->request->is("get")) {
+            $data['department'] = $department_model->activeData();
+            $data['job_category'] = $job_category_model->get();
+            $data['job_details'] = $job_detail_model->get();
             return view('admin/jobs/job-details',$data);
         }else if ($this->request->is("post")) {
 
@@ -37,7 +45,7 @@ class JobControllers extends BaseController
         if ($this->request->is("get")) {
             return view('admin/jobs/job-result',$data);
         }else if ($this->request->is("post")) {
-            
+
         }
     }
 }
