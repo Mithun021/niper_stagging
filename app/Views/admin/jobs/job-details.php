@@ -1,6 +1,14 @@
 <?= $this->extend("admin/layouts/master") ?>
-
 <?= $this->section("body-content"); ?>
+<?php
+    use App\Models\Department_model;
+    use App\Models\Employee_model;
+    use App\Models\Job_category_model;
+
+    $employee_model = new Employee_model();
+    $department_model = new Department_model();
+    $job_category_model = new Job_category_model();
+?>
 <style>
 
 </style>
@@ -168,17 +176,62 @@
                         <thead>
                             <tr>
                                 <td>SN</td>
+                                <td>Ext File / Adv File / Syllabus</td>
                                 <td>Status</td>
                                 <td>Adv Title</td>
-                                <td>Adv Date & Time</td>
+                                <td>App. Date & Time</td>
                                 <td>Adv type</td>
+                                <td>Department</td>
                                 <td>Hardcopy Last Date Time</td>
-                                <td>Create at</td>
+                                <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
+                        <?php foreach($job_details as $key => $value){ ?>
+                            <tr>
+                                <td><?= ++$key ?></td>
+                                <td>
+                                    <?php if (!empty($value['ext_notice_file']) && file_exists('public/admin/uploads/jobs/' . $value['ext_notice_file'])): ?>
+                                        <a href="<?= base_url() ?>public/admin/uploads/jobs/<?= $value['ext_notice_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                    <?php else: ?>
+                                        <img src="<?= base_url() ?>public/admin/uploads/jobs/invalid_image.png" alt="" height="40px">
+                                    <?php endif; ?>
+                                    
+                                    <?php if (!empty($value['adv_file']) && file_exists('public/admin/uploads/jobs/' . $value['adv_file'])): ?>
+                                        <a href="<?= base_url() ?>public/admin/uploads/jobs/<?= $value['adv_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                    <?php else: ?>
+                                        <img src="<?= base_url() ?>public/admin/uploads/jobs/invalid_image.png" alt="" height="40px">
+                                    <?php endif; ?>
 
+                                    <?php if (!empty($value['syllabus_file']) && file_exists('public/admin/uploads/jobs/' . $value['syllabus_file'])): ?>
+                                        <a href="<?= base_url() ?>public/admin/uploads/jobs/<?= $value['syllabus_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                    <?php else: ?>
+                                        <img src="<?= base_url() ?>public/admin/uploads/jobs/invalid_image.png" alt="" height="40px">
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <?= 
+                                        ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Draft</span>" :
+                                        (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "")
+                                    ?>
+                                </td>
+                                <td><?= $value['title'] ?></td>
+                                <td><?= date("d:M:Y", strtotime($value['application_start_date'])) ?> <?= date("h:i A", strtotime($value['application_start_time'])) ?> - <br><?= date("d:M:Y", strtotime($value['application_end_date'])) ?> <?= date("h:i A", strtotime($value['application_end_time'])) ?></td>
+
+                                <td><?php $job_cat = $job_category_model->get($value['job_type_id']); echo $job_cat['name'] ?? ''; ?></td>
+                                <td><?php $department = $department_model->get($value['department_id']); echo $department['name'] ?? ''; ?></td>
+                                <td><?= date("d:M:Y", strtotime($value['hardcopy_last_date'])) ?> <?= date("h:i A", strtotime($value['hardcopy_last_time'])) ?></td>
+                                <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
