@@ -114,7 +114,7 @@ class JobControllers extends BaseController
             }
             $resultfile = $this->request->getFile('resultfile');
             if ($resultfile->isValid() && ! $resultfile->hasMoved()) {
-                $resultfileImageName = "ext".$resultfile->getRandomName();
+                $resultfileImageName = "result".$resultfile->getRandomName();
                 $resultfile->move(ROOTPATH . 'public/admin/uploads/jobs', $resultfileImageName);    
             }else{
                 $resultfileImageName = "";
