@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Department_model;
 use App\Models\Job_category_model;
 use App\Models\Job_detail_model;
+use App\Models\Job_result_model;
 
 class JobControllers extends BaseController
 {
@@ -99,11 +100,41 @@ class JobControllers extends BaseController
         }
     }
     public function job_result(){
+        $job_detail_model = new Job_detail_model();
+        $job_result_model = new Job_result_model();
         $data = ['title' => 'Job Result'];
         if ($this->request->is("get")) {
+            $data['job_details'] = $job_detail_model->get();
+            $data['job_result'] = $job_result_model->get();
             return view('admin/jobs/job-result',$data);
         }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $resultfile = $this->request->getFile('resultfile');
+            if ($resultfile->isValid() && ! $resultfile->hasMoved()) {
+                $resultfileImageName = "ext".$resultfile->getRandomName();
+                $resultfile->move(ROOTPATH . 'public/admin/uploads/jobs', $resultfileImageName);    
+            }else{
+                $resultfileImageName = "";
+            }
 
+            $data = [
+                'jobs_id' => $this->request->getPost('resultitle'),
+                'result_title' => $this->request->getPost('resultdesc'),
+                'result_description' => $this->request->getPost(''),
+                'file_upload' => $resultfileImageName,
+                'result_type' => $this->request->getPost('resulttype'),
+                'status' => $this->request->getPost('result_status'),
+                'upload_by' => $loggeduserId
+            ];
+            $result = $job_result_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/job-result')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/job-result')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
         }
     }
 }

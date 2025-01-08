@@ -9,20 +9,22 @@
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title; ?></h4>
             </div>
-            <div class="card-body">
+            <div class="card-body p-2">
                 <?php
                 if (session()->getFlashdata('status')) {
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form action="/jobresults/store" method="post" enctype="multipart/form-data">
-                    <?= csrf_field() ?>
+                <form action="<?= base_url() ?>admin/job-result" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="advid">Advertisement ID:</span>
                                 <select name="advid" id="advid" class="form-control form-control-sm">
                                     <option value="">Select Advertisement</option>
+                                <?php foreach($job_details as $key => $value){ ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                                <?php } ?>
                                 </select>
                             </div>
                         </div>
@@ -69,9 +71,9 @@
                             <div class="form-group">
                                 <span for="result_status">Result Status:</span>
                                 <select name="result_status" id="result_status" class="form-control form-control-sm" required>
-                                    <option value="Publish">Publish</option>
-                                    <option value="Draft">Draft</option>
-                                    <option value="Archive">Archive</option>
+                                    <option value="1">Publish</option>
+                                    <option value="0">Draft</option>
+                                    <option value="2">Archive</option>
                                 </select>
                             </div>
                         </div>
@@ -87,17 +89,18 @@
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> List</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body p-2">
                 <div class="table-responsive">
                 <table class="table table-striped table-hover" id="basic-datatable">
                     <thead>
                         <tr>
                             <td>SN</td>
+                            <td>File</td>
                             <td>Status</td>
+                            <td>Advestisment ID</td>
                             <td>Result Title</td>
                             <td>Result type</td>
-                            <td>Advestisment ID</td>
-                            <td>Create at</td>
+                            <td>Upload by</td>
                             <td>Action</td>
                         </tr>
                     </thead>
