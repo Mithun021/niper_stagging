@@ -1,5 +1,13 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
+<?php
+
+use App\Models\Job_detail_model;
+use App\Models\Employee_model;
+
+    $job_detail_model = new Job_detail_model();
+    $employee_model = new Employee_model();
+?>
 <style>
 </style>
 <!-- start page title -->
@@ -105,7 +113,36 @@
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    <?php foreach($job_result as $key => $value){ ?>
+                        <tr>
+                            <td><?= ++$key ?></td>
+                            <td>
+                                <?php if (!empty($value['file_upload']) && file_exists('public/admin/uploads/jobs/' . $value['file_upload'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/jobs/<?= $value['file_upload'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/jobs/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <?= 
+                                    ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Draft</span>" : 
+                                    (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : 
+                                    (($value['status'] == "2") ? "<span class='badge badge-warning badge-pill'>Archive</span>" : ""))
+                                ?>
+                            </td>
+                            <td><?php $jobs = $job_detail_model->get($value['jobs_id']); echo $jobs['title'] ?? ''; ?></td>
+                            <td><?= $value['result_title'] ?></td>
+                            <td><?= $value['result_type'] ?></td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                    <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                    <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                    <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 </div>
