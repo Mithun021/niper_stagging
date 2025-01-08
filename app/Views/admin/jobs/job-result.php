@@ -31,7 +31,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="resultitle">Result Title:</span>
-                                <input type="text" name="resultitle" id="resultitle" class="form-control form-control-sm" value="<?= old('resultitle') ?>" required>
+                                <input type="text" name="resultitle" id="resultitle" class="form-control form-control-sm">
                             </div>
                         </div>
                     </div>
