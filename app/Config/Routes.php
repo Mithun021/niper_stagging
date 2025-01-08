@@ -61,9 +61,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'admission', 'AdminControllers::admission');
     $routes->match(['get','post'],'act-rules', 'AdminControllers::act_rules');
 
-    $routes->match(['get','post'],'job-details', 'AdminControllers::job_details');
-    $routes->match(['get','post'],'job-result', 'AdminControllers::job_result');
-    $routes->match(['get','post'],'job-category', 'AdminControllers::job_category');
+    $routes->match(['get','post'],'job-details', 'JobControllers::job_details');
+    $routes->match(['get','post'],'job-result', 'JobControllers::job_result');
+    $routes->match(['get','post'],'job-category', 'JobControllers::job_category');
 
     $routes->match(['get','post'],'about', 'AdminControllers::about');
     $routes->match(['get','post'],'bog', 'AdminControllers::bog');
