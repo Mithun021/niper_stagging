@@ -38,8 +38,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <span for="resultdesc">Result Description:</span>
-                                <textarea name="resultdesc" id="editor" class="form-control form-control-sm" required><?= old('resultdesc') ?></textarea>
+                                <span>Result Description:</span>
+                                <textarea name="resultdesc" id="editor" class="form-control form-control-sm"></textarea>
                             </div>
                         </div>
                     </div>
