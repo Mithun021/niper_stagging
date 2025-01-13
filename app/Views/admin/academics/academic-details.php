@@ -1,6 +1,12 @@
 <!-- app/Views/academicdetails_form.php -->
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
+<?php
+
+use App\Models\Employee_model;
+
+$employee_model = new Employee_model();
+?>
 
 <div class="row">
     <!-- Form Section for Adding Academic Details -->
@@ -19,12 +25,12 @@
                     <!-- Academic Year -->
                     <div class="form-group">
                         <span for="Acdyear">Session Start Year:<span class="text-danger">*</span></span>
-                        <input type="number" name="session_start_year" id="session_start_year" class="form-control form-control-sm" min="2000" required >
+                        <input type="number" name="session_start_year" id="session_start_year" class="form-control form-control-sm" min="2000" required>
                     </div>
 
                     <div class="form-group">
                         <span for="Acdyear">Session End Year:<span class="text-danger">*</span></span>
-                        <input type="number" name="session_end_year" id="session_end_year" class="form-control form-control-sm" min="2000" required >
+                        <input type="number" name="session_end_year" id="session_end_year" class="form-control form-control-sm" min="2000" required>
                     </div>
 
                     <!-- Upload Academic Calendar -->
@@ -65,13 +71,46 @@
                             <tr>
                                 <td>SN</td>
                                 <td>Academic Session</td>
-                                <td>Calendar</td>
-                                <td>Fees File</td>
+                                <td>Calendar/Fees/Exam. Grad Files</td>
+                                <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Dynamically populated rows go here -->
+                            <?php foreach ($academic_details as $key => $value) { ?>
+                                <tr>
+                                    <td><?= $key + 1 ?></td>
+                                    <td><?= $value['session_start'] ?> - <?= $value['session_end'] ?></td>
+                                    <td>
+                                        <?php if (!empty($value['calendar_file']) && file_exists('public/admin/uploads/academic/' . $value['calendar_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/academic/<?= $value['calendar_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/academic/invalid_image.png" alt="" height="40px">
+                                        <?php endif; ?>
+
+                                        <?php if (!empty($value['fees_file']) && file_exists('public/admin/uploads/academic/' . $value['fees_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/academic/<?= $value['fees_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/academic/invalid_image.png" alt="" height="40px">
+                                        <?php endif; ?>
+
+                                        <?php if (!empty($value['exam_grade_file']) && file_exists('public/admin/uploads/academic/' . $value['exam_grade_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/academic/<?= $value['exam_grade_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/academic/invalid_image.png" alt="" height="40px">
+                                        <?php endif; ?>
+                                    </td>
+                                    <td><?php $emp = $employee_model->get($value['upload_by']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                            <!-- <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a> -->
+                                            <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                            <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

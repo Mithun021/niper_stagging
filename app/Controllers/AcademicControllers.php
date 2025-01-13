@@ -11,6 +11,7 @@ class AcademicControllers extends BaseController
         $academic_model = new Academic_model();
         $data = ['title' => 'Academic Details'];
         if ($this->request->is("get")) {
+            $data['academic_details'] = $academic_model->get();
             return view('admin/academics/academic-details', $data);
         } else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
