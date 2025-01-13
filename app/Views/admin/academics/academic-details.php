@@ -18,30 +18,30 @@
                 <form action="<?= base_url() ?>admin/academic-details" method="post" enctype="multipart/form-data">
                     <!-- Academic Year -->
                     <div class="form-group">
-                        <span for="Acdyear">Session Start Year:</span>
+                        <span for="Acdyear">Session Start Year:<span class="text-danger">*</span></span>
                         <input type="number" name="session_start_year" id="session_start_year" class="form-control form-control-sm" min="2000" required >
                     </div>
 
                     <div class="form-group">
-                        <span for="Acdyear">Session End Year:</span>
+                        <span for="Acdyear">Session End Year:<span class="text-danger">*</span></span>
                         <input type="number" name="session_end_year" id="session_end_year" class="form-control form-control-sm" min="2000" required >
                     </div>
 
                     <!-- Upload Academic Calendar -->
                     <div class="form-group mt-3">
-                        <span for="Acdcalenderfileupload">Upload Academic Calendar(.pdf):</span>
+                        <span for="Acdcalenderfileupload">Upload Academic Calendar(.pdf):<span class="text-danger">*</span></span>
                         <input type="file" name="acdcalenderfileupload" id="acdcalenderfileupload" class="form-control" accept=".pdf" required>
                     </div>
 
                     <!-- Upload Academic Fees File -->
                     <div class="form-group mt-3">
-                        <span for="Acdfeesfileupload">Upload Fees File(.pdf):</span>
+                        <span for="Acdfeesfileupload">Upload Fees File(.pdf):<span class="text-danger">*</span></span>
                         <input type="file" name="acdfeesfileupload" id="acdfeesfileupload" class="form-control" accept=".pdf" required>
                     </div>
 
                     <!-- Upload Academic Calendar -->
                     <div class="form-group mt-3">
-                        <span for="Acdcalenderfileupload">Examination Grading System(.pdf):</span>
+                        <span for="Acdcalenderfileupload">Examination Grading System(.pdf):<span class="text-danger">*</span></span>
                         <input type="file" name="examin_grade_file" id="examin_grade_file" class="form-control" accept=".pdf" required>
                     </div>
 
