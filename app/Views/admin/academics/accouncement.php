@@ -81,7 +81,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($variable as $key => $value) { ?>
+                        <?php foreach ($announcement as $key => $value) { ?>
                             <tr>
                                 <td><?php echo $key+1; ?></td>
                                 <td>
