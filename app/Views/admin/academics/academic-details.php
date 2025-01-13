@@ -57,7 +57,7 @@
                         <thead>
                             <tr>
                                 <td>SN</td>
-                                <td>Academic Year</td>
+                                <td>Academic Session</td>
                                 <td>Calendar</td>
                                 <td>Fees File</td>
                                 <td>Action</td>
