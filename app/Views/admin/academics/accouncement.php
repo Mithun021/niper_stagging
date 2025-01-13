@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group">
                         <span>Announcement Status</span>
-                        <select name="status" id="Announcementstatus" class="form-control form-control-sm">
+                        <select name="status" id="status" class="form-control form-control-sm">
                             <option value="1">Publish</option>
                             <option value="2">Archive</option>
                             <option value="0">Draft</option>

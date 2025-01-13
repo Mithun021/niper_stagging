@@ -85,7 +85,7 @@ class AcademicControllers extends BaseController
                 'announcement_title' => $this->request->getPost('title'),
                 'announcement_desc' => $this->request->getPost('description'),
                 'upload_file' => $annFileImageName,
-                'announcement_status' => $this->request->getPost('Announcementstatus'),
+                'announcement_status' => $this->request->getPost('status'),
                 'marquee_status' => $this->request->getPost('Marqueestatus'),
                 'upload_by' => $loggeduserId
             ];
