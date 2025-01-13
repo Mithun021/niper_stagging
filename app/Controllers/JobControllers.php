@@ -121,9 +121,9 @@ class JobControllers extends BaseController
             }
 
             $data = [
-                'jobs_id' => $this->request->getPost('resultitle'),
-                'result_title' => $this->request->getPost('resultdesc'),
-                'result_description' => $this->request->getPost(''),
+                'jobs_id' => $this->request->getPost('advid'),
+                'result_title' => $this->request->getPost('resultitle'),
+                'result_description' => $this->request->getPost('resultdesc'),
                 'file_upload' => $resultfileImageName,
                 'result_type' => $this->request->getPost('resulttype'),
                 'status' => $this->request->getPost('result_status'),
