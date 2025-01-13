@@ -24,16 +24,16 @@
                     </div>
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
-                        <textarea id="editor2" name="content"></textarea>
+                        <textarea id="editor2" name="title"></textarea>
                     </div>
                     <div class="form-group">
                         <span for="">Upload File(JPG,PNG,PDF)</span>
-                        <input type="file" class="form-control form-control-sm" name="notice_file" accept=".jpg, .png, .pdf" required>
+                        <input type="file" class="form-control form-control-sm" name="announcement_file" accept=".jpg, .png, .pdf" required>
                     </div>
 
                     <div class="form-group">
                         <span for="">Desription</span>
-                        <textarea id="editor" name="content"></textarea>
+                        <textarea id="editor" name="description"></textarea>
                     </div>
                     <div class="form-group">
                         <span>Announcement Status</span>

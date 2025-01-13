@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Academic_model;
+use App\Models\Announcement_model;
 
 class AcademicControllers extends BaseController
 {
@@ -62,10 +63,39 @@ class AcademicControllers extends BaseController
 
     public function accouncement()
     {
+        $announcement_model = new Announcement_model();
         $data = ['title' => 'Accouncement'];
         if ($this->request->is("get")) {
             return view('admin/academics/accouncement', $data);
         } else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId'];
+            }
+            $annFile = $this->request->getFile('announcement_file');
+            if ($annFile->isValid() && ! $annFile->hasMoved()) {
+                $annFileImageName = "calendar" . $annFile->getRandomName();
+                $annFile->move(ROOTPATH . 'public/admin/uploads/announcement', $annFileImageName);
+            } else {
+                $annFileImageName = "";
+            }
+
+            $data = [
+                'announcement_date' => $this->request->getPost('annoncement_date'),
+                'announcement_title' => $this->request->getPost('title'),
+                'announcement_desc' => $this->request->getPost('description'),
+                'upload_file' => $annFileImageName,
+                'announcement_status' => $this->request->getPost('Announcementstatus'),
+                'marquee_status' => $this->request->getPost('Marqueestatus'),
+                'upload_by' => $loggeduserId
+            ];
+
+            $result = $announcement_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/accouncement')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/accouncement')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
         }
     }
 
