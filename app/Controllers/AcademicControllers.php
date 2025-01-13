@@ -20,7 +20,7 @@ class AcademicControllers extends BaseController
             $calendarFile = $this->request->getFile('acdcalenderfileupload');
             if ($calendarFile->isValid() && ! $calendarFile->hasMoved()) {
                 $calendarFileImageName = "admission" . $calendarFile->getRandomName();
-                $calendarFile->move(ROOTPATH . 'public/admin/uploads/testimonials', $calendarFileImageName);
+                $calendarFile->move(ROOTPATH . 'public/admin/uploads/academic', $calendarFileImageName);
             } else {
                 $calendarFileImageName = "";
             }
@@ -28,7 +28,7 @@ class AcademicControllers extends BaseController
             $feesFile = $this->request->getFile('acdfeesfileupload');
             if ($feesFile->isValid() && ! $feesFile->hasMoved()) {
                 $feesFileImageName = "admission" . $feesFile->getRandomName();
-                $feesFile->move(ROOTPATH . 'public/admin/uploads/testimonials', $feesFileImageName);
+                $feesFile->move(ROOTPATH . 'public/admin/uploads/academic', $feesFileImageName);
             } else {
                 $feesFileImageName = "";
             }
