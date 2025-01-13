@@ -91,6 +91,7 @@
                                         <img src="<?= base_url() ?>public/admin/uploads/accouncement/invalid_image.png" alt="" height="40px">
                                     <?php endif; ?>
                                 </td>
+                                <td><?= $value['title'] ?></td>
                                 <td>
                                     <?= 
                                         ($value['announcement_status'] == "0") ? "<span class='badge badge-danger badge-pill'>Draft</span>" : 
