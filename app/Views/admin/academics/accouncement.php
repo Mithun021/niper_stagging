@@ -93,9 +93,9 @@
                                 </td>
                                 <td>
                                     <?= 
-                                        ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Draft</span>" : 
-                                        (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : 
-                                        (($value['status'] == "2") ? "<span class='badge badge-warning badge-pill'>Archive</span>" : ""))
+                                        ($value['announcement_status'] == "0") ? "<span class='badge badge-danger badge-pill'>Draft</span>" : 
+                                        (($value['announcement_status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : 
+                                        (($value['announcement_status'] == "2") ? "<span class='badge badge-warning badge-pill'>Archive</span>" : ""))
                                     ?> /
                                     <?= ($value['marquee_status'] == "0") ? "<span class='badge badge-danger badge-pill'>Marquee Inactive</span>" : (($value['marquee_status'] == "1") ? "<span class='badge badge-success badge-pill'>Marquee Active</span>" : "") ?>
                                 </td>
