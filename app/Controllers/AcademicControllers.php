@@ -19,7 +19,7 @@ class AcademicControllers extends BaseController
             }
             $calendarFile = $this->request->getFile('acdcalenderfileupload');
             if ($calendarFile->isValid() && ! $calendarFile->hasMoved()) {
-                $calendarFileImageName = "admission" . $calendarFile->getRandomName();
+                $calendarFileImageName = "calendar" . $calendarFile->getRandomName();
                 $calendarFile->move(ROOTPATH . 'public/admin/uploads/academic', $calendarFileImageName);
             } else {
                 $calendarFileImageName = "";
@@ -27,10 +27,18 @@ class AcademicControllers extends BaseController
 
             $feesFile = $this->request->getFile('acdfeesfileupload');
             if ($feesFile->isValid() && ! $feesFile->hasMoved()) {
-                $feesFileImageName = "admission" . $feesFile->getRandomName();
+                $feesFileImageName = "fees" . $feesFile->getRandomName();
                 $feesFile->move(ROOTPATH . 'public/admin/uploads/academic', $feesFileImageName);
             } else {
                 $feesFileImageName = "";
+            }
+
+            $examin_grade_file = $this->request->getFile('examin_grade_file');
+            if ($examin_grade_file->isValid() && ! $examin_grade_file->hasMoved()) {
+                $examin_grade_fileImageName = "grade" . $examin_grade_file->getRandomName();
+                $examin_grade_file->move(ROOTPATH . 'public/admin/uploads/academic', $examin_grade_fileImageName);
+            } else {
+                $examin_grade_fileImageName = "";
             }
 
             $data = [
@@ -38,6 +46,7 @@ class AcademicControllers extends BaseController
                 'session_end' => $this->request->getPost('session_end_year'),
                 'calendar_file' => $calendarFileImageName,
                 'fees_file' => $feesFileImageName,
+                'exam_grade_file' => $examin_grade_fileImageName,
                 'upload_by' => $loggeduserId
             ];
 

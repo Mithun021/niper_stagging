@@ -5,7 +5,7 @@
     {
         protected $table         = 'academic_details';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['session_start','session_end','calendar_file','fees_file','upload_by'];
+        protected $allowedFields = ['session_start','session_end','calendar_file','fees_file','exam_grade_file','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

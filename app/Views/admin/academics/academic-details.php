@@ -38,6 +38,13 @@
                         <span for="Acdfeesfileupload">Upload Fees File(.pdf):</span>
                         <input type="file" name="acdfeesfileupload" id="acdfeesfileupload" class="form-control" accept=".pdf" required>
                     </div>
+
+                    <!-- Upload Academic Calendar -->
+                    <div class="form-group mt-3">
+                        <span for="Acdcalenderfileupload">Examination Grading System(.pdf):</span>
+                        <input type="file" name="examin_grade_file" id="examin_grade_file" class="form-control" accept=".pdf" required>
+                    </div>
+
                     <!-- Submit Button -->
                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
                 </form>
