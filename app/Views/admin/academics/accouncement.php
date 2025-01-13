@@ -74,9 +74,9 @@
                                 <td>SN</td>
                                 <td>Files</td>
                                 <td>Title</td>
+                                <td>Ann. Date</td>
                                 <td>Staus /marquee</td>
                                 <td>Upload by</td>
-                                <td>Upload at</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
@@ -91,7 +91,8 @@
                                         <img src="<?= base_url() ?>public/admin/uploads/accouncement/invalid_image.png" alt="" height="40px">
                                     <?php endif; ?>
                                 </td>
-                                <td><?= $value['title'] ?></td>
+                                <td><?= $value['announcement_title'] ?></td>
+                                <td><?= date("d:M:Y", strtotime($value['announcement_date'])) ?></td>
                                 <td>
                                     <?= 
                                         ($value['announcement_status'] == "0") ? "<span class='badge badge-danger badge-pill'>Draft</span>" : 
@@ -101,7 +102,6 @@
                                     <?= ($value['marquee_status'] == "0") ? "<span class='badge badge-danger badge-pill'>Marquee Inactive</span>" : (($value['marquee_status'] == "1") ? "<span class='badge badge-success badge-pill'>Marquee Active</span>" : "") ?>
                                 </td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
-                                <td><?= date("d-m-Y", strtotime($value['created_at'])) ?></td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                         <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
