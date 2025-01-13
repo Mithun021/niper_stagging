@@ -20,7 +20,7 @@
                 <form id="noticeBoardForm">
                     <div class="form-group">
                         <span for="">Anouncement Date<span class="text-danger">*</span></span>
-                        <input type="date" id="annoncement_date" name="annoncement_date" class="from-control form-control-sm" required>
+                        <input type="date" id="annoncement_date" name="annoncement_date" class="form-control form-control-sm" required>
                     </div>
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group">
                         <span>Announcement Status</span>
-                        <select name="status" id="status" class="form-control form-control-sm">
+                        <select name="status" id="Announcementstatus" class="form-control form-control-sm">
                             <option value="1">Publish</option>
                             <option value="2">Archive</option>
                             <option value="0">Draft</option>
@@ -46,7 +46,7 @@
 
                     <div class="form-group">
                         <span>Marquee Status</span>
-                        <select name="status" id="status" class="form-control form-control-sm">
+                        <select name="Marqueestatus" id="Marqueestatus" class="form-control form-control-sm">
                             <option value="1">Active</option>
                             <option value="0">Inactive</option>
                         </select>
