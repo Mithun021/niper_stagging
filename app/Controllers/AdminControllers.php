@@ -94,15 +94,6 @@ use App\Models\Youtube_link_model;
             }
         }
 
-        public function accouncement(){
-            $data = ['title' => 'Accouncement'];
-            if ($this->request->is("get")) {
-                return view('admin/accouncement',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
         public function achievements(){
             $data = ['title' => 'Achievements'];
             if ($this->request->is("get")) {
@@ -154,15 +145,6 @@ use App\Models\Youtube_link_model;
                 } else {
                     return redirect()->to('admin/testimonial')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
-
-            }
-        }
-
-        public function research_publication(){
-            $data = ['title' => 'Research Publication'];
-            if ($this->request->is("get")) {
-                return view('admin/research-publication',$data);
-            }else if ($this->request->is("post")) {
 
             }
         }
@@ -486,15 +468,6 @@ use App\Models\Youtube_link_model;
             }
         }
 
-        public function rules_regulations(){
-            $data = ['title' => 'Rules & Regulations'];
-            if ($this->request->is("get")) {
-                return view('admin/rules-regulations',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
         public function banner_slider() {
             $banner_slider_model = new Banner_slider_model();
             $data = ['title' => 'Banner Slider'];
@@ -715,19 +688,6 @@ use App\Models\Youtube_link_model;
                 } else {
                     return redirect()->to('admin/membership')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
-            }
-        }
-
-        
-
-        
-
-        public function academic_details(){
-            $data = ['title' => 'Academic Details'];
-            if ($this->request->is("get")) {
-                return view('admin/academic-details',$data);
-            }else if ($this->request->is("post")) {
-
             }
         }
 
