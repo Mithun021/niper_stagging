@@ -17,7 +17,7 @@
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form id="noticeBoardForm">
+                <form method="post" action="<?= base_url() ?>admin/accouncement" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Anouncement Date<span class="text-danger">*</span></span>
                         <input type="date" id="annoncement_date" name="annoncement_date" class="form-control form-control-sm" required>
