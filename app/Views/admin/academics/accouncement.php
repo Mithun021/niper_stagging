@@ -6,12 +6,12 @@
 </style>
 <!-- start page title -->
 <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-4">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Announcement </h4>
             </div>
-            <div class="card-body">
+            <div class="card-body p-2">
                 <?php
                     if(session()->getFlashdata('status')){
                         echo session()->getFlashdata('status');
@@ -38,12 +38,12 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-7">
+    <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Announcement List</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body p-2">
                 <div class="table-responsive">
                 <table class="table table-striped table-hover" id="basic-datatable">
                     <thead>
