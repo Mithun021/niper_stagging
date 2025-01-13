@@ -10,17 +10,15 @@
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')): ?>
-                    <div class="alert alert-success">
-                        <?= session()->getFlashdata('status') ?>
-                    </div>
+                    <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="/collaboration/store" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/collaboration" method="post" enctype="multipart/form-data">
                 <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <span for="Collabtitle">Collaboration Title:</span>
+                        <span for="Collabtitle">Collaborations Title:</span>
                         <input type="text" name="Collabtitle" id="Collabtitle" class="form-control form-control-sm" required>
                     </div>
                 </div>
