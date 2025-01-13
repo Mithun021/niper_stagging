@@ -130,4 +130,14 @@ class AcademicControllers extends BaseController
         } else if ($this->request->is("post")) {
         }
     }
+
+    public function collaboration(){
+        $data = ['title' => 'Collaboration'];
+        if ($this->request->is("get")) {
+            return view('admin/academics/collaboration',$data);
+        }else if ($this->request->is("post")) {
+
+        }
+    }
+
 }

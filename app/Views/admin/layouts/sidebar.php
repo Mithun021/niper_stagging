@@ -27,11 +27,10 @@
                 <li><a href="<?= base_url() ?>admin/academic-details" class="waves-effect"><span>Academic Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/accouncement" class="waves-effect"><span>Announcement</span></a></li>
                 <li><a href="<?= base_url() ?>admin/rules-regulations" class="waves-effect"><span>Rules & Regulations</span></a></li>
-                <!-- <li><a href="<?= base_url() ?>admin/officer-staff" class="waves-effect"><span>Officer & Staff</span></a></li> -->
+                <li><a href="<?= base_url() ?>admin/collaboration" class="waves-effect"><span>Collaboration</span></a></li>
                 <li><a href="<?= base_url() ?>admin/research-publication" class="waves-effect"><span>Research & Publication</span></a></li>
             </ul>
         </li>
-
         <li>
             <a href="javascript: void(0);" class="has-arrow waves-effect"><i
                     class="mdi mdi-table-merge-cells"></i><span style="font-size: 12px;">Awards-Achievements</span></a>
@@ -54,10 +53,6 @@
                 <li><a href="<?= base_url() ?>admin/job-result">Job Result</a></li>
                 <li><a href="<?= base_url() ?>admin/job-category">Job Category</a></li>
             </ul>
-        </li>
-        
-        <li>
-            <a href="<?= base_url() ?>admin/collaboration" class="waves-effect"><i class="mdi mdi-table-merge-cells"></i><span>Collaboration</span></a>
         </li>
 
         <li>

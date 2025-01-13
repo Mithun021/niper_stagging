@@ -653,15 +653,6 @@ use App\Models\Youtube_link_model;
             }
         }
 
-        public function collaboration(){
-            $data = ['title' => 'Collaboration'];
-            if ($this->request->is("get")) {
-                return view('admin/collaboration',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
         public function membership(){
             $membership_model = new Membership_model();
             $data = ['title' => 'Membership'];
