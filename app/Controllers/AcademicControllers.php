@@ -111,7 +111,7 @@ class AcademicControllers extends BaseController
         } else if ($this->request->is("post")) {
             $data = [
                 'title' => $this->request->getPost('title'),
-                'title' => $this->request->getPost('description')
+                'description' => $this->request->getPost('description')
             ];
             $result = $rules_regulations_model->add($data, 1);
             if ($result === true) {
