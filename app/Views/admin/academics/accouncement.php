@@ -85,10 +85,10 @@
                             <tr>
                                 <td><?php echo $key+1; ?></td>
                                 <td>
-                                    <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/accouncement/' . $value['upload_file'])): ?>
-                                        <a href="<?= base_url() ?>public/admin/uploads/accouncement/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
+                                    <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/announcement/' . $value['upload_file'])): ?>
+                                        <a href="<?= base_url() ?>public/admin/uploads/announcement/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
                                     <?php else: ?>
-                                        <img src="<?= base_url() ?>public/admin/uploads/accouncement/invalid_image.png" alt="" height="40px">
+                                        <img src="<?= base_url() ?>public/admin/uploads/announcement/invalid_image.png" alt="" height="40px">
                                     <?php endif; ?>
                                 </td>
                                 <td><?= $value['announcement_title'] ?></td>
