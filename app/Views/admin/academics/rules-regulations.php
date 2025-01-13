@@ -17,7 +17,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form id="noticeBoardForm">
+                <form method="post" action="<?= base_url() ?>admin/rules-regulations">
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="title" value="<?= $rules_regulations['title'] ?>" required>
