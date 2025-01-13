@@ -20,7 +20,7 @@
                 <form id="noticeBoardForm">
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="notice_title">
+                        <textarea id="editor2" name="content"></textarea>
                     </div>
                     <div class="form-group">
                         <span for="">Upload File(JPG,PNG,PDF)</span>
