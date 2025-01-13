@@ -18,7 +18,7 @@
                 <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <span for="Collabtitle">Collaborations Title:</span>
+                        <span for="Collabtitle">Collaboration Title:</span>
                         <input type="text" name="Collabtitle" id="Collabtitle" class="form-control form-control-sm" required>
                     </div>
                 </div>
