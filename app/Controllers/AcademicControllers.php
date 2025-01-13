@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Academic_model;
 use App\Models\Announcement_model;
+use App\Models\Rules_regulations_model;
 
 class AcademicControllers extends BaseController
 {
@@ -102,10 +103,22 @@ class AcademicControllers extends BaseController
 
     public function rules_regulations()
     {
+        $rules_regulations_model = new Rules_regulations_model();
         $data = ['title' => 'Rules & Regulations'];
         if ($this->request->is("get")) {
+            $data['rules_regulations'] = $rules_regulations_model->get(1);
             return view('admin/academics/rules-regulations', $data);
         } else if ($this->request->is("post")) {
+            $data = [
+                'title' => $this->request->getPost('title'),
+                'title' => $this->request->getPost('description')
+            ];
+            $result = $rules_regulations_model->add($data, 1);
+            if ($result === true) {
+                return redirect()->to('admin/rules-regulations')->with('status', '<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+            } else {
+                return redirect()->to('admin/rules-regulations')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
         }
     }
 

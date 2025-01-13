@@ -20,12 +20,12 @@
                 <form id="noticeBoardForm">
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="notice_title">
+                        <input type="text" class="form-control form-control-sm" name="title" value="<?= $rules_regulations['title'] ?>" required>
                     </div>
 
                     <div class="form-group">
                         <span for="">Desription</span>
-                        <textarea id="editor" name="content"></textarea>
+                        <textarea id="editor" name="description"><?= $rules_regulations['description'] ?></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
