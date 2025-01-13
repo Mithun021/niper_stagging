@@ -22,12 +22,12 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'event-fees', 'EventsController::event_fees');
     $routes->match(['get','post'],'event-highlight', 'EventsController::event_highlight');
     $routes->match(['get','post'],'event-category', 'EventsController::event_category');
-    $routes->match(['get','post'],'accouncement', 'AdminControllers::accouncement');
-    $routes->match(['get','post'],'academic-details', 'AdminControllers::academic_details');
+    $routes->match(['get','post'],'accouncement', 'AcademicControllers::accouncement');
+    $routes->match(['get','post'],'academic-details', 'AcademicControllers::academic_details');
     $routes->match(['get','post'],'achievements', 'AdminControllers::achievements');
     // $routes->match(['get','post'],'director-message', 'AdminControllers::director_message');
     $routes->match(['get','post'],'testimonial', 'AdminControllers::testimonial');
-    $routes->match(['get','post'],'research-publication', 'AdminControllers::research_publication');
+    $routes->match(['get','post'],'research-publication', 'AcademicControllers::research_publication');
     $routes->match(['get','post'],'faculty-awards', 'AdminControllers::faculty_awards');
     $routes->match(['get','post'],'awards-recognition', 'AdminControllers::awards_recognition');
     $routes->match(['get','post'],'student-achievements', 'AdminControllers::student_achievements');
@@ -49,7 +49,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'download-forms', 'AdminControllers::download_forms');
     $routes->match(['get','post'],'quick-link', 'AdminControllers::quick_link');
     $routes->match(['get','post'],'youtube-link', 'AdminControllers::youtube_link');
-    $routes->match(['get','post'],'rules-regulations', 'AdminControllers::rules_regulations');
+    $routes->match(['get','post'],'rules-regulations', 'AcademicControllers::rules_regulations');
     $routes->match(['get','post'],'departments-section', 'DepartmentController::departments_section');
     $routes->match(['get','post'],'departments-photos', 'DepartmentController::departments_photos');
     $routes->match(['get','post'],'designation', 'DesignationController::designation');
