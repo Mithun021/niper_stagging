@@ -6,7 +6,6 @@
         protected $table         = 'research_publication_gallery';
         protected $primaryKey = 'id';
         protected $allowedFields = ['research_publication_id','files'];
-        protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
             if ($id != null) {

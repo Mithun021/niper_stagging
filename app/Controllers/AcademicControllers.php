@@ -134,38 +134,41 @@ class AcademicControllers extends BaseController
             return view('admin/academics/research-publication', $data);
         } else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
-            if ($sessionData) {
-                $loggeduserId = $sessionData['loggeduserId'];
+            if ($sessionData && isset($sessionData['loggeduserId'])) {
+                $loggedUserId = $sessionData['loggeduserId'];
+            } else {
+                return redirect()->to('admin/login')->with('status', '<div class="alert alert-danger" role="alert"> User not logged in </div>');
             }
+
             $thumbnail = $this->request->getFile('thumbnail');
-            if ($thumbnail->isValid() && ! $thumbnail->hasMoved()) {
+            $thumbnailNewName = "";
+
+            if ($thumbnail && $thumbnail->isValid() && !$thumbnail->hasMoved()) {
                 $thumbnailNewName = "calendar" . $thumbnail->getRandomName();
                 $thumbnail->move(ROOTPATH . 'public/admin/uploads/research_publication', $thumbnailNewName);
-            } else {
-                $thumbnailNewName = "";
             }
 
             $data = [
                 'title' => $this->request->getPost('title'),
                 'description' => $this->request->getPost('description'),
                 'thumbnail' => $thumbnailNewName,
-                'upload_by' => $loggeduserId,
+                'upload_by' => $loggedUserId,
             ];
-            $album_files = $this->request->getFiles();
+
+            $albumFiles = $this->request->getFiles();
             $result = $research_publication_model->add($data);
+
             if ($result === true) {
-                if ($album_files && isset($album_files['gallery'])) {
-                    foreach ($album_files['gallery'] as $file) {
+                if ($albumFiles && isset($albumFiles['gallery'])) {
+                    foreach ($albumFiles['gallery'] as $file) {
                         if ($file->isValid() && !$file->hasMoved()) {
                             $newName = $file->getRandomName();
                             $file->move(ROOTPATH . 'public/admin/uploads/research_publication', $newName);
-        
-                            $file_data = [
+                            $fileData = [
                                 'research_publication_id' => $result,
                                 'files' => $newName,
                             ];
-                            // echo "<pre>"; print_r($file_data);
-                            $research_publication_gallery_model->add($file_data);
+                            $research_publication_gallery_model->add($fileData);
                         }
                     }
                 }
@@ -176,13 +179,14 @@ class AcademicControllers extends BaseController
         }
     }
 
-    public function collaboration(){
+    public function collaboration()
+    {
         $collaboration_model = new Collaboration_model();
         $data = ['title' => 'Collaboration'];
         if ($this->request->is("get")) {
             $data['collaboration'] = $collaboration_model->get();
-            return view('admin/academics/collaboration',$data);
-        }else if ($this->request->is("post")) {
+            return view('admin/academics/collaboration', $data);
+        } else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId'];
@@ -221,8 +225,6 @@ class AcademicControllers extends BaseController
             } else {
                 return redirect()->to('admin/collaboration')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
             }
-
         }
     }
-
 }
