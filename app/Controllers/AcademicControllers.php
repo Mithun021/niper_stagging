@@ -155,10 +155,10 @@ class AcademicControllers extends BaseController
                 'thumbnail' => $thumbnailNewName,
                 'upload_by' => $loggedUserId,
             ];
-            $albumFiles = $this->request->getFiles();
             $result = $research_publication_model->add($data);
 
-            if ($result === true) {
+            if (is_numeric($result)) {
+                $albumFiles = $this->request->getFiles();
                 if ($albumFiles && isset($albumFiles['gallery_file'])) {
                     foreach ($albumFiles['gallery_file'] as $file) {
                         if ($file->isValid() && !$file->hasMoved()) {
