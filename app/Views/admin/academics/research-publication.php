@@ -82,7 +82,7 @@
                                         foreach ($gallery as $key => $image) {
                                 ?>
                                     <?php if (!empty($image['files']) && file_exists('public/admin/uploads/research_publication/' . $image['files'])): ?>
-                                        <a href="<?= base_url() ?>public/admin/uploads/research_publication/<?= $image['files'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/research_publication/<?= $image['thumbnail'] ?>" alt="" height="30px"></a>
+                                        <a href="<?= base_url() ?>public/admin/uploads/research_publication/<?= $image['files'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/research_publication/<?= $image['files'] ?>" alt="" height="30px"></a>
                                     <?php else: ?>
                                         <img src="<?= base_url() ?>public/admin/uploads/research_publication/invalid_image.png" alt="" height="40px">
                                     <?php endif; ?>
