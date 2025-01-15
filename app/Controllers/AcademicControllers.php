@@ -144,7 +144,7 @@ class AcademicControllers extends BaseController
             $thumbnailNewName = "";
 
             if ($thumbnail && $thumbnail->isValid() && !$thumbnail->hasMoved()) {
-                $thumbnailNewName = "calendar" . $thumbnail->getRandomName();
+                $thumbnailNewName = rand(0,9999) . $thumbnail->getRandomName();
                 $thumbnail->move(ROOTPATH . 'public/admin/uploads/research_publication', $thumbnailNewName);
             }
 
@@ -156,6 +156,21 @@ class AcademicControllers extends BaseController
             ];
 
             $albumFiles = $this->request->getFiles();
+            if ($albumFiles && isset($albumFiles['gallery'])) {
+                foreach ($albumFiles['gallery'] as $file) {
+                    if ($file->isValid() && !$file->hasMoved()) {
+                        $newName = $file->getRandomName();
+                        $file->move(ROOTPATH . 'public/admin/uploads/research_publication', $newName);
+                        $fileData = [
+                            'research_publication_id' => 1,
+                            'files' => $newName,
+                        ];
+                        echo "<pre>"; print_r($fileData);
+                        //$research_publication_gallery_model->add($fileData);
+                    }
+                }
+            }
+            die;
             $result = $research_publication_model->add($data);
 
             if ($result === true) {
