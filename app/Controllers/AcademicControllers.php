@@ -154,10 +154,9 @@ class AcademicControllers extends BaseController
                 'thumbnail' => $thumbnailNewName,
                 'upload_by' => $loggedUserId,
             ];
-
             $albumFiles = $this->request->getFiles();
-            if ($albumFiles && isset($albumFiles['gallery'])) {
-                foreach ($albumFiles['gallery'] as $file) {
+            if ($albumFiles && isset($albumFiles['gallery_file'])) {
+                foreach ($albumFiles['gallery_file'] as $file) {
                     if ($file->isValid() && !$file->hasMoved()) {
                         $newName = $file->getRandomName();
                         $file->move(ROOTPATH . 'public/admin/uploads/research_publication', $newName);
