@@ -1,5 +1,11 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
+<?php
+
+use App\Models\Employee_model;
+
+$employee_model = new Employee_model();
+?>
 
 <!-- Page title and form layout -->
 <div class="row">
@@ -103,17 +109,49 @@
                         <thead>
                             <tr>
                                 <td>SN</td>
+                                <td>File</td>
                                 <td>Title</td>
                                 <td>Institute</td>
-                                <td>Picture</td>
-                                <td>Collaboration Date and Time</td>
-                                <td>Collaboration End Date and Time</td>
-                                <td>Created At</td>
+                                <td>Collaboration Date</td>
+                                <td>Tenure Year</td>
+                                <td>Status</td>
+                                <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Data to be dynamically populated -->
+                            <?php foreach ($collaboration as $key => $value) { ?>
+                                <tr>
+                                    <td><?= ++$key ?></td>
+                                    <td>
+                                        <?php if (!empty($value['institute_logo']) && file_exists('public/admin/uploads/collaboration/' . $value['institute_logo'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/collaboration/<?= $value['institute_logo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/collaboration/<?= $value['institute_logo'] ?>" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/collaboration/invalid_image.png" alt="" height="40px">
+                                        <?php endif; ?>
+
+                                        <?php if (!empty($value['collaboration_file']) && file_exists('public/admin/uploads/collaboration/' . $value['collaboration_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/collaboration/<?= $value['collaboration_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/collaboration/invalid_image.png" alt="" height="40px">
+                                        <?php endif; ?>
+                                    </td>
+                                    <td><?= $value['title'] ?></td>
+                                    <td><a href="<?= $value['institute_link'] ?>" target="_blank"><?= $value['institute_name'] ?></a></td>
+                                    <td><?= $value['collaboration_date'] ?></td>
+                                    <td><?= $value['collaboration_tenure_year'] ?></td>
+                                    <td><?= $value['status'] ?></td>
+                                    <td><?php $emp = $employee_model->get($value['upload_by']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                            <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                            <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                            <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
@@ -125,7 +163,7 @@
 <script>
     document.getElementById('Collabstatus').addEventListener('change', function() {
         var renewalDateField = document.getElementById('renewalDateField');
-        
+
         if (this.value === 'renewed') {
             renewalDateField.style.display = 'block'; // Show Renewal Date field
         } else {
