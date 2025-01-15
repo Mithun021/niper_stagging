@@ -25,5 +25,10 @@
             }
             return $result;
         }
+
+        public function getByResearch($id){
+            $result = $this->orderBy('research_publication_id',$id)->findAll();
+            return $result;
+        }
     }
 ?>
