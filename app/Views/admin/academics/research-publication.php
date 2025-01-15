@@ -76,10 +76,12 @@
                                     <img src="<?= base_url() ?>public/admin/uploads/research_publication/invalid_image.png" alt="" height="40px">
                                 <?php endif; ?>
                             </td>
+                            <td><?= $value['title'] ?></td>
                             <td>
                                 <?php $gallery = $research_publication_gallery_model->getByResearch($value['id']); 
                                     if(isset($gallery)){
                                         foreach ($gallery as $key => $image) {
+                                            if ($value['id'] == $image['research_publication_id']) {
                                 ?>
                                     <?php if (!empty($image['files']) && file_exists('public/admin/uploads/research_publication/' . $image['files'])): ?>
                                         <a href="<?= base_url() ?>public/admin/uploads/research_publication/<?= $image['files'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/research_publication/<?= $image['files'] ?>" alt="" height="30px"></a>
@@ -87,6 +89,7 @@
                                         <img src="<?= base_url() ?>public/admin/uploads/research_publication/invalid_image.png" alt="" height="40px">
                                     <?php endif; ?>
                                 <?php
+                                            }
                                         }
                                     }
                                 ?>
