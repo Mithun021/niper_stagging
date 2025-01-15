@@ -155,26 +155,11 @@ class AcademicControllers extends BaseController
                 'upload_by' => $loggedUserId,
             ];
             $albumFiles = $this->request->getFiles();
-            if ($albumFiles && isset($albumFiles['gallery_file'])) {
-                foreach ($albumFiles['gallery_file'] as $file) {
-                    if ($file->isValid() && !$file->hasMoved()) {
-                        $newName = $file->getRandomName();
-                        $file->move(ROOTPATH . 'public/admin/uploads/research_publication', $newName);
-                        $fileData = [
-                            'research_publication_id' => 1,
-                            'files' => $newName,
-                        ];
-                        echo "<pre>"; print_r($fileData);
-                        //$research_publication_gallery_model->add($fileData);
-                    }
-                }
-            }
-            die;
             $result = $research_publication_model->add($data);
 
             if ($result === true) {
-                if ($albumFiles && isset($albumFiles['gallery'])) {
-                    foreach ($albumFiles['gallery'] as $file) {
+                if ($albumFiles && isset($albumFiles['gallery_file'])) {
+                    foreach ($albumFiles['gallery_file'] as $file) {
                         if ($file->isValid() && !$file->hasMoved()) {
                             $newName = $file->getRandomName();
                             $file->move(ROOTPATH . 'public/admin/uploads/research_publication', $newName);
