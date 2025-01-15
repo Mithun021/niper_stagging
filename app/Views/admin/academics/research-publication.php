@@ -6,7 +6,7 @@
 </style>
 <!-- start page title -->
 <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-4">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Research & Publication </h4>
@@ -17,22 +17,22 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form id="noticeBoardForm">
+                <form method="post" action="<?= base_url() ?>admin/research-publication" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="notice_title">
+                        <input type="text" class="form-control form-control-sm" name="title">
                     </div>
                     <div class="form-group">
                         <span for="">Upload Thumbnail(JPG,PNG)</span>
-                        <input type="file" class="form-control form-control-sm" name="notice_file" accept=".jpg, .png" required>
+                        <input type="file" class="form-control form-control-sm" name="thumbnail" accept=".jpg, .png" required>
                     </div>
                     <div class="form-group">
                         <span for="">Upload Gallery(JPG,PNG)</span>
-                        <input type="file" class="form-control form-control-sm" name="notice_file" accept=".jpg, .png" required>
+                        <input type="file" class="form-control form-control-sm" name="gallery" accept=".jpg, .png" multiple required>
                     </div>
                     <div class="form-group">
                         <span for="">Description</span>
-                        <textarea id="editor" name="content"></textarea>
+                        <textarea id="editor" name="description"></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
@@ -41,7 +41,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-7">
+    <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Research & Publication List</h4>
@@ -52,8 +52,9 @@
                     <thead>
                         <tr>
                             <td>SN</td>
-                            <td>Title</td>
                             <td>Files</td>
+                            <td>Title</td>
+                            <td>Gallery</td>
                             <td>Create at</td>
                             <td>Action</td>
                         </tr>

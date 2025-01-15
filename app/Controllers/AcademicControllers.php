@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Models\Academic_model;
 use App\Models\Announcement_model;
 use App\Models\Collaboration_model;
+use App\Models\Research_publication_gallery_model;
+use App\Models\Research_publication_model;
 use App\Models\Rules_regulations_model;
 
 class AcademicControllers extends BaseController
@@ -125,10 +127,52 @@ class AcademicControllers extends BaseController
 
     public function research_publication()
     {
+        $research_publication_model = new Research_publication_model();
+        $research_publication_gallery_model = new Research_publication_gallery_model();
         $data = ['title' => 'Research Publication'];
         if ($this->request->is("get")) {
             return view('admin/academics/research-publication', $data);
         } else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId'];
+            }
+            $thumbnail = $this->request->getFile('thumbnail');
+            if ($thumbnail->isValid() && ! $thumbnail->hasMoved()) {
+                $thumbnailNewName = "calendar" . $thumbnail->getRandomName();
+                $thumbnail->move(ROOTPATH . 'public/admin/uploads/research_publication', $thumbnailNewName);
+            } else {
+                $thumbnailNewName = "";
+            }
+
+            $data = [
+                'title' => $this->request->getPost('title'),
+                'description' => $this->request->getPost('description'),
+                'thumbnail' => $thumbnailNewName,
+                'upload_by' => $loggeduserId,
+            ];
+            $album_files = $this->request->getFiles();
+            $result = $research_publication_model->add($data);
+            if ($result === true) {
+                if ($album_files && isset($album_files['gallery'])) {
+                    foreach ($album_files['gallery'] as $file) {
+                        if ($file->isValid() && !$file->hasMoved()) {
+                            $newName = $file->getRandomName();
+                            $file->move(ROOTPATH . 'public/admin/uploads/research_publication', $newName);
+        
+                            $file_data = [
+                                'research_publication_id' => $result,
+                                'files' => $newName,
+                            ];
+                            // echo "<pre>"; print_r($file_data);
+                            $research_publication_gallery_model->add($file_data);
+                        }
+                    }
+                }
+                return redirect()->to('admin/research-publication')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/research-publication')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
         }
     }
 
