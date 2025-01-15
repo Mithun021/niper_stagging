@@ -38,13 +38,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="Collaborationdatetime">Collaboration Date:<span class="text-danger">*</span></span>
-                                <input type="date" name="Collaborationdatetime" id="Collaborationdatetime" class="form-control form-control-sm" required>
+                                <input type="date" name="Collaborationdate" id="Collaborationdate" class="form-control form-control-sm" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="Collabinstitutelogo">Institution Logo(PNG,JPG,JPEG):<span class="text-danger">*</span></span>
-                                <input type="file" name="Collabinstitutelogo" id="Collabinstitutelogo" class="form-control form-control-sm" accept=".png,.jpg,.jpeg" required>
+                                <input type="file" name="institutelogo" id="institutelogo" class="form-control form-control-sm" accept=".png,.jpg,.jpeg" required>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -56,7 +56,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="Collabfileupload">Collaboration File Upload(PDF):<span class="text-danger">*</span></span>
-                                <input type="file" name="Collabfileupload" id="Collabfileupload" class="form-control form-control-sm" accept=".pdf">
+                                <input type="file" name="Collabfile" id="Collabfile" class="form-control form-control-sm" accept=".pdf">
                             </div>
                         </div>
                         <div class="col-md-6">

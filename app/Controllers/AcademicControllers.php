@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Academic_model;
 use App\Models\Announcement_model;
+use App\Models\Collaboration_model;
 use App\Models\Rules_regulations_model;
 
 class AcademicControllers extends BaseController
@@ -132,10 +133,50 @@ class AcademicControllers extends BaseController
     }
 
     public function collaboration(){
+        $collaboration_model = new Collaboration_model();
         $data = ['title' => 'Collaboration'];
         if ($this->request->is("get")) {
+            $data['collaboration'] = $collaboration_model->get();
             return view('admin/academics/collaboration',$data);
         }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId'];
+            }
+            $institutelogo = $this->request->getFile('institutelogo');
+            if ($institutelogo->isValid() && ! $institutelogo->hasMoved()) {
+                $institutelogoNewName = "calendar" . $institutelogo->getRandomName();
+                $institutelogo->move(ROOTPATH . 'public/admin/uploads/collaboration', $institutelogoNewName);
+            } else {
+                $institutelogoNewName = "";
+            }
+            $Collabfile = $this->request->getFile('Collabfile');
+            if ($Collabfile->isValid() && ! $Collabfile->hasMoved()) {
+                $CollabfileNewName = "file" . $Collabfile->getRandomName();
+                $Collabfile->move(ROOTPATH . 'public/admin/uploads/collaboration', $CollabfileNewName);
+            } else {
+                $CollabfileNewName = "";
+            }
+
+            $data = [
+                'title' => $this->request->getPost('Collabtitle'),
+                'description' => $this->request->getPost('description'),
+                'institute_name' => $this->request->getPost('Collabinstitutename'),
+                'collaboration_date' => $this->request->getPost('Collaborationdate'),
+                'institute_logo' => $institutelogoNewName,
+                'institute_link' => $this->request->getPost('Collabinstituelink'),
+                'collaboration_file' => $CollabfileNewName,
+                'collaboration_tenure_year' => $this->request->getPost('Collabtenure'),
+                'status' => $this->request->getPost('Collabstatus'),
+                'upload_by' => $loggeduserId
+            ];
+
+            $result = $collaboration_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/collaboration')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/collaboration')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
 
         }
     }
