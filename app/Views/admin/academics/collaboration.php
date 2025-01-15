@@ -61,8 +61,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <span for="Collabenddatetime">Collaboration tenure :</span>
-                                <input type="datetime-local" name="Collabtenure" id="Collabtenure" class="form-control form-control-sm" required>
+                                <span for="Collabenddatetime">Collaboration tenure year :</span>
+                                <input type="number" name="Collabtenure" id="Collabtenure" class="form-control form-control-sm" required>
                             </div>
                         </div>
                         <div class="col-md-6">
