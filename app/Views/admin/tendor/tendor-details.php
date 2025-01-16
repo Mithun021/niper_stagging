@@ -1,6 +1,9 @@
 <?= $this->extend("admin/layouts/master") ?>
-
 <?=  $this->section("body-content"); ?>
+<?php
+    use App\Models\Employee_model;
+    $employee_model = new Employee_model();
+?>
 <style>
     
 </style>
@@ -111,16 +114,49 @@
                     <thead>
                         <tr>
                             <td>SN</td>
-                            <td>Pubish</td>
+                            <td>Status</td>
+                            <td>Tendor Id</td>
                             <td>Title</td>
-                            <td>Tendor Date & Time</td>
+                            <td>Bidding Date</td>
+                            <td>Tendor Date</td>
                             <td>Tendor Status</td>
-                            <td>Create at</td>
+                            <td>Upload by</td>
                             <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    <?php foreach ($variable as $key => $value) { ?>
+                        <tr>
+                            <td><?= ++$key ?></td>
+                            <td>
+                            <?= 
+                                    ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Draft</span>" : 
+                                    (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : 
+                                    (($value['status'] == "2") ? "<span class='badge badge-warning badge-pill'>Archive</span>" : ""))
+                                ?> /
+                                <?= ($value['marquee_status'] == "0") ? "<span class='badge badge-danger badge-pill'>Marquee Inactive</span>" : (($value['marquee_status'] == "1") ? "<span class='badge badge-success badge-pill'>Marquee Active</span>" : "") ?>
+                            </td>
+                            <td><?= $value['tendor_ref_no'] ?></td>
+                            <td><?= $value['tendor_title'] ?></td>
+                            <td> <?= date("d:M:Y", strtotime($value['bidding_date'])) ?> <?= date("h:i A", strtotime($value['bidding_time'])) ?></td>
+                            <td>
+                                <?= date("d:M:Y", strtotime($value['tendor_start_date'])) ?> 
+                                <?= date("h:i A", strtotime($value['tendor_start_time'])) ?> - 
+                                <br><?= date("d:M:Y", strtotime($value['tendor_end_date'])) ?> 
+                                <?= date("h:i A", strtotime($value['tendor_end_time'])) ?>
+                            </td>
+                            <td><?= $value['tendor_status'] ?></td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                            <!-- <td><?= date("d-m-Y", strtotime($value['created_at'])) ?></td> -->
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                    <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                    <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                    <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php  } ?>
                     </tbody>
                 </table>
                 </div>
