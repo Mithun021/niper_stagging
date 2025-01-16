@@ -157,7 +157,8 @@ class AcademicControllers extends BaseController
             ];
             $result = $research_publication_model->add($data);
 
-            if (is_numeric($result)) {
+            if ($result == true){
+                $insert_id = $research_publication_model->getInsertID();
                 $albumFiles = $this->request->getFiles();
                 if ($albumFiles && isset($albumFiles['gallery_file'])) {
                     foreach ($albumFiles['gallery_file'] as $file) {
@@ -165,7 +166,7 @@ class AcademicControllers extends BaseController
                             $newName = $file->getRandomName();
                             $file->move(ROOTPATH . 'public/admin/uploads/research_publication', $newName);
                             $fileData = [
-                                'research_publication_id' => $result,
+                                'research_publication_id' => $insert_id,
                                 'files' => $newName,
                             ];
                             $research_publication_gallery_model->add($fileData);
