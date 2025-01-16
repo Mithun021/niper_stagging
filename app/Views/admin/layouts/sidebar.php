@@ -24,7 +24,7 @@
             <a href="javascript: void(0);" class="has-arrow waves-effect"><i
                     class="mdi mdi-table-merge-cells"></i><span>Academic</span></a>
             <ul class="sub-menu" aria-expanded="false">
-                <li><a href="<?= base_url() ?>admin/academic-details" class="waves-effect"><span>Academic Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/academic-details" class="waves-effect"><span>Calendar and Fees Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/accouncement" class="waves-effect"><span>Announcement</span></a></li>
                 <li><a href="<?= base_url() ?>admin/rules-regulations" class="waves-effect"><span>Rules & Regulations</span></a></li>
                 <li><a href="<?= base_url() ?>admin/collaboration" class="waves-effect"><span>Collaboration</span></a></li>
