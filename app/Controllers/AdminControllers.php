@@ -85,15 +85,6 @@ use App\Models\Youtube_link_model;
             return redirect()->to(base_url('admin/login'));
         }
 
-        public function tendor_details(){
-            $data = ['title' => 'Tendor Details'];
-            if ($this->request->is("get")) {
-                return view('admin/tendor-details',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
         public function achievements(){
             $data = ['title' => 'Achievements'];
             if ($this->request->is("get")) {

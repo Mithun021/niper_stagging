@@ -57,7 +57,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'program-dept-mapping', 'ProgramController::program_dept_mapping');
     $routes->match(['get','post'],'membership', 'AdminControllers::membership');
     $routes->match(['get','post'],'banner-slider', 'AdminControllers::banner_slider');
-    $routes->match(['get','post'],'tendor-details', 'AdminControllers::tendor_details');
+    $routes->match(['get','post'],'tendor-details', 'TendorControllers::tendor_details');
     $routes->match(['get','post'],'admission', 'AdminControllers::admission');
     $routes->match(['get','post'],'act-rules', 'AdminControllers::act_rules');
 
