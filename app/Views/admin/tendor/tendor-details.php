@@ -17,32 +17,41 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form id="noticeBoardForm">
+                <form method="post" action="<?= base_url() ?>admin/tendor-details">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <span for="">Title<span class="text-danger">*</span></span>
-                                <input type="text" class="form-control form-control-sm" name="notice_title">
+                                <input type="text" class="form-control form-control-sm" name="tendor_title">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <span for="">Desription</span>
-                                <textarea id="editor" name="content"></textarea>
+                                <textarea id="editor" name="tendor_description"></textarea>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Tender reference no</span>
-                                <input type="text" class="form-control form-control-sm" name="news_date">
+                                <input type="text" class="form-control form-control-sm" name="tendor_ref_no">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <span for="">Bid opening date and time<span class="text-danger">*</span></span>
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm" name="bidding_date"  placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="bidding_time"  placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Tendor Start Date & Time<span class="text-danger">*</span></span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="news_date"  placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                    <input type="text" class="form-control form-control-sm" name="news_date"  placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="tendor_start_date"  placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="tendor_start_time"  placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')">
                                 </div>
                             </div>
                         </div>
@@ -50,36 +59,36 @@
                             <div class="form-group">
                                 <span for="">Tendor End Date & Time<span class="text-danger">*</span></span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="news_date"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                    <input type="text" class="form-control form-control-sm" name="news_date"  placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="tendor_end_date"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="tendor_end_time"  placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <span>Tendor Status</span>
-                                <select name="" id="" class="form-control form-control-sm">
-                                    <option value="0" selected>Close</option>
-                                    <option value="1">Open</option>
+                                <select name="tendor_status" id="tendor_status" class="form-control form-control-sm">
+                                    <option value="Close" selected>Close</option>
+                                    <option value="Open">Open</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <span>Marquee Status</span>
-                                <select name="" id="" class="form-control form-control-sm">
+                                <select name="marquee_status" id="marquee_status" class="form-control form-control-sm">
                                     <option value="0" selected>Inactive</option>
                                     <option value="1">Active</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <span>New Status</span>
+                                <span>Current Status</span>
                                 <select name="" id="" class="form-control form-control-sm">
                                     <option value="1">Publish</option>
                                     <option value="2">Archive</option>
-                                    <option value="3">Draft</option>
+                                    <option value="0">Draft</option>
                                 </select>
                             </div>
                         </div>
