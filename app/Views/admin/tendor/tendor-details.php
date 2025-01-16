@@ -22,7 +22,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <span for="">Title<span class="text-danger">*</span></span>
-                                <input type="text" class="form-control form-control-sm" name="tendor_title">
+                                <input type="text" class="form-control form-control-sm" name="tendor_title" required>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -41,7 +41,7 @@
                             <div class="form-group">
                                 <span for="">Bid opening date and time<span class="text-danger">*</span></span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="bidding_date"  placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="bidding_date"  placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')" required>
                                     <input type="text" class="form-control form-control-sm" name="bidding_time"  placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')">
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                             <div class="form-group">
                                 <span for="">Tendor Start Date & Time<span class="text-danger">*</span></span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="tendor_start_date"  placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="tendor_start_date"  placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')" required>
                                     <input type="text" class="form-control form-control-sm" name="tendor_start_time"  placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')">
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                             <div class="form-group">
                                 <span for="">Tendor End Date & Time<span class="text-danger">*</span></span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="tendor_end_date"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="tendor_end_date"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')" required>
                                     <input type="text" class="form-control form-control-sm" name="tendor_end_time"  placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
                                 </div>
                             </div>
