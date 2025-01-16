@@ -125,7 +125,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($variable as $key => $value) { ?>
+                    <?php foreach ($tendors as $key => $value) { ?>
                         <tr>
                             <td><?= ++$key ?></td>
                             <td>
