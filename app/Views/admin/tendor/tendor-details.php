@@ -85,7 +85,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <span>Current Status</span>
-                                <select name="" id="" class="form-control form-control-sm">
+                                <select name="status" id="status" class="form-control form-control-sm">
                                     <option value="1">Publish</option>
                                     <option value="2">Archive</option>
                                     <option value="0">Draft</option>
