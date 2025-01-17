@@ -15,7 +15,7 @@
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="/rankingdetails/store" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/ranking" method="post" enctype="multipart/form-data">
                     <?= csrf_field() ?>
                 <div class="row">
                     <div class="col-lg-6">
@@ -46,7 +46,7 @@
                         <!-- Rank Year -->
                         <div class="form-group">
                             <span for="Rankyear">Rank Year:</span>
-                            <input type="number" name="Rankyear" id="Rankyear" class="form-control form-control-sm" required>
+                            <input type="number" name="ranking_year" id="ranking_year" class="form-control form-control-sm" required>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -71,21 +71,21 @@
                         <!-- Rank Number -->
                         <div class="form-group">
                             <span for="Ranknumber">Rank Number:</span>
-                            <input type="number" name="Ranknumber" id="Ranknumber" class="form-control form-control-sm" required min="1">
+                            <input type="number" name="ranking_number" id="ranking_number" class="form-control form-control-sm" required min="1">
                         </div>
                     </div>
                     <div class="col-lg-6">
                          <!-- Rank File Upload -->
                         <div class="form-group">
-                            <span for="Rankfileupload">Upload Rank File:(.pdf,.doc,.docx,.jpg,.png,.xls,.xlsx)</span>
-                            <input type="file" name="Rankfileupload" id="Rankfileupload" class="form-control-file" accept=".pdf,.doc,.docx,.jpg,.png,.xls,.xlsx" required>
+                            <span for="Rankfileupload">Upload Rank File:(.pdf,.jpg,.png,.jpeg)</span>
+                            <input type="file" name="upload_file" id="upload_file" class="form-control-file" accept=".pdf,.jpg,.png,.jpeg" required>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <!-- Data Submitted Pharmacy -->
                         <div class="form-group">
                             <span for="Datasubmittedpharmacy">Data Submitted for Pharmacy:</span>
-                            <select name="Datasubmittedpharmacy" id="Datasubmittedpharmacy" class="form-control form-control-sm" required>
+                            <select name="datasubmittedpharmacy" id="datasubmittedpharmacy" class="form-control form-control-sm" required>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
@@ -95,7 +95,7 @@
                         <!-- Data Submitted Overall -->
                         <div class="form-group">
                             <span for="Datasubmittedoverall">Data Submitted Overall:</span>
-                            <select name="Datasubmittedoverall" id="Datasubmittedoverall" class="form-control form-control-sm" required>
+                            <select name="datasubmittedoverall" id="datasubmittedoverall" class="form-control form-control-sm" required>
                                 <option value="Yes">Yes</option>
                                 <option value="No" >No</option>
                             </select>
@@ -123,10 +123,11 @@
                         <thead>
                             <tr>
                                 <td>SN</td>
+                                <td>File</td>
+                                <td>Ranking Type</td>
                                 <td>Rank Year</td>
-                                <td>Rank Source</td>
+                                <td>Ranking Category</td>
                                 <td>Rank Number</td>
-                                <td>Rank File</td>
                                 <td>Pharmacy Data Submitted</td>
                                 <td>Overall Data Submitted</td>
                                 <td>Action</td>
