@@ -36,6 +36,12 @@
                             <input type="text" id="other_ranking" name="other_ranking" class="form-control form-control-sm">
                         </div>
                     </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <span for="Mediatitle">Description:</span>
+                            <textarea id="editor" name="description"></textarea>
+                        </div>
+                    </div>
                     <div class="col-lg-6">
                         <!-- Rank Year -->
                         <div class="form-group">
@@ -46,20 +52,19 @@
                     <div class="col-lg-6">
                         <!-- Rank Source -->
                         <div class="form-group">
-                            <span for="Ranksource">Rank Source:</span>
-                            <select name="Ranksource" id="Ranksource" class="form-control form-control-sm" required>
+                            <span for="Ranksource">Ranking Category :</span>
+                            <select name="ranking_category" id="ranking_category" class="form-control form-control-sm" required>
                                 <option value="" disabled selected>Select Rank Source</option>
-                                <option value="NIRF">NIRF</option>
-                                <option value="ARIIA">ARIIA</option>
-                                <option value="Other">Other</option>
+                                <option value="Overall">Overall</option>
+                                <option value="Pharmacy">Pharmacy</option>
+                                <option value="Any other">Any other</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                         <!-- Rank Source Other Description -->
-                        <div class="form-group" id="Ranksourceotherdesc-group">
-                            <span for="Ranksourceotherdesc">Other Rank Source Description:</span>
-                            <input type="text" name="Ranksourceotherdesc" id="Ranksourceotherdesc" class="form-control form-control-sm">
+                    <div class="col-lg-6" id="other_category_field" style="display: none;">
+                        <div class="form-group">
+                            <span for="Rankyear">Please specify other ranking category:</span>
+                            <input type="text" id="other_ranking_category" name="other_ranking_category" class="form-control form-control-sm">
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -141,9 +146,18 @@
     document.getElementById('ranking_type').addEventListener('change', function() {
         var otherInputField = document.getElementById('other_input_field');
         if (this.value === 'Any other') {
-            otherInputField.style.display = 'block'; // Show input field when 'Any other' is selected
+            otherInputField.style.display = 'block';
         } else {
-            otherInputField.style.display = 'none'; // Hide input field for other selections
+            otherInputField.style.display = 'none';
+        }
+    });
+
+    document.getElementById('ranking_category').addEventListener('change', function() {
+        var otherInputField = document.getElementById('other_ranking_category');
+        if (this.value === 'Any other') {
+            otherInputField.style.display = 'block';
+        } else {
+            otherInputField.style.display = 'none';
         }
     });
 </script>
