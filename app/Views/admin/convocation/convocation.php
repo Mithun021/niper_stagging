@@ -56,7 +56,7 @@ $employee_model = new Employee_model();
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> List</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body p-2">
                 <div class="table-responsive">
                     <table class="table table-striped table-hover" id="basic-datatable">
                         <thead>
@@ -87,7 +87,7 @@ $employee_model = new Employee_model();
                                 <td><?= date("d-M-Y h:i A", strtotime($value['created_at'])) ?> </td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                        <!-- <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a> -->
                                         <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
                                         <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
                                     </div>
