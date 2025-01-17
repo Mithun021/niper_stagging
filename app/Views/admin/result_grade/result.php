@@ -18,12 +18,12 @@
                 <form action="<?= base_url() ?>admin/result" method="post" enctype="multipart/form-data">
                     <!-- Result Description -->
                     <div class="form-group">
-                        <span for="resultdesc">Result Description:</span>
+                        <span for="resultdesc">Result Description:<span class="text-danger">*</span></span>
                         <textarea name="resultdesc" id="editor" class="form-control form-control-sm" required ></textarea>
                     </div>
 
                     <div class="form-group">
-                        <span for="Deptid">Department ID:</span>
+                        <span for="Deptid">Department ID:<span class="text-danger">*</span></span>
                         <select name="Deptid" id="Deptid" class="form-control form-control-sm" required >
                             <option value="">Select Deparrtment</option>
                         <?php foreach ($department as $key => $value) { ?>
@@ -33,15 +33,25 @@
                     </div>
 
                     <div class="form-group">
-                        <span for="Progid">Program ID:</span>
+                        <span for="Progid">Program ID:<span class="text-danger">*</span></span>
                         <select name="Progid" id="Progid" class="form-control form-control-sm" required >
                             <option value="">Select Program</option>
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <span for="Convnumber">Academic Session Start Year:<span class="text-danger">*</span></span>
+                        <input type="number" name="academic_start_year" id="academic_start_year" class="form-control form-control-sm" required>
+                    </div>
+
+                    <div class="form-group">
+                        <span for="Convnumber">Academic Session End Year:<span class="text-danger">*</span></span>
+                        <input type="number" name="academic_end_year" id="academic_end_year" class="form-control form-control-sm" required>
+                    </div>
+
                     <!-- Semester -->
                     <div class="form-group">
-                        <span for="semester">Semester:</span>
+                        <span for="semester">Semester:<span class="text-danger">*</span></span>
                         <select name="semester" id="semester" class="form-control form-control-sm" required>
                             <option value="I">I</option>
                             <option value="II">II</option>
@@ -56,16 +66,15 @@
                         </select>
                     </div>
 
-                    <!-- Semester -->
-                    <div class="form-group mt-3">
-                        <span for="Semester">Semester:</span>
-                        <input type="number" name="Semester" id="Semester" class="form-control form-control-sm" required min="1" max="12" >
+                    <div class="form-group">
+                        <span for="Convnumber">Result Notification Date:<span class="text-danger">*</span></span>
+                        <input type="date" name="notification_date" id="academic_end_year" class="form-control form-control-sm" required>
                     </div>
 
                     <!-- Result File Upload -->
                     <div class="form-group mt-3">
-                        <span for="Resultfileupload">Upload Result File:</span>
-                        <input type="file" name="Resultfileupload" id="Resultfileupload" class="form-control form-control-sm" accept=".pdf,.doc,.docx,.jpg,.png" required>
+                        <span for="Resultfileupload">Upload Result File(.pdf):<span class="text-danger">*</span></span>
+                        <input type="file" name="file_upload" id="file_upload" class="form-control form-control-sm" accept=".pdf" required>
                     </div>
 
                     <!-- Submit Button -->
