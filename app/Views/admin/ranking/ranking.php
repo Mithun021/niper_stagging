@@ -153,11 +153,11 @@
     });
 
     document.getElementById('ranking_category').addEventListener('change', function() {
-        var otherInputField = document.getElementById('other_ranking_category');
+        var otherCatInputField = document.getElementById('other_category_field');
         if (this.value === 'Any other') {
-            otherInputField.style.display = 'block';
+            otherCatInputField.style.display = 'block';
         } else {
-            otherInputField.style.display = 'none';
+            otherCatInputField.style.display = 'none';
         }
     });
 </script>
