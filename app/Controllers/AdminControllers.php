@@ -673,24 +673,6 @@ use App\Models\Youtube_link_model;
             }
         }
 
-        public function result(){
-            $data = ['title' => 'Result'];
-            if ($this->request->is("get")) {
-                return view('admin/result',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
-        public function grades(){
-            $data = ['title' => 'Grades'];
-            if ($this->request->is("get")) {
-                return view('admin/grades',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
         public function admission(){
             $admission_model = new Admission_model();
             $data = ['title' => 'Admission'];
