@@ -29,12 +29,12 @@ $employee_model = new Employee_model();
 
                     <div class="form-group">
                         <span for="Convnumber">Academic Session Start Year:<span class="text-danger">*</span></span>
-                        <input type="text" name="academic_start_year" id="academic_start_year" class="form-control form-control-sm" required>
+                        <input type="number" name="academic_start_year" id="academic_start_year" class="form-control form-control-sm" required>
                     </div>
 
                     <div class="form-group">
                         <span for="Convnumber">Academic Session End Year:<span class="text-danger">*</span></span>
-                        <input type="text" name="academic_end_year" id="academic_end_year" class="form-control form-control-sm" required>
+                        <input type="number" name="academic_end_year" id="academic_end_year" class="form-control form-control-sm" required>
                     </div>
 
                     <!-- Upload Awardee File -->
@@ -84,6 +84,7 @@ $employee_model = new Employee_model();
                                 <td><?= $value['title'] ?></td>
                                 <td><?= date("d:M:Y", strtotime($value['academic_session_start'])) ?> - <?= date("d:M:Y", strtotime($value['academic_session_end'])) ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                                <td><?= date("d-M-Y h:i A", strtotime($value['created_at'])) ?> </td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                         <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
