@@ -11,26 +11,48 @@
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')): ?>
-                    <div class="alert alert-success">
-                        <?= esc(session()->getFlashdata('status')) ?>
-                    </div>
+                    <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="/resultdetails/store" method="post" enctype="multipart/form-data">
-                    <?= csrf_field() ?>
-
+                <form action="<?= base_url() ?>admin/result" method="post" enctype="multipart/form-data">
                     <!-- Result Description -->
                     <div class="form-group">
                         <span for="resultdesc">Result Description:</span>
                         <textarea name="resultdesc" id="editor" class="form-control form-control-sm" required ></textarea>
                     </div>
 
-                    <!-- Program-Department Mapping ID -->
-                    <div class="form-group mt-3">
-                        <span for="Progdeptmapid">Program-Department Mapping ID:</span>
-                        <select name="Progdeptmapid" id="Progdeptmapid" class="form-control form-control-sm" required>
-                            <option value="">--Select--</option>
+                    <div class="form-group">
+                        <span for="Deptid">Department ID:</span>
+                        <select name="Deptid" id="Deptid" class="form-control form-control-sm" required >
+                            <option value="">Select Deparrtment</option>
+                        <?php foreach ($department as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <span for="Progid">Program ID:</span>
+                        <select name="Progid" id="Progid" class="form-control form-control-sm" required >
+                            <option value="">Select Program</option>
+                        </select>
+                    </div>
+
+                    <!-- Semester -->
+                    <div class="form-group">
+                        <span for="semester">Semester:</span>
+                        <select name="semester" id="semester" class="form-control form-control-sm" required>
+                            <option value="I">I</option>
+                            <option value="II">II</option>
+                            <option value="III">III</option>
+                            <option value="IV">IV</option>
+                            <option value="V">V</option>
+                            <option value="VI">VI</option>
+                            <option value="VII">IVI</option>
+                            <option value="VIII">VIII</option>
+                            <option value="IX">IX</option>
+                            <option value="X">X</option>
                         </select>
                     </div>
 
@@ -81,5 +103,30 @@
         </div>
     </div>
 </div>
+
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        // Fetch Programs based on Department
+        $('#Deptid').change(function(){
+            var dept_id = $(this).val();
+            $.ajax({
+                url: '<?= base_url() ?>fetch-programs',
+                type: 'post',
+                data: {dept_id: dept_id},
+                success: function(response){
+                    // console.log(response);
+                    let dataList = $('#Progid');
+                    dataList.empty();
+                    dataList.append('<option value="">Select Program</option>');
+                    $.each(response, function(index, item) {
+                        dataList.append('<option value="'+ item.program_id +'">'+ item.program_name + "("+ item.batch_start + "-" + item.batch_end +")" +'</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>
 
 <?= $this->endSection() ?>
