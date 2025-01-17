@@ -130,11 +130,38 @@
                                 <td>Rank Number</td>
                                 <td>Pharmacy Data Submitted</td>
                                 <td>Overall Data Submitted</td>
+                                <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Dynamically populated rows go here -->
+                        <?php foreach ($ranking as $key => $value) { ?>
+                            <tr>
+                                <td><?= ++$key ?></td>
+                                <td>
+                                    <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/ranking/' . $value['upload_file'])): ?>
+                                        <a href="<?= base_url() ?>public/admin/uploads/ranking/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/ranking/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
+                                    <?php else: ?>
+                                        <img src="<?= base_url() ?>public/admin/uploads/ranking/invalid_image.png" alt="" height="40px">
+                                    <?php endif; ?>
+                                </td>
+                                <td><?= $value['ranking_type'] ?> <?php if($value['other_ranking']){ echo " , ".$value['other_ranking']; } ?></td>
+                                <td><?= $value['ranking_year'] ?></td>
+                                <td><?= $value['ranking_category'] ?> <?php if($value['other_ranking_category']){ echo " , ".$value['other_ranking_category']; } ?></td>
+                                <td><?= $value['ranking_number'] ?></td>
+                                <td><?= $value['datasubmittedpharmacy'] ?></td>
+                                <td><?= $value['datasubmittedoverall'] ?></td>
+                                <td><?php $emp = $employee_model->get($value['upload_by']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
