@@ -11,15 +11,31 @@
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')): ?>
-                    <div class="alert alert-success">
-                        <?= esc(session()->getFlashdata('status')) ?>
-                    </div>
+                    <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
 
                 <!-- Form Start -->
                 <form action="/rankingdetails/store" method="post" enctype="multipart/form-data">
                     <?= csrf_field() ?>
                 <div class="row">
+                    <div class="col-lg-6">
+                        <!-- Rank Year -->
+                        <div class="form-group">
+                            <span for="Rankyear">Ranking Type:</span>
+                            <select name="ranking_type" id="ranking_type" class="form-control form-control-sm" required>
+                                <option value="">--Select--</option>
+                                <option value="NIRF">NIRF</option>
+                                <option value="ARIIA">ARIIA</option>
+                                <option value="Any other">Any other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" id="other_input_field" style="display: none;">
+                        <div class="form-group">
+                            <span for="Rankyear">Please specify other ranking type:</span>
+                            <input type="text" id="other_ranking" name="other_ranking" class="form-control form-control-sm">
+                        </div>
+                    </div>
                     <div class="col-lg-6">
                         <!-- Rank Year -->
                         <div class="form-group">
@@ -120,5 +136,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('ranking_type').addEventListener('change', function() {
+        var otherInputField = document.getElementById('other_input_field');
+        if (this.value === 'Any other') {
+            otherInputField.style.display = 'block'; // Show input field when 'Any other' is selected
+        } else {
+            otherInputField.style.display = 'none'; // Hide input field for other selections
+        }
+    });
+</script>
 
 <?= $this->endSection() ?>

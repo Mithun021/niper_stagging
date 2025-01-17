@@ -86,7 +86,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get', 'post'], 'result', 'AdminControllers::result');
     $routes->match(['get', 'post'], 'grades', 'AdminControllers::grades');
 
-    $routes->match(['get', 'post'], 'ranking', 'AdminControllers::ranking');
+    $routes->match(['get', 'post'], 'ranking', 'RankingControllers::ranking');
     $routes->match(['get', 'post'], 'annual-report', 'AdminControllers::annual_report');
     $routes->match(['get', 'post'], 'placement-details', 'AdminControllers::placement_details');
     $routes->match(['get', 'post'], 'recuiter-details', 'AdminControllers::recuiter_details');

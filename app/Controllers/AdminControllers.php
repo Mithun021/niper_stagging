@@ -700,15 +700,6 @@ use App\Models\Youtube_link_model;
             }
         }
 
-        public function ranking(){
-            $data = ['title' => 'Ranking'];
-            if ($this->request->is("get")) {
-                return view('admin/ranking',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
         public function admission(){
             $admission_model = new Admission_model();
             $data = ['title' => 'Admission'];
