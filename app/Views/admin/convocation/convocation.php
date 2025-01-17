@@ -71,7 +71,7 @@ $employee_model = new Employee_model();
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($variable as $key => $value) { ?>
+                        <?php foreach ($convocation as $key => $value) { ?>
                             <tr>
                                 <td><?= ++$key ?></td>
                                 <td>
