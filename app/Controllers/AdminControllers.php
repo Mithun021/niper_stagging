@@ -673,15 +673,6 @@ use App\Models\Youtube_link_model;
             }
         }
 
-        public function convocation(){
-            $data = ['title' => 'Convocation'];
-            if ($this->request->is("get")) {
-                return view('admin/convocation',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
         public function result(){
             $data = ['title' => 'Result'];
             if ($this->request->is("get")) {

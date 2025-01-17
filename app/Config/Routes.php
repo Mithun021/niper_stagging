@@ -81,7 +81,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->post('export_student', 'StudentController::export_student');
     $routes->post('upload_student_csv', 'StudentController::upload_student_csv');
 
-    $routes->match(['get', 'post'], 'convocation', 'AdminControllers::convocation');
+    $routes->match(['get', 'post'], 'convocation', 'ConvocationControllers::convocation');
 
     $routes->match(['get', 'post'], 'result', 'AdminControllers::result');
     $routes->match(['get', 'post'], 'grades', 'AdminControllers::grades');
