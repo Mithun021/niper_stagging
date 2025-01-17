@@ -3,9 +3,9 @@
     use CodeIgniter\Model;
     class Convocation_model extends Model
     {
-        protected $table         = 'ranking_details';
+        protected $table         = 'convocation';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['ranking_type','other_ranking','description','ranking_year','ranking_category','other_ranking_category','ranking_number','upload_file','datasubmittedpharmacy','datasubmittedoverall','upload_by'];
+        protected $allowedFields = ['title','academic_session_start','academic_session_end','upload_file','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
