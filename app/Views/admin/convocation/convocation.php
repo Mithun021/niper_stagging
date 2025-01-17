@@ -75,8 +75,8 @@ $employee_model = new Employee_model();
                             <tr>
                                 <td><?= ++$key ?></td>
                                 <td>
-                                    <?php if (!empty($value['upload_by']) && file_exists('public/admin/uploads/convocation/' . $value['upload_by'])): ?>
-                                        <a href="<?= base_url() ?>public/admin/uploads/convocation/<?= $value['upload_by'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/convocation/<?= $value['upload_by'] ?>" alt="" height="30px"></a>
+                                    <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/convocation/' . $value['upload_file'])): ?>
+                                        <a href="<?= base_url() ?>public/admin/uploads/convocation/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/convocation/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
                                     <?php else: ?>
                                         <img src="<?= base_url() ?>public/admin/uploads/convocation/invalid_image.png" alt="" height="40px">
                                     <?php endif; ?>
