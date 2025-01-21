@@ -5,7 +5,7 @@
 </style>
 
 <div class="row">
-    <div class="col-lg-7">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> Details</h4>
@@ -16,36 +16,50 @@
                 <?php endif; ?>
 
                 <form action="<?= base_url() ?>admin/bog" method="post">
-                    <!-- BoG Title -->
-                    <div class="form-group">
-                        <span for="bogtitle">BoG Title:</span>
-                        <input
-                            type="text"
-                            name="bogtitle"
-                            id="bogtitle"
-                            class="form-control form-control-sm"
-                            value="<?= $bog['title'] ?>"
-                            required>
-                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- BoG Title -->
+                            <div class="form-group">
+                                <span for="bogtitle">BoG Title:</span>
+                                <input
+                                    type="text"
+                                    name="bogtitle"
+                                    id="bogtitle"
+                                    class="form-control form-control-sm" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- BoG Description -->
+                            <div class="form-group">
+                                <span for="bogdesc">BoG Description:</span>
+                                <textarea id="editor" name="bog_description" class="form-control form-control-sm"></textarea>
 
-                    <!-- BoG Description -->
-                    <div class="form-group">
-                        <span for="bogdesc">BoG Description:</span>
-                        <textarea id="editor" name="bog_description" class="form-control form-control-sm"><?= $bog['description'] ?></textarea>
-
-                    </div>
-
-                    <!-- BoG Status -->
-                    <div class="form-group">
-                        <span for="bogstatus">BoG Status:</span>
-                        <select
-                            name="bogstatus"
-                            id="bogstatus"
-                            class="form-control form-control-sm"
-                            required>
-                            <option value="1" <?php if($bog['status'] == 1){ echo "selected"; } ?>>Publish</option>
-                            <option value="0"<?php if($bog['status'] == 0){ echo "selected"; } ?>>Draft</option>
-                        </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <input type="text" name="bog_file" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <input type="text" name="bog_gallery" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <!-- BoG Status -->
+                            <div class="form-group">
+                                <span for="bogstatus">BoG Status:</span>
+                                <select
+                                    name="bogstatus"
+                                    id="bogstatus"
+                                    class="form-control form-control-sm"
+                                    required>
+                                    <option value="1" >Publish</option>
+                                    <option value="0">Draft</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Submit Button -->
@@ -56,6 +70,6 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 <?= $this->endSection() ?>
