@@ -64,9 +64,9 @@ class ResultGradeControllers extends BaseController
                 $loggeduserId = $sessionData['loggeduserId']; 
             }
             $data = [
-                'grade' => $this->request->getPost(''),
-                'grade_point' => $this->request->getPost(''),
-                'performance' => $this->request->getPost(''),
+                'grade' => $this->request->getPost('Grade'),
+                'grade_point' => $this->request->getPost('Gradepoint'),
+                'performance' => $this->request->getPost('Performances'),
                 'upload_by' => $loggeduserId ?? '',
             ];
             $result = $grade_model->add($data);
