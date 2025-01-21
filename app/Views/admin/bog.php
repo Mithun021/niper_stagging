@@ -45,7 +45,7 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <span>BoG Gallery</span>
-                                <input type="file" name="bog_gallery[]" class="form-control form-control-sm">
+                                <input type="file" name="bog_gallery[]" class="form-control form-control-sm" multiple>
                             </div>
                         </div>
                         <div class="col-lg-4">
