@@ -31,6 +31,8 @@ class CommitteeController extends BaseController
                 'description' => $this->request->getPost('description'),
                 'upload_file' => $committeeImageName,
                 'status' => $this->request->getPost('committee_status'),
+                'start_date' => $this->request->getPost('comm_start_date'),
+                'end_date' => $this->request->getPost('comm_end_date'),
                 'upload_by' => $loggeduserId
             ];
             $result = $committee_model->add($data);

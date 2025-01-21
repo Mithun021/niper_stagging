@@ -5,7 +5,7 @@
     {
         protected $table         = 'committee';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['title','sub_committee','description','upload_file','status','upload_by'];
+        protected $allowedFields = ['title','sub_committee','description','upload_file','status','start_date','end_date','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
