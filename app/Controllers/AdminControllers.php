@@ -572,7 +572,7 @@ use App\Models\Youtube_link_model;
                     'status' => $this->request->getPost('bogstatus'),
                     'upload_file' => $bog_fileImageName
                 ];
-                $result = $bog_model->add($data,1);
+                $result = $bog_model->add($data);
                 if ($result === true) {
                     $insert_id = $bog_model->getInsertID();
                     $gallery_files = $this->request->getFiles();
