@@ -30,7 +30,7 @@ $program_model = new Program_model();
                             <!-- Result Description -->
                             <div class="form-group">
                                 <span for="resultdesc">Result Description:<span class="text-danger">*</span></span>
-                                <textarea name="resultdesc" id="editor" class="form-control form-control-sm" required></textarea>
+                                <textarea name="resultdesc" id="editor" class="form-control form-control-sm"></textarea>
                             </div>
                         </div>
                         <div class="col-lg-6">
