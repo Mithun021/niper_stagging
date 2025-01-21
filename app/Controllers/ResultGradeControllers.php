@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Department_model;
+use App\Models\Grade_model;
 use App\Models\Result_model;
 
 class ResultGradeControllers extends BaseController
@@ -52,11 +53,28 @@ class ResultGradeControllers extends BaseController
     }
 
     public function grades(){
+        $grade_model = new Grade_model();
         $data = ['title' => 'Grades'];
         if ($this->request->is("get")) {
+            $data['grade'] = $grade_model->get();
             return view('admin/result_grade/grades',$data);
         }else if ($this->request->is("post")) {
-
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $data = [
+                'grade' => $this->request->getPost(''),
+                'grade_point' => $this->request->getPost(''),
+                'performance' => $this->request->getPost(''),
+                'upload_by' => $loggeduserId ?? '',
+            ];
+            $result = $grade_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/grades')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/grades')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
         }
     }
 }
