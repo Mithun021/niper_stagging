@@ -5,7 +5,7 @@
     {
         protected $table         = 'bog_members';
         protected $primaryKey    = 'id';
-        protected $allowedFields = ['member_name','affiliation', 'designation', 'term_start_year', 'term_end_year', 'upload_by'];
+        protected $allowedFields = ['member_name','affiliation', 'designation', 'term_start_year', 'term_end_year', 'sorted_no', 'upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
