@@ -16,13 +16,13 @@ class ResultGradeControllers extends BaseController
             $data['result'] = $result_model->get();
             return view('admin/result_grade/result',$data);
         }else if ($this->request->is("post")) {
-            $result_file = $this->request->getFile('upload_file');
+            $result_file = $this->request->getFile('file_upload');
             $sessionData = session()->get('loggedUserData');
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId']; 
             }
             if ($result_file->isValid() && ! $result_file->hasMoved()) {
-                $result_fileNewName = "admission".$result_file->getRandomName();
+                $result_fileNewName = "result".$result_file->getRandomName();
                 $result_file->move(ROOTPATH . 'public/admin/uploads/result', $result_fileNewName);    
             }else{
                 $result_fileNewName = "";
@@ -37,7 +37,7 @@ class ResultGradeControllers extends BaseController
                 'semester' => $this->request->getVar('semester'),
                 'notification_date' => $this->request->getVar('notification_date'),
                 'file_upload' => $result_fileNewName,
-                'upload_by' => $sessionData,
+                'upload_by' => $loggeduserId,
             ];
 
             $result = $result_model->add($data);
