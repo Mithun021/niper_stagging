@@ -29,13 +29,13 @@ $act_rules_category_model = new Act_rules_category_model();
                     <!-- Act Rules Type -->
                     <div class="form-group">
                         <span for="Actrulestype">Result Notes:</span>
-                        <textarea name="result_notes" id="cke-editor"><?= $result_grade_notes['result_notice'] ?></textarea>
+                        <textarea name="result_notes" id="editor"><?= $result_grade_notes['result_notice'] ?></textarea>
                     </div>
 
                     <!-- Act Rules Type -->
                     <div class="form-group">
                         <span for="Actrulestype">Grade Notes:</span>
-                        <textarea name="grade_notes" id="cke-editor2"><?= $result_grade_notes['grade_notice'] ?></textarea>
+                        <textarea name="grade_notes" id="editor2"><?= $result_grade_notes['grade_notice'] ?></textarea>
                     </div>
                     <!-- Submit Button -->
                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
