@@ -1,6 +1,14 @@
 <!-- app/Views/resultdetails_form.php -->
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
+<?php
+use App\Models\Department_model;
+use App\Models\Employee_model;
+use App\Models\Program_model;
+$employee_model = new Employee_model();
+$department_model = new Department_model();
+$program_model = new Program_model();
+?>
 
 <div class="row">
     <!-- Form Section for Adding Result Details -->
@@ -106,15 +114,39 @@
                         <thead>
                             <tr>
                                 <td>SN</td>
+                                <td>File</td>
                                 <td>Result Description</td>
-                                <td>Program-Dept Map ID</td>
+                                <td>Program ID</td>
+                                <td>Department ID</td>
+                                <td>Academic Year</td>
                                 <td>Semester</td>
-                                <td>Result File</td>
+                                <td>Notification Date</td>
+                                <td>Upload by</td>
+                                <td>Created At</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Dynamically populated rows go here -->
+                        <?php foreach ($result as $key => $value) { ?>
+                            <tr>
+                                <td><?php echo $key+1; ?></td>
+                                <td>
+                                <?php if (!empty($value['file_upload']) && file_exists('public/admin/uploads/events/' . $value['file_upload'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/events/<?= $value['file_upload'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/events/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
+                                </td>
+                                <td><?= $value['resultdesc'] ?></td>
+                                <td><?php echo $department_model->get($value['department_id'])['name'] ?? ''  ?></td>
+                                <td><?php echo $program_model->get($value['program_id'])['name'] ?? '' ?></td>
+                                <td><?= $value['academic_start_year'] ?> - <?= $value['academic_end_year'] ?></td>
+                                <td><?= $value['semester'] ?></td>
+                                <td><?= $value['notification_date'] ?></td>
+                                <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                                <td><?= date("d-M-Y h:i A", strtotime($value['created_at'])) ?> </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
