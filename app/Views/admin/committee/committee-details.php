@@ -97,6 +97,7 @@ $employee_model = new Employee_model();
                                 <td>Comm. name</td>
                                 <td>Parent Comm.</td>
                                 <td>Status</td>
+                                <td>Comm. Date</td>
                                 <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
@@ -116,7 +117,7 @@ $employee_model = new Employee_model();
                                     <td><?php $sub_comm = $committee_model->get($value['sub_committee']);
                                         echo isset($sub_comm['title']) && !empty($sub_comm['title']) ? $sub_comm['title'] : '__'; ?></td>
                                     <td><?= ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Draft</span>" : (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?></td>
-
+                                    <td><?= date("d:M:Y", strtotime($value['start_date'])) ?> <?= date("d:M:Y", strtotime($value['end_date'])) ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name'] ?></td>
                                     <td>
