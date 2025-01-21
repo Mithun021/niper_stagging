@@ -41,7 +41,7 @@ $employee_model = new Employee_model();
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="form-group">
                                 <span for="Committeedesc">Committee Description:</span>
                                 <textarea id="editor" name="description"></textarea>
