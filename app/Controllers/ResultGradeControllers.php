@@ -93,10 +93,10 @@ class ResultGradeControllers extends BaseController
             ];
             $result = $result_grade_notes_model->add($data, 1);
             if ($result === true) {
-                return redirect()->to('admin/result_grades_notice')->with('status', '<div class="
+                return redirect()->to('admin/result-grades-notice')->with('status', '<div class="
                 alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
-                return redirect()->to('admin/result_grades_notice')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+                return redirect()->to('admin/result-grades-notice')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
             }
         }
     }
