@@ -39,7 +39,7 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <span>BoG File(.pdf)<span class="text-danger">*</span></span>
-                                <input type="text" name="bog_file" class="form-control form-control-sm" required>
+                                <input type="text" name="bog_file" class="form-control form-control-sm" accept=".pdf" required>
                             </div>
                         </div>
                         <div class="col-lg-4">

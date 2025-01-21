@@ -1,11 +1,11 @@
 <?php
     namespace App\Models;
     use CodeIgniter\Model;
-    class Bog_model extends Model
+    class Bog_gallery_model extends Model
     {
-        protected $table         = 'bog';
+        protected $table         = 'bog_gallery';
         protected $primaryKey    = 'id';
-        protected $allowedFields = ['title','description', 'status', 'upload_file'];
+        protected $allowedFields = ['bog_id','file_name'];
         // protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

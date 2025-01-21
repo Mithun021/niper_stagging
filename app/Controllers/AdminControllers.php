@@ -6,6 +6,7 @@ use App\Models\Act_rules_model;
 use App\Models\Admission_model;
 use App\Models\Annual_report_model;
 use App\Models\Banner_slider_model;
+use App\Models\Bog_gallery_model;
 use App\Models\Bog_members_model;
 use App\Models\Bog_model;
 use App\Models\Contact_model;
@@ -552,18 +553,42 @@ use App\Models\Youtube_link_model;
 
         public function bog(){
             $bog_model = new Bog_model();
+            $bog_gallery_model = new Bog_gallery_model();
             $data = ['title' => 'BoG Page'];
             if ($this->request->is("get")) {
-                $data['bog'] = $bog_model->get(1);
+                $data['bog'] = $bog_model->get();
                 return view('admin/bog',$data);
             }else if ($this->request->is("post")) {
+                $bog_file = $this->request->getFile('bog_file');
+                if ($bog_file->isValid() && ! $bog_file->hasMoved()) {
+                    $bog_fileImageName = "admission".$bog_file->getRandomName();
+                    $bog_file->move(ROOTPATH . 'public/admin/uploads/bog', $bog_fileImageName);    
+                }else{
+                 $bog_fileImageName = "";
+                }
                 $data = [
                     'title' => $this->request->getPost('bogtitle'),
                     'description' => $this->request->getPost('bog_description'),
                     'status' => $this->request->getPost('bogstatus'),
+                    'upload_file' => $bog_fileImageName
                 ];
                 $result = $bog_model->add($data,1);
                 if ($result === true) {
+                    $insert_id = $bog_model->getInsertID();
+                    $gallery_files = $this->request->getFiles();
+                    if ($gallery_files && isset($gallery_files['bog_gallery'])) {
+                        foreach ($gallery_files['bog_gallery'] as $file) {
+                            if ($file->isValid() && !$file->hasMoved()) {
+                                $newName = rand(0,9999).$file->getRandomName();
+                                $file->move(ROOTPATH . 'public/admin/uploads/bog', $newName);
+                                $file_data = [
+                                    'bog_id' => $insert_id,
+                                    'file_name' => $newName,
+                                ];
+                                $bog_gallery_model->add($file_data);
+                            }
+                        }
+                    }
                     return redirect()->to('admin/bog')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
                 } else {
                     return redirect()->to('admin/bog')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
