@@ -20,7 +20,7 @@
                         <div class="col-lg-12">
                             <!-- BoG Title -->
                             <div class="form-group">
-                                <span for="bogtitle">BoG Title:</span>
+                                <span for="bogtitle">BoG Title:<span class="text-danger">*</span></span>
                                 <input
                                     type="text"
                                     name="bogtitle"
@@ -38,7 +38,8 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <input type="text" name="bog_file" class="form-control form-control-sm">
+                                <span>BoG File(.pdf)<span class="text-danger">*</span></span>
+                                <input type="text" name="bog_file" class="form-control form-control-sm" required>
                             </div>
                         </div>
                         <div class="col-lg-4">
