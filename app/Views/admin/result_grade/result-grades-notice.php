@@ -13,7 +13,7 @@ $act_rules_category_model = new Act_rules_category_model();
 
 <div class="row">
     <!-- Form Section for Adding Act Rules Details -->
-    <div class="col-lg-4">
+    <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Add Act Rules Details</h4>
