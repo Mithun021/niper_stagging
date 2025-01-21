@@ -85,7 +85,7 @@ $employee_model = new Employee_model();
                                             <thead>
                                                 <tr>
                                                     <td>#</td>
-                                                    <td>Student Details</td>
+                                                    <td>Student Details with Roll no</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
