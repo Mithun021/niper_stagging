@@ -27,11 +27,9 @@
                         <span for="Actrulestype">Act Rules Type:</span>
                         <select name="Actrulestype" id="Actrulestype" class="form-control form-control-sm" required>
                             <option value="" disabled selected>Select Act Rules Type</option>
-                            <option value="NIPER Act">NIPER Act</option>
-                            <option value="Statues">Statues</option>
-                            <option value="Ordinance">Ordinance</option>
-                            <option value="Recruitment Rules">Recruitment Rules</option>
-                            <option value="RTI Rules">RTI Rules</option>
+                            <?php foreach ($act_rules_category as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                            <?php } ?>
                         </select>
                     </div>
 

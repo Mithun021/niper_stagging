@@ -737,9 +737,11 @@ use App\Models\Youtube_link_model;
 
         public function act_rules(){
             $act_rules_model = new Act_rules_model();
+            $act_rules_category_model = new Act_rules_category_model();
             $data = ['title' => 'Act Rules'];
             if ($this->request->is("get")) {
                 $data['act_rules'] = $act_rules_model->get();
+                $data['act_rules_category'] = $act_rules_category_model->get();
                 return view('admin/act-rules',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
