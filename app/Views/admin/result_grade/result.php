@@ -116,8 +116,8 @@ $program_model = new Program_model();
                                 <td>SN</td>
                                 <td>File</td>
                                 <td>Result Description</td>
-                                <td>Program ID</td>
-                                <td>Department ID</td>
+                                <td>Program</td>
+                                <td>Dept.</td>
                                 <td>Academic Year</td>
                                 <td>Semester</td>
                                 <td>Notification Date</td>
