@@ -3,8 +3,10 @@
 <?= $this->section("body-content"); ?>
 
 <?php
-    use App\Models\Employee_model;
-    $employee_model = new Employee_model();
+
+use App\Models\Employee_model;
+
+$employee_model = new Employee_model();
 ?>
 
 <div class="row">
@@ -21,7 +23,7 @@
 
                 <!-- Form Start -->
                 <form action="<?= base_url() ?>admin/act-rules" method="post" enctype="multipart/form-data">
-                    
+
                     <!-- Act Rules Type -->
                     <div class="form-group">
                         <span for="Actrulestype">Act Rules Type:</span>
@@ -51,6 +53,19 @@
                         <input type="file" name="Actrulesfileupload" id="Actrulesfileupload" class="form-control form-control-sm" accept=".pdf,.jpg,.png" required>
                     </div>
 
+                    <!-- Act Rules File Upload -->
+                    <div class="form-group">
+                      <span for="Actrulesfileupload">Assign Date<span class="text-danger">*</span></span>
+                        <input type="date" name="act_date" id="act_date" class="form-control form-control-sm" required>
+                    </div>
+
+                    <div class="form-group">
+                        <span for="Actrulesfileupload">Status<span class="text-danger">*</span></span>
+                        <select name="act_status" id="act_status" class="form-control form-control-sm">
+                            <option value="1">Active</option>
+                            <option value="0">Draft</option>
+                        </select>
+                    </div>
                     <!-- Submit Button -->
                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
                 </form>
@@ -73,33 +88,36 @@
                                 <td>File</td>
                                 <td>Act Rules Type</td>
                                 <td>Act Rules Title</td>
+                                <td>Status</td>
                                 <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($act_rules as $key => $value) { ?>
-                            <tr>
-                                <td><?= $key+1 ?></td>
-                                <td>
-                                <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/act_rules/' . $value['upload_file'])): ?>
-                                    <a href="<?= base_url() ?>public/admin/uploads/act_rules/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
-                                <?php else: ?>
-                                    <img src="<?= base_url() ?>public/admin/uploads/act_rules/invalid_image.png" alt="" height="40px">
-                                <?php endif; ?>
-                                </td>
-                                <td><?= $value['rules_type'] ?></td>
-                                <td><?= $value['rules_title'] ?></td>
-                                <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
-                                <td>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
-                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
-                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php } ?>
+                            <?php foreach ($act_rules as $key => $value) { ?>
+                                <tr>
+                                    <td><?= $key + 1 ?></td>
+                                    <td>
+                                        <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/act_rules/' . $value['upload_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/act_rules/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/act_rules/invalid_image.png" alt="" height="40px">
+                                        <?php endif; ?>
+                                    </td>
+                                    <td><?= $value['rules_type'] ?></td>
+                                    <td><?= $value['rules_title'] ?></td>
+                                    <td><?= ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?></td>
+                                    <td><?php $emp = $employee_model->get($value['upload_by']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                            <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                            <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                            <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

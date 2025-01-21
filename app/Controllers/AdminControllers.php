@@ -741,7 +741,7 @@ use App\Models\Youtube_link_model;
             $data = ['title' => 'Act Rules'];
             if ($this->request->is("get")) {
                 $data['act_rules'] = $act_rules_model->get();
-                $data['act_rules_category'] = $act_rules_category_model->get();
+                $data['act_rules_category'] = $act_rules_category_model->getActiveData();
                 return view('admin/act-rules',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
@@ -759,7 +759,9 @@ use App\Models\Youtube_link_model;
                     'rules_type' => $this->request->getPost('Actrulestype'),
                     'rules_title' => $this->request->getPost('Actrulestitle'),
                     'upload_file' => $rules_fileImageName,
+                    'act_rules_date' => $this->request->getPost('act_date'),
                     'rules_description' => $this->request->getPost('Actrulesdesc'),
+                    'status' => $this->request->getPost('act_status'),
                     'upload_by' =>  $loggeduserId,
                 ];
 
@@ -785,6 +787,7 @@ use App\Models\Youtube_link_model;
                 }
                 $data = [
                     'name' => $this->request->getPost('category_name'),
+                    'status' => $this->request->getPost('act_status'),
                     'upload_by' =>  $loggeduserId,
                 ];
 

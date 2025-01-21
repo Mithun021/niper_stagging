@@ -5,7 +5,7 @@
     {
         protected $table         = 'act_rules';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['rules_type','rules_title','rules_description','upload_file','upload_by'];
+        protected $allowedFields = ['rules_type','rules_title','rules_description','upload_file','act_rules_date','status','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

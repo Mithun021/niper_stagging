@@ -5,7 +5,7 @@
     {
         protected $table         = 'act_rules_category';
         protected $primaryKey    = 'id';
-        protected $allowedFields = ['name', 'upload_by'];
+        protected $allowedFields = ['name', 'status' , 'upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
@@ -25,6 +25,10 @@
                 $result = $this->orderBy('id','desc')->findAll();
             }
             return $result;
+        }
+
+        public function getActiveData(){
+            return $this->where('status',1)->orderBy('name','asc')->findAll();
         }
     }
 ?>
