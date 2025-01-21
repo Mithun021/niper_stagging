@@ -15,7 +15,7 @@
                     <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
 
-                <form action="<?= base_url() ?>admin/bog" method="post">
+                <form action="<?= base_url() ?>admin/bog" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-lg-12">
                             <!-- BoG Title -->
@@ -44,7 +44,8 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <input type="text" name="bog_gallery" class="form-control form-control-sm">
+                                <span>BoG Gallery</span>
+                                <input type="text" name="bog_gallery[]" class="form-control form-control-sm">
                             </div>
                         </div>
                         <div class="col-lg-4">
