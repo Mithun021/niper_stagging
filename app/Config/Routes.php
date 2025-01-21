@@ -60,6 +60,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'tendor-details', 'TendorControllers::tendor_details');
     $routes->match(['get','post'],'admission', 'AdminControllers::admission');
     $routes->match(['get','post'],'act-rules', 'AdminControllers::act_rules');
+    $routes->match(['get','post'],'act-rules-category', 'AdminControllers::act_rules_category');
 
     $routes->match(['get','post'],'job-details', 'JobControllers::job_details');
     $routes->match(['get','post'],'job-result', 'JobControllers::job_result');

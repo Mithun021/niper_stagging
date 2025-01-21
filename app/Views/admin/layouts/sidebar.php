@@ -141,6 +141,7 @@
                 <li><a href="<?= base_url() ?>admin/leadership-and-media-link" class="waves-effect"><span>Leadership & Media Links</span></a></li>
                 <li><a href="<?= base_url() ?>admin/admission" class="waves-effect"><span>Admission Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/act-rules" class="waves-effect"><span>Act Rules Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/act-rules-category" class="waves-effect"><span>Act Rules Category</span></a></li>
                 <li><a href="<?= base_url() ?>admin/testimonial" class="waves-effect"><span>Testimonial</span></a></li>
             </ul>
         </li>

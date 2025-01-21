@@ -2,6 +2,7 @@
     namespace App\Controllers;
 
 use App\Models\About_niper_model;
+use App\Models\Act_rules_category_model;
 use App\Models\Act_rules_model;
 use App\Models\Admission_model;
 use App\Models\Annual_report_model;
@@ -766,6 +767,32 @@ use App\Models\Youtube_link_model;
                 } else {
                     return redirect()->to('admin/act-rules')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
+            }
+        }
+
+        public function act_rules_category(){
+            $act_rules_category_model = new Act_rules_category_model();
+            $data = ['title' => 'Act Rules Category'];
+            if ($this->request->is("get")) {
+                $data['act_rules_category'] = $act_rules_category_model->get();
+                return view('admin/act-rules-category',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $data = [
+                    'name' => $this->request->getPost('category_name'),
+                    'upload_by' =>  $loggeduserId,
+                ];
+
+                $result = $act_rules_category_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/act-rules-category')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/act-rules-category')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+
             }
         }
 
