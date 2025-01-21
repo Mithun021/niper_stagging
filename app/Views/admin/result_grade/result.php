@@ -131,10 +131,10 @@ $program_model = new Program_model();
                             <tr>
                                 <td><?php echo $key+1; ?></td>
                                 <td>
-                                <?php if (!empty($value['file_upload']) && file_exists('public/admin/uploads/events/' . $value['file_upload'])): ?>
-                                    <a href="<?= base_url() ?>public/admin/uploads/events/<?= $value['file_upload'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                <?php if (!empty($value['file_upload']) && file_exists('public/admin/uploads/result/' . $value['file_upload'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/result/<?= $value['file_upload'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
                                 <?php else: ?>
-                                    <img src="<?= base_url() ?>public/admin/uploads/events/invalid_image.png" alt="" height="40px">
+                                    <img src="<?= base_url() ?>public/admin/uploads/result/invalid_image.png" alt="" height="40px">
                                 <?php endif; ?>
                                 </td>
                                 <td><?= $value['resultdesc'] ?></td>
@@ -145,6 +145,13 @@ $program_model = new Program_model();
                                 <td><?= $value['notification_date'] ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td><?= date("d-M-Y h:i A", strtotime($value['created_at'])) ?> </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <!-- <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a> -->
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </td>
                             </tr>
                         <?php } ?>
                         </tbody>
