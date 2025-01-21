@@ -4,9 +4,11 @@
 
 <?php
 
+use App\Models\Act_rules_category_model;
 use App\Models\Employee_model;
 
 $employee_model = new Employee_model();
+$act_rules_category_model = new Act_rules_category_model();
 ?>
 
 <div class="row">
@@ -104,7 +106,7 @@ $employee_model = new Employee_model();
                                             <img src="<?= base_url() ?>public/admin/uploads/act_rules/invalid_image.png" alt="" height="40px">
                                         <?php endif; ?>
                                     </td>
-                                    <td><?= $value['rules_type'] ?></td>
+                                    <td><?php echo $act_rules_category->get($value['rules_type'])['name'] ?? '';  ?></td>
                                     <td><?= $value['rules_title'] ?></td>
                                     <td><?= ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
