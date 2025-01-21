@@ -28,7 +28,7 @@ $employee_model = new Employee_model();
                     <!-- Grade Point -->
                     <div class="form-group mt-3">
                         <span for="Gradepoint">Grade Point:</span>
-                        <input type="number" name="Gradepoint" id="Gradepoint" class="form-control form-control-sm" step="0.1" min="0" required>
+                        <input type="number" name="Gradepoint" id="Gradepoint" class="form-control form-control-sm" step="0.1" min="0" >
                     </div>
 
                     <!-- Performance -->
