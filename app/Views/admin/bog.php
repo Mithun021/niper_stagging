@@ -90,7 +90,7 @@ $employee_model = new Employee_model();
                                 <td>File</td>
                                 <td>Title</td>
                                 <td>Status</td>
-                                <td>Upload by</td>
+                                <!-- <td>Upload by</td> -->
                                 <td>Create at</td>
                                 <td>Action</td>
                             </tr>
@@ -107,8 +107,7 @@ $employee_model = new Employee_model();
                                 </td>
                                 <td><?= $value['title'] ?></td>
                                 <td><?= ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?></td>
-                                <td><?php $emp = $employee_model->get($value['upload_by']);
-                                    echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                
                                 <td><?= date('d-m-Y', strtotime($value['created_at'])) ?></td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
