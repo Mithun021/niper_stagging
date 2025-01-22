@@ -51,9 +51,11 @@ class TendorControllers extends BaseController
     }
 
     public function tendor_page(){
+        $tendor_model = new Tendor_model();
         $tendor_page_model= new Tendor_page_model();
         $data = ['title' => 'Tendor Page'];
         if ($this->request->is("get")) {
+            $data['tendors'] = $tendor_model->get();
             $data['tendors_page'] = $tendor_page_model->get();
             return view('admin/tendor/tendor-page',$data);
         }else if ($this->request->is("post")) {
@@ -69,6 +71,7 @@ class TendorControllers extends BaseController
                 $tendor_fileNewName = "";
             }
             $data = [
+                'tendor_id' => $this->request->getPost('tendor_type'),
                 'title' => $this->request->getPost('title'),
                 'description' => $this->request->getPost('description'),
                 'file_upload_description' => $this->request->getPost('file_description'),

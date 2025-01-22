@@ -5,7 +5,7 @@
     {
         protected $table         = 'tendor_page';
         protected $primaryKey    = 'id';
-        protected $allowedFields = ['title','description','file_upload','file_upload_description','upload_by'];
+        protected $allowedFields = ['tendor_id','title','description','file_upload','file_upload_description','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
