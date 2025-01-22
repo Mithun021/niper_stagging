@@ -91,7 +91,7 @@ $employee_model = new Employee_model();
                                 <td>Title</td>
                                 <td>Status</td>
                                 <!-- <td>Upload by</td> -->
-                                <td>Create at</td>
+                                <!-- <td>Create at</td> -->
                                 <td>Action</td>
                             </tr>
                         </thead>
@@ -108,7 +108,6 @@ $employee_model = new Employee_model();
                                 <td><?= $value['title'] ?></td>
                                 <td><?= ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?></td>
                                 
-                                <td><?= date('d-m-Y', strtotime($value['created_at'])) ?></td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                         <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
