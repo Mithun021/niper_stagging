@@ -59,7 +59,6 @@ $tendor_model = new Tendor_model();
                             <tr>
                                 <td>SN</td>
                                 <td>File</td>
-                                <td>Tendor</td>
                                 <td>Title</td>
                                 <td>Create at</td>
                                 <td>Upload by</td>
