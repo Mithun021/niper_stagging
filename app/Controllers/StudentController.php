@@ -222,8 +222,10 @@ use App\Models\UserModel;
                         'upload_by' => $loggeduserId
                     ];
                     $num++;
-                    $result = $student_prog_dept_mapping_model->add($data);
+                    //$result = $student_prog_dept_mapping_model->add($data);
+                   echo "<pre>"; print_r($data);
                 }
+                die;
                 if ($result) {
                     return redirect()->back()->with('status', '<div class="alert alert-success" role="alert">'.$num.' Student mapped successfully.</div>');
                 } else {
