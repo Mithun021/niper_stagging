@@ -70,6 +70,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'about', 'AdminControllers::about');
     $routes->match(['get','post'],'bog', 'AdminControllers::bog');
     $routes->match(['get','post'],'bog-member', 'AdminControllers::bog_member');
+    $routes->match(['get','post'],'update-bog-member-order', 'AdminControllers::update_bog_member_order');
     $routes->match(['get','post'],'leadership-and-media-link', 'AdminControllers::leadership_and_media_link');
 
     $routes->match(['get', 'post'], 'collaboration', 'AcademicControllers::collaboration');

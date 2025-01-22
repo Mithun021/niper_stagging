@@ -629,6 +629,19 @@ use App\Models\Youtube_link_model;
             }
         }
 
+        public function update_bog_member_order(){
+            $bog_members_model = new Bog_members_model();
+            $order = $this->request->getPost('order');
+            if ($order) {
+                foreach ($order as $index => $id) {
+                    $bog_members_model->update($id, ['sorted_no' => $index + 1]);
+                }
+                return $this->response->setJSON(['status' => 'success']);
+            }else {
+                return $this->response->setJSON(['status' => 'error', 'message' => 'No order data received']);
+            }
+        }
+
         public function leadership_and_media_link(){
             $leadership_media_link_model = new Leadership_media_link_model();
             $data = ['title' => 'Leadership & Media Links'];

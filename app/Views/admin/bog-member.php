@@ -89,9 +89,9 @@ $employee_model = new Employee_model();
                                 <td>Actions</td>
                             </tr>
                         </thead>
-                        <tbody id="sortable">
+                        <tbody class="sortTable">
                             <?php foreach ($bog_members as $key => $value) { ?>
-                                <tr>
+                                <tr id="row-<?= $value['id']; ?>" data-id="<?= $value['id']; ?>">
                                     <td><?= $key + 1 ?></td>
                                     <td><?= $value['member_name'] ?></td>
                                     <td><?= $value['affiliation'] ?></td>
@@ -117,17 +117,36 @@ $employee_model = new Employee_model();
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
 <script>
-$(document).ready(function() {
-    $('#sortable').sortable({
-        items: 'tr',
-        cursor: 'move',
-        opacity: 0.5,
-        update: function(event, ui) {
-            var newOrder = $('#sortable').sortable('toArray');
-            console.log(newOrder); 
-        }
+    $(document).ready(function() {
+        // Make the rows with the class 'sortTable' sortable
+        $('.sortTable').sortable({
+            items: 'tr', // Specify which items are sortable (tr in this case)
+            cursor: 'move', // Show a move cursor while dragging
+            opacity: 0.5, // Set opacity while dragging
+            update: function(event, ui) {
+                // Get the new order of rows (IDs of rows)
+                var newOrder = [];
+                $('.sortTable tr').each(function(index) {
+                    newOrder.push($(this).data('id'));
+                });
+
+                // Send the new order to the server using AJAX
+                $.ajax({
+                    url: '<?= base_url('admin/update-bog-member-order'); ?>', // URL to your controller method
+                    method: 'POST',
+                    data: {
+                        order: newOrder
+                    },
+                    success: function(response) {
+                        alert('Order updated successfully!');
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Failed to update order');
+                    }
+                });
+            }
+        });
     });
-});
 </script>
 
 
