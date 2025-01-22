@@ -1,5 +1,6 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <?php
 
 use App\Models\Employee_model;
@@ -88,7 +89,7 @@ $employee_model = new Employee_model();
                                 <td>Actions</td>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="sortable">
                             <?php foreach ($bog_members as $key => $value) { ?>
                                 <tr>
                                     <td><?= $key + 1 ?></td>
@@ -113,9 +114,20 @@ $employee_model = new Employee_model();
 </div>
 
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
 <script>
-    
+$(document).ready(function() {
+    $('#sortable').sortable({
+        items: 'tr',
+        cursor: 'move',
+        opacity: 0.5,
+        update: function(event, ui) {
+            var newOrder = $('#sortable').sortable('toArray');
+            console.log(newOrder); 
+        }
+    });
+});
 </script>
 
 
