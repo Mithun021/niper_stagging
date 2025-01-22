@@ -69,9 +69,9 @@ class TendorControllers extends BaseController
             ];
             $result = $tendor_page_model->add($data);
             if ($result === true) {
-                return redirect()->to('admin/tendor-details')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                return redirect()->to('admin/tendor-page')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
-                return redirect()->to('admin/tendor-details')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                return redirect()->to('admin/tendor-page')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
         }
     }
