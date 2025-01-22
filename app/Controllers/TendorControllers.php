@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Tendor_model;
+use App\Models\Tendor_page_model;
 
 class TendorControllers extends BaseController
 {
@@ -33,6 +34,40 @@ class TendorControllers extends BaseController
                 'upload_by' => $loggeduserId
             ];
             $result = $tendor_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/tendor-details')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/tendor-details')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+
+    public function tendor_page(){
+        $tendor_page_model= new Tendor_page_model();
+        $data = ['title' => 'Tendor Page'];
+        if ($this->request->is("get")) {
+            $data['tendors_page'] = $tendor_page_model->get();
+            return view('admin/tendor/tendor-page',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $tendor_file = $this->request->getFile('file_upload');
+            if ($tendor_file->isValid() && ! $tendor_file->hasMoved()) {
+                $tendor_fileNewName = "page".$tendor_file->getRandomName();
+                $tendor_file->move(ROOTPATH . 'public/admin/uploads/tendor', $tendor_fileNewName);    
+            }else{
+                $tendor_fileNewName = "";
+            }
+            $data = [
+                'title' => $this->request->getPost('title'),
+                'description' => $this->request->getPost('description'),
+                'file_upload_description' => $this->request->getPost('file_description'),
+                'file_upload' => $tendor_fileNewName,
+                'upload_by' => $loggeduserId
+            ];
+            $result = $tendor_page_model->add($data);
             if ($result === true) {
                 return redirect()->to('admin/tendor-details')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
