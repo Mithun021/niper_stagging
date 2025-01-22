@@ -24,15 +24,7 @@ $tendor_model = new Tendor_model();
                 }
                 ?>
                 <form method="post" action="<?= base_url() ?>admin/tendor-page" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <span>Tendor Type <span class="text-danger">*</span></span>
-                        <select name="tendor_type" id="tendor_type" class="form-control form-control-sm" required></select>
-                            <option value="">Select Tendor</option>
-                        <?php foreach ($tendors as $key => $value) { ?>
-                            <option value="<?= $value['id'] ?>"><?= $value['tendor_title'] ?></option>
-                        <?php } ?>
-                        </select>
-                    </div>
+                    
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
                         <textarea class="form-control form-control-sm" name="title" id="editor"></textarea></textarea>
@@ -85,7 +77,6 @@ $tendor_model = new Tendor_model();
                                         <img src="<?= base_url() ?>public/admin/uploads/tendor/invalid_image.png" alt="" height="40px">
                                     <?php endif; ?>
                                 </td>
-                                <td><?php $tendor = $tendor_model->get($value['tendor_id']); echo $tendor['tendor_title'] ?? '' ?></td>
                                 <td><?= $value['title'] ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td><?= date('d-m-Y', strtotime($value['created_at'])) ?></td>

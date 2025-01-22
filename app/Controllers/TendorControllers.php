@@ -71,7 +71,6 @@ class TendorControllers extends BaseController
                 $tendor_fileNewName = "";
             }
             $data = [
-                'tendor_id' => $this->request->getPost('tendor_type'),
                 'title' => $this->request->getPost('title'),
                 'description' => $this->request->getPost('description'),
                 'file_upload_description' => $this->request->getPost('file_description'),
