@@ -71,7 +71,7 @@ $tendor_model = new Tendor_model();
                                 <td><?= $key + 1 ?></td>
                                 <td>
                                     <?php if (!empty($value['file_upload']) && file_exists('public/admin/uploads/tendor/' . $value['file_upload'])): ?>
-                                        <a href="<?= base_url() ?>public/admin/uploads/tendor/<?= $value['file_upload'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                        <a href="<?= base_url() ?>public/admin/uploads/tendor/<?= $value['file_upload'] ?>" target="_blank"  data-toggle="tooltip" data-placement="top" title="Tooltip on top"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
                                     <?php else: ?>
                                         <img src="<?= base_url() ?>public/admin/uploads/tendor/invalid_image.png" alt="" height="40px">
                                     <?php endif; ?>
