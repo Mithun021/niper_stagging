@@ -100,7 +100,7 @@
             <ul class="sub-menu" aria-expanded="false">
                 <li><a href="<?= base_url() ?>admin/result" class="waves-effect"><span>Result Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/grades" class="waves-effect"><span>Grades Details</span></a></li>
-                <li><a href="<?= base_url() ?>admin/result-grades-notice" class="waves-effect"><span>Footer Notice</span></a></li>
+                <li><a href="<?= base_url() ?>admin/result-grades-notice" class="waves-effect"><span>Footer Notes</span></a></li>
             </ul>
         </li>
 
