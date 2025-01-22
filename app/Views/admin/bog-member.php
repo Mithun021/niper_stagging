@@ -114,4 +114,9 @@ $employee_model = new Employee_model();
 
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 
+<script>
+    
+</script>
+
+
 <?= $this->endSection() ?>
