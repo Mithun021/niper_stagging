@@ -142,33 +142,6 @@ use App\Models\Youtube_link_model;
             }
         }
 
-        public function faculty_awards(){
-            $data = ['title' => 'Faculty Awards'];
-            if ($this->request->is("get")) {
-                return view('admin/faculty-awards',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
-        public function awards_recognition(){
-            $data = ['title' => 'Awards & Recognition'];
-            if ($this->request->is("get")) {
-                return view('admin/Awards-recognition',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
-        public function student_achievements(){
-            $data = ['title' => 'Student Achievements'];
-            if ($this->request->is("get")) {
-                return view('admin/student-achievements',$data);
-            }else if ($this->request->is("post")) {
-
-            }
-        }
-
         public function employee_department(){
             $data = ['title' => 'Employee Department Details'];
             if ($this->request->is("get")) {

@@ -28,9 +28,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     // $routes->match(['get','post'],'director-message', 'AdminControllers::director_message');
     $routes->match(['get','post'],'testimonial', 'AdminControllers::testimonial');
     $routes->match(['get','post'],'research-publication', 'AcademicControllers::research_publication');
-    $routes->match(['get','post'],'faculty-awards', 'AdminControllers::faculty_awards');
-    $routes->match(['get','post'],'awards-recognition', 'AdminControllers::awards_recognition');
-    $routes->match(['get','post'],'student-achievements', 'AdminControllers::student_achievements');
+    $routes->match(['get','post'],'faculty-awards', 'AchievementsController::faculty_awards');
+    $routes->match(['get','post'],'awards-recognition', 'AchievementsController::awards_recognition');
+    $routes->match(['get','post'],'student-achievements', 'AchievementsController::student_achievements');
 
     $routes->match(['get','post'],'employee', 'EmployeeController::employee');
     // $routes->match(['get','post'],'employee-department', 'AdminControllers::employee_department');
