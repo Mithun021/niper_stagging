@@ -41,8 +41,8 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <span>BoG File(.pdf)<span class="text-danger">*</span></span>
-                                <input type="file" name="bog_file" class="form-control form-control-sm" accept=".pdf" required>
+                                <span>BoG File(.pdf)</span>
+                                <input type="file" name="bog_file" class="form-control form-control-sm" accept=".pdf">
                             </div>
                         </div>
                         <div class="col-lg-4">
