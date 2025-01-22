@@ -5,7 +5,7 @@
     {
         protected $table         = 'tendor_detail';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['tendor_title','tendor_description','tendor_ref_no','bidding_date','bidding_time','tendor_start_date','tendor_start_time','tendor_end_date','tendor_end_time','tendor_status','marquee_status','status','upload_by'];
+        protected $allowedFields = ['tendor_title','tendor_description','tendor_ref_no','bidding_date','bidding_time','tendor_start_date','tendor_start_time','tendor_end_date','tendor_end_time', 'upload_file' ,'tendor_status','marquee_status','status','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

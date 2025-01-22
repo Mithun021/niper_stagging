@@ -20,7 +20,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/tendor-details">
+                <form method="post" action="<?= base_url() ?>admin/tendor-details" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -65,6 +65,12 @@
                                     <input type="text" class="form-control form-control-sm" name="tendor_end_date"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')" required>
                                     <input type="text" class="form-control form-control-sm" name="tendor_end_time"  placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <span for="">File(.pdf)<span class="text-danger">*</span></span>
+                                <input type="file" class="form-control form-control-sm" name="file_upload" accept=".pdf" required>
                             </div>
                         </div>
                         <div class="col-md-4">

@@ -33,8 +33,8 @@ $employee_model = new Employee_model();
                         <textarea class="form-control form-control-sm" name="description" id="editor2"></textarea></textarea>
                     </div>
                     <div class="form-group">
-                        <span for="">File Upload<span class="text-danger">*</span></span>
-                        <input type="file" name="file_upload" class="form-control form-control-sm" required>
+                        <span for="">File Upload(.pdf)<span class="text-danger">*</span></span>
+                        <input type="file" name="file_upload" class="form-control form-control-sm" accept=".pdf" required>
                     </div>
                     <div class="form-group">
                         <span for="">File Upload Description<span class="text-danger">*</span></span>

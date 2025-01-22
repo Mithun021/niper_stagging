@@ -18,6 +18,13 @@ class TendorControllers extends BaseController
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId']; 
             }
+            $tendor_file = $this->request->getFile('file_upload');
+            if ($tendor_file->isValid() && ! $tendor_file->hasMoved()) {
+                $tendor_fileNewName = "tendor".$tendor_file->getRandomName();
+                $tendor_file->move(ROOTPATH . 'public/admin/uploads/tendor', $tendor_fileNewName);    
+            }else{
+                $tendor_fileNewName = "";
+            }
             $data = [
                 'tendor_title' => $this->request->getPost('tendor_title'),
                 'tendor_description' => $this->request->getPost('tendor_description'),
@@ -28,6 +35,7 @@ class TendorControllers extends BaseController
                 'tendor_start_time' => $this->request->getPost('tendor_start_time'),
                 'tendor_end_date' => $this->request->getPost('tendor_end_date'),
                 'tendor_end_time' => $this->request->getPost('tendor_end_time'),
+                'upload_file' => $tendor_fileNewName,
                 'tendor_status' => $this->request->getPost('tendor_status'),
                 'marquee_status' => $this->request->getPost('marquee_status'),
                 'status' => $this->request->getPost('status'),
