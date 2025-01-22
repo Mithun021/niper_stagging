@@ -43,7 +43,7 @@
 
         <li>
             <a href="javascript: void(0);" class="has-arrow waves-effect"><i
-                    class="mdi mdi-table-merge-cells"></i><span>Jobs &amp; Result</span></a>
+                    class="mdi mdi-table-merge-cells"></i><span>Tendor Details</span></a>
             <ul class="sub-menu" aria-expanded="false">
                 <li><a href="<?= base_url() ?>admin/tendor-details" class="waves-effect"><span>Tendor Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/tendor-page">Tendor Page</a></li>
