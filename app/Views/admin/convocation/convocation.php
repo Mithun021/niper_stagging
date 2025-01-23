@@ -48,13 +48,13 @@ $employee_model = new Employee_model();
                                     <td>
                                         <div class="form-group">
                                             <span for="Convnumber">Start Year:<span class="text-danger">*</span></span>
-                                            <input type="number" name="academic_start_year" id="academic_start_year" class="form-control form-control-sm" required>
+                                            <input type="number" name="academic_start_year[]" id="academic_start_year" class="form-control form-control-sm" required>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
                                             <span for="Convnumber">End Year:<span class="text-danger">*</span></span>
-                                            <input type="number" name="academic_end_year" id="academic_end_year" class="form-control form-control-sm" required>
+                                            <input type="number" name="academic_end_year[]" id="academic_end_year" class="form-control form-control-sm" required>
                                         </div>
                                     </td>
                                     <td><button type="button" class="btn btn-sm btn-danger" id="removenewConvrow">-</button></td>
