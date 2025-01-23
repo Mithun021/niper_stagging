@@ -93,7 +93,7 @@ $employee_model = new Employee_model();
                                 <span for="Datasubmittedpharmacy">Data Submitted for Pharmacy:</span>
                                 <select name="datasubmittedpharmacy" id="datasubmittedpharmacy" class="form-control form-control-sm" required>
                                     <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
+                                    <option value="No" selected>No</option>
                                 </select>
                             </div>
                         </div>
@@ -109,7 +109,7 @@ $employee_model = new Employee_model();
                                 <span for="Datasubmittedoverall">Data Submitted Overall:</span>
                                 <select name="datasubmittedoverall" id="datasubmittedoverall" class="form-control form-control-sm" required>
                                     <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
+                                    <option value="No" selected>No</option>
                                 </select>
                             </div>
                         </div>
