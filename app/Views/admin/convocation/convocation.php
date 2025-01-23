@@ -35,7 +35,7 @@ $employee_model = new Employee_model();
                         <input type="text" name="conv_title" id="conv_title" class="form-control form-control-sm" required>
                     </div>
                     <div class="form-group">
-                        div class="table-responsive">
+                        <div class="table-responsive">
                         <table class="table table-striped table-hover" id="addConvtable">
                             <thead>
                                 <tr>
