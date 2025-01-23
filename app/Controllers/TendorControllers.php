@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Tendor_corrigendum_model;
 use App\Models\Tendor_model;
 use App\Models\Tendor_page_model;
 
@@ -88,11 +89,10 @@ class TendorControllers extends BaseController
 
     public function tendor_corrigendum(){
         $tendor_model = new Tendor_model();
-        $tendor_page_model= new Tendor_page_model();
+        $tendor_corrigendum_model = new Tendor_corrigendum_model();
         $data = ['title' => 'Tendor corrigendum('];
         if ($this->request->is("get")) {
             $data['tendors'] = $tendor_model->get();
-            $data['tendors_page'] = $tendor_page_model->get();
             return view('admin/tendor/tendor-corrigendum',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
@@ -101,19 +101,18 @@ class TendorControllers extends BaseController
             }
             $tendor_file = $this->request->getFile('file_upload');
             if ($tendor_file->isValid() && ! $tendor_file->hasMoved()) {
-                $tendor_fileNewName = "page".$tendor_file->getRandomName();
+                $tendor_fileNewName = "corrigendum".$tendor_file->getRandomName();
                 $tendor_file->move(ROOTPATH . 'public/admin/uploads/tendor', $tendor_fileNewName);    
             }else{
                 $tendor_fileNewName = "";
             }
             $data = [
-                'title' => $this->request->getPost('title'),
-                'description' => $this->request->getPost('description'),
-                'file_upload_description' => $this->request->getPost('file_description'),
-                'file_upload' => $tendor_fileNewName,
+                'tendor_id' => $this->request->getPost('tendor_id'),
+                'file_decription' => $this->request->getPost('file_description'),
+                'upload_file' => $tendor_fileNewName,
                 'upload_by' => $loggeduserId
             ];
-            $result = $tendor_page_model->add($data);
+            $result = $tendor_corrigendum_model->add($data);
             if ($result === true) {
                 return redirect()->to('admin/tendor-corrigendum')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {

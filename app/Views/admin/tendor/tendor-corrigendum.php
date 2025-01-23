@@ -60,7 +60,8 @@ $tendor_model = new Tendor_model();
                             <tr>
                                 <td>SN</td>
                                 <td>File</td>
-                                <td>Title</td>
+                                <td>Description</td>
+                                <td>Tendor id</td>
                                 <td>Create at</td>
                                 <td>Upload by</td>
                                 <td>Action</td>
@@ -72,12 +73,13 @@ $tendor_model = new Tendor_model();
                                 <td><?= $key + 1 ?></td>
                                 <td>
                                     <?php if (!empty($value['file_upload']) && file_exists('public/admin/uploads/tendor/' . $value['file_upload'])): ?>
-                                        <a href="<?= base_url() ?>public/admin/uploads/tendor/<?= $value['file_upload'] ?>" target="_blank" data-toggle="tooltip" data-placement="top" title="<?= strip_tags($value['file_upload_description']) ?>"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                        <a href="<?= base_url() ?>public/admin/uploads/tendor/<?= $value['file_upload'] ?>" target="_blank" data-toggle="tooltip" data-placement="top" title="<?= strip_tags($value['file_decription']) ?>"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
                                     <?php else: ?>
                                         <img src="<?= base_url() ?>public/admin/uploads/tendor/invalid_image.png" alt="" height="40px">
                                     <?php endif; ?>
                                 </td>
-                                <td><?= $value['title'] ?></td>
+                                <td><?= $value['file_decription'] ?></td>
+                                <td><?php echo $tendor_model->get($value['tendor_id']) ?? ''  ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td><?= date('d-m-Y', strtotime($value['created_at'])) ?></td>
                                 <td>
