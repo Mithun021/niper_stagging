@@ -13,6 +13,7 @@ class AchievementsController extends BaseController
         $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
         $data = ['title' => 'Faculty Awards'];
         if ($this->request->is("get")) {
+            $data['faculty_awards'] = $faculty_awards_model->get();
             return view('admin/awards_achievement/faculty-awards', $data);
         } else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
