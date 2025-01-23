@@ -8,6 +8,12 @@ use App\Models\Employee_model;
 $employee_model = new Employee_model();
 ?>
 
+<style>
+    #addConvtable #convTbody #convTrow:first-child td:last-child button {
+        display: none;
+    }
+</style>
+
 <div class="row">
     <!-- Form Section for Adding Convocation Details -->
     <div class="col-lg-4">
@@ -32,7 +38,10 @@ $employee_model = new Employee_model();
                         div class="table-responsive">
                         <table class="table table-striped table-hover" id="addConvtable">
                             <thead>
-                                <tr><td colspan="2">Academic Session</td><td><button type="button" class="btn btn-sm btn-primary" id="addnewconvrow">+</button></td></tr>
+                                <tr>
+                                    <td colspan="2">Academic Session</td>
+                                    <td><button type="button" class="btn btn-sm btn-primary" id="addnewconvrow">+</button></td>
+                                </tr>
                             </thead>
                             <tbody id="convTbody">
                                 <tr id="convTrow">
@@ -119,5 +128,27 @@ $employee_model = new Employee_model();
         </div>
     </div>
 </div>
+
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Create Service Clone for add and remove rows also calculate price
+        var cloneLimit = 4;
+        var currentClones = 0;
+        $("#addnewconvrow").click(function(e) {
+            e.preventDefault();
+            if (currentClones < cloneLimit) {
+                currentClones++;
+                var cloneCatrow = $('#convTrow').clone().appendTo('#convTbody');
+                $(cloneCatrow).find('input').val('');
+            }
+
+        });
+
+        $('#convTbody').on('click', '#removenewConvrow', function() {
+            $(this).closest('tr').remove();
+        });
+    });
+</script>
 
 <?= $this->endSection() ?>
