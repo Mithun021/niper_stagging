@@ -61,6 +61,7 @@ $employee_model = new Employee_model();
                                 </tr>
                             </tbody>
                         </table>
+                        </div>
                     </div>
 
                     <!-- Upload Awardee File -->
