@@ -30,7 +30,7 @@ $tendor_model = new Tendor_model();
                         <select class="form-control form-control-sm" name="tendor_id" id="tendor_id" required>
                             <option value="">--Select--</option>
                         <?php foreach ($tendors as $key => $value) { ?>
-                           <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                           <option value="<?= $value['id'] ?>"><?= $value['tendor_title'] ?></option>
                         <?php } ?>
                         </select>
                     </div>
