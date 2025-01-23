@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Awards_recognition_model;
 use App\Models\Faculty_awards_gallery_model;
 use App\Models\Faculty_awards_model;
 
@@ -52,19 +53,44 @@ class AchievementsController extends BaseController
                         }
                     }
                 }
-                return redirect()->to('admin/faculty-awards')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                return redirect()->to('admin/faculty-awards')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
-                return redirect()->to('admin/faculty-awards')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                return redirect()->to('admin/faculty-awards')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
             }
         }
     }
 
     public function awards_recognition()
     {
+        $awards_recognition_model = new Awards_recognition_model();
         $data = ['title' => 'Awards & Recognition'];
         if ($this->request->is("get")) {
+            $data['awards_recognition'] = $awards_recognition_model->get();
             return view('admin/awards_achievement/awards-recognition', $data);
         } else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId'];
+            }
+            $upload_file = $this->request->getFile('upload_file');
+            if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
+                $upload_file_new_name = 'awards' . $upload_file->getRandomName();
+                $upload_file->move(ROOTPATH . 'public/admin/uploads/achievements', $upload_file_new_name);
+            } else {
+                $upload_file_new_name = "";
+            }
+            $data = [
+                'title' => $this->request->getVar('title'),
+                'description' => $this->request->getVar('description'),
+                'upload_file' => $upload_file_new_name,
+                'upload_by' => $loggeduserId,
+            ];
+            $result = $awards_recognition_model->add($data);
+            if ($result) {
+                return redirect()->to('admin/awards-recognition')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/awards-recognition')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
         }
     }
 
