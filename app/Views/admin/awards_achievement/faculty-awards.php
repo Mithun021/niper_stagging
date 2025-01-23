@@ -17,22 +17,22 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form id="noticeBoardForm">
+                <form method="post" action="<?= base_url() ?>admin/faculty-awards" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="notice_title">
+                        <input type="text" class="form-control form-control-sm" name="title">
                     </div>
                     <div class="form-group">
                         <span for="">Upload Thumbnail(JPG,PNG)</span>
-                        <input type="file" class="form-control form-control-sm" name="notice_file" accept=".jpg, .png" required>
+                        <input type="file" class="form-control form-control-sm" name="upload_file" accept=".jpg, .png, .jpeg" required>
                     </div>
                     <div class="form-group">
                         <span for="">Upload Gallery(JPG,PNG)</span>
-                        <input type="file" class="form-control form-control-sm" name="notice_file" accept=".jpg, .png" required>
+                        <input type="file" class="form-control form-control-sm" name="file_gallery[]" accept=".jpg, .png, .jpeg" required>
                     </div>
                     <div class="form-group">
                         <span for="">Description</span>
-                        <textarea id="editor" name="content"></textarea>
+                        <textarea id="editor" name="description"></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
