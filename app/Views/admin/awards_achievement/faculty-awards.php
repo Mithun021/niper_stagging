@@ -81,6 +81,7 @@ $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
                                     <td>
                                         <?php
                                         $gallery = $faculty_awards_gallery_model->get_by_faculty_award_id($value['id']);
+                                        print_r($gallery);
                                         if (!empty($gallery)) {
                                             foreach ($gallery as $files) { ?>
                                                 <?php if (!empty($value['gallery_file']) && file_exists('public/admin/uploads/achievements/' . $value['gallery_file'])): ?>
