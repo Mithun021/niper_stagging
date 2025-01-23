@@ -47,6 +47,7 @@
             <ul class="sub-menu" aria-expanded="false">
                 <li><a href="<?= base_url() ?>admin/tendor-details" class="waves-effect"><span>Tendor Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/tendor-page">Tendor Page</a></li>
+                <li><a href="<?= base_url() ?>admin/tendor-corrigendum">Tendor Corrigendum</a></li>
             </ul>
         </li>
 
