@@ -2,7 +2,9 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
 <?php
+
 use App\Models\Employee_model;
+
 $employee_model = new Employee_model();
 ?>
 
@@ -26,15 +28,30 @@ $employee_model = new Employee_model();
                         <span for="Convnumber">Convocation Title:<span class="text-danger">*</span></span>
                         <input type="text" name="conv_title" id="conv_title" class="form-control form-control-sm" required>
                     </div>
-
                     <div class="form-group">
-                        <span for="Convnumber">Academic Session Start Year:<span class="text-danger">*</span></span>
-                        <input type="number" name="academic_start_year" id="academic_start_year" class="form-control form-control-sm" required>
-                    </div>
-
-                    <div class="form-group">
-                        <span for="Convnumber">Academic Session End Year:<span class="text-danger">*</span></span>
-                        <input type="number" name="academic_end_year" id="academic_end_year" class="form-control form-control-sm" required>
+                        div class="table-responsive">
+                        <table class="table table-striped table-hover" id="addConvtable">
+                            <thead>
+                                <tr><td colspan="2"></td><td><button type="button" class="btn btn-sm btn-primary" id="addnewconvrow">+</button></td></tr>
+                            </thead>
+                            <tbody id="convTbody">
+                                <tr id="convTrow">
+                                    <td>
+                                        <div class="form-group">
+                                            <span for="Convnumber">Academic Session Start Year:<span class="text-danger">*</span></span>
+                                            <input type="number" name="academic_start_year" id="academic_start_year" class="form-control form-control-sm" required>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <span for="Convnumber">Academic Session End Year:<span class="text-danger">*</span></span>
+                                            <input type="number" name="academic_end_year" id="academic_end_year" class="form-control form-control-sm" required>
+                                        </div>
+                                    </td>
+                                    <td><button type="button" class="btn btn-sm btn-danger" id="removenewConvrow">-</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
                     <!-- Upload Awardee File -->
@@ -42,7 +59,7 @@ $employee_model = new Employee_model();
                         <span for="Awardeefileupload">Upload Awardee File(.pdf):<span class="text-danger">*</span></span>
                         <input type="file" name="upload_file" id="upload_file" class="form-control form-control-sm" accept=".pdf" required>
                     </div>
-                    
+
                     <!-- Submit Button -->
                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
                 </form>
@@ -71,29 +88,30 @@ $employee_model = new Employee_model();
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($convocation as $key => $value) { ?>
-                            <tr>
-                                <td><?= ++$key ?></td>
-                                <td>
-                                    <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/convocation/' . $value['upload_file'])): ?>
-                                        <a href="<?= base_url() ?>public/admin/uploads/convocation/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
-                                    <?php else: ?>
-                                        <img src="<?= base_url() ?>public/admin/uploads/convocation/invalid_image.png" alt="" height="40px">
-                                    <?php endif; ?>
-                                </td>
-                                <td><?= $value['title'] ?></td>
-                                <td><?= date("d:M:Y", strtotime($value['academic_session_start'])) ?> - <?= date("d:M:Y", strtotime($value['academic_session_end'])) ?></td>
-                                <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
-                                <td><?= date("d-M-Y h:i A", strtotime($value['created_at'])) ?> </td>
-                                <td>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                                        <!-- <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a> -->
-                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
-                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php } ?>
+                            <?php foreach ($convocation as $key => $value) { ?>
+                                <tr>
+                                    <td><?= ++$key ?></td>
+                                    <td>
+                                        <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/convocation/' . $value['upload_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/convocation/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/convocation/invalid_image.png" alt="" height="40px">
+                                        <?php endif; ?>
+                                    </td>
+                                    <td><?= $value['title'] ?></td>
+                                    <td><?= date("d:M:Y", strtotime($value['academic_session_start'])) ?> - <?= date("d:M:Y", strtotime($value['academic_session_end'])) ?></td>
+                                    <td><?php $emp = $employee_model->get($value['upload_by']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                    <td><?= date("d-M-Y h:i A", strtotime($value['created_at'])) ?> </td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                            <!-- <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a> -->
+                                            <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                            <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
