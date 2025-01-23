@@ -32,19 +32,19 @@ $employee_model = new Employee_model();
                         div class="table-responsive">
                         <table class="table table-striped table-hover" id="addConvtable">
                             <thead>
-                                <tr><td colspan="2"></td><td><button type="button" class="btn btn-sm btn-primary" id="addnewconvrow">+</button></td></tr>
+                                <tr><td colspan="2">Academic Session</td><td><button type="button" class="btn btn-sm btn-primary" id="addnewconvrow">+</button></td></tr>
                             </thead>
                             <tbody id="convTbody">
                                 <tr id="convTrow">
                                     <td>
                                         <div class="form-group">
-                                            <span for="Convnumber">Academic Session Start Year:<span class="text-danger">*</span></span>
+                                            <span for="Convnumber">Start Year:<span class="text-danger">*</span></span>
                                             <input type="number" name="academic_start_year" id="academic_start_year" class="form-control form-control-sm" required>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <span for="Convnumber">Academic Session End Year:<span class="text-danger">*</span></span>
+                                            <span for="Convnumber">End Year:<span class="text-danger">*</span></span>
                                             <input type="number" name="academic_end_year" id="academic_end_year" class="form-control form-control-sm" required>
                                         </div>
                                     </td>
