@@ -1,8 +1,12 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
 <?php
+
 use App\Models\Employee_model;
+use App\Models\Faculty_awards_gallery_model;
+
 $employee_model = new Employee_model();
+$faculty_awards_gallery_model = new Faculty_awards_gallery_model();
 ?>
 <style>
 
@@ -57,6 +61,7 @@ $employee_model = new Employee_model();
                                 <td>SN</td>
                                 <td>Files</td>
                                 <td>Title</td>
+                                <td>Gallery</td>
                                 <td>upload by</td>
                                 <td>Action</td>
                             </tr>
@@ -73,6 +78,19 @@ $employee_model = new Employee_model();
                                         <?php endif; ?>
                                     </td>
                                     <td><?= $value['title'] ?></td>
+                                    <td>
+                                        <?php
+                                        $gallery = $faculty_awards_gallery_model->get_by_faculty_award_id($value['id']);
+                                        if (!empty($gallery)) {
+                                            foreach ($gallery as $files) { ?>
+                                                <?php if (!empty($value['gallery_file']) && file_exists('public/admin/uploads/achievements/' . $value['gallery_file'])): ?>
+                                                    <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $value['gallery_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/achievements/<?= $value['gallery_file'] ?>" alt="" height="30px"></a>
+                                                <?php else: ?>
+                                                    <img src="<?= base_url() ?>public/admin/uploads/achievements/invalid_image.png" alt="" height="40px">
+                                                <?php endif; ?>
+                                        <?php }
+                                        } ?>
+                                    </td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                     <td>

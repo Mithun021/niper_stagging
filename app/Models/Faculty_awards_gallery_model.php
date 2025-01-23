@@ -26,5 +26,9 @@
             }
             return $result;
         }
+
+        public function get_by_faculty_award_id($id){
+            return $this->where('faculty_award_id',$id)->findAll();
+        }
     }
 ?>
