@@ -80,17 +80,23 @@ $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
                                     <td><?= $value['title'] ?></td>
                                     <td>
                                         <?php
+                                        // Fetch gallery data based on faculty award id
                                         $gallery = $faculty_awards_gallery_model->get_by_faculty_award_id($value['id']);
-                                        print_r($gallery);
+
                                         if (!empty($gallery)) {
+                                            // Loop through each gallery file
                                             foreach ($gallery as $files) { ?>
-                                                <?php if (!empty($value['gallery_file']) && file_exists('public/admin/uploads/achievements/' . $value['gallery_file'])): ?>
-                                                    <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $value['gallery_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/achievements/<?= $value['gallery_file'] ?>" alt="" height="30px"></a>
+                                                <?php if (!empty($files['gallery_file']) && file_exists('public/admin/uploads/achievements/' . $files['gallery_file'])): ?>
+                                                    <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $files['gallery_file'] ?>" target="_blank">
+                                                        <img src="<?= base_url() ?>public/admin/uploads/achievements/<?= $files['gallery_file'] ?>" alt="Gallery Image" height="30px">
+                                                    </a>
                                                 <?php else: ?>
-                                                    <img src="<?= base_url() ?>public/admin/uploads/achievements/invalid_image.png" alt="" height="40px">
+                                                    <img src="<?= base_url() ?>public/admin/uploads/achievements/invalid_image.png" alt="Invalid Image" height="40px">
                                                 <?php endif; ?>
                                         <?php }
-                                        } ?>
+                                        }
+                                        ?>
+
                                     </td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
