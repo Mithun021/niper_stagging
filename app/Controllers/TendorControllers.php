@@ -107,26 +107,11 @@ class TendorControllers extends BaseController
             }else{
                 $tendor_fileNewName = "";
             }
-            $data_submitted_file = $this->request->getFile('data_submitted_file');
-            if ($data_submitted_file->isValid() && ! $data_submitted_file->hasMoved()) {
-                $data_submitted_fileNewName = "submitted".$data_submitted_file->getRandomName();
-                $data_submitted_file->move(ROOTPATH . 'public/admin/uploads/tendor', $data_submitted_fileNewName);    
-            }else{
-                $data_submitted_fileNewName = "";
-            }
-            $data_submitted_overall_file = $this->request->getFile('data_submitted_overall_file');
-            if ($data_submitted_overall_file->isValid() && ! $data_submitted_overall_file->hasMoved()) {
-                $data_submitted_overall_fileNewName = "overall".$data_submitted_overall_file->getRandomName();
-                $data_submitted_overall_file->move(ROOTPATH . 'public/admin/uploads/tendor', $data_submitted_overall_fileNewName);    
-            }else{
-                $data_submitted_overall_fileNewName = "";
-            }
+            
             $data = [
                 'tendor_id' => $this->request->getPost('tendor_id'),
                 'file_decription' => $this->request->getPost('file_description'),
                 'upload_file' => $tendor_fileNewName,
-                'pharmacy_file' => $data_submitted_fileNewName,
-                'overall_file' => $data_submitted_overall_fileNewName,
                 'upload_by' => $loggeduserId
             ];
             $result = $tendor_corrigendum_model->add($data);
