@@ -28,7 +28,7 @@
                     </div>
                     <div class="form-group">
                         <span for="">Upload Gallery(JPG,PNG)</span>
-                        <input type="file" class="form-control form-control-sm" name="file_gallery[]" accept=".jpg, .png, .jpeg" required>
+                        <input type="file" class="form-control form-control-sm" name="file_gallery[]" accept=".jpg, .png, .jpeg" multiple required>
                     </div>
                     <div class="form-group">
                         <span for="">Description</span>
