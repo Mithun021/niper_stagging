@@ -93,7 +93,7 @@ class TendorControllers extends BaseController
         if ($this->request->is("get")) {
             $data['tendors'] = $tendor_model->get();
             $data['tendors_page'] = $tendor_page_model->get();
-            return view('admin/tendor/tendor-corrigendum(',$data);
+            return view('admin/tendor/tendor-corrigendum',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
             if ($sessionData) {
@@ -115,9 +115,9 @@ class TendorControllers extends BaseController
             ];
             $result = $tendor_page_model->add($data);
             if ($result === true) {
-                return redirect()->to('admin/tendor-corrigendum(')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                return redirect()->to('admin/tendor-corrigendum')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
-                return redirect()->to('admin/tendor-corrigendum(')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                return redirect()->to('admin/tendor-corrigendum')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
         }
     }
