@@ -3,9 +3,10 @@
 <?= $this->section("body-content"); ?>
 <?php
 
+use App\Models\Convocation_session_model;
 use App\Models\Employee_model;
-
 $employee_model = new Employee_model();
+$convocation_session_model = new Convocation_session_model();
 ?>
 
 <style>
@@ -109,7 +110,18 @@ $employee_model = new Employee_model();
                                         <?php endif; ?>
                                     </td>
                                     <td><?= $value['title'] ?></td>
-                                    <td><?= date("d:M:Y", strtotime($value['academic_session_start'])) ?> - <?= date("d:M:Y", strtotime($value['academic_session_end'])) ?></td>
+                                    <td>
+                                        <?php $conv_session = $convocation_session_model->get_by_conv_id($value['id']);
+                                        if ($conv_session) {
+                                            foreach ($conv_session as $key => $value) {
+                                                echo $value['session_start'] . " - " . $value['session_end'] . "<br>";
+                                            }
+                                        } else {
+                                            echo "No Session";
+                                        }
+
+                                        ?>
+                                    </td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                     <td><?= date("d-M-Y h:i A", strtotime($value['created_at'])) ?> </td>
