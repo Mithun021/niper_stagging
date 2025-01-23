@@ -68,7 +68,7 @@ $tendor_model = new Tendor_model();
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($tendors_page as $key => $value) {  ?>
+                        <?php foreach ($tendor_corrigendum as $key => $value) {  ?>
                             <tr>
                                 <td><?= $key + 1 ?></td>
                                 <td>

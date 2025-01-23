@@ -93,6 +93,7 @@ class TendorControllers extends BaseController
         $data = ['title' => 'Tendor corrigendum('];
         if ($this->request->is("get")) {
             $data['tendors'] = $tendor_model->get();
+            $data['tendor_corrigendum'] = $tendor_corrigendum_model->get();
             return view('admin/tendor/tendor-corrigendum',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
