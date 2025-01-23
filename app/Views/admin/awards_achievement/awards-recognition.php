@@ -65,7 +65,7 @@ $employee_model = new Employee_model();
                                     <td><?= ++$key ?></td>
                                     <td>
                                         <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/achievements/' . $value['upload_file'])): ?>
-                                            <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/achievements/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
+                                            <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
                                         <?php else: ?>
                                             <img src="<?= base_url() ?>public/admin/uploads/achievements/invalid_image.png" alt="" height="40px">
                                         <?php endif; ?>
