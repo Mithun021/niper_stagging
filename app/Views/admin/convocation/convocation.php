@@ -113,9 +113,11 @@ $convocation_session_model = new Convocation_session_model();
                                     <td>
                                         <?php $conv_session = $convocation_session_model->get_by_conv_id($value['id']);
                                         if ($conv_session) {
+                                            echo "<ul>";
                                             foreach ($conv_session as $key => $session) {
-                                                echo $session['session_start'] . " - " . $session['session_end'] . "<br>";
+                                                echo "<li>".$session['session_start'] . " - " . $session['session_end'] . "</li>";
                                             }
+                                            echo "</ul>";
                                         } else {
                                             echo "No Session";
                                         }
