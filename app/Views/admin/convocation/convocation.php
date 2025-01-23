@@ -13,6 +13,10 @@ $convocation_session_model = new Convocation_session_model();
     #addConvtable #convTbody #convTrow:first-child td:last-child button {
         display: none;
     }
+    ul#session_list{
+        margin: 0;
+        padding: 0;
+    }
 </style>
 
 <div class="row">
@@ -113,7 +117,7 @@ $convocation_session_model = new Convocation_session_model();
                                     <td>
                                         <?php $conv_session = $convocation_session_model->get_by_conv_id($value['id']);
                                         if ($conv_session) {
-                                            echo "<ul>";
+                                            echo "<ul id='session_list'>";
                                             foreach ($conv_session as $key => $session) {
                                                 echo "<li>".$session['session_start'] . " - " . $session['session_end'] . "</li>";
                                             }
