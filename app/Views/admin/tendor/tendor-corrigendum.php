@@ -79,7 +79,7 @@ $tendor_model = new Tendor_model();
                                     <?php endif; ?>
                                 </td>
                                 <td><?= $value['file_decription'] ?></td>
-                                <td><?php echo $tendor_model->get($value['tendor_id']) ?? ''  ?></td>
+                                <td><?php $tendor = $tendor_model->get($value['tendor_id']); echo $tendor['tendor_title'] ?? ''  ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td><?= date('d-m-Y', strtotime($value['created_at'])) ?></td>
                                 <td>
