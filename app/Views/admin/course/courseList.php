@@ -23,12 +23,12 @@
                 ?>
                 <form method="post" action="<?= base_url() ?>admin/courseList" enctype="multipart/form-data">
                     <div class="form-group">
-                        <span for="">Department Name<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="dept_name" required minlength="5">
+                        <span for="">Course Name<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="course_name" required minlength="3">
                     </div>
                     <div class="form-group">
-                        <span for="">Desription</span>
-                        <textarea id="editor" name="description"></textarea>
+                        <span for="">Course Code<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="course_code" required>
                     </div>
                     <div class="form-group">
                         <span for="">Desription</span>

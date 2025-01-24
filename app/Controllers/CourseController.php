@@ -2,14 +2,31 @@
 
 namespace App\Controllers;
 
+use App\Models\Courses_model;
+
 class CourseController extends BaseController
 {
     public function courseList(){
+        $courses_model = new Courses_model();
         $data = ['title' => 'Course Details'];
         if ($this->request->is("get")) {
             return view('admin/course/courseList',$data);
         }else if ($this->request->is("post")) {
-
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $data = [
+                'course_name' => $this->request->getVar('course_name'),
+                'course_code' => $this->request->getVar('course_code'),
+                'upload_by' => $loggeduserId
+            ];
+            $result = $courses_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/courseList')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            }else{
+                return redirect()->to('admin/courseList')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
         }
     }
 }
