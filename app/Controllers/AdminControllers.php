@@ -6,6 +6,7 @@ use App\Models\Act_rules_category_model;
 use App\Models\Act_rules_model;
 use App\Models\Admission_model;
 use App\Models\Annual_report_model;
+use App\Models\Assign_quick_link_model;
 use App\Models\Banner_slider_model;
 use App\Models\Bog_gallery_model;
 use App\Models\Bog_members_model;
@@ -483,12 +484,26 @@ use App\Models\Youtube_link_model;
         
         public function assign_quick_link(){
             $quick_link_model = new Quick_link_model();
+            $assign_quick_link_model = new Assign_quick_link_model();
             $data = ['title' => 'Assign Quick Links'];
             if ($this->request->is("get")) {
                 $data['quick_link'] = $quick_link_model->get();
+                $data['assign_quick_link'] = $assign_quick_link_model->get();
                 return view('admin/assign-quick-link',$data);
             }else if ($this->request->is("post")) {
-
+                $quick_links = $this->request->getPost('quick_link');
+                foreach ($quick_links as $key => $value) {
+                    $data = [
+                        'quick_link_id' => $value,
+                        'page_name' => $this->request->getPost('page_pane'),
+                    ];
+                    $result = $assign_quick_link_model->add($data);
+                }
+                if ($result === true) {
+                    return redirect()->to('admin/assign-quick-link')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/assign-quick-link')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 

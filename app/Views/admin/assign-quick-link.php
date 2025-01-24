@@ -31,7 +31,7 @@ $viewFiles = array_map(function ($file) {
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form action="<?= base_url() ?>admin/quick-link" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/assign-quick-link" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <span>Select Page<span class="text-danger">*</span></span>
                         <select name="page_pane" id="page_pane" class="form-control form-control-sm">
@@ -44,7 +44,7 @@ $viewFiles = array_map(function ($file) {
                     <div class="form-group">
                         <span>Quick Link<span class="text-danger">*</span></span>
                     <?php foreach ($quick_link as $value){ ?>
-                        <p class="m-0"><input type="checkbox" name="quick_link" value="<?= $value['id'] ?>"> <?= $value['title'] ?></->
+                        <p class="m-0"><input type="checkbox" name="quick_link[]" value="<?= $value['id'] ?>"> <?= $value['title'] ?></->
                     <?php } ?>
                     </div>
 
