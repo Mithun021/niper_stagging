@@ -10,6 +10,7 @@ class CourseController extends BaseController
         $courses_model = new Courses_model();
         $data = ['title' => 'Course Details'];
         if ($this->request->is("get")) {
+            $data['courses'] = $courses_model->getCourseList();
             return view('admin/course/courseList',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
@@ -19,6 +20,7 @@ class CourseController extends BaseController
             $data = [
                 'course_name' => $this->request->getVar('course_name'),
                 'course_code' => $this->request->getVar('course_code'),
+                'status' => $this->request->getVar('status'),
                 'upload_by' => $loggeduserId
             ];
             $result = $courses_model->add($data);
