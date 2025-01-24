@@ -108,8 +108,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->post('save_menu_heading_sort_order', 'AdminControllers::save_menu_heading_sort_order');
     $routes->post('save_pages', 'AdminControllers::save_pages');
     $routes->post('save_menu_page_sort_order', 'AdminControllers::save_menu_page_sort_order');
-
+    
     $routes->match(['get', 'post'], 'courseList', 'CourseController::courseList');
+    $routes->match(['get', 'post'], 'assignCourseList', 'CourseController::assignCourseList');
 
     // Export and Import routes
     $routes->post('export_emp_experience_sample', 'EmployeeController::export_emp_experience_sample');

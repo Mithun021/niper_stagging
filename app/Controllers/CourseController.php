@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Courses_model;
+use App\Models\Department_model;
 
 class CourseController extends BaseController
 {
@@ -29,6 +30,17 @@ class CourseController extends BaseController
             }else{
                 return redirect()->to('admin/courseList')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
+        }
+    }
+
+    public function assignCourseList(){
+        $department_model = new Department_model();
+        $data = ['title' => 'Assign Course'];
+        if ($this->request->is("get")) {
+            $data['departments'] = $department_model->get();
+            return view('admin/course/assignCourseList',$data);
+        }else if ($this->request->is("post")) {
+            
         }
     }
 }

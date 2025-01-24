@@ -119,6 +119,7 @@
                 <li><a href="<?= base_url() ?>admin/designation" class="waves-effect"><span>Designation Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/program" class="waves-effect"><span>Program Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/courseList" class="waves-effect"><span>Course Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/assignCourseList" class="waves-effect"><span>Assign Course Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/program-dept-mapping" class="waves-effect"><span>Program Dept. Mapping</span></a></li>
                 <li><a href="<?= base_url() ?>admin/program-dept-std-mapping" class="waves-effect"><span>Program Dept. Std. Mapping</span></a></li>
                 <li><a href="<?= base_url() ?>admin/membership" class="waves-effect"><span>Membership Details</span></a></li>
