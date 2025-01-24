@@ -80,8 +80,8 @@ $viewFiles = array_map(function ($file) {
                                 <td>
                                 <?php $quick_link = $quick_link_model->get_assign_data($value['quick_link_id']);
                                 echo "<ul>";
-                                    foreach ($quick_link as $key => $value) {
-                                       echo "<li>".$value['title']."</li>";
+                                    foreach ($quick_link as $key => $links) {
+                                       echo "<li>".$links['title']."</li>";
                                 echo "</ul>"; } ?>
                                 </td>
                             </tr>
