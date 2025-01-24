@@ -493,7 +493,7 @@ use App\Models\Youtube_link_model;
             }else if ($this->request->is("post")) {
                 $quick_links = $this->request->getPost('quick_link');
                 if (empty($quick_links) || strlen($quick_links) <= 0) {
-                    return redirect()->back()->with('status', 'Quick link cannot be empty or less than 0 characters');
+                    return redirect()->back()->with('status', '<div class="alert alert-danger" role="alert">Quick link cannot be empty or less than 0 characters</div>');
                 }
                 foreach ($quick_links as $key => $value) {
                     $data = [
