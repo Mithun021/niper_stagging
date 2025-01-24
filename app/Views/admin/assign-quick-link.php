@@ -73,7 +73,7 @@ $viewFiles = array_map(function ($file) {
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($variable as $key => $value) { ?>
+                        <?php foreach ($assign_quick_link as $key => $value) { ?>
                             <tr>
                                 <td><?= ++$key ?></td>
                                 <td><?= $value['page_name'] ?></td>
