@@ -17,16 +17,14 @@ class Courses_model extends Model
             $result = $this->update($id, $data);
             return $result ? true : 'Data not updated: Update failed.';
         } else {
-            if ($this->existsCourseCode($data['course_code'])) {
-                return 'Data already exists: Course code already taken.';
-            }
+            $existingStudent = $this->where('course_code', $data['course_code'])->first();
+            if ($existingStudent) {
+                return 'Data not inserted: Course already exists.';
+            }else{
             $result = $this->insert($data);
             return $result ? true : 'Data not inserted: Insertion failed.';
+            }
         }
-    }
-    private function existsCourseCode($course_code)
-    {
-        return $this->where('course_code', $course_code)->countAllResults() > 0;
     }
 
     public function get($id = null)
