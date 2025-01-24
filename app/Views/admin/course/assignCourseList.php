@@ -34,7 +34,7 @@ $employee_model = new Employee_model();
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/program-dept-std-mapping" method="post">
+                <form action="<?= base_url() ?>admin/assignCourseList" method="post">
 
                     <div class="row">
                         <div class="col-lg-4">
@@ -94,7 +94,7 @@ $employee_model = new Employee_model();
                                                 <tr>
                                                     <td><span><input type="checkbox" name="course_id" value="<?= $value['id'] ?>"></span></td>
                                                     <td><?= $value['course_name'] ?> - <?= $value['course_code'] ?></td>
-                                                    <td><input type="text" class="form-control form-control-sm" name="credit_score[]"></td>
+                                                    <td><input type="number" class="form-control form-control-sm" name="credit_score[]"></td>
                                                 </tr>
                                             <?php } ?>
                                             </tbody>

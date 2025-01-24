@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Assign_course_model;
 use App\Models\Courses_model;
 use App\Models\Department_model;
 
@@ -34,15 +35,40 @@ class CourseController extends BaseController
     }
 
     public function assignCourseList(){
+        $assign_course_model = new Assign_course_model();
         $department_model = new Department_model();
         $courses_model = new Courses_model();
         $data = ['title' => 'Assign Course'];
         if ($this->request->is("get")) {
             $data['department'] = $department_model->get();
             $data['courses'] = $courses_model->getActiveData();
+            $data['assign_courses'] = $assign_course_model->get();
             return view('admin/course/assignCourseList',$data);
         }else if ($this->request->is("post")) {
-
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $course_id = $this->request->getVar('course_id');
+            if(empty($course_id)){
+                return redirect()->to('admin/assignCourseList')->with('status','<div class="alert alert-danger" role="alert"> Please select course </div>');
+            }
+            foreach ($course_id as $key => $value) {
+                $data =[
+                    'course_id' => $value,
+                    'dept_id' => $this->request->getVar('Deptid'),
+                    'program_id' => $this->request->getVar('Progid'),
+                    'semester' => $this->request->getVar('semester'),
+                    'credits' => $this->request->getVar('credits')[$key],
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $assign_course_model->add($data);
+            }
+            if ($result === true) {
+                return redirect()->to('admin/assignCourseList')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            }else{
+                return redirect()->to('admin/assignCourseList')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
         }
     }
 }
