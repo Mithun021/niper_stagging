@@ -77,7 +77,7 @@ $viewFiles = array_map(function ($file) {
                                 <tr>
                                     <td><?= ++$key ?></td>
                                     <td><?= $value['page_name'] ?></td>
-                                    <td> <?php $quick_link = $quick_link_model->get($value['quick_link_id']); echo '<a href='.$quick_link["page_url"].'>'.$quick_link['title'].'</a>' ?? '__'; ?></td>
+                                    <td> <?php $quick_link = $quick_link_model->get($value['quick_link_id']); echo '<a href='.$quick_link["page_url"].' target="_blank">'.$quick_link['title'].'</a>' ?? '__'; ?></td>
                                     <td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                             <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
