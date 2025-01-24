@@ -37,10 +37,10 @@ class CourseController extends BaseController
         $department_model = new Department_model();
         $data = ['title' => 'Assign Course'];
         if ($this->request->is("get")) {
-            $data['departments'] = $department_model->get();
+            $data['department'] = $department_model->get();
             return view('admin/course/assignCourseList',$data);
         }else if ($this->request->is("post")) {
-            
+
         }
     }
 }
