@@ -35,9 +35,11 @@ class CourseController extends BaseController
 
     public function assignCourseList(){
         $department_model = new Department_model();
+        $courses_model = new Courses_model();
         $data = ['title' => 'Assign Course'];
         if ($this->request->is("get")) {
             $data['department'] = $department_model->get();
+            $data['courses'] = $courses_model->getActiveData();
             return view('admin/course/assignCourseList',$data);
         }else if ($this->request->is("post")) {
 
