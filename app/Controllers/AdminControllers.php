@@ -481,6 +481,16 @@ use App\Models\Youtube_link_model;
             } // end else if
         }
         
+        public function assign_quick_link(){
+            $quick_link_model = new Quick_link_model();
+            $data = ['title' => 'Assign Quick Links'];
+            if ($this->request->is("get")) {
+                
+                return view('admin/assign-quick-link',$data);
+            }else if ($this->request->is("post")) {
+
+            }
+        }
 
         public function about(){
             $about_niper_model = new About_niper_model();

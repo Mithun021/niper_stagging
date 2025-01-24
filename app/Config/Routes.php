@@ -48,6 +48,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'contact', 'AdminControllers::contact');
     $routes->match(['get','post'],'download-forms', 'AdminControllers::download_forms');
     $routes->match(['get','post'],'quick-link', 'AdminControllers::quick_link');
+    $routes->match(['get','post'],'assign-quick-link', 'AdminControllers::assign_quick_link');
     $routes->match(['get','post'],'youtube-link', 'AdminControllers::youtube_link');
     $routes->match(['get','post'],'rules-regulations', 'AcademicControllers::rules_regulations');
     $routes->match(['get','post'],'departments-section', 'DepartmentController::departments_section');

@@ -139,6 +139,7 @@
                 <li><a href="<?= base_url() ?>admin/photo-album">Photo Album</a></li>
                 <li><a href="<?= base_url() ?>admin/media">Media</a></li>
                 <li><a href="<?= base_url() ?>admin/quick-link">Quick Links</a></li>
+                <li><a href="<?= base_url() ?>admin/assign-quick-link">Assign Quick Links</a></li>
                 <li><a href="<?= base_url() ?>admin/youtube-link">Youtube Link</a></li>
                 <li><a href="<?= base_url() ?>admin/contact">Contact Details</a></li>
                 <li><a href="<?= base_url() ?>admin/banner-slider" class="waves-effect"><span>Banner Slider</span></a></li>
