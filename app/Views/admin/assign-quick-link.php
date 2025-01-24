@@ -33,8 +33,9 @@ $viewFiles = array_map(function ($file) {
                 ?>
                 <form action="<?= base_url() ?>admin/quick-link" method="post" enctype="multipart/form-data">
                     <div class="form-group">
+                        <span>Select Page<span class="text-danger">*</span></span>
                         <select name="page_pane" id="page_pane" class="form-control form-control-sm">
-                            <option value="">Custom Link</option>
+                            <option value="">--Select--</option>
                             <?php foreach ($viewFiles as $webpage): ?>
                                 <option value="<?= $webpage ?>"><?= $webpage ?></option>
                             <?php endforeach; ?>
