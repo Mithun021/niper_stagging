@@ -26,6 +26,8 @@ class CourseController extends BaseController
                 'upload_by' => $loggeduserId
             ];
             $result = $courses_model->add($data);
+
+            echo $result; die;
             if ($result === true) {
                 return redirect()->to('admin/courseList')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             }else{
