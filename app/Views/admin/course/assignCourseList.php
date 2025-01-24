@@ -141,7 +141,7 @@ $program_model = new Program_model();
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($students_mapped_data as $key => $value) { ?>
+                            <?php foreach ($assign_courses as $key => $value) { ?>
                                 <tr>
                                     <td><?= $key + 1 ?></td>
                                     <td><?= $department_model->get($value['department_name'])['name'] ?? '__' ?></td>
