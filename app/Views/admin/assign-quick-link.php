@@ -78,11 +78,7 @@ $viewFiles = array_map(function ($file) {
                                 <td><?= ++$key ?></td>
                                 <td><?= $value['page_name'] ?></td>
                                 <td>
-                                <?php $quick_link = $quick_link_model->get_assign_data($value['quick_link_id']);
-                                echo "<ul>";
-                                    foreach ($quick_link as $key => $links) {
-                                       echo "<li>".$links['title']."</li>";
-                                echo "</ul>"; } ?>
+                                <?php echo $quick_link_model->get($value['quick_link_id'])['title'] ?? '__'; ?>
                                 </td>
                             </tr>
                         <?php } ?>
