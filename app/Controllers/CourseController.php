@@ -59,7 +59,7 @@ class CourseController extends BaseController
                     'dept_id' => $this->request->getVar('Deptid'),
                     'program_id' => $this->request->getVar('Progid'),
                     'semester' => $this->request->getVar('semester'),
-                    'credits' => $this->request->getVar('credits')[$key],
+                    'credits' => $this->request->getVar('credit_score')[$key],
                     'upload_by' => $loggeduserId
                 ];
                 $result = $assign_course_model->add($data);
