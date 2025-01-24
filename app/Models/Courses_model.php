@@ -3,7 +3,7 @@
     use CodeIgniter\Model;
     class Courses_model extends Model
     {
-        protected $table         = 'faculty_awards';
+        protected $table         = 'courses';
         protected $primaryKey    = 'id';
         protected $allowedFields = ['course_name','course_code', 'upload_by'];
         protected $createdField  = 'created_at';
