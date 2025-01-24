@@ -92,7 +92,7 @@ $employee_model = new Employee_model();
                                             <tbody>
                                             <?php foreach ($courses as $key => $value) { ?>
                                                 <tr>
-                                                    <td><span><input type="checkbox" name="course_id" value="<?= $value['id'] ?>"></span></td>
+                                                    <td><span><input type="checkbox" name="course_id[]" value="<?= $value['id'] ?>"></span></td>
                                                     <td><?= $value['course_name'] ?> - <?= $value['course_code'] ?></td>
                                                     <td><input type="number" class="form-control form-control-sm" name="credit_score[]"></td>
                                                 </tr>
