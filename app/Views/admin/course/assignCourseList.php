@@ -4,9 +4,15 @@
 
 <?php
 
+use App\Models\Courses_model;
+use App\Models\Department_model;
 use App\Models\Employee_model;
+use App\Models\Program_model;
 
 $employee_model = new Employee_model();
+$courses_model = new Courses_model();
+$department_model = new Department_model();
+$program_model = new Program_model();
 ?>
 
 <style>
@@ -90,13 +96,13 @@ $employee_model = new Employee_model();
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <?php foreach ($courses as $key => $value) { ?>
-                                                <tr>
-                                                    <td><span><input type="checkbox" name="course_id[]" value="<?= $value['id'] ?>"></span></td>
-                                                    <td><?= $value['course_name'] ?> - <?= $value['course_code'] ?></td>
-                                                    <td><input type="number" class="form-control form-control-sm" name="credit_score[]"></td>
-                                                </tr>
-                                            <?php } ?>
+                                                <?php foreach ($courses as $key => $value) { ?>
+                                                    <tr>
+                                                        <td><span><input type="checkbox" name="course_id[]" value="<?= $value['id'] ?>"></span></td>
+                                                        <td><?= $value['course_name'] ?> - <?= $value['course_code'] ?></td>
+                                                        <td><input type="number" class="form-control form-control-sm" name="credit_score[]"></td>
+                                                    </tr>
+                                                <?php } ?>
                                             </tbody>
                                         </table>
 
@@ -125,17 +131,32 @@ $employee_model = new Employee_model();
                         <thead>
                             <tr>
                                 <td>SN</td>
-                                <td>Student</td>
                                 <td>Department</td>
                                 <td>Program</td>
                                 <td>Semester</td>
+                                <td>Course</td>
+                                <td>Credits</td>
                                 <td>Upload by</td>
-                                <td>Upload Date</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            <?php foreach ($students_mapped_data as $key => $value) { ?>
+                                <tr>
+                                    <td><?= $key + 1 ?></td>
+                                    <td><?= $department_model->get($value['department_name'])['name'] ?? '__' ?></td>
+                                    <td><?= $program_model->get($value['program_name'])['name'] ?? '__' ?></td>
+                                    <td><?= $value['semester'] ?></td>
+                                    <td><?php $courses_model->get($value['course_id'])['course_name'] ?? '__' ?></td>
+                                    <td><?= $value['credits'] ?></td>
+                                    <td><?php $emp = $employee_model->get($value['upload_by']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                    <td>
+                                        <a href="<?= base_url() ?>admin/edit-program-dept-std-mapping/<?= $value['student_mapping_id'] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                        <a href="<?= base_url() ?>admin/delete-program-dept-std-mapping/<?= $value['student_mapping_id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
