@@ -42,9 +42,9 @@ $viewFiles = array_map(function ($file) {
                         </select>
                     </div>
                     <div class="form-group">
-                        <p for="">Quick Link<span class="text-danger">*</span></p>
+                        <p>Quick Link<span class="text-danger">*</span></p>
                     <?php foreach ($quick_link as $value){ ?>
-                        <p><input type="checkbox" name="quick_link" value="<?= $value['id'] ?>"> <?= $value['title'] ?></->
+                        <p class="m-0"><input type="checkbox" name="quick_link" value="<?= $value['id'] ?>"> <?= $value['title'] ?></->
                     <?php } ?>
                     </div>
 
