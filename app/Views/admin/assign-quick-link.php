@@ -1,38 +1,54 @@
 <?= $this->extend("admin/layouts/master") ?>
 
-<?=  $this->section("body-content"); ?>
+<?= $this->section("body-content"); ?>
 <?php
-    use App\Models\Employee_model;
-    $employee_model = new Employee_model();
+
+use App\Models\Employee_model;
+
+$employee_model = new Employee_model();
+$viewsPath = ROOTPATH . 'app/Views/';
+
+$viewFiles = array_map(function ($file) {
+    return pathinfo($file, PATHINFO_FILENAME);
+}, array_filter(scandir($viewsPath), function ($file) use ($viewsPath) {
+    $filePath = $viewsPath . DIRECTORY_SEPARATOR . $file;
+    return is_file($filePath) && pathinfo($file, PATHINFO_EXTENSION) === 'php';
+}));
 ?>
 <style>
-    
+
 </style>
 <!-- start page title -->
 <div class="row">
     <div class="col-lg-4">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title m-0">Add <?= $title ?></h4>
+                <h4 class="card-title m-0"><?= $title ?></h4>
             </div>
             <div class="card-body">
                 <?php
-                    if(session()->getFlashdata('status')){
-                        echo session()->getFlashdata('status');
-                    }
+                if (session()->getFlashdata('status')) {
+                    echo session()->getFlashdata('status');
+                }
                 ?>
                 <form action="<?= base_url() ?>admin/quick-link" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <span for="">Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="quicklink_title" required>
+                        <select name="page_pane" id="page_pane" class="form-control form-control-sm">
+                            <option value="">Custom Link</option>
+                            <?php foreach ($viewFiles as $webpage): ?>
+                                <option value="<?= $webpage ?>"><?= $webpage ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <span for="">Web Page URL<span class="text-danger">*</span></span>
-                        <input type="url" class="form-control form-control-sm" name="page_url" required>
+                        <span for="">Quick Link<span class="text-danger">*</span></span>
+                    <?php foreach ($quick_link as $value){ ?>
+                        <span><input type="checkbox" class="form-control form-control-sm" name="quick_link" value="<?= $value['id'] ?>"> <?= $value['title'] ?></span>
+                    <?php } ?>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
-                    
+
                 </form>
             </div>
         </div>
@@ -44,19 +60,19 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                <table class="table table-striped table-hover" id="basic-datatable">
-                    <thead>
-                        <tr>
-                            <td>SN</td>
-                            <td>Page Name</td>
-                            <td>Links</td>
-                            <td>Action</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    
-                    </tbody>
-                </table>
+                    <table class="table table-striped table-hover" id="basic-datatable">
+                        <thead>
+                            <tr>
+                                <td>SN</td>
+                                <td>Page Name</td>
+                                <td>Links</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

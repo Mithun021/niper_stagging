@@ -485,7 +485,7 @@ use App\Models\Youtube_link_model;
             $quick_link_model = new Quick_link_model();
             $data = ['title' => 'Assign Quick Links'];
             if ($this->request->is("get")) {
-                
+                $data['quick_link'] = $quick_link_model->get();
                 return view('admin/assign-quick-link',$data);
             }else if ($this->request->is("post")) {
 
