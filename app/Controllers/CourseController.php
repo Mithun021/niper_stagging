@@ -50,10 +50,11 @@ class CourseController extends BaseController
                 $loggeduserId = $sessionData['loggeduserId']; 
             }
             $course_id = $this->request->getVar('course_id');
+            $credit_score = $this->request->getVar('credit_score');
             if(empty($course_id)){
                 return redirect()->to('admin/assignCourseList')->with('status','<div class="alert alert-danger" role="alert"> Please select course </div>');
             }
-            if(empty($this->request->getVar('credit_score'))){
+            if(empty($credit_score)){
                 return redirect()->to('admin/assignCourseList')->with('status','<div class="alert alert-danger" role="alert"> Please select Credits </div>');
             }
             foreach ($course_id as $key => $value) {
