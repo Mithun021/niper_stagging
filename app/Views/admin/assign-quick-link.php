@@ -45,9 +45,9 @@ $viewFiles = array_map(function ($file) {
                     </div>
                     <div class="form-group">
                         <span>Quick Link<span class="text-danger">*</span></span>
-                    <?php foreach ($quick_link as $value){ ?>
-                        <p class="m-0"><input type="checkbox" name="quick_link[]" value="<?= $value['id'] ?>"> <?= $value['title'] ?></->
-                    <?php } ?>
+                        <?php foreach ($quick_link as $value) { ?>
+                            <p class="m-0"><input type="checkbox" name="quick_link[]" value="<?= $value['id'] ?>"> <?= $value['title'] ?></->
+                            <?php } ?>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
@@ -73,15 +73,19 @@ $viewFiles = array_map(function ($file) {
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($assign_quick_link as $key => $value) { ?>
-                            <tr>
-                                <td><?= ++$key ?></td>
-                                <td><?= $value['page_name'] ?></td>
-                                <td>
-                                <?php echo $quick_link_model->get($value['quick_link_id'])['title'] ?? '__'; ?>
-                                </td>
-                            </tr>
-                        <?php } ?>
+                            <?php foreach ($assign_quick_link as $key => $value) { ?>
+                                <tr>
+                                    <td><?= ++$key ?></td>
+                                    <td><?= $value['page_name'] ?></td>
+                                    <td> <?php echo $quick_link_model->get($value['quick_link_id'])['title'] ?? '__'; ?></td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                            <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                            <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
