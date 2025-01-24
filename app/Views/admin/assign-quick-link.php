@@ -4,8 +4,10 @@
 <?php
 
 use App\Models\Employee_model;
+use App\Models\Quick_link_model;
 
 $employee_model = new Employee_model();
+$quick_link_model = new Quick_link_model();
 $viewsPath = ROOTPATH . 'app/Views/';
 
 $viewFiles = array_map(function ($file) {
@@ -34,7 +36,7 @@ $viewFiles = array_map(function ($file) {
                 <form action="<?= base_url() ?>admin/assign-quick-link" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <span>Select Page<span class="text-danger">*</span></span>
-                        <select name="page_pane" id="page_pane" class="form-control form-control-sm">
+                        <select name="page_pane" id="page_pane" class="form-control form-control-sm" required>
                             <option value="">--Select--</option>
                             <?php foreach ($viewFiles as $webpage): ?>
                                 <option value="<?= $webpage ?>"><?= $webpage ?></option>
@@ -71,7 +73,19 @@ $viewFiles = array_map(function ($file) {
                             </tr>
                         </thead>
                         <tbody>
-
+                        <?php foreach ($variable as $key => $value) { ?>
+                            <tr>
+                                <td><?= ++$key ?></td>
+                                <td><?= $value['page_name'] ?></td>
+                                <td>
+                                <?php $quick_link = $quick_link_model->get_assign_data($value['quick_link_id']);
+                                echo "<ul>";
+                                    foreach ($quick_link as $key => $value) {
+                                       echo "<li>".$value['title']."</li>";
+                                echo "</ul>"; } ?>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>

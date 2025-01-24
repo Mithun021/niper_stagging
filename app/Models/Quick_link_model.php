@@ -30,6 +30,10 @@
             }
             return $result;
         } 
+        public function get_assign_data($id){
+            return $this->where('id',$id)->findAll();
+           
+        }
         
     }
 ?>
