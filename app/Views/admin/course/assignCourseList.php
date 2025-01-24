@@ -144,8 +144,8 @@ $program_model = new Program_model();
                             <?php foreach ($assign_courses as $key => $value) { ?>
                                 <tr>
                                     <td><?= $key + 1 ?></td>
-                                    <td><?= $department_model->get($value['department_name'])['name'] ?? '__' ?></td>
-                                    <td><?= $program_model->get($value['program_name'])['name'] ?? '__' ?></td>
+                                    <td><?= $department_model->get($value['dept_id'])['name'] ?? '__' ?></td>
+                                    <td><?= $program_model->get($value['program_id'])['name'] ?? '__' ?></td>
                                     <td><?= $value['semester'] ?></td>
                                     <td><?php $courses_model->get($value['course_id'])['course_name'] ?? '__' ?></td>
                                     <td><?= $value['credits'] ?></td>
