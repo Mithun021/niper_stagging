@@ -30,19 +30,19 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="col-lg-6 form-group">
                             <span>IPR No <span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="patent_number" placeholder="Enter patent number" required>
+                            <input type="text" class="form-control form-control-sm" name="ipr_number" placeholder="Enter IPR number" required>
                         </div>
                         <div class="col-lg-6 form-group">
                             <span>Date of Filing <span class="text-danger">*</span></span>
-                            <input type="date" class="form-control form-control-sm" name="patent_date" required>
+                            <input type="date" class="form-control form-control-sm" name="filling_date" required>
                         </div>
                         <div class="col-lg-6 form-group">
-                            <span>field Grant Date </span>
-                            <input type="date" class="form-control form-control-sm" name="patent_date" required>
+                            <span>Field Grant Date </span>
+                            <input type="date" class="form-control form-control-sm" name="grant_date" required>
                         </div>
                         <div class="col-lg-6 form-group">
                             <span>Current Status </span>
-                            <input type="text" class="form-control form-control-sm" name="patent_date" required>
+                            <input type="text" class="form-control form-control-sm" name="current_status" required>
                         </div>
                         <div class="col-lg-6 form-group">
                             <span>Upload File (PDF, JPG, PNG)</span>
