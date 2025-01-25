@@ -190,25 +190,34 @@ $program_model = new Program_model();
             });
         });
     });
-    
 </script>
 
 <script>
+    // Validate credit scores before form submission
     document.querySelector('form').addEventListener('submit', function(event) {
         let creditScores = document.querySelectorAll('input[name="credit_score[]"]');
         let valid = true;
-        
+
         creditScores.forEach(function(input) {
+            // Check if the input is empty or null
             if (input.value === '' || input.value === null) {
                 alert('Credit score cannot be empty!');
                 valid = false;
-                return false;
             }
         });
-        
+
+        // Prevent form submission if any credit score is empty
         if (!valid) {
             event.preventDefault();
         }
+    });
+
+    // Handle select-all checkbox functionality
+    document.getElementById('select-all').addEventListener('click', function(event) {
+        var checkboxes = document.querySelectorAll('input[name="course_id[]"]');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = event.target.checked; // Use event.target.checked to access the checked state
+        });
     });
 </script>
 
