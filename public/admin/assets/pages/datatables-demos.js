@@ -6,22 +6,6 @@
 
 
 $(document).ready(function() {
-    // Default Datatable
-    $('#long-datatable').DataTable({
-        "searching": true,
-        "paging": true,
-        "pageLength": 100, // Display 100 rows per page
-        "language": {
-            "paginate": {
-                "previous": "<i class='mdi mdi-chevron-left'></i>", // Material Design icon for previous
-                "next": "<i class='mdi mdi-chevron-right'></i>"      // Material Design icon for next
-            }
-        },
-        "drawCallback": function () {
-            // Add 'pagination-rounded' class to the pagination controls for rounded pagination
-            $('.dataTables_paginate .pagination').addClass('pagination-rounded');
-        }
-    });
     
     // Default Datatable
     $('#basic-datatable').DataTable({
