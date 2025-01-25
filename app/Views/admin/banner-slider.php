@@ -64,7 +64,7 @@
                             <td><?= $key+1 ?></td>
                             <td>
                                 <?php if (!empty($value['slider_photo']) && file_exists('public/admin/uploads/slider/' . $value['slider_photo'])): ?>
-                                    <a href="<?= base_url() ?>public/admin/uploads/slider/<?= $value['slider_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/slider/<?= $value['slider_photo'] ?>" alt="<?= $value['description'] ?>" height="30px"></a>
+                                    <a href="<?= base_url() ?>public/admin/uploads/slider/<?= $value['slider_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/slider/<?= $value['slider_photo'] ?>" alt="<?= $value['descripition'] ?>" height="30px"></a>
                                 <?php else: ?>
                                     <img src="<?= base_url() ?>public/admin/uploads/slider/invalid_image.png" alt="" height="40px">
                                 <?php endif; ?>
