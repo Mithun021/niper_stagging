@@ -238,12 +238,16 @@ $program_model = new Program_model();
 
         // Ensure all states are preserved on form submission
         $('form').on('submit', function (e) {
+            // Prevent duplicate data by using a Set to track processed IDs
+            const processedIds = new Set();
+
             // Clear any previously appended hidden inputs
             $(this).find('input[type="hidden"]').remove();
 
             // Append the state data to hidden inputs for submission
             for (const [key, value] of Object.entries(state)) {
-                if (value.checked) {
+                if (value.checked && !processedIds.has(key)) {
+                    processedIds.add(key); // Mark the ID as processed
                     $(this).append(`<input type="hidden" name="course_id[]" value="${key}">`);
                     $(this).append(`<input type="hidden" name="credit_score[]" value="${value.creditScore || ''}">`);
                 }
