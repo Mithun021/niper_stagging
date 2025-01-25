@@ -1,8 +1,10 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
 <?php
-    use App\Models\Employee_model;
-    $employee_model = new Employee_model();
+
+use App\Models\Employee_model;
+
+$employee_model = new Employee_model();
 ?>
 
 <!-- Patent Details Form -->
@@ -17,59 +19,78 @@
                     <?= session()->getFlashdata('status'); ?>
                 <?php endif; ?>
                 <form method="post" action="<?= base_url() ?>admin/patent-details" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-lg-6 form-group">
-                        <span>Patent Title <span class="text-danger">*</span></span>
-                        <textarea class="form-control form-control-sm" name="patent_title" id="editor2"></textarea>
+                    <div class="row">
+                        <div class="col-lg-12 form-group">
+                            <span>Patent Title <span class="text-danger">*</span></span>
+                            <textarea class="form-control form-control-sm" name="patent_title" id="editor2"></textarea>
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            <span>Patent Description</span>
+                            <textarea id="editor" name="description"></textarea>
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <span>IPR No <span class="text-danger">*</span></span>
+                            <input type="text" class="form-control form-control-sm" name="patent_number" placeholder="Enter patent number" required>
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <span>Date of Filing <span class="text-danger">*</span></span>
+                            <input type="date" class="form-control form-control-sm" name="patent_date" required>
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <span>field Grant Date </span>
+                            <input type="date" class="form-control form-control-sm" name="patent_date" required>
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <span>Current Status </span>
+                            <input type="text" class="form-control form-control-sm" name="patent_date" required>
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <span>Upload File (PDF, JPG, PNG)</span>
+                            <input type="file" class="form-control form-control-sm" name="patent_file" accept=".pdf,.jpg,.png" required>
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <span>Employee ID <span class="text-danger">*</span></span>
+                            <select class="form-control form-control-sm" name="emp_id" required>
+                                <option value="">--Select--</option>
+                                <?php foreach ($employees as $key => $value) { ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="addServicetable">
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <td scope="col">Author Details</td>
+                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewservicerow">+</button></td>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody id="stockTbody">
+                                        <tr id="stockTrow">
+                                            <td>
+                                                <input type="text" class="form-control" id="author_name" name="author_name[]" placeholder="Enter Author Name">
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 form-group">
+                            <span>Patent Status <span class="text-danger">*</span></span>
+                            <select class="form-control form-control-sm" name="patent_status" required>
+                                <option value="0">Draft</option>
+                                <option value="1">Active</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
+                        </div>
                     </div>
-                    <div class="col-lg-12 form-group">
-                        <span>Patent Description</span>
-                        <textarea id="editor" name="description"></textarea>
-                    </div>
-                    <div class="col-lg-6 form-group">
-                        <span>IPR No <span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="patent_number" placeholder="Enter patent number" required>
-                    </div>
-                    <div class="col-lg-6 form-group">
-                        <span>Date of Filing <span class="text-danger">*</span></span>
-                        <input type="date" class="form-control form-control-sm" name="patent_date" required>
-                    </div>
-                    <div class="col-lg-6 form-group">
-                        <span>field Grant Date </span>
-                        <input type="date" class="form-control form-control-sm" name="patent_date" required>
-                    </div>
-                    <div class="col-lg-6 form-group">
-                        <span>Current Status </span>
-                        <input type="text" class="form-control form-control-sm" name="patent_date" required>
-                    </div>
-                    <div class="col-lg-6 form-group">
-                        <span>Upload File (PDF, JPG, PNG)</span>
-                        <input type="file" class="form-control form-control-sm" name="patent_file" accept=".pdf,.jpg,.png" required>
-                    </div>
-                    <div class="col-lg-6 form-group">
-                        <span>Employee ID <span class="text-danger">*</span></span>
-                        <select class="form-control form-control-sm" name="emp_id" required>
-                            <option value="">--Select--</option>
-                        <?php foreach ($employees as $key => $value) { ?>
-                            <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
-                        <?php } ?>
-                        </select>
-                    </div>
-                    <div class="col-lg-3 form-group">
-                        <span>Author Name <span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="author_name" required>
-                    </div>
-                    <div class="col-lg-3 form-group">
-                        <span>Patent Status <span class="text-danger">*</span></span>
-                        <select class="form-control form-control-sm" name="patent_status" required>
-                            <option value="0">Draft</option>
-                            <option value="1">Active</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-12 form-group">
-                        <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
-                    </div>
-                </div>
                 </form>
             </div>
         </div>
@@ -98,20 +119,22 @@
                         <tbody>
                             <?php foreach ($patent as $key => $value) { ?>
                                 <tr>
-                                    <td><?= $key+1 ?></td>
+                                    <td><?= $key + 1 ?></td>
                                     <td>
-                                    <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/patent/' . $value['upload_file'])): ?>
-                                        <a href="<?= base_url() ?>public/admin/uploads/patent/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
-                                    <?php else: ?>
-                                        <img src="<?= base_url() ?>public/admin/uploads/patent/invalid_image.png" alt="" height="40px">
-                                    <?php endif; ?>
+                                        <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/patent/' . $value['upload_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/patent/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/patent/invalid_image.png" alt="" height="40px">
+                                        <?php endif; ?>
                                     </td>
                                     <td><?= $value['patent_title'] ?></td>
                                     <td><?= $value['patent_number'] ?></td>
                                     <td><?= $value['patent_date'] ?></td>
                                     <td><?= $value['status'] == 0 ? '<span class="badge badge-danger badge-pill">Draft</span>' : '<span class="badge badge-success badge-pill">Active</span>' ?></td>
-                                    <td><?php $emp = $employee_model->get($value['employee_id']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
-                                    <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                                    <td><?php $emp = $employee_model->get($value['employee_id']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                    <td><?php $emp = $employee_model->get($value['upload_by']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                     <td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                             <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
