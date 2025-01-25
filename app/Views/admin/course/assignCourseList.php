@@ -87,7 +87,7 @@ $program_model = new Program_model();
                                 <h3 class="mb-2">Course Details:</h3>
                                 <div class="student-details">
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-hover" id="basic-datatable">
+                                        <table class="table table-striped table-hover" id="long-datatable">
                                             <thead>
                                                 <tr>
                                                     <td>#</td>
