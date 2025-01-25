@@ -8,6 +8,8 @@
 $(document).ready(function() {
     // Default Datatable
     $('#long-datatable').DataTable({
+        "searching": true,
+        "paging": true,
         "pageLength": 100, // Display 100 rows per page
         "language": {
             "paginate": {
