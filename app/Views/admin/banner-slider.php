@@ -22,8 +22,8 @@
                 ?>
                 <form method="post" action="<?= base_url() ?>admin/banner-slider" enctype="multipart/form-data">
                     <div class="form-group">
-                        <span for="title">Title</span>
-                        <input type="text" class="form-control form-control-sm" name="title" required>
+                        <span>Title</span>
+                        <input type="text" class="form-control form-control-sm" name="title">
                     </div>
                     <div class="form-group"></div>
                         <span>Description</span>
