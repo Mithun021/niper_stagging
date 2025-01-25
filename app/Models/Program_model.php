@@ -45,7 +45,17 @@
 
         }
         
+        public function getProgramWithBatch($iId) {
+            $sql = "
+                SELECT program_category.name as program_name,pargram_department_mapping.batch_start,pargram_department_mapping.batch_end 
+                FROM program_category 
+                LEFT JOIN pargram_department_mapping ON program_category.id = pargram_department_mapping.program_id 
+                WHERE program_category.id = $iId
+            ";
+            $query = $this->db->query($sql);
+            return $query->getRowArray();
 
+        }
         
     }
 ?>
