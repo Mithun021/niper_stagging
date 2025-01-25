@@ -14,7 +14,7 @@ $(document).ready(function() {
                 "previous": "<i class='mdi mdi-chevron-left'>",
                 "next": "<i class='mdi mdi-chevron-right'>"
             }
-        },
+        },"pageLength": 100,
         "drawCallback": function () {
             $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
         }

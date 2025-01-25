@@ -58,7 +58,7 @@
         <script src="<?= base_url() ?>public/admin/assets/pages/fileuploads-demo.js"></script>
 
         <!-- Datatables init -->
-        <script src="<?= base_url() ?>public/admin/assets/pages/datatables-demo.js"></script>
+        <script src="<?= base_url() ?>public/admin/assets/pages/datatables-demos.js"></script>
         <script src="<?= base_url() ?>public/admin/assets/js/adminScript.js"></script>
 
         <!-- Jquery Validation Plugin -->
