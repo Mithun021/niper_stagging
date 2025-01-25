@@ -47,7 +47,7 @@ class CopyrightController extends BaseController
                 $insertedId = $copyright_model->getInsertID();
                 foreach ($author_name as $key => $value) {
                     $data = [
-                        'patent_id' => $insertedId,
+                        'copyright_id' => $insertedId,
                         'author_name' => $value
                     ];
                     $result = $copyright_author_model->add($data);

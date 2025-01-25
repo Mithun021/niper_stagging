@@ -55,14 +55,14 @@ $employee_model = new Employee_model();
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <span for="">Submission Date <span class="text-danger">*</span></span>
+                                <span for="">Submission Date</span>
                                 <input type="date" name="submission_date" id="" class="form-control form-control-sm">
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <span for="">field Grant Date <span class="text-danger">*</span></span>
+                                <span for="">field Grant Date </span>
                                 <input type="date" name="grant_date" id="" class="form-control form-control-sm">
                             </div>
                         </div>
@@ -115,7 +115,7 @@ $employee_model = new Employee_model();
                             <span>Copyright Status <span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="Copyright_status" required>
                                 <option value="0">Draft</option>
-                                <option value="1">Active</option>
+                                <option value="1" selected>Active</option>
                             </select>
                         </div>
                         <div class="col-lg-12 form-group">
