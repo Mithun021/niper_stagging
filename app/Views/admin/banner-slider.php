@@ -25,7 +25,7 @@
                         <span>Title</span>
                         <input type="text" class="form-control form-control-sm" name="title">
                     </div>
-                    <div class="form-group"></div>
+                    <div class="form-group">
                         <span>Description</span>
                         <textarea name="description" id="editor" class="form-control form-control-sm"></textarea>
                     </div>
