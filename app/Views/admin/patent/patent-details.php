@@ -134,8 +134,8 @@ $employee_model = new Employee_model();
                                     <?php endif; ?>
                                 </td>
                                 <td><?= $value['patent_title'] ?></td>
-                                <td><?= $value['patent_type'] ?></td>
                                 <td><?= $value['current_status'] ?></td>
+                                <td><?= $value['patent_type'] ?></td>
                                 <td><?= $value['ipr_number'] ?></td>
                                 <td><?= $value['filling_date'] ?></td>
                                 <td><?= $value['status'] == 0 ? '<span class="badge badge-danger badge-pill">Draft</span>' : '<span class="badge badge-success badge-pill">Active</span>' ?></td>
