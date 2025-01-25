@@ -463,7 +463,7 @@ use App\Models\Youtube_link_model;
 
                 $data = [
                     'title' => $this->request->getPost('title'),
-                    'descripition' => $this->request->getPost('description'),
+                    'description' => $this->request->getPost('description'),
                     'slider_photo' => $bannerNewPhone,
                     'upload_by' => $loggeduserId,
                 ];
