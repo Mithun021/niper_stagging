@@ -57,8 +57,8 @@ class CourseController extends BaseController
             if (empty($course_id)) {
                 return redirect()->to('admin/assignCourseList')->with('status', '<div class="alert alert-danger" role="alert"> Please select course </div>');
             }
-            if (empty($credit_score)) {
-                return redirect()->to('admin/assignCourseList')->with('status', '<div class="alert alert-danger" role="alert"> Please select Credits </div>');
+            if (empty($credit_score) || count($credit_score) != count($course_id)) {
+                return redirect()->to('admin/assignCourseList')->with('status', '<div class="alert alert-danger" role="alert"> Please provide valid credits for all selected courses </div>');
             }
             foreach ($course_id as $key => $value) {
                 if (!isset($credit_score[$key]) || $credit_score[$key] === '') {
