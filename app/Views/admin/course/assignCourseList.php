@@ -237,33 +237,21 @@ $program_model = new Program_model();
         });
 
         // Ensure all states are preserved on form submission
-        $('form').on('submit', function () {
-            // Sync all DataTable rows (visible and hidden) with the state object
-            $('#long-datatable tbody tr').each(function () {
-                const row = $(this);
-                const rowId = row.find('input[type="checkbox"]').val();
-
-                if (!state[rowId]) {
-                    state[rowId] = {};
-                }
-
-                // Save current checkbox state
-                state[rowId].checked = row.find('input[type="checkbox"]').is(':checked');
-
-                // Save current input value
-                state[rowId].creditScore = row.find('input[name="credit_score[]"]').val();
-            });
+        $('form').on('submit', function (e) {
+            // Clear any previously appended hidden inputs
+            $(this).find('input[type="hidden"]').remove();
 
             // Append the state data to hidden inputs for submission
             for (const [key, value] of Object.entries(state)) {
                 if (value.checked) {
                     $(this).append(`<input type="hidden" name="course_id[]" value="${key}">`);
-                    $(this).append(`<input type="hidden" name="credit_score[]" value="${value.creditScore}">`);
+                    $(this).append(`<input type="hidden" name="credit_score[]" value="${value.creditScore || ''}">`);
                 }
             }
         });
     });
 </script>
+
 
 
 <?= $this->endSection() ?>
