@@ -33,10 +33,14 @@ $employee_model = new Employee_model();
                             <input type="text" class="form-control form-control-sm" name="ipr_number" placeholder="Enter IPR number" required>
                         </div>
                         <div class="col-lg-6 form-group">
+                            <span>Patent Type <span class="text-danger">*</span></span>
+                            <input type="text" class="form-control form-control-sm" name="patent_type" placeholder="Enter IPR number" required>
+                        </div>
+                        <div class="col-lg-3 form-group">
                             <span>Date of Filing <span class="text-danger">*</span></span>
                             <input type="date" class="form-control form-control-sm" name="filling_date" required>
                         </div>
-                        <div class="col-lg-6 form-group">
+                        <div class="col-lg-3 form-group">
                             <span>Field Grant Date </span>
                             <input type="date" class="form-control form-control-sm" name="grant_date" required>
                         </div>
