@@ -453,31 +453,26 @@ use App\Models\Youtube_link_model;
                     );
                 }
         
-                $slider_files = $this->request->getFiles();
-                if ($slider_files && isset($slider_files['slider_file'])) {
-                    foreach ($slider_files['slider_file'] as $file) {
-                        if ($file->isValid() && !$file->hasMoved()) {
-                            $newName = $file->getRandomName();
-                            $file->move(ROOTPATH . 'public/admin/uploads/slider', $newName);
-        
-                            $file_data = [
-                                'slider_photo' => $newName,
-                                'upload_by' => $loggeduserId,
-                            ];
-
-                            // echo "<pre>"; print_r($file_data);
-                            
-                            $banner_slider_model->add($file_data);
-                        }
-                    }
+                $banner_photo = $this->request->getFile('slider_file');
+                if ($banner_photo->isValid() && ! $banner_photo->hasMoved()) {
+                    $bannerNewPhone = $banner_photo->getRandomName();
+                    $banner_photo->move(ROOTPATH . 'public/admin/uploads/slider', $bannerNewPhone);    
+                }else{
+                 $bannerNewPhone = "";
                 }
 
-                return redirect()->to('admin/banner-slider')->with(
-                    'status', 
-                    '<div class="alert alert-success" role="alert"> Data added successfully. </div>'
-                );
-
-
+                $data = [
+                    'title' => $this->request->getPost('title'),
+                    'description' => $this->request->getPost('description'),
+                    'slider_photo' => $bannerNewPhone,
+                    'upload_by' => $loggeduserId,
+                ];
+                $result = $banner_slider_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/banner-slider')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/banner-slider')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
 
             } // end else if
         }

@@ -9,8 +9,8 @@
 </style>
 <!-- start page title -->
 <div class="row">
-    <div class="col-lg-5">
-        <div class="card">
+    <div class="col-lg-4">
+        <div class="card p-2">
             <div class="card-header">
                 <h4 class="card-title m-0">Slider </h4>
             </div>
@@ -22,8 +22,16 @@
                 ?>
                 <form method="post" action="<?= base_url() ?>admin/banner-slider" enctype="multipart/form-data">
                     <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control form-control-sm" name="title" required>
+                    </div>
+                    <div class="form-group"></div>
+                        <label for="description">Description</label>
+                        <textarea name="description" id="editor" class="form-control form-control-sm"></textarea>
+                </form>
+                    <div class="form-group">
                         <span for="">Upload File(JPG,PNG)</span>
-                        <input type="file" class="form-control form-control-sm" name="slider_file[]" accept=".jpg, .png, .jpeg" required multiple>
+                        <input type="file" class="form-control form-control-sm" name="slider_file" accept=".jpg, .png, .jpeg" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>

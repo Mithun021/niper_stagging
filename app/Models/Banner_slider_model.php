@@ -5,7 +5,7 @@
     {
         protected $table         = 'banner_slider';
         protected $primaryKey    = 'id';
-        protected $allowedFields = ['slider_photo','upload_by'];
+        protected $allowedFields = ['title','descripition','slider_photo','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
