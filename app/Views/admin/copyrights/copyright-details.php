@@ -3,9 +3,11 @@
 
 <?php
 
+use App\Models\Copyright_author_model;
 use App\Models\Employee_model;
 
 $employee_model = new Employee_model();
+$copyright_author_model = new Copyright_author_model();
 ?>
 
 <!-- Copyright Details Form -->
@@ -139,9 +141,11 @@ $employee_model = new Employee_model();
                                 <td>SN</td>
                                 <td>File</td>
                                 <td>Title</td>
-                                <td>Number</td>
-                                <td>Start Date</td>
-                                <td>End Date</td>
+                                <td>Current Status</td>
+                                <td>Dairy No.</td>
+                                <td>Sub. Date</td>
+                                <td>Grant Date</td>
+                                <td>Authors</td>
                                 <td>Emp. ID</td>
                                 <td>Status</td>
                                 <td>Uploaded by</td>
@@ -149,7 +153,45 @@ $employee_model = new Employee_model();
                             </tr>
                         </thead>
                         <tbody>
-                            
+                        <?php foreach ($copyright as $key => $value) { ?>
+                                <tr>
+                                    <td><?= $key + 1 ?></td>
+                                    <td>
+                                        <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/copyright/' . $value['upload_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/copyright/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/copyright/invalid_image.png" alt="" height="40px">
+                                        <?php endif; ?>
+                                    </td>
+                                    <td><?= $value['copyright_title'] ?></td>
+                                    <td><?= $value['current_status'] ?></td>
+                                    <td><?= $value['copyright_number'] ?></td>
+                                    <td><?= date("d:M:Y", strtotime($value['submission_date'])) ?> </td>
+                                    <td><?= date("d:M:Y", strtotime($value['grant_date'])) ?> </td>
+                                    <td>
+                                        <?php
+                                        $authors = $copyright_author_model->getByCopyright($value['id']);
+                                        echo "<ul>";
+                                        foreach ($authors as $key => $author) {
+                                            echo "<li>" . $author['author_name'] . "</li>";
+                                        }
+                                        echo "</ul>";
+                                        ?>
+                                    </td>
+                                    <td><?php $emp = $employee_model->get($value['employee_id']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                    <td><?= $value['status'] == 0 ? '<span class="badge badge-danger badge-pill">Draft</span>' : '<span class="badge badge-success badge-pill">Active</span>' ?></td>
+                                    <td><?php $emp = $employee_model->get($value['upload_by']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                            <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                            <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                            <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

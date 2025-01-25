@@ -26,5 +26,9 @@
             }
             return $result;
         }
+
+        public function getByCopyright($id){
+            return $this->where('copyright_id',$id)->findAll();
+        }
     }
 ?>
