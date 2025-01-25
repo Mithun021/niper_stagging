@@ -25,6 +25,9 @@ $program_model = new Program_model();
         width: 32%;
         margin-bottom: 10px;
     }
+    #std_table{
+        width: 100%;
+    }
 </style>
 
 <div class="row">
