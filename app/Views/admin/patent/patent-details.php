@@ -121,33 +121,7 @@ $employee_model = new Employee_model();
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($patent as $key => $value) { ?>
-                                <tr>
-                                    <td><?= $key + 1 ?></td>
-                                    <td>
-                                        <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/patent/' . $value['upload_file'])): ?>
-                                            <a href="<?= base_url() ?>public/admin/uploads/patent/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
-                                        <?php else: ?>
-                                            <img src="<?= base_url() ?>public/admin/uploads/patent/invalid_image.png" alt="" height="40px">
-                                        <?php endif; ?>
-                                    </td>
-                                    <td><?= $value['patent_title'] ?></td>
-                                    <td><?= $value['patent_number'] ?></td>
-                                    <td><?= $value['patent_date'] ?></td>
-                                    <td><?= $value['status'] == 0 ? '<span class="badge badge-danger badge-pill">Draft</span>' : '<span class="badge badge-success badge-pill">Active</span>' ?></td>
-                                    <td><?php $emp = $employee_model->get($value['employee_id']);
-                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
-                                    <td><?php $emp = $employee_model->get($value['upload_by']);
-                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
-                                    <td>
-                                        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                                            <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
-                                            <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
-                                            <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            <?php } ?>
+                            
                         </tbody>
                     </table>
                 </div>
