@@ -202,47 +202,66 @@ $program_model = new Program_model();
         const table = $('#long-datatable').DataTable({
             "pageLength": 100,
             "lengthMenu": [5, 10, 20, 50, 100],
-            "initComplete": function () {
-                restoreState();
-            }
         });
 
-        // On checkbox change, update state
-        $('#long-datatable').on('change', 'input[type="checkbox"][name="course_id[]"]', function () {
-            const rowId = $(this).val();
+        // Save the state of checkboxes and inputs on change
+        $('#long-datatable').on('change', 'input[type="checkbox"][name="course_id[]"], input[name="credit_score[]"]', function () {
+            const row = $(this).closest('tr');
+            const rowId = row.find('input[type="checkbox"]').val();
+
             if (!state[rowId]) {
                 state[rowId] = {};
             }
-            state[rowId].checked = $(this).is(':checked');
+
+            // Save checkbox state
+            state[rowId].checked = row.find('input[type="checkbox"]').is(':checked');
+
+            // Save input value
+            state[rowId].creditScore = row.find('input[name="credit_score[]"]').val();
         });
 
-        // On input change, update state
-        $('#long-datatable').on('input', 'input[name="credit_score[]"]', function () {
-            const rowId = $(this).closest('tr').find('input[type="checkbox"]').val();
-            if (!state[rowId]) {
-                state[rowId] = {};
-            }
-            state[rowId].creditScore = $(this).val();
-        });
-
-        // On table redraw, restore state
+        // Restore the state after each redraw
         table.on('draw', function () {
-            restoreState();
-        });
-
-        // Restore state function
-        function restoreState() {
             $('#long-datatable tbody tr').each(function () {
-                const rowId = $(this).find('input[type="checkbox"]').val();
+                const row = $(this);
+                const rowId = row.find('input[type="checkbox"]').val();
+
                 if (state[rowId]) {
                     // Restore checkbox state
-                    $(this).find('input[type="checkbox"]').prop('checked', state[rowId].checked || false);
+                    row.find('input[type="checkbox"]').prop('checked', state[rowId].checked || false);
 
                     // Restore input value
-                    $(this).find('input[name="credit_score[]"]').val(state[rowId].creditScore || '');
+                    row.find('input[name="credit_score[]"]').val(state[rowId].creditScore || '');
                 }
             });
-        }
+        });
+
+        // Ensure all states are preserved on form submission
+        $('form').on('submit', function () {
+            // Sync all DataTable rows (visible and hidden) with the state object
+            $('#long-datatable tbody tr').each(function () {
+                const row = $(this);
+                const rowId = row.find('input[type="checkbox"]').val();
+
+                if (!state[rowId]) {
+                    state[rowId] = {};
+                }
+
+                // Save current checkbox state
+                state[rowId].checked = row.find('input[type="checkbox"]').is(':checked');
+
+                // Save current input value
+                state[rowId].creditScore = row.find('input[name="credit_score[]"]').val();
+            });
+
+            // Append the state data to hidden inputs for submission
+            for (const [key, value] of Object.entries(state)) {
+                if (value.checked) {
+                    $(this).append(`<input type="hidden" name="course_id[]" value="${key}">`);
+                    $(this).append(`<input type="hidden" name="credit_score[]" value="${value.creditScore}">`);
+                }
+            }
+        });
     });
 </script>
 
