@@ -2,12 +2,14 @@
 
 namespace App\Controllers;
 
+use App\Models\Copyright_author_model;
 use App\Models\Copyright_model;
 use App\Models\Employee_model;
 
 class CopyrightController extends BaseController
 {
     public function copyright_details(){
+        $copyright_author_model = new Copyright_author_model();
         $copyright_model = new Copyright_model();
         $employee_model = new Employee_model();
         $data = ['title' => 'Copyright Details'];
@@ -27,23 +29,29 @@ class CopyrightController extends BaseController
             }else{
                 $copyrightImageName = "";
             }
-
+            $author_name = $this->request->getPost('author_name');
             $data =[
                 'copyright_title' => $this->request->getPost('Copyright_title'),
                 'copyright_number' => $this->request->getPost('Copyright_number'),
                 'copyright_description' => $this->request->getPost('description'),
-                'copyright_start_date' => $this->request->getPost('copyright_start_date'),
-                'copyright_start_time' => $this->request->getPost('copyright_start_time'),
-                'copyright_end_date' => $this->request->getPost('copyright_end_date'),
-                'copyright_end_time' => $this->request->getPost('copyright_end_time'),
+                'submission_date' => $this->request->getPost('submission_date'),
+                'grant_date' => $this->request->getPost('grant_date'),
                 'upload_file' => $copyrightImageName,
                 'employee_id' => $this->request->getPost('emp_id'),
-                'author_name' => $this->request->getPost('author_name'),
+                'current_status' => $this->request->getPost('current_status'),
                 'status' => $this->request->getPost('Copyright_status'),
                 'upload_by' => $loggeduserId
             ];
             $result = $copyright_model->add($data);
             if ($result === true) {
+                $insertedId = $copyright_model->getInsertID();
+                foreach ($author_name as $key => $value) {
+                    $data = [
+                        'patent_id' => $insertedId,
+                        'author_name' => $value
+                    ];
+                    $result = $copyright_author_model->add($data);
+                }
                 return redirect()->to('admin/copyright-details')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
                 return redirect()->to('admin/copyright-details')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');

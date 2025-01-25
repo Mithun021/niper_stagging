@@ -1,12 +1,12 @@
 <?php
     namespace App\Models;
     use CodeIgniter\Model;
-    class Copyright_model extends Model
+    class Copyright_author_model extends Model
     {
-        protected $table         = 'copyrights';
+        protected $table         = 'copyrights_author';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['copyright_title','copyright_number','copyright_description','submission_date','grant_date','current_status','upload_file','employee_id','status','upload_by'];
-        protected $createdField  = 'created_at';
+        protected $allowedFields = ['copyright_id','author_name'];
+        // protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
             if ($id != null) {
