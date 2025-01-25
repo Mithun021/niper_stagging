@@ -40,7 +40,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-7">
+    <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Slider List</h4>
