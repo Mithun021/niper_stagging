@@ -22,11 +22,11 @@
                 ?>
                 <form method="post" action="<?= base_url() ?>admin/banner-slider" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="title">Title</label>
+                        <span for="title">Title</span>
                         <input type="text" class="form-control form-control-sm" name="title" required>
                     </div>
                     <div class="form-group"></div>
-                        <label for="description">Description</label>
+                        <span>Description</span>
                         <textarea name="description" id="editor" class="form-control form-control-sm"></textarea>
                 </form>
                     <div class="form-group">
