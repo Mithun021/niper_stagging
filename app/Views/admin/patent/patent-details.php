@@ -20,20 +20,27 @@
                 <div class="row">
                     <div class="col-lg-6 form-group">
                         <span>Patent Title <span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="patent_title" placeholder="Enter patent title" required>
-                    </div>
-                    <div class="col-lg-6 form-group">
-                        <span>Patent Number <span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="patent_number" placeholder="Enter patent number" required>
+                        <textarea class="form-control form-control-sm" name="patent_title" id="editor2"></textarea>
                     </div>
                     <div class="col-lg-12 form-group">
                         <span>Patent Description</span>
                         <textarea id="editor" name="description"></textarea>
                     </div>
-                    
                     <div class="col-lg-6 form-group">
-                        <span>Patent Date <span class="text-danger">*</span></span>
+                        <span>IPR No <span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="patent_number" placeholder="Enter patent number" required>
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        <span>Date of Filing <span class="text-danger">*</span></span>
                         <input type="date" class="form-control form-control-sm" name="patent_date" required>
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        <span>field Grant Date </span>
+                        <input type="date" class="form-control form-control-sm" name="patent_date" required>
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        <span>Current Status </span>
+                        <input type="text" class="form-control form-control-sm" name="patent_date" required>
                     </div>
                     <div class="col-lg-6 form-group">
                         <span>Upload File (PDF, JPG, PNG)</span>
