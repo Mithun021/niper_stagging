@@ -190,5 +190,26 @@ $program_model = new Program_model();
             });
         });
     });
+    
 </script>
+
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        let creditScores = document.querySelectorAll('input[name="credit_score[]"]');
+        let valid = true;
+        
+        creditScores.forEach(function(input) {
+            if (input.value === '' || input.value === null) {
+                alert('Credit score cannot be empty!');
+                valid = false;
+                return false;
+            }
+        });
+        
+        if (!valid) {
+            event.preventDefault();
+        }
+    });
+</script>
+
 <?= $this->endSection() ?>
