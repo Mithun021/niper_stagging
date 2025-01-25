@@ -8,12 +8,13 @@
 $(document).ready(function() {
     // Default Datatable
     $('#long-datatable').DataTable({
+        "pageLength": 100,
         "language": {
             "paginate": {
                 "previous": "<i class='mdi mdi-chevron-left'>",
                 "next": "<i class='mdi mdi-chevron-right'>"
             }
-        },"pageLength": 100,
+        },
         "drawCallback": function () {
             $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
         }
