@@ -10,11 +10,11 @@
 <!-- start page title -->
 <div class="row">
     <div class="col-lg-4">
-        <div class="card p-2">
+        <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Slider </h4>
             </div>
-            <div class="card-body">
+            <div class="card-body p-2">
                 <?php
                     if(session()->getFlashdata('status')){
                         echo session()->getFlashdata('status');
@@ -45,13 +45,14 @@
             <div class="card-header">
                 <h4 class="card-title m-0">Slider List</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body p-2">
                 <div class="table-responsive">
                 <table class="table table-striped table-hover" id="basic-datatable">
                     <thead>
                         <tr>
                             <td>SN</td>
                             <td>Image</td>
+                            <td>Title</td>
                             <td>Upload by</td>
                             <td>Upload Date</td>
                             <td>Action</td>
@@ -63,11 +64,12 @@
                             <td><?= $key+1 ?></td>
                             <td>
                                 <?php if (!empty($value['slider_photo']) && file_exists('public/admin/uploads/slider/' . $value['slider_photo'])): ?>
-                                    <a href="<?= base_url() ?>public/admin/uploads/slider/<?= $value['slider_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/slider/<?= $value['slider_photo'] ?>" alt="" height="30px"></a>
+                                    <a href="<?= base_url() ?>public/admin/uploads/slider/<?= $value['slider_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/slider/<?= $value['slider_photo'] ?>" alt="<?= $value['description'] ?>" height="30px"></a>
                                 <?php else: ?>
                                     <img src="<?= base_url() ?>public/admin/uploads/slider/invalid_image.png" alt="" height="40px">
                                 <?php endif; ?>
                             </td>
+                            <td><?= $value['title'] ?></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                             <td><?= date('d-m-Y',strtotime($value['created_at'])) ?></td>
                             <td>
