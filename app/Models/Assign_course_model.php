@@ -28,6 +28,8 @@ class Assign_course_model extends Model
             if (!$check) {
                 $result = $this->insert($data);
                 return $result ? true : 'Data not inserted: Insertion failed.';
+            }else{
+                return $check ? true : 'Data not inserted: Insertion failed.';
             }
         }
     }
