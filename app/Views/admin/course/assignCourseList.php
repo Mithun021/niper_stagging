@@ -128,7 +128,7 @@ $program_model = new Program_model();
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-hover" id="basic-datatable">
-                        <thead>
+                    <thead>
                             <tr>
                                 <td>SN</td>
                                 <td>Department</td>
@@ -145,9 +145,9 @@ $program_model = new Program_model();
                                 <tr>
                                     <td><?= $key + 1 ?></td>
                                     <td><?= $department_model->get($value['dept_id'])['name'] ?? '__' ?></td>
-                                    <td><?= $program_model->get($value['program_id'])['name'] ?? '__' ?></td>
+                                    <td><?php $program = $program_model->getProgramWithBatch($value['program_id']); echo $program['program_name']. ' - '.$program['batch_start']. ' - '.$program['batch_end'] ?? '__'; ?></td>
                                     <td><?= $value['semester'] ?></td>
-                                    <td><?php $courses_model->get($value['course_id'])['course_name'] ?? '__' ?></td>
+                                    <td><?php echo $courses_model->get($value['course_id'])['course_name'] ?? '__' ?></td>
                                     <td><?= $value['credits'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
