@@ -87,7 +87,7 @@ $program_model = new Program_model();
                                 <h3 class="mb-2">Course Details:</h3>
                                 <div class="student-details">
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-hover" id="basic-datatable">
+                                        <table class="table table-striped table-hover" id="std_table">
                                             <thead>
                                                 <tr>
                                                     <td>#</td>
@@ -169,6 +169,13 @@ $program_model = new Program_model();
 
 <script>
     $(document).ready(function() {
+        $('#std_table').DataTable({
+            "scrollX": true,        // Enable horizontal scrolling
+            "paging": true,         // Enable pagination
+            "pageLength": 100,      // Display 100 rows per page
+            "searching": true,      // Enable search bar
+            "ordering": true        // Enable column sorting
+        });
         // Fetch Programs based on Department
         $('#Deptid').change(function() {
             var dept_id = $(this).val();
