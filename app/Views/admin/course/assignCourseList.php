@@ -194,12 +194,57 @@ $program_model = new Program_model();
 </script>
 
 <script>
-    $(document).ready(function() {
-        $('#long-datatable').DataTable({
+    $(document).ready(function () {
+        // Object to store the state of checkboxes and input fields
+        let state = {};
+
+        // Initialize DataTable
+        const table = $('#long-datatable').DataTable({
             "pageLength": 100,
-            "lengthMenu": [5, 10, 20, 50, 100]
+            "lengthMenu": [5, 10, 20, 50, 100],
+            "initComplete": function () {
+                restoreState();
+            }
         });
+
+        // On checkbox change, update state
+        $('#long-datatable').on('change', 'input[type="checkbox"][name="course_id[]"]', function () {
+            const rowId = $(this).val();
+            if (!state[rowId]) {
+                state[rowId] = {};
+            }
+            state[rowId].checked = $(this).is(':checked');
+        });
+
+        // On input change, update state
+        $('#long-datatable').on('input', 'input[name="credit_score[]"]', function () {
+            const rowId = $(this).closest('tr').find('input[type="checkbox"]').val();
+            if (!state[rowId]) {
+                state[rowId] = {};
+            }
+            state[rowId].creditScore = $(this).val();
+        });
+
+        // On table redraw, restore state
+        table.on('draw', function () {
+            restoreState();
+        });
+
+        // Restore state function
+        function restoreState() {
+            $('#long-datatable tbody tr').each(function () {
+                const rowId = $(this).find('input[type="checkbox"]').val();
+                if (state[rowId]) {
+                    // Restore checkbox state
+                    $(this).find('input[type="checkbox"]').prop('checked', state[rowId].checked || false);
+
+                    // Restore input value
+                    $(this).find('input[name="credit_score[]"]').val(state[rowId].creditScore || '');
+                }
+            });
+        }
     });
 </script>
+
 
 <?= $this->endSection() ?>
