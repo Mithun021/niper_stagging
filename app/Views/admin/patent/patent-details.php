@@ -33,7 +33,7 @@ $employee_model = new Employee_model();
                             <input type="text" class="form-control form-control-sm" name="ipr_number" placeholder="Enter IPR number" required>
                         </div>
                         <div class="col-lg-6 form-group">
-                            <span>Patent Type <span class="text-danger">*</span></span>
+                            <span>Patent Type</span>
                             <input type="text" class="form-control form-control-sm" name="patent_type" placeholder="Enter IPR number" required>
                         </div>
                         <div class="col-lg-3 form-group">
@@ -88,7 +88,7 @@ $employee_model = new Employee_model();
                             <span>Patent Status <span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="patent_status" required>
                                 <option value="0">Draft</option>
-                                <option value="1">Active</option>
+                                <option value="1" selected>Active</option>
                             </select>
                         </div>
                         <div class="col-lg-12 form-group">

@@ -1,12 +1,12 @@
 <?php
     namespace App\Models;
     use CodeIgniter\Model;
-    class Patent_model extends Model
+    class Patent_author_model extends Model
     {
-        protected $table         = 'patent_details';
+        protected $table         = 'patent_authors';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['patent_title','ipr_number','description','patent_type','description','filling_date','grant_date','current_status','upload_file','employee_id','status','upload_by'];
-        protected $createdField  = 'created_at';
+        protected $allowedFields = ['patent_id','author_name'];
+        // protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
             if ($id != null) {
