@@ -28,7 +28,7 @@
                     <div class="form-group"></div>
                         <span>Description</span>
                         <textarea name="description" id="editor" class="form-control form-control-sm"></textarea>
-                </form>
+                    </div>
                     <div class="form-group">
                         <span for="">Upload File(JPG,PNG)</span>
                         <input type="file" class="form-control form-control-sm" name="slider_file" accept=".jpg, .png, .jpeg" required>
