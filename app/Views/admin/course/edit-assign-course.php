@@ -84,6 +84,7 @@ $program_model = new Program_model();
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
+                                <span>Select Course</span>
                                 <select name="course_id" id="course_id" class="form-control form-control-sm">
                                     <option value="">Select Course</option>
                                 </select>
