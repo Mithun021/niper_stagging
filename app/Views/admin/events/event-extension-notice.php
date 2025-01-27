@@ -48,6 +48,7 @@
                             </div>
                         </div>
                     </div>
+                    <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
                 </form>
             </div>
         </div>

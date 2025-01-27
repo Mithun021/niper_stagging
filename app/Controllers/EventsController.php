@@ -4,6 +4,7 @@
     use App\Models\Designation_model;
     use App\Models\Employee_model;
 use App\Models\Event_category_model;
+use App\Models\Event_extension_model;
 use App\Models\Event_fees_model;
 use App\Models\Event_highlights_model;
 use App\Models\Event_members_model;
@@ -39,14 +40,6 @@ use App\Models\Program_department_mapping_model;
                  $event_fileNewName = "";
                 }
 
-                $extension_file = $this->request->getFile('extension_file');
-                if ($extension_file->isValid() && ! $extension_file->hasMoved()) {
-                    $extension_fileNewName = "ext".$extension_file->getRandomName();
-                    $extension_file->move(ROOTPATH . 'public/admin/uploads/events', $extension_fileNewName);    
-                }else{
-                 $extension_fileNewName = "";
-                }
-
                 $data = [
                     'title' => $this->request->getPost('event_title'),
                     'description' => $this->request->getPost('description'),
@@ -63,10 +56,6 @@ use App\Models\Program_department_mapping_model;
                     'payment_link' => $this->request->getPost('payment_link'),
                     'participant_seats' => $this->request->getPost('participant_seats'),
                     'participant_eligibility' => $this->request->getPost('participant_eligibility'),
-                    'extension_status' => $this->request->getPost('extension_status'),
-                    'extension_notice_file' => $extension_fileNewName,
-                    'extension_end_date' => $this->request->getPost('extension_end_date'),
-                    'extension_end_time' => $this->request->getPost('extension_end_time'),
                     'marquee_status' => $this->request->getPost('marquee_status'),
                     'status' => $this->request->getPost('status'),
                     'upload_by' => $loggeduserId,
@@ -234,12 +223,41 @@ use App\Models\Program_department_mapping_model;
 
         public function event_extension_notice() {
             $events_model = new Events_model();
+            $event_extension_model = new Event_extension_model();
             $data = ['title' => 'Event Extension Notice'];
             if ($this->request->is('get')) {
                 $data['events'] = $events_model->get();
+                $data['event_extension'] = $event_extension_model->get();
                 return view('admin/events/event-extension-notice',$data);
             }else if ($this->request->is('get')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }else{
+                    return redirect()->to(base_url('admin/login'));
+                }
+                $extension_file = $this->request->getFile('extension_file');
+                if ($extension_file->isValid() && ! $extension_file->hasMoved()) {
+                    $extension_fileNewName = "ext".$extension_file->getRandomName();
+                    $extension_file->move(ROOTPATH . 'public/admin/uploads/events', $extension_fileNewName);    
+                }else{
+                 $extension_fileNewName = "";
+                }
 
+                $data = [
+                    'event_id' => $this->request->getPost('event_id'),
+                    'extension_status' => $this->request->getPost('extension_status'),
+                    'extension_notice_file' => $extension_fileNewName,
+                    'extension_end_date' => $this->request->getPost('extension_end_date'),
+                    'extension_end_time' => $this->request->getPost('extension_end_time'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $event_extension_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/event-extension-notice')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/event-extension-notice')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
     }
