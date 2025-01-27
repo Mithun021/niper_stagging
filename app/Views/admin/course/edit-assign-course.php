@@ -61,7 +61,7 @@ $program_model = new Program_model();
                                 <select name="Progid" id="Progid" class="form-control form-control-sm" required>
                                     <option value="">Select Program</option>
                                     <?php foreach ($program as $key => $value) { ?>
-                                        <option value="<?= $value['id'] ?>" <?php if($value['id'] == $edit_assign_courses['program_id']) { echo "selected"; } ?>><?= $value['program_name'] ?></option>
+                                        <option value="<?= $value['program_id'] ?>" <?php if($value['program_id'] == $edit_assign_courses['program_id']) { echo "selected"; } ?>><?= $value['program_name'] ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
