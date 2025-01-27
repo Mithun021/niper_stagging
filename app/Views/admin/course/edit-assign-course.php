@@ -90,13 +90,16 @@ $program_model = new Program_model();
                                 <span>Select Course</span>
                                 <select name="course_id" id="course_id" class="form-control form-control-sm">
                                     <option value="">Select Course</option>
+                                    <?php foreach ($courses as $key => $value) { ?>
+                                        <option value="<?= $value['id'] ?>" <?php if($value['id'] == $edit_assign_courses['course_id']) { echo "selected"; } ?>><?= $value['course_name'] ?> - <?= $value['course_code'] ?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span>Credit Score</span>
-                                <input type="text" name="credit_score" id="credit_score" class="form-control form-control-sm">
+                                <input type="text" name="credit_score" id="credit_score" class="form-control form-control-sm" value="<?= $edit_assign_courses['credits'] ?>">
                             </div>
                         </div>
                         <div class="col-lg-12">
