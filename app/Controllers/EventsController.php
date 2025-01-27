@@ -229,7 +229,7 @@ use App\Models\Program_department_mapping_model;
                 $data['events'] = $events_model->get();
                 $data['event_extension'] = $event_extension_model->get();
                 return view('admin/events/event-extension-notice',$data);
-            }else if ($this->request->is('get')) {
+            }else if ($this->request->is('post')) {
                 $sessionData = session()->get('loggedUserData');
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
