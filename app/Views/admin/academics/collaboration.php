@@ -61,7 +61,7 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <span for="Collabfileupload">Collaboration File Upload(PDF):<span class="text-danger">*</span></span>
+                                <span for="Collabfileupload">Collaboration File Upload(PDF):</span>
                                 <input type="file" name="Collabfile" id="Collabfile" class="form-control form-control-sm" accept=".pdf">
                             </div>
                         </div>
