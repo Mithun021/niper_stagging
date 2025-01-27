@@ -92,7 +92,19 @@ class CourseController extends BaseController
             $data['assign_courses'] = $assign_course_model->get();
             return view('admin/course/edit-assign-course',$data);
         }else if ($this->request->is("post")) {
-            
+            $data =[
+                'course_id' => $this->request->getVar('course_id'),
+                'dept_id' => $this->request->getVar('Deptid'),
+                'program_id' => $this->request->getVar('Progid'),
+                'semester' => $this->request->getVar('semester'),
+                'credits' => $this->request->getVar('credit_score'),
+            ];
+            $result = $assign_course_model->add($data,$id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-assign-course/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            }else{
+                return redirect()->to('admin/edit-assign-course/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
         }
     }
 }
