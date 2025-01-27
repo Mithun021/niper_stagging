@@ -77,7 +77,7 @@ $event_category_model = new Event_category_model();
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <span for="">Event Start Time<span class="text-danger">*</span></span>
+                                        <span for="">Event Start Time</span>
                                         <div class="input-group">
                                             <input type="text" class="form-control form-control-sm" name="event_end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
                                         </div>
@@ -131,7 +131,7 @@ $event_category_model = new Event_category_model();
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <span>Marquee Status</span>
                                 <select name="marquee_status" id="marquee_status" class="form-control form-control-sm">
@@ -140,7 +140,7 @@ $event_category_model = new Event_category_model();
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <span>Status</span>
                                 <select name="status" id="status" class="form-control form-control-sm">
