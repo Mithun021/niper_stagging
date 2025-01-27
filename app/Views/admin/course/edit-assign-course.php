@@ -49,7 +49,7 @@ $program_model = new Program_model();
                                 <select name="Deptid" id="Deptid" class="form-control form-control-sm" required>
                                     <option value="">Select Deparrtment</option>
                                     <?php foreach ($department as $key => $value) { ?>
-                                        <option value="<?= $value['id'] ?>"<?php if($value['id'] == $edit_assign_courses['dept_id']) { echo "selected"; } ?>><?= $value['name'] ?></option>
+                                        <option value="<?= $value['id'] ?>" <?php if($value['id'] == $edit_assign_courses['dept_id']) { echo "selected"; } ?>><?= $value['name'] ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -72,16 +72,16 @@ $program_model = new Program_model();
                             <div class="form-group">
                                 <span for="semester">Semester:</span>
                                 <select name="semester" id="semester" class="form-control form-control-sm" required>
-                                    <option value="I">I</option>
-                                    <option value="II">II</option>
-                                    <option value="III">III</option>
-                                    <option value="IV">IV</option>
-                                    <option value="V">V</option>
-                                    <option value="VI">VI</option>
-                                    <option value="VII">IVI</option>
-                                    <option value="VIII">VIII</option>
-                                    <option value="IX">IX</option>
-                                    <option value="X">X</option>
+                                    <option value="I" <?php if($edit_assign_courses['semester'] == "I") { echo "selected"; } ?>>I</option>
+                                    <option value="II" <?php if($edit_assign_courses['semester'] == "II") { echo "selected"; } ?>>II</option>
+                                    <option value="III" <?php if($edit_assign_courses['semester'] == "III") { echo "selected"; } ?>>III</option>
+                                    <option value="IV" <?php if($edit_assign_courses['semester'] == "IV") { echo "selected"; } ?>>IV</option>
+                                    <option value="V" <?php if($edit_assign_courses['semester'] == "V") { echo "selected"; } ?>>V</option>
+                                    <option value="VI" <?php if($edit_assign_courses['semester'] == "VI") { echo "selected"; } ?>>VI</option>
+                                    <option value="VII" <?php if($edit_assign_courses['semester'] == "VII") { echo "selected"; } ?>>IVI</option>
+                                    <option value="VIII" <?php if($edit_assign_courses['semester'] == "VIII") { echo "selected"; } ?>>VIII</option>
+                                    <option value="IX" <?php if($edit_assign_courses['semester'] == "IX") { echo "selected"; } ?>>IX</option>
+                                    <option value="X" <?php if($edit_assign_courses['semester'] == "X") { echo "selected"; } ?>>X</option>
                                 </select>
                             </div>
                         </div>
