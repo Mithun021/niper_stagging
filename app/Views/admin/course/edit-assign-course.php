@@ -49,7 +49,7 @@ $program_model = new Program_model();
                                 <select name="Deptid" id="Deptid" class="form-control form-control-sm" required>
                                     <option value="">Select Deparrtment</option>
                                     <?php foreach ($department as $key => $value) { ?>
-                                        <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                        <option value="<?= $value['id'] ?>"<?php if($value['id'] == $edit_assign_courses['dept_id']) { echo "selected"; } ?>><?= $value['name'] ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -157,5 +157,31 @@ $program_model = new Program_model();
         </div>
     </div>
 </div>
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 
+<script>
+    $(document).ready(function() {
+        
+        // Fetch Programs based on Department
+        $('#Deptid').change(function() {
+            var dept_id = $(this).val();
+            $.ajax({
+                url: '<?= base_url() ?>fetch-programs',
+                type: 'post',
+                data: {
+                    dept_id: dept_id
+                },
+                success: function(response) {
+                    // console.log(response);
+                    let dataList = $('#Progid');
+                    dataList.empty();
+                    dataList.append('<option value="">Select Program</option>');
+                    $.each(response, function(index, item) {
+                        dataList.append('<option value="' + item.program_id + '">' + item.program_name + "(" + item.batch_start + "-" + item.batch_end + ")" + '</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>
 <?= $this->endSection() ?>
