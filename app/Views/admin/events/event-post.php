@@ -50,19 +50,19 @@ $event_category_model = new Event_category_model();
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Registration Link</span>
-                                <input type="url" class="form-control form-control-sm" name="reg_link" required>
+                                <input type="url" class="form-control form-control-sm" name="reg_link" >
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Meeting Link</span>
-                                <input type="url" class="form-control form-control-sm" name="meeting_link" required>
+                                <input type="url" class="form-control form-control-sm" name="meeting_link" >
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Event Venue</span>
-                                <input type="text" class="form-control form-control-sm" name="event_venue" required>
+                                <input type="text" class="form-control form-control-sm" name="event_venue" >
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -127,13 +127,13 @@ $event_category_model = new Event_category_model();
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Participant Seats</span>
-                                <input type="text" class="form-control form-control-sm" name="participant_seats" required>
+                                <input type="text" class="form-control form-control-sm" name="participant_seats">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Participant Eligibility</span>
-                                <input type="text" class="form-control form-control-sm" name="participant_eligibility" required>
+                                <input type="text" class="form-control form-control-sm" name="participant_eligibility">
                             </div>
                         </div>
 
