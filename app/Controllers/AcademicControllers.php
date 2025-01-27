@@ -112,9 +112,22 @@ class AcademicControllers extends BaseController
             $data['rules_regulations'] = $rules_regulations_model->get(1);
             return view('admin/academics/rules-regulations', $data);
         } else if ($this->request->is("post")) {
+            $new_file = $this->request->getFile('upload_file');
+            $data = $rules_regulations_model->where('id', 1)->first();
+            $old_file =  $data['upload_file'];
+            if ($new_file->isValid() && !$new_file->hasMoved()) {
+                if (file_exists("public/admin/uploads/rules_regulation/" . $old_file)) {
+                    unlink("public/admin/uploads/rules_regulation/" . $old_file);
+                }
+                $new_filename = $new_file->getRandomName();
+                $new_file->move(ROOTPATH . 'public/admin/uploads/rules_regulation', $new_filename);
+            } else {
+                $new_filename = $old_file;
+            }
             $data = [
                 'title' => $this->request->getPost('title'),
-                'description' => $this->request->getPost('description')
+                'description' => $this->request->getPost('description'),
+                'upload_file' => $new_filename
             ];
             $result = $rules_regulations_model->add($data, 1);
             if ($result === true) {
@@ -145,7 +158,7 @@ class AcademicControllers extends BaseController
             $thumbnailNewName = "";
 
             if ($thumbnail && $thumbnail->isValid() && !$thumbnail->hasMoved()) {
-                $thumbnailNewName = rand(0,9999) . $thumbnail->getRandomName();
+                $thumbnailNewName = rand(0, 9999) . $thumbnail->getRandomName();
                 $thumbnail->move(ROOTPATH . 'public/admin/uploads/research_publication', $thumbnailNewName);
             }
 
@@ -157,7 +170,7 @@ class AcademicControllers extends BaseController
             ];
             $result = $research_publication_model->add($data);
 
-            if ($result == true){
+            if ($result == true) {
                 $insert_id = $research_publication_model->getInsertID();
                 $albumFiles = $this->request->getFiles();
                 if ($albumFiles && isset($albumFiles['gallery_file'])) {

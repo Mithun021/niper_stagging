@@ -5,7 +5,7 @@
     {
         protected $table         = 'rules_regulations';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['title','description'];
+        protected $allowedFields = ['title','description','upload_file'];
         // protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
