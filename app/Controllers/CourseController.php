@@ -107,4 +107,14 @@ class CourseController extends BaseController
             }
         }
     }
+
+    public function delete_assign_course($id){
+        $assign_course_model = new Assign_course_model();
+        $result = $assign_course_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/assignCourseList')->with('status','<div class="alert alert-success" role="alert"> Data delete Successful </div>');
+        }else{
+            return redirect()->to('admin/assignCourseList')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+        }
+    }
 }
