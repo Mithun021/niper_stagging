@@ -109,27 +109,7 @@
                                 <input type="text" class="form-control form-control-sm" name="participant_eligibility" required>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <span for="">Extension Status</span>
-                                <input type="text" class="form-control form-control-sm" name="extension_status">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <span for="">Extension Notice File(PDF)<span class="text-danger">*</span></span>
-                                <input type="file" class="form-control form-control-sm" name="extension_file" accept=".pdf" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <span for="">Extension End Date & Time<span class="text-danger">*</span></span>
-                                <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="extension_end_date"  placeholder="Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                    <input type="text" class="form-control form-control-sm" name="extension_end_time"  placeholder="Time" onfocus="(this.type='time')" onblur="(this.type='text')">
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span>Marquee Status</span>

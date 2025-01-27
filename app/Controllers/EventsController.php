@@ -233,8 +233,10 @@ use App\Models\Program_department_mapping_model;
         }
 
         public function event_extension_notice() {
+            $events_model = new Events_model();
             $data = ['title' => 'Event Extension Notice'];
             if ($this->request->is('get')) {
+                $data['events'] = $events_model->get();
                 return view('admin/events/event-extension-notice',$data);
             }else if ($this->request->is('get')) {
 
