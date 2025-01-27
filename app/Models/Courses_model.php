@@ -17,7 +17,7 @@ class Courses_model extends Model
             $result = $this->update($id, $data);
             return $result ? true : 'Data not updated: Update failed.';
         } else {
-            $existingStudent = $this->where('course_code', $data['course_code'])->first();
+            $existingStudent = $this->where('course_code', $data['course_code'])->where('course_name', ucwords($data['course_name']))->first();
             if ($existingStudent) {
                 return 'Data not inserted: Course already exists.';
             }else{
