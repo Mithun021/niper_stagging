@@ -79,7 +79,7 @@ $event_category_model = new Event_category_model();
                                     <div class="form-group">
                                         <span for="">Event Start Time</span>
                                         <div class="input-group">
-                                            <input type="text" class="form-control form-control-sm" name="event_end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                            <input type="text" class="form-control form-control-sm" name="event_start_time" placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')">
                                         </div>
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@ $event_category_model = new Event_category_model();
                                 <span for="">Event End Date and Time</span>
                                 <div class="input-group">
                                     <input type="text" class="form-control form-control-sm" name="event_start_date" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                    <input type="text" class="form-control form-control-sm" name="event_end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="event_end_time" placeholder="End Date" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
                                 </div>
                             </div>
                         </div>
