@@ -112,6 +112,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     
     $routes->match(['get', 'post'], 'courseList', 'CourseController::courseList');
     $routes->match(['get', 'post'], 'assignCourseList', 'CourseController::assignCourseList');
+    $routes->match(['get', 'post'], 'edit-assign-course/(:num)', 'CourseController::edit_assign_course/$1');
 
     // Export and Import routes
     $routes->post('export_emp_experience_sample', 'EmployeeController::export_emp_experience_sample');
