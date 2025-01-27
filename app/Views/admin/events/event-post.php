@@ -207,7 +207,7 @@ $event_category_model = new Event_category_model();
                                     <td><?= $value['title'] ?></td>
                                     <td><?php $event_category = $event_category_model->get($value['event_category']);
                                         echo $event_category['name'] ?? ''; ?></td>
-                                    <td><?= date("d:M:Y", strtotime($value['event_start_date'])) ?> <?= date("h:i A", strtotime($value['event_start_time'])) ?> - <?= date("d:M:Y", strtotime($value['event_end_date'])) ?> <?= date("h:i A", strtotime($value['event_end_time'])) ?></td>
+                                    <td><?= date("d:M:Y", strtotime($value['event_start_date'])) ?> <?= date("h:i A", strtotime($value['event_start_time'])) ?> - <br><?= date("d:M:Y", strtotime($value['event_end_date'])) ?> <?= date("h:i A", strtotime($value['event_end_time'])) ?></td>
                                     <td><?= date("d:M:Y", strtotime($value['reg_start_date'])) ?> <?= date("h:i A", strtotime($value['reg_start_time'])) ?> - <br><?= date("d:M:Y", strtotime($value['reg_end_date'])) ?> <?= date("h:i A", strtotime($value['reg_end_time'])) ?></td>
                                     <td><?= $value['participant_seats'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
