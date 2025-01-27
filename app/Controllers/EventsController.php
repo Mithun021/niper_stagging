@@ -45,6 +45,7 @@ use App\Models\Program_department_mapping_model;
                     'description' => $this->request->getPost('description'),
                     'event_category' => $this->request->getPost('event_category'),
                     'registration_link' => $this->request->getPost('reg_link'),
+                    'meeting_link' => $this->request->getPost('meeting_link'),
                     'venue' => $this->request->getPost('event_venue'),
                     'upload_file' => $event_fileNewName,
                     'event_start_date' => $this->request->getPost('event_start_date'),

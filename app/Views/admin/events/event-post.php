@@ -55,6 +55,12 @@ $event_category_model = new Event_category_model();
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
+                                <span for="">Meeting Link</span>
+                                <input type="url" class="form-control form-control-sm" name="meeting_link" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <span for="">Event Venue</span>
                                 <input type="text" class="form-control form-control-sm" name="event_venue" required>
                             </div>
