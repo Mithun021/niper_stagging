@@ -30,8 +30,8 @@
                     <div class="form-group">
                         <span for="">Upload file(.pdf)<span class="text-danger">*</span></span>
                         <input type="file" class="form-control form-control-sm" name="upload_file">
-                        <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/rules_regulation/' . $value['upload_file'])): ?>
-                            <a href="<?= base_url() ?>public/admin/uploads/rules_regulation/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/asets/images/pdf.png" alt="" height="30px"></a>
+                        <?php if (!empty($rules_regulations['upload_file']) && file_exists('public/admin/uploads/rules_regulation/' . $rules_regulations['upload_file'])): ?>
+                            <a href="<?= base_url() ?>public/admin/uploads/rules_regulation/<?= $rules_regulations['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/asets/images/pdf.png" alt="" height="30px"></a>
                         <?php else: ?>
                             <img src="<?= base_url() ?>public/admin/uploads/rules_regulation/invalid_image.png" alt="" height="40px">
                         <?php endif; ?>
