@@ -46,10 +46,10 @@ $employee_model = new Employee_model();
                     </div>
 
                     <!-- Upload Academic Calendar -->
-                    <div class="form-group mt-3">
+                    <!-- <div class="form-group mt-3">
                         <span for="Acdcalenderfileupload">Examination Grading System(.pdf):<span class="text-danger">*</span></span>
                         <input type="file" name="examin_grade_file" id="examin_grade_file" class="form-control" accept=".pdf" required>
-                    </div>
+                    </div> -->
 
                     <!-- Submit Button -->
                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
@@ -71,7 +71,7 @@ $employee_model = new Employee_model();
                             <tr>
                                 <td>SN</td>
                                 <td>Academic Session</td>
-                                <td>Calendar/Fees/Exam. Grad Files</td>
+                                <td>Calendar/Fees<!--/Exam. Grad Files--></td>
                                 <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
@@ -94,11 +94,6 @@ $employee_model = new Employee_model();
                                             <img src="<?= base_url() ?>public/admin/uploads/academic/invalid_image.png" alt="" height="40px">
                                         <?php endif; ?>
 
-                                        <?php if (!empty($value['exam_grade_file']) && file_exists('public/admin/uploads/academic/' . $value['exam_grade_file'])): ?>
-                                            <a href="<?= base_url() ?>public/admin/uploads/academic/<?= $value['exam_grade_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
-                                        <?php else: ?>
-                                            <img src="<?= base_url() ?>public/admin/uploads/academic/invalid_image.png" alt="" height="40px">
-                                        <?php endif; ?>
                                     </td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>

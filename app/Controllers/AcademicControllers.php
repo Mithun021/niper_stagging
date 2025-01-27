@@ -39,20 +39,20 @@ class AcademicControllers extends BaseController
                 $feesFileImageName = "";
             }
 
-            $examin_grade_file = $this->request->getFile('examin_grade_file');
-            if ($examin_grade_file->isValid() && ! $examin_grade_file->hasMoved()) {
-                $examin_grade_fileImageName = "grade" . $examin_grade_file->getRandomName();
-                $examin_grade_file->move(ROOTPATH . 'public/admin/uploads/academic', $examin_grade_fileImageName);
-            } else {
-                $examin_grade_fileImageName = "";
-            }
+            // $examin_grade_file = $this->request->getFile('examin_grade_file');
+            // if ($examin_grade_file->isValid() && ! $examin_grade_file->hasMoved()) {
+            //     $examin_grade_fileImageName = "grade" . $examin_grade_file->getRandomName();
+            //     $examin_grade_file->move(ROOTPATH . 'public/admin/uploads/academic', $examin_grade_fileImageName);
+            // } else {
+            //     $examin_grade_fileImageName = "";
+            // }
 
             $data = [
                 'session_start' => $this->request->getPost('session_start_year'),
                 'session_end' => $this->request->getPost('session_end_year'),
                 'calendar_file' => $calendarFileImageName,
                 'fees_file' => $feesFileImageName,
-                'exam_grade_file' => $examin_grade_fileImageName,
+                // 'exam_grade_file' => $examin_grade_fileImageName,
                 'upload_by' => $loggeduserId
             ];
 
