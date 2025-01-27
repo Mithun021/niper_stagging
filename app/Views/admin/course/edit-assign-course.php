@@ -40,7 +40,7 @@ $program_model = new Program_model();
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/assignCourseList" method="post">
+                <form action="<?= base_url() ?>admin/edit-assign-course/<?= $assign_course_id ?>" method="post">
 
                     <div class="row">
                         <div class="col-lg-4">
