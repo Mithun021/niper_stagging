@@ -12,6 +12,7 @@
             <ul class="sub-menu" aria-expanded="false">
                 <li><a href="<?= base_url() ?>admin/news-post" class="waves-effect"><span>News Post</span></a></li>
                 <li><a href="<?= base_url() ?>admin/event-post" class="waves-effect"><span>Events Post</span></a></li>
+                <li><a href="<?= base_url() ?>admin/event-extension-notice" class="waves-effect"><span>Event Extension Notice</span></a></li>
                 <li><a href="<?= base_url() ?>admin/event-members" class="waves-effect"><span>Events Member Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/event-organizer" class="waves-effect"><span>Events Organizer</span></a></li>
                 <li><a href="<?= base_url() ?>admin/event-fees" class="waves-effect"><span>Events Fee Details</span></a></li>
