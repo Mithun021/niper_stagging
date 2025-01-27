@@ -147,7 +147,7 @@ $program_model = new Program_model();
                                     <td><?= $department_model->get($value['dept_id'])['name'] ?? '__' ?></td>
                                     <td><?php $program = $program_model->getProgramWithBatch($value['program_id']); echo $program['program_name']. ' - '.$program['batch_start']. ' - '.$program['batch_end'] ?? '__'; ?></td>
                                     <td><?= $value['semester'] ?></td>
-                                    <td><?php echo $courses_model->get($value['course_id'])['course_name'] ?? '__' ?></td>
+                                    <td><?php $course = $courses_model->get($value['course_id']); echo $course['course_name'] ?? '__'; echo " - " . $course['course_code'] ?? '__' ?></td>
                                     <td><?= $value['credits'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
