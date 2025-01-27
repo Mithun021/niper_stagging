@@ -87,7 +87,7 @@ class CourseController extends BaseController
             $data['edit_assign_courses'] = $assign_course_model->get($id);
             $data['department'] = $department_model->get();
             $data['program'] = $program_model->getProgramCategoriesByDepartment($data['edit_assign_courses']['dept_id']);
-            // print_r( $data['program']); die;
+            print_r( $data['program']); die;
             $data['courses'] = $courses_model->getActiveData();
             $data['assign_courses'] = $assign_course_model->get();
             return view('admin/course/edit-assign-course',$data);
