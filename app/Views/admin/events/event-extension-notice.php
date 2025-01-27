@@ -94,7 +94,7 @@
                             </td>
                             <td><?php $event = $events_model->get($value['event_id']); echo $event['title'] ?></td>
                             <td><?= $value['extension_status'] ?></td> 
-                            <td><?= date("d:M:Y", strtotime($value['extension_end_date'])) ?> - <?= date("d:M:Y", strtotime($value['extension_end_time'])) ?></td>      
+                            <td><?= date("d:M:Y", strtotime($value['extension_end_date'])) ?> - <?= date("h:i A", strtotime($value['extension_end_time'])) ?></td>      
                             <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                             <!-- <td><?= date("d-m-Y", strtotime($value['created_at'])) ?></td> -->
                             <td>
