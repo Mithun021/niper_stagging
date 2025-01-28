@@ -26,8 +26,8 @@
                     <div class="form-group">
                         <span for="">Current Session<span class="text-danger">*</span></span>
                         <div class="input-group">
-                            <input type="number" class="form-control form-control-sm" name="session_start"  placeholder="Batch Start" maxlength="4">
-                            <input type="number" class="form-control form-control-sm" name="session_end"  placeholder="Batch Start" maxlength="4">
+                            <input type="number" class="form-control form-control-sm" name="session_start"  placeholder="Batch Start" maxlength="4" value="<?= $current_session['session_start'] ?>">
+                            <input type="number" class="form-control form-control-sm" name="session_end"  placeholder="Batch Start" maxlength="4" value="<?= $current_session['session_end'] ?>">
                         </div>
                     </div>
 

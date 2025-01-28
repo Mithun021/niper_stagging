@@ -12,6 +12,7 @@ use App\Models\Bog_gallery_model;
 use App\Models\Bog_members_model;
 use App\Models\Bog_model;
 use App\Models\Contact_model;
+use App\Models\Current_session_model;
 use App\Models\Department_model;
 use App\Models\Designation_model;
 use App\Models\Download_form_model;
@@ -1160,8 +1161,10 @@ use App\Models\Youtube_link_model;
         }
 
         public function currecnt_session(){
+            $current_session_model = new Current_session_model();
             $data = ['title' => 'Current Session'];
             if ($this->request->is("get")) {
+                $data['current_session'] = $current_session_model->get(1);
                 return view('admin/currecnt-session',$data);
             }else if ($this->request->is("post")) {
 
