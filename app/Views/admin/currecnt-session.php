@@ -22,19 +22,12 @@
                     }
                 ?>
                 <form action="<?= base_url() ?>admin/images" method="post" enctype="multipart/form-data">
+                    
                     <div class="form-group">
-                        <span for="">Image Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="image_title">
-                    </div>
-                    <div class="form-group">
-                        <span for="">Upload File(JPG,PNG,PDF)</span>
-                        <input type="file" class="form-control form-control-sm" name="image_file" accept=".jpg, .png, .pdf" required>
-                    </div>
-                    <div class="form-group">
-                        <span for="">Event Date<span class="text-danger">*</span></span>
+                        <span for="">Current Session<span class="text-danger">*</span></span>
                         <div class="input-group">
-                            <input type="text" class="form-control form-control-sm" name="event_start_date"  placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                            <input type="text" class="form-control form-control-sm" name="event_start_date"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                            <input type="number" class="form-control form-control-sm" name="session_start"  placeholder="Batch Start" maxlength="4">
+                            <input type="number" class="form-control form-control-sm" name="session_end"  placeholder="Batch Start" maxlength="4">
                         </div>
                     </div>
 
