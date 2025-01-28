@@ -115,6 +115,7 @@
             <a href="javascript: void(0);" class="has-arrow waves-effect"><i
                     class="mdi mdi-table-merge-cells"></i><span>Master</span></a>
             <ul class="sub-menu" aria-expanded="false">
+            <li><a href="<?= base_url() ?>admin/currecnt-session" class="waves-effect"><span>Current Session</span></a></li>
                 <li><a href="<?= base_url() ?>admin/departments-section" class="waves-effect"><span>Department Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/departments-photos" class="waves-effect"><span>Department Photos</span></a></li>
                 <li><a href="<?= base_url() ?>admin/designation" class="waves-effect"><span>Designation Details</span></a></li>

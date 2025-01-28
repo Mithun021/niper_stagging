@@ -1159,7 +1159,14 @@ use App\Models\Youtube_link_model;
             }
         }
 
+        public function currecnt_session(){
+            $data = ['title' => 'Current Session'];
+            if ($this->request->is("get")) {
+                return view('admin/currecnt-session',$data);
+            }else if ($this->request->is("post")) {
 
+            }
+        }
     }
 
 ?>
