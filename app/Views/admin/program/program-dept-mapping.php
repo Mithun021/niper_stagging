@@ -101,7 +101,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <span>Current Session</span>
-                            <select name="status" id="status" class="form-control form-control-sm">
+                            <select name="current_session" id="current_session" class="form-control form-control-sm">
                                 <option value="yes">Yes</option>
                                 <option value="no" default>No</option>
                             </select>
