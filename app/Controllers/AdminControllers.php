@@ -1167,7 +1167,16 @@ use App\Models\Youtube_link_model;
                 $data['current_session'] = $current_session_model->get(1);
                 return view('admin/currecnt-session',$data);
             }else if ($this->request->is("post")) {
-
+                $data = [
+                    'session_start' => $this->request->getPost('session_start'),
+                    'session_end' => $this->request->getPost('session_end'),
+                ];
+                $result = $current_session_model->add($data,1);
+                if ($result === true) {
+                    return redirect()->to('admin/currecnt-session')->with('status','<div class="alert alert-success" role="alert"> Data update Successful </div>');
+                } else {
+                    return redirect()->to('admin/currecnt-session')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
     }

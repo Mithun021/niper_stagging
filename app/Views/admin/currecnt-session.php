@@ -21,7 +21,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form action="<?= base_url() ?>admin/images" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/currecnt-session" method="post" enctype="multipart/form-data">
                     
                     <div class="form-group">
                         <span for="">Current Session<span class="text-danger">*</span></span>
