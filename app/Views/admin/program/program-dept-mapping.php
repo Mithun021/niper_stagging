@@ -135,6 +135,7 @@
                                 <td>Eligibility Criteria</td>
                                 <td>No. of Seats</td>
                                 <td>Batch</td>
+                                <td>Active Session</td>
                                 <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
@@ -150,6 +151,7 @@
                                 <td><?= $value['eligibility_criteria'] ?></td>
                                 <td><?= $value['no_of_seats'] ?></td>
                                 <td><?= $value['batch_start']." - ".$value['batch_end'] ?></td>
+                                <td><?= $value['current_session'] ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
