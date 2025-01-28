@@ -97,6 +97,16 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <span>Current Session</span>
+                            <select name="status" id="status" class="form-control form-control-sm">
+                                <option value="yes">Yes</option>
+                                <option value="no" default>No</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-primary mt-4">Submit</button>
                     </div>
