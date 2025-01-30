@@ -82,7 +82,7 @@ use App\Models\Program_department_mapping_model;
             $event_members_model = new Event_members_model();
             $data = ['title' => 'Event Members'];
             if ($this->request->is("get")) {
-                $data['event_members'] = $event_members_model->get();
+                $data['member_type'] = $member_type_model->get();
                 $data['events'] = $events_model->get();
                 $data['employees'] = $employee_model->get();
                 $data['event_members'] = $event_members_model->get();

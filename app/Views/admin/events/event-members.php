@@ -36,7 +36,7 @@ $events_model = new Events_model();
                         <div class="col-md-6">
                             <span>Member Type:</span>
                             <select name="member_type" class="form-control form-control-sm" required>
-                                <?php foreach ($event_members as $value) { ?>
+                                <?php foreach ($member_type as $value) { ?>
                                     <option value="<?= $value['id'] ?>"><?= $value['member_type'] ?></option>
                                 <?php } ?>
                             </select>
