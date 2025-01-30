@@ -103,7 +103,7 @@ use App\Models\Program_department_mapping_model;
                         'member_name' => $value,
                         'member_type' => $this->request->getPost('member_type'),
                         'member_designation' => $this->request->getPost('member_designation')[$key],
-                        'other_designation' => $this->request->getPost('other_designation')[$key],
+                        'other_designation' => $this->request->getPost('other_designation')[$key] ?? '',
                         'member_affiliation' => $this->request->getPost('member_affiliation')[$key],
                         'upload_by' => $loggeduserId,
                     ];
