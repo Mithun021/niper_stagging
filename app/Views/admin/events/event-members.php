@@ -68,7 +68,7 @@ $events_model = new Events_model();
                                             <td>
                                                 <div class="form-group">
                                                     <span>Member Designation:</span>
-                                                    <select name="member_designation" id="member_designation[]" class="form-control form-control-sm" required>
+                                                    <select name="member_designation[]" id="member_designation" class="form-control form-control-sm" required>
                                                         <option value="Assistant Professor">Assistant Professor</option>
                                                         <option value="Associate Professor">Associate Professor</option>
                                                         <option value="Professor">Professor</option>
@@ -78,13 +78,13 @@ $events_model = new Events_model();
                                                 </div>
                                                 <div class="form-group" id="other_designation" style="display: none;">
                                                     <span>Specify Other Designation:</span>
-                                                    <input type="text" name="member_desig_other[]" class="form-control form-control-sm" value="<?= old('member_desig_other') ?>">
+                                                    <input type="text" name="member_desig_other[]" class="form-control form-control-sm" >
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group">
                                                     <span>Member Affiliation:</span>
-                                                    <input type="text" name="member_affiliation[]" class="form-control form-control-sm" value="<?= old('member_affiliation') ?>" required>
+                                                    <input type="text" name="member_affiliation[]" class="form-control form-control-sm" required>
                                                 </div>
                                             </td>
                                             <td>
