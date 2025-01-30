@@ -197,7 +197,7 @@ use App\Models\Program_department_mapping_model;
                 }else{
                     return redirect()->to(base_url('admin/login'));
                 }
-                $gallery_file = $this->request->getFiles()();
+                $gallery_file = $this->request->getFiles();
                 if ($gallery_file) {
                     foreach ($gallery_file['gallery_file'] as $file) {
                         if ($file->isValid() && !$file->hasMoved()) {
