@@ -4,9 +4,11 @@
 
 use App\Models\Research_publication_gallery_model;
 use App\Models\Employee_model;
+use App\Models\Research_publication_type_model;
 
 $employee_model = new Employee_model();
 $research_publication_gallery_model = new Research_publication_gallery_model();
+$research_publication_type_model = new Research_publication_type_model();
 ?>
 <style>
 
@@ -94,6 +96,9 @@ $research_publication_gallery_model = new Research_publication_gallery_model();
                                 <td>SN</td>
                                 <td>Files</td>
                                 <td>Title</td>
+                                <td>Reseach/Publication Type</td>
+                                <td>Impact Factor</td>
+                                <td>Faculty Name</td>
                                 <td>Gallery</td>
                                 <td>Upload by</td>
                                 <td>Action</td>
@@ -111,6 +116,9 @@ $research_publication_gallery_model = new Research_publication_gallery_model();
                                         <?php endif; ?>
                                     </td>
                                     <td><?= $value['title'] ?></td>
+                                    <td><?= $research_publication_type->get($value['reseach_publication_type_id'])['name'] ?? '' ?></td>
+                                    <td><?= $value['impact_factor'] ?></td>
+                                    <td><?= $value['faculty_name'] ?></td>
                                     <td>
                                         <?php $gallery = $research_publication_gallery_model->getByResearch($value['id']);
                                         if (isset($gallery)) {
