@@ -1,11 +1,11 @@
 <?php
     namespace App\Models;
     use CodeIgniter\Model;
-    class Tendor_corrigendum_model extends Model
+    class Member_type_model extends Model
     {
-        protected $table         = 'tendor_corigendum';
+        protected $table         = 'faculty_awards';
         protected $primaryKey    = 'id';
-        protected $allowedFields = ['tendor_id','upload_file', 'file_decription', 'upload_by'];
+        protected $allowedFields = ['title','description', 'thumbnail', 'upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
@@ -25,9 +25,6 @@
                 $result = $this->orderBy('id','asc')->findAll();
             }
             return $result;
-        }
-        public function get_by_tendorid($id){
-            return $this->where('tendor_id', $id)->first();
         }
     }
 ?>

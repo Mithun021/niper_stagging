@@ -10,6 +10,7 @@ use App\Models\Event_highlights_model;
 use App\Models\Event_members_model;
 use App\Models\Event_organizer_model;
 use App\Models\Events_model;
+use App\Models\Member_type_model;
 use App\Models\Program_department_mapping_model;
     use App\Models\Program_model;
 
@@ -261,6 +262,18 @@ use App\Models\Program_department_mapping_model;
                 } else {
                     return redirect()->to('admin/event-extension-notice')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
+            }
+        }
+
+
+        public function member_type_category() {
+            $member_type_model = new Member_type_model();
+            $data = ['title' => 'Event Member Type'];
+            if ($this->request->is('get')) {
+                $data['member_type'] = $member_type_model->get();
+                return view('admin/events/member_type_category',$data);
+            }else if ($this->request->is('post')) {
+
             }
         }
     }

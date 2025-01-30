@@ -23,10 +23,11 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'event-fees', 'EventsController::event_fees');
     $routes->match(['get','post'],'event-highlight', 'EventsController::event_highlight');
     $routes->match(['get','post'],'event-category', 'EventsController::event_category');
+    $routes->match(['get','post'],'member_type_category', 'EventsController::member_type_category');
+    
     $routes->match(['get','post'],'accouncement', 'AcademicControllers::accouncement');
     $routes->match(['get','post'],'academic-details', 'AcademicControllers::academic_details');
     $routes->match(['get','post'],'achievements', 'AdminControllers::achievements');
-    // $routes->match(['get','post'],'director-message', 'AdminControllers::director_message');
     $routes->match(['get','post'],'testimonial', 'AdminControllers::testimonial');
     $routes->match(['get','post'],'research-publication', 'AcademicControllers::research_publication');
     $routes->match(['get','post'],'faculty-awards', 'AchievementsController::faculty_awards');
