@@ -46,12 +46,6 @@ $research_publication_gallery_model = new Research_publication_gallery_model();
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <span for="">Description</span>
-                                <textarea id="editor" name="description"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
                                 <span>Type of publication/Research</span>
                                 <select name="research_type" id="" class="form-control form-control-sm">
                                     <option value="">--Select--</option>
@@ -59,6 +53,12 @@ $research_publication_gallery_model = new Research_publication_gallery_model();
                                         <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
                                     <?php } ?>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <span for="">Description</span>
+                                <textarea id="editor" name="description"></textarea>
                             </div>
                         </div>
                         <div class="col-md-6">
