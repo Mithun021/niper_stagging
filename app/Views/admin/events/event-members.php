@@ -48,16 +48,17 @@ $events_model = new Events_model();
                         <div class="col-md-12">
 
                             <div class="table-responsive">
-                                <table class="table table-bordered">
+                                <table class="table table-bordered" id="addServicetable">
                                     <thead>
                                         <tr>
-                                            <th>Members Name</th>
-                                            <th>Members Designation</th>
-                                            <th>Member Affiliation</th>
+                                            <td>Members Name</td>
+                                            <td>Members Designation</td>
+                                            <td>Member Affiliation</td>
+                                            <td><button type="button" class="btn btn-sm btn-primary" id="addnewservicerow">+</button></td>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
+                                    <tbody id="stockTbody">
+                                        <tr id="stockTrow">
                                             <td>
                                                 <div class="form-group">
                                                     <span>Member Name:</span>
@@ -85,6 +86,9 @@ $events_model = new Events_model();
                                                     <span>Member Affiliation:</span>
                                                     <input type="text" name="member_affiliation" class="form-control form-control-sm" value="<?= old('member_affiliation') ?>" required>
                                                 </div>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
                                             </td>
                                         </tr>
                                     </tbody>
