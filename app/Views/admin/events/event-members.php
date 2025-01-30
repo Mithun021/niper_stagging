@@ -6,9 +6,11 @@
 
 use App\Models\Employee_model;
 use App\Models\Events_model;
+use App\Models\Member_type_model;
 
 $employee_model = new Employee_model();
 $events_model = new Events_model();
+$member_type_model = new Member_type_model();
 ?>
 
 <div class="row">
@@ -138,7 +140,7 @@ $events_model = new Events_model();
                                     <td><?php $event = $events_model->get($value['event_id']);
                                         echo $event['title'] ?></td>
                                     <td><?= $value['member_name'] ?></td>
-                                    <td><?= $value['member_type'] ?></td>
+                                    <td><?= $$member_type_model($value['member_type'])['member_type'] ?? '' ?></td>
                                     <td><?= $value['member_designation'] ?>
                                         <?php if ($value['member_designation'] == "Any Other") {
                                             echo " - " . $value['other_designation'];
