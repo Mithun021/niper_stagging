@@ -31,6 +31,7 @@
                 <li><a href="<?= base_url() ?>admin/rules-regulations" class="waves-effect"><span>Rules & Regulations</span></a></li>
                 <li><a href="<?= base_url() ?>admin/collaboration" class="waves-effect"><span>Collaboration</span></a></li>
                 <li><a href="<?= base_url() ?>admin/research-publication" class="waves-effect"><span>Research & Publication</span></a></li>
+                <li><a href="<?= base_url() ?>admin/research-publication-type" class="waves-effect"><span>Research & Publication Type</span></a></li>
             </ul>
         </li>
         <li>

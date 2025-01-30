@@ -30,6 +30,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'achievements', 'AdminControllers::achievements');
     $routes->match(['get','post'],'testimonial', 'AdminControllers::testimonial');
     $routes->match(['get','post'],'research-publication', 'AcademicControllers::research_publication');
+    $routes->match(['get','post'],'research-publication-type', 'AcademicControllers::research_publication_type');
     $routes->match(['get','post'],'faculty-awards', 'AchievementsController::faculty_awards');
     $routes->match(['get','post'],'awards-recognition', 'AchievementsController::awards_recognition');
     $routes->match(['get','post'],'student-achievements', 'AchievementsController::student_achievements');

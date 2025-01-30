@@ -8,6 +8,7 @@ use App\Models\Collaboration_gallery_model;
 use App\Models\Collaboration_model;
 use App\Models\Research_publication_gallery_model;
 use App\Models\Research_publication_model;
+use App\Models\Research_publication_type_model;
 use App\Models\Rules_regulations_model;
 
 class AcademicControllers extends BaseController
@@ -256,6 +257,25 @@ class AcademicControllers extends BaseController
                 return redirect()->to('admin/collaboration')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
                 return redirect()->to('admin/collaboration')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
+        }
+    }
+
+    public function research_publication_type(){
+        $research_publication_type_model = new Research_publication_type_model();
+        $data = ['title' => 'Research Publication Type'];
+        if ($this->request->is("get")) {
+            $data['research_publication_type'] = $research_publication_type_model->get();
+            return view('admin/academics/research-publication-type', $data);
+        } else if ($this->request->is("post")) {
+            $data = [
+                'name' => $this->request->getPost('category_name')
+            ];
+            $result = $research_publication_type_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/research-publication-type')->with('status', '<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+            } else {
+                return redirect()->to('admin/research-publication-type')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
             }
         }
     }
