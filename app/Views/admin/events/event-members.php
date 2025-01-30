@@ -141,7 +141,7 @@ $member_type_model = new Member_type_model();
                                         echo $event['title'] ?></td>
                                     <td><?= $value['member_name'] ?></td>
                                     <td><?php 
-                                    $member_type = $member_type_model->getMemberType($value['member_type']);
+                                    $member_type = $member_type_model->get($value['member_type']);
                                     echo $member_type['member_type'];
                                     ?></td>
                                     <td><?= $value['member_designation'] ?>
