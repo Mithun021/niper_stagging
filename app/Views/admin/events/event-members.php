@@ -49,7 +49,7 @@ $events_model = new Events_model();
 
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="addServicetable">
-                                    <thead>
+                                    <thead class="bg-light">
                                         <tr>
                                             <td>Members Name</td>
                                             <td>Members Designation</td>
