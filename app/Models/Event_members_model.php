@@ -5,8 +5,8 @@
     {
         protected $table         = 'event_members';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['event_id','employee_id','member_type','member_designation','other_designation','member_affiliation','upload_by'];
-        // protected $createdField  = 'created_at';
+        protected $allowedFields = ['event_id','member_name','member_type','member_designation','other_designation','member_affiliation','upload_by'];
+        protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
             if ($id != null) {

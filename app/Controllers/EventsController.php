@@ -94,9 +94,12 @@ use App\Models\Program_department_mapping_model;
                 }else{
                     return redirect()->to(base_url('admin/login'));
                 }
+
+                
+
                 $data =[
                     'event_id' => $this->request->getPost('event_id'),
-                    'employee_id' => $this->request->getPost('emp_id'),
+                    'member_name' => $this->request->getPost('emp_id'),
                     'member_type' => $this->request->getPost('member_type'),
                     'member_designation' => $this->request->getPost('member_designation'),
                     'other_designation' => $this->request->getPost('other_designation'),
