@@ -35,7 +35,7 @@ $events_model = new Events_model();
                     <!-- Highlight Title -->
                     <div class="form-group">
                         <span for="evthightitle">Gallery Images(.png,.jpg) <span class="text-danger">*</span></span>
-                        <input type="file" class="form-control form-control-sm" name="gallery_file[]" id="gallery_file" accept=".png,.jpg,.jpeg" required>
+                        <input type="file" class="form-control form-control-sm" name="gallery_file[]" id="gallery_file" accept=".png,.jpg,.jpeg" multiple required>
                     </div>
 
                     <!-- Submit Button -->
