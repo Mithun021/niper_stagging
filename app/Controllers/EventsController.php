@@ -95,18 +95,22 @@ use App\Models\Program_department_mapping_model;
                     return redirect()->to(base_url('admin/login'));
                 }
 
-                
+                $member_name = $this->request->getPost('member_name');
 
-                $data =[
-                    'event_id' => $this->request->getPost('event_id'),
-                    'member_name' => $this->request->getPost('emp_id'),
-                    'member_type' => $this->request->getPost('member_type'),
-                    'member_designation' => $this->request->getPost('member_designation'),
-                    'other_designation' => $this->request->getPost('other_designation'),
-                    'member_affiliation' => $this->request->getPost('member_affiliation'),
-                    'upload_by' => $loggeduserId,
-                ];
-                $result = $event_members_model->add($data);
+                foreach ($member_name as $key => $value) {
+                    $data =[
+                        'event_id' => $this->request->getPost('event_id'),
+                        'member_name' => $value,
+                        'member_type' => $this->request->getPost('member_type'),
+                        'member_designation' => $this->request->getPost('member_designation')[$key],
+                        'other_designation' => $this->request->getPost('other_designation')[$key],
+                        'member_affiliation' => $this->request->getPost('member_affiliation')[$key],
+                        'upload_by' => $loggeduserId,
+                    ];
+                    $result = $event_members_model->add($data);
+                }
+
+                
                 if ($result === true) {
                     return redirect()->to('admin/event-members')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
