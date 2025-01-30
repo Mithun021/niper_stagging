@@ -6,6 +6,7 @@
 use App\Models\Event_category_model;
 use App\Models\Event_extension_model;
 use App\Models\Event_fees_model;
+use App\Models\Event_gallery_model;
 use App\Models\Event_highlights_model;
 use App\Models\Event_members_model;
 use App\Models\Event_organizer_model;
@@ -180,11 +181,13 @@ use App\Models\Program_department_mapping_model;
         }
 
         public function event_highlight(){
+            $event_gallery_model = new Event_gallery_model();
             $events_model = new Events_model();
             $event_highlights_model = new Event_highlights_model();
             $data = ['title' => 'Event Highlight'];
             if ($this->request->is("get")) {
                 $data['events'] = $events_model->get();
+                $data['event_gallery'] = $event_gallery_model->get();
                 $data['event_highlights'] = $event_highlights_model->get();
                 return view('admin/events/event-highlight',$data);
             }else if ($this->request->is("post")) {
@@ -194,12 +197,23 @@ use App\Models\Program_department_mapping_model;
                 }else{
                     return redirect()->to(base_url('admin/login'));
                 }
-                $data = [
-                    'event_id' => $this->request->getPost('event_id'),
-                    'highlight_title' => $this->request->getPost('evthightitle'),
-                    'upload_by' => $loggeduserId,
-                ];
-                $result = $event_highlights_model->add($data);
+                $gallery_file = $this->request->getFiles()();
+                if ($gallery_file) {
+                    foreach ($gallery_file['gallery_file'] as $file) {
+                        if ($file->isValid() && !$file->hasMoved()) {
+                            $newName = $file->getRandomName();
+                            $file->move(ROOTPATH . 'public/admin/uploads/event_gallery', $newName);
+                
+                            $data = [
+                                'event_id' => $this->request->getPost('event_id'),
+                                'gallery_file' => $newName,
+                                'upload_by' => $loggeduserId,
+                            ];
+                
+                            $result = $event_gallery_model->save($data);
+                        }
+                    }
+                }
                 if ($result === true) {
                     return redirect()->to('admin/event-highlight')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {

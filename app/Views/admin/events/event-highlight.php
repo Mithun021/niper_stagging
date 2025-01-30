@@ -1,11 +1,12 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content") ?>
 <?php
-    use App\Models\Employee_model;
-    use App\Models\Events_model;
 
-    $employee_model = new Employee_model();
-    $events_model = new Events_model();
+use App\Models\Employee_model;
+use App\Models\Events_model;
+
+$employee_model = new Employee_model();
+$events_model = new Events_model();
 ?>
 
 <div class="row">
@@ -25,16 +26,16 @@
                         <span>Event ID:</span>
                         <select name="event_id" class="form-control form-control-sm">
                             <option value="">Select Event</option>
-                        <?php foreach ($events as $key => $value) { ?>
-                            <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
-                        <?php } ?>
+                            <?php foreach ($events as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                            <?php } ?>
                         </select>
                     </div>
 
                     <!-- Highlight Title -->
                     <div class="form-group">
-                        <span for="evthightitle">Highlight Title <span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="evthightitle" id="evthightitle" placeholder="Enter Highlight Title" required>
+                        <span for="evthightitle">Gallery Images(.png,.jpg) <span class="text-danger">*</span></span>
+                        <input type="file" class="form-control form-control-sm" name="gallery_file" id="gallery_file" accept=".png,.jpg,.jpeg" required>
                     </div>
 
                     <!-- Submit Button -->
@@ -64,13 +65,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php if ($event_highlights) : ?>
-                                <?php foreach ($event_highlights as $key => $value) : ?>
+                            <?php if ($event_gallery) : ?>
+                                <?php foreach ($event_gallery as $key => $value) : ?>
                                     <tr>
                                         <td><?= $key + 1 ?></td>
                                         <td><?= $events_model->get($value['event_id'])['title'] ?></td>
-                                        <td><?= $value['highlight_title'] ?></td>
-                                        <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name'] ?></td>
+                                        <td>
+                                            <?php if (!empty($value['gallery_file']) && file_exists('public/admin/uploads/event_gallery/' . $value['gallery_file'])): ?>
+                                                <a href="<?= base_url() ?>public/admin/uploads/event_gallery/<?= $value['gallery_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/event_gallery/<?= $value['gallery_file'] ?>" alt="" height="30px"></a>
+                                            <?php else: ?>
+                                                <img src="<?= base_url() ?>public/admin/uploads/event_gallery/invalid_image.png" alt="" height="40px">
+                                            <?php endif; ?>
+                                        </td>
+                                        <td><?php $emp = $employee_model->get($value['upload_by']);
+                                            echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name'] ?></td>
                                         <td>
                                             <a href="<?= base_url() ?>admin/event-fees/<?= $value['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
                                             <a href="<?= base_url() ?>admin/event-fees/delete/<?= $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
