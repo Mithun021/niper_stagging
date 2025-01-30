@@ -167,15 +167,50 @@ $events_model = new Events_model();
     </div>
 
 </div>
+
+
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
-    // Show/Hide "Specify Other Designation" field
-    document.getElementById("member_designation").addEventListener("change", function() {
-        if (this.value === "Any Other") {
-            document.getElementById("other_designation").style.display = "block";
-        } else {
-            document.getElementById("other_designation").style.display = "none";
-        }
+    $(document).ready(function() {
+        var cloneLimit = 10;
+        var currentClones = 0;
+
+        // Add new row
+        $("#addnewservicerow").click(function(e) {
+            e.preventDefault();
+            if (currentClones < cloneLimit) {
+                currentClones++;
+                var cloneCatrow = $('#stockTrow').clone().appendTo('#stockTbody');
+                $(cloneCatrow).find('input').val('');
+
+                // Attach event listener to the new row's "member_designation"
+                $(cloneCatrow).find('select[name="member_designation[]"]').change(function() {
+                    var otherDesignationField = $(this).closest('td').find('#other_designation');
+                    if (this.value === "Any Other") {
+                        otherDesignationField.show();
+                    } else {
+                        otherDesignationField.hide();
+                    }
+                }).trigger('change'); // Trigger change event on page load for each row
+            }
+        });
+
+        // Remove row
+        $('#stockTbody').on('click', '#removenewServicerow', function() {
+            $(this).closest('tr').remove();
+        });
+
+        // Handle "Specify Other Designation" for existing rows on page load
+        $('#stockTbody').find('select[name="member_designation[]"]').each(function() {
+            var otherDesignationField = $(this).closest('td').find('#other_designation');
+            if (this.value === "Any Other") {
+                otherDesignationField.show();
+            } else {
+                otherDesignationField.hide();
+            }
+        });
     });
 </script>
+
 
 <?= $this->endSection() ?>
