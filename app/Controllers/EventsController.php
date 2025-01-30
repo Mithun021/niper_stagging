@@ -273,7 +273,22 @@ use App\Models\Program_department_mapping_model;
                 $data['member_type'] = $member_type_model->get();
                 return view('admin/events/member_type_category',$data);
             }else if ($this->request->is('post')) {
-
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }else{
+                    return redirect()->to(base_url('admin/login'));
+                }
+                $data = [
+                    'member_type' => $this->request->getPost('member_type'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $member_type_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/member_type_category')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/member_type_category')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
     }

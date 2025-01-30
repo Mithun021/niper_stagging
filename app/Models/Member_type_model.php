@@ -3,9 +3,9 @@
     use CodeIgniter\Model;
     class Member_type_model extends Model
     {
-        protected $table         = 'faculty_awards';
+        protected $table         = 'event_member_type';
         protected $primaryKey    = 'id';
-        protected $allowedFields = ['title','description', 'thumbnail', 'upload_by'];
+        protected $allowedFields = ['member_type', 'upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
