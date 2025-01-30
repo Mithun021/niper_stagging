@@ -116,7 +116,7 @@ $research_publication_type_model = new Research_publication_type_model();
                                         <?php endif; ?>
                                     </td>
                                     <td><?= $value['title'] ?></td>
-                                    <td><?= $research_publication_type->get($value['reseach_publication_type_id'])['name'] ?? '' ?></td>
+                                    <td><?= $research_publication_type_model->get($value['reseach_publication_type_id'])['name'] ?? '' ?></td>
                                     <td><?= $value['impact_factor'] ?></td>
                                     <td><?= $value['faculty_name'] ?></td>
                                     <td>
