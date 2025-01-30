@@ -34,7 +34,8 @@
                     <!-- Fee Type -->
                     <div class="form-group">
                         <span for="evtfeestype">Fee Type <span class="text-danger">*</span></span>
-                        <select class="form-control form-control-sm" name="evtfeestype" id="evtfeestype" required>
+                        <input type="text"  class="form-control form-control-sm" name="evtfeestype" id="evtfeestype" required/>
+                        <!-- <select class="form-control form-control-sm" name="evtfeestype" id="evtfeestype" required>
                             <option value="">-- Select Fee Type --</option>
                             <option value="All">All</option>
                             <option value="Research Scholar">Research Scholar</option>
@@ -45,7 +46,7 @@
                             <option value="Govt. Affiliation">Govt. Affiliation</option>
                             <option value="Private Affiliation">Private Affiliation</option>
                             <option value="Industry Professionals">Industry Professionals</option>
-                        </select>
+                        </select> -->
                     </div>
 
                     <!-- Event Fees -->
