@@ -137,8 +137,7 @@ $events_model = new Events_model();
                                     <td><?= $key + 1 ?></td>
                                     <td><?php $event = $events_model->get($value['event_id']);
                                         echo $event['title'] ?></td>
-                                    <td><?php $emp = $employee_model->get($value['employee_id']);
-                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name'] ?></td>
+                                    <td><?= $value['member_name'] ?></td>
                                     <td><?= $value['member_type'] ?></td>
                                     <td><?= $value['member_designation'] ?>
                                         <?php if ($value['member_designation'] == "Any Other") {
