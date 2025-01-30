@@ -40,6 +40,24 @@
                         <span for="">Description</span>
                         <textarea id="editor" name="description"></textarea>
                     </div>
+                    <div class="form-group">
+                        <span>Type of publication/Research</span>
+                        <select name="research_type" id="" class="form-control form-control-sm">
+                            <option value="">--Select--</option>
+                        <?php foreach ($research_publication_type as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span for="">Impact Factor<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="impact_factor">
+                    </div>
+
+                    <div class="form-group">
+                        <span for="">Faculty Name<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="faculty_name">
+                    </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
                     

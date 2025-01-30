@@ -142,10 +142,12 @@ class AcademicControllers extends BaseController
 
     public function research_publication()
     {
+        $research_publication_type_model = new Research_publication_type_model();
         $research_publication_model = new Research_publication_model();
         $research_publication_gallery_model = new Research_publication_gallery_model();
         $data = ['title' => 'Research Publication'];
         if ($this->request->is("get")) {
+            $data['research_publication_type'] = $research_publication_type_model->get();
             $data['research_publication'] = $research_publication_model->get();
             return view('admin/academics/research-publication', $data);
         } else if ($this->request->is("post")) {
@@ -168,6 +170,9 @@ class AcademicControllers extends BaseController
                 'title' => $this->request->getPost('title'),
                 'description' => $this->request->getPost('description'),
                 'thumbnail' => $thumbnailNewName,
+                'reseach_publication_type_id' => $this->request->getPost('research_type'),
+                'impact_factor' => $this->request->getPost('impact_factor'),
+                'faculty_name' => $this->request->getPost('faculty_name'),
                 'upload_by' => $loggedUserId,
             ];
             $result = $research_publication_model->add($data);
