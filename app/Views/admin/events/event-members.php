@@ -167,54 +167,15 @@ $events_model = new Events_model();
     </div>
 
 </div>
-
-
-<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
-    $(document).ready(function() {
-        var cloneLimit = 10;
-        var currentClones = 0;
-
-        // Add new row (clone row)
-        $("#addnewservicerow").click(function(e) {
-            e.preventDefault();
-            if (currentClones < cloneLimit) {
-                currentClones++;
-                var cloneCatrow = $('#stockTrow').clone().appendTo('#stockTbody');
-                $(cloneCatrow).find('input').val('');
-
-                // Trigger the change event for the newly cloned row to ensure the "Specify Other Designation" works
-                $(cloneCatrow).find('select[name="member_designation[]"]').trigger('change');
-            }
-        });
-
-        // Remove row
-        $('#stockTbody').on('click', '#removenewServicerow', function() {
-            $(this).closest('tr').remove();
-        });
-
-        // Event delegation for handling the "Specify Other Designation" field visibility
-        $('#stockTbody').on('change', 'select[name="member_designation[]"]', function() {
-            var otherDesignationField = $(this).closest('td').find('#other_designation');
-            if (this.value === "Any Other") {
-                otherDesignationField.show();
-            } else {
-                otherDesignationField.hide();
-            }
-        });
-
-        // On page load, make sure the "Specify Other Designation" field is in the correct state
-        $('#stockTbody').find('select[name="member_designation[]"]').each(function() {
-            var otherDesignationField = $(this).closest('td').find('#other_designation');
-            if (this.value === "Any Other") {
-                otherDesignationField.show();
-            } else {
-                otherDesignationField.hide();
-            }
-        });
+    // Show/Hide "Specify Other Designation" field
+    document.getElementById("member_designation").addEventListener("change", function() {
+        if (this.value === "Any Other") {
+            document.getElementById("other_designation").style.display = "block";
+        } else {
+            document.getElementById("other_designation").style.display = "none";
+        }
     });
 </script>
-
-
 
 <?= $this->endSection() ?>
