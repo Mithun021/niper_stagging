@@ -268,8 +268,13 @@ class AcademicControllers extends BaseController
             $data['research_publication_type'] = $research_publication_type_model->get();
             return view('admin/academics/research-publication-type', $data);
         } else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId'];
+            }
             $data = [
-                'name' => $this->request->getPost('category_name')
+                'name' => $this->request->getPost('category_name'),
+                'upload_by' => $loggeduserId
             ];
             $result = $research_publication_type_model->add($data);
             if ($result === true) {
