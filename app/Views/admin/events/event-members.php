@@ -140,7 +140,10 @@ $member_type_model = new Member_type_model();
                                     <td><?php $event = $events_model->get($value['event_id']);
                                         echo $event['title'] ?></td>
                                     <td><?= $value['member_name'] ?></td>
-                                    <td><?php $member_type = $$member_type_model($value['member_type']); echo $member_type['member_type']; ?></td>
+                                    <td><?php 
+                                    $member_type = $member_type_model->getMemberType($value['member_type']);
+                                    echo $member_type['member_type'];
+                                    ?></td>
                                     <td><?= $value['member_designation'] ?>
                                         <?php if ($value['member_designation'] == "Any Other") {
                                             echo " - " . $value['other_designation'];
