@@ -65,7 +65,13 @@ $employee_model = new Employee_model();
                                 <input type="file" name="Collabfile" id="Collabfile" class="form-control form-control-sm" accept=".pdf">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <span for="Collabfileupload">Collaboration Gallery(JPG,PNG):</span>
+                                <input type="file" name="collab_gallery[]" id="collab_gallery" class="form-control form-control-sm" accept=".jpg,.png,.jpeg" multiple>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <span for="Collabenddatetime">Collaboration tenure year:<span class="text-danger">*</span></span>
                                 <input type="number" name="Collabtenure" id="Collabtenure" class="form-control form-control-sm" required>

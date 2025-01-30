@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Academic_model;
 use App\Models\Announcement_model;
+use App\Models\Collaboration_gallery_model;
 use App\Models\Collaboration_model;
 use App\Models\Research_publication_gallery_model;
 use App\Models\Research_publication_model;
@@ -195,6 +196,7 @@ class AcademicControllers extends BaseController
 
     public function collaboration()
     {
+        $collaboration_gallery_model = new Collaboration_gallery_model();
         $collaboration_model = new Collaboration_model();
         $data = ['title' => 'Collaboration'];
         if ($this->request->is("get")) {
@@ -219,7 +221,7 @@ class AcademicControllers extends BaseController
             } else {
                 $CollabfileNewName = "";
             }
-
+            $gallery_file = $this->request->getFiles();
             $data = [
                 'title' => $this->request->getPost('Collabtitle'),
                 'description' => $this->request->getPost('description'),
@@ -235,6 +237,22 @@ class AcademicControllers extends BaseController
 
             $result = $collaboration_model->add($data);
             if ($result === true) {
+                $insert_id = $collaboration_model->getInsertID();
+                if ($gallery_file) {
+                    foreach ($gallery_file['collab_gallery'] as $file) {
+                        if ($file->isValid() && !$file->hasMoved()) {
+                            $newName = "gallery".rand(0,9999).$file->getRandomName();
+                            $file->move(ROOTPATH . 'public/admin/uploads/collaboration', $newName);
+                
+                            $data = [
+                                'gallery_file' => $newName,
+                                'collaboration_id' => $insert_id,
+                            ];
+                
+                            $result = $collaboration_gallery_model->save($data);
+                        }
+                    }
+                }
                 return redirect()->to('admin/collaboration')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
                 return redirect()->to('admin/collaboration')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
