@@ -175,7 +175,7 @@ $events_model = new Events_model();
         var cloneLimit = 10;
         var currentClones = 0;
 
-        // Add new row
+        // Add new row (clone row)
         $("#addnewservicerow").click(function(e) {
             e.preventDefault();
             if (currentClones < cloneLimit) {
@@ -183,15 +183,8 @@ $events_model = new Events_model();
                 var cloneCatrow = $('#stockTrow').clone().appendTo('#stockTbody');
                 $(cloneCatrow).find('input').val('');
 
-                // Attach event listener to the new row's "member_designation"
-                $(cloneCatrow).find('select[name="member_designation[]"]').change(function() {
-                    var otherDesignationField = $(this).closest('td').find('#other_designation');
-                    if (this.value === "Any Other") {
-                        otherDesignationField.show();
-                    } else {
-                        otherDesignationField.hide();
-                    }
-                }).trigger('change'); // Trigger change event on page load for each row
+                // Trigger the change event for the newly cloned row to ensure the "Specify Other Designation" works
+                $(cloneCatrow).find('select[name="member_designation[]"]').trigger('change');
             }
         });
 
@@ -200,7 +193,17 @@ $events_model = new Events_model();
             $(this).closest('tr').remove();
         });
 
-        // Handle "Specify Other Designation" for existing rows on page load
+        // Event delegation for handling the "Specify Other Designation" field visibility
+        $('#stockTbody').on('change', 'select[name="member_designation[]"]', function() {
+            var otherDesignationField = $(this).closest('td').find('#other_designation');
+            if (this.value === "Any Other") {
+                otherDesignationField.show();
+            } else {
+                otherDesignationField.hide();
+            }
+        });
+
+        // On page load, make sure the "Specify Other Designation" field is in the correct state
         $('#stockTbody').find('select[name="member_designation[]"]').each(function() {
             var otherDesignationField = $(this).closest('td').find('#other_designation');
             if (this.value === "Any Other") {
@@ -211,6 +214,7 @@ $events_model = new Events_model();
         });
     });
 </script>
+
 
 
 <?= $this->endSection() ?>
