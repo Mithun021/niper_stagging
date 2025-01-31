@@ -35,6 +35,14 @@ $tendor_model = new Tendor_model();
                         </select>
                     </div>
                     <div class="form-group">
+                        <span for="">Corrigendum Number<span class="text-danger">*</span></span>
+                        <input type="text" name="corrigendum_number" class="form-control form-control-sm" accept=".pdf" required>
+                    </div>
+                    <div class="form-group">
+                        <span for="">Corrigendum Date<span class="text-danger">*</span></span>
+                        <input type="date" name="corrigendum_date" class="form-control form-control-sm" accept=".pdf" required>
+                    </div>
+                    <div class="form-group">
                         <span for="">File Upload(.pdf)<span class="text-danger">*</span></span>
                         <input type="file" name="file_upload" class="form-control form-control-sm" accept=".pdf" required>
                     </div>
@@ -62,6 +70,8 @@ $tendor_model = new Tendor_model();
                                 <td>File</td>
                                 <td>Description</td>
                                 <td>Tendor id</td>
+                                <td>Corrigendum Number</td>
+                                <td>Corrigendum Date</td>
                                 <td>Create at</td>
                                 <td>Upload by</td>
                                 <td>Action</td>
@@ -80,6 +90,8 @@ $tendor_model = new Tendor_model();
                                 </td>
                                 <td><?= $value['file_decription'] ?></td>
                                 <td><?php $tendor = $tendor_model->get($value['tendor_id']); echo $tendor['tendor_title'] ?? ''  ?></td>
+                                <td><?= $value['corrigendum_number'] ?></td>
+                                <td><?= $value['corrigendum_date'] ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td><?= date('d-m-Y', strtotime($value['created_at'])) ?></td>
                                 <td>

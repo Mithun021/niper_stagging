@@ -110,6 +110,8 @@ class TendorControllers extends BaseController
             
             $data = [
                 'tendor_id' => $this->request->getPost('tendor_id'),
+                'corrigendum_number' => $this->request->getPost('corrigendum_number'),
+                'corrigendum_date' => $this->request->getPost('corrigendum_date'),
                 'file_decription' => $this->request->getPost('file_description'),
                 'upload_file' => $tendor_fileNewName,
                 'upload_by' => $loggeduserId
