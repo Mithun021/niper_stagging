@@ -59,6 +59,8 @@ use App\Models\Program_department_mapping_model;
                     'reg_end_date' => $this->request->getPost('reg_end_date'),
                     'reg_end_time' => $this->request->getPost('reg_end_time'),
                     'payment_link' => $this->request->getPost('payment_link'),
+                    'payment_end_date' => $this->request->getPost('payment_end_date'),
+                    'payment_end_time' => $this->request->getPost('payment_end_time'),
                     'participant_seats' => $this->request->getPost('participant_seats'),
                     'participant_eligibility' => $this->request->getPost('participant_eligibility'),
                     'marquee_status' => $this->request->getPost('marquee_status'),

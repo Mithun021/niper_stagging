@@ -126,6 +126,15 @@ $event_category_model = new Event_category_model();
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
+                                <span for="">Payment End Date & Time</span>
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm" name="payment_end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="payment_end_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <span for="">Participant Seats</span>
                                 <input type="text" class="form-control form-control-sm" name="participant_seats">
                             </div>
