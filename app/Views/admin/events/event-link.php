@@ -22,7 +22,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/event-category') ?>">
+                <form method="post" action="<?= base_url('admin/event-link') ?>">
                     <div class="form-group">
                         <span>Event ID:</span>
                         <select name="event_id" class="form-control form-control-sm">
