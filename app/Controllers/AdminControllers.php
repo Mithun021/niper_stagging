@@ -963,6 +963,7 @@ use App\Models\Youtube_link_model;
                     'instrument_id' => $this->request->getPost('instrument_id'),
                     'experiment_name' => $this->request->getPost('experiment_names'),
                     'govt_rate' => $this->request->getPost('govt_rate'),
+                    'industry_rate' => $this->request->getPost('industry_rate'),
                     'upload_by' =>  $loggeduserId,
                 ];
                 $result = $instrument_rates_model->add($data);

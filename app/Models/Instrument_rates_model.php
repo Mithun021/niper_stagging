@@ -5,7 +5,7 @@
     {
         protected $table         = 'instruments_rates';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['instrument_id','experiment_name','govt_rate','upload_by'];
+        protected $allowedFields = ['instrument_id','experiment_name','govt_rate','industry_rate','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

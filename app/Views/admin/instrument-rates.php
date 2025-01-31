@@ -46,6 +46,11 @@
                         <input type="text" name="govt_rate" id="govt_rate" class="form-control form-control-sm" required>
                     </div>
 
+                    <div class="form-group">
+                        <span for="govt_rate">Industry/private Rate:</span>
+                        <input type="text" name="industry_rate" id="industry_rate" class="form-control form-control-sm" required>
+                    </div>
+
                     <!-- Submit Button -->
                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
                 </form>
@@ -68,6 +73,7 @@
                                 <td>Instrument name</td>
                                 <td>Experiment name</td>
                                 <td>Govt Rate</td>
+                                <td>Industry Rate</td>
                                 <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
@@ -79,6 +85,7 @@
                                 <td><?php $instrument = $Instruments_model->get($instrument_rate['instrument_id']); echo !empty($instrument['title']) ? $instrument['title'] : '___';   ?></td>
                                 <td><?= $instrument_rate['experiment_name'] ?></td>
                                 <td><?= $instrument_rate['govt_rate'] ?></td>
+                                <td><?= $instrument_rate['industry_rate'] ?></td>
                                 <td><?php $emp = $employee_model->get($instrument_rate['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
