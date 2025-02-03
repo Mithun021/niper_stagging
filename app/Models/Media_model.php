@@ -5,7 +5,7 @@
     {
         protected $table         = 'media';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['title','photo_image','upload_file','description','upload_by'];
+        protected $allowedFields = ['title','photo_image','upload_file','description','publish_date','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

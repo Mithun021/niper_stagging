@@ -356,6 +356,7 @@ use App\Models\Youtube_link_model;
 
                 $data = [
                     'title' => $this->request->getPost('media_title'),
+                    'publish_date' => $this->request->getPost('publish_date'),
                     'photo_image' => $media_photoNewName,
                     'upload_file' => $media_fileNewName,
                     'description' => $this->request->getPost('mediadesc'),

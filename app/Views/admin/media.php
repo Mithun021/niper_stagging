@@ -38,6 +38,11 @@
                         <textarea name="mediadesc" id="editor" class="form-control form-control-sm"></textarea>
                     </div>
 
+                    <div class="form-group">
+                        <span>Publish Date</span>
+                        <input type="date" name="publish_date" class="form-control form-control-sm">
+                    </div>
+
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
                     
                 </form>
@@ -57,6 +62,7 @@
                             <td>SN</td>
                             <td>Title</td>
                             <td>Files</td>
+                            <td>Publish Date</td>
                             <td>Uploaded By</td>
                             <td>Create at</td>
                             <td>Action</td>
@@ -80,6 +86,7 @@
                                     <img src="<?= base_url() ?>public/admin/uploads/media/invalid_image.png" alt="" height="40px">
                                 <?php endif; ?>
                             </td>
+                            <td><?= $value['publish_date'] ?></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                             <td><?= $value['created_at'] ?></td>
                             <td>
