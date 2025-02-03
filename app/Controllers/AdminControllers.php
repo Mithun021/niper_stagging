@@ -916,8 +916,10 @@ use App\Models\Youtube_link_model;
         }
         public function instrument_facility(){
             $instruments_model = new Instruments_model();
+            $department_model = new Department_model();
             $data = ['title' => 'Instrument Facility'];
             if ($this->request->is("get")) {
+                $data['department'] = $department_model->get();
                 $data['instruments'] = $instruments_model->get();
                 return view('admin/instrument-facility',$data);
             }else if ($this->request->is("post")) {

@@ -38,6 +38,16 @@
                         <input type="file" name="upload_file" id="Recruiterimage" class="form-control form-control-sm" accept=".jpg,.jpeg,.png" required>
                     </div>
 
+                    <div class="form-group">
+                        <span>Department</span>
+                        <select name="department" id="department" class="form-control form-control-sm">
+                            <option value="">--Select--</option>
+                        <?php foreach ($department as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
+
                     <!-- Submit Button -->
                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
                 </form>
