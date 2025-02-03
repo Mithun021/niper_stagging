@@ -70,6 +70,7 @@ use App\Models\Employee_model;
                         <thead>
                             <tr>
                                 <td>SN</td>
+                                <td>File</td>
                                 <td>Instrument Title</td>
                                 <td>Dept.</td>
                                 <td>Instrument Description</td>
