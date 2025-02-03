@@ -936,6 +936,7 @@ use App\Models\Youtube_link_model;
                 }
                 $data = [
                     'title' => $this->request->getPost('Recruitertitle'),
+                    'department_id' => $this->request->getPost('department'),
                     'description' => $this->request->getPost('description'),
                     'upload_file' => $RecruiterImageName,
                     'upload_by' =>  $loggeduserId,

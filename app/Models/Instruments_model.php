@@ -5,7 +5,7 @@
     {
         protected $table         = 'instruments';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['title','description','upload_file','upload_by'];
+        protected $allowedFields = ['title','description','upload_file','department_id','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

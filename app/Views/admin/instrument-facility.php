@@ -2,8 +2,11 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
 <?php
-    use App\Models\Employee_model;
+
+use App\Models\Department_model;
+use App\Models\Employee_model;
     $employee_model = new Employee_model();
+    $department_model = new Department_model();
 ?>
 
 <div class="row">
@@ -68,6 +71,7 @@
                             <tr>
                                 <td>SN</td>
                                 <td>Instrument Title</td>
+                                <td>Dept.</td>
                                 <td>Instrument Description</td>
                                 <td>Instrument Image</td>
                                 <td>Action</td>
@@ -85,6 +89,7 @@
                                 <?php endif; ?>
                                 </td>
                                 <td><?= $value['title'] ?></td>
+                                <td><?= $department_model->get($value['department_id'])['name'] ?? '' ?></td>
                                 <td><?= $value['description'] ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td>
