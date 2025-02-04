@@ -44,9 +44,13 @@ use App\Models\Employee_publication_model;
                 $password = "123456";
                 $data = [
                     'employee_unique_id' => $this->request->getPost('employee_unique_id'),
+                    'sir_name' => $this->request->getPost('sir_name'),
                     'first_name' => $this->request->getPost('first_name'),
                     'middle_name' => $this->request->getPost('middle_name'),
                     'last_name' => $this->request->getPost('last_name'),
+                    'bloods_group' => $this->request->getPost('blood_group'),
+                    'gender' => $this->request->getPost('gender'),
+                    'material_status' => $this->request->getPost('material_status'),
                     'designation_id' => $this->request->getPost('designation_id'),
                     'department_id' => $this->request->getPost('department_id'),
                     'mobile_no' => $this->request->getPost('mobile_no'),

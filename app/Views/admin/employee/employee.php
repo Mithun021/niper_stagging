@@ -235,7 +235,7 @@ $designation_model = new Designation_model();
                                         <?php if ($value['authority'] !== "admin") { ?><a href="<?= base_url() ?>public/admin/uploads/employee/<?= $value['resume_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/cv.png" height="30px"></a><?php } ?>
                                     </td>
                                     <td><?= $value['employee_unique_id'] ?></td>
-                                    <td><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></td>
+                                    <td><?= $value['sir_name'] . " " .$value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></td>
                                     <td><?= $value['official_mail'] ?></td>
                                     <td><?php if ($value['authority'] !== "admin") { ?> <?= $value['mobile_no'] ?> <?php } else {
                                                                                                                 echo "_____";
