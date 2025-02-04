@@ -34,10 +34,10 @@ use App\Models\Designation_model;
                             <div class="input-group">
                                 <select name="sir_name" id="sir_name" class="form-control form-control-sm">
                                     <option value="Mr.">Mr.</option>
-                                    <option value="Mr.">Mrs.</option>
-                                    <option value="Mr.">Miss.</option>
-                                    <option value="Mr.">Sir</option>
-                                    <option value="Mr.">Dr.</option>
+                                    <option value="Mrs.">Mrs.</option>
+                                    <option value="Miss.">Miss.</option>
+                                    <option value="Sir">Sir</option>
+                                    <option value="Dr.">Dr.</option>
                                 </select>
                                 <input type="text" name="first_name" id="first_name" class="form-control form-control-sm" required minlength="3">
                             </div>
