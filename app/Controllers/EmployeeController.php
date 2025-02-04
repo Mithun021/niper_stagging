@@ -10,6 +10,8 @@ use App\Models\Employee_model;
 use App\Models\Employee_projects_model;
 use App\Models\Employee_publication_author_model;
 use App\Models\Employee_publication_model;
+use App\Models\Nature_of_work_model;
+use App\Models\Organisation_type_model;
 
     class EmployeeController extends BaseController{
         public function employee(){
@@ -682,6 +684,28 @@ use App\Models\Employee_publication_model;
             $employee_additioonal_charge_model = new Employee_additioonal_charge_model();
             $designations = $employee_additioonal_charge_model->where('employee_id',$emp_id)->findAll();
             return $this->response->setJSON($designations);
+        }
+
+        public function organisation_type(){
+            $organisation_type_model = new Organisation_type_model();
+            $data = ['title' => 'Organization Type'];
+            if ($this->request->is('get')) {
+                $data['organisation_type'] = $organisation_type_model->get();
+                return view('admin/employee/organisation-type');
+            }else if ($this->request->is('get')) {
+
+            }
+        }
+
+        public function work_nature(){
+            $nature_of_work_model = new Nature_of_work_model();
+            $data = ['title' => 'Nature of Work'];
+            if ($this->request->is('get')) {
+                $data['work_nature'] = $nature_of_work_model->get();
+                return view('admin/employee/work-nature');
+            }else if ($this->request->is('get')) {
+
+            }
         }
 
     }

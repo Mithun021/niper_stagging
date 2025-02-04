@@ -83,12 +83,13 @@
                     class="mdi mdi-table-merge-cells"></i><span>Employee Details</span></a>
             <ul class="sub-menu" aria-expanded="false">
                 <li><a href="<?= base_url() ?>admin/employee" class="waves-effect"><span>Employee Details</span></a></li>
-                <!-- <li><a href="<?= base_url() ?>admin/employee-department" class="waves-effect"><span>Emp. Dept. Details</span></a></li> -->
                 <li><a href="<?= base_url() ?>admin/employee-experience" class="waves-effect"><span>Emp. Exp. Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/employee-projects" class="waves-effect"><span>Emp. Project Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/employee-publication" class="waves-effect"><span>Emp. Publication Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/employee-awards" class="waves-effect"><span>Emp. Awards Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/employee-charge" class="waves-effect"><span>Emp. Additional Charge</span></a></li>
+                <li><a href="<?= base_url() ?>admin/organisation-type" class="waves-effect"><span>Organization Type</span></a></li>
+                <li><a href="<?= base_url() ?>admin/work-nature" class="waves-effect"><span>Nature of Work</span></a></li>
             </ul>
         </li>
 
