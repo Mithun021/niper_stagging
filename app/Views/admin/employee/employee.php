@@ -31,7 +31,16 @@ use App\Models\Designation_model;
                         </div>
                         <div class="col-sm-4">
                             <span for="EmpFirstName">First Name:</span>
-                            <input type="text" name="first_name" id="first_name" class="form-control form-control-sm" required minlength="3">
+                            <div class="input-group">
+                                <select name="sir_name" id="sir_name" class="form-control form-control-sm">
+                                    <option value="Mr.">Mr.</option>
+                                    <option value="Mr.">Mrs.</option>
+                                    <option value="Mr.">Miss.</option>
+                                    <option value="Mr.">Sir</option>
+                                    <option value="Mr.">Dr.</option>
+                                </select>
+                                <input type="text" name="first_name" id="first_name" class="form-control form-control-sm" required minlength="3">
+                            </div>
                         </div>
                         <div class="col-sm-4">
                             <span for="EmpMiddleName">Middle Name:</span>
