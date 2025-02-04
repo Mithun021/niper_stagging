@@ -60,8 +60,9 @@
                             <input type="date" name="enddate[]" id="enddate" class="form-control form-control-sm">
                         </div>
                         <div class="col-lg-12 form-group">
-                            <span for="expdesc">Experience Description:</span>
-                            <textarea name="expdesc[]" class="form-control form-control-sm clone_editor" rows="4"></textarea>
+                            <span for="expdesc">Experience Designation:</span>
+                            <input type="text" name="expdesc[]" class="form-control form-control-sm">
+                            <!-- <textarea name="expdesc[]" class="form-control form-control-sm clone_editor" rows="4"></textarea> -->
                         </div>
                         <div class="col-lg-6 form-group">
                             <span for="orgtype">Organization Type:</span>
