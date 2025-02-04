@@ -691,7 +691,7 @@ use App\Models\Organisation_type_model;
             $data = ['title' => 'Organization Type'];
             if ($this->request->is('get')) {
                 $data['organisation_type'] = $organisation_type_model->get();
-                return view('admin/employee/organisation-type');
+                return view('admin/employee/organisation-type',$data);
             }else if ($this->request->is('post')) {
 
             }
@@ -702,7 +702,7 @@ use App\Models\Organisation_type_model;
             $data = ['title' => 'Nature of Work'];
             if ($this->request->is('get')) {
                 $data['work_nature'] = $nature_of_work_model->get();
-                return view('admin/employee/work-nature');
+                return view('admin/employee/work-nature',$data);
             }else if ($this->request->is('post')) {
 
             }
