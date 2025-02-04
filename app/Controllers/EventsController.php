@@ -130,8 +130,14 @@ use App\Models\Program_department_mapping_model;
                 }
 
                 $member_name = $this->request->getPost('member_name');
-
+                $member_file = $this->request->getFileMultiple('upload_file');
                 foreach ($member_name as $key => $value) {
+                    $file = $member_file[$key];
+                    $fileName = "";
+                    if ($file->isValid() && !$file->hasMoved()) {
+                        $fileName = "membersFile".$file->getRandomName();
+                        $file->move(ROOTPATH . 'public/admin/uploads/events', $fileName);
+                    }
                     $data =[
                         'event_id' => $this->request->getPost('event_id'),
                         'member_name' => $value,
@@ -139,6 +145,7 @@ use App\Models\Program_department_mapping_model;
                         'member_designation' => $this->request->getPost('member_designation')[$key],
                         'other_designation' => $this->request->getPost('other_designation')[$key] ?? '',
                         'member_affiliation' => $this->request->getPost('member_affiliation')[$key],
+                        'upload_file' => $fileName,
                         'upload_by' => $loggeduserId,
                     ];
                     $result = $event_members_model->add($data);

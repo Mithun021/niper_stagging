@@ -56,6 +56,7 @@ $member_type_model = new Member_type_model();
                                             <td>Members Name</td>
                                             <td>Members Designation</td>
                                             <td>Member Affiliation</td>
+                                            <td>Upload File</td>
                                             <td><button type="button" class="btn btn-sm btn-primary" id="addnewservicerow">+</button></td>
                                         </tr>
                                     </thead>
@@ -80,13 +81,19 @@ $member_type_model = new Member_type_model();
                                                 </div>
                                                 <div class="form-group" id="other_designation" style="display: none;">
                                                     <span>Specify Other Designation:</span>
-                                                    <input type="text" name="member_desig_other[]" class="form-control form-control-sm" >
+                                                    <input type="text" name="member_desig_other[]" class="form-control form-control-sm">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group">
                                                     <span>Member Affiliation:</span>
                                                     <input type="text" name="member_affiliation[]" class="form-control form-control-sm" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <span>Upload File(.pdf):</span>
+                                                    <input type="file" name="upload_file[]" class="form-control form-control-sm" accept=".pdf">
                                                 </div>
                                             </td>
                                             <td>
@@ -126,6 +133,7 @@ $member_type_model = new Member_type_model();
                         <thead>
                             <tr>
                                 <td>SN</td>
+                                <td>File</td>
                                 <td>Event ID</td>
                                 <td>Employee ID</td>
                                 <td>Member Type</td>
@@ -137,13 +145,20 @@ $member_type_model = new Member_type_model();
                             <?php foreach ($event_members as $key => $value) { ?>
                                 <tr>
                                     <td><?= $key + 1 ?></td>
+                                    <td>
+                                        <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/events/' . $value['upload_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/events/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/events/invalid_image.png" alt="" height="30px">
+                                        <?php endif; ?>
+                                    </td>
                                     <td><?php $event = $events_model->get($value['event_id']);
                                         echo $event['title'] ?></td>
                                     <td><?= $value['member_name'] ?></td>
-                                    <td><?php 
-                                    $member_type = $member_type_model->get($value['member_type']);
-                                    echo $member_type['member_type'];
-                                    ?></td>
+                                    <td><?php
+                                        $member_type = $member_type_model->get($value['member_type']);
+                                        echo $member_type['member_type'];
+                                        ?></td>
                                     <td><?= $value['member_designation'] ?>
                                         <?php if ($value['member_designation'] == "Any Other") {
                                             echo " - " . $value['other_designation'];
