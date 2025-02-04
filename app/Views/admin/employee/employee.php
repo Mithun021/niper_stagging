@@ -32,7 +32,7 @@ use App\Models\Designation_model;
                         <div class="col-sm-4">
                             <span for="EmpFirstName">First Name:</span>
                             <div class="input-group">
-                                <select name="sir_name" id="sir_name" class="form-control form-control-sm">
+                                <select name="sir_name" id="sir_name" class="form-control form-control-sm" style="width: 10%;">
                                     <option value="Mr.">Mr.</option>
                                     <option value="Mr.">Mrs.</option>
                                     <option value="Mr.">Miss.</option>
