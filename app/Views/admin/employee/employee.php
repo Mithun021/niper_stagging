@@ -5,8 +5,8 @@
 use App\Models\Department_model;
 use App\Models\Designation_model;
 
-    $department_model = new Department_model();
-    $designation_model = new Designation_model();
+$department_model = new Department_model();
+$designation_model = new Designation_model();
 ?>
 
 <div class="row">
@@ -17,9 +17,9 @@ use App\Models\Designation_model;
             </div>
             <div class="card-body">
                 <?php
-                    if(session()->getFlashdata('msg')){
-                        echo session()->getFlashdata('msg');
-                    }
+                if (session()->getFlashdata('msg')) {
+                    echo session()->getFlashdata('msg');
+                }
                 ?>
                 <!-- Form Start -->
                 <form action="<?= base_url() ?>admin/employee" method="post" enctype="multipart/form-data">
@@ -50,6 +50,34 @@ use App\Models\Designation_model;
                             <span for="EmpLastName">Last Name:</span>
                             <input type="text" name="last_name" id="last_name" class="form-control form-control-sm" required>
                         </div>
+                        <div class="col-sm-4">
+                            <span for="EmpLastName">Blood Group:</span>
+                            <select name="blood_group" id="blood_group" class="form-control form-control-sm" required>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <span for="EmpLastName">Gender:</span>
+                            <select name="gender" id="gender" class="form-control form-control-sm" required>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Any Other">Any Other</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <span for="EmpLastName">Material Status:</span>
+                            <select name="material_status" id="material_status" class="form-control form-control-sm" required>
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                            </select>
+                        </div>
                     </div>
 
                     <!-- Designation, Department, Mobile, and Landline -->
@@ -67,9 +95,9 @@ use App\Models\Designation_model;
                             <span for="Empdepartmentid">Department:</span>
                             <select name="department_id" id="department_id" class="form-control form-control-sm" required>
                                 <option value="">--Select--</option>
-                            <?php foreach ($departments as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
-                            <?php } ?>
+                                <?php foreach ($departments as $key => $value) { ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                     </div>
@@ -199,31 +227,35 @@ use App\Models\Designation_model;
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($employee as $key => $value) { ?>
-                            <tr>
-                                <td><?= ++$key ?></td>
-                                <td>
-                                    <img src="<?= base_url() ?>public/admin/uploads/employee/<?= $value['profile_photo'] ?>" alt="" height="30px" width="30px">
-                                    <?php if($value['authority']!=="admin"){ ?><a href="<?= base_url() ?>public/admin/uploads/employee/<?= $value['resume_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/cv.png" height="30px"></a><?php } ?>
-                                </td>
-                                <td><?= $value['employee_unique_id'] ?></td>
-                                <td><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></td>
-                                <td><?= $value['official_mail'] ?></td>
-                                <td><?php if($value['authority']!=="admin"){ ?> <?= $value['mobile_no'] ?>  <?php }else { echo "_____"; } ?></td>
-                                <td><?php $designations = $designation_model->get($value['designation_id']); echo (!empty($designations['name'])) ? $designations['name'] : '____';  ?></td>
-                                <td><?php $department = $department_model->get($value['department_id']); echo (!empty($department['name'])) ? $department['name'] : '____';  ?></td>
-                                <td><?= $value['created_at'] ?></td>
-                                <td>
-                                <?php if($value['authority']!=="admin"){ ?>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
-                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
-                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
-                                    </div>
-                                <?php } ?>
-                                </td>
-                            </tr>
-                        <?php } ?>
+                            <?php foreach ($employee as $key => $value) { ?>
+                                <tr>
+                                    <td><?= ++$key ?></td>
+                                    <td>
+                                        <img src="<?= base_url() ?>public/admin/uploads/employee/<?= $value['profile_photo'] ?>" alt="" height="30px" width="30px">
+                                        <?php if ($value['authority'] !== "admin") { ?><a href="<?= base_url() ?>public/admin/uploads/employee/<?= $value['resume_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/cv.png" height="30px"></a><?php } ?>
+                                    </td>
+                                    <td><?= $value['employee_unique_id'] ?></td>
+                                    <td><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></td>
+                                    <td><?= $value['official_mail'] ?></td>
+                                    <td><?php if ($value['authority'] !== "admin") { ?> <?= $value['mobile_no'] ?> <?php } else {
+                                                                                                                echo "_____";
+                                                                                                            } ?></td>
+                                    <td><?php $designations = $designation_model->get($value['designation_id']);
+                                        echo (!empty($designations['name'])) ? $designations['name'] : '____';  ?></td>
+                                    <td><?php $department = $department_model->get($value['department_id']);
+                                        echo (!empty($department['name'])) ? $department['name'] : '____';  ?></td>
+                                    <td><?= $value['created_at'] ?></td>
+                                    <td>
+                                        <?php if ($value['authority'] !== "admin") { ?>
+                                            <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                                <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                                <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                                <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                            </div>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
