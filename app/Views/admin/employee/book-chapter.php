@@ -73,7 +73,7 @@ $employee_model = new Employee_model();
                                     <tbody id="coAuthorTbody">
                                         <tr id="coAuthorRow">
                                             <td>
-                                                <input type="text" class="form-control" id="co_author_name" name="co_author_name[]" placeholder="Enter Author Name">
+                                                <input type="text" class="form-control" id="co_author_name" name="co_author_name[]" placeholder="Enter Co-Author Name">
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-sm btn-danger" id="removeCoAuthorrow">-</button>
