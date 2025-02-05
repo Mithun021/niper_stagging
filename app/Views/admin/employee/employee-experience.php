@@ -60,8 +60,8 @@
                             <input type="date" name="enddate[]" id="enddate" class="form-control form-control-sm">
                         </div>
                         <div class="col-lg-12 form-group">
-                            <span for="enddate">Still Work (check if you are still working):</span>
-                            <input type="checkbox" name="stillwork[]" id="stillwork" class="form-control form-control-sm" value="1">
+                            <span for="enddate"><input type="checkbox" name="stillwork[]" id="stillwork" value="1"> Still Work (check if you are still working):</span>
+                            
                         </div>
                         <div class="col-lg-12 form-group">
                             <span for="expdesc">Experience Designation:</span>
