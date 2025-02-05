@@ -45,6 +45,7 @@ use App\Models\Program_department_mapping_model;
 
                 $data = [
                     'title' => $this->request->getPost('event_title'),
+                    'event_theme_title' => $this->request->getPost('event_theme_title'),
                     'description' => $this->request->getPost('description'),
                     'event_category' => $this->request->getPost('event_category'),
                     'registration_link' => $this->request->getPost('reg_link'),
@@ -66,6 +67,8 @@ use App\Models\Program_department_mapping_model;
                     'participant_eligibility' => $this->request->getPost('participant_eligibility'),
                     'marquee_status' => $this->request->getPost('marquee_status'),
                     'status' => $this->request->getPost('status'),
+                    'icc_events' => $this->request->getPost('icc_event') ? 1 : 0,
+                    'institute_event' => $this->request->getPost('institute_event') ? 1 : 0,
                     'upload_by' => $loggeduserId,
                 ];
 

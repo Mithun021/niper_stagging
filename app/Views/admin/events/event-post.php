@@ -31,7 +31,7 @@ $event_category_model = new Event_category_model();
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <span for="">Event Theme title<span class="text-danger">*</span></span>
+                                <span for="">Event Theme title</span>
                                 <input type="text" class="form-control form-control-sm" name="event_theme_title" required minlength="5">
                             </div>
                         </div>
