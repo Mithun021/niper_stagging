@@ -71,8 +71,9 @@
                         <span for="">Upload File</span>
                         <input type="file" class="form-control form-control-sm" name="upload_file" required>
                     </div>
-
-                    <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
+                    <div class="col-lg-4 form-group">
+                        <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
+                    </div>
                     </div>
                 </form>
                 
