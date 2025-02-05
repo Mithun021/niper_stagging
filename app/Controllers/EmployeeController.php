@@ -743,9 +743,11 @@ use App\Models\Organisation_type_model;
         }
 
         public function book_chapter(){
+            $employee_model = new Employee_model();
             $nature_of_work_model = new Nature_of_work_model();
             $data = ['title' => 'Book CHapter'];
             if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
                 $data['work_nature'] = $nature_of_work_model->get();
                 return view('admin/employee/book-chapter',$data);
             }else if ($this->request->is('post')) {

@@ -27,6 +27,15 @@ $employee_model = new Employee_model();
                 <form method="post" action="<?= base_url('admin/organisation-type') ?>">
                     <div class="row">
                         <div class="col-lg-4 form-group">
+                            <span for="Empid">Employee:</span>
+                            <select name="Empid" id="Empid" class="form-control form-control-sm" required>
+                                <option value="">Select Employee</option>
+                                <?php foreach ($employee as $value) { ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="col-lg-4 form-group">
                             <span for="">Book Chapter Paper<span class="text-danger">*</span></span>
                             <input type="text" class="form-control form-control-sm" name="book_chapter" required>
                         </div>
