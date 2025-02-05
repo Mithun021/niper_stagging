@@ -219,12 +219,13 @@ $(document).ready(function () {
         var cloneCatrow = $('#clone_employee_data').first().clone();
         cloneCatrow.appendTo('#clone_content');
 
-        // Reset all the input fields and checkbox states in the cloned form
+        // Reset all input fields and ensure checkbox state is maintained
         $(cloneCatrow).find('input, textarea, select').val('');
-        $(cloneCatrow).find('input[type="checkbox"]').prop('checked', false);  // Reset the checkbox state
-
-        // Re-initialize any necessary components (like CKEditor, if any)
-        initializeEditors();
+        
+        // Ensure that the cloned checkbox has the same checked state as the original one
+        $(cloneCatrow).find('input[type="checkbox"]').each(function() {
+            $(this).prop('checked', false); // Set the checkbox as unchecked by default
+        });
     });
 
     // Remove Clone Button Click
@@ -232,27 +233,9 @@ $(document).ready(function () {
         $(this).closest('.card-body').remove();
     });
 
-    // Initialize CKEditor for cloned textarea (if applicable)
-    function initializeEditors() {
-        document.querySelectorAll(".clone_editor").forEach((textarea) => {
-            if (!textarea.dataset.ckeditorInitialized) {
-                ClassicEditor.create(textarea)
-                    .then(editor => {
-                        textarea.editorInstance = editor;
-                    })
-                    .catch(error => console.error(error));
-                textarea.dataset.ckeditorInitialized = true;
-            }
-        });
-    }
-
-    // Synchronize form data before form submission (especially for checkbox)
+    // Synchronize form data before form submission (no CKEditor now)
     $('form').on('submit', function () {
-        $('.clone_editor').each(function () {
-            if (this.editorInstance) {
-                this.value = this.editorInstance.getData(); // Sync CKEditor content to textarea
-            }
-        });
+        // No CKEditor logic, as it's removed.
     });
 });
 

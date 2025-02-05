@@ -102,13 +102,18 @@ use App\Models\Organisation_type_model;
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
                 $orgname = $this->request->getPost('orgname');
+                $stillwork = $this->request->getPost('stillwork');
+                if (!$stillwork) {
+                    $stillwork = [];
+                }
                 foreach ($orgname as $key => $value) {
+                    $isStillWorking = in_array($key, $stillwork);
                     $data = [
                         'emplyee_id' => $this->request->getPost('Empid'),
                         'organization_name' => $value,
                         'start_date' => $this->request->getPost('startdate')[$key],
                         'end_date' => $this->request->getPost('enddate')[$key],
-                        'stillwork' => $this->request->getPost('stillwork')[$key],
+                        'stillwork' => $isStillWorking ? 1 : 0,
                         'exp_description' => $this->request->getVar('expdesc')[$key],
                         'org_type' => $this->request->getPost('orgtype')[$key],
                         'work_nature' => $this->request->getPost('natureofwork')[$key],
