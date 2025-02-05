@@ -7,7 +7,9 @@ use App\Models\Employee_model;
 $employee_model = new Employee_model();
 ?>
 <style>
-
+    #addServicetable #coAuthorTbody #coAuthorRow:first-child td:last-child button {
+        display: none;
+    }
 </style>
 <!-- start page title -->
 <div class="row">
