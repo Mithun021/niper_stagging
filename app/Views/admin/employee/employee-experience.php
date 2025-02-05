@@ -219,41 +219,20 @@ $(document).ready(function () {
         var cloneCatrow = $('#clone_employee_data').first().clone();
         cloneCatrow.appendTo('#clone_content');
 
-        // Reset inputs and initialize CKEditor for the cloned textarea
+        // Reset all the input fields and checkbox states in the cloned form
         $(cloneCatrow).find('input, textarea, select').val('');
-        // Ensure the checkbox still works properly
-        $(cloneCatrow).find('input[type="checkbox"]').prop('checked', false);  // Uncheck the checkbox initially
+        $(cloneCatrow).find('input[type="checkbox"]').prop('checked', false);  // Reset the checkbox state
 
-        // Reinitialize CKEditor for new clone
+        // Re-initialize any necessary components (like CKEditor, if any)
         initializeEditors();
     });
 
     // Remove Clone Button Click
     $('#clone_content').on('click', '#remove-clone', function () {
-        $(this).closest('#clone_employee_data').remove();
+        $(this).closest('.card-body').remove();
     });
 
-    // Open Modal Button
-    $('#upload_emp_exp_btn').on('click', function (e) {
-        e.preventDefault();
-        $('#upload_emp_exp_modal').modal('show');
-    });
-
-    $('#export_sample_btn').on('click',function (e) { 
-        e.preventDefault();
-        $('#export_emp_sample_modal').modal('show');
-    });
-
-    // Synchronize CKEditor Data Before Form Submission
-    $('form').on('submit', function () {
-        $('.clone_editor').each(function () {
-            if (this.editorInstance) {
-                this.value = this.editorInstance.getData(); // Sync CKEditor content to textarea
-            }
-        });
-    });
-
-    // Initialize CKEditor
+    // Initialize CKEditor for cloned textarea (if applicable)
     function initializeEditors() {
         document.querySelectorAll(".clone_editor").forEach((textarea) => {
             if (!textarea.dataset.ckeditorInitialized) {
@@ -267,8 +246,14 @@ $(document).ready(function () {
         });
     }
 
-    // Initialize editors for existing elements on page load
-    initializeEditors();
+    // Synchronize form data before form submission (especially for checkbox)
+    $('form').on('submit', function () {
+        $('.clone_editor').each(function () {
+            if (this.editorInstance) {
+                this.value = this.editorInstance.getData(); // Sync CKEditor content to textarea
+            }
+        });
+    });
 });
 
 </script>
