@@ -48,6 +48,10 @@
              #addServicetable #stockTbody #stockTrow:first-child td:last-child button{
                 display: none;
             }
+            ul#tableList{
+                margin: 0;
+                padding: 0;
+            }
         </style>
     </head>
 
