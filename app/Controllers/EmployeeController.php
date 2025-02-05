@@ -693,7 +693,20 @@ use App\Models\Organisation_type_model;
                 $data['organisation_type'] = $organisation_type_model->get();
                 return view('admin/employee/organisation-type',$data);
             }else if ($this->request->is('post')) {
-
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $data = [
+                    'name' => $this->request->getPost('organisation_name'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $organisation_type_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/organisation-type')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/organisation-type')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 
@@ -704,7 +717,20 @@ use App\Models\Organisation_type_model;
                 $data['work_nature'] = $nature_of_work_model->get();
                 return view('admin/employee/work-nature',$data);
             }else if ($this->request->is('post')) {
-
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $data = [
+                    'name' => $this->request->getPost('work_nature'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $nature_of_work_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/work-nature')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/work-nature')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 
