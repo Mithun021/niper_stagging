@@ -297,7 +297,7 @@ class AcademicControllers extends BaseController
         if ($this->request->is("get")) {
             $data['classified_mou_value'] = $classified_mou_value_model->get();
             return view('admin/academics/classified-mou-value',$data);
-        }else if ($this->request->is("get")) {
+        }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId'];
