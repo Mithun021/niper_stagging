@@ -750,7 +750,7 @@ use App\Models\Organisation_type_model;
             $books_chapter_model = new Books_chapter_model();
             $books_chapter_author = new Books_chapter_author();
             $books_chapter_coauthor = new Books_chapter_coauthor();
-            $data = ['title' => 'Book CHapter'];
+            $data = ['title' => 'Book Chapter'];
             if ($this->request->is('get')) {
                 $data['employee'] = $employee_model->get();
                 $data['books_chapter'] = $books_chapter_model->get();

@@ -100,7 +100,7 @@ $employee_model = new Employee_model();
 
                         <div class="col-lg-4 form-group">
                             <span for="">Month<span class="text-danger">*</span></span>
-                            <input type="month" class="form-control form-control-sm" name="month" required>
+                            <input type="month" class="form-control form-control-sm" name="month">
                         </div>
 
                         <!-- <div class="col-lg-4 form-group">
@@ -115,22 +115,22 @@ $employee_model = new Employee_model();
 
                         <div class="col-lg-4 form-group">
                             <span for="">ISSN No.</span>
-                            <input type="text" class="form-control form-control-sm" name="issn_no" required>
+                            <input type="text" class="form-control form-control-sm" name="issn_no">
                         </div>
 
                         <div class="col-lg-4 form-group">
                             <span for="">Digital Object Identify</span>
-                            <input type="text" class="form-control form-control-sm" name="doi" required>
+                            <input type="text" class="form-control form-control-sm" name="doi">
                         </div>
 
                         <div class="col-lg-4 form-group">
                             <span for="">Web Link</span>
-                            <input type="url" class="form-control form-control-sm" name="web_link" required>
+                            <input type="url" class="form-control form-control-sm" name="web_link">
                         </div>
 
                         <div class="col-lg-4 form-group">
                             <span for="">Upload File</span>
-                            <input type="file" class="form-control form-control-sm" name="upload_file" required>
+                            <input type="file" class="form-control form-control-sm" name="upload_file">
                         </div>
                         <div class="col-lg-12 form-group">
                             <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
@@ -152,14 +152,42 @@ $employee_model = new Employee_model();
                         <thead>
                             <tr>
                                 <td>SN</td>
-                                <td>Organization Type</td>
+                                <td>File</td>
+                                <td>Book Title</td>
+                                <td>Book Chapter</td>
+                                <td>Month Year</td>
+                                <td>Employee</td>
+                                <td>Author</td>
+                                <td>ISBN/ISSN no</td>
+                                <td>DOI</td>
                                 <td>Upload By</td>
-                                <td>Upload Date</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
+                        <?php foreach ($books_chapter as $key => $value) { ?>
+                            <tr>
+                                <td><?= $key + 1 ?></td>
+                                <td>
 
+                                </td>
+                                <td><?= $value['title'] ?></td>
+                                <td><?= $value['book_chapter'] ?></td>
+                                <td><?= $value['month'] ?></td>
+                                <td><?php $emp = $employee_model->get($value['emplyee_id']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                                <td>Author</td>
+                                <td><?= $value['isbn'] ?> / <?= $value['issn_no'] ?></td>
+                                <td><?= $value['doi'] ?></td>
+                                <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
