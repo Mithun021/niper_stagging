@@ -742,5 +742,35 @@ use App\Models\Organisation_type_model;
             }
         }
 
+        public function book_chapter(){
+            $nature_of_work_model = new Nature_of_work_model();
+            $data = ['title' => 'Book CHapter'];
+            if ($this->request->is('get')) {
+                $data['work_nature'] = $nature_of_work_model->get();
+                return view('admin/employee/book-chapter',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+
+            }
+        }
+
+        public function employee_patent(){
+            $nature_of_work_model = new Nature_of_work_model();
+            $data = ['title' => 'Employee Patent'];
+            if ($this->request->is('get')) {
+                $data['work_nature'] = $nature_of_work_model->get();
+                return view('admin/employee/employee-patent',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+
+            }
+        }
+
     }
 ?>
