@@ -234,10 +234,13 @@ class AcademicControllers extends BaseController
                 'description' => $this->request->getPost('description'),
                 'institute_name' => $this->request->getPost('Collabinstitutename'),
                 'collaboration_date' => $this->request->getPost('Collaborationdate'),
+                'collaboration_end_date' => $this->request->getPost('Collaborationenddate'),
                 'institute_logo' => $institutelogoNewName,
                 'institute_link' => $this->request->getPost('Collabinstituelink'),
                 'collaboration_file' => $CollabfileNewName,
-                'collaboration_tenure_year' => $this->request->getPost('Collabtenure'),
+                'faculty_coordinator' => $this->request->getPost('faculty_coordinator'),
+                'classified_mou' => $this->request->getPost('classified_mou'),
+                // 'collaboration_tenure_year' => $this->request->getPost('Collabtenure'),
                 'status' => $this->request->getPost('Collabstatus'),
                 'upload_by' => $loggeduserId
             ];

@@ -41,12 +41,20 @@ $employee_model = new Employee_model();
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
-                                <span for="Collaborationdatetime">Collaboration Date:<span class="text-danger">*</span></span>
+                                <span for="Collaborationdatetime">Collaboration Start Date:<span class="text-danger">*</span></span>
                                 <input type="date" name="Collaborationdate" id="Collaborationdate" class="form-control form-control-sm" required>
                             </div>
                         </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <span for="Collaborationdatetime">Collaboration End Date:</span>
+                                <input type="date" name="Collaborationenddate" id="Collaborationenddate" class="form-control form-control-sm">
+                            </div>
+                        </div>
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="Collabinstitutelogo">Institution Logo(PNG,JPG,JPEG):<span class="text-danger">*</span></span>
@@ -73,8 +81,25 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
+                                <span for="Collabenddatetime">Classification of MoU:</span>
+                                <select name="classified_mou" id="classified_mou" class="form-control form-control-sm">
+                                    <option value="">--Select--</option>
+                                <?php foreach ($variable as $key => $value) { ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-3">
+                            <div class="form-group">
                                 <span for="Collabenddatetime">Collaboration tenure year:<span class="text-danger">*</span></span>
                                 <input type="number" name="Collabtenure" id="Collabtenure" class="form-control form-control-sm" required>
+                            </div>
+                        </div> -->
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <span for="Collabenddatetime">Faculty Coordinator:</span>
+                                <input type="text" name="faculty_coordinator" id="faculty_coordinator" class="form-control form-control-sm">
                             </div>
                         </div>
                         <div class="col-md-6">

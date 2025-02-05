@@ -31,7 +31,7 @@
                 <li><a href="<?= base_url() ?>admin/accouncement" class="waves-effect"><span>Announcement</span></a></li>
                 <li><a href="<?= base_url() ?>admin/rules-regulations" class="waves-effect"><span>Rules & Regulations</span></a></li>
                 <li><a href="<?= base_url() ?>admin/collaboration" class="waves-effect"><span>Collaboration</span></a></li>
-                <li><a href="<?= base_url() ?>admin/classified-mou-value" class="waves-effect"><span>CLassified of MoU Value</span></a></li>
+                <li><a href="<?= base_url() ?>admin/classified-mou-value" class="waves-effect"><span>Classified of MoU Value</span></a></li>
                 <li><a href="<?= base_url() ?>admin/research-publication" class="waves-effect"><span>Research & Publication</span></a></li>
                 <li><a href="<?= base_url() ?>admin/research-publication-type" class="waves-effect"><span>Research & Publication Type</span></a></li>
             </ul>
