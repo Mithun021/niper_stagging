@@ -183,7 +183,7 @@ $books_chapter_author = new Books_chapter_author();
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                     <td>
                                         <?php $auth = $books_chapter_author->get_all_by_books_chapter_id($value['id']); ?>
-                                        <ul>
+                                        <ul style="margin: 0; padding : 0;">
                                         <?php foreach ($auth as $key => $value2) { ?>
                                             <li><?= $value2['author_name'] ?></li>
                                         <?php } ?>
