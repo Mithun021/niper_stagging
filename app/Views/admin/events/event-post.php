@@ -161,7 +161,7 @@ $event_category_model = new Event_category_model();
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <span>Status</span>
                                 <select name="status" id="status" class="form-control form-control-sm">
