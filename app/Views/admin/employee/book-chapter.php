@@ -2,9 +2,10 @@
 <?= $this->section("body-content"); ?>
 <?php
 
+use App\Models\Books_chapter_author;
 use App\Models\Employee_model;
-
 $employee_model = new Employee_model();
+$books_chapter_author = new Books_chapter_author();
 ?>
 <style>
     #addServicetable #coAuthorTbody #coAuthorRow:first-child td:last-child button {
@@ -129,8 +130,8 @@ $employee_model = new Employee_model();
                         </div>
 
                         <div class="col-lg-4 form-group">
-                            <span for="">Upload File</span>
-                            <input type="file" class="form-control form-control-sm" name="upload_file">
+                            <span for="">Upload File(.pdf)</span>
+                            <input type="file" class="form-control form-control-sm" name="upload_file" accept=".pdf">
                         </div>
                         <div class="col-lg-12 form-group">
                             <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
@@ -180,7 +181,14 @@ $employee_model = new Employee_model();
                                     <td><?= $value['month'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['emplyee_id']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
-                                    <td>Author</td>
+                                    <td>
+                                        <?php $auth = $books_chapter_author->get_all_by_books_chapter_id($value['id']); ?>
+                                        <ul>
+                                        <?php foreach ($auth as $key => $value) { ?>
+                                            <li><?= $value['author_name'] ?></li>
+                                        <?php } ?>
+                                        </ul>
+                                    </td>
                                     <td><?= $value['isbn'] ?> / <?= $value['issn_no'] ?></td>
                                     <td><?= $value['doi'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
