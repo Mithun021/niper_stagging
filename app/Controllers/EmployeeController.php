@@ -103,11 +103,9 @@ use App\Models\Organisation_type_model;
                 }
                 $orgname = $this->request->getPost('orgname');
                 $stillwork = $this->request->getPost('stillwork');
-                if (!$stillwork) {
-                    $stillwork = [];
-                }
+                
                 foreach ($orgname as $key => $value) {
-                    $isStillWorking = in_array($key, $stillwork);
+                    $isStillWorking = isset($stillwork[$key]) ? 1 : 0; 
                     $data = [
                         'emplyee_id' => $this->request->getPost('Empid'),
                         'organization_name' => $value,
