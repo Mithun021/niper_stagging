@@ -102,7 +102,7 @@ $employee_model = new Employee_model();
                                 <input type="text" name="faculty_coordinator" id="faculty_coordinator" class="form-control form-control-sm">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <span for="Collabstatus">Collaboration Status:</span>
                                 <select name="Collabstatus" id="Collabstatus" class="form-control form-control-sm" required>
