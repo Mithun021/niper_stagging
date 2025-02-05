@@ -32,6 +32,54 @@
                         <input type="text" class="form-control form-control-sm" name="title" required>
                     </div>
 
+                    <div class="col-lg-12">
+                    <div class="table-responsive">
+                            <table class="table table-bordered" id="addServicetable"> 
+                                <thead class="bg-light">
+                                    <tr>
+                                        <td scope="col">Author Details</td>
+                                        <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewservicerow">+</button></td>
+                                    </tr>
+                        
+                                </thead>
+                                <tbody id="stockTbody">
+                                    <tr id="stockTrow">
+                                        <td>
+                                            <input type="text" class="form-control" id="author_name" name="author_name[]" placeholder="Enter Author Name">
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                    <div class="table-responsive">
+                            <table class="table table-bordered" id="addServicetable"> 
+                                <thead class="bg-light">
+                                    <tr>
+                                        <td scope="col">Co-Author Details</td>
+                                        <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewservicerow">+</button></td>
+                                    </tr>
+                        
+                                </thead>
+                                <tbody id="stockTbody">
+                                    <tr id="stockTrow">
+                                        <td>
+                                            <input type="text" class="form-control" id="author_name" name="author_name[]" placeholder="Enter Author Name">
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                     <div class="col-lg-4 form-group">
                         <span for="">Publisher<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="publisher" required>
