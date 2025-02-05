@@ -42,10 +42,10 @@
                         <input type="month" class="form-control form-control-sm" name="month" required>
                     </div>
 
-                    <div class="col-lg-4 form-group">
+                    <!-- <div class="col-lg-4 form-group">
                         <span for="">Year<span class="text-danger">*</span></span>
                         <input type="year" class="form-control form-control-sm" name="year" required>
-                    </div>
+                    </div> -->
 
                     <div class="col-lg-4 form-group">
                         <span for="">ISBN<span class="text-danger">*</span></span>
