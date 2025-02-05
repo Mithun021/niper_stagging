@@ -22,9 +22,54 @@
                 ?>
                 <div class="row">
                 <form method="post" action="<?= base_url('admin/organisation-type') ?>">
-                    <div class="form-group">
-                        <span for="">Organization Name<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="organisation_name" required>
+                    <div class="col-lg-4 form-group">
+                        <span for="">Book Chapter Paper<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="book_chapter" required>
+                    </div>
+
+                    <div class="col-lg-4 form-group">
+                        <span for="">Title<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="title" required>
+                    </div>
+
+                    <div class="col-lg-4 form-group">
+                        <span for="">Publisher<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="publisher" required>
+                    </div>
+
+                    <div class="col-lg-4 form-group">
+                        <span for="">Month<span class="text-danger">*</span></span>
+                        <input type="month" class="form-control form-control-sm" name="month" required>
+                    </div>
+
+                    <div class="col-lg-4 form-group">
+                        <span for="">Year<span class="text-danger">*</span></span>
+                        <input type="year" class="form-control form-control-sm" name="year" required>
+                    </div>
+
+                    <div class="col-lg-4 form-group">
+                        <span for="">ISBN<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="isbn" required>
+                    </div>
+
+                    <div class="col-lg-4 form-group">
+                        <span for="">ISSN No.<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="issn_no" required>
+                    </div>
+
+                    <div class="col-lg-4 form-group">
+                        <span for="">Digital Object Identify<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="doi" required>
+                    </div>
+
+                    <div class="col-lg-4 form-group">
+                        <span for="">Web Link<span class="text-danger">*</span></span>
+                        <input type="url" class="form-control form-control-sm" name="web_link" required>
+                    </div>
+
+                    <div class="col-lg-4 form-group">
+                        <span for="">Upload File</span>
+                        <input type="file" class="form-control form-control-sm" name="upload_file" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
