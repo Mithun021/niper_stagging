@@ -23,10 +23,16 @@ $event_category_model = new Event_category_model();
                 ?>
                 <form method="post" action="<?= base_url('admin/event-post') ?>" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Title<span class="text-danger">*</span></span>
                                 <input type="text" class="form-control form-control-sm" name="event_title" required minlength="5">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <span for="">Event Theme title<span class="text-danger">*</span></span>
+                                <input type="text" class="form-control form-control-sm" name="event_theme_title" required minlength="5">
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -155,7 +161,7 @@ $event_category_model = new Event_category_model();
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <span>Status</span>
                                 <select name="status" id="status" class="form-control form-control-sm">
@@ -163,6 +169,16 @@ $event_category_model = new Event_category_model();
                                     <option value="2">Archive</option>
                                     <option value="0">Draft</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <span><input type="checkbox" name="icc_event" id="" value="1">Check for IIC event</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <span><input type="checkbox" name="institute_event" id="" value="1">Institute event type</span>
                             </div>
                         </div>
                     </div>
