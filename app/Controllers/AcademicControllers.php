@@ -205,8 +205,10 @@ class AcademicControllers extends BaseController
     {
         $collaboration_gallery_model = new Collaboration_gallery_model();
         $collaboration_model = new Collaboration_model();
+        $classified_mou_value_model = new Classified_mou_value_model();
         $data = ['title' => 'Collaboration'];
         if ($this->request->is("get")) {
+            $data['classified_mou'] = $classified_mou_value_model->get();
             $data['collaboration'] = $collaboration_model->get();
             return view('admin/academics/collaboration', $data);
         } else if ($this->request->is("post")) {

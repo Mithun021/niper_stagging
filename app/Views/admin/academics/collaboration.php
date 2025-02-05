@@ -84,7 +84,7 @@ $employee_model = new Employee_model();
                                 <span for="Collabenddatetime">Classification of MoU:</span>
                                 <select name="classified_mou" id="classified_mou" class="form-control form-control-sm">
                                     <option value="">--Select--</option>
-                                <?php foreach ($variable as $key => $value) { ?>
+                                <?php foreach ($classified_mou as $key => $value) { ?>
                                     <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
                                 <?php } ?>
                                 </select>
