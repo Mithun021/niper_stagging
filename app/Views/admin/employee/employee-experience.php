@@ -73,20 +73,17 @@ $employee_model = new Employee_model();
                                 <div class="col-lg-6 form-group">
                                     <span for="orgtype">Organization Type:</span>
                                     <select name="orgtype[]" id="orgtype" class="form-control form-control-sm" required>
-                                        <option value="Central Government">Central Government</option>
-                                        <option value="State Government">State Government</option>
-                                        <option value="Autonomous">Autonomous</option>
-                                        <option value="PSU">PSU</option>
-                                        <option value="Private">Private</option>
+                                    <?php foreach($organisation_type as $value){ ?>
+                                        <option value="<?= $value['name'] ?>"><?= $value['name'] ?></option>
+                                    <?php } ?>    
                                     </select>
                                 </div>
                                 <div class="col-lg-6 form-group">
                                     <span for="natureofwork">Nature of Work:</span>
                                     <select name="natureofwork[]" id="natureofwork" class="form-control form-control-sm" required>
-                                        <option value="Teaching">Teaching</option>
-                                        <option value="Research">Research</option>
-                                        <option value="Administrative">Administrative</option>
-                                        <option value="Post Doc">Post Doc</option>
+                                    <?php foreach($nature_of_work as $value){ ?>
+                                        <option value="<?= $value['name'] ?>"><?= $value['name'] ?></option>
+                                    <?php } ?> 
                                     </select>
                                 </div>
 

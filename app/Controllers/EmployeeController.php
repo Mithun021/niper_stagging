@@ -89,10 +89,14 @@ use App\Models\Organisation_type_model;
         }
 
         public function employee_experience(){
+            $organisation_type_model = new Organisation_type_model();
+            $nature_of_work_model = new Nature_of_work_model();
             $employee_model = new Employee_model();
             $employee_experience_model = new Employee_experience_model();
             $data = ['title' => 'Employee Experience'];
             if ($this->request->is("get")) {
+                $data['organisation_type'] = $organisation_type_model->get();
+                $data['nature_of_work'] = $nature_of_work_model->get();
                 $data['employee'] = $employee_model->get();
                 $data['employee_exp'] = $employee_experience_model->get();
                 return view('admin/employee/employee-experience',$data);
@@ -118,10 +122,10 @@ use App\Models\Organisation_type_model;
                         'upload_by' =>  $loggeduserId,
                     ];
     
-                    echo "<pre>";print_r($data);
-                    // $result = $employee_experience_model->add($data);
+                    // echo "<pre>";print_r($data);
+                    $result = $employee_experience_model->add($data);
                 }
-                die;
+                // die;
                 if ($result === true) {
                     return redirect()->to('admin/employee-experience')->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
