@@ -207,6 +207,7 @@ $event_category_model = new Event_category_model();
                                 <td>Event Date</td>
                                 <td>Reg. Date & Time</td>
                                 <td>Participant Seats</td>
+                              	<td>ICC EVent / Inst. Event</td>
                                 <td>Upload by</td>
                                 <!-- <td>Create at</td> -->
                                 <td>Action</td>
@@ -241,7 +242,11 @@ $event_category_model = new Event_category_model();
                                     <td><?= date("d:M:Y", strtotime($value['event_start_date'])) ?> <?= date("h:i A", strtotime($value['event_start_time'])) ?> - <br><?= date("d:M:Y", strtotime($value['event_end_date'])) ?> <?= date("h:i A", strtotime($value['event_end_time'])) ?></td>
                                     <td><?= date("d:M:Y", strtotime($value['reg_start_date'])) ?> <?= date("h:i A", strtotime($value['reg_start_time'])) ?> - <br><?= date("d:M:Y", strtotime($value['reg_end_date'])) ?> <?= date("h:i A", strtotime($value['reg_end_time'])) ?></td>
                                     <td><?= $value['participant_seats'] ?></td>
-                                    <td><?php $emp = $employee_model->get($value['upload_by']);
+                                  	<td>
+                                  		<?= ($value['icc_events'] == "0") ? "<span class='badge badge-danger badge-pill'>No</span>" : (($value['icc_events'] == "1") ? "<span class='badge badge-success badge-pill'>Yes</span>" : "") ?>/
+                                        <?= ($value['institute_event'] == "0") ? "<span class='badge badge-danger badge-pill'>No</span>" : (($value['institute_event'] == "1") ? "<span class='badge badge-success badge-pill'>Yes</span>" : "") ?>
+                                  	</td>
+                                  	<td><?php $emp = $employee_model->get($value['upload_by']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                     <td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
