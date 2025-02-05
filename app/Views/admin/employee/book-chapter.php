@@ -24,7 +24,7 @@ $employee_model = new Employee_model();
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url('admin/organisation-type') ?>">
+                <form method="post" action="<?= base_url('admin/books-chapter') ?>">
                     <div class="row">
                         <div class="col-lg-4 form-group">
                             <span for="Empid">Employee:</span>
