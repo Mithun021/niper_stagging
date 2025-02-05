@@ -27,6 +27,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'member_type_category', 'EventsController::member_type_category');
     
     $routes->match(['get','post'],'accouncement', 'AcademicControllers::accouncement');
+    $routes->match(['get','post'],'classified-mou-value', 'AcademicControllers::classified_mou_value');
     $routes->match(['get','post'],'academic-details', 'AcademicControllers::academic_details');
     $routes->match(['get','post'],'achievements', 'AdminControllers::achievements');
     $routes->match(['get','post'],'testimonial', 'AdminControllers::testimonial');

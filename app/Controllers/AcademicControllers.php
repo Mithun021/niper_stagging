@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Academic_model;
 use App\Models\Announcement_model;
+use App\Models\Classified_mou_value_model;
 use App\Models\Collaboration_gallery_model;
 use App\Models\Collaboration_model;
 use App\Models\Research_publication_gallery_model;
@@ -289,4 +290,29 @@ class AcademicControllers extends BaseController
             }
         }
     }
+
+    public function classified_mou_value(){
+        $classified_mou_value_model = new Classified_mou_value_model();
+        $data = ['title' => 'Classified MoU Value'];
+        if ($this->request->is("get")) {
+            $data['classified_mou_value'] = $classified_mou_value_model->get();
+            return view('admin/academics/classified-mou-value',$data);
+        }else if ($this->request->is("get")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId'];
+            }
+            $data = [
+                'name' => $this->request->getPost('mou_value'),
+                'upload_by' => $loggeduserId
+            ];
+            $result = $classified_mou_value_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/classified-mou-value')->with('status', '<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+            } else {
+                return redirect()->to('admin/classified-mou-value')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
+        }
+    }
+
 }
