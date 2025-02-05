@@ -184,8 +184,8 @@ $books_chapter_author = new Books_chapter_author();
                                     <td>
                                         <?php $auth = $books_chapter_author->get_all_by_books_chapter_id($value['id']); ?>
                                         <ul>
-                                        <?php foreach ($auth as $key => $value) { ?>
-                                            <li><?= $value['author_name'] ?></li>
+                                        <?php foreach ($auth as $key => $value2) { ?>
+                                            <li><?= $value2['author_name'] ?></li>
                                         <?php } ?>
                                         </ul>
                                     </td>
