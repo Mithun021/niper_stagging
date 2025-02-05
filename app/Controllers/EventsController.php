@@ -67,8 +67,8 @@ use App\Models\Program_department_mapping_model;
                     'participant_eligibility' => $this->request->getPost('participant_eligibility'),
                     'marquee_status' => $this->request->getPost('marquee_status'),
                     'status' => $this->request->getPost('status'),
-                    'icc_events' => $this->request->getPost('icc_event') ? 1 : 0,
-                    'institute_event' => $this->request->getPost('institute_event') ? 1 : 0,
+                    'icc_events' => $this->request->getPost('icc_event') ?? 0,
+                    'institute_event' => $this->request->getPost('institute_event') ?? 0,
                     'upload_by' => $loggeduserId,
                 ];
 
