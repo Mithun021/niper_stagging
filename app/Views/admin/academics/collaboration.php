@@ -116,7 +116,7 @@ $employee_model = new Employee_model();
                         <!-- Renewal Date field, initially hidden -->
                         <div class="col-md-6" id="renewalDateField" style="display: none;">
                             <div class="form-group">
-                                <label for="RenewalDate">Renewal Date:</label>
+                                <span for="RenewalDate">Renewal Date:</span>
                                 <input type="date" name="RenewalDate" id="RenewalDate" class="form-control form-control-sm">
                             </div>
                         </div>
