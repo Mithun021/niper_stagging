@@ -2,9 +2,11 @@
 <?= $this->section("body-content"); ?>
 <?php
 
+use App\Models\Classified_mou_value_model;
 use App\Models\Employee_model;
 
 $employee_model = new Employee_model();
+$classified_mou_value_model = new Classified_mou_value_model();
 ?>
 
 <!-- Page title and form layout -->
@@ -144,7 +146,7 @@ $employee_model = new Employee_model();
                                 <td>Title</td>
                                 <td>Institute</td>
                                 <td>Collaboration Date</td>
-                                <td>Tenure Year</td>
+                                <td>Class. MoU</td>
                                 <td>Status</td>
                                 <td>Upload by</td>
                                 <td>Action</td>
@@ -170,7 +172,7 @@ $employee_model = new Employee_model();
                                     <td><?= $value['title'] ?></td>
                                     <td><a href="<?= $value['institute_link'] ?>" target="_blank"><?= $value['institute_name'] ?></a></td>
                                     <td><?= $value['collaboration_date'] ?></td>
-                                    <td><?= $value['collaboration_tenure_year'] ?></td>
+                                    <td><?= $classified_mou_value_model->get($value['classified_mou'])['name'] ?? '' ?></td>
                                     <td><?= $value['status'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
