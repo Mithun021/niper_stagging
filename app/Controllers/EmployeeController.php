@@ -1,6 +1,9 @@
 <?php
     namespace App\Controllers;
 
+use App\Models\Books_chapter_author;
+use App\Models\Books_chapter_coauthor;
+use App\Models\Books_chapter_model;
 use App\Models\Department_model;
 use App\Models\Designation_model;
 use App\Models\Employee_additioonal_charge_model;
@@ -744,11 +747,13 @@ use App\Models\Organisation_type_model;
 
         public function book_chapter(){
             $employee_model = new Employee_model();
-            $nature_of_work_model = new Nature_of_work_model();
+            $books_chapter_model = new Books_chapter_model();
+            $books_chapter_author = new Books_chapter_author();
+            $books_chapter_coauthor = new Books_chapter_coauthor();
             $data = ['title' => 'Book CHapter'];
             if ($this->request->is('get')) {
                 $data['employee'] = $employee_model->get();
-                $data['work_nature'] = $nature_of_work_model->get();
+                $data['books_chapter'] = $books_chapter_model->get();
                 return view('admin/employee/book-chapter',$data);
             }else if ($this->request->is('post')) {
                 $sessionData = session()->get('loggedUserData');
@@ -756,6 +761,53 @@ use App\Models\Organisation_type_model;
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
 
+                $upload_file = $this->request->getFile('upload_file');
+                if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
+                    $upload_fileNewName = 'books'.rand(0,9999) .$upload_file->getRandomName();
+                    $upload_file->move(ROOTPATH . 'public/admin/uploads/books', $upload_fileNewName);    
+                }else{
+                 $upload_fileNewName = "";
+                }
+
+                $data = [
+                    'emplyee_id' => $this->request->getPost('Empid'),
+                    'book_chapter' => $this->request->getPost('book_chapter'),
+                    'title' => $this->request->getPost('title'),
+                    'publisher' => $this->request->getPost('publisher'),
+                    'month' => $this->request->getPost('month'),
+                    'isbn' => $this->request->getPost('isbn'),
+                    'issn_no' => $this->request->getPost('issn_no'),
+                    'doi' => $this->request->getPost('doi'),
+                    'web_link' => $this->request->getPost('web_link'),
+                    'upload_file' => $upload_fileNewName,
+                    'upload_by' => $loggeduserId,
+                ];
+
+                $author_name = $this->request->getPost('author_name');
+                $co_author_name = $this->request->getPost('co_author_name');
+
+                $result = $books_chapter_model->add($data);
+                if ($result === true) {
+                    $insertId = $books_chapter_model->getInsertID();
+
+                    foreach ($author_name as $key => $value) {
+                        $data =[
+                            'books_chapter_id' => $insertId,
+                            'author_name' => $value,
+                        ];
+                        $result = $books_chapter_author->add($data);
+                    }
+                    foreach ($co_author_name as $key => $value) {
+                        $data =[
+                            'books_chapter_id' => $insertId,
+                            'coauthor_name' => $value,
+                        ];
+                        $result = $books_chapter_coauthor->add($data);
+                    }
+                    return redirect()->to('admin/book-chapter')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                }else {
+                    return redirect()->to('admin/book-chapter')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }  
             }
         }
 

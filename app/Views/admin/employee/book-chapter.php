@@ -109,22 +109,22 @@ $employee_model = new Employee_model();
                     </div> -->
 
                         <div class="col-lg-4 form-group">
-                            <span for="">ISBN<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="isbn" required>
+                            <span for="">ISBN</span>
+                            <input type="text" class="form-control form-control-sm" name="isbn">
                         </div>
 
                         <div class="col-lg-4 form-group">
-                            <span for="">ISSN No.<span class="text-danger">*</span></span>
+                            <span for="">ISSN No.</span>
                             <input type="text" class="form-control form-control-sm" name="issn_no" required>
                         </div>
 
                         <div class="col-lg-4 form-group">
-                            <span for="">Digital Object Identify<span class="text-danger">*</span></span>
+                            <span for="">Digital Object Identify</span>
                             <input type="text" class="form-control form-control-sm" name="doi" required>
                         </div>
 
                         <div class="col-lg-4 form-group">
-                            <span for="">Web Link<span class="text-danger">*</span></span>
+                            <span for="">Web Link</span>
                             <input type="url" class="form-control form-control-sm" name="web_link" required>
                         </div>
 
