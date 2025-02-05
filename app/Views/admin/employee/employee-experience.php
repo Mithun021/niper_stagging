@@ -35,7 +35,7 @@ $employee_model = new Employee_model();
                     <div class="card card-body mb-1">
                         <div class="row">
                             <div class="col-lg-12 form-group">
-                                <span for="Empid">Employee:</span>
+                                <span for="Empid">Employee:<span class="text-danger">*</span></span>
                                 <select name="Empid" id="Empid" class="form-control form-control-sm" required>
                                     <option value="">Select Employee</option>
                                     <?php foreach ($employee as $value) { ?>
@@ -50,11 +50,11 @@ $employee_model = new Employee_model();
                         <div class="card card-body" id="clone_employee_data">
                             <div class="row">
                                 <div class="col-lg-6 form-group">
-                                    <span for="orgname">Organization Name:</span>
+                                    <span for="orgname">Organization Name:<span class="text-danger">*</span></span>
                                     <input type="text" name="orgname[]" id="orgname" class="form-control form-control-sm" required>
                                 </div>
                                 <div class="col-lg-3 form-group">
-                                    <span for="startdate">Start Date:</span>
+                                    <span for="startdate">Start Date:<span class="text-danger">*</span></span>
                                     <input type="date" name="startdate[]" id="startdate" class="form-control form-control-sm" required>
                                 </div>
                                 <div class="col-lg-3 form-group">
@@ -66,12 +66,12 @@ $employee_model = new Employee_model();
 
                                 </div>
                                 <div class="col-lg-12 form-group">
-                                    <span for="expdesc">Experience Designation:</span>
+                                    <span for="expdesc">Experience Designation:<span class="text-danger">*</span></span>
                                     <input type="text" name="expdesc[]" class="form-control form-control-sm">
                                     <!-- <textarea name="expdesc[]" class="form-control form-control-sm clone_editor" rows="4"></textarea> -->
                                 </div>
                                 <div class="col-lg-6 form-group">
-                                    <span for="orgtype">Organization Type:</span>
+                                    <span for="orgtype">Organization Type:<span class="text-danger">*</span></span>
                                     <select name="orgtype[]" id="orgtype" class="form-control form-control-sm" required>
                                     <?php foreach($organisation_type as $value){ ?>
                                         <option value="<?= $value['name'] ?>"><?= $value['name'] ?></option>
@@ -79,7 +79,7 @@ $employee_model = new Employee_model();
                                     </select>
                                 </div>
                                 <div class="col-lg-6 form-group">
-                                    <span for="natureofwork">Nature of Work:</span>
+                                    <span for="natureofwork">Nature of Work:<span class="text-danger">*</span></span>
                                     <select name="natureofwork[]" id="natureofwork" class="form-control form-control-sm" required>
                                     <?php foreach($nature_of_work as $value){ ?>
                                         <option value="<?= $value['name'] ?>"><?= $value['name'] ?></option>
