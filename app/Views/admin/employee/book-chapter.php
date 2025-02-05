@@ -20,8 +20,8 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <div class="row">
                 <form method="post" action="<?= base_url('admin/organisation-type') ?>">
+                <div class="row">
                     <div class="col-lg-4 form-group">
                         <span for="">Book Chapter Paper<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="book_chapter" required>
@@ -73,9 +73,9 @@
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
-                    
+                    </div>
                 </form>
-                </div>
+                
             </div>
         </div>
     </div>
