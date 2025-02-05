@@ -171,12 +171,12 @@ $event_category_model = new Event_category_model();
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <span><input type="checkbox" name="icc_event" id="" value="1">Check for IIC event</span>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                             <span><input type="checkbox" name="institute_event" id="" value="1">Institute event type</span>
                             </div>
