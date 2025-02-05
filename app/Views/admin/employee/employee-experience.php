@@ -210,36 +210,6 @@
 <!-- jQuery Script -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-// $(document).ready(function() {
-//     $("#add-clone").click(function(e){
-//         e.preventDefault();
-//         var cloneCatrow = $('#clone_employee_data').clone().appendTo('#clone_content');
-//         $(cloneCatrow).find('input').val('');
-//         initializeEditors();
-//     });
-
-//     $('#clone_content').on('click','#remove-clone', function(){
-// 		$(this).closest('#clone_employee_data').remove();
-// 	});
-
-//     $('#upload_emp_exp_btn').on('click',function (e) { 
-//         e.preventDefault();
-//         $('#upload_emp_exp_modal').modal('show');
-//      })
-
-// });
-
-// // ClassicEditor Initialization
-// function initializeEditors() {
-//     document.querySelectorAll(".clone_editor").forEach((textarea, index) => {
-//         if (!textarea.dataset.ckeditorInitialized) {
-//             ClassicEditor.create(textarea).catch(error => console.error(error));
-//             textarea.dataset.ckeditorInitialized = true;
-//         }
-//     });
-// }
-// initializeEditors();
-
 $(document).ready(function () {
     // Add Clone Button Click
     $("#add-clone").click(function (e) {
@@ -251,7 +221,8 @@ $(document).ready(function () {
 
         // Reset inputs and initialize CKEditor for the cloned textarea
         $(cloneCatrow).find('input, textarea, select').val('');
-        // $(cloneCatrow).find('.ck-editor').remove(); // Ensure old CKEditor instances are cleared
+        // Ensure the checkbox still works properly
+        $(cloneCatrow).find('input[type="checkbox"]').prop('checked', false);  // Uncheck the checkbox initially
 
         // Reinitialize CKEditor for new clone
         initializeEditors();
@@ -271,7 +242,7 @@ $(document).ready(function () {
     $('#export_sample_btn').on('click',function (e) { 
         e.preventDefault();
         $('#export_emp_sample_modal').modal('show');
-    })
+    });
 
     // Synchronize CKEditor Data Before Form Submission
     $('form').on('submit', function () {
@@ -284,15 +255,14 @@ $(document).ready(function () {
 
     // Initialize CKEditor
     function initializeEditors() {
-        // Loop through each textarea with the .clone_editor class
         document.querySelectorAll(".clone_editor").forEach((textarea) => {
             if (!textarea.dataset.ckeditorInitialized) {
                 ClassicEditor.create(textarea)
                     .then(editor => {
-                        textarea.editorInstance = editor; // Save editor instance for later use
+                        textarea.editorInstance = editor;
                     })
                     .catch(error => console.error(error));
-                textarea.dataset.ckeditorInitialized = true; // Mark as initialized
+                textarea.dataset.ckeditorInitialized = true;
             }
         });
     }
@@ -300,8 +270,6 @@ $(document).ready(function () {
     // Initialize editors for existing elements on page load
     initializeEditors();
 });
-
-
 
 </script>
 
