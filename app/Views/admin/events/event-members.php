@@ -193,33 +193,44 @@ $member_type_model = new Member_type_model();
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
-        // Create Service Clone for add and remove rows also calculate price
-        var cloneLimit = 10;
-        var currentClones = 0;
-        $("#addnewMemberRow").click(function(e) {
-            e.preventDefault();
-            if (currentClones < cloneLimit) {
-                currentClones++;
-                var cloneCatrow = $('#memberTrow').clone().appendTo('#memberTbody');
-                $(cloneCatrow).find('input').val('');
-            }
+    // Create Service Clone for add and remove rows also calculate price
+    var cloneLimit = 10;
+    var currentClones = 0;
+    
+    // Add new row
+    $("#addnewMemberRow").click(function(e) {
+        e.preventDefault();
+        if (currentClones < cloneLimit) {
+            currentClones++;
+            var cloneCatrow = $('#memberTrow').clone().appendTo('#memberTbody');
+            $(cloneCatrow).find('input').val('');  // Clear inputs in the new row
 
-        });
-
-        $('#memberTbody').on('click', '#removenewMemberRow', function() {
-            $(this).closest('tr').remove();
-        });
-
-    });
-
-    // Show/Hide "Specify Other Designation" field
-    document.getElementById("member_designation").addEventListener("change", function() {
-        if (this.value === "Any Other") {
-            document.getElementById("other_designation").style.display = "block";
-        } else {
-            document.getElementById("other_designation").style.display = "none";
+            // Attach the event listener to the new select element in the cloned row
+            $(cloneCatrow).find('select[name="member_designation"]').change(function() {
+                if ($(this).val() === "Any Other") {
+                    $(this).closest('tr').find('.other-designation').show();  // Show the "Other Designation" field
+                } else {
+                    $(this).closest('tr').find('.other-designation').hide();  // Hide the "Other Designation" field
+                }
+            });
         }
     });
+
+    // Remove row functionality
+    $('#memberTbody').on('click', '#removenewMemberRow', function() {
+        $(this).closest('tr').remove();
+    });
+
+    // Initial setup for existing rows
+    $('#memberTbody').on('change', 'select[name="member_designation"]', function() {
+        if ($(this).val() === "Any Other") {
+            $(this).closest('tr').find('.other-designation').show();  // Show the "Other Designation" field
+        } else {
+            $(this).closest('tr').find('.other-designation').hide();  // Hide the "Other Designation" field
+        }
+    });
+});
+
 </script>
 
 <?= $this->endSection() ?>
