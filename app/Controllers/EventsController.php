@@ -215,6 +215,7 @@ use App\Models\Program_department_mapping_model;
                 $data = [
                     'event_id' => $this->request->getPost('event_id'),
                     'fee_type' => $this->request->getPost('evtfeestype'),
+                    'evtfeesvalue' => $this->request->getPost('evtfeesvalue'),
                     'event_fees' => $this->request->getPost('evtfees'),
                     'upload_by' => $loggeduserId,
                 ];

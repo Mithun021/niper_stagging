@@ -5,7 +5,7 @@
     {
         protected $table         = 'event_fees';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['event_id','fee_type','event_fees','upload_by'];
+        protected $allowedFields = ['event_id','fee_type','evtfeesvalue','event_fees','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
