@@ -18,6 +18,7 @@ use App\Models\Designation_model;
 use App\Models\Download_form_model;
 use App\Models\Employee_model;
 use App\Models\Image_gallery_model;
+use App\Models\Instrument_gallery_model;
 use App\Models\Instrument_rates_model;
 use App\Models\Instruments_model;
 use App\Models\Leadership_media_link_model;
@@ -918,6 +919,7 @@ use App\Models\Youtube_link_model;
         public function instrument_facility(){
             $instruments_model = new Instruments_model();
             $department_model = new Department_model();
+            $instrument_gallery_model = new Instrument_gallery_model();
             $data = ['title' => 'Instrument Facility'];
             if ($this->request->is("get")) {
                 $data['department'] = $department_model->get();
@@ -942,8 +944,25 @@ use App\Models\Youtube_link_model;
                     'upload_file' => $RecruiterImageName,
                     'upload_by' =>  $loggeduserId,
                 ];
+                $album_files = $this->request->getFiles();
                 $result = $instruments_model->add($data);
                 if ($result === true) {
+                    $insert_id = $instruments_model->getInsertID();
+                    if ($album_files && isset($album_files['gallery_file'])) {
+                        foreach ($album_files['gallery_file'] as $file) {
+                            if ($file->isValid() && !$file->hasMoved()) {
+                                $newName = "gallery".rand(0,9999).$file->getRandomName();
+                                $file->move(ROOTPATH . 'public/admin/uploads/instrument', $newName);
+            
+                                $file_data = [
+                                    'instrument_id' => $insert_id,
+                                    'images' => $newName,
+                                ];
+                                // echo "<pre>"; print_r($file_data);
+                                $instrument_gallery_model->add($file_data);
+                            }
+                        }
+                    }
                     return redirect()->to('admin/instrument-facility')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
                     return redirect()->to('admin/instrument-facility')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');

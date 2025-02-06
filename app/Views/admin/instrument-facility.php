@@ -51,6 +51,11 @@ use App\Models\Employee_model;
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <span for="Recruiterimage">Gallery Image(.jpg,.jpeg,.png):</span>
+                        <input type="file" name="gallery_file[]" id="Recruiterimage" class="form-control form-control-sm" accept=".jpg,.jpeg,.png" multiple>
+                    </div>
+
                     <!-- Submit Button -->
                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
                 </form>
