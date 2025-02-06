@@ -75,6 +75,35 @@ $research_publication_type_model = new Research_publication_type_model();
                                 <input type="text" class="form-control form-control-sm" name="faculty_name">
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <span for="">Patent No.</span>
+                                <input type="text" class="form-control form-control-sm" name="patent_no">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <span for="">ISSN No</span>
+                                <input type="text" class="form-control form-control-sm" name="issn_no">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <span for="">ISBN No</span>
+                                <input type="text" class="form-control form-control-sm" name="isbn_no">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <span for="">Department</span>
+                                <select class="form-control form-control-sm" name="department">
+                                    <option value="">--Select--</option>
+                                <?php foreach ($departments as $key => $value) { ?>
+                                    <option value="<?= $value['id'] ?>"><?php $value['name'] ?></option>
+                                <?php } ?>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>

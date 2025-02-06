@@ -7,6 +7,7 @@ use App\Models\Announcement_model;
 use App\Models\Classified_mou_value_model;
 use App\Models\Collaboration_gallery_model;
 use App\Models\Collaboration_model;
+use App\Models\Department_model;
 use App\Models\Research_publication_gallery_model;
 use App\Models\Research_publication_model;
 use App\Models\Research_publication_type_model;
@@ -143,11 +144,13 @@ class AcademicControllers extends BaseController
 
     public function research_publication()
     {
+        $department_model = new Department_model();
         $research_publication_type_model = new Research_publication_type_model();
         $research_publication_model = new Research_publication_model();
         $research_publication_gallery_model = new Research_publication_gallery_model();
         $data = ['title' => 'Research Publication'];
         if ($this->request->is("get")) {
+            $data['departments'] = $department_model->get();
             $data['research_publication_type'] = $research_publication_type_model->get();
             $data['research_publication'] = $research_publication_model->get();
             return view('admin/academics/research-publication', $data);
