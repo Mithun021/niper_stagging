@@ -150,7 +150,7 @@ class AcademicControllers extends BaseController
         $research_publication_gallery_model = new Research_publication_gallery_model();
         $data = ['title' => 'Research Publication'];
         if ($this->request->is("get")) {
-            $data['department'] = $department_model->get();
+            $data['department'] = $department_model->activeData();
             $data['research_publication_type'] = $research_publication_type_model->get();
             $data['research_publication'] = $research_publication_model->get();
             return view('admin/academics/research-publication', $data);
