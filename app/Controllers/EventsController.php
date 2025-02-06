@@ -151,10 +151,10 @@ use App\Models\Program_department_mapping_model;
                         'upload_file' => $fileName,
                         'upload_by' => $loggeduserId,
                     ];
-                    echo "<pre>"; print_r($data);
-                    // $result = $event_members_model->add($data);
+                    // echo "<pre>"; print_r($data);
+                    $result = $event_members_model->add($data);
                 }
-                die;
+                // die;
                 
                 if ($result === true) {
                     return redirect()->to('admin/event-members')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
