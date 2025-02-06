@@ -9,7 +9,7 @@ $employee_model = new Employee_model();
 </style>
 <!-- start page title -->
 <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-4">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Student Achievements </h4>
@@ -34,6 +34,18 @@ $employee_model = new Employee_model();
                         <span for="">Desription</span>
                         <textarea id="editor" name="description"></textarea>
                     </div>
+                    <div class="form-group">
+                        <span for="">Student Name<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="student_name" required>
+                    </div>
+                    <div class="form-group">
+                        <span for="">Awards Date<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="awards_date" required>
+                    </div>
+                    <div class="form-group">
+                        <span for="">Awarding Agency Name</span>
+                        <input type="text" class="form-control form-control-sm" name="agency_name">
+                    </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
 
@@ -41,7 +53,7 @@ $employee_model = new Employee_model();
             </div>
         </div>
     </div>
-    <div class="col-lg-7">
+    <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Student Achievements List</h4>
@@ -53,8 +65,11 @@ $employee_model = new Employee_model();
                             <tr>
                                 <td>SN</td>
                                 <td>Files</td>
+                                <td>Student Name</td>
                                 <td>Title</td>
                                 <td>Description</td>
+                                <td>Award Date</td>
+                                <td>Agency Name</td>
                                 <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
@@ -70,8 +85,11 @@ $employee_model = new Employee_model();
                                             <img src="<?= base_url() ?>public/admin/uploads/achievements/invalid_image.png" alt="" height="40px">
                                         <?php endif; ?>
                                     </td>
+                                    <td><?= $value['student_name'] ?></td>
                                     <td><?= $value['title'] ?></td>
                                     <td><?= $value['description'] ?></td>
+                                    <td><?= $value['award_date'] ?></td>
+                                    <td><?= $value['agency_name'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                     <td>
