@@ -42,6 +42,19 @@ $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
                         <textarea id="editor" name="description"></textarea>
                     </div>
 
+                    <div class="form-group">
+                        <span for="">Faculty Name<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="faculty_name" required>
+                    </div>
+                    <div class="form-group">
+                        <span for="">Awards Date<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="awards_date" required>
+                    </div>
+                    <div class="form-group">
+                        <span for="">Awarding Agency Name</span>
+                        <input type="text" class="form-control form-control-sm" name="agency_name">
+                    </div>
+
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
 
                 </form>

@@ -33,6 +33,9 @@ class AchievementsController extends BaseController
                 'title' => $this->request->getVar('title'),
                 'description' => $this->request->getVar('description'),
                 'thumbnail' => $upload_file_new_name,
+                'faculty_name' => $this->request->getVar('faculty_name'),
+                'award_date' => $this->request->getVar('awards_date'),
+                'agency_name' => $this->request->getVar('agency_name'),
                 'upload_by' => $loggeduserId,
             ];
             $result = $faculty_awards_model->add($data);
