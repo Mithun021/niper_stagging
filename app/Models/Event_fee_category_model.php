@@ -3,7 +3,7 @@
     use CodeIgniter\Model;
     class Event_fee_category_model extends Model
     {
-        protected $table         = 'event_category';
+        protected $table         = 'event_fee_category';
         protected $primaryKey = 'id';
         protected $allowedFields = ['name','upload_by'];
         protected $createdField  = 'created_at';
