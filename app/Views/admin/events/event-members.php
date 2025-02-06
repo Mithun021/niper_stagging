@@ -1,6 +1,9 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
 <style>
+    #addServicetable #memberTbody #memberTrow:first-child td:last-child button {
+        display: none;
+    }
 </style>
 <?php
 
