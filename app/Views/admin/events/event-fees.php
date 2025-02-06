@@ -36,7 +36,7 @@
                         <span for="evtfeestype">Fee Type <span class="text-danger">*</span></span>
                         <select class="form-control form-control-sm" name="evtfeestype" id="evtfeestype" required>
                             <option value="">Select Fee Type</option>
-                        <?php foreach ($variable as $key => $value) { ?>
+                        <?php foreach ($events_fee as $key => $value) { ?>
                             <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
                         <?php } ?>
                         </select>
