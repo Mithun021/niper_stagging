@@ -2,10 +2,12 @@
 <?= $this->section("body-content") ?>
 <?php
     use App\Models\Employee_model;
-    use App\Models\Events_model;
+use App\Models\Event_fee_category_model;
+use App\Models\Events_model;
 
     $employee_model = new Employee_model();
     $events_model = new Events_model();
+    $event_fee_category_model = new Event_fee_category_model();
 ?>
 
 <div class="row">
@@ -85,6 +87,7 @@
                                 <td>SN</td>
                                 <td>Event ID</td>
                                 <td>Fee Type</td>
+                                <td>Event Fee Value</td>
                                 <td>Fees</td>
                                 <td>Upload by</td>
                                 <td>Actions</td>
@@ -96,7 +99,8 @@
                                     <tr>
                                         <td><?= $key + 1 ?></td>
                                         <td><?= $events_model->get($value['event_id'])['title'] ?></td>
-                                        <td><?= $value['fee_type'] ?></td>
+                                        <td><?= $event_fee_category_model->get($value['fee_type'])['name'] ?? '' ?></td>
+                                        <td><?= $value['evtfeesvalue'] ?></td>
                                         <td><?= $value['event_fees'] ?></td>
                                         <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name'] ?></td>
                                         <td>
