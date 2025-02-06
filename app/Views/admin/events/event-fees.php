@@ -34,7 +34,12 @@
                     <!-- Fee Type -->
                     <div class="form-group">
                         <span for="evtfeestype">Fee Type <span class="text-danger">*</span></span>
-                        <input type="text"  class="form-control form-control-sm" name="evtfeestype" id="evtfeestype" required/>
+                        <select class="form-control form-control-sm" name="evtfeestype" id="evtfeestype" required>
+                            <option value="">Select Fee Type</option>
+                        <?php foreach ($variable as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                        <?php } ?>
+                        </select>
                         <!-- <select class="form-control form-control-sm" name="evtfeestype" id="evtfeestype" required>
                             <option value="">-- Select Fee Type --</option>
                             <option value="All">All</option>
@@ -48,7 +53,10 @@
                             <option value="Industry Professionals">Industry Professionals</option>
                         </select> -->
                     </div>
-
+                    <div class="form-group">
+                        <span for="evtfees">Event Fees Value <span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="evtfeesvalue" id="evtfeesvalue" placeholder="Enter Fees Value" required>
+                    </div>
                     <!-- Event Fees -->
                     <div class="form-group">
                         <span for="evtfees">Event Fees (in INR) <span class="text-danger">*</span></span>

@@ -198,8 +198,10 @@ use App\Models\Program_department_mapping_model;
         public function event_fees(){
             $events_model = new Events_model();
             $event_fees_model = new Event_fees_model();
+            $event_fee_category_model = new Event_fee_category_model();
             $data = ['title' => 'Event Fees'];
             if ($this->request->is("get")) {
+                $data['events_fee'] = $event_fee_category_model->get();
                 $data['events'] = $events_model->get();
                 $data['event_fees'] = $event_fees_model->get();
                 return view('admin/events/event-fees',$data);
