@@ -57,11 +57,11 @@ $member_type_model = new Member_type_model();
                                             <td>Members Designation</td>
                                             <td>Member Affiliation</td>
                                             <td>Upload File</td>
-                                            <td><button type="button" class="btn btn-sm btn-primary" id="addnewservicerow">+</button></td>
+                                            <td><button type="button" class="btn btn-sm btn-primary" id="addnewMemberRow">+</button></td>
                                         </tr>
                                     </thead>
-                                    <tbody id="stockTbody">
-                                        <tr id="stockTrow">
+                                    <tbody id="memberTbody">
+                                        <tr id="memberTrow">
                                             <td>
                                                 <div class="form-group">
                                                     <span>Member Name:</span>
@@ -97,7 +97,7 @@ $member_type_model = new Member_type_model();
                                                 </div>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
+                                                <button type="button" class="btn btn-sm btn-danger" id="removenewMemberRow">-</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -187,7 +187,28 @@ $member_type_model = new Member_type_model();
     </div>
 
 </div>
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
+    $(document).ready(function() {
+        // Create Service Clone for add and remove rows also calculate price
+        var cloneLimit = 10;
+        var currentClones = 0;
+        $("#addnewMemberRow").click(function(e) {
+            e.preventDefault();
+            if (currentClones < cloneLimit) {
+                currentClones++;
+                var cloneCatrow = $('#memberTrow').clone().appendTo('#memberTbody');
+                $(cloneCatrow).find('input').val('');
+            }
+
+        });
+
+        $('#memberTbody').on('click', '#removenewMemberRow', function() {
+            $(this).closest('tr').remove();
+        });
+
+    });
+
     // Show/Hide "Specify Other Designation" field
     document.getElementById("member_designation").addEventListener("change", function() {
         if (this.value === "Any Other") {
