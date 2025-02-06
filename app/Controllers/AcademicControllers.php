@@ -177,6 +177,10 @@ class AcademicControllers extends BaseController
                 'reseach_publication_type_id' => $this->request->getPost('research_type'),
                 'impact_factor' => $this->request->getPost('impact_factor'),
                 'faculty_name' => $this->request->getPost('faculty_name'),
+                'patent_no' => $this->request->getPost('patent_no'),
+                'issn_no' => $this->request->getPost('issn_no'),
+                'isbn_no' => $this->request->getPost('isbn_no'),
+                'department_id' => $this->request->getPost('department'),
                 'upload_by' => $loggedUserId,
             ];
             $result = $research_publication_model->add($data);

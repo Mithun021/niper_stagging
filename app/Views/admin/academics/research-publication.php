@@ -2,6 +2,7 @@
 <?= $this->section("body-content"); ?>
 <?php
 
+use App\Models\Department_model;
 use App\Models\Research_publication_gallery_model;
 use App\Models\Employee_model;
 use App\Models\Research_publication_type_model;
@@ -9,6 +10,7 @@ use App\Models\Research_publication_type_model;
 $employee_model = new Employee_model();
 $research_publication_gallery_model = new Research_publication_gallery_model();
 $research_publication_type_model = new Research_publication_type_model();
+$department_model = new Department_model();
 ?>
 <style>
 
@@ -128,6 +130,8 @@ $research_publication_type_model = new Research_publication_type_model();
                                 <td>Reseach/Publication Type</td>
                                 <td>Impact Factor</td>
                                 <td>Faculty Name</td>
+                                <td>Department</td>
+                                <td>ISSN/ISBN</td>
                                 <td>Gallery</td>
                                 <td>Upload by</td>
                                 <td>Action</td>
@@ -148,6 +152,8 @@ $research_publication_type_model = new Research_publication_type_model();
                                     <td><?= $research_publication_type_model->get($value['reseach_publication_type_id'])['name'] ?? '' ?></td>
                                     <td><?= $value['impact_factor'] ?></td>
                                     <td><?= $value['faculty_name'] ?></td>
+                                    <td><?= $value['issn_no'] ?> / <?= $value['isbn_no'] ?></td>
+                                    <td><?= $department_model->get($value['department_id'])['name'] ?? '' ?></td>
                                     <td>
                                         <?php $gallery = $research_publication_gallery_model->getByResearch($value['id']);
                                         if (isset($gallery)) {

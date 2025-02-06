@@ -5,7 +5,7 @@
     {
         protected $table         = 'research_publication';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['title','description','thumbnail','reseach_publication_type_id','impact_factor','faculty_name','upload_by'];
+        protected $allowedFields = ['title','description','thumbnail','reseach_publication_type_id','impact_factor','faculty_name','patent_no','issn_no','isbn_no','department_id','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
