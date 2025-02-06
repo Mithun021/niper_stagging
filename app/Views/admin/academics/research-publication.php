@@ -97,11 +97,11 @@ $department_model = new Department_model();
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <span for="">Department</span>
+                                <span>Department</span>
                                 <select class="form-control form-control-sm" name="department">
                                     <option value="">--Select--</option>
                                 <?php foreach ($department as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?php $value['name'] ?></option>
+                                    <option value=""><?= $value['name'] ?></option>
                                 <?php } ?>
                                 </select>
                             </div>
