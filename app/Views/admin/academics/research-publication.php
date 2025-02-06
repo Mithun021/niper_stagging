@@ -130,8 +130,8 @@ $department_model = new Department_model();
                                 <td>Reseach/Publication Type</td>
                                 <td>Impact Factor</td>
                                 <td>Faculty Name</td>
-                                <td>Department</td>
                                 <td>ISSN/ISBN</td>
+                                <td>Department</td>
                                 <td>Gallery</td>
                                 <td>Upload by</td>
                                 <td>Action</td>
