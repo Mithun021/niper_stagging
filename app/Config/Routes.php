@@ -24,6 +24,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'event-fees', 'EventsController::event_fees');
     $routes->match(['get','post'],'event-highlight', 'EventsController::event_highlight');
     $routes->match(['get','post'],'event-category', 'EventsController::event_category');
+    $routes->match(['get','post'],'event-fee-category', 'EventsController::event_fee_category');
     $routes->match(['get','post'],'member_type_category', 'EventsController::member_type_category');
     
     $routes->match(['get','post'],'accouncement', 'AcademicControllers::accouncement');
