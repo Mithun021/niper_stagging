@@ -74,6 +74,8 @@ $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
                                 <td>SN</td>
                                 <td>Files</td>
                                 <td>Title</td>
+                                <td>Faculty Name</td>
+                                <td>Awards Date</td>
                                 <td>Gallery</td>
                                 <td>upload by</td>
                                 <td>Action</td>
@@ -91,6 +93,8 @@ $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
                                         <?php endif; ?>
                                     </td>
                                     <td><?= $value['title'] ?></td>
+                                    <td><?= $value['faculty_name'] ?></td>
+                                    <td><?= $value['award_date'] ?></td>
                                     <td>
                                         <?php
                                         // Fetch gallery data based on faculty award id
