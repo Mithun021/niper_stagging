@@ -151,7 +151,7 @@ class AcademicControllers extends BaseController
         $data = ['title' => 'Research Publication'];
         if ($this->request->is("get")) {
             $data['department'] = $department_model->activeData();
-            print_r($data['department']); die;
+            echo "<pre>";print_r($data['department']); die;
             $data['research_publication_type'] = $research_publication_type_model->get();
             $data['research_publication'] = $research_publication_model->get();
             return view('admin/academics/research-publication', $data);
