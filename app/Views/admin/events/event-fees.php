@@ -135,6 +135,7 @@ use App\Models\Events_model;
                 success: function(data) {
                     console.log(data);
                     $('#evtfeestype').empty();
+                    $('#evtfeestype').append('<option value="">--Select--</option>');
                     $.each(data, function(key, value) {
                         $('#evtfeestype').append('<option value="' + value.id + '">' + value.name +
                             '</option>');
