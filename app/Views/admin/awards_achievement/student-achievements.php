@@ -11,7 +11,7 @@ $employee_model = new Employee_model();
 </style>
 <!-- start page title -->
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Student Achievements </h4>
@@ -56,7 +56,7 @@ $employee_model = new Employee_model();
             </div>
         </div>
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Student Achievements List</h4>
