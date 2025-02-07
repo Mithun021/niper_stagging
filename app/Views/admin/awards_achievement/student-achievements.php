@@ -70,7 +70,7 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Awards Date<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="awards_date" required>
+                            <input type="date" class="form-control form-control-sm" name="awards_date" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Awarding Agency Name</span>
@@ -110,7 +110,7 @@ $employee_model = new Employee_model();
                                     <td><?= ++$key ?></td>
                                     <td>
                                         <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/achievements/' . $value['upload_file'])): ?>
-                                            <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
+                                            <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/achievements/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
                                         <?php else: ?>
                                             <img src="<?= base_url() ?>public/admin/uploads/achievements/invalid_image.png" alt="" height="40px">
                                         <?php endif; ?>
