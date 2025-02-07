@@ -388,5 +388,39 @@ use App\Models\Program_department_mapping_model;
                 }
             }
         }
+
+        public function event_fee_subcategory(){
+            $event_fee_category_model = new Event_fee_category_model();
+            $data = ['title' => 'Event Fee Sub Category'];
+            if ($this->request->is("get")) {
+                $data['event_categories'] = $event_fee_category_model->get();
+                return view('admin/events/event-fee-subcategory',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }else{
+                    return redirect()->to(base_url('admin/login'));
+                }
+                
+            }
+        }
+
+        public function event_contact_info(){
+            $event_fee_category_model = new Event_fee_category_model();
+            $data = ['title' => 'Event Contact Info'];
+            if ($this->request->is("get")) {
+                $data['event_categories'] = $event_fee_category_model->get();
+                return view('admin/events/event-contact-info',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }else{
+                    return redirect()->to(base_url('admin/login'));
+                }
+                
+            }
+        }
     }
 ?>

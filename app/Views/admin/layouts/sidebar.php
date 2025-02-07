@@ -21,6 +21,8 @@
                 <li><a href="<?= base_url() ?>admin/member_type_category" class="waves-effect"><span>Events Member Type</span></a></li>
                 <li><a href="<?= base_url() ?>admin/event-category" class="waves-effect"><span>Events Category</span></a></li>
                 <li><a href="<?= base_url() ?>admin/event-fee-category" class="waves-effect"><span>Events Fee Category</span></a></li>
+                <li><a href="<?= base_url() ?>admin/event-fee-subcategory" class="waves-effect"><span>Events Fee Subcategory</span></a></li>
+                <li><a href="<?= base_url() ?>admin/event-contact-info" class="waves-effect"><span>Events COntact Info</span></a></li>
             </ul>
         </li>
 
