@@ -119,7 +119,7 @@ $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
                                     </td>
                                     <td><?= $value['title'] ?></td>
                                     <td><?= $value['faculty_name'] ?></td>
-                                    <td></td>
+                                    <td><?= $department_model($value['department_id'])['name'] ?? '' ?></td>
                                     <td><?= $designation_model($value['designation_id'])['name'] ?? '' ?></td>
                                     <td><?= $value['award_date'] ?></td>
                                     <td>
