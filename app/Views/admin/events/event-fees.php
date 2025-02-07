@@ -25,7 +25,7 @@ use App\Models\Events_model;
                     <!-- Event ID -->
                     <div class="form-group">
                         <span>Event ID:</span>
-                        <select name="event_id" class="form-control form-control-sm">
+                        <select name="event_id"  id="event_id" class="form-control form-control-sm">
                             <option value="">Select Event</option>
                         <?php foreach ($events as $key => $value) { ?>
                             <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
@@ -38,9 +38,6 @@ use App\Models\Events_model;
                         <span for="evtfeestype">Fee Type <span class="text-danger">*</span></span>
                         <select class="form-control form-control-sm" name="evtfeestype" id="evtfeestype" required>
                             <option value="">Select Fee Type</option>
-                        <?php foreach ($events_fee as $key => $value) { ?>
-                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
-                        <?php } ?>
                         </select>
                         <!-- <select class="form-control form-control-sm" name="evtfeestype" id="evtfeestype" required>
                             <option value="">-- Select Fee Type --</option>
@@ -121,5 +118,31 @@ use App\Models\Events_model;
         </div>
     </div>
 </div>
+
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#event_id').on('change', function() {
+            var event_id = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "<?= base_url() ?>get_event_fee_category",
+                data: {
+                    event_id: event_id
+                },
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data);
+                    $('#evtfeestype').empty();
+                    $.each(data, function(key, value) {
+                        $('#evtfeestype').append('<option value="' + value.id + '">' + value.name +
+                            '</option>');
+                    });
+                }
+            });
+        })
+    });
+</script>
 
 <?= $this->endSection() ?>
