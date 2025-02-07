@@ -3,8 +3,12 @@
 <?php
 
 use App\Models\Employee_model;
+use App\Models\Event_fee_category_model;
+use App\Models\Events_model;
 
 $employee_model = new Employee_model();
+$events_model = new Events_model();
+$event_fee_category_model = new Event_fee_category_model();
 ?>
 <style>
 
@@ -60,6 +64,8 @@ $employee_model = new Employee_model();
                         <thead>
                             <tr>
                                 <td>SN</td>
+                                <td>Event id</td>
+                                <td>Evnt Fee name</td>
                                 <td>Category Name</td>
                                 <td>Upload By</td>
                                 <td>Upload Date</td>
@@ -67,7 +73,21 @@ $employee_model = new Employee_model();
                             </tr>
                         </thead>
                         <tbody>
-
+                            <?php foreach ($event_categories as $key => $value) { ?>
+                                <tr>
+                                    <td><?= $key + 1 ?></td>
+                                    <td><?= $events_model->get($value['event_id'])['title'] ?? '' ?></td>
+                                    <td><?= $event_fee_category_model->get($value['event_fee_category_id'])['name'] ?? '' ?></td>
+                                    <td><?= $value['name'] ?></td>
+                                    <td><?php $emp = $employee_model->get($value['upload_by']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                    <td><?= date("d-m-Y", strtotime($value['created_at'])) ?></td>
+                                    <td>
+                                        <a href="<?= base_url('admin/event-category/' . $value['id']) ?>" class="btn btn-sm btn-primary">Edit</a>
+                                        <a href="<?= base_url('admin/event-category/' . $value['id']) ?>" class="btn btn-sm btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
@@ -88,7 +108,7 @@ $employee_model = new Employee_model();
                 data: {
                     event_id: event_id
                 },
-                dataType : 'json',
+                dataType: 'json',
                 success: function(data) {
                     console.log(data);
                     $('#event_fee_category_id').empty();
