@@ -126,8 +126,8 @@ $employee_model = new Employee_model();
                                     <td><?= $value['description'] ?></td>
                                     <td><?php $courses = $courses_model->get($value['course_id']); if($courses){ echo $courses['course_name']."(".$courses['course_code'].")"; } ?></td>
                                     <td><?= $department_model->get($value['department_id'])['name'] ?? '' ?></td>
-                                    <td><?php $emp = $employee_model->get($value['supervisor_id']);
-                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                    <td><?php $supervisor = $employee_model->get($value['supervisor_id']);
+                                        echo $supervisor['first_name'] . " " . $supervisor['middle_name'] . " " . $supervisor['last_name']  ?></td>
                                     <td><?= $value['award_date'] ?></td>
                                     <td><?= $value['agency_name'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
