@@ -54,7 +54,9 @@ use App\Models\Events_model;
                     </div>
                     <div class="form-group">
                         <span for="evtfees">Event Fees Value <span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="evtfeesvalue" id="evtfeesvalue" placeholder="Enter Fees Value" required>
+                        <select class="form-control form-control-sm" name="evtfeesvalue" id="evtfeesvalue" required>
+                            <option value="">Select Fee Type</option>
+                        </select>
                     </div>
                     <!-- Event Fees -->
                     <div class="form-group">
@@ -138,6 +140,29 @@ use App\Models\Events_model;
                     $('#evtfeestype').append('<option value="">--Select--</option>');
                     $.each(data, function(key, value) {
                         $('#evtfeestype').append('<option value="' + value.id + '">' + value.name +
+                            '</option>');
+                    });
+                }
+            });
+        })
+
+        $('#evtfeestype').on('change', function() {
+            var evtfeestype = $(this).val();
+            var event_id = $('#event_id').val();
+            $.ajax({
+                type: "POST",
+                url: "<?= base_url() ?>get_event_fee_subcategory",
+                data: {
+                    event_id: event_id,
+                    evtfeestype : evtfeestype
+                },
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data);
+                    $('#evtfeesvalue').empty();
+                    $('#evtfeesvalue').append('<option value="">--Select--</option>');
+                    $.each(data, function(key, value) {
+                        $('#evtfeesvalue').append('<option value="' + value.id + '">' + value.name +
                             '</option>');
                     });
                 }

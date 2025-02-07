@@ -27,8 +27,8 @@
             return $result;
         }
 
-        public function getEventFeeCategories($event_id){
-            return $this->where('event_id', $event_id)->findAll();
+        public function getEventFeeSubcategories($event_id,$evtfeestype){
+            return $this->where('event_id', $event_id)->where('event_fee_category_id', $evtfeestype)->findAll();
         }
     }
 ?>
