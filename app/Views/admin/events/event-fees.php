@@ -101,7 +101,7 @@ use App\Models\Events_model;
                                         <td><?= $key + 1 ?></td>
                                         <td><?= $events_model->get($value['event_id'])['title'] ?></td>
                                         <td><?= $event_fee_category_model->get($value['fee_type'])['name'] ?? '' ?></td>
-                                        <td><?= $event_fee_subcategory_model->get($value['evtfeesvalue'])['name'] ?? '' ?></td>
+                                        <td><?= $event_fee_subcategory_model->get($value['evtfeesvalue'])['name'] ?? $value['evtfeesvalue'] ?></td>
                                         <td><?= $value['event_fees'] ?></td>
                                         <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name'] ?></td>
                                         <td>
