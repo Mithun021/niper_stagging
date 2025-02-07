@@ -95,8 +95,8 @@ use App\Models\Events_model;
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if ($event_fees) : ?>
-                                <?php foreach ($event_fees as $key => $value) : ?>
+                            <?php if ($event_fees) { ?>
+                                <?php foreach ($event_fees as $key => $value){ ?>
                                     <tr>
                                         <td><?= $key + 1 ?></td>
                                         <td><?= $events_model->get($value['event_id'])['title'] ?></td>
@@ -109,12 +109,12 @@ use App\Models\Events_model;
                                             <a href="<?= base_url() ?>admin/event-fees/delete/<?= $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
                                         </td>
                                     </tr>
-                                <?php endforeach; ?>
-                            <?php else : ?>
+                                <?php } ?>
+                            <?php } else { ?>
                                 <tr>
-                                    <td colspan="6" class="text-center">No data found</td>
+                                    <td colspan="7" class="text-center">No data found</td>
                                 </tr>
-                            <?php endif; ?>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
