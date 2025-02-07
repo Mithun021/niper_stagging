@@ -89,10 +89,16 @@ $department_model = new Department_model();
                                 <input type="text" class="form-control form-control-sm" name="issn_no">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <span for="">ISBN No</span>
                                 <input type="text" class="form-control form-control-sm" name="isbn_no">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <span for="">DOI No</span>
+                                <input type="text" class="form-control form-control-sm" name="doi_no">
                             </div>
                         </div>
                         <div class="col-md-6">

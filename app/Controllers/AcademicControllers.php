@@ -181,6 +181,7 @@ class AcademicControllers extends BaseController
                 'patent_no' => $this->request->getPost('patent_no'),
                 'issn_no' => $this->request->getPost('issn_no'),
                 'isbn_no' => $this->request->getPost('isbn_no'),
+                'doi_no' => $this->request->getPost('doi_no'),
                 'department_id' => $this->request->getPost('department'),
                 'upload_by' => $loggedUserId,
             ];
