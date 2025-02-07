@@ -24,7 +24,7 @@ use App\Models\Events_model;
                     }
                 ?>
                 <form method="post" action="<?= base_url('admin/event-fee-category') ?>">
-                <div class="form-group">
+                    <div class="form-group">
                         <span>Event ID:</span>
                         <select name="event_id" class="form-control form-control-sm">
                             <option value="">Select Event</option>

@@ -22,6 +22,21 @@
                 ?>
                 <form method="post" action="<?= base_url('admin/event-fee-subcategory') ?>">
                     <div class="form-group">
+                        <span>Event ID:</span>
+                        <select name="event_id" class="form-control form-control-sm">
+                            <option value="">Select Event</option>
+                            <?php foreach ($events as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span>Event Fee Category</span>
+                        <select name="event_fee_category_id" id="event_fee_category_id" class="form-control form-control-sm">
+                            <option value="">Select Event Fee Category</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <span for="">Category Name<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="event_category" required>
                     </div>
