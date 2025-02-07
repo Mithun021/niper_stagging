@@ -2,10 +2,14 @@
 <?= $this->section("body-content"); ?>
 <?php
 
+use App\Models\Department_model;
+use App\Models\Designation_model;
 use App\Models\Employee_model;
 use App\Models\Faculty_awards_gallery_model;
 
 $employee_model = new Employee_model();
+$department_model = new Department_model();
+$designation_model = new Designation_model();
 $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
 ?>
 <style>
@@ -94,6 +98,8 @@ $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
                                 <td>Files</td>
                                 <td>Title</td>
                                 <td>Faculty Name</td>
+                                <td>Department</td>
+                                <td>Designation</td>
                                 <td>Awards Date</td>
                                 <td>Gallery</td>
                                 <td>upload by</td>
@@ -113,6 +119,8 @@ $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
                                     </td>
                                     <td><?= $value['title'] ?></td>
                                     <td><?= $value['faculty_name'] ?></td>
+                                    <td><?= $department_model($value['department_id'])['name'] ?? '' ?></td>
+                                    <td><?= $designation_model($value['designation_id'])['name'] ?? '' ?></td>
                                     <td><?= $value['award_date'] ?></td>
                                     <td>
                                         <?php

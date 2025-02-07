@@ -40,6 +40,8 @@ class AchievementsController extends BaseController
                 'description' => $this->request->getVar('description'),
                 'thumbnail' => $upload_file_new_name,
                 'faculty_name' => $this->request->getVar('faculty_name'),
+                'department_id' => $this->request->getVar('department'),
+                'designation_id' => $this->request->getVar('designation'),
                 'award_date' => $this->request->getVar('awards_date'),
                 'agency_name' => $this->request->getVar('agency_name'),
                 'upload_by' => $loggeduserId,

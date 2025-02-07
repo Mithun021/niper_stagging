@@ -5,7 +5,7 @@
     {
         protected $table         = 'faculty_awards';
         protected $primaryKey    = 'id';
-        protected $allowedFields = ['title','description', 'thumbnail', 'faculty_name', 'award_date', 'agency_name', 'upload_by'];
+        protected $allowedFields = ['title','description', 'thumbnail', 'faculty_name','department_id','designation_id', 'award_date', 'agency_name', 'upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
