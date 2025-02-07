@@ -312,6 +312,7 @@ use App\Models\Program_department_mapping_model;
                     return redirect()->to(base_url('admin/login'));
                 }
                 $data = [
+                    'event_id' => $this->request->getPost('event_id'),
                     'name' => $this->request->getPost('event_category'),
                     'upload_by' => $loggeduserId
                 ];

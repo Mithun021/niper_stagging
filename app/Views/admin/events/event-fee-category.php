@@ -9,7 +9,7 @@
 </style>
 <!-- start page title -->
 <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-4">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> </h4>
@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-7">
+    <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> List</h4>
