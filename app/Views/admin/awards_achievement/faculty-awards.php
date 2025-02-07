@@ -26,19 +26,19 @@ $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
                 ?>
                 <form method="post" action="<?= base_url() ?>admin/faculty-awards" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <span for="">Title<span class="text-danger">*</span></span>
                             <input type="text" class="form-control form-control-sm" name="title">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <span for="">Upload Thumbnail(JPG,PNG)</span>
                             <input type="file" class="form-control form-control-sm" name="upload_file" accept=".jpg, .png, .jpeg" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <span for="">Upload Gallery(JPG,PNG)</span>
                             <input type="file" class="form-control form-control-sm" name="file_gallery[]" accept=".jpg, .png, .jpeg" multiple required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <span for="">Description</span>
                             <textarea id="editor" name="description"></textarea>
                         </div>
