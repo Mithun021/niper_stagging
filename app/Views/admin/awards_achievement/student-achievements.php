@@ -124,7 +124,7 @@ $employee_model = new Employee_model();
                                     <td><?= $value['student_name'] ?></td>
                                     <td><?= $value['title'] ?></td>
                                     <td><?= $value['description'] ?></td>
-                                    <td><?= $courses_model->get($value['course_id'])['course_name']." ".['course_code'] ?? '' ?></td>
+                                    <td><?= $courses_model->get($value['course_id'])['course_name'] . " " . ($courses_model->get($value['course_id'])['course_code'] ?? '') ?>                                    </td>
                                     <td><?= $department_model->get($value['department_id'])['name'] ?? '' ?></td>
                                     <td><?php $emp = $employee_model->get($value['supervisor_id']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
