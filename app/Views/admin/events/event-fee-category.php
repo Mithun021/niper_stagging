@@ -2,7 +2,10 @@
 <?=  $this->section("body-content"); ?>
 <?php
     use App\Models\Employee_model;
+use App\Models\Events_model;
+
     $employee_model = new Employee_model();
+    $events_model = new Events_model();
 ?>
 <style>
     
@@ -53,6 +56,7 @@
                     <thead>
                         <tr>
                             <td>SN</td>
+                            <td>Event Name</td>
                             <td>Category Name</td>
                             <td>Upload By</td>
                             <td>Upload Date</td>
@@ -63,6 +67,7 @@
                     <?php foreach ($event_categories as $key => $value) { ?>
                         <tr>
                             <td><?= $key+1 ?></td>
+                            <td><?= $events_model->get($value['event_id'])['title'] ?? '' ?></td>
                             <td><?= $value['name'] ?></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                             <td><?= date("d-m-Y", strtotime($value['created_at'])) ?></td>
