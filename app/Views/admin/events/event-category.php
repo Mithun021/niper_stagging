@@ -21,16 +21,7 @@
                     }
                 ?>
                 <form method="post" action="<?= base_url('admin/event-category') ?>">
-                    <div class="form-group">
-                        <span>Event ID:</span>
-                        <select name="event_id" class="form-control form-control-sm">
-                            <option value="">Select Event</option>
-                            <?php foreach ($events as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                
+                    
                     <div class="form-group">
                         <span for="">Category Name<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="event_category" required>
