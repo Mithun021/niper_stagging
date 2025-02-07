@@ -297,9 +297,11 @@ use App\Models\Program_department_mapping_model;
         }
 
         public function event_fee_category(){
+            $events_model = new Events_model();
             $event_fee_category_model = new Event_fee_category_model();
             $data = ['title' => 'Event Fee Category'];
             if ($this->request->is("get")) {
+                $data['events'] = $events_model->get();
                 $data['event_categories'] = $event_fee_category_model->get();
                 return view('admin/events/event-fee-category',$data);
             }else if ($this->request->is("post")) {
