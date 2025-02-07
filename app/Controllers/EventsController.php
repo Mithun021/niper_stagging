@@ -433,6 +433,7 @@ use App\Models\Program_department_mapping_model;
             $event_contact_info_model = new Event_contact_info_model();
             $data = ['title' => 'Event Contact Info'];
             if ($this->request->is("get")) {
+                $data['events_contact'] = $event_contact_info_model->get();
                 $data['events'] = $events_model->get();
                 $data['designation'] = $designation_model->get();
                 return view('admin/events/event-contact-info',$data);
