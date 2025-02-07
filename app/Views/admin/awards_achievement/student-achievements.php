@@ -5,6 +5,7 @@
 use App\Models\Courses_model;
 use App\Models\Department_model;
 use App\Models\Employee_model;
+
 $department_model = new Department_model();
 $courses_model = new Courses_model();
 $employee_model = new Employee_model();
@@ -48,27 +49,27 @@ $employee_model = new Employee_model();
                             <span for="">Department<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="department">
                                 <option value="">--Select--</option>
-                            <?php foreach ($department as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
-                            <?php } ?>
+                                <?php foreach ($department as $key => $value) { ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Course Details<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="course">
                                 <option value="">--Select--</option>
-                            <?php foreach ($courses as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['course_name']."(".$value['course_code'].")" ?></option>
-                            <?php } ?>
+                                <?php foreach ($courses as $key => $value) { ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['course_name'] . "(" . $value['course_code'] . ")" ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Superviser<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="supervisor">
                                 <option value="">--Select--</option>
-                            <?php foreach ($employee as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>.
-                            <?php } ?>
+                                <?php foreach ($employee as $key => $value) { ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>.
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
@@ -124,10 +125,23 @@ $employee_model = new Employee_model();
                                     <td><?= $value['student_name'] ?></td>
                                     <td><?= $value['title'] ?></td>
                                     <td><?= $value['description'] ?></td>
-                                    <td><?php $courses = $courses_model->get($value['course_id']); if($courses){ echo $courses['course_name']."(".$courses['course_code'].")"; } ?></td>
+                                    <td><?php $courses = $courses_model->get($value['course_id']);
+                                        if ($courses) {
+                                            echo $courses['course_name'] . "(" . $courses['course_code'] . ")";
+                                        } ?></td>
                                     <td><?= $department_model->get($value['department_id'])['name'] ?? '' ?></td>
-                                    <td><?php $supervisor = $employee_model->get($value['supervisor_id']);
-                                        echo $supervisor['first_name'] . " " . $supervisor['middle_name'] . " " . $supervisor['last_name']  ?></td>
+                                    <td>
+                                        <?php
+                                        $supervisor = $employee_model->get($value['supervisor_id']);
+
+                                        if ($supervisor) {
+                                            echo $supervisor['first_name'] . " " . $supervisor['middle_name'] . " " . $supervisor['last_name'];
+                                        } else {
+                                            echo "Supervisor not found"; // or handle the error in a different way
+                                        }
+                                        ?>
+
+                                    </td>
                                     <td><?= $value['award_date'] ?></td>
                                     <td><?= $value['agency_name'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
