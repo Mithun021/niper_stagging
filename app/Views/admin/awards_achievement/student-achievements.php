@@ -5,9 +5,10 @@
 use App\Models\Courses_model;
 use App\Models\Department_model;
 use App\Models\Employee_model;
+use App\Models\Program_model;
 
 $department_model = new Department_model();
-$courses_model = new Courses_model();
+$program_model = new Program_model();
 $employee_model = new Employee_model();
 ?>
 <style>
@@ -55,16 +56,16 @@ $employee_model = new Employee_model();
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <span for="">Course Details<span class="text-danger">*</span></span>
+                            <span for="">Course Details</span>
                             <select class="form-control form-control-sm" name="course">
                                 <option value="">--Select--</option>
-                                <?php foreach ($courses as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['course_name'] . "(" . $value['course_code'] . ")" ?></option>
+                                <?php foreach ($program as $key => $value) { ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <span for="">Superviser<span class="text-danger">*</span></span>
+                            <span for="">Superviser</span>
                             <select class="form-control form-control-sm" name="supervisor">
                                 <option value="">--Select--</option>
                                 <?php foreach ($employee as $key => $value) { ?>
@@ -73,8 +74,8 @@ $employee_model = new Employee_model();
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <span for="">Awards Date<span class="text-danger">*</span></span>
-                            <input type="date" class="form-control form-control-sm" name="awards_date" required>
+                            <span for="">Awards Date</span>
+                            <input type="date" class="form-control form-control-sm" name="awards_date">
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Awarding Agency Name</span>
@@ -125,10 +126,7 @@ $employee_model = new Employee_model();
                                     <td><?= $value['student_name'] ?></td>
                                     <td><?= $value['title'] ?></td>
                                     <td><?= $value['description'] ?></td>
-                                    <td><?php $courses = $courses_model->get($value['course_id']);
-                                        if ($courses) {
-                                            echo $courses['course_name'] . "(" . $courses['course_code'] . ")";
-                                        } ?></td>
+                                    <td><?= $program_model->get($value['course_id'])['name'] ?? '' ?></td>
                                     <td><?= $department_model->get($value['department_id'])['name'] ?? '' ?></td>
                                     <td>
                                         <?php
