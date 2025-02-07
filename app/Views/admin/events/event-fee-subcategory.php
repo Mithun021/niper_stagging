@@ -91,9 +91,9 @@ $employee_model = new Employee_model();
                 dataType : 'json',
                 success: function(data) {
                     console.log(data);
-                    $('#event_fee_category').empty();
+                    $('#event_fee_category_id').empty();
                     $.each(data, function(key, value) {
-                        $('#event_fee_category').append('<option value="' + value.id + '">' + value.name +
+                        $('#event_fee_category_id').append('<option value="' + value.id + '">' + value.name +
                             '</option>');
                     });
                 }
