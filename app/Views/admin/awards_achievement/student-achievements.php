@@ -1,7 +1,9 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
 <?php
+
 use App\Models\Employee_model;
+
 $employee_model = new Employee_model();
 ?>
 <style>
@@ -21,32 +23,33 @@ $employee_model = new Employee_model();
                 }
                 ?>
                 <form method="post" action="<?= base_url('admin/student-achievements') ?>" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <span for="">Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="title">
-                    </div>
-                    <div class="form-group">
-                        <span for="">Upload File(JPG,PNG)</span>
-                        <input type="file" class="form-control form-control-sm" name="upload_file" accept=".jpg, .png" required>
-                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <span for="">Title<span class="text-danger">*</span></span>
+                            <input type="text" class="form-control form-control-sm" name="title">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span for="">Upload File(JPG,PNG)</span>
+                            <input type="file" class="form-control form-control-sm" name="upload_file" accept=".jpg, .png" required>
+                        </div>
 
-                    <div class="form-group">
-                        <span for="">Desription</span>
-                        <textarea id="editor" name="description"></textarea>
+                        <div class="form-group col-md-6">
+                            <span for="">Desription</span>
+                            <textarea id="editor" name="description"></textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span for="">Student Name<span class="text-danger">*</span></span>
+                            <input type="text" class="form-control form-control-sm" name="student_name" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span for="">Awards Date<span class="text-danger">*</span></span>
+                            <input type="text" class="form-control form-control-sm" name="awards_date" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span for="">Awarding Agency Name</span>
+                            <input type="text" class="form-control form-control-sm" name="agency_name">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <span for="">Student Name<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="student_name" required>
-                    </div>
-                    <div class="form-group">
-                        <span for="">Awards Date<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="awards_date" required>
-                    </div>
-                    <div class="form-group">
-                        <span for="">Awarding Agency Name</span>
-                        <input type="text" class="form-control form-control-sm" name="agency_name">
-                    </div>
-
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
 
                 </form>
