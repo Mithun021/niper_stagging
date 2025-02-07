@@ -167,6 +167,7 @@ use App\Models\Events_model;
                         $('#evtfeesvalue').append('<option value="' + value.id + '">' + value.name +
                             '</option>');
                     });
+                    $('#evtfeesvalue').append('<option value="Any Category">Any Category</option>');
                 }
             });
         })
