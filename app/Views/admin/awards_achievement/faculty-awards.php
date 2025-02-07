@@ -13,7 +13,7 @@ $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
 </style>
 <!-- start page title -->
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Faculty Awards </h4>
@@ -25,43 +25,44 @@ $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
                 }
                 ?>
                 <form method="post" action="<?= base_url() ?>admin/faculty-awards" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <span for="">Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="title">
-                    </div>
-                    <div class="form-group">
-                        <span for="">Upload Thumbnail(JPG,PNG)</span>
-                        <input type="file" class="form-control form-control-sm" name="upload_file" accept=".jpg, .png, .jpeg" required>
-                    </div>
-                    <div class="form-group">
-                        <span for="">Upload Gallery(JPG,PNG)</span>
-                        <input type="file" class="form-control form-control-sm" name="file_gallery[]" accept=".jpg, .png, .jpeg" multiple required>
-                    </div>
-                    <div class="form-group">
-                        <span for="">Description</span>
-                        <textarea id="editor" name="description"></textarea>
-                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <span for="">Title<span class="text-danger">*</span></span>
+                            <input type="text" class="form-control form-control-sm" name="title">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span for="">Upload Thumbnail(JPG,PNG)</span>
+                            <input type="file" class="form-control form-control-sm" name="upload_file" accept=".jpg, .png, .jpeg" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span for="">Upload Gallery(JPG,PNG)</span>
+                            <input type="file" class="form-control form-control-sm" name="file_gallery[]" accept=".jpg, .png, .jpeg" multiple required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span for="">Description</span>
+                            <textarea id="editor" name="description"></textarea>
+                        </div>
 
-                    <div class="form-group">
-                        <span for="">Faculty Name<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="faculty_name" required>
+                        <div class="form-group col-md-6">
+                            <span for="">Faculty Name<span class="text-danger">*</span></span>
+                            <input type="text" class="form-control form-control-sm" name="faculty_name" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span for="">Awards Date<span class="text-danger">*</span></span>
+                            <input type="text" class="form-control form-control-sm" name="awards_date" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span for="">Awarding Agency Name</span>
+                            <input type="text" class="form-control form-control-sm" name="agency_name">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <span for="">Awards Date<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="awards_date" required>
-                    </div>
-                    <div class="form-group">
-                        <span for="">Awarding Agency Name</span>
-                        <input type="text" class="form-control form-control-sm" name="agency_name">
-                    </div>
-
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
 
                 </form>
             </div>
         </div>
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Faculty Awards List</h4>
