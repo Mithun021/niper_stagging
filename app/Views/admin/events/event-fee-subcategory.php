@@ -77,7 +77,7 @@ $event_fee_category_model = new Event_fee_category_model();
                                 <tr>
                                     <td><?= $key + 1 ?></td>
                                     <td><?= $events_model->get($value['event_id'])['title'] ?? '' ?></td>
-                                    <td><?= $event_fee_category_model->get($value['event_fee_category_id'])['name'] ?? '' ?></td>
+                                    <td></td>
                                     <td><?= $value['name'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
