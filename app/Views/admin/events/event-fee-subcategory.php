@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <span>Event Fee Category</span>
                         <select name="event_fee_category_id" id="event_fee_category_id" class="form-control form-control-sm">
-                            <option value="">Select Event Fee Category</option>
+                            <option value="" default selected>Select Event Fee Category</option>
                         </select>
                     </div>
                     <div class="form-group">
