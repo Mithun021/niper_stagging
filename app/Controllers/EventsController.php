@@ -400,7 +400,7 @@ use App\Models\Program_department_mapping_model;
             $data = ['title' => 'Event Fee Sub Category'];
             if ($this->request->is("get")) {
                 $data['events'] = $events_model->get();
-                $data['event_categories'] = $event_fee_category_model->get();
+                $data['event_categories'] = $event_fee_subcategory_model->get();
                 return view('admin/events/event-fee-subcategory',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
