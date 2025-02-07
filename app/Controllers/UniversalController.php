@@ -4,6 +4,7 @@
 use App\Models\Department_model;
 use App\Models\Designation_model;
 use App\Models\Employee_model;
+use App\Models\Event_fee_category_model;
 use App\Models\Menu_heading_model;
 use App\Models\Menu_name_model;
 use App\Models\Program_department_mapping_model;
@@ -21,6 +22,12 @@ use App\Models\Student_model;
             $menu_id = $this->request->getPost('menu_id');
             $headings = $menu_heading_model->getAllMenuHeading($menu_id);
             return $this->response->setJSON($headings);
+        }
+        public function get_event_fee_category(){
+            $event_fee_category_model = new Event_fee_category_model();
+            $event_id = $this->request->getPost('event_id');
+            $event_fee_categories = $event_fee_category_model->getEventFeeCategories($event_id);
+            return $this->response->setJSON($event_fee_categories);
         }
     }
 ?>
