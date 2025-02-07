@@ -4,6 +4,7 @@
     use App\Models\Designation_model;
     use App\Models\Employee_model;
 use App\Models\Event_category_model;
+use App\Models\Event_contact_info_model;
 use App\Models\Event_extension_model;
 use App\Models\Event_fee_category_model;
 use App\Models\Event_fee_subcategory_model;
@@ -427,10 +428,13 @@ use App\Models\Program_department_mapping_model;
         }
 
         public function event_contact_info(){
-            $event_fee_category_model = new Event_fee_category_model();
+            $designation_model = new Designation_model();
+            $events_model = new Events_model();
+            $event_contact_info_model = new Event_contact_info_model();
             $data = ['title' => 'Event Contact Info'];
             if ($this->request->is("get")) {
-                $data['event_categories'] = $event_fee_category_model->get();
+                $data['events'] = $events_model->get();
+                $data['designation'] = $designation_model->get();
                 return view('admin/events/event-contact-info',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
@@ -439,7 +443,20 @@ use App\Models\Program_department_mapping_model;
                 }else{
                     return redirect()->to(base_url('admin/login'));
                 }
-                
+                $data = [
+                    'event_id' => $this->request->getPost('event_id'),
+                    'name' => $this->request->getPost('name'),
+                    'email' => $this->request->getPost('email'),
+                    'phone_number' => $this->request->getPost('phone'),
+                    'designation' => $this->request->getPost('designation'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $event_contact_info_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/event-contact-info')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/event-contact-info')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
     }

@@ -22,8 +22,34 @@
                 ?>
                 <form method="post" action="<?= base_url('admin/event-contact-info') ?>">
                     <div class="form-group">
-                        <span for="">Category Name<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="event_category" required>
+                        <span>Event ID:</span>
+                        <select name="event_id" id="event_id" class="form-control form-control-sm">
+                            <option value="">Select Event</option>
+                            <?php foreach ($events as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span for="">Name<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <span for="">Email<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <span for="">Phone<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="phone" maxlength="10" required>
+                    </div>
+                    <div class="form-group">
+                        <span for="">Designation<span class="text-danger">*</span></span>
+                        <select class="form-control form-control-sm" name="designation" required>
+                            <option value="">--Select--</option>
+                        <?php foreach ($designation as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                        <?php } ?>
+                        </select>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
