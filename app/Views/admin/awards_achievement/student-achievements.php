@@ -2,8 +2,11 @@
 <?= $this->section("body-content"); ?>
 <?php
 
+use App\Models\Courses_model;
+use App\Models\Department_model;
 use App\Models\Employee_model;
-
+$department_model = new Department_model();
+$courses_model = new Courses_model();
 $employee_model = new Employee_model();
 ?>
 <style>
@@ -98,6 +101,9 @@ $employee_model = new Employee_model();
                                 <td>Student Name</td>
                                 <td>Title</td>
                                 <td>Description</td>
+                                <td>Course</td>
+                                <td>Department</td>
+                                <td>Supervisor</td>
                                 <td>Award Date</td>
                                 <td>Agency Name</td>
                                 <td>Upload by</td>
@@ -118,6 +124,10 @@ $employee_model = new Employee_model();
                                     <td><?= $value['student_name'] ?></td>
                                     <td><?= $value['title'] ?></td>
                                     <td><?= $value['description'] ?></td>
+                                    <td><?= $courses_model->get($value['course_id'])['course_name']." ".['course_code'] ?? '' ?></td>
+                                    <td><?= $department_model->get($value['department_id'])['name'] ?? '' ?></td>
+                                    <td><?php $emp = $employee_model->get($value['supervisor_id']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                     <td><?= $value['award_date'] ?></td>
                                     <td><?= $value['agency_name'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
