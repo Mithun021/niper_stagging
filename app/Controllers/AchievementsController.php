@@ -3,8 +3,10 @@
 namespace App\Controllers;
 
 use App\Models\Awards_recognition_model;
+use App\Models\Courses_model;
 use App\Models\Department_model;
 use App\Models\Designation_model;
+use App\Models\Employee_model;
 use App\Models\Faculty_awards_gallery_model;
 use App\Models\Faculty_awards_model;
 use App\Models\Student_achievement_model;
@@ -108,9 +110,15 @@ class AchievementsController extends BaseController
 
     public function student_achievements()
     {
+        $employee_model = new Employee_model();
+        $department_model = new Department_model();
+        $courses_model = new Courses_model();
         $student_achievement_model = new Student_achievement_model();
         $data = ['title' => 'Student Achievements'];
         if ($this->request->is("get")) {
+            $data['employee'] = $employee_model->get();
+            $data['department'] = $department_model->get();
+            $data['courses'] = $courses_model->get();
             $data['student_acchievement'] = $student_achievement_model->get();
             return view('admin/awards_achievement/student-achievements', $data);
         } else if ($this->request->is("post")) {

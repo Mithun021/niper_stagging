@@ -33,13 +33,40 @@ $employee_model = new Employee_model();
                             <input type="file" class="form-control form-control-sm" name="upload_file" accept=".jpg, .png" required>
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <span for="">Desription</span>
                             <textarea id="editor" name="description"></textarea>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Student Name<span class="text-danger">*</span></span>
                             <input type="text" class="form-control form-control-sm" name="student_name" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span for="">Department<span class="text-danger">*</span></span>
+                            <select class="form-control form-control-sm" name="department">
+                                <option value="">--Select--</option>
+                            <?php foreach ($department as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                            <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span for="">Course Details<span class="text-danger">*</span></span>
+                            <select class="form-control form-control-sm" name="course">
+                                <option value="">--Select--</option>
+                            <?php foreach ($courses as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['course_name']."(".$value['course_code'].")" ?></option>
+                            <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span for="">Superviser<span class="text-danger">*</span></span>
+                            <select class="form-control form-control-sm" name="supervisor">
+                                <option value="">--Select--</option>
+                            <?php foreach ($employee as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>.
+                            <?php } ?>
+                            </select>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Awards Date<span class="text-danger">*</span></span>
