@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\Awards_recognition_model;
+use App\Models\Department_model;
+use App\Models\Designation_model;
 use App\Models\Faculty_awards_gallery_model;
 use App\Models\Faculty_awards_model;
 use App\Models\Student_achievement_model;
@@ -11,10 +13,14 @@ class AchievementsController extends BaseController
 {
     public function faculty_awards()
     {
+        $department_model = new Department_model();
+        $designation_model = new Designation_model();
         $faculty_awards_model = new Faculty_awards_model();
         $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
         $data = ['title' => 'Faculty Awards'];
         if ($this->request->is("get")) {
+            $data['departments'] = $department_model->get();
+            $data['designations'] = $designation_model->get();
             $data['faculty_awards'] = $faculty_awards_model->get();
             return view('admin/awards_achievement/faculty-awards', $data);
         } else if ($this->request->is("post")) {

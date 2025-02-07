@@ -43,9 +43,27 @@ $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
                             <textarea id="editor" name="description"></textarea>
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <span for="">Faculty Name<span class="text-danger">*</span></span>
                             <input type="text" class="form-control form-control-sm" name="faculty_name" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <span for="">Department<span class="text-danger">*</span></span>
+                            <select class="form-control form-control-sm" name="department" required>
+                                <option value="">--Select--</option>
+                            <?php foreach ($departments as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                            <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <span for="">Designation<span class="text-danger">*</span></span>
+                            <select class="form-control form-control-sm" name="designation" required>
+                                <option value="">--Select--</option>
+                            <?php foreach ($designations as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                            <?php } ?>
+                            </select>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Awards Date<span class="text-danger">*</span></span>
