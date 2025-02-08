@@ -842,7 +842,7 @@ use App\Models\Organisation_type_model;
                     'document_file' => $documentNewName,
                     'upload_by' => $loggeduserId,
                 ];
-                $result = $employee_patent_model->add($data,1);
+                $result = $employee_patent_model->add($data);
                 if ($result === true) {
                     return redirect()->to('admin/employee-patent')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
                 } else {
