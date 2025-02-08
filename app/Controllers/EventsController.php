@@ -124,6 +124,25 @@ use App\Models\Program_department_mapping_model;
             }
         }
 
+        public function event_video(){
+            $events_model = new Events_model();
+            $event_link_model = new Event_link_model();
+            $data = ['title' => 'Event Video'];
+            if ($this->request->is("get")) {
+                $data['events'] = $events_model->get();
+                $data['event_link'] = $event_link_model->get();
+                return view('admin/events/event-video',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }else{
+                    return redirect()->to(base_url('admin/login'));
+                }
+                
+            }
+        }
+
         public function event_members(){
             $events_model = new Events_model();
             $member_type_model = new Member_type_model();

@@ -20,6 +20,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'news-post', 'NewsController::news_post');
     $routes->match(['get','post'],'event-post', 'EventsController::event_post');
     $routes->match(['get','post'],'event-link', 'EventsController::event_link');
+    $routes->match(['get','post'],'event-video', 'EventsController::event_video');
     $routes->match(['get','post'],'event-extension-notice', 'EventsController::event_extension_notice');
     $routes->match(['get','post'],'event-members', 'EventsController::event_members');
     $routes->match(['get','post'],'event-organizer', 'EventsController::event_organizer');
