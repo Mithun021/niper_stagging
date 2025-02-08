@@ -10,6 +10,7 @@ use App\Models\Employee_model;
 use App\Models\Faculty_awards_gallery_model;
 use App\Models\Faculty_awards_model;
 use App\Models\Program_model;
+use App\Models\Student_achievement_mapping_model;
 use App\Models\Student_achievement_model;
 use App\Models\Student_prog_dept_mapping_model;
 
@@ -112,7 +113,7 @@ class AchievementsController extends BaseController
 
     public function student_achievements()
     {
-        $student_prog_dept_mapping_model = new Student_prog_dept_mapping_model();
+        $student_achievement_mapping_model = new Student_achievement_mapping_model();
         $employee_model = new Employee_model();
         $department_model = new Department_model();
         $courses_model = new Courses_model();
@@ -157,7 +158,7 @@ class AchievementsController extends BaseController
                         'course_id' => $this->request->getVar('course')[$key],
                         'supervisor_id' => $this->request->getVar('supervisor')[$key],
                     ];
-                    $student_prog_dept_mapping_model->add($data2);
+                    $student_achievement_mapping_model->add($data2);
                 }
                 return redirect()->to('admin/student-achievements')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
