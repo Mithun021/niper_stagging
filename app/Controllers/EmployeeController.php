@@ -10,6 +10,7 @@ use App\Models\Employee_additioonal_charge_model;
 use App\Models\Employee_awards_model;
 use App\Models\Employee_experience_model;
 use App\Models\Employee_model;
+use App\Models\Employee_patent_model;
 use App\Models\Employee_projects_model;
 use App\Models\Employee_publication_author_model;
 use App\Models\Employee_publication_model;
@@ -812,17 +813,39 @@ use App\Models\Organisation_type_model;
         }
 
         public function employee_patent(){
-            $nature_of_work_model = new Nature_of_work_model();
+            $employee_patent_model = new Employee_patent_model();
             $data = ['title' => 'Employee Patent'];
             if ($this->request->is('get')) {
-                $data['work_nature'] = $nature_of_work_model->get();
+                $data['employee_patent'] = $employee_patent_model->get();
                 return view('admin/employee/employee-patent',$data);
             }else if ($this->request->is('post')) {
                 $sessionData = session()->get('loggedUserData');
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
-
+                $document = $this->request->getFile('document_file');
+                if ($document->isValid() && ! $document->hasMoved()) {
+                    $documentNewName = "patent".rand(0,9999).$document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/employee', $documentNewName);    
+                }else{
+                 $documentNewName = "";
+                }
+                $data = [
+                    'employee_id' => $this->request->getPost('employee_id'),
+                    'award_reason' => $this->request->getPost('award_reason'),
+                    'name_of_awarding' => $this->request->getPost('name_of_awarding'),
+                    'date_of_awarding' => $this->request->getPost('date_of_awarding'),
+                    'body_name_of_awarding' => $this->request->getPost('body_name_of_awarding'),
+                    'level' => $this->request->getPost('level'),
+                    'document_file' => $documentNewName,
+                    'upload_by' => $loggeduserId,
+                ];
+                $result = $employee_patent_model->add($data,1);
+                if ($result === true) {
+                    return redirect()->to('admin/employee-patent')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                } else {
+                    return redirect()->to('admin/employee-patent')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 

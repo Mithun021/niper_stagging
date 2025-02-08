@@ -25,8 +25,8 @@ $employee_model = new Employee_model();
                 <form method="post" action="<?= base_url('admin/organisation-type') ?>">
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <span for="">Event Id<span class="text-danger">*</span></span>
-                            <select class="form-control form-control-sm" name="event_id" required>
+                            <span for="">Employee Id<span class="text-danger">*</span></span>
+                            <select class="form-control form-control-sm" name="employee_id" required>
                                 <option value="">--Select--</option>
                             </select>
                         </div>
@@ -52,7 +52,7 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Level<span class="text-danger">*</span></span>
-                            <select class="form-control form-control-sm" name="award_reason" required>
+                            <select class="form-control form-control-sm" name="level" required>
                                 <option value="">--Select--</option>
                                 <option value="National">National</option>
                                 <option value="International">International</option>
@@ -60,7 +60,7 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Document Upload(.pdf,.jpg,.jpeg,.png)<span class="text-danger">*</span></span>
-                            <input type="file" name="name_of_awarding" id="" class="form-control form-control-sm" accept=".pdf,.jpg,.jpeg,.png">
+                            <input type="file" name="document_file" id="" class="form-control form-control-sm" accept=".pdf,.jpg,.jpeg,.png">
                         </div>
                         <div class="form-group col-md-12">
                             <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
