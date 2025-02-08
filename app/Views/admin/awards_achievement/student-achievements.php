@@ -61,12 +61,12 @@ $employee_model = new Employee_model();
                                         <tr id="memberTrow">
                                             <td>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control form-control-sm" name="student_name" required>
+                                                    <input type="text" class="form-control form-control-sm" name="student_name[]" required>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <select class="form-control form-control-sm" name="department" required>
+                                                    <select class="form-control form-control-sm" name="department[]" required>
                                                         <option value="">--Select--</option>
                                                         <?php foreach ($department as $key => $value) { ?>
                                                             <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
@@ -76,7 +76,7 @@ $employee_model = new Employee_model();
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <select class="form-control form-control-sm" name="course">
+                                                    <select class="form-control form-control-sm" name="course[]" required>
                                                         <option value="">--Select--</option>
                                                         <?php foreach ($program as $key => $value) { ?>
                                                             <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
@@ -86,7 +86,7 @@ $employee_model = new Employee_model();
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <select class="form-control form-control-sm" name="supervisor">
+                                                    <select class="form-control form-control-sm" name="supervisor[]" required>
                                                         <option value="">--Select--</option>
                                                         <?php foreach ($employee as $key => $value) { ?>
                                                             <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>.

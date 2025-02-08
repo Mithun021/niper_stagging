@@ -11,6 +11,7 @@ use App\Models\Faculty_awards_gallery_model;
 use App\Models\Faculty_awards_model;
 use App\Models\Program_model;
 use App\Models\Student_achievement_model;
+use App\Models\Student_prog_dept_mapping_model;
 
 class AchievementsController extends BaseController
 {
@@ -111,6 +112,7 @@ class AchievementsController extends BaseController
 
     public function student_achievements()
     {
+        $student_prog_dept_mapping_model = new Student_prog_dept_mapping_model();
         $employee_model = new Employee_model();
         $department_model = new Department_model();
         $courses_model = new Courses_model();
@@ -138,17 +140,25 @@ class AchievementsController extends BaseController
             $data = [
                 'title' => $this->request->getVar('title'),
                 'description' => $this->request->getVar('description'),
-                'student_name' => $this->request->getVar('student_name'),
-                'department_id' => $this->request->getVar('department'),
-                'course_id' => $this->request->getVar('course'),
-                'supervisor_id' => $this->request->getVar('supervisor'),
                 'award_date' => $this->request->getVar('awards_date'),
                 'agency_name' => $this->request->getVar('agency_name'),
                 'upload_file' => $upload_file_new_name,
                 'upload_by' => $loggeduserId,
             ];
+            $student_name = $this->request->getVar('student_name');
             $result = $student_achievement_model->add($data);
             if ($result) {
+                $insert_id  = $student_achievement_model->getInsertID();
+                foreach ($student_name as $key => $value) {
+                    $data2 = [
+                        'student_achievement_mapping_id' => $insert_id,
+                        'student_name' => $value,
+                        'department_id' => $this->request->getVar('department')[$key],
+                        'course_id' => $this->request->getVar('course')[$key],
+                        'supervisor_id' => $this->request->getVar('supervisor')[$key],
+                    ];
+                    $student_prog_dept_mapping_model->add($data2);
+                }
                 return redirect()->to('admin/student-achievements')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
                 return redirect()->to('admin/student-achievements')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
