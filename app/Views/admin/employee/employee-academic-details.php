@@ -34,33 +34,46 @@ $employee_model = new Employee_model();
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <span for="">Reason of Awarding<span class="text-danger">*</span></span>
-                            <select class="form-control form-control-sm" name="award_reason" required>
+                            <span for="">Type of the Degree<span class="text-danger">*</span></span>
+                            <select class="form-control form-control-sm" name="degree_type" required>
                                 <option value="">--Select--</option>
-                                <option value="Academic">Academic</option>
-                                <option value="Research">Research</option>
+                                <option value="UG">UG</option>
+                                <option value="PG">PG</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <span for="">Name of Awarding<span class="text-danger">*</span></span>
-                            <input type="text" name="name_of_awarding" id="" class="form-control form-control-sm">
+                            <span for="">Name of the Degree<span class="text-danger">*</span></span>
+                            <input type="text" name="degree_name" id="" class="form-control form-control-sm" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <span for="">Date of Awarding<span class="text-danger">*</span></span>
-                            <input type="date" name="date_of_awarding" id="" class="form-control form-control-sm">
+                            <span for="">Subject Studied<span class="text-danger">*</span></span>
+                            <input type="text" name="subject_studied" id="" class="form-control form-control-sm" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <span for="">Body name of Awarding<span class="text-danger">*</span></span>
-                            <input type="text" name="body_name_of_awarding" id="" class="form-control form-control-sm">
+                            <span for="">Marking Scheme(%/CGPA)<span class="text-danger">*</span></span>
+                            <input type="text" name="marking_scheme" id="" class="form-control form-control-sm" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <span for="">Level<span class="text-danger">*</span></span>
-                            <select class="form-control form-control-sm" name="level" required>
-                                <option value="">--Select--</option>
-                                <option value="National">National</option>
-                                <option value="International">International</option>
-                            </select>
+                            <span for="">Obtained Result</span>
+                            <input type="text" name="obtained_result" id="" class="form-control form-control-sm">
                         </div>
+                        <div class="form-group col-md-6">
+                            <span for="">Year of Passing</span>
+                            <input type="number" name="passing_year" id="" class="form-control form-control-sm" maxlength="4">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span for="">University</span>
+                            <input type="text" name="university" id="" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span for="">University (Country)</span>
+                            <input type="text" name="university_country" id="" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span for="">University (State/UT)</span>
+                            <input type="text" name="university_state" id="" class="form-control form-control-sm">
+                        </div>
+                        
                         <div class="form-group col-md-6">
                             <span for="">Document Upload(.pdf,.jpg,.jpeg,.png)<span class="text-danger">*</span></span>
                             <input type="file" name="document_file" id="" class="form-control form-control-sm" accept=".pdf,.jpg,.jpeg,.png">
