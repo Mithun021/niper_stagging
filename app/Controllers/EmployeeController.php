@@ -6,6 +6,7 @@ use App\Models\Books_chapter_coauthor;
 use App\Models\Books_chapter_model;
 use App\Models\Department_model;
 use App\Models\Designation_model;
+use App\Models\Employee_academic_details_model;
 use App\Models\Employee_additioonal_charge_model;
 use App\Models\Employee_awards_model;
 use App\Models\Employee_experience_model;
@@ -853,6 +854,7 @@ use App\Models\Organisation_type_model;
 
         public function employee_academic_details(){
             $employee_model = new Employee_model();
+            $employee_academic_details_model = new Employee_academic_details_model();
             $data = ['title' => 'Employee Acadmic Details'];
             if ($this->request->is('get')) {
                 $data['employee'] = $employee_model->get();
@@ -864,12 +866,31 @@ use App\Models\Organisation_type_model;
                 }
                 $document = $this->request->getFile('document_file');
                 if ($document->isValid() && ! $document->hasMoved()) {
-                    $documentNewName = "patent".rand(0,9999).$document->getRandomName();
+                    $documentNewName = "academic".rand(0,9999).$document->getRandomName();
                     $document->move(ROOTPATH . 'public/admin/uploads/employee', $documentNewName);    
                 }else{
                  $documentNewName = "";
                 }
-                
+                $data = [
+                    'employee_id' => $this->request->getPost('employee_id'),
+                    'degree_type' => $this->request->getPost('degree_type'),
+                    'degree_name' => $this->request->getPost('degree_name'),
+                    'subject_studied' => $this->request->getPost('subject_studied'),
+                    'marking_scheme' => $this->request->getPost('marking_scheme'),
+                    'obtained_result' => $this->request->getPost('obtained_result'),
+                    'passing_year' => $this->request->getPost('passing_year'),
+                    'university' => $this->request->getPost('university'),
+                    'university_country' => $this->request->getPost('university_country'),
+                    'university_state' => $this->request->getPost('university_state'),
+                    'document_file' => $documentNewName,
+                    'upload_by' => $loggeduserId,
+                ];
+                $result = $employee_academic_details_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/employee-academic-details')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                } else {
+                    return redirect()->to('admin/employee-academic-details')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 
