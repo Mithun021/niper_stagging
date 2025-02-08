@@ -14,6 +14,7 @@ use App\Models\Event_highlights_model;
 use App\Models\Event_link_model;
 use App\Models\Event_members_model;
 use App\Models\Event_organizer_model;
+use App\Models\Event_video_model;
 use App\Models\Events_model;
 use App\Models\Member_type_model;
 use App\Models\Program_department_mapping_model;
@@ -126,11 +127,11 @@ use App\Models\Program_department_mapping_model;
 
         public function event_video(){
             $events_model = new Events_model();
-            $event_link_model = new Event_link_model();
+            $event_video_model = new Event_video_model();
             $data = ['title' => 'Event Video'];
             if ($this->request->is("get")) {
                 $data['events'] = $events_model->get();
-                $data['event_link'] = $event_link_model->get();
+                $data['event_video'] = $event_video_model->get();
                 return view('admin/events/event-video',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
@@ -139,7 +140,19 @@ use App\Models\Program_department_mapping_model;
                 }else{
                     return redirect()->to(base_url('admin/login'));
                 }
-                
+                $data =[
+                    'event_id' => $this->request->getPost('event_id'),
+                    'title' => $this->request->getPost('video_title'),
+                    'description' => $this->request->getPost('video_description'),
+                    'vodeo_link' => $this->request->getPost('video_link'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $event_video_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/event-video')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/event-video')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 
