@@ -22,7 +22,7 @@ $employee_model = new Employee_model();
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url('admin/organisation-type') ?>">
+                <form method="post" action="<?= base_url('admin/employee-patent') ?>">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <span for="">Employee Id<span class="text-danger">*</span></span>
