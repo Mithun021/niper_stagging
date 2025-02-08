@@ -54,6 +54,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'work-nature', 'EmployeeController::work_nature');
     $routes->match(['get','post'],'book-chapter', 'EmployeeController::book_chapter');
     $routes->match(['get','post'],'employee-patent', 'EmployeeController::employee_patent');
+    $routes->match(['get','post'],'employee-academic-details', 'EmployeeController::employee_academic_details');
 
 
     $routes->match(['get','post'],'images', 'AdminControllers::images');

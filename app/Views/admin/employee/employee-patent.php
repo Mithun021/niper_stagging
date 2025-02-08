@@ -28,9 +28,9 @@ $employee_model = new Employee_model();
                             <span for="">Employee Id<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="employee_id" required>
                                 <option value="">--Select--</option>
-                            <?php foreach ($employee as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
-                            <?php } ?>
+                                <?php foreach ($employee as $key => $value) { ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
@@ -84,14 +84,37 @@ $employee_model = new Employee_model();
                         <thead>
                             <tr>
                                 <td>SN</td>
-                                <td>Organization Type</td>
+                                <td>File</td>
+                                <td>Emp. ID</td>
+                                <td>Reason of Award</td>
+                                <td>Name of Award</td>
+                                <td>Award Date</td>
+                                <td>Body name of Award</td>
+                                <td>Level</td>
                                 <td>Upload By</td>
-                                <td>Upload Date</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-
+                            <?php foreach ($employee_patent as $key => $value) { ?>
+                                <tr>
+                                    <td><?= ++$key ?></td>
+                                    <td>
+                                        <?php if (!empty($value['document_file']) && file_exists('public/admin/uploads/employee/' . $value['document_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $value['document_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="30px">
+                                        <?php endif; ?>
+                                    </td>
+                                    <td><?php $emp = $employee_model->get($value['employee_id']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                                    <td><?= $value['award_reason'] ?></td>
+                                    <td><?= $value['name_of_awarding'] ?></td>
+                                    <td><?= $value['date_of_awarding'] ?></td>
+                                    <td><?= $value['body_name_of_awarding'] ?></td>
+                                    <td><?= $value['level'] ?></td>
+                                    <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

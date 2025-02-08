@@ -94,6 +94,7 @@
                 <li><a href="<?= base_url() ?>admin/employee-charge" class="waves-effect"><span>Emp. Additional Charge</span></a></li>
                 <li><a href="<?= base_url() ?>admin/book-chapter" class="waves-effect"><span>Book Chapter</span></a></li>
                 <li><a href="<?= base_url() ?>admin/employee-patent" class="waves-effect"><span>Emp. Patent</span></a></li>
+                <li><a href="<?= base_url() ?>admin/employee-academic-details" class="waves-effect"><span>Emp. Academic Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/organisation-type" class="waves-effect"><span>Organization Type</span></a></li>
                 <li><a href="<?= base_url() ?>admin/work-nature" class="waves-effect"><span>Nature of Work</span></a></li>
             </ul>
