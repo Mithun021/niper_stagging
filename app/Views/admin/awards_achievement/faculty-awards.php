@@ -147,7 +147,7 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                                     </td>
                                     <td><?= $value['title'] ?></td>
                                     <td>
-                                        <ul style="padding: 5px;">
+                                        <ul style="padding: 10px; margin : 0;">
                                             <?php foreach ($mapping_data as $key => $value2) { ?>
                                                 <li><?= $value2['faculty_name'] ?></li>
                                             <?php } ?>
