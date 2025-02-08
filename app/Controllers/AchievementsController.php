@@ -8,6 +8,7 @@ use App\Models\Department_model;
 use App\Models\Designation_model;
 use App\Models\Employee_model;
 use App\Models\Faculty_awards_gallery_model;
+use App\Models\Faculty_awards_mapping_model;
 use App\Models\Faculty_awards_model;
 use App\Models\Program_model;
 use App\Models\Student_achievement_mapping_model;
@@ -18,6 +19,7 @@ class AchievementsController extends BaseController
 {
     public function faculty_awards()
     {
+        $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
         $department_model = new Department_model();
         $designation_model = new Designation_model();
         $faculty_awards_model = new Faculty_awards_model();
@@ -44,16 +46,25 @@ class AchievementsController extends BaseController
                 'title' => $this->request->getVar('title'),
                 'description' => $this->request->getVar('description'),
                 'thumbnail' => $upload_file_new_name,
-                'faculty_name' => $this->request->getVar('faculty_name'),
-                'department_id' => $this->request->getVar('department'),
-                'designation_id' => $this->request->getVar('designation'),
                 'award_date' => $this->request->getVar('awards_date'),
                 'agency_name' => $this->request->getVar('agency_name'),
                 'upload_by' => $loggeduserId,
             ];
+            $faculty_name = $this->request->getVar('faculty_name');
             $result = $faculty_awards_model->add($data);
             if ($result) {
                 $insert_id = $faculty_awards_model->getInsertID();
+
+                foreach ($faculty_name as $key => $value) {
+                    $data2 = [
+                        'faculty_award_id' => $insert_id,
+                        'faculty_name' => $value,
+                        'department_id' => $this->request->getVar('department')[$key],
+                        'designation_id' => $this->request->getVar('designation')[$key],
+                    ];
+                    $faculty_awards_mapping_model->add($data);
+                }
+
                 $file_gallery = $this->request->getFiles();
                 if ($file_gallery && isset($file_gallery['file_gallery'])) {
                     foreach ($file_gallery['file_gallery'] as $file) {
