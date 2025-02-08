@@ -165,7 +165,7 @@ $student_achievement_mapping_model = new Student_achievement_mapping_model();
 
                                             ) :
                                             <?php
-                                                $supervisor = $employee_model->get($value['supervisor_id']);
+                                                $supervisor = $employee_model->get($value2['supervisor_id']);
 
                                                 if ($supervisor) {
                                                     echo $supervisor['first_name'] . " " . $supervisor['middle_name'] . " " . $supervisor['last_name'];
