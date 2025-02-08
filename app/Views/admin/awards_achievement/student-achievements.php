@@ -155,7 +155,7 @@ $student_achievement_mapping_model = new Student_achievement_mapping_model();
                                 <td><?= $value['title'] ?></td>
                                 <td>
                                 <?php if (!empty($mapping_data)){ ?>
-                                    <ul>
+                                    <ul style="padding: 10px; margin : 0;">
                                     <?php foreach ($mapping_data as $key => $value2) { ?>
                                         <li>
                                             <?= $value2['student_name'] ?>
