@@ -813,9 +813,11 @@ use App\Models\Organisation_type_model;
         }
 
         public function employee_patent(){
+            $employee_model = new Employee_model();
             $employee_patent_model = new Employee_patent_model();
             $data = ['title' => 'Employee Patent'];
             if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
                 $data['employee_patent'] = $employee_patent_model->get();
                 return view('admin/employee/employee-patent',$data);
             }else if ($this->request->is('post')) {

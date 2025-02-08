@@ -28,6 +28,9 @@ $employee_model = new Employee_model();
                             <span for="">Employee Id<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="employee_id" required>
                                 <option value="">--Select--</option>
+                            <?php foreach ($employee as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                            <?php } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
