@@ -5,7 +5,7 @@
     {
         protected $table         = 'events';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['title','event_theme_title','description','event_category','registration_link','meeting_link','venue','upload_file','event_start_date','event_end_date','reg_start_date','reg_start_time','reg_end_date','reg_end_time','payment_link','payment_end_date','payment_end_time','participant_seats','participant_eligibility','event_start_time','event_end_time','marquee_status','status','icc_events','institute_event','upload_by'];
+        protected $allowedFields = ['title','event_theme_title','description','event_category','registration_link','meeting_link','venue','upload_file','event_report_file','event_start_date','event_end_date','reg_start_date','reg_start_time','reg_end_date','reg_end_time','payment_link','payment_end_date','payment_end_time','participant_seats','participant_eligibility','event_start_time','event_end_time','marquee_status','status','icc_events','institute_event','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

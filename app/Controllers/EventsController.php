@@ -46,6 +46,14 @@ use App\Models\Program_department_mapping_model;
                  $event_fileNewName = "";
                 }
 
+                $event_report_file = $this->request->getFile('event_report_file');
+                if ($event_report_file->isValid() && ! $event_report_file->hasMoved()) {
+                    $event_report_fileNewName = "report".$event_report_file->getRandomName();
+                    $event_report_file->move(ROOTPATH . 'public/admin/uploads/events', $event_report_fileNewName);    
+                }else{
+                 $event_report_fileNewName = "";
+                }
+
                 $data = [
                     'title' => $this->request->getPost('event_title'),
                     'event_theme_title' => $this->request->getPost('event_theme_title'),
@@ -55,6 +63,7 @@ use App\Models\Program_department_mapping_model;
                     'meeting_link' => $this->request->getPost('meeting_link'),
                     'venue' => $this->request->getPost('event_venue'),
                     'upload_file' => $event_fileNewName,
+                    'event_report_file' => $event_report_fileNewName,
                     'event_start_date' => $this->request->getPost('event_start_date'),
                     'event_end_date' => $this->request->getPost('event_end_date'),
                     'event_start_time' => $this->request->getPost('event_start_date'),

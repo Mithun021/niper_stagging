@@ -71,10 +71,16 @@ $event_category_model = new Event_category_model();
                                 <input type="text" class="form-control form-control-sm" name="event_venue" >
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <span for="">Upload File(JPG,PNG)<span class="text-danger">*</span></span>
                                 <input type="file" class="form-control form-control-sm" name="event_file" accept=".jpg, .png, .jpeg" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <span for="">Event Report(PDF)<span class="text-danger">*</span></span>
+                                <input type="file" class="form-control form-control-sm" name="event_report_file" accept=".pdf" required>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -200,7 +206,7 @@ $event_category_model = new Event_category_model();
                         <thead>
                             <tr>
                                 <td>SN</td>
-                                <td>Files</td>
+                                <td>Files/Doc/Report</td>
                                 <td>Status / Marquee</td>
                                 <td>Title</td>
                                 <td>Event Type</td>
@@ -226,6 +232,12 @@ $event_category_model = new Event_category_model();
 
                                         <?php if (!empty($value['extension_notice_file']) && file_exists('public/admin/uploads/events/' . $value['extension_notice_file'])): ?>
                                             <a href="<?= base_url() ?>public/admin/uploads/events/<?= $value['extension_notice_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/events/invalid_image.png" alt="" height="40px">
+                                        <?php endif; ?>
+
+                                        <?php if (!empty($value['event_report_file']) && file_exists('public/admin/uploads/events/' . $value['event_report_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/events/<?= $value['event_report_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
                                         <?php else: ?>
                                             <img src="<?= base_url() ?>public/admin/uploads/events/invalid_image.png" alt="" height="40px">
                                         <?php endif; ?>
