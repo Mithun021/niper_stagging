@@ -13,7 +13,9 @@ $designation_model = new Designation_model();
 $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
 ?>
 <style>
-
+    #addServicetable #memberTbody #memberTrow:first-child td:last-child button {
+        display: none;
+    }
 </style>
 <!-- start page title -->
 <div class="row">
