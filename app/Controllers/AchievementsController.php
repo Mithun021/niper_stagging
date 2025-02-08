@@ -62,7 +62,7 @@ class AchievementsController extends BaseController
                         'department_id' => $this->request->getVar('department')[$key],
                         'designation_id' => $this->request->getVar('designation')[$key],
                     ];
-                    $faculty_awards_mapping_model->add($data);
+                    $faculty_awards_mapping_model->add($data2);
                 }
 
                 $file_gallery = $this->request->getFiles();
