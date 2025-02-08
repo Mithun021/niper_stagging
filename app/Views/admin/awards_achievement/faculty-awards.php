@@ -186,4 +186,27 @@ $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
     </div>
 </div>
 
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Create Service Clone for add and remove rows also calculate price
+        var cloneLimit = 10;
+        var currentClones = 0;
+        $("#addnewMemberRow").click(function(e) {
+            e.preventDefault();
+            if (currentClones < cloneLimit) {
+                currentClones++;
+                var cloneCatrow = $('#memberTrow').clone().appendTo('#memberTbody');
+                $(cloneCatrow).find('input').val('');
+            }
+
+        });
+
+        $('#memberTbody').on('click', '#removenewMemberRow', function() {
+            $(this).closest('tr').remove();
+        });
+
+    });
+</script>
+
 <?= $this->endSection() ?>
