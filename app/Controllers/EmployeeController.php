@@ -851,5 +851,27 @@ use App\Models\Organisation_type_model;
             }
         }
 
+        public function employee_academic_details(){
+            $employee_model = new Employee_model();
+            $data = ['title' => 'Employee Acadmic Details'];
+            if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
+                return view('admin/employee/employee-academic-details',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $document = $this->request->getFile('document_file');
+                if ($document->isValid() && ! $document->hasMoved()) {
+                    $documentNewName = "patent".rand(0,9999).$document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/employee', $documentNewName);    
+                }else{
+                 $documentNewName = "";
+                }
+                
+            }
+        }
+
     }
 ?>
