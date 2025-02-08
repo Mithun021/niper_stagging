@@ -75,7 +75,7 @@ $employee_model = new Employee_model();
                         </div>
 
                         <div class="form-group col-md-4">
-                            <span for="">Document Upload(.pdf,.jpg,.jpeg,.png)<span class="text-danger">*</span></span>
+                            <span for="">Document Upload(.pdf,.jpg,.jpeg,.png)</span>
                             <input type="file" name="document_file" id="" class="form-control form-control-sm" accept=".pdf,.jpg,.jpeg,.png">
                         </div>
                         <div class="form-group col-md-12">
