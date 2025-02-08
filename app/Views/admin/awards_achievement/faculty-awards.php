@@ -96,7 +96,7 @@ $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
 
                         <div class="form-group col-md-6">
                             <span for="">Awards Date<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="awards_date" required>
+                            <input type="date" class="form-control form-control-sm" name="awards_date" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Awarding Agency Name</span>
