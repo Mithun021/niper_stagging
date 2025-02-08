@@ -135,6 +135,7 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                         </thead>
                         <tbody>
                         <?php foreach ($faculty_awards as $key => $value) { ?>
+                        <?php $mapping_data = $faculty_awards_mapping_model->get_by_faculty_award_id($value['id']); ?>
                                 <tr>
                                     <td><?= ++$key ?></td>
                                     <td>
@@ -145,7 +146,13 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                                         <?php endif; ?>
                                     </td>
                                     <td><?= $value['title'] ?></td>
-                                    <td></td>
+                                    <td>
+                                        <ul>
+                                            <?php foreach ($mapping_data as $key => $value2) { ?>
+                                                <li><?= $value2['faculty_name'] ?></li>
+                                            <?php } ?>
+                                        </ul>
+                                    </td>
                                     <td></td>
                                     <td></td>
                                     <td><?= $value['award_date'] ?></td>
