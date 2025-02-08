@@ -104,6 +104,7 @@ $employee_model = new Employee_model();
                                 <td>Subject Studied</td>
                                 <td>Marking Scheme(%/CGPA)</td>
                                 <td>Obtained Result</td>
+                                <td>Passing Year</td>
                                 <td>University (Country)</td>
                                 <td>University (State/UT)</td>
                                 <td>Upload By</td>
