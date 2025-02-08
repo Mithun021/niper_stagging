@@ -13,7 +13,9 @@ $designation_model = new Designation_model();
 $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
 ?>
 <style>
-
+    #addServicetable #memberTbody #memberTrow:first-child td:last-child button {
+        display: none;
+    }
 </style>
 <!-- start page title -->
 <div class="row">
@@ -55,27 +57,50 @@ $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
                             <span for="">Department<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="department" required>
                                 <option value="">--Select--</option>
-                            <?php foreach ($departments as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
-                            <?php } ?>
+                                <?php foreach ($departments as $key => $value) { ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                <?php } ?>
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
-                            <span for="">Designation<span class="text-danger">*</span></span>
-                            <select class="form-control form-control-sm" name="designation" required>
-                                <option value="">--Select--</option>
-                            <?php foreach ($designations as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
-                            <?php } ?>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <span for="">Awards Date<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="awards_date" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <span for="">Awarding Agency Name</span>
-                            <input type="text" class="form-control form-control-sm" name="agency_name">
+
+                        <div class="form-group col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="addServicetable">
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <td>Designation</td>
+                                            <td>Awards Date</td>
+                                            <td>Awarding Agency Name</td>
+                                            <td><button type="button" class="btn btn-sm btn-primary" id="addnewMemberRow">+</button></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="memberTbody">
+                                        <tr id="memberTrow">
+                                            <td>
+                                                <div class="form-group">
+                                                    <select class="form-control form-control-sm" name="designation" required>
+                                                        <option value="">--Select--</option>
+                                                        <?php foreach ($designations as $key => $value) { ?>
+                                                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-sm" name="awards_date" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-sm" name="agency_name">
+                                                </div>
+                                            </td>
+                                            <td><button type="button" class="btn btn-sm btn-danger" id="removenewMemberRow">-</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
