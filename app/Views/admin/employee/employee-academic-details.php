@@ -65,16 +65,16 @@ $employee_model = new Employee_model();
                             <span for="">University</span>
                             <input type="text" name="university" id="" class="form-control form-control-sm">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <span for="">University (Country)</span>
                             <input type="text" name="university_country" id="" class="form-control form-control-sm">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <span for="">University (State/UT)</span>
                             <input type="text" name="university_state" id="" class="form-control form-control-sm">
                         </div>
-                        
-                        <div class="form-group col-md-6">
+
+                        <div class="form-group col-md-4">
                             <span for="">Document Upload(.pdf,.jpg,.jpeg,.png)<span class="text-danger">*</span></span>
                             <input type="file" name="document_file" id="" class="form-control form-control-sm" accept=".pdf,.jpg,.jpeg,.png">
                         </div>
