@@ -62,9 +62,9 @@ $employee_model = new Employee_model();
                             <span for="">Document Upload(.pdf,.jpg,.jpeg,.png)<span class="text-danger">*</span></span>
                             <input type="file" name="name_of_awarding" id="" class="form-control form-control-sm" accept=".pdf,.jpg,.jpeg,.png">
                         </div>
-
-                        <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
-
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
+                        </div>
                     </div>
                 </form>
             </div>
