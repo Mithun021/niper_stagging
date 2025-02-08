@@ -858,6 +858,7 @@ use App\Models\Organisation_type_model;
             $data = ['title' => 'Employee Acadmic Details'];
             if ($this->request->is('get')) {
                 $data['employee'] = $employee_model->get();
+                $data['employee_academic_details'] = $employee_academic_details_model->get();
                 return view('admin/employee/employee-academic-details',$data);
             }else if ($this->request->is('post')) {
                 $sessionData = session()->get('loggedUserData');

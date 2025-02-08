@@ -99,17 +99,48 @@ $employee_model = new Employee_model();
                                 <td>SN</td>
                                 <td>File</td>
                                 <td>Emp. ID</td>
-                                <td>Reason of Award</td>
-                                <td>Name of Award</td>
-                                <td>Award Date</td>
-                                <td>Body name of Award</td>
-                                <td>Level</td>
+                                <td>Degree Type</td>
+                                <td>Degree Name</td>
+                                <td>Subject Studied</td>
+                                <td>Marking Scheme(%/CGPA)</td>
+                                <td>Obtained Result</td>
+                                <td>University (Country)</td>
+                                <td>University (State/UT)</td>
                                 <td>Upload By</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            
+                        <?php foreach ($employee_academic_details as $key => $value) { ?>
+                                <tr>
+                                    <td><?= ++$key ?></td>
+                                    <td>
+                                        <?php if (!empty($value['document_file']) && file_exists('public/admin/uploads/employee/' . $value['document_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $value['document_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="30px">
+                                        <?php endif; ?>
+                                    </td>
+                                    <td><?php $emp = $employee_model->get($value['employee_id']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                    <td><?= $value['degree_type'] ?></td>
+                                    <td><?= $value['degree_name'] ?></td>
+                                    <td><?= $value['subject_studied'] ?></td>
+                                    <td><?= $value['marking_scheme'] ?></td>
+                                    <td><?= $value['obtained_result'] ?></td>
+                                    <td><?= $value['passing_year'] ?></td>
+                                    <td><?= $value['university'] ?></td>
+                                    <td><?= $value['university_country'] ?></td>
+                                    <td><?= $value['university_state'] ?></td>
+                                    <td><?php $emp = $employee_model->get($value['upload_by']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
