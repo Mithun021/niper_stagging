@@ -12,7 +12,9 @@ $program_model = new Program_model();
 $employee_model = new Employee_model();
 ?>
 <style>
-
+    #addServicetable #memberTbody #memberTrow:first-child td:last-child button {
+        display: none;
+    }
 </style>
 <!-- start page title -->
 <div class="row">
@@ -42,37 +44,65 @@ $employee_model = new Employee_model();
                             <span for="">Desription</span>
                             <textarea id="editor" name="description"></textarea>
                         </div>
-                        <div class="form-group col-md-6">
-                            <span for="">Student Name<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="student_name" required>
+
+                        <div class="form-group col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="addServicetable">
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <td>Student Name</td>
+                                            <td>Department</td>
+                                            <td>Course Details</td>
+                                            <td>Superviser</td>
+                                            <td><button type="button" class="btn btn-sm btn-primary" id="addnewMemberRow">+</button></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="memberTbody">
+                                        <tr id="memberTrow">
+                                            <td>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-sm" name="student_name" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <select class="form-control form-control-sm" name="department" required>
+                                                        <option value="">--Select--</option>
+                                                        <?php foreach ($departments as $key => $value) { ?>
+                                                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <select class="form-control form-control-sm" name="course">
+                                                        <option value="">--Select--</option>
+                                                        <?php foreach ($program as $key => $value) { ?>
+                                                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <select class="form-control form-control-sm" name="supervisor">
+                                                        <option value="">--Select--</option>
+                                                        <?php foreach ($employee as $key => $value) { ?>
+                                                            <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>.
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td><button type="button" class="btn btn-sm btn-danger" id="removenewMemberRow">-</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <div class="form-group col-md-6">
-                            <span for="">Department<span class="text-danger">*</span></span>
-                            <select class="form-control form-control-sm" name="department">
-                                <option value="">--Select--</option>
-                                <?php foreach ($department as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <span for="">Course Details</span>
-                            <select class="form-control form-control-sm" name="course">
-                                <option value="">--Select--</option>
-                                <?php foreach ($program as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <span for="">Superviser</span>
-                            <select class="form-control form-control-sm" name="supervisor">
-                                <option value="">--Select--</option>
-                                <?php foreach ($employee as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>.
-                                <?php } ?>
-                            </select>
-                        </div>
+
+
+
                         <div class="form-group col-md-6">
                             <span for="">Awards Date</span>
                             <input type="date" class="form-control form-control-sm" name="awards_date">
@@ -160,5 +190,28 @@ $employee_model = new Employee_model();
         </div>
     </div>
 </div>
+
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Create Service Clone for add and remove rows also calculate price
+        var cloneLimit = 10;
+        var currentClones = 0;
+        $("#addnewMemberRow").click(function(e) {
+            e.preventDefault();
+            if (currentClones < cloneLimit) {
+                currentClones++;
+                var cloneCatrow = $('#memberTrow').clone().appendTo('#memberTbody');
+                $(cloneCatrow).find('input').val('');
+            }
+
+        });
+
+        $('#memberTbody').on('click', '#removenewMemberRow', function() {
+            $(this).closest('tr').remove();
+        });
+
+    });
+</script>
 
 <?= $this->endSection() ?>
