@@ -124,9 +124,7 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                                 <td>SN</td>
                                 <td>Files</td>
                                 <td>Title</td>
-                                <td>Faculty Name</td>
-                                <td>Department</td>
-                                <td>Designation</td>
+                                <td>Faculty (Department/Designation)</td>
                                 <td>Awards Date</td>
                                 <td>Gallery</td>
                                 <td>upload by</td>
@@ -149,12 +147,16 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                                     <td>
                                         <ul style="padding: 10px; margin : 0;">
                                             <?php foreach ($mapping_data as $key => $value2) { ?>
-                                                <li><?= $value2['faculty_name'] ?></li>
+                                                <li>
+                                                    <?= $value2['faculty_name'] ?>
+                                                    (
+                                                        <?= $department_model->get($value2['department_id'])['name'] ?? '' ?> / 
+                                                        <?= $designation_model->get($value2['designation_id'])['name'] ?? '' ?>
+                                                    )
+                                                </li>
                                             <?php } ?>
                                         </ul>
                                     </td>
-                                    <td></td>
-                                    <td></td>
                                     <td><?= $value['award_date'] ?></td>
                                     <td>
                                         <?php
