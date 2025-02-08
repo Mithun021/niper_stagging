@@ -6,10 +6,12 @@ use App\Models\Courses_model;
 use App\Models\Department_model;
 use App\Models\Employee_model;
 use App\Models\Program_model;
+use App\Models\Student_achievement_mapping_model;
 
 $department_model = new Department_model();
 $program_model = new Program_model();
 $employee_model = new Employee_model();
+$student_achievement_mapping_model = new Student_achievement_mapping_model();
 ?>
 <style>
     #addServicetable #memberTbody #memberTrow:first-child td:last-child button {
