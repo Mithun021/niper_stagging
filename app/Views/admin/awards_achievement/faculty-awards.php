@@ -132,52 +132,7 @@ $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($faculty_awards as $key => $value) { ?>
-                                <tr>
-                                    <td><?= ++$key ?></td>
-                                    <td>
-                                        <?php if (!empty($value['thumbnail']) && file_exists('public/admin/uploads/achievements/' . $value['thumbnail'])): ?>
-                                            <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $value['thumbnail'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/achievements/<?= $value['thumbnail'] ?>" alt="" height="30px"></a>
-                                        <?php else: ?>
-                                            <img src="<?= base_url() ?>public/admin/uploads/achievements/invalid_image.png" alt="" height="40px">
-                                        <?php endif; ?>
-                                    </td>
-                                    <td><?= $value['title'] ?></td>
-                                    <td><?= $value['faculty_name'] ?></td>
-                                    <td><?= $department_model->get($value['department_id'])['name'] ?? '' ?></td>
-                                    <td><?= $designation_model->get($value['designation_id'])['name'] ?? '' ?></td>
-                                    <td><?= $value['award_date'] ?></td>
-                                    <td>
-                                        <?php
-                                        // Fetch gallery data based on faculty award id
-                                        $gallery = $faculty_awards_gallery_model->get_by_faculty_award_id($value['id']);
-
-                                        if (!empty($gallery)) {
-                                            // Loop through each gallery file
-                                            foreach ($gallery as $files) { ?>
-                                                <?php if (!empty($files['gallery_file']) && file_exists('public/admin/uploads/achievements/' . $files['gallery_file'])): ?>
-                                                    <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $files['gallery_file'] ?>" target="_blank">
-                                                        <img src="<?= base_url() ?>public/admin/uploads/achievements/<?= $files['gallery_file'] ?>" alt="Gallery Image" height="30px">
-                                                    </a>
-                                                <?php else: ?>
-                                                    <img src="<?= base_url() ?>public/admin/uploads/achievements/invalid_image.png" alt="Invalid Image" height="40px">
-                                                <?php endif; ?>
-                                        <?php }
-                                        }
-                                        ?>
-
-                                    </td>
-                                    <td><?php $emp = $employee_model->get($value['upload_by']);
-                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
-                                    <td>
-                                        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                                            <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
-                                            <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
-                                            <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            <?php } ?>
+                            
                         </tbody>
                     </table>
                 </div>

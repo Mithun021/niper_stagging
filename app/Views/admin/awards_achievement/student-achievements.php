@@ -143,46 +143,7 @@ $employee_model = new Employee_model();
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($student_acchievement as $key => $value) { ?>
-                                <tr>
-                                    <td><?= ++$key ?></td>
-                                    <td>
-                                        <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/achievements/' . $value['upload_file'])): ?>
-                                            <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/achievements/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
-                                        <?php else: ?>
-                                            <img src="<?= base_url() ?>public/admin/uploads/achievements/invalid_image.png" alt="" height="40px">
-                                        <?php endif; ?>
-                                    </td>
-                                    <td><?= $value['student_name'] ?></td>
-                                    <td><?= $value['title'] ?></td>
-                                    <td><?= $value['description'] ?></td>
-                                    <td><?= $program_model->get($value['course_id'])['name'] ?? '' ?></td>
-                                    <td><?= $department_model->get($value['department_id'])['name'] ?? '' ?></td>
-                                    <td>
-                                        <?php
-                                        $supervisor = $employee_model->get($value['supervisor_id']);
-
-                                        if ($supervisor) {
-                                            echo $supervisor['first_name'] . " " . $supervisor['middle_name'] . " " . $supervisor['last_name'];
-                                        } else {
-                                            echo "Supervisor not found"; // or handle the error in a different way
-                                        }
-                                        ?>
-
-                                    </td>
-                                    <td><?= $value['award_date'] ?></td>
-                                    <td><?= $value['agency_name'] ?></td>
-                                    <td><?php $emp = $employee_model->get($value['upload_by']);
-                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
-                                    <td>
-                                        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                                            <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
-                                            <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
-                                            <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            <?php } ?>
+                            
                         </tbody>
                     </table>
                 </div>
