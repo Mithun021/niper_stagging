@@ -28,7 +28,7 @@
         }
 
         public function get_by_student_achiv_id($id){
-            return $this->where('faculty_award_id',$id)->findAll();
+            return $this->where('student_achievement_mapping_id',$id)->findAll();
         }
     }
 ?>
