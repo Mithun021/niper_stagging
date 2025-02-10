@@ -601,7 +601,7 @@ use App\Models\Organisation_type_model;
                     if ($employee) {
                         // Prepare data for insertion
                         $experienceData = [
-                            'emplyee_id'        => $employee['id'],
+                            'employee_id'        => $employee['id'],
                             'name_of_awarding'       => $data['name_of_awarding'],
                             'award_reason'        => $data['award_reason'],
                             'date_of_awarding'   => date('Y-m-d', strtotime($data['date_of_awarding'])),
