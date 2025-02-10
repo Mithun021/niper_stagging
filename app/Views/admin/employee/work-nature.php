@@ -43,7 +43,7 @@
                     <thead>
                         <tr>
                             <td>SN</td>
-                            <td>Category Name</td>
+                            <td>Emp Nature</td>
                             <td>Upload By</td>
                             <td>Upload Date</td>
                             <td>Action</td>
