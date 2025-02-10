@@ -11,6 +11,7 @@ use App\Models\Employee_additioonal_charge_model;
 use App\Models\Employee_awards_model;
 use App\Models\Employee_experience_model;
 use App\Models\Employee_model;
+use App\Models\Employee_nature_model;
 use App\Models\Employee_patent_model;
 use App\Models\Employee_projects_model;
 use App\Models\Employee_publication_author_model;
@@ -743,6 +744,30 @@ use App\Models\Organisation_type_model;
                     return redirect()->to('admin/work-nature')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
                     return redirect()->to('admin/work-nature')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
+        public function employee_nature(){
+            $employee_nature_model = new Employee_nature_model();
+            $data = ['title' => 'Nature of Work'];
+            if ($this->request->is('get')) {
+                $data['employee_nature'] = $employee_nature_model->get();
+                return view('admin/employee/employee-nature',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $data = [
+                    'name' => $this->request->getPost('work_nature'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $employee_nature_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/employee-nature')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/employee-nature')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
         }
