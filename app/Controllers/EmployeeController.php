@@ -570,7 +570,6 @@ use App\Models\Organisation_type_model;
 
 
         public function upload_emp_award_csv(){
-            echo "ok";
             $employeeModel = new \App\Models\Employee_model();
             $employee_awards_model = new Employee_awards_model();
             $file = $this->request->getFile('csv_file');
@@ -611,7 +610,7 @@ use App\Models\Organisation_type_model;
                             'upload_by'         => $loggeduserId,
                         ];
 
-                        echo "<pre>"; print_r($experienceData);
+                        echo "<pre>"; print_r($data);
                         // Validate and insert
                         // $employee_awards_model->insert($experienceData);
                     }
