@@ -588,7 +588,7 @@ use App\Models\Organisation_type_model;
                     $data = array_combine($header, $row); // Combine header with row values
 
                     // Validate mandatory fields
-                    if (empty($data['email']) || empty($data['emp_phone']) || empty($data['award_title'])) {
+                    if (empty($data['email']) || empty($data['emp_phone']) || empty($data['name_of_awarding'])) {
                         continue; // Skip if mandatory fields are missing
                     }
 
