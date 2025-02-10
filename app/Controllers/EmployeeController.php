@@ -262,7 +262,7 @@ use App\Models\Organisation_type_model;
                         $photo->move(ROOTPATH . 'public/admin/uploads/awards', $photoName);
                     }
                     $data = [
-                        'emplyee_id' => $this->request->getPost('Empid'),
+                        'employee_id' => $this->request->getPost('Empid'),
                         'name_of_awarding' => $title,
                         'award_photo' => $photoName,
                         'award_reason' => $this->request->getPost('award_reason')[$key],
