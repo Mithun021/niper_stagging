@@ -74,7 +74,7 @@
                                 <!-- <input type="text" class="form-control form-control-sm" name="project_end_time[]"  placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')"> -->
                             
                         </div>
-                        <div class="col-lg-6 form-group">
+                        <div class="col-lg-4 form-group">
                             <span for="projectstatus">Project Status:<span class="text-danger">*</span></span>
                             <select name="projectstatus[]" id="projectstatus" class="form-control form-control-sm" required>
                                 <option value="Not Started">Not Started</option>
@@ -82,11 +82,11 @@
                                 <option value="Completed">Completed</option>
                             </select>
                         </div>
-                        <div class="col-lg-6 form-group">
+                        <div class="col-lg-4 form-group">
                             <span for="projectsponseredby">Sponsored By:<span class="text-danger">*</span></span>
                             <input type="text" name="projectsponseredby[]" id="projectsponseredby" class="form-control form-control-sm">
                         </div>
-                        <div class="col-lg-6 form-group">
+                        <div class="col-lg-4 form-group">
                             <span for="projectvalue">Project Value (in INR):<span class="text-danger">*</span></span>
                             <input type="number" name="projectvalue[]" id="projectvalue" class="form-control form-control-sm" step="0.01">
                         </div>
