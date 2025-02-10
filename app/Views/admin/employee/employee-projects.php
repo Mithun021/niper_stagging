@@ -69,10 +69,8 @@
                             </div>
                         </div>
                         <div class="col-lg-4 form-group">
-                            <span for="projectenddatetime">Sanctioned  Year:<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="sanctioned_year[]"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                <!-- <input type="text" class="form-control form-control-sm" name="project_end_time[]"  placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')"> -->
-                            
+                            <span for="projectenddatetime">Sanctioned  Year:</span>
+                            <input type="number" class="form-control form-control-sm" name="sanctioned_year[]"  placeholder="Sanctioned  Year">
                         </div>
                         <div class="col-lg-4 form-group">
                             <span for="projectstatus">Project Status:<span class="text-danger">*</span></span>
