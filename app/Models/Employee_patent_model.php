@@ -5,7 +5,7 @@
     {
         protected $table         = 'employee_patent';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['employee_id','award_reason','name_of_awarding','date_of_awarding','body_name_of_awarding','level','document_file','upload_by'];
+        protected $allowedFields = ['employee_id','patent_title','patent_number','patent_level','awards_date','fund_generated','document_file','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

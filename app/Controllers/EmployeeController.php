@@ -284,6 +284,21 @@ use App\Models\Organisation_type_model;
             }
         }
 
+        public function employee_patent(){
+            $employee_model = new Employee_model();
+            $data = ['title' => 'Employee Patent'];
+            if ($this->request->is("get")) {
+                $data['employee'] = $employee_model->get();
+                return view('admin/employee/employee-patent',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+
+            }
+        }
+
         public function employee_charge(){
             $employee_model = new Employee_model();
             $designation_model = new Designation_model();
