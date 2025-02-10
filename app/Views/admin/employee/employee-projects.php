@@ -115,6 +115,7 @@
                                 <td>SN</td>
                                 <td>Employee ID</td>
                                 <td>Project Title</td>
+                                <td>Sanctioned Year</td>
                                 <td>Project Status</td>
                                 <td>Project Date</td>
                                 <td>Sponsored by</td>
@@ -129,8 +130,9 @@
                                 <td><?= ++$key ?></td>
                                 <td><?php $emp = $employee_model->get($value['emplyee_id']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td><?= $value['project_title'] ?></td>
+                                <td><?= $value['sanctioned_year'] ?></td>
                                 <td><?= $value['project_status'] ?></td>
-                                <td><?= $value['start_date']." ".$value['start_time']. " - ".$value['end_date']." ".$value['end_time'] ?></td>
+                                <td><?= $value['start_date']. " - ".$value['end_date'] ?></td>
                                 <td><?= $value['sponsored_by'] ?></td>
                                 <td><?= $value['project_value'] ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>

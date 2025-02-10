@@ -399,18 +399,16 @@ use App\Models\Organisation_type_model;
             //echo "<pre>"; print_r($employees); die;
             if ($empIds) {
                 $employeeDetails = $employee_model->getEmployeeDetailsByIds($empIds);
-                $csvData = "emp_name,email,emp_phone,project_title,project_description,start_date,start_time,end_date,end_time,project_status,sponsored_by,project_value\n";
+                $csvData = "emp_name,email,emp_phone,project_title,start_date,end_date,sanctioned_year,project_status,sponsored_by,project_value\n";
                 foreach ($employeeDetails as $employee) {
                     $csvData .= implode(",", [
                         $employee['first_name'] . ' ' . $employee['middle_name'] . ' ' . $employee['last_name'],
                         $employee['official_mail'],
                         $employee['mobile_no'],
                         'Project title',
-                        'Project Description',
                         '2024-01-01',
-                        '06:10.00',
                         '2024-12-31',
-                        '08:30.00',
+                        '2000',
                         'Not Started',
                         'Sponsored name',
                         '10000'
@@ -585,11 +583,11 @@ use App\Models\Organisation_type_model;
                         $experienceData = [
                             'emplyee_id'        => $employee['id'],
                             'project_title'     => $data['project_title'],
-                            'project_description' => $data['project_description'],
+                            // 'project_description' => $data['project_description'],
                             'start_date'        => date('Y-m-d', strtotime($data['start_date'])),
-                            'start_time'        => $data['start_time'],
+                            // 'start_time'        => $data['start_time'],
                             'end_date'          => date('Y-m-d', strtotime($data['end_date'])),
-                            'end_time'          => $data['end_time'],
+                            'sanctioned_year'          => $data['sanctioned_year'],
                             'project_status'    => $data['project_status'],
                             'sponsored_by'      => $data['sponsored_by'],
                             'project_value'     => $data['project_value'],
