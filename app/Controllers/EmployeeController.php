@@ -610,7 +610,7 @@ use App\Models\Organisation_type_model;
                             'upload_by'         => $loggeduserId,
                         ];
 
-                        echo "<pre>"; print_r($data);
+                        echo "<pre>"; print_r($employee['id']);
                         // Validate and insert
                         // $employee_awards_model->insert($experienceData);
                     }
