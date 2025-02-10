@@ -760,7 +760,7 @@ use App\Models\Organisation_type_model;
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
                 $data = [
-                    'name' => $this->request->getPost('work_nature'),
+                    'name' => $this->request->getPost('emp_nature'),
                     'upload_by' => $loggeduserId
                 ];
                 $result = $employee_nature_model->add($data);
