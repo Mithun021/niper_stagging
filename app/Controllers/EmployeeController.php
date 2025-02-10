@@ -259,12 +259,12 @@ use App\Models\Organisation_type_model;
                     $photoName = "";
                     if ($photo->isValid() && !$photo->hasMoved()) {
                         $photoName = "awards".$photo->getRandomName();
-                        $photo->move(ROOTPATH . 'public/admin/uploads/awards', $photoName);
+                        $photo->move(ROOTPATH . 'public/admin/uploads/employee', $photoName);
                     }
                     $data = [
                         'employee_id' => $this->request->getPost('Empid'),
                         'name_of_awarding' => $title,
-                        'award_photo' => $photoName,
+                        'document_file' => $photoName,
                         'award_reason' => $this->request->getPost('award_reason')[$key],
                         'date_of_awarding' => $this->request->getPost('date_of_awarding')[$key],
                         'body_name_of_awarding' => $this->request->getPost('body_name_of_awarding')[$key],
