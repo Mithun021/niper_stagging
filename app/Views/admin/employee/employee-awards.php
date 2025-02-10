@@ -84,7 +84,9 @@ $employee_model = new Employee_model();
                                         <input type="file" name="Awardphotoupload[]" id="Awardphotoupload" class="form-control form-control-sm" accept=".pdf,.jpg,.jpeg,.png">
                                     </div>
                                 </div>
-                                <button type="button" id="remove-clone" class="btn btn-danger" style="width: 120px;">Remove Clone</button>
+                                <div class="col-lg-6">
+                                    <button type="button" id="remove-clone" class="btn btn-danger" style="width: 120px;">Remove Clone</button>
+                                </div>
                             </div>
                         </div>
 
