@@ -21,11 +21,13 @@ use App\Models\Organisation_type_model;
 
     class EmployeeController extends BaseController{
         public function employee(){
+            $employee_nature_model = new Employee_nature_model();
             $department_model = new Department_model();
             $designation_model = new Designation_model();
             $employee_model = new Employee_model();
             $data = ['title' => 'Employee Details'];
             if ($this->request->is("get")) {
+                $data['employee_nature'] = $employee_nature_model->get();
                 $data['departments'] = $department_model->get();
                 $data['designations'] = $designation_model->get();
                 $data['employee'] = $employee_model->get();

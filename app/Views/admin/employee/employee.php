@@ -143,11 +143,20 @@ $designation_model = new Designation_model();
                             <span for="Emppostcharge">Post Charge:</span>
                             <input type="text" name="post_charge" id="post_charge" class="form-control form-control-sm">
                         </div> -->
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <span for="Emptype">Employee Type:</span>
                             <select name="employee_type" id="employee_type" class="form-control form-control-sm" required>
                                 <option value="Teaching">Teaching</option>
                                 <option value="NonTeaching">Non-Teaching</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <span for="Emptype">Employee Nature:</span>
+                            <select name="employee_nature" id="employee_nature" class="form-control form-control-sm">
+                                <option value="">--Select--</option>
+                            <?php foreach ($employee_nature as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                            <?php } ?>
                             </select>
                         </div>
                     </div>
