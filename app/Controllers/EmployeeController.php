@@ -286,16 +286,45 @@ use App\Models\Organisation_type_model;
 
         public function employee_patent(){
             $employee_model = new Employee_model();
+            $employee_patent_model = new Employee_patent_model();
             $data = ['title' => 'Employee Patent'];
             if ($this->request->is("get")) {
                 $data['employee'] = $employee_model->get();
+                $data['patent'] = $employee_patent_model->get();
                 return view('admin/employee/employee-patent',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
+                $awards_photo = $this->request->getFileMultiple('patent_document');
+                $patent_title = $this->request->getPost('patent_title');
+                foreach ($patent_title as $key => $title) {    
+                    $photo = $awards_photo[$key];
+                    $photoName = "";
+                    if ($photo->isValid() && !$photo->hasMoved()) {
+                        $photoName = "patent".$photo->getRandomName();
+                        $photo->move(ROOTPATH . 'public/admin/uploads/employee', $photoName);
+                    }
+                    $data = [
+                        'employee_id' => $this->request->getPost('Empid'),
+                        'patent_title' => $title,
+                        'document_file' => $photoName,
+                        'patent_number' => $this->request->getPost('patent_number')[$key],
+                        'patent_level' => $this->request->getPost('level')[$key],
+                        'awards_date' => $this->request->getPost('date_of_awarding')[$key],
+                        'fund_generated' => $this->request->getPost('fund_generate')[$key],
+                        'upload_by' =>  $loggeduserId,
+                    ]; 
 
+                    // echo "<pre>";print_r($data);
+                    $result = $employee_patent_model->add($data);
+                }
+                if ($result === true) {
+                    return redirect()->to('admin/employee-patent')->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/employee-patent')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 

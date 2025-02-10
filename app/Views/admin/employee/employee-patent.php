@@ -20,10 +20,10 @@ $employee_model = new Employee_model();
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
-                <div>
+                <!-- <div>
                     <button type="button" class="btn btn-sm btn-danger" id="export_sample_btn">Export Emp. Sample</button>
                     <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>
-                </div>
+                </div> -->
             </div>
             <form action="<?= base_url() ?>admin/employee-patent" method="post" enctype="multipart/form-data">
                 <div class="card-body">
@@ -79,7 +79,7 @@ $employee_model = new Employee_model();
                                     <!-- Award Photo Upload -->
                                     <div class="form-group">
                                         <span for="Awardphotoupload">Document Upload(.pdf,.jpg,.jpeg,.png):</span>
-                                        <input type="file" name="Awardphotoupload[]" id="Awardphotoupload" class="form-control form-control-sm" accept=".pdf,.jpg,.jpeg,.png">
+                                        <input type="file" name="patent_document[]" id="Awardphotoupload" class="form-control form-control-sm" accept=".pdf,.jpg,.jpeg,.png">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
