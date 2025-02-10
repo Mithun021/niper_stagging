@@ -111,17 +111,44 @@ $employee_model = new Employee_model();
                                 <td>SN</td>
                                 <td>File</td>
                                 <td>Emp. ID</td>
-                                <td>Reason of Award</td>
-                                <td>Name of Award</td>
-                                <td>Award Date</td>
-                                <td>Body name of Award</td>
+                                <td>Patent Title</td>
                                 <td>Level</td>
+                                <td>Patent Number</td>
+                                <td>Date of Awarding</td>
+                                <td>Fund Generated(INR)</td>
                                 <td>Upload By</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            
+                        <?php foreach ($patent as $key => $value) { ?>
+                                <tr>
+                                    <td><?= ++$key ?></td>
+                                    <td>
+                                        <?php if (!empty($value['document_file']) && file_exists('public/admin/uploads/employee/' . $value['document_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $value['document_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="30px">
+                                        <?php endif; ?>
+                                    </td>
+                                    <td><?php $emp = $employee_model->get($value['employee_id']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                    <td><?= $value['patent_title'] ?></td>
+                                    <td><?= $value['patent_level'] ?></td>
+                                    <td><?= $value['patent_number'] ?></td>
+                                    <td><?= $value['awards_date'] ?></td>
+                                    <td><?= $value['fund_generated'] ?></td>
+                                    <td><?php $emp = $employee_model->get($value['upload_by']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                            <!-- <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a> -->
+                                            <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                            <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
