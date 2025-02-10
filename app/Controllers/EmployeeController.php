@@ -386,17 +386,17 @@ use App\Models\Organisation_type_model;
             //echo "<pre>"; print_r($employees); die;
             if ($empIds) {
                 $employeeDetails = $employee_model->getEmployeeDetailsByIds($empIds);
-                $csvData = "emp_name,email,emp_phone,award_title,award_year,award_date_time,award_agency_type,award_agency_name\n";
+                $csvData = "emp_name,email,emp_phone,name_of_awarding,award_reason,date_of_awarding,body_name_of_awarding,level\n";
                 foreach ($employeeDetails as $employee) {
                     $csvData .= implode(",", [
                         $employee['first_name'] . ' ' . $employee['middle_name'] . ' ' . $employee['last_name'],
                         $employee['official_mail'],
                         $employee['mobile_no'],
                         'Award test title',
-                        '2024',
-                        '2024-01-01 06:30:00',
+                        'Acadmic/Research',
+                        '2024-01-01',
                         'IT Industry',
-                        'Vocman'
+                        'National/International'
                     ]) . "\n";
                 }
                 // Generate CSV file
