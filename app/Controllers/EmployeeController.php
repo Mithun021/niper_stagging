@@ -258,17 +258,17 @@ use App\Models\Organisation_type_model;
                     $photo = $awards_photo[$key];
                     $photoName = "";
                     if ($photo->isValid() && !$photo->hasMoved()) {
-                        $photoName = $photo->getRandomName();
+                        $photoName = "awards".$photo->getRandomName();
                         $photo->move(ROOTPATH . 'public/admin/uploads/awards', $photoName);
                     }
                     $data = [
                         'emplyee_id' => $this->request->getPost('Empid'),
-                        'award_title' => $title,
+                        'name_of_awarding' => $title,
                         'award_photo' => $photoName,
-                        'award_year' => $this->request->getPost('Awardyear')[$key],
-                        'award_date_time' => $this->request->getPost('Awarddatetime')[$key],
-                        'award_agency_type' => $this->request->getPost('Awardingagencytype')[$key],
-                        'award_agency_name' => $this->request->getPost('Awardingagencyname')[$key],
+                        'award_reason' => $this->request->getPost('award_reason')[$key],
+                        'date_of_awarding' => $this->request->getPost('date_of_awarding')[$key],
+                        'body_name_of_awarding' => $this->request->getPost('body_name_of_awarding')[$key],
+                        'level' => $this->request->getPost('level')[$key],
                         'upload_by' =>  $loggeduserId,
                     ]; 
 
@@ -840,44 +840,7 @@ use App\Models\Organisation_type_model;
             }
         }
 
-        public function employee_patent(){
-            $employee_model = new Employee_model();
-            $employee_patent_model = new Employee_patent_model();
-            $data = ['title' => 'Employee Patent'];
-            if ($this->request->is('get')) {
-                $data['employee'] = $employee_model->get();
-                $data['employee_patent'] = $employee_patent_model->get();
-                return view('admin/employee/employee-patent',$data);
-            }else if ($this->request->is('post')) {
-                $sessionData = session()->get('loggedUserData');
-                if ($sessionData) {
-                    $loggeduserId = $sessionData['loggeduserId']; 
-                }
-                $document = $this->request->getFile('document_file');
-                if ($document->isValid() && ! $document->hasMoved()) {
-                    $documentNewName = "patent".rand(0,9999).$document->getRandomName();
-                    $document->move(ROOTPATH . 'public/admin/uploads/employee', $documentNewName);    
-                }else{
-                 $documentNewName = "";
-                }
-                $data = [
-                    'employee_id' => $this->request->getPost('employee_id'),
-                    'award_reason' => $this->request->getPost('award_reason'),
-                    'name_of_awarding' => $this->request->getPost('name_of_awarding'),
-                    'date_of_awarding' => $this->request->getPost('date_of_awarding'),
-                    'body_name_of_awarding' => $this->request->getPost('body_name_of_awarding'),
-                    'level' => $this->request->getPost('level'),
-                    'document_file' => $documentNewName,
-                    'upload_by' => $loggeduserId,
-                ];
-                $result = $employee_patent_model->add($data);
-                if ($result === true) {
-                    return redirect()->to('admin/employee-patent')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
-                } else {
-                    return redirect()->to('admin/employee-patent')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
-                }
-            }
-        }
+        
 
         public function employee_academic_details(){
             $employee_model = new Employee_model();

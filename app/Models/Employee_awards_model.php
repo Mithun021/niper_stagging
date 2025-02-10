@@ -5,7 +5,7 @@
     {
         protected $table         = 'employee_awards';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['emplyee_id','award_title','award_photo','award_year','award_date_time','award_agency_type','award_agency_name','upload_by'];
+        protected $allowedFields = ['employee_id','award_reason','name_of_awarding','date_of_awarding','body_name_of_awarding','level','document_file','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
@@ -14,7 +14,7 @@
                 return $result ? true : 'Data not updated: Update failed.';
             } else {
                 $result = $this->insert($data);
-                return $result ? true : 'Data not inserted: Insertion failed.'; 
+                return $result ? true : 'Data not inserted: Insertion failed.';
             }
         }
 
@@ -22,12 +22,9 @@
             if($id != null){
                 $result = $this->where('id',$id)->first();
             }else{
-                $result = $this->orderBy('emplyee_id','asc')->findAll();
+                $result = $this->orderBy('id','asc')->findAll();
             }
             return $result;
         }
-
-        
-        
     }
 ?>
