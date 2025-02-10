@@ -50,7 +50,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($work_nature as $key => $value) { ?>
+                    <?php foreach ($employee_nature as $key => $value) { ?>
                         <tr>
                             <td><?= $key+1 ?></td>
                             <td><?= $value['name'] ?></td>
