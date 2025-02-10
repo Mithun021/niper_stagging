@@ -602,11 +602,11 @@ use App\Models\Organisation_type_model;
                         // Prepare data for insertion
                         $experienceData = [
                             'emplyee_id'        => $employee['id'],
-                            'award_title'       => $data['award_title'],
-                            'award_year'        => $data['award_year'],
-                            'award_date_time'   => date('Y-m-d H:s:i', strtotime($data['award_date_time'])),
-                            'award_agency_type' => $data['award_agency_type'],
-                            'award_agency_name' => $data['award_agency_name'],
+                            'name_of_awarding'       => $data['name_of_awarding'],
+                            'award_reason'        => $data['award_reason'],
+                            'date_of_awarding'   => date('Y-m-d', strtotime($data['date_of_awarding'])),
+                            'body_name_of_awarding' => $data['body_name_of_awarding'],
+                            'level' => $data['level'],
                             'upload_by'         => $loggeduserId,
                         ];
 
