@@ -50,23 +50,29 @@
                             <span for="projecttitle">Project Title:<span class="text-danger">*</span></span>
                             <textarea type="text" name="projecttitle[]" id="" class="form-control form-control-sm clone_editor"></textarea>
                         </div>
-                        <div class="col-lg-12">
+                        <!-- <div class="col-lg-12">
                             <span for="projectdesc">Project Description:</span>
                             <textarea name="projectdesc[]" id="" class="form-control form-control-sm clone_editor" rows="4"></textarea>
-                        </div>
-                        <div class="col-lg-6 form-group">
-                            <span for="projectstartdatetime">Project Start Date & Time:<span class="text-danger">*</span></span>
+                        </div> -->
+                        <div class="col-lg-4 form-group">
+                            <span for="projectstartdatetime">Project Start Date:<span class="text-danger">*</span></span>
                             <div class="input-group">
                                 <input type="text" class="form-control form-control-sm" name="project_start_date[]"  placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                <input type="text" class="form-control form-control-sm" name="project_start_time[]"  placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                <!-- <input type="text" class="form-control form-control-sm" name="project_start_time[]"  placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')"> -->
                             </div>
                         </div>
-                        <div class="col-lg-6 form-group">
-                            <span for="projectenddatetime">Project End Date & Time:<span class="text-danger">*</span></span>
+                        <div class="col-lg-4 form-group">
+                            <span for="projectenddatetime">Project End Date:<span class="text-danger">*</span></span>
                             <div class="input-group">
                                 <input type="text" class="form-control form-control-sm" name="project_end_date[]"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                <input type="text" class="form-control form-control-sm" name="project_end_time[]"  placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                <!-- <input type="text" class="form-control form-control-sm" name="project_end_time[]"  placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')"> -->
                             </div>
+                        </div>
+                        <div class="col-lg-4 form-group">
+                            <span for="projectenddatetime">Sanctioned  Year:<span class="text-danger">*</span></span>
+                            <input type="text" class="form-control form-control-sm" name="sanctioned_year[]"  placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                <!-- <input type="text" class="form-control form-control-sm" name="project_end_time[]"  placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')"> -->
+                            
                         </div>
                         <div class="col-lg-6 form-group">
                             <span for="projectstatus">Project Status:<span class="text-danger">*</span></span>
