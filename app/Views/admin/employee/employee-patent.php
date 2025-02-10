@@ -49,25 +49,9 @@ $employee_model = new Employee_model();
                                 <div class="col-lg-12">
                                     <!-- Award Title -->
                                     <div class="form-group">
-                                        <span for="Awardtitle">Name of Awarding:</span>
-                                        <input type="text" name="Awardtitle[]" id="" class="form-control form-control-sm">
+                                        <span for="Awardtitle">Patent Title:</span>
+                                        <input type="text" name="patent_title[]" id="" class="form-control form-control-sm">
                                     </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <span for="">Reason of Awarding<span class="text-danger">*</span></span>
-                                    <select class="form-control form-control-sm" name="award_reason[]" required>
-                                        <option value="">--Select--</option>
-                                        <option value="Academic">Academic</option>
-                                        <option value="Research">Research</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <span for="">Date of Awarding<span class="text-danger">*</span></span>
-                                    <input type="date" name="date_of_awarding[]" id="" class="form-control form-control-sm">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <span for="">Body name of Awarding<span class="text-danger">*</span></span>
-                                    <input type="text" name="body_name_of_awarding[]" id="" class="form-control form-control-sm">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <span for="">Level<span class="text-danger">*</span></span>
@@ -77,6 +61,20 @@ $employee_model = new Employee_model();
                                         <option value="International">International</option>
                                     </select>
                                 </div>
+                                
+                                <div class="form-group col-md-6">
+                                    <span for="">Patent Number<span class="text-danger">*</span></span>
+                                    <input type="text" name="patent_number[]" id="" class="form-control form-control-sm">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <span for="">Date of Awarding<span class="text-danger">*</span></span>
+                                    <input type="date" name="date_of_awarding[]" id="" class="form-control form-control-sm">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <span for="">Fund Generated(INR)<span class="text-danger">*</span></span>
+                                    <input type="number" name="fund_generate[]" id="" class="form-control form-control-sm">
+                                </div>
+                                
                                 <div class="col-lg-6">
                                     <!-- Award Photo Upload -->
                                     <div class="form-group">
