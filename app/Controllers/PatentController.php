@@ -69,7 +69,7 @@ class PatentController extends BaseController
         $patent_webpage_model = new Patent_webpage_model();
         $data = ['title' => 'Patent Web Page'];
         if ($this->request->is("get")) {
-            $data['patent'] = $patent_webpage_model->get();
+            $data['patent_webpage'] = $patent_webpage_model->get();
             return view('admin/patent/patent-web-page',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');

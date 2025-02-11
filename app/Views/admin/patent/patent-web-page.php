@@ -62,7 +62,7 @@ use App\Models\Patent_webpage_file_model;
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($work_nature as $key => $value) { ?>
+                    <?php foreach ($patent_webpage as $key => $value) { ?>
                         <tr>
                             <td><?= $key+1 ?></td>
                             <td><?= $value['title'] ?></td>
