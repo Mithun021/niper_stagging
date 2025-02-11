@@ -5,7 +5,10 @@ namespace App\Controllers;
 use App\Models\Committee_model;
 use App\Models\Employee_model;
 use App\Models\Patent_author_model;
+use App\Models\Patent_current_status_model;
 use App\Models\Patent_model;
+use App\Models\Patent_type_model;
+use App\Models\Patent_webpage_model;
 
 class PatentController extends BaseController
 {
@@ -57,6 +60,45 @@ class PatentController extends BaseController
                 return redirect()->to('admin/patent-details')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
                 return redirect()->to('admin/patent-details')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+    public function patent_web_page(){
+        $patent_webpage_model = new Patent_webpage_model();
+        $data = ['title' => 'Patent Web Page'];
+        if ($this->request->is("get")) {
+            $data['patent'] = $patent_webpage_model->get();
+            return view('admin/patent/patent-web-page',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+        }
+    }
+    public function patent_type(){
+        $patent_type_model = new Patent_type_model();
+        $data = ['title' => 'Patent Type'];
+        if ($this->request->is("get")) {
+            $data['patent'] = $patent_type_model->get();
+            return view('admin/patent/patent-type',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+        }
+    }
+    public function current_status(){
+        $patent_current_status_model = new Patent_current_status_model();
+        $data = ['title' => 'Current Staus'];
+        if ($this->request->is("get")) {
+            $data['patent'] = $patent_current_status_model->get();
+            return view('admin/patent/current-status',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
             }
         }
     }

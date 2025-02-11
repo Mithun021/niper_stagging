@@ -96,6 +96,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get', 'post'], 'committee-details', 'CommitteeController::committee_details');
     $routes->match(['get', 'post'], 'copyright-details', 'CopyrightController::copyright_details');
     $routes->match(['get', 'post'], 'patent-details', 'PatentController::patent_details');
+    $routes->match(['get', 'post'], 'patent-web-page', 'PatentController::patent_web_page');
+    $routes->match(['get', 'post'], 'patent-type', 'PatentController::patent_type');
+    $routes->match(['get', 'post'], 'current-status', 'PatentController::current_status');
 
     // Student Routes /----------------------------
     $routes->match(['get', 'post'], 'students', 'StudentController::students');
