@@ -8,6 +8,7 @@ use App\Models\Patent_author_model;
 use App\Models\Patent_current_status_model;
 use App\Models\Patent_model;
 use App\Models\Patent_type_model;
+use App\Models\Patent_webpage_file_model;
 use App\Models\Patent_webpage_model;
 
 class PatentController extends BaseController
@@ -64,6 +65,7 @@ class PatentController extends BaseController
         }
     }
     public function patent_web_page(){
+        $patent_webpage_file_model = new Patent_webpage_file_model();
         $patent_webpage_model = new Patent_webpage_model();
         $data = ['title' => 'Patent Web Page'];
         if ($this->request->is("get")) {
@@ -73,6 +75,34 @@ class PatentController extends BaseController
             $sessionData = session()->get('loggedUserData');
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $data = [
+                'title' => $this->request->getPost('title'),
+                'description' => $this->request->getPost('description'),
+                'upload_by' => $loggeduserId
+            ];
+            $album_files = $this->request->getFiles();
+            $result = $patent_webpage_model->add($data);
+            if ($result === true) {
+                $insertedId = $patent_webpage_model->getInsertID();
+                if ($album_files && isset($album_files['upload_file'])) {
+                    foreach ($album_files['upload_file'] as $file) {
+                        if ($file->isValid() && !$file->hasMoved()) {
+                            $newName = $insertedId."webpage".$file->getRandomName();
+                            $file->move(ROOTPATH . 'public/admin/uploads/patent', $newName);
+        
+                            $file_data = [
+                                'patent_webpage_id' => $insertedId,
+                                'upload_file' => $newName,
+                            ];
+                            // echo "<pre>"; print_r($file_data);
+                            $patent_webpage_file_model->add($file_data);
+                        }
+                    }
+                }
+                return redirect()->to('admin/patent-web-page')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+            } else {
+                return redirect()->to('admin/patent-web-page')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
         }
     }

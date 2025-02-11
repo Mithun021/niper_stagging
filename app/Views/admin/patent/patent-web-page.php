@@ -9,7 +9,7 @@
 </style>
 <!-- start page title -->
 <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-4">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> </h4>
@@ -20,7 +20,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/patent-web-page') ?>">
+                <form method="post" action="<?= base_url('admin/patent-web-page') ?>" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="title" required>
@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-group">
                         <span for="">Upload Images(.Jpg,.Png,.Jpeg)</span>
-                        <input type="file" class="form-control form-control-sm" name="title" accept=".Jpg,.Png,.Jpeg">
+                        <input type="file" class="form-control form-control-sm" name="upload_file[]" accept=".Jpg,.Png,.Jpeg" multiple>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
@@ -40,20 +40,21 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-7">
+    <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> List</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body p-2">
                 <div class="table-responsive">
                 <table class="table table-striped table-hover" id="basic-datatable">
                     <thead>
                         <tr>
                             <td>SN</td>
-                            <td>Category Name</td>
+                            <td>Type</td>
+                            <td>Description</td>
+                            <td>Gallery Image</td>
                             <td>Upload By</td>
-                            <td>Upload Date</td>
                             <td>Action</td>
                         </tr>
                     </thead>
