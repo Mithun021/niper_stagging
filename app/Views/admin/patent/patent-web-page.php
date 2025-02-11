@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-group">
                         <span for="">Upload Images(.Jpg,.Png,.Jpeg)</span>
-                        <input type="text" class="form-control form-control-sm" name="title" accept=".Jpg,.Png,.Jpeg">
+                        <input type="file" class="form-control form-control-sm" name="title" accept=".Jpg,.Png,.Jpeg">
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
