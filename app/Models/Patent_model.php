@@ -5,7 +5,7 @@
     {
         protected $table         = 'patent_details';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['patent_title','ipr_number','description','patent_type','description','filling_date','grant_date','current_status','upload_file','employee_id','status','upload_by'];
+        protected $allowedFields = ['patent_title','ipr_number','description','patent_type','patent_no','description','filling_date','grant_date','current_status','upload_file','employee_id','status','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
