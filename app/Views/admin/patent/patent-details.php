@@ -61,6 +61,7 @@ $employee_model = new Employee_model();
                             <?php foreach ($patent_current_status as $key => $value) { ?>
                                 <option value="<?= $value['name'] ?>"><?= $value['name'] ?></option>
                             <?php } ?>
+                            </select>
                         </div>
                         <div class="col-lg-6 form-group">
                             <span>Upload File (PDF, JPG, PNG)</span>
