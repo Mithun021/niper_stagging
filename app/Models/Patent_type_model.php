@@ -3,9 +3,9 @@
     use CodeIgniter\Model;
     class Patent_type_model extends Model
     {
-        protected $table         = 'media';
+        protected $table         = 'patent_type';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['title','photo_image','upload_file','description','publish_date','upload_by'];
+        protected $allowedFields = ['name','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

@@ -43,14 +43,25 @@
                     <thead>
                         <tr>
                             <td>SN</td>
-                            <td>Category Name</td>
+                            <td>Current Status</td>
                             <td>Upload By</td>
                             <td>Upload Date</td>
                             <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    <?php foreach ($current_status as $key => $value) { ?>
+                        <tr>
+                            <td><?= $key+1 ?></td>
+                            <td><?= $value['name'] ?></td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                            <td><?= date("d-m-Y", strtotime($value['created_at'])) ?></td>
+                            <td>
+                                <a href="<?= base_url('admin/event-category/'.$value['id']) ?>" class="btn btn-sm btn-primary">Edit</a>
+                                <a href="<?= base_url('admin/event-category/'.$value['id']) ?>" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 </div>

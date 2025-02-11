@@ -1,11 +1,11 @@
 <?php
     namespace App\Models;
     use CodeIgniter\Model;
-    class Patent_current_status_model extends Model
+    class Patent_webpage_file_model extends Model
     {
-        protected $table         = 'patent_current_status';
+        protected $table         = 'patent_webpage_file';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['name','upload_by'];
+        protected $allowedFields = ['patent_webpage_id','upload_file'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
