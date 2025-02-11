@@ -23,16 +23,16 @@ $event_category_model = new Event_category_model();
                 ?>
                 <form method="post" action="<?= base_url('admin/event-post') ?>" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <span for="">Title<span class="text-danger">*</span></span>
                                 <input type="text" class="form-control form-control-sm" name="event_title" required minlength="5">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <span for="">Event Theme title</span>
-                                <input type="text" class="form-control form-control-sm" name="event_theme_title" minlength="5">
+                                <textarea class="form-control form-control-sm" name="event_theme_title"  id="editor2"></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -77,7 +77,7 @@ $event_category_model = new Event_category_model();
                                 <input type="file" class="form-control form-control-sm" name="event_file" accept=".jpg, .png, .jpeg" required>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                      	<div class="col-md-3">
                             <div class="form-group">
                                 <span for="">Event Report(PDF)<span class="text-danger">*</span></span>
                                 <input type="file" class="form-control form-control-sm" name="event_report_file" accept=".pdf" required>
@@ -151,14 +151,14 @@ $event_category_model = new Event_category_model();
                                 <input type="text" class="form-control form-control-sm" name="participant_seats">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <span for="">Participant Eligibility</span>
-                                <input type="text" class="form-control form-control-sm" name="participant_eligibility">
+                                <textarea class="form-control form-control-sm" name="participant_eligibility" id="editor3"></textarea>
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <span>Marquee Status</span>
                                 <select name="marquee_status" id="marquee_status" class="form-control form-control-sm">
@@ -167,7 +167,7 @@ $event_category_model = new Event_category_model();
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <span>Status</span>
                                 <select name="status" id="status" class="form-control form-control-sm">
@@ -206,7 +206,7 @@ $event_category_model = new Event_category_model();
                         <thead>
                             <tr>
                                 <td>SN</td>
-                                <td>Files/Doc/Report</td>
+                                <td>Files/Report</td>
                                 <td>Status / Marquee</td>
                                 <td>Title</td>
                                 <td>Event Type</td>
@@ -230,12 +230,6 @@ $event_category_model = new Event_category_model();
                                             <img src="<?= base_url() ?>public/admin/uploads/events/invalid_image.png" alt="" height="40px">
                                         <?php endif; ?>
 
-                                        <?php if (!empty($value['extension_notice_file']) && file_exists('public/admin/uploads/events/' . $value['extension_notice_file'])): ?>
-                                            <a href="<?= base_url() ?>public/admin/uploads/events/<?= $value['extension_notice_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
-                                        <?php else: ?>
-                                            <img src="<?= base_url() ?>public/admin/uploads/events/invalid_image.png" alt="" height="40px">
-                                        <?php endif; ?>
-
                                         <?php if (!empty($value['event_report_file']) && file_exists('public/admin/uploads/events/' . $value['event_report_file'])): ?>
                                             <a href="<?= base_url() ?>public/admin/uploads/events/<?= $value['event_report_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
                                         <?php else: ?>
@@ -255,7 +249,7 @@ $event_category_model = new Event_category_model();
                                     <td><?= date("d:M:Y", strtotime($value['reg_start_date'])) ?> <?= date("h:i A", strtotime($value['reg_start_time'])) ?> - <br><?= date("d:M:Y", strtotime($value['reg_end_date'])) ?> <?= date("h:i A", strtotime($value['reg_end_time'])) ?></td>
                                     <td><?= $value['participant_seats'] ?></td>
                                   	<td>
-                                  		<?= ($value['icc_events'] == "0") ? "<span class='badge badge-danger badge-pill'>No</span>" : (($value['icc_events'] == "1") ? "<span class='badge badge-success badge-pill'>Yes</span>" : "") ?>/
+                                  		<?= ($value['icc_events'] == "0") ? "<span class='badge badge-danger badge-pill'>No</span>" : (($value['icc_events'] == "1") ? "<span class='badge badge-success badge-pill'>Yes</span>" : "") ?> /
                                         <?= ($value['institute_event'] == "0") ? "<span class='badge badge-danger badge-pill'>No</span>" : (($value['institute_event'] == "1") ? "<span class='badge badge-success badge-pill'>Yes</span>" : "") ?>
                                   	</td>
                                   	<td><?php $emp = $employee_model->get($value['upload_by']);
