@@ -14,6 +14,8 @@ use App\Models\Patent_webpage_model;
 class PatentController extends BaseController
 {
     public function patent_details(){
+        $patent_current_status_model = new Patent_current_status_model();
+        $patent_type_model = new Patent_type_model();
         $patent_model = new Patent_model();
         $employee_model = new Employee_model();
         $patent_author_model = new Patent_author_model();
@@ -21,6 +23,8 @@ class PatentController extends BaseController
         if ($this->request->is("get")) {
             $data['employees'] = $employee_model->get();
             $data['patent'] = $patent_model->get();
+            $data['patent_type'] = $patent_type_model->get();
+            $data['patent_current_status'] = $patent_current_status_model->get();
             return view('admin/patent/patent-details',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');

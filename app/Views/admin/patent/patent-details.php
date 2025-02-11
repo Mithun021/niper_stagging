@@ -34,7 +34,12 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="col-lg-4 form-group">
                             <span>Patent Type</span>
-                            <input type="text" class="form-control form-control-sm" name="patent_type" placeholder="Enter Patent Type">
+                            <select class="form-control form-control-sm" name="patent_type" >
+                                <option value="">--Select--</option>
+                            <?php foreach ($patent_type as $key => $value) { ?>
+                                <option value="<?= $value['name'] ?>"><?= $value['name'] ?></option>
+                            <?php } ?>
+                            </select>
                         </div>
                       	<div class="col-lg-4 form-group">
                             <span>Patent Number</span>
@@ -50,7 +55,12 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="col-lg-6 form-group">
                             <span>Current Status </span>
-                            <input type="text" class="form-control form-control-sm" name="current_status" required>
+                            <!-- <input type="text" class="form-control form-control-sm" name="current_status" required> -->
+                            <select class="form-control form-control-sm" name="current_status" >
+                                <option value="">--Select--</option>
+                            <?php foreach ($patent_current_status as $key => $value) { ?>
+                                <option value="<?= $value['name'] ?>"><?= $value['name'] ?></option>
+                            <?php } ?>
                         </div>
                         <div class="col-lg-6 form-group">
                             <span>Upload File (PDF, JPG, PNG)</span>
