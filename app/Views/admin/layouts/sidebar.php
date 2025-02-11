@@ -76,7 +76,7 @@
             <ul class="sub-menu" aria-expanded="false">
                 <li><a href="<?= base_url() ?>admin/patent-details">Patent Details</a></li>
                 <li><a href="<?= base_url() ?>admin/copyright-details">Copyright Details</a></li>
-                <li><a href="<?= base_url() ?>admin/patant-type">Patent Type</a></li>
+                <li><a href="<?= base_url() ?>admin/patent-type">Patent Type</a></li>
                 <li><a href="<?= base_url() ?>admin/current-status">Current Status</a></li>
                 <li><a href="<?= base_url() ?>admin/patent-web-page">Patent Web Page</a></li>
             </ul>
