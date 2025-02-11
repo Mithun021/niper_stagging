@@ -26,5 +26,9 @@
             }
             return $result;
         }
+
+        public function get_by_webpage($webpageid){
+           return $this->where('patent_webpage_id',$webpageid)->findAll();
+        }
     }
 ?>
