@@ -99,21 +99,48 @@ $department_model = new Department_model();
                         <thead>
                             <tr>
                                 <td>SN</td>
-                                <td>File</td>
                                 <td>Emp. ID</td>
-                                <td>Student Name</td>
-                                <td>Subject Title of the Thesis</td>
-                                <td>University Name</td>
-                                <td>Department</td>
-                                <td>University (Country)</td>
-                                <td>Role</td>
+                                <td>Degree Type</td>
+                                <td>Subjects Studied</td>
+                                <td>Title of the Ph.D thesis</td>
+                                <td>Degree Status</td>
                                 <td>Registration Date</td>
+                                <td>Submission Date</td>
+                                <td>Award Date</td>
+                                <td>University</td>
+                                <td>University(Country)</td>
+                                <td>University(State/UT)</td>
                                 <td>Upload By</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                        
+                        <?php foreach ($phd_detail as $key => $value) { ?>
+                            <tr>
+                                <td><?= ++$key ?></td>
+                                <td><?php $emp = $employee_model->get($value['employee_id']);
+                                    echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                <td><?= $value['degree_type'] ?></td>
+                                <td><?= $value['subject_studied'] ?></td>
+                                <td><?= $value['phd_thesis'] ?></td>
+                                <td><?= $value['degree_status'] ?></td>
+                                <td><?= $value['registration_date'] ?></td>
+                                <td><?= $value['submission_date'] ?></td>
+                                <td><?= $value['award_date'] ?></td>
+                                <td><?= $value['university'] ?></td>
+                                <td><?= $value['university_country'] ?></td>
+                                <td><?= $value['university_state'] ?></td>
+                                <td><?php $emp = $employee_model->get($value['upload_by']);
+                                    echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
