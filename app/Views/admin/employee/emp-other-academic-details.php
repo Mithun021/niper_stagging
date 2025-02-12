@@ -68,7 +68,6 @@ $employee_model = new Employee_model();
                         <thead>
                             <tr>
                                 <td>SN</td>
-                                <td>File</td>
                                 <td>Emp. ID</td>
                                 <td>Examination Type</td>
                                 <td>Year of Passing</td>
@@ -82,13 +81,6 @@ $employee_model = new Employee_model();
                         <?php foreach ($employee_academic_details as $key => $value) { ?>
                             <tr>
                                 <td><?= ++$key ?></td>
-                                <td>
-                                    <?php if (!empty($value['document_file']) && file_exists('public/admin/uploads/employee/' . $value['document_file'])): ?>
-                                        <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $value['document_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
-                                    <?php else: ?>
-                                        <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="30px">
-                                    <?php endif; ?>
-                                </td>
                                 <td><?php $emp = $employee_model->get($value['employee_id']);
                                     echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                 <td><?= $value['examination_type'] ?></td>
