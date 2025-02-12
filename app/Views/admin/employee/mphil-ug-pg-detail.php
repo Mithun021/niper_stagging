@@ -140,7 +140,7 @@ $employee_model = new Employee_model();
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($ongoing_php as $key => $value) { ?>
+                        <?php foreach ($mphil_ug_pg as $key => $value) { ?>
                                 <tr>
                                     <td><?= ++$key ?></td>
                                     <td>
