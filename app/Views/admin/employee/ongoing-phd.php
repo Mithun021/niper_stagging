@@ -86,8 +86,8 @@ $department_model = new Department_model();
                             </select>
                         </div>
                         <div class="form-group reg_date col-md-4" style="display : none;">
-                            <span for="">Registration Date</span>
-                            <input type="date" name="registration_date" id="" class="form-control form-control-sm">
+                            <span for="">Submission/Award Date</span>
+                            <input type="date" name="submission_date" id="" class="form-control form-control-sm">
                         </div>
                         <div class="form-group col-md-12">
                             <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
@@ -145,7 +145,6 @@ $department_model = new Department_model();
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                     <td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                                            <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
                                             <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
                                             <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
                                         </div>

@@ -926,6 +926,8 @@ use App\Models\Phd_detail_model;
                     'university' => $this->request->getPost('university'),
                     'university_country' => $this->request->getPost('university_country'),
                     'university_state' => $this->request->getPost('university_state'),
+                    'status' => $this->request->getPost('status'),
+                    'submission_date' => $this->request->getPost('submission_date') ?? '',
                     'document_file' => $documentNewName,
                     'upload_by' => $loggeduserId,
                 ];
