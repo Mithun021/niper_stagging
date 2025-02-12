@@ -973,39 +973,41 @@ use App\Models\Phd_detail_model;
         public function phd_detail(){
             $employee_model = new Employee_model();
             $department_model = new Department_model();
-            $ongoing_phd_model = new Ongoing_phd_model();
+           $phd_detail_model =  new Phd_detail_model();
             $data = ['title' => 'PHD Details'];
             if ($this->request->is('get')) {
                 $data['employee'] = $employee_model->get();
                 $data['department'] = $department_model->get();
-                $data['phd_detail'] = $ongoing_phd_model->get();
+                $data['phd_detail'] = $phd_detail_model->get();
                 return view('admin/employee/phd-detail',$data);
             }else if ($this->request->is('post')) {
                 $sessionData = session()->get('loggedUserData');
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
-                $document = $this->request->getFile('document_file');
-                if ($document->isValid() && ! $document->hasMoved()) {
-                    $documentNewName = "phd_detail".rand(0,9999).$document->getRandomName();
-                    $document->move(ROOTPATH . 'public/admin/uploads/employee', $documentNewName);    
-                }else{
-                 $documentNewName = "";
-                }
+                // $document = $this->request->getFile('document_file');
+                // if ($document->isValid() && ! $document->hasMoved()) {
+                //     $documentNewName = "phd_detail".rand(0,9999).$document->getRandomName();
+                //     $document->move(ROOTPATH . 'public/admin/uploads/employee', $documentNewName);    
+                // }else{
+                //  $documentNewName = "";
+                // }
 
                 $data = [
                     'employee_id' => $this->request->getPost('employee_id'),
-                    'student_name' => $this->request->getPost('student_name'),
-                    'subject_thesis' => $this->request->getPost('subject_thesis'),
-                    'university_name' => $this->request->getPost('university_name'),
-                    'department' => $this->request->getPost('department'),
-                    'university_country' => $this->request->getPost('university_country'),
-                    'role' => $this->request->getPost('role'),
+                    'degree_type' => $this->request->getPost('degree_type'),
+                    'subject_studied' => $this->request->getPost('subject_studied'),
+                    'phd_thesis' => $this->request->getPost('phd_thesis'),
+                    'degree_status' => $this->request->getPost('degree_status'),
                     'registration_date' => $this->request->getPost('registration_date'),
-                    'document_file' => $documentNewName,
+                    'submission_date' => $this->request->getPost('submission_date'),
+                    'award_date' => $this->request->getPost('award_date'),
+                    'university' => $this->request->getPost('university'),
+                    'university_country' => $this->request->getPost('university_country'),
+                    'university_state' => $this->request->getPost('university_state'),
                     'upload_by' => $loggeduserId,
                 ];
-                $result = $ongoing_phd_model->add($data);
+                $result = $phd_detail_model->add($data);
                 if ($result === true) {
                     return redirect()->to('admin/phd-detail')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
                 } else {
@@ -1050,7 +1052,7 @@ use App\Models\Phd_detail_model;
                 }
                 $document = $this->request->getFile('document_file');
                 if ($document->isValid() && ! $document->hasMoved()) {
-                    $documentNewName = "phd_detail".rand(0,9999).$document->getRandomName();
+                    $documentNewName = "ongoing_phd".rand(0,9999).$document->getRandomName();
                     $document->move(ROOTPATH . 'public/admin/uploads/employee', $documentNewName);    
                 }else{
                  $documentNewName = "";
