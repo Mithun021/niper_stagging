@@ -70,15 +70,10 @@ $employee_model = new Employee_model();
                                 <td>SN</td>
                                 <td>File</td>
                                 <td>Emp. ID</td>
-                                <td>Degree Type</td>
-                                <td>Degree Name</td>
-                                <td>Subject Studied</td>
-                                <td>Marking Scheme(%/CGPA)</td>
-                                <td>Obtained Result</td>
-                                <td>Passing Year</td>
-                                <td>University</td>
-                                <td>University (Country)</td>
-                                <td>University (State/UT)</td>
+                                <td>Examination Type</td>
+                                <td>Year of Passing</td>
+                                <td>Conducted By</td>
+                                <td>Roll No</td>
                                 <td>Upload By</td>
                                 <td>Action</td>
                             </tr>
