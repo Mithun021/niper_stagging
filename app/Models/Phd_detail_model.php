@@ -3,9 +3,9 @@
     use CodeIgniter\Model;
     class Phd_detail_model extends Model
     {
-        protected $table         = 'ongoing_phd';
+        protected $table         = 'php_details';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['employee_id','student_name','subject_thesis','university_name','department','university_country','role','registration_date','document_file','upload_by'];
+        protected $allowedFields = ['employee_id','degree_type','subject_studied','phd_thesis','degree_status','registration_date','submission_date','award_date','university','university_country','university_state','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
