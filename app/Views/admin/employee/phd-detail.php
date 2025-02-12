@@ -109,7 +109,7 @@ $department_model = new Department_model();
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($employee_academic_details as $key => $value) { ?>
+                        <?php foreach ($phd_detail as $key => $value) { ?>
                             <tr>
                                 <td><?= ++$key ?></td>
                                 <td>
