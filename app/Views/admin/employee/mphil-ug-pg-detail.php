@@ -145,8 +145,8 @@ $employee_model = new Employee_model();
                                 <tr>
                                     <td><?= ++$key ?></td>
                                     <td>
-                                        <?php if (!empty($value['document_file']) && file_exists('public/admin/uploads/employee/' . $value['document_file'])): ?>
-                                            <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $value['document_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
+                                        <?php if (!empty($value['documemt_file']) && file_exists('public/admin/uploads/employee/' . $value['documemt_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $value['documemt_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
                                         <?php else: ?>
                                             <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="30px">
                                         <?php endif; ?>
