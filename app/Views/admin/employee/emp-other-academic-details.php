@@ -32,51 +32,23 @@ $employee_model = new Employee_model();
                                     <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
                                 <?php } ?>
                             </select>
+                        </div>lect>
                         </div>
                         <div class="form-group col-md-6">
-                            <span for="">Type of the Degree<span class="text-danger">*</span></span>
-                            <select class="form-control form-control-sm" name="degree_type" required>
-                                <option value="">--Select--</option>
-                                <option value="UG">UG</option>
-                                <option value="PG">PG</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <span for="">Name of the Degree<span class="text-danger">*</span></span>
-                            <input type="text" name="degree_name" id="" class="form-control form-control-sm" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <span for="">Subject Studied<span class="text-danger">*</span></span>
-                            <input type="text" name="subject_studied" id="" class="form-control form-control-sm" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <span for="">Marking Scheme(%/CGPA)<span class="text-danger">*</span></span>
-                            <input type="text" name="marking_scheme" id="" class="form-control form-control-sm" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <span for="">Obtained Result</span>
-                            <input type="text" name="obtained_result" id="" class="form-control form-control-sm">
+                            <span for="">Examination Type<span class="text-danger">*</span></span>
+                            <input type="text" name="examination_type" id="" class="form-control form-control-sm" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Year of Passing</span>
                             <input type="number" name="passing_year" id="" class="form-control form-control-sm" maxlength="4">
                         </div>
                         <div class="form-group col-md-6">
-                            <span for="">University</span>
-                            <input type="text" name="university" id="" class="form-control form-control-sm">
+                            <span for="">Conducted By</span>
+                            <input type="text" name="conduct_by" id="" class="form-control form-control-sm">
                         </div>
                         <div class="form-group col-md-4">
-                            <span for="">University (Country)</span>
-                            <input type="text" name="university_country" id="" class="form-control form-control-sm">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <span for="">University (State/UT)</span>
-                            <input type="text" name="university_state" id="" class="form-control form-control-sm">
-                        </div>
-
-                        <div class="form-group col-md-4">
-                            <span for="">Document Upload(.pdf,.jpg,.jpeg,.png)</span>
-                            <input type="file" name="document_file" id="" class="form-control form-control-sm" accept=".pdf,.jpg,.jpeg,.png">
+                            <span for="">Roll No</span>
+                            <input type="text" name="roll_no" id="" class="form-control form-control-sm">
                         </div>
                         <div class="form-group col-md-12">
                             <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
