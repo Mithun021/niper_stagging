@@ -19,6 +19,7 @@ use App\Models\Employee_publication_author_model;
 use App\Models\Employee_publication_model;
 use App\Models\Nature_of_work_model;
 use App\Models\Organisation_type_model;
+use App\Models\Phd_detail_model;
 
     class EmployeeController extends BaseController{
         public function employee(){
@@ -970,11 +971,13 @@ use App\Models\Organisation_type_model;
 
         public function phd_detail(){
             $employee_model = new Employee_model();
-            $employee_academic_details_model = new Emp_other_academic_detail_model();
+            $department_model = new Department_model();
+            $phd_detail_model = new Phd_detail_model();
             $data = ['title' => 'PHD Details'];
             if ($this->request->is('get')) {
                 $data['employee'] = $employee_model->get();
-                $data['employee_academic_details'] = $employee_academic_details_model->get();
+                $data['department'] = $department_model->get();
+                $data['phd_detail'] = $phd_detail_model->get();
                 return view('admin/employee/phd-detail',$data);
             }else if ($this->request->is('post')) {
                 $sessionData = session()->get('loggedUserData');

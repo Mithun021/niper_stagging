@@ -47,7 +47,12 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Department</span>
-                            <input type="text" name="department" id="" class="form-control form-control-sm">
+                            <select name="department" id="" class="form-control form-control-sm">
+                                <option value="">--Select--</option>
+                            <?php foreach ($department as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                            <?php } ?>
+                            </select>
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">University (Country)</span>
@@ -88,11 +93,15 @@ $employee_model = new Employee_model();
                         <thead>
                             <tr>
                                 <td>SN</td>
+                                <td>File</td>
                                 <td>Emp. ID</td>
-                                <td>Examination Type</td>
-                                <td>Year of Passing</td>
-                                <td>Conducted By</td>
-                                <td>Roll No</td>
+                                <td>Student Name</td>
+                                <td>Subject Title of the Thesis</td>
+                                <td>University Name</td>
+                                <td>Department</td>
+                                <td>University (Country)</td>
+                                <td>Role</td>
+                                <td>Registration Date</td>
                                 <td>Upload By</td>
                                 <td>Action</td>
                             </tr>
