@@ -1031,7 +1031,7 @@ use App\Models\Phd_detail_model;
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
-                $document = $this->request->getFile('document_file');
+                $document = $this->request->getFile('documemt_file');
                 if ($document->isValid() && ! $document->hasMoved()) {
                     $documentNewName = "ugpg".rand(0,9999).$document->getRandomName();
                     $document->move(ROOTPATH . 'public/admin/uploads/employee', $documentNewName);    
