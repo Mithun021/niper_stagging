@@ -1104,9 +1104,9 @@ use App\Models\Phd_detail_model;
                 ];
                 $result = $ongoing_phd_model->add($data);
                 if ($result === true) {
-                    return redirect()->to('admin/phd-detail')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                    return redirect()->to('admin/ongoing-phd')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
                 } else {
-                    return redirect()->to('admin/phd-detail')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                    return redirect()->to('admin/ongoing-phd')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
         }
