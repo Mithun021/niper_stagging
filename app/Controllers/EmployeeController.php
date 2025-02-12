@@ -935,5 +935,22 @@ use App\Models\Organisation_type_model;
             }
         }
 
+        public function employee_other_academic_details(){
+            $employee_model = new Employee_model();
+            $employee_academic_details_model = new Employee_academic_details_model();
+            $data = ['title' => 'Employee Other Acadmic Details'];
+            if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
+                $data['employee_academic_details'] = $employee_academic_details_model->get();
+                return view('admin/employee/emp-other-academic-details',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+
+            }
+        }
+
     }
 ?>
