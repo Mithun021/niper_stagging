@@ -142,7 +142,7 @@ $department_model = new Department_model();
                                     <td><?= $value['university_country'] ?></td>
                                     <td><?= $value['role'] ?></td>
                                     <td><?= $value['registration_date'] ?></td>
-                                    <td><?= $value['status'] ?> <?php if($value['submission_date']!=="0000-00-00"){ echo $value['submission_date']; }else{ echo "__"; } ?></td>
+                                    <td><?= $value['status'] ?> <?php if($value['submission_date']!=="0000-00-00"){ echo $value['submission_date']; }else{ echo ""; } ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                     <td>
