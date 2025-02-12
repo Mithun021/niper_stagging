@@ -964,6 +964,56 @@ use App\Models\Organisation_type_model;
                     return redirect()->to('admin/emp-other-academic-details')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
+            
+        }
+
+
+        public function phd_detail(){
+            $employee_model = new Employee_model();
+            $employee_academic_details_model = new Emp_other_academic_detail_model();
+            $data = ['title' => 'PHD Details'];
+            if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
+                $data['employee_academic_details'] = $employee_academic_details_model->get();
+                return view('admin/employee/phd-detail',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+            }
+        }
+
+        public function mphil_ug_pg_detail(){
+            $employee_model = new Employee_model();
+            $employee_academic_details_model = new Emp_other_academic_detail_model();
+            $data = ['title' => 'MPhil/PG/UG Ongoing Details'];
+            if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
+                $data['employee_academic_details'] = $employee_academic_details_model->get();
+                return view('admin/employee/mphil-ug-pg-detail',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+            }
+        }
+
+        public function ongoing_phd(){
+            $employee_model = new Employee_model();
+            $employee_academic_details_model = new Emp_other_academic_detail_model();
+            $data = ['title' => 'Ongoing PHD Details'];
+            if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
+                $data['employee_academic_details'] = $employee_academic_details_model->get();
+                return view('admin/employee/ongoing-phd',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+            }
         }
 
     }
