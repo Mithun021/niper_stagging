@@ -37,11 +37,11 @@ $employee_model = new Employee_model();
                             <span for="">Examination Type<span class="text-danger">*</span></span>
                             <input type="text" name="examination_type" id="" class="form-control form-control-sm" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <span for="">Year of Passing</span>
                             <input type="number" name="passing_year" id="" class="form-control form-control-sm" maxlength="4">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <span for="">Conducted By</span>
                             <input type="text" name="conduct_by" id="" class="form-control form-control-sm">
                         </div>
