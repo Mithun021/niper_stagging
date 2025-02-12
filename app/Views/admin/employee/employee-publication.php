@@ -99,7 +99,54 @@
                         <!-- Publication Year -->
                         <div class="form-group">
                             <span for="Pubyear">Publication Year:</span>
-                            <input type="number" name="Pubyear" id="Pubyear" class="form-control form-control-sm" min="1900" max="<?= date("Y") ?>" required value="<?= esc(old('Pubyear')) ?>">
+                            <input type="number" name="Pubyear" id="Pubyear" class="form-control form-control-sm" min="1900" max="<?= date("Y") ?>" required >
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span for="Pubyear">Journal Name:</span>
+                            <input type="text" name="journal_name" id="journal_name" class="form-control form-control-sm" >
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span for="Pubyear">Page no:</span>
+                            <input type="text" name="page_no" id="page_no" class="form-control form-control-sm" >
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- Publication Type -->
+                        <div class="form-group">
+                            <span for="Pubtype">Reffered:</span>
+                            <select name="reffered" id="reffered" class="form-control form-control-sm">
+                                <option value="">--Select--</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span for="Pubyear">ISSN no:</span>
+                            <input type="text" name="issn_no" id="issn_no" class="form-control form-control-sm" >
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span for="Pubyear">ISBN no:</span>
+                            <input type="text" name="isbn_no" id="isbn_no" class="form-control form-control-sm" >
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span for="Pubyear">Impact Factor Return List:</span>
+                            <input type="text" name="impact_factor" id="impact_factor" class="form-control form-control-sm" >
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span for="Pubyear">Web Link:</span>
+                            <input type="url" name="web_link" id="web_link" class="form-control form-control-sm" >
                         </div>
                     </div>
                     <div class="col-lg-6">
