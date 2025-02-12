@@ -117,6 +117,7 @@ $department_model = new Department_model();
                                 <td>University (Country)</td>
                                 <td>Role</td>
                                 <td>Registration Date</td>
+                                <td>Status</td>
                                 <td>Upload By</td>
                                 <td>Action</td>
                             </tr>
@@ -141,6 +142,7 @@ $department_model = new Department_model();
                                     <td><?= $value['university_country'] ?></td>
                                     <td><?= $value['role'] ?></td>
                                     <td><?= $value['registration_date'] ?></td>
+                                    <td><?= $value['status'] ?> <?= $value['submission_date'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                     <td>
