@@ -85,11 +85,11 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Registration Date</span>
-                            <input type="text" name="registration_date" id="" class="form-control form-control-sm">
+                            <input type="date" name="registration_date" id="" class="form-control form-control-sm">
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Document File(.jpg,.png,.jpeg,.pdf)</span>
-                            <input type="file" name="remarks" id="" class="form-control form-control-sm" accept=".jpg,.png,.jpeg,.pdf">
+                            <input type="file" name="documemt_file" id="" class="form-control form-control-sm" accept=".jpg,.png,.jpeg,.pdf">
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Status </span>
