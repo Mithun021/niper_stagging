@@ -76,6 +76,19 @@ $department_model = new Department_model();
                             <span for="">Document Upload (jpg,jpeg,pdf,png)</span>
                             <input type="file" name="document_file" id="" class="form-control form-control-sm" accept=".png,.jpg,.jpeg">
                         </div>
+                        <div class="form-group col-md-4">
+                            <span for="">Status </span>
+                            <select name="status" id="" class="form-control form-control-sm" onchange="toggleRegDateField()">
+                                <option value="">--Select--</option>
+                                <option value="Ongoing">Ongoing</option>
+                                <option value="Submitted">Submitted</option>
+                                <option value="Awarded">Awarded</option>
+                            </select>
+                        </div>
+                        <div class="form-group reg_date col-md-4" style="display : none;">
+                            <span for="">Registration Date</span>
+                            <input type="date" name="registration_date" id="" class="form-control form-control-sm">
+                        </div>
                         <div class="form-group col-md-12">
                             <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
                         </div>
@@ -146,5 +159,19 @@ $department_model = new Department_model();
         </div>
     </div>
 </div>
+
+<script>
+    function toggleRegDateField() {
+    var status = document.getElementById("status").value;
+    var regDateDiv = document.querySelector(".reg_date");
+    if (status === "Ongoing") {
+        regDateDiv.style.display = "none";
+    } else {
+        regDateDiv.style.display = "block";
+    }
+}
+
+
+</script>
 
 <?= $this->endSection() ?>
