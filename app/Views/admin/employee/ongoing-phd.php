@@ -78,7 +78,7 @@ $department_model = new Department_model();
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Status </span>
-                            <select name="status" id="" class="form-control form-control-sm" onchange="toggleRegDateField()">
+                            <select name="status" id="status" class="form-control form-control-sm" onchange="toggleRegDateField()">
                                 <option value="">--Select--</option>
                                 <option value="Ongoing">Ongoing</option>
                                 <option value="Submitted">Submitted</option>
