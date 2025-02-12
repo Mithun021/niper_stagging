@@ -196,6 +196,9 @@
                                 <td>Employee</td>
                                 <td>Title</td>
                                 <td>Status</td>
+                                <td>DOI</td>
+                                <td>Journal Name</td>
+                                <td>ISSN / ISBN</td>
                                 <td>Type</td>
                                 <td>Publication Year</td>
                                 <td>Upload by</td>
@@ -220,6 +223,9 @@
                                     }
                                 ?>
                                 </td>
+                                <td><?= $value['doi_details'] ?></td>
+                                <td><?= $value['journal_name'] ?></td>
+                                <td><?= $value['issn_no'] ?> / <?= $value['isbn_no'] ?></td>
                                 <td><?= $value['publication_type'] ?></td>
                                 <td><?= $value['publication_year'] ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
