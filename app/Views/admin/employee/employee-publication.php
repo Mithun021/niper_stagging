@@ -141,13 +141,13 @@
                             <input type="text" name="impact_factor" id="impact_factor" class="form-control form-control-sm" >
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <div class="form-group">
                             <span for="Pubyear">Web Link:</span>
                             <input type="url" name="web_link" id="web_link" class="form-control form-control-sm" >
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <!-- Publication Type -->
                         <div class="form-group">
                             <span for="Pubtype">Publication Type:</span>
@@ -159,7 +159,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <!-- Publication Status -->
                         <div class="form-group">
                             <span for="Pubstatus">Publication Status:</span>
