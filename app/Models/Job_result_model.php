@@ -5,7 +5,7 @@
     {
         protected $table         = 'job_result';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['jobs_id','result_title','result_description','file_upload','result_type','status','upload_by'];
+        protected $allowedFields = ['jobs_id','result_title','result_description','file_upload','result_type','corrigendum','status','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

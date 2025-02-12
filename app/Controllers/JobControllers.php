@@ -126,6 +126,7 @@ class JobControllers extends BaseController
                 'result_description' => $this->request->getPost('resultdesc'),
                 'file_upload' => $resultfileImageName,
                 'result_type' => $this->request->getPost('resulttype'),
+                'corrigendum' => $this->request->getPost('corrigendum'),
                 'status' => $this->request->getPost('result_status'),
                 'upload_by' => $loggeduserId
             ];

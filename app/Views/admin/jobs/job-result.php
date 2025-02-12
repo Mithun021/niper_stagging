@@ -52,13 +52,19 @@ use App\Models\Employee_model;
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <span for="resultfile">Result File Upload:</span>
                                 <input type="file" name="resultfile" id="resultfile" class="form-control form-control-sm" required>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <span for="resultfile">Corrigendum:</span>
+                                <input type="text" name="corrigendum" id="corrigendum" class="form-control form-control-sm" >
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <span for="resulttype">Result Type:</span>
                                 <select name="resulttype" id="resulttype" class="form-control form-control-sm" required>
@@ -75,7 +81,7 @@ use App\Models\Employee_model;
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <span for="result_status">Result Status:</span>
                                 <select name="result_status" id="result_status" class="form-control form-control-sm" required>
@@ -108,6 +114,7 @@ use App\Models\Employee_model;
                             <td>Advestisment ID</td>
                             <td>Result Title</td>
                             <td>Result type</td>
+                            <td>Corrigendum</td>
                             <td>Upload by</td>
                             <td>Action</td>
                         </tr>
@@ -133,6 +140,7 @@ use App\Models\Employee_model;
                             <td><?php $jobs = $job_detail_model->get($value['jobs_id']); echo $jobs['title'] ?? ''; ?></td>
                             <td><?= $value['result_title'] ?></td>
                             <td><?= $value['result_type'] ?></td>
+                            <td><?= $value['corrigendum'] ?></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
