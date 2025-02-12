@@ -41,7 +41,7 @@ $department_model = new Department_model();
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Subject Title of the Thesis</span>
-                            <input type="text" name="subject_thesis" id="" class="form-control form-control-sm" maxlength="4">
+                            <input type="text" name="subject_thesis" id="" class="form-control form-control-sm">
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Name of the University</span>

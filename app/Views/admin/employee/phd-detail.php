@@ -36,46 +36,50 @@ $department_model = new Department_model();
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <span for="">Name of the Student<span class="text-danger">*</span></span>
-                            <input type="text" name="student_name" id="" class="form-control form-control-sm" required>
+                            <span for="">Type of the Degree<span class="text-danger">*</span></span>
+                            <input type="text" name="degree_type" id="" class="form-control form-control-sm" required>
                         </div>
                         <div class="form-group col-md-4">
-                            <span for="">Subject Title of the Thesis</span>
-                            <input type="text" name="subject_thesis" id="" class="form-control form-control-sm" maxlength="4">
+                            <span for="">Subjects Studied</span>
+                            <input type="text" name="subject_studied" id="" class="form-control form-control-sm" >
                         </div>
                         <div class="form-group col-md-4">
-                            <span for="">Name of the University</span>
-                            <input type="text" name="university_name" id="" class="form-control form-control-sm">
+                            <span for="">Title of the Ph.D thesis</span>
+                            <input type="text" name="phd_thesis" id="" class="form-control form-control-sm">
                         </div>
                         <div class="form-group col-md-4">
-                            <span for="">Department</span>
-                            <select name="department" id="" class="form-control form-control-sm">
-                                <option value="">--Select--</option>
-                            <?php foreach ($department as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
-                            <?php } ?>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <span for="">University (Country)</span>
-                            <input type="text" name="university_country" id="" class="form-control form-control-sm">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <span for="">Role</span>
-                            <select name="role" id="" class="form-control form-control-sm">
-                                <option value="">--Select--</option>
-                                <option value="Supervisor">Supervisor</option>
-                                <option value="Co-superviser">Co-superviser</option>
-                            </select>
+                            <span for="">Degree Status</span>
+                            <input type="text" name="degree_status" id="" class="form-control form-control-sm">
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Registration Date</span>
                             <input type="date" name="registration_date" id="" class="form-control form-control-sm">
                         </div>
                         <div class="form-group col-md-4">
+                            <span for="">Submission Date</span>
+                            <input type="date" name="submission_date" id="" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <span for="">Award Date</span>
+                            <input type="date" name="award_date" id="" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <span for="">University</span>
+                            <input type="text" name="university" id="" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <span for="">University(Country)</span>
+                            <input type="text" name="university_country" id="" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <span for="">University(State/UT)</span>
+                            <input type="text" name="university_state" id="" class="form-control form-control-sm">
+                        </div>
+<!--                         
+                        <div class="form-group col-md-4">
                             <span for="">Document Upload (jpg,jpeg,pdf,png)</span>
                             <input type="file" name="document_file" id="" class="form-control form-control-sm" accept=".png,.jpg,.jpeg">
-                        </div>
+                        </div> -->
                         <div class="form-group col-md-12">
                             <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
                         </div>
