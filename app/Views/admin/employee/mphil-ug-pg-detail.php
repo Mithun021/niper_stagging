@@ -124,6 +124,7 @@ $employee_model = new Employee_model();
                         <thead>
                             <tr>
                                 <td>SN</td>
+                                <td>File</td>
                                 <td>Emp. ID</td>
                                 <td>Student Title</td>
                                 <td>Student Name</td>
