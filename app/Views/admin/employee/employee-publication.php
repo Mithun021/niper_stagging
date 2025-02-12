@@ -44,15 +44,13 @@
                             <textarea name="Pubtitle" id="editor2" class="form-control form-control-sm" ></textarea>
                         </div>
                     </div>
-                    <div class="col-lg-12">
-                        <!-- Publication Description -->
+                    <!-- <div class="col-lg-12">
                         <div class="form-group">
                             <span for="Pubdesc">Publication Description:</span>
                             <textarea id="editor" name="description"></textarea>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-lg-6">
-                        <!-- Keywords -->
                         <div class="form-group">
                             <span for="Pubkeyword">Keywords:</span>
                             <input type="text" name="Pubkeyword" id="Pubkeyword" class="form-control form-control-sm" placeholder="e.g., machine learning, AI">
