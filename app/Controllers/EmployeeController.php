@@ -6,6 +6,7 @@ use App\Models\Books_chapter_coauthor;
 use App\Models\Books_chapter_model;
 use App\Models\Department_model;
 use App\Models\Designation_model;
+use App\Models\Emp_other_academic_detail_model;
 use App\Models\Employee_academic_details_model;
 use App\Models\Employee_additioonal_charge_model;
 use App\Models\Employee_awards_model;
@@ -937,7 +938,7 @@ use App\Models\Organisation_type_model;
 
         public function employee_other_academic_details(){
             $employee_model = new Employee_model();
-            $employee_academic_details_model = new Employee_academic_details_model();
+            $employee_academic_details_model = new Emp_other_academic_detail_model();
             $data = ['title' => 'Employee Other Acadmic Details'];
             if ($this->request->is('get')) {
                 $data['employee'] = $employee_model->get();
@@ -948,7 +949,20 @@ use App\Models\Organisation_type_model;
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
-
+                $data = [
+                    'employee_id' => $this->request->getPost('employee_id'),
+                    'examination_type' => $this->request->getPost('examination_type'),
+                    'passing_year' => $this->request->getPost('passing_year'),
+                    'conduct_by' => $this->request->getPost('conduct_by'),
+                    'roll_no' => $this->request->getPost('roll_no'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $employee_academic_details_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/emp-other-academic-details')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                } else {
+                    return redirect()->to('admin/emp-other-academic-details')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 
