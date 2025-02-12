@@ -164,7 +164,7 @@ $department_model = new Department_model();
     function toggleRegDateField() {
         var status = document.getElementById("status").value;
         var regDateDiv = document.querySelector(".reg_date");
-        if (status === "Ongoing") {
+        if (status === "Ongoing" || status === "") {
             regDateDiv.style.display = "none";
         } else {
             regDateDiv.style.display = "block";
