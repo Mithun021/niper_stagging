@@ -18,6 +18,7 @@ use App\Models\Employee_projects_model;
 use App\Models\Employee_publication_author_model;
 use App\Models\Employee_publication_model;
 use App\Models\Nature_of_work_model;
+use App\Models\Ongoing_phd_model;
 use App\Models\Organisation_type_model;
 use App\Models\Phd_detail_model;
 
@@ -972,12 +973,12 @@ use App\Models\Phd_detail_model;
         public function phd_detail(){
             $employee_model = new Employee_model();
             $department_model = new Department_model();
-            $phd_detail_model = new Phd_detail_model();
+            $ongoing_phd_model = new Ongoing_phd_model();
             $data = ['title' => 'PHD Details'];
             if ($this->request->is('get')) {
                 $data['employee'] = $employee_model->get();
                 $data['department'] = $department_model->get();
-                $data['phd_detail'] = $phd_detail_model->get();
+                $data['phd_detail'] = $ongoing_phd_model->get();
                 return view('admin/employee/phd-detail',$data);
             }else if ($this->request->is('post')) {
                 $sessionData = session()->get('loggedUserData');
@@ -1004,7 +1005,7 @@ use App\Models\Phd_detail_model;
                     'document_file' => $documentNewName,
                     'upload_by' => $loggeduserId,
                 ];
-                $result = $phd_detail_model->add($data);
+                $result = $ongoing_phd_model->add($data);
                 if ($result === true) {
                     return redirect()->to('admin/phd-detail')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
                 } else {
@@ -1031,17 +1032,47 @@ use App\Models\Phd_detail_model;
         }
 
         public function ongoing_phd(){
+            $department_model = new Department_model();
+            $ongoing_phd_model = new Ongoing_phd_model();
             $employee_model = new Employee_model();
             $employee_academic_details_model = new Emp_other_academic_detail_model();
             $data = ['title' => 'Ongoing PHD Details'];
             if ($this->request->is('get')) {
                 $data['employee'] = $employee_model->get();
+                $data['department'] = $department_model->get();
+                $data['ongoing_php'] = $ongoing_phd_model->get();
                 $data['employee_academic_details'] = $employee_academic_details_model->get();
                 return view('admin/employee/ongoing-phd',$data);
             }else if ($this->request->is('post')) {
                 $sessionData = session()->get('loggedUserData');
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $document = $this->request->getFile('document_file');
+                if ($document->isValid() && ! $document->hasMoved()) {
+                    $documentNewName = "phd_detail".rand(0,9999).$document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/employee', $documentNewName);    
+                }else{
+                 $documentNewName = "";
+                }
+
+                $data = [
+                    'employee_id' => $this->request->getPost('employee_id'),
+                    'student_name' => $this->request->getPost('student_name'),
+                    'subject_thesis' => $this->request->getPost('subject_thesis'),
+                    'university_name' => $this->request->getPost('university_name'),
+                    'department' => $this->request->getPost('department'),
+                    'university_country' => $this->request->getPost('university_country'),
+                    'role' => $this->request->getPost('role'),
+                    'registration_date' => $this->request->getPost('registration_date'),
+                    'document_file' => $documentNewName,
+                    'upload_by' => $loggeduserId,
+                ];
+                $result = $ongoing_phd_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/phd-detail')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                } else {
+                    return redirect()->to('admin/phd-detail')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
         }

@@ -1,9 +1,9 @@
 <?php
     namespace App\Models;
     use CodeIgniter\Model;
-    class Phd_detail_model extends Model
+    class Ongoing_phd_model extends Model
     {
-        protected $table         = 'phd_details';
+        protected $table         = 'ongoing_phd';
         protected $primaryKey = 'id';
         protected $allowedFields = ['employee_id','student_name','subject_thesis','university_name','department','university_country','role','registration_date','document_file','upload_by'];
         protected $createdField  = 'created_at';
