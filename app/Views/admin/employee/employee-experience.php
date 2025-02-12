@@ -49,21 +49,18 @@ $employee_model = new Employee_model();
                     <div id="clone_content">
                         <div class="card card-body" id="clone_employee_data">
                             <div class="row">
-                                <div class="col-lg-6 form-group">
+                                <div class="col-lg-4 form-group">
                                     <span for="orgname">Organization Name:<span class="text-danger">*</span></span>
                                     <input type="text" name="orgname[]" id="orgname" class="form-control form-control-sm" required>
                                 </div>
-                                <div class="col-lg-3 form-group">
+                                <div class="col-lg-4 form-group">
                                     <span for="startdate">Start Date:<span class="text-danger">*</span></span>
                                     <input type="date" name="startdate[]" id="startdate" class="form-control form-control-sm" required>
                                 </div>
-                                <div class="col-lg-3 form-group">
+                                <div class="col-lg-4 form-group">
                                     <span for="enddate">End Date:</span>
                                     <input type="date" name="enddate[]" id="enddate" class="form-control form-control-sm">
-                                </div>
-                                <div class="col-lg-12 form-group">
-                                    <span for="enddate"><input type="checkbox" name="stillwork[]" id="stillwork" value="1"> Still Work (check if you are still working):</span>
-
+                                  	<span for="enddate"><input type="checkbox" name="stillwork[]" id="stillwork" value="1"> Still Work (check if you are still working):</span>
                                 </div>
                                 <div class="col-lg-12 form-group">
                                     <span for="expdesc">Experience Designation:<span class="text-danger">*</span></span>
@@ -80,7 +77,7 @@ $employee_model = new Employee_model();
                                 </div>
                                 <div class="col-lg-6 form-group">
                                     <span for="natureofwork">Nature of Work:<span class="text-danger">*</span></span>
-                                    <select name="natureofwork[]" id="natureofwork" class="form-control form-control-sm" required>
+                                    <select name="natureofwork[]" id="natureofwork" class="form-control form-control-sm">
                                     <?php foreach($nature_of_work as $value){ ?>
                                         <option value="<?= $value['name'] ?>"><?= $value['name'] ?></option>
                                     <?php } ?> 
@@ -130,7 +127,7 @@ $employee_model = new Employee_model();
                                     <td><?php $emp = $employee_model->get($value['emplyee_id']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                     <td><?= $value['organization_name'] ?></td>
-                                    <td><?= $value['start_date'] . " - " . $value['end_date'] ?></td>
+                                    <td><?= $value['start_date'] . " - " ?> <?php if ($value['end_date'] === '0000-00-00') { if($value['stillwork'] == 1){ echo "Still Work."; } }else { echo $value['end_date']; } ?></td>
                                     <td><?= $value['org_type'] ?></td>
                                     <td><?= $value['work_nature'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
