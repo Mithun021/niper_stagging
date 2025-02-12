@@ -32,7 +32,6 @@ $employee_model = new Employee_model();
                                     <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
                                 <?php } ?>
                             </select>
-                        </div>lect>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Examination Type<span class="text-danger">*</span></span>
