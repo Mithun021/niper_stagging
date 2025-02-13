@@ -64,16 +64,24 @@ use App\Models\News_model;
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
                 $news_file = $this->request->getFile('news_file');
-                if ($news_file->isValid() && ! $news_file->hasMoved()) {
-                    $news_fileImageName = "admission".$news_file->getRandomName();
-                    $news_file->move(ROOTPATH . 'public/admin/uploads/news', $news_fileImageName);    
-                }else{
-                 $news_fileImageName = "";
+
+                $edit_news = $news_model->get($id);
+                $old_news_file =  $edit_news['upload_file'];
+
+                if ($news_file->isValid() && !$news_file->hasMoved()) {
+                    if(file_exists("public/admin/uploads/news/".$old_news_file)){
+                        unlink("public/admin/uploads/news/".$old_news_file);
+                    }
+                    $new_news_file = $news_file->getRandomName();
+                    $news_file->move(ROOTPATH.'public/admin/uploads/news/', $new_news_file);
+                }
+                else{
+                    $new_news_file = $old_news_file;
                 }
                 $data = [
                     'publish_date' => $this->request->getPost('news_date'),
                     'title' => $this->request->getPost('news_title'),
-                    'upload_file' => $news_fileImageName,
+                    'upload_file' => $new_news_file,
                     'department_id' => $this->request->getPost('department_id'),
                     'marquee_status' => $this->request->getPost('marquee_status'),
                     'status' => $this->request->getPost('status'),
