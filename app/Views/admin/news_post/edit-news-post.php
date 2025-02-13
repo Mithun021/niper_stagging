@@ -23,7 +23,7 @@ use App\Models\Employee_model;
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/news-post" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/edit-news-post/<?= $new_id ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -135,7 +135,7 @@ use App\Models\Employee_model;
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                     <!-- <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a> -->
                                     <a href="<?= base_url() ?>admin/edit-news-post/<?= $value['id'] ?>" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
-                                    <a href="<?= base_url() ?>admin/delete-news-post<?= $value['id'] ?>" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    <a href="<?= base_url() ?>admin/delete-news-post/<?= $value['id'] ?>" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
                                 </div>
                             </td>
                         </tr>

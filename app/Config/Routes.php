@@ -18,6 +18,8 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('logout', 'AdminControllers::logout');
 
     $routes->match(['get','post'],'news-post', 'NewsController::news_post');
+    $routes->match(['get','post'],'edit-news-post/(:num)', 'NewsController::edit_news_post/$1');
+
     $routes->match(['get','post'],'event-post', 'EventsController::event_post');
     $routes->match(['get','post'],'event-link', 'EventsController::event_link');
     $routes->match(['get','post'],'event-video', 'EventsController::event_video');
