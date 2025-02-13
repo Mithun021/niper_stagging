@@ -49,7 +49,7 @@ use App\Models\Employee_model;
                                 <select name="department_id" id="department_id" class="form-control form-control-sm" required >
                                 <option value="">Select Deparrtment</option>
                                 <?php foreach ($department as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?php if($edit_news['department_id'] == $value['id']){ echo "selected"; }  ?>><?= $value['name'] ?></option>
                                 <?php } ?>
                                 </select>
                             </div>
@@ -58,8 +58,8 @@ use App\Models\Employee_model;
                             <div class="form-group">
                                 <span>Marquee Status</span>
                                 <select name="marquee_status" id="marquee_status" class="form-control form-control-sm">
-                                    <option value="0" selected>Inactive</option>
-                                    <option value="1">Active</option>
+                                    <option value="0" <?php if($edit_news['marquee_status'] == 0){ echo "selected"; } ?>>Inactive</option>
+                                    <option value="1" <?php if($edit_news['marquee_status'] == 1){ echo "selected"; } ?>>Active</option>
                                 </select>
                             </div>
                         </div>
@@ -67,16 +67,16 @@ use App\Models\Employee_model;
                             <div class="form-group">
                                 <span>News Status</span>
                                 <select name="status" id="status" class="form-control form-control-sm">
-                                    <option value="1">Publish</option>
-                                    <option value="2">Archive</option>
-                                    <option value="0">Draft</option>
+                                    <option value="1" <?php if($edit_news['status'] == 1){ echo "selected"; } ?>>Publish</option>
+                                    <option value="2" <?php if($edit_news['status'] == 2){ echo "selected"; } ?>>Archive</option>
+                                    <option value="0" <?php if($edit_news['status'] == 0){ echo "selected"; } ?>>Draft</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <span for="">Desription</span>
-                                <textarea id="editor" name="description"></textarea>
+                                <textarea id="editor" name="description"><?= $edit_news['description'] ?></textarea>
                             </div>
                         </div>
                     </div>
