@@ -54,6 +54,7 @@ use App\Models\News_model;
                 $data['new_id'] = $id;
                 $data['department'] = $department_model->activeData();
                 $data['news'] = $news_model->get();
+                $data['edit_news'] = $news_model->get($id);
                 // print_r($data['department']);die;
 
                 return view('admin/news_post/edit-news-post',$data);

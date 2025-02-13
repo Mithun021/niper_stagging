@@ -28,13 +28,13 @@ use App\Models\Employee_model;
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Publish Date<span class="text-danger">*</span></span>
-                                <input type="date" class="form-control form-control-sm" name="news_date" value="<?= date('Y-m-d') ?>">
+                                <input type="date" class="form-control form-control-sm" name="news_date" value="<?= $edit_news['publish_date'] ?>">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Titles<span class="text-danger">*</span></span>
-                                <input type="text" class="form-control form-control-sm" name="news_title" required>
+                                <input type="text" class="form-control form-control-sm" name="news_title" value="<?= $edit_news['title'] ?>" required>
                             </div>
                         </div>
                         <div class="col-md-6">
