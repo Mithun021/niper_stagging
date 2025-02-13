@@ -80,7 +80,7 @@ use App\Models\News_model;
                     'description' => $this->request->getPost('description'),
                     'upload_by' => $loggeduserId
                 ];
-                $result = $news_model->add($data);
+                $result = $news_model->add($data,$id);
                 if ($result === true) {
                     return redirect()->to('admin/edit-news-post')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
