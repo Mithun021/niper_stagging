@@ -107,7 +107,9 @@ use App\Models\News_model;
             }
             $delete = $news_model->delete($id);
             if ($delete) {
-                echo true;
+                return redirect()->to('admin/news-post')->with('status','<div class="alert alert-success" role="alert"> Data delete Successful </div>');
+            } else {
+                return redirect()->to('admin/news-post')->with('status','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
             }
         }
 
