@@ -96,5 +96,20 @@ use App\Models\News_model;
                 }
             }
         }
+
+
+        public function delete_news_post($id){
+            $news_model = new News_model();
+            $edit_news = $news_model->get($id);
+            $old_news_file =  $edit_news['upload_file'];
+            if(file_exists("public/admin/uploads/news/".$old_news_file)){
+                unlink("public/admin/uploads/news/".$old_news_file);
+            }
+            $delete = $news_model->delete($id);
+            if ($delete) {
+                echo true;
+            }
+        }
+
     }
 ?>
