@@ -41,7 +41,6 @@ use App\Models\Employee_model;
                             <div class="form-group">
                                 <span for="">Upload File(PDF)</span>
                                 <input type="file" class="form-control form-control-sm" name="news_file" accept=".pdf">
-                                <?= $edit_news['upload_file'] ?>
                                 <?php if (!empty($edit_news['upload_file']) && file_exists('public/admin/uploads/news/' . $edit_news['upload_file'])): ?>
                                     <a href="<?= base_url() ?>public/admin/uploads/news/<?= $edit_news['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
                                 <?php else: ?>
