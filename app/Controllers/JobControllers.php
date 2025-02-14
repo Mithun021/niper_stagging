@@ -183,6 +183,18 @@ class JobControllers extends BaseController
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId']; 
             }
+            $data = [
+                'job_id' => $this->request->getPost('job_id'),   
+                'link_description' => $this->request->getPost('link_description'),
+                'job_url' => $this->request->getPost('job_link'),
+                'upload_by' => $loggeduserId,             
+            ];
+            $result = $job_weblink_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/job-web-link')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/job-web-link')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
         }
     }
 
@@ -198,6 +210,19 @@ class JobControllers extends BaseController
             $sessionData = session()->get('loggedUserData');
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $data = [
+                'job_id' => $this->request->getPost('job_id'),   
+                'video_title' => $this->request->getPost('video_title'),
+                'video_description' => $this->request->getPost('video_description'),
+                'video_link' => $this->request->getPost('video_link'),
+                'upload_by' => $loggeduserId,             
+            ];
+            $result = $job_videolink_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/job-video')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/job-video')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
         }
     }

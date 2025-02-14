@@ -37,8 +37,8 @@ $employee_model = new Employee_model();
                         <input type="text" class="form-control form-control-sm" name="link_description" required>
                     </div>
                     <div class="form-group">
-                        <span for="">Event URL Link<span class="text-danger">*</span></span>
-                        <input type="url" class="form-control form-control-sm" name="event_link" required>
+                        <span for="">Job URL Link<span class="text-danger">*</span></span>
+                        <input type="url" class="form-control form-control-sm" name="job_link" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
