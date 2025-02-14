@@ -165,7 +165,7 @@
                         <thead>
                             <tr>
                                 <td>SN</td>
-                                <td>Ext File / Adv File / Syllabus</td>
+                                <td>Adv File / Syllabus</td>
                                 <td>Status</td>
                                 <td>Adv Title</td>
                                 <td>App. Date & Time</td>
@@ -181,12 +181,6 @@
                             <tr>
                                 <td><?= ++$key ?></td>
                                 <td>
-                                    <?php if (!empty($value['ext_notice_file']) && file_exists('public/admin/uploads/jobs/' . $value['ext_notice_file'])): ?>
-                                        <a href="<?= base_url() ?>public/admin/uploads/jobs/<?= $value['ext_notice_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
-                                    <?php else: ?>
-                                        <img src="<?= base_url() ?>public/admin/uploads/jobs/invalid_image.png" alt="" height="40px">
-                                    <?php endif; ?>
-                                    
                                     <?php if (!empty($value['adv_file']) && file_exists('public/admin/uploads/jobs/' . $value['adv_file'])): ?>
                                         <a href="<?= base_url() ?>public/admin/uploads/jobs/<?= $value['adv_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
                                     <?php else: ?>
