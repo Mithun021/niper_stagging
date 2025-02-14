@@ -22,7 +22,7 @@ use App\Models\News_model;
                 }
                 $news_file = $this->request->getFile('news_file');
                 if ($news_file->isValid() && ! $news_file->hasMoved()) {
-                    $news_fileImageName = "admission".$news_file->getRandomName();
+                    $news_fileImageName = "news".$news_file->getRandomName();
                     $news_file->move(ROOTPATH . 'public/admin/uploads/news', $news_fileImageName);    
                 }else{
                  $news_fileImageName = "";
