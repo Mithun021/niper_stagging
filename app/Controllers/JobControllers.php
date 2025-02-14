@@ -7,6 +7,8 @@ use App\Models\Job_category_model;
 use App\Models\Job_detail_model;
 use App\Models\Job_extension_model;
 use App\Models\Job_result_model;
+use App\Models\Job_videolink_model;
+use App\Models\Job_weblink_model;
 
 class JobControllers extends BaseController
 {
@@ -169,8 +171,12 @@ class JobControllers extends BaseController
     }
 
     public function job_web_link(){
+        $job_weblink_model = new Job_weblink_model();
+        $job_detail_model = new Job_detail_model();
         $data = ['title' => 'Job Web Link'];
         if ($this->request->is("get")) {
+            $data['job_details'] = $job_detail_model->get();
+            $data['job_weblink'] = $job_weblink_model->get();
             return view('admin/jobs/job-web-link',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
@@ -181,8 +187,12 @@ class JobControllers extends BaseController
     }
 
     public function job_video(){
+        $job_videolink_model = new Job_videolink_model();
+        $job_detail_model = new Job_detail_model();
         $data = ['title' => 'Job Video'];
         if ($this->request->is("get")) {
+            $data['job_details'] = $job_detail_model->get();
+            $data['job_video'] = $job_videolink_model->get();
             return view('admin/jobs/job-video',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');

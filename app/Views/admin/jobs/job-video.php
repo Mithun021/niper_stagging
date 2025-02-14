@@ -1,10 +1,10 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?=  $this->section("body-content"); ?>
 <?php
-    use App\Models\Employee_model;
-    use App\Models\Events_model;
-    $events_model = new Events_model();
-    $employee_model = new Employee_model();
+use App\Models\Employee_model;
+use App\Models\Job_detail_model;
+$job_detail_model = new Job_detail_model();
+$employee_model = new Employee_model();
 ?>
 <style>
     
@@ -24,12 +24,12 @@
                 ?>
                 <form method="post" action="<?= base_url('admin/event-video') ?>">
                     <div class="form-group">
-                        <span>Event ID:</span>
-                        <select name="event_id" class="form-control form-control-sm">
-                            <option value="">Select Event</option>
-                            <?php foreach ($events as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
-                            <?php } ?>
+                        <span for="">Job id<span class="text-danger">*</span></span>
+                        <select class="form-control form-control-sm" name="job_id" required>
+                            <option value="">--Select--</option>
+                        <?php foreach ($job_details as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                        <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">
@@ -71,11 +71,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($event_video as $key => $value) { ?>
+                    <?php foreach ($job_video as $key => $value) { ?>
                         <tr>
                             <td><?= $key+1 ?></td>
-                            <td><?php $event = $events_model->get($value['event_id']);
-                                        echo $event['title'] ?></td>
+                            <td><?= $job_detail_model->get($value['job_id'])['title'] ?? '' ?></td>
                             <td><a href="<?= $value['vodeo_link'] ?>" target="_blank"><?= $value['title'] ?></a></td>
                             <td><a href="<?= $value['vodeo_link'] ?>" target="_blank"><?= $value['description'] ?></a></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
