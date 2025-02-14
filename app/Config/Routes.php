@@ -89,6 +89,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'act-rules-category', 'AdminControllers::act_rules_category');
 
     $routes->match(['get','post'],'job-details', 'JobControllers::job_details');
+    $routes->match(['get','post'],'job-extension', 'JobControllers::job_extension');
+    $routes->match(['get','post'],'job-web-link', 'JobControllers::job_web_link');
+    $routes->match(['get','post'],'job-video', 'JobControllers::job_video');
     $routes->match(['get','post'],'job-result', 'JobControllers::job_result');
     $routes->match(['get','post'],'job-category', 'JobControllers::job_category');
 

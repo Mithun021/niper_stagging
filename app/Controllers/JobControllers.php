@@ -138,4 +138,41 @@ class JobControllers extends BaseController
             }
         }
     }
+
+    public function job_extension(){
+        $data = ['title' => 'Job Extension'];
+        if ($this->request->is("get")) {
+            return view('admin/jobs/job-extension',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+        }
+    }
+
+    public function job_web_link(){
+        $data = ['title' => 'Job Web Link'];
+        if ($this->request->is("get")) {
+            return view('admin/jobs/job-web-link',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+        }
+    }
+
+    public function job_video(){
+        $data = ['title' => 'Job Video'];
+        if ($this->request->is("get")) {
+            return view('admin/jobs/job-video',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+        }
+    }
+
 }

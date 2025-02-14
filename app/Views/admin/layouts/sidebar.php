@@ -65,6 +65,9 @@
                     class="mdi mdi-table-merge-cells"></i><span>Jobs &amp; Result</span></a>
             <ul class="sub-menu" aria-expanded="false">
                 <li><a href="<?= base_url() ?>admin/job-details">Job Details</a></li>
+                <li><a href="<?= base_url() ?>admin/job-extension">Job Extension</a></li>
+                <li><a href="<?= base_url() ?>admin/job-web-link">Job Web Link</a></li>
+                <li><a href="<?= base_url() ?>admin/job-video">Job Video</a></li>
                 <li><a href="<?= base_url() ?>admin/job-result">Job Result</a></li>
                 <li><a href="<?= base_url() ?>admin/job-category">Job Category</a></li>
             </ul>
