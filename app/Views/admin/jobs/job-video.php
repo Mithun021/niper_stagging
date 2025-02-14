@@ -22,7 +22,7 @@ $employee_model = new Employee_model();
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/event-video') ?>">
+                <form method="post" action="<?= base_url('admin/job-video') ?>">
                     <div class="form-group">
                         <span for="">Job id<span class="text-danger">*</span></span>
                         <select class="form-control form-control-sm" name="job_id" required>
