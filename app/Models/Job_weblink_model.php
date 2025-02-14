@@ -3,7 +3,7 @@
     use CodeIgniter\Model;
     class Job_weblink_model extends Model
     {
-        protected $table         = 'job_extension';
+        protected $table         = 'job_web_link';
         protected $primaryKey = 'id';
         protected $allowedFields = ['job_id','link_description','job_url','upload_by'];
         protected $createdField  = 'created_at';
