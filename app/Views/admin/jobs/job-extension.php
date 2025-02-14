@@ -16,7 +16,7 @@
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/job-extension">
+                <form method="post" action="<?= base_url() ?>admin/job-extension" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Job id<span class="text-danger">*</span></span>
                         <select class="form-control form-control-sm" name="job_id" required>
