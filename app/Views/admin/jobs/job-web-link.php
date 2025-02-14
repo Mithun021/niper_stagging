@@ -70,7 +70,7 @@ $employee_model = new Employee_model();
                         <tr>
                             <td><?= $key+1 ?></td>
                             <td><?= $job_detail_model->get($value['job_id'])['title'] ?? '' ?></td>
-                            <td><a href="<?= $value['event_link'] ?>" target="_blank"><?= $value['link_description'] ?></a></td>
+                            <td><a href="<?= $value['job_url'] ?>" target="_blank"><?= $value['link_description'] ?></a></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                             <td><?= date("d-m-Y", strtotime($value['created_at'])) ?></td>
                             <td>
