@@ -19,7 +19,7 @@
                 <form method="post" action="<?= base_url() ?>admin/job-extension">
                     <div class="form-group">
                         <span for="">Job id<span class="text-danger">*</span></span>
-                        <select class="form-control form-control-sm" name="category_name" required>
+                        <select class="form-control form-control-sm" name="job_id" required>
                             <option value="">--Select--</option>
                         <?php foreach ($job_details as $key => $value) { ?>
                             <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
