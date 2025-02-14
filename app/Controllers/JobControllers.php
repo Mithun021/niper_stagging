@@ -140,8 +140,10 @@ class JobControllers extends BaseController
     }
 
     public function job_extension(){
+        $job_detail_model = new Job_detail_model();
         $data = ['title' => 'Job Extension'];
         if ($this->request->is("get")) {
+            $data['job_details'] = $job_detail_model->get();
             return view('admin/jobs/job-extension',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');

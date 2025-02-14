@@ -100,18 +100,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <span for="">Extension notice title<span class="text-danger">*</span></span>
-                                <input type="text" class="form-control form-control-sm" name="ext_notice_title">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <span for="">Extension notice file upload(JPG,PNG,PDF)<span class="text-danger">*</span></span>
-                                <input type="file" class="form-control form-control-sm" name="ext_notice_file" accept=".jpg, .png, .pdf" required>
-                            </div>
-                        </div>
+                        
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Revised application last datetime<span class="text-danger">*</span></span>
