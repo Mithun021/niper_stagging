@@ -1203,6 +1203,36 @@ use App\Models\Youtube_link_model;
                 }
             }
         }
+
+
+        public function governmental_link(){
+            $data = ['title' => 'Governmental Link'];
+            if ($this->request->is("get")) {
+                return view('admin/governmental-link',$data);
+            }else if ($this->request->is("post")) {
+    
+            }
+        }
+    
+        public function newsletter(){
+            $data = ['title' => 'Newsletter'];
+            if ($this->request->is("get")) {
+                return view('admin/newsletter',$data);
+            }else if ($this->request->is("post")) {
+    
+            }
+        }
+    
+        public function flash_news(){
+            $data = ['title' => 'Flash News'];
+            if ($this->request->is("get")) {
+                return view('admin/flash-news',$data);
+            }else if ($this->request->is("post")) {
+    
+            }
+        }
+
+
     }
 
 ?>

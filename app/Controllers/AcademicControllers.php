@@ -329,31 +329,4 @@ class AcademicControllers extends BaseController
         }
     }
 
-    public function governmental_link(){
-        $data = ['title' => 'Govermental Link'];
-        if ($this->request->is("get")) {
-            return view('admin/governmental-link',$data);
-        }else if ($this->request->is("post")) {
-
-        }
-    }
-
-    public function newsletter(){
-        $data = ['title' => 'Newsletter'];
-        if ($this->request->is("get")) {
-            return view('admin/newsletter',$data);
-        }else if ($this->request->is("post")) {
-
-        }
-    }
-
-    public function flash_news(){
-        $data = ['title' => 'Flash News'];
-        if ($this->request->is("get")) {
-            return view('admin/flash-news',$data);
-        }else if ($this->request->is("post")) {
-
-        }
-    }
-
 }
