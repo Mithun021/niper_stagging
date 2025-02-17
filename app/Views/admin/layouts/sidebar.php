@@ -155,6 +155,9 @@
                 <li><a href="<?= base_url() ?>admin/instrument-facility">Instrument & Facilities</a></li>
                 <li><a href="<?= base_url() ?>admin/instrument-rates">Instrument Rates</a></li>
                 <li><a href="<?= base_url() ?>admin/private-research-labs">Private Research Labs</a></li>
+                <li><a href="<?= base_url() ?>admin/governmental-link">Governmental Link</a></li>
+                <li><a href="<?= base_url() ?>admin/newsletter">Newsletter</a></li>
+                <li><a href="<?= base_url() ?>admin/flash-news">Flash News</a></li>
             </ul>
         </li>
 
