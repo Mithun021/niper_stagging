@@ -67,7 +67,7 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">University (Country)</span>
-                            <select name="university_country" id="" class="form-control form-control-sm">
+                            <select name="university_country" id="university_country" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
                             <?php foreach ($country as $key => $value) { ?>
                                 <option value="<?= $value['country'] ?>"><?= $value['country'] ?></option>
@@ -163,7 +163,6 @@ $employee_model = new Employee_model();
 
 <script>
     $(document).ready(function () {
-        alert('ok');
         $('#university_country').on('change', function () { 
             // e.preventDefault();
             var country_name = $(this).val();
