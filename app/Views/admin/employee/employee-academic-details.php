@@ -76,7 +76,7 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">University (State/UT)</span>
-                            <input type="text" name="university_state" id="" class="form-control form-control-sm">
+                            <input type="text" name="university_state" id="university_state" class="form-control form-control-sm">
                         </div>
 
                         <div class="form-group col-md-4">
@@ -166,10 +166,10 @@ $employee_model = new Employee_model();
         $('#university_country').on('change', function () { 
             // e.preventDefault();
             var country_name = $(this).val();
-            alert(country_name);
+            // alert(country_name);
             $.ajax({
                 type: "post",
-                url: "<?= base_url() ?>getState",
+                url: "<?= base_url() ?>getStates",
                 data: {country_name : country_name},
                 dataType: "json",
                 success: function (response) {
