@@ -4,6 +4,7 @@
 use App\Models\Books_chapter_author;
 use App\Models\Books_chapter_coauthor;
 use App\Models\Books_chapter_model;
+use App\Models\Country_model;
 use App\Models\Department_model;
 use App\Models\Designation_model;
 use App\Models\Emp_other_academic_detail_model;
@@ -898,9 +899,11 @@ use App\Models\Phd_detail_model;
 
         public function employee_academic_details(){
             $employee_model = new Employee_model();
+            $country_model = new Country_model();
             $employee_academic_details_model = new Employee_academic_details_model();
             $data = ['title' => 'Employee Acadmic Details'];
             if ($this->request->is('get')) {
+                $data['country'] = $country_model->getCountry();
                 $data['employee'] = $employee_model->get();
                 $data['employee_academic_details'] = $employee_academic_details_model->get();
                 return view('admin/employee/employee-academic-details',$data);

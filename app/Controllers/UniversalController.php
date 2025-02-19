@@ -1,6 +1,7 @@
 <?php
     namespace App\Controllers;
 
+use App\Models\Country_model;
 use App\Models\Department_model;
 use App\Models\Designation_model;
 use App\Models\Employee_model;
@@ -36,6 +37,13 @@ use App\Models\Student_model;
             $evtfeestype = $this->request->getPost('evtfeestype');
             $event_fee_categories = $event_fee_subcategory_model->getEventFeeSubcategories($event_id,$evtfeestype);
             return $this->response->setJSON($event_fee_categories);
+        }
+
+        public function getState($country_name){
+            $country_model = new Country_model();
+            $country_name = $this->request->getPost('country_name');
+            $country = $country_model->getState($country_name);
+            return $this->response->setJSON($country);
         }
     }
 ?>

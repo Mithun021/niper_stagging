@@ -67,7 +67,12 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">University (Country)</span>
-                            <input type="text" name="university_country" id="" class="form-control form-control-sm">
+                            <select name="university_country" id="" class="form-control form-control-sm">
+                                <option value="">--Select--</option>
+                            <?php foreach ($country as $key => $value) { ?>
+                                <option value="<?= $value['country'] ?>"><?= $value['country'] ?></option>
+                            <?php } ?>
+                            </select>
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">University (State/UT)</span>
@@ -152,5 +157,26 @@ $employee_model = new Employee_model();
         </div>
     </div>
 </div>
+
+<!-- jQuery  -->
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#university_country').on('change', function (e) { 
+            e.preventDefault();
+            var country_name = $(this).val();
+            $.ajax({
+                type: "post",
+                url: "<?= base_url() ?>getState",
+                data: {country_name : country_name},
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+        })
+    });
+</script>
 
 <?= $this->endSection() ?>
