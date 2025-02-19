@@ -163,9 +163,10 @@ $employee_model = new Employee_model();
 
 <script>
     $(document).ready(function () {
-        $('#university_country').on('change', function (e) { 
-            e.preventDefault();
+        $('#university_country').on('change', function () { 
+            // e.preventDefault();
             var country_name = $(this).val();
+            alert(country_name);
             $.ajax({
                 type: "post",
                 url: "<?= base_url() ?>getState",
