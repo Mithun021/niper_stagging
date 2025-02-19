@@ -163,6 +163,7 @@ $employee_model = new Employee_model();
 
 <script>
     $(document).ready(function () {
+        alert('ok');
         $('#university_country').on('change', function () { 
             // e.preventDefault();
             var country_name = $(this).val();
