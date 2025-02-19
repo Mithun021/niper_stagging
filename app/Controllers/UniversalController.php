@@ -39,11 +39,11 @@ use App\Models\Student_model;
             return $this->response->setJSON($event_fee_categories);
         }
 
-        public function getStates($country_name){
-            $country_model = new Country_model();
+        public function getStates(){
             $country_name = $this->request->getPost('country_name');
-            $country = $country_model->getState($country_name);
-            return $this->response->setJSON($country);
+            $country_model = new Country_model();
+            $states = $country_model->getState($country_name);
+            return $this->response->setJSON($states);
         }
     }
 ?>

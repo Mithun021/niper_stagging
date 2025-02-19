@@ -162,22 +162,22 @@ $employee_model = new Employee_model();
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 
 <script>
-    $(document).ready(function () {
-        $('#university_country').on('change', function () { 
-            // e.preventDefault();
-            var country_name = $(this).val();
-            // alert(country_name);
-            $.ajax({
-                type: "post",
-                url: "<?= base_url() ?>getStates",
-                data: {country_name : country_name},
-                dataType: "json",
-                success: function (response) {
-                    console.log(response);
-                }
-            });
-        })
+    $('#university_country').on('change', function () { 
+        var country_name = $(this).val();
+        $.ajax({
+            type: "post",
+            url: "<?= base_url('getStates'); ?>",
+            data: { country_name: country_name },
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+            },
+            error: function(xhr, status, error) {
+                console.error("Error: " + error);
+            }
+        });
     });
+
 </script>
 
 <?= $this->endSection() ?>
