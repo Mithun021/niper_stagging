@@ -76,7 +76,9 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">University (State/UT)</span>
-                            <input type="text" name="university_state" id="university_state" class="form-control form-control-sm">
+                            <select name="university_state" id="university_state" class="form-control form-control-sm">
+                                <option value="">--Select--</option>
+                            </select>
                         </div>
 
                         <div class="form-group col-md-4">
@@ -170,7 +172,17 @@ $employee_model = new Employee_model();
             data: { country_name: country_name },
             dataType: "json",
             success: function (response) {
-                console.log(response);
+                var stateDropdown = $('#university_state');
+                stateDropdown.empty(); 
+                stateDropdown.append('<option value="">--Select--</option>');
+
+                if (response.length > 0) {
+                    $.each(response, function(index, state) {
+                        stateDropdown.append('<option value="' + state.state + '">' + state.state + '</option>');
+                    });
+                } else {
+                    stateDropdown.append('<option value="">No states available</option>');
+                }
             },
             error: function(xhr, status, error) {
                 console.error("Error: " + error);

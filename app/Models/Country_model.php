@@ -8,7 +8,7 @@ class Country_model extends Model
 {
     protected $table         = 'country';
     protected $primaryKey    = 'id';
-    protected $allowedFields = ['country', 'state', 'status'];
+    protected $allowedFields = ['country', 'state'];
 
     public function add($data, $id = null)
     {
