@@ -49,14 +49,14 @@ $employee_model = new Employee_model();
                             <span for="">Subject Studied<span class="text-danger">*</span></span>
                             <input type="text" name="subject_studied" id="" class="form-control form-control-sm" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <!-- <div class="form-group col-md-6">
                             <span for="">Marking Scheme(%/CGPA)<span class="text-danger">*</span></span>
                             <input type="text" name="marking_scheme" id="" class="form-control form-control-sm" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Obtained Result</span>
                             <input type="text" name="obtained_result" id="" class="form-control form-control-sm">
-                        </div>
+                        </div> -->
                         <div class="form-group col-md-6">
                             <span for="">Year of Passing</span>
                             <input type="number" name="passing_year" id="" class="form-control form-control-sm" maxlength="4">
