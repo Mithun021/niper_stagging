@@ -251,7 +251,7 @@ use App\Models\Program_department_mapping_model;
                 // print_r($data['event_link_detail']); die;
                 $data['events'] = $events_model->get();
                 $data['event_link'] = $event_link_model->get();
-                return view('admin/events/event-link',$data);
+                return view('admin/events/edit-event-link',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
                 if ($sessionData) {
@@ -267,9 +267,9 @@ use App\Models\Program_department_mapping_model;
                 ];
                 $result = $event_link_model->add($data);
                 if ($result === true) {
-                    return redirect()->to('admin/event-link')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                    return redirect()->to('admin/edit-event-link/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
-                    return redirect()->to('admin/event-link')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                    return redirect()->to('admin/editevent-link/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
         }
