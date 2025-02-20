@@ -20,7 +20,7 @@
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/event-extension-notice" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/edit-event-extension-notice/<?= $event_extension_id ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">

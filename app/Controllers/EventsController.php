@@ -609,6 +609,41 @@ use App\Models\Program_department_mapping_model;
             }
         }
 
+        public function edit_event_extension_notice($id) {
+            $events_model = new Events_model();
+            $event_extension_model = new Event_extension_model();
+            $data = ['title' => 'Event Extension Notice', 'event_extension_id' => $id];
+            $data['event_extension_detail'] = $event_extension_model->get($id);
+            if ($this->request->is('get')) {
+                $data['events'] = $events_model->get();
+                $data['event_extension'] = $event_extension_model->get();
+                return view('admin/events/edit-event-extension-notice',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }else{
+                    return redirect()->to(base_url('admin/login'));
+                }
+                $extension_file = $this->request->getFile('extension_file');
+
+                $data = [
+                    'event_id' => $this->request->getPost('event_id'),
+                    'extension_status' => $this->request->getPost('extension_status'),
+                    // 'extension_notice_file' => $extension_fileNewName,
+                    'extension_end_date' => $this->request->getPost('extension_end_date'),
+                    'extension_end_time' => $this->request->getPost('extension_end_time'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $event_extension_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-event-extension-notice/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-event-extension-notice/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
 
         public function member_type_category() {
             $member_type_model = new Member_type_model();
