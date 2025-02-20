@@ -625,17 +625,37 @@ use App\Models\Program_department_mapping_model;
                 }else{
                     return redirect()->to(base_url('admin/login'));
                 }
+                $event_extension_detail = $event_extension_model->get($id);
                 $extension_file = $this->request->getFile('extension_file');
+                $old_event_extension_file = $event_extension_detail['extension_notice_file'];
 
+                if (empty($old_event_extension_file)) {
+                    if ($extension_file->isValid() && !$extension_file->hasMoved()) {
+                        $new_extension_file = "ext" . $extension_file->getRandomName();
+                        $extension_file->move(ROOTPATH . 'public/admin/uploads/events/', $new_extension_file);
+                    } else {
+                        $new_extension_file = null;
+                    }
+                } else {
+                    if ($extension_file->isValid() && !$extension_file->hasMoved()) {
+                        if (file_exists("public/admin/uploads/events/" . $old_event_extension_file)) {
+                            unlink("public/admin/uploads/events/" . $old_event_extension_file);
+                        }
+                        $new_extension_file = "report" . $extension_file->getRandomName();
+                        $extension_file->move(ROOTPATH . 'public/admin/uploads/events/', $new_extension_file);
+                    } else {
+                        $new_extension_file = $old_event_extension_file;
+                    }
+                }
                 $data = [
                     'event_id' => $this->request->getPost('event_id'),
                     'extension_status' => $this->request->getPost('extension_status'),
-                    // 'extension_notice_file' => $extension_fileNewName,
+                    'extension_notice_file' => $new_extension_file,
                     'extension_end_date' => $this->request->getPost('extension_end_date'),
                     'extension_end_time' => $this->request->getPost('extension_end_time'),
                     'upload_by' => $loggeduserId
                 ];
-                $result = $event_extension_model->add($data);
+                $result = $event_extension_model->add($data,$id);
                 if ($result === true) {
                     return redirect()->to('admin/edit-event-extension-notice/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
