@@ -265,7 +265,7 @@ use App\Models\Program_department_mapping_model;
                     'event_link' => $this->request->getPost('event_link'),
                     'upload_by' => $loggeduserId
                 ];
-                $result = $event_link_model->add($data);
+                $result = $event_link_model->add($data,$id);
                 if ($result === true) {
                     return redirect()->to('admin/edit-event-link/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
