@@ -25,7 +25,7 @@
                 <form method="post" action="<?= base_url('admin/event-video') ?>">
                     <div class="form-group">
                         <span>Event ID:</span>
-                        <select name="event_id" class="form-control form-control-sm">
+                        <select name="event_id" class="form-control form-control-sm" required>
                             <option value="">Select Event</option>
                             <?php foreach ($events as $key => $value) { ?>
                                 <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
@@ -74,8 +74,7 @@
                     <?php foreach ($event_video as $key => $value) { ?>
                         <tr>
                             <td><?= $key+1 ?></td>
-                            <td><?php $event = $events_model->get($value['event_id']);
-                                        echo $event['title'] ?></td>
+                            <td><?= $events_model->get($value['event_id'])['title'] ?? '' ?></td>
                             <td><a href="<?= $value['vodeo_link'] ?>" target="_blank"><?= $value['title'] ?></a></td>
                             <td><a href="<?= $value['vodeo_link'] ?>" target="_blank"><?= $value['description'] ?></a></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
