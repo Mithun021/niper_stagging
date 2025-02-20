@@ -215,8 +215,40 @@ use App\Models\Program_department_mapping_model;
         public function event_link(){
             $events_model = new Events_model();
             $event_link_model = new Event_link_model();
-            $data = ['title' => 'Event Members'];
+            $data = ['title' => 'Event Link'];
             if ($this->request->is("get")) {
+                $data['events'] = $events_model->get();
+                $data['event_link'] = $event_link_model->get();
+                return view('admin/events/event-link',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }else{
+                    return redirect()->to(base_url('admin/login'));
+                }
+                $data =[
+                    'event_id' => $this->request->getPost('event_id'),
+                    'link_description' => $this->request->getPost('link_description'),
+                    'event_link' => $this->request->getPost('event_link'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $event_link_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/event-link')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/event-link')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
+        public function edit_event_link($id){
+            $events_model = new Events_model();
+            $event_link_model = new Event_link_model();
+            $data = ['title' => 'Event Link', 'event_link_id' => $id];
+            $data['event_link_detail'] = $event_link_model->get($id);
+            if ($this->request->is("get")) {
+                print_r($data['event_link_detail']); die;
                 $data['events'] = $events_model->get();
                 $data['event_link'] = $event_link_model->get();
                 return view('admin/events/event-link',$data);
