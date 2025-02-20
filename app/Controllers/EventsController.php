@@ -101,8 +101,8 @@ use App\Models\Program_department_mapping_model;
             $data = ['title' => 'Event Post','event_id' => $id];
             if ($this->request->is("get")) {
                 $data['event_category'] = $event_category_model->get();
-                // print_r($data['event_categories']); die;
                 $data['events'] = $events_model->get();
+                $data['events_detail'] = $events_model->get($id);
                 return view('admin/events/edit-event-post',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
