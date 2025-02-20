@@ -274,7 +274,7 @@ use App\Models\Program_department_mapping_model;
             }
         }
 
-        public function delete($id){
+        public function delete_event_link($id){
             $event_link_model = new Event_link_model();
             $delete = $event_link_model->delete($id);
             if ($delete) {
