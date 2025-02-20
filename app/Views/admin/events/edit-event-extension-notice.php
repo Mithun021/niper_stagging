@@ -42,15 +42,20 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Extension Notice File(PDF)<span class="text-danger">*</span></span>
-                                <input type="file" class="form-control form-control-sm" name="extension_file" accept=".pdf" required>
+                                <input type="file" class="form-control form-control-sm" name="extension_file" accept=".pdf">
+                                <?php if (!empty($event_extension_detail['extension_notice_file']) && file_exists('public/admin/uploads/events/' . $event_extension_detail['extension_notice_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/events/<?= $event_extension_detail['extension_notice_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/events/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Extension End Date & Time<span class="text-danger">*</span></span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="extension_end_date" placeholder="Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                    <input type="text" class="form-control form-control-sm" name="extension_end_time" placeholder="Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="extension_end_date" placeholder="Date" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?= $event_extension_detail['extension_end_date'] ?>">
+                                    <input type="text" class="form-control form-control-sm" name="extension_end_time" placeholder="Time" onfocus="(this.type='time')" onblur="(this.type='text')" value="<?= $event_extension_detail['extension_end_time'] ?>">
                                 </div>
                             </div>
                         </div>
