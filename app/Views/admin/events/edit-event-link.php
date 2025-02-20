@@ -22,23 +22,23 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/event-link') ?>">
+                <form method="post" action="<?= base_url('admin/editevent-link/'.$event_link_id) ?>">
                     <div class="form-group">
                         <span>Event ID:</span>
                         <select name="event_id" class="form-control form-control-sm">
                             <option value="">Select Event</option>
                             <?php foreach ($events as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                                <option value="<?= $value['id'] ?>" <?php if($event_link_detail['event_id'] == $value['id']){ echo "selected"; } ?>><?= $value['title'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <span for="">Link Description<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="link_description" required>
+                        <input type="text" class="form-control form-control-sm" name="link_description" value="<?= $event_link_detail['link_description'] ?>" required>
                     </div>
                     <div class="form-group">
                         <span for="">Event URL Link<span class="text-danger">*</span></span>
-                        <input type="url" class="form-control form-control-sm" name="event_link" required>
+                        <input type="url" class="form-control form-control-sm" name="event_link" value="<?= $event_link_detail['event_link'] ?>" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>

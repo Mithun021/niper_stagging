@@ -248,7 +248,7 @@ use App\Models\Program_department_mapping_model;
             $data = ['title' => 'Event Link', 'event_link_id' => $id];
             $data['event_link_detail'] = $event_link_model->get($id);
             if ($this->request->is("get")) {
-                print_r($data['event_link_detail']); die;
+                // print_r($data['event_link_detail']); die;
                 $data['events'] = $events_model->get();
                 $data['event_link'] = $event_link_model->get();
                 return view('admin/events/event-link',$data);
