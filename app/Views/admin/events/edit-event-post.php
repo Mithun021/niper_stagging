@@ -47,7 +47,7 @@ $event_category_model = new Event_category_model();
                                 <select name="event_category" id="event_category" class="form-control form-control-sm" required>
                                     <option value="">Select Event Type</option>
                                     <?php foreach ($event_category as $value) { ?>
-                                        <option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
+                                        <option value="<?php echo $value['id']; ?>" <?php if($value['id'] == $events_detail['event_category']){ echo "selected"; } ?>><?php echo $value['name']; ?></option>
                                     <?php } ?>
                                 </select>
 
@@ -56,25 +56,25 @@ $event_category_model = new Event_category_model();
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Registration Link</span>
-                                <input type="url" class="form-control form-control-sm" name="reg_link" >
+                                <input type="url" class="form-control form-control-sm" name="reg_link" value="<?= $events_detail['registration_link'] ?>">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Meeting Link</span>
-                                <input type="url" class="form-control form-control-sm" name="meeting_link" >
+                                <input type="url" class="form-control form-control-sm" name="meeting_link" value="<?= $events_detail['meeting_link'] ?>">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Event Venue</span>
-                                <input type="text" class="form-control form-control-sm" name="event_venue" >
+                                <input type="text" class="form-control form-control-sm" name="event_venue" value="<?= $events_detail['venue'] ?>">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <span for="">Upload File(JPG,PNG)<span class="text-danger">*</span></span>
-                                <input type="file" class="form-control form-control-sm" name="event_file" accept=".jpg, .png, .jpeg" required>
+                                <input type="file" class="form-control form-control-sm" name="event_file" accept=".jpg, .png, .jpeg" value="<?= $events_detail['description'] ?>" required>
                             </div>
                         </div>
                       	<div class="col-md-3">
@@ -89,7 +89,7 @@ $event_category_model = new Event_category_model();
                                     <div class="form-group">
                                         <span for="">Event Start Date<span class="text-danger">*</span></span>
                                         <div class="input-group">
-                                            <input type="text" class="form-control form-control-sm" name="event_start_date" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')" required>
+                                            <input type="text" class="form-control form-control-sm" name="event_start_date" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?= $events_detail['event_start_date'] ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@ $event_category_model = new Event_category_model();
                                     <div class="form-group">
                                         <span for="">Event Start Time</span>
                                         <div class="input-group">
-                                            <input type="text" class="form-control form-control-sm" name="event_start_time" placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                            <input type="text" class="form-control form-control-sm" name="event_start_time" placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')" value="<?= $events_detail['event_start_time'] ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -107,8 +107,8 @@ $event_category_model = new Event_category_model();
                             <div class="form-group">
                                 <span for="">Event End Date and Time</span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="event_end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                    <input type="text" class="form-control form-control-sm" name="event_end_time" placeholder="End Date" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="event_end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?= $events_detail['event_end_date'] ?>">
+                                    <input type="text" class="form-control form-control-sm" name="event_end_time" placeholder="End Date" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')" value="<?= $events_detail['event_end_time'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -116,8 +116,8 @@ $event_category_model = new Event_category_model();
                             <div class="form-group">
                                 <span for="">Registration Start Date & Time</span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="reg_start_date" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                    <input type="text" class="form-control form-control-sm" name="reg_start_time" placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="reg_start_date" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?= $events_detail['reg_start_date'] ?>">
+                                    <input type="text" class="form-control form-control-sm" name="reg_start_time" placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')" value="<?= $events_detail['reg_start_time'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -125,36 +125,36 @@ $event_category_model = new Event_category_model();
                             <div class="form-group">
                                 <span for="">Registration End Date & Time</span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="reg_end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                    <input type="text" class="form-control form-control-sm" name="reg_end_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="reg_end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?= $events_detail['reg_end_date'] ?>">
+                                    <input type="text" class="form-control form-control-sm" name="reg_end_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')" value="<?= $events_detail['reg_end_time'] ?>">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Payment Link</span>
-                                <input type="url" class="form-control form-control-sm" name="payment_link">
+                                <input type="url" class="form-control form-control-sm" name="payment_link" value="<?= $events_detail['payment_link'] ?>">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Payment End Date & Time</span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="payment_end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                    <input type="text" class="form-control form-control-sm" name="payment_end_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="payment_end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?= $events_detail['payment_end_date'] ?>">
+                                    <input type="text" class="form-control form-control-sm" name="payment_end_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')" value="<?= $events_detail['payment_end_time'] ?>">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Participant Seats</span>
-                                <input type="text" class="form-control form-control-sm" name="participant_seats">
+                                <input type="text" class="form-control form-control-sm" name="participant_seats" value="<?= $events_detail['participant_seats'] ?>">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <span for="">Participant Eligibility</span>
-                                <textarea class="form-control form-control-sm" name="participant_eligibility" id="editor3"></textarea>
+                                <textarea class="form-control form-control-sm" name="participant_eligibility" id="editor3"><?= $events_detail['participant_eligibility'] ?></textarea>
                             </div>
                         </div>
 
@@ -162,8 +162,8 @@ $event_category_model = new Event_category_model();
                             <div class="form-group">
                                 <span>Marquee Status</span>
                                 <select name="marquee_status" id="marquee_status" class="form-control form-control-sm">
-                                    <option value="0" selected>Inactive</option>
-                                    <option value="1">Active</option>
+                                    <option value="0" <?php if($events_detail['marquee_status'] == 0){ echo "selected"; } ?>>Inactive</option>
+                                    <option value="1" <?php if($events_detail['marquee_status'] == 1){ echo "selected"; } ?>>Active</option>
                                 </select>
                             </div>
                         </div>
@@ -171,20 +171,20 @@ $event_category_model = new Event_category_model();
                             <div class="form-group">
                                 <span>Status</span>
                                 <select name="status" id="status" class="form-control form-control-sm">
-                                    <option value="1">Publish</option>
-                                    <option value="2">Archive</option>
-                                    <option value="0">Draft</option>
+                                    <option value="1" <?php if($events_detail['status'] == 1){ echo "selected"; } ?>>Publish</option>
+                                    <option value="2" <?php if($events_detail['status'] == 2){ echo "selected"; } ?>>Archive</option>
+                                    <option value="0" <?php if($events_detail['status'] == 0){ echo "selected"; } ?>>Draft</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <span><input type="checkbox" name="icc_event" id="" value="1">Check for IIC event</span>
+                                <span><input type="checkbox" name="icc_event" id="" value="1" <?php if($events_detail['icc_events'] == 1){ echo "checked"; } ?>>Check for IIC event</span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                            <span><input type="checkbox" name="institute_event" id="" value="1">Institute event type</span>
+                            <span><input type="checkbox" name="institute_event" id="" value="1" <?php if($events_detail['institute_event'] == 1){ echo "checked"; } ?>>Institute event type</span>
                             </div>
                         </div>
                     </div>
