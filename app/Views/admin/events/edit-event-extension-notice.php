@@ -28,7 +28,7 @@
                                 <select name="event_id" class="form-control form-control-sm">
                                     <option value="">Select Event</option>
                                     <?php foreach ($events as $key => $value) { ?>
-                                        <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                                        <option value="<?= $value['id'] ?>" <?php if($event_extension_detail['event_id'] == $value['id']){ echo "selected"; } ?>><?= $value['title'] ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -36,7 +36,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Extension Status</span>
-                                <input type="text" class="form-control form-control-sm" name="extension_status">
+                                <input type="text" class="form-control form-control-sm" name="extension_status" value="<?= $event_extension_detail['extension_status'] ?>">
                             </div>
                         </div>
                         <div class="col-md-6">
