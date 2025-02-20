@@ -74,13 +74,25 @@ $event_category_model = new Event_category_model();
                         <div class="col-md-3">
                             <div class="form-group">
                                 <span for="">Upload File(JPG,PNG)<span class="text-danger">*</span></span>
-                                <input type="file" class="form-control form-control-sm" name="event_file" accept=".jpg, .png, .jpeg" value="<?= $events_detail['description'] ?>" required>
+                                <input type="file" class="form-control form-control-sm" name="event_file" accept=".jpg, .png, .jpeg" required>
+
+                                <?php if (!empty($events_detail['upload_file']) && file_exists('public/admin/uploads/events/' . $events_detail['upload_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/events/<?= $events_detail['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/events/<?= $events_detail['upload_file'] ?>" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/events/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
                             </div>
                         </div>
                       	<div class="col-md-3">
                             <div class="form-group">
                                 <span for="">Event Report(PDF)<span class="text-danger">*</span></span>
                                 <input type="file" class="form-control form-control-sm" name="event_report_file" accept=".pdf" required>
+
+                                <?php if (!empty($events_detail['event_report_file']) && file_exists('public/admin/uploads/events/' . $events_detail['event_report_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/events/<?= $events_detail['event_report_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/events/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-md-6">
