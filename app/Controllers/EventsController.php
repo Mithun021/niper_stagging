@@ -315,6 +315,48 @@ use App\Models\Program_department_mapping_model;
             }
         }
 
+        public function edit_event_video($id){
+            $events_model = new Events_model();
+            $event_video_model = new Event_video_model();
+            $data['event_video_detail'] = $event_video_model->get($id);
+            $data = ['title' => 'Event Video', 'event_video_id' => $id];
+            if ($this->request->is("get")) {
+                $data['events'] = $events_model->get();
+                $data['event_video'] = $event_video_model->get();
+                return view('admin/events/edit-event-video',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }else{
+                    return redirect()->to(base_url('admin/login'));
+                }
+                $data =[
+                    'event_id' => $this->request->getPost('event_id'),
+                    'title' => $this->request->getPost('video_title'),
+                    'description' => $this->request->getPost('video_description'),
+                    'vodeo_link' => $this->request->getPost('video_link'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $event_video_model->add($data,$id);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-event-video/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-event-video/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
+        public function delete_event_video($id){
+            $event_video_model = new Event_video_model();
+            $delete = $event_video_model->delete($id);
+            if ($delete) {
+                return redirect()->to('admin/event-video')->with('status','<div class="alert alert-success" role="alert"> Data delete Successful </div>');
+            } else {
+                return redirect()->to('admin/event-video')->with('status','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+            }
+        }
+
         public function event_members(){
             $events_model = new Events_model();
             $member_type_model = new Member_type_model();

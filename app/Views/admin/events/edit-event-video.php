@@ -22,27 +22,27 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/event-video') ?>">
+                <form method="post" action="<?= base_url('admin/edit-event-video') ?>">
                     <div class="form-group">
                         <span>Event ID:</span>
                         <select name="event_id" class="form-control form-control-sm">
                             <option value="">Select Event</option>
                             <?php foreach ($events as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                                <option value="<?= $value['id'] ?>" <?php if($event_video_detail['event_id'] == $value['id']){ echo "selected"; } ?>><?= $value['title'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <span for="">Video Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="video_title" required>
+                        <input type="text" class="form-control form-control-sm" name="video_title" value="<?= $event_video_detail['title'] ?>" required>
                     </div>
                     <div class="form-group">
                         <span for="">Video Description</span>
-                        <input type="text" class="form-control form-control-sm" name="video_description">
+                        <input type="text" class="form-control form-control-sm" name="video_description" value="<?= $event_video_detail['description'] ?>">
                     </div>
                     <div class="form-group">
                         <span for="">Video URL Link<span class="text-danger">*</span></span>
-                        <input type="url" class="form-control form-control-sm" name="video_link" required>
+                        <input type="url" class="form-control form-control-sm" name="video_link" value="<?= $event_video_detail['vodeo_link'] ?>" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
