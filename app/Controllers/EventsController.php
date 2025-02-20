@@ -269,8 +269,18 @@ use App\Models\Program_department_mapping_model;
                 if ($result === true) {
                     return redirect()->to('admin/edit-event-link/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
-                    return redirect()->to('admin/editevent-link/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                    return redirect()->to('admin/edit-event-link/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
+            }
+        }
+
+        public function delete($id){
+            $event_link_model = new Event_link_model();
+            $delete = $event_link_model->delete($id);
+            if ($delete) {
+                return redirect()->to('admin/event-link')->with('status','<div class="alert alert-success" role="alert"> Data delete Successful </div>');
+            } else {
+                return redirect()->to('admin/event-link')->with('status','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
             }
         }
 
