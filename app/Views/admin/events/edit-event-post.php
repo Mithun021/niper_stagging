@@ -21,7 +21,7 @@ $event_category_model = new Event_category_model();
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url('admin/event-post') ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url('admin/edit-event-post/'.$event_id) ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">

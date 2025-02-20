@@ -23,6 +23,8 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete-news-post/(:num)', 'NewsController::delete_news_post/$1');
 
     $routes->match(['get','post'],'event-post', 'EventsController::event_post');
+    $routes->match(['get','post'],'edit-event-post/(:num)', 'EventsController::edit_event_post/$1');
+
     $routes->match(['get','post'],'event-link', 'EventsController::event_link');
     $routes->match(['get','post'],'event-video', 'EventsController::event_video');
     $routes->match(['get','post'],'event-extension-notice', 'EventsController::event_extension_notice');

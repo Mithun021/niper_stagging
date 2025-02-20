@@ -95,6 +95,79 @@ use App\Models\Program_department_mapping_model;
             }
         }
 
+        public function edit_event_post($id){
+            $events_model = new Events_model();
+            $event_category_model = new Event_category_model();
+            $data = ['title' => 'Event Post','event_id' => $id];
+            if ($this->request->is("get")) {
+                $data['event_category'] = $event_category_model->get();
+                // print_r($data['event_categories']); die;
+                $data['events'] = $events_model->get();
+                return view('admin/events/edit-event-post',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }else{
+                    return redirect()->to(base_url('admin/login'));
+                }
+
+                $event_file = $this->request->getFile('event_file');
+                if ($event_file->isValid() && ! $event_file->hasMoved()) {
+                    $event_fileNewName = "file".$event_file->getRandomName();
+                    $event_file->move(ROOTPATH . 'public/admin/uploads/events', $event_fileNewName);    
+                }else{
+                 $event_fileNewName = "";
+                }
+
+                $event_report_file = $this->request->getFile('event_report_file');
+                if ($event_report_file->isValid() && ! $event_report_file->hasMoved()) {
+                    $event_report_fileNewName = "report".$event_report_file->getRandomName();
+                    $event_report_file->move(ROOTPATH . 'public/admin/uploads/events', $event_report_fileNewName);    
+                }else{
+                 $event_report_fileNewName = "";
+                }
+
+                $data = [
+                    'title' => $this->request->getPost('event_title'),
+                    'event_theme_title' => $this->request->getPost('event_theme_title'),
+                    'description' => $this->request->getPost('description'),
+                    'event_category' => $this->request->getPost('event_category'),
+                    'registration_link' => $this->request->getPost('reg_link'),
+                    'meeting_link' => $this->request->getPost('meeting_link'),
+                    'venue' => $this->request->getPost('event_venue'),
+                    'upload_file' => $event_fileNewName,
+                    'event_report_file' => $event_report_fileNewName,
+                    'event_start_date' => $this->request->getPost('event_start_date'),
+                    'event_end_date' => $this->request->getPost('event_end_date'),
+                    'event_start_time' => $this->request->getPost('event_start_date'),
+                    'event_end_time' => $this->request->getPost('event_start_time'),
+                    'reg_start_date' => $this->request->getPost('event_end_time'),
+                    'reg_start_time' => $this->request->getPost('reg_start_time'),
+                    'reg_end_date' => $this->request->getPost('reg_end_date'),
+                    'reg_end_time' => $this->request->getPost('reg_end_time'),
+                    'payment_link' => $this->request->getPost('payment_link'),
+                    'payment_end_date' => $this->request->getPost('payment_end_date'),
+                    'payment_end_time' => $this->request->getPost('payment_end_time'),
+                    'participant_seats' => $this->request->getPost('participant_seats'),
+                    'participant_eligibility' => $this->request->getPost('participant_eligibility'),
+                    'marquee_status' => $this->request->getPost('marquee_status'),
+                    'status' => $this->request->getPost('status'),
+                    'icc_events' => $this->request->getPost('icc_event') ?? 0,
+                    'institute_event' => $this->request->getPost('institute_event') ?? 0,
+                    'upload_by' => $loggeduserId,
+                ];
+
+                $result = $events_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-event-post')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-event-post')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+
+            }
+        }
+
         public function event_link(){
             $events_model = new Events_model();
             $event_link_model = new Event_link_model();
