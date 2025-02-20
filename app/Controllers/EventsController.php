@@ -318,8 +318,8 @@ use App\Models\Program_department_mapping_model;
         public function edit_event_video($id){
             $events_model = new Events_model();
             $event_video_model = new Event_video_model();
-            $data['event_video_detail'] = $event_video_model->get($id);
             $data = ['title' => 'Event Video', 'event_video_id' => $id];
+            $data['event_video_detail'] = $event_video_model->get($id);
             if ($this->request->is("get")) {
                 $data['events'] = $events_model->get();
                 $data['event_video'] = $event_video_model->get();
