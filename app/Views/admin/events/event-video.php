@@ -81,7 +81,7 @@
                             <td><?= date("d-m-Y", strtotime($value['created_at'])) ?></td>
                             <td>
                                 <a href="<?= base_url('admin/edit-event-video/'.$value['id']) ?>" class="btn btn-sm btn-primary">Edit</a>
-                                <a href="<?= base_url('admin/delete-event-video/'.$value['id']) ?>" class="btn btn-sm btn-danger">Delete</a>
+                                <a href="<?= base_url('admin/delete-event-video/'.$value['id']) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure...!')">Delete</a>
                             </td>
                         </tr>
                     <?php } ?>
