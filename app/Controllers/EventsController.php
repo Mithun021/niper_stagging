@@ -189,6 +189,29 @@ use App\Models\Program_department_mapping_model;
             }
         }
 
+        public function delete_event_post($id){
+            $events_model = new Events_model();
+            $events_detail = $events_model->get($id);
+            $old_image_name =  $events_detail['upload_file'];
+
+            if(file_exists("public/admin/uploads/events/".$old_image_name)){
+                unlink("public/admin/uploads/events/".$old_image_name);
+            }
+            
+            $old_event_report_file = $events_detail['event_report_file'];
+            if (file_exists("public/admin/uploads/events/" . $old_event_report_file)) {
+                unlink("public/admin/uploads/events/" . $old_event_report_file);
+            }
+                
+            $delete = $events_model->delete($id);
+            if ($delete) {
+                return redirect()->to('admin/event-post')->with('status','<div class="alert alert-success" role="alert"> Data delete Successful </div>');
+            } else {
+                return redirect()->to('admin/event-post')->with('status','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+            }
+        }
+
+
         public function event_link(){
             $events_model = new Events_model();
             $event_link_model = new Event_link_model();
