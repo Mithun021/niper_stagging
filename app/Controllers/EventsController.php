@@ -199,7 +199,7 @@ use App\Models\Program_department_mapping_model;
             }
             
             $old_event_report_file = $events_detail['event_report_file'];
-            if (file_exists("public/admin/uploads/events/" . $old_event_report_file)) {
+            if (!empty($old_event_report_file) && file_exists("public/admin/uploads/events/" . $old_event_report_file)) {
                 unlink("public/admin/uploads/events/" . $old_event_report_file);
             }
                 
