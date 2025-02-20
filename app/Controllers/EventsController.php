@@ -103,7 +103,7 @@ use App\Models\Program_department_mapping_model;
                 $data['event_category'] = $event_category_model->get();
                 $data['events'] = $events_model->get();
                 $data['events_detail'] = $events_model->get($id);
-                echo "<pre>"; print_r($data['events_detail']);
+                echo "<pre>"; print_r($data['events_detail']); die;
                 return view('admin/events/edit-event-post',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
