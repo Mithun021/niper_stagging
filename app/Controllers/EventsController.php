@@ -664,6 +664,22 @@ use App\Models\Program_department_mapping_model;
             }
         }
 
+        public function delete_event_extension_notice($id){
+            $event_extension_model = new Event_extension_model();
+            $events_detail = $event_extension_model->get($id);
+
+            $extension_notice_file = $events_detail['extension_notice_file'];
+            if (!empty($extension_notice_file) && file_exists("public/admin/uploads/events/" . $extension_notice_file)) {
+                unlink("public/admin/uploads/events/" . $extension_notice_file);
+            }
+                
+            $delete = $event_extension_model->delete($id);
+            if ($delete) {
+                return redirect()->to('admin/event-extension-notice')->with('status','<div class="alert alert-success" role="alert"> Data delete Successful </div>');
+            } else {
+                return redirect()->to('admin/event-extension-notice')->with('status','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+            }
+        }
 
         public function member_type_category() {
             $member_type_model = new Member_type_model();
