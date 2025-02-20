@@ -181,9 +181,9 @@ use App\Models\Program_department_mapping_model;
 
                 $result = $events_model->add($data,$id);
                 if ($result === true) {
-                    return redirect()->to('admin/edit-event-post')->with('status','<div class="alert alert-success" role="alert"> Data update Successful </div>');
+                    return redirect()->to('admin/edit-event-post/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data update Successful </div>');
                 } else {
-                    return redirect()->to('admin/edit-event-post')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                    return redirect()->to('admin/edit-event-post/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
 
             }
