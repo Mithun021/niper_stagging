@@ -112,21 +112,41 @@ use App\Models\Program_department_mapping_model;
                 }else{
                     return redirect()->to(base_url('admin/login'));
                 }
+                $events_detail = $events_model->get($id);
 
-                $event_file = $this->request->getFile('event_file');
-                if ($event_file->isValid() && ! $event_file->hasMoved()) {
-                    $event_fileNewName = "file".$event_file->getRandomName();
-                    $event_file->move(ROOTPATH . 'public/admin/uploads/events', $event_fileNewName);    
-                }else{
-                 $event_fileNewName = "";
+                $new_event_file = $this->request->getFile('event_file');
+                $old_image_name =  $events_detail['upload_file'];
+                if ($new_event_file->isValid() && !$new_event_file->hasMoved()) {
+                    if(file_exists("public/admin/uploads/events/".$old_image_name)){
+                        unlink("public/admin/uploads/events/".$old_image_name);
+                    }
+                    $new_image_name = $new_event_file->getRandomName();
+                    $new_event_file->move(ROOTPATH.'public/admin/uploads/events/', $new_image_name);
                 }
+                else{
+                    $new_image_name = $old_image_name;
+                }     
 
-                $event_report_file = $this->request->getFile('event_report_file');
-                if ($event_report_file->isValid() && ! $event_report_file->hasMoved()) {
-                    $event_report_fileNewName = "report".$event_report_file->getRandomName();
-                    $event_report_file->move(ROOTPATH . 'public/admin/uploads/events', $event_report_fileNewName);    
-                }else{
-                 $event_report_fileNewName = "";
+                $new_event_report_file = $this->request->getFile('event_report_file');
+                $old_event_report_file = $events_detail['event_report_file'];
+
+                if (empty($old_event_report_file)) {
+                    if ($new_event_report_file->isValid() && !$new_event_report_file->hasMoved()) {
+                        $new_report_file = "report" . $new_event_report_file->getRandomName();
+                        $new_event_report_file->move(ROOTPATH . 'public/admin/uploads/events/', $new_report_file);
+                    } else {
+                        $new_report_file = null;
+                    }
+                } else {
+                    if ($new_event_report_file->isValid() && !$new_event_report_file->hasMoved()) {
+                        if (file_exists("public/admin/uploads/events/" . $old_event_report_file)) {
+                            unlink("public/admin/uploads/events/" . $old_event_report_file);
+                        }
+                        $new_report_file = "report" . $new_event_report_file->getRandomName();
+                        $new_event_report_file->move(ROOTPATH . 'public/admin/uploads/events/', $new_report_file);
+                    } else {
+                        $new_report_file = $old_event_report_file;
+                    }
                 }
 
                 $data = [
@@ -137,8 +157,8 @@ use App\Models\Program_department_mapping_model;
                     'registration_link' => $this->request->getPost('reg_link'),
                     'meeting_link' => $this->request->getPost('meeting_link'),
                     'venue' => $this->request->getPost('event_venue'),
-                    'upload_file' => $event_fileNewName,
-                    'event_report_file' => $event_report_fileNewName,
+                    'upload_file' => $new_image_name,
+                    'event_report_file' => $new_report_file,
                     'event_start_date' => $this->request->getPost('event_start_date'),
                     'event_end_date' => $this->request->getPost('event_end_date'),
                     'event_start_time' => $this->request->getPost('event_start_date'),
@@ -159,9 +179,9 @@ use App\Models\Program_department_mapping_model;
                     'upload_by' => $loggeduserId,
                 ];
 
-                $result = $events_model->add($data);
+                $result = $events_model->add($data,$id);
                 if ($result === true) {
-                    return redirect()->to('admin/edit-event-post')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                    return redirect()->to('admin/edit-event-post')->with('status','<div class="alert alert-success" role="alert"> Data update Successful </div>');
                 } else {
                     return redirect()->to('admin/edit-event-post')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
