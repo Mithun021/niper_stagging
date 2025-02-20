@@ -32,13 +32,13 @@ $event_category_model = new Event_category_model();
                         <div class="col-md-12">
                             <div class="form-group">
                                 <span for="">Event Theme title</span>
-                                <textarea class="form-control form-control-sm" name="event_theme_title"  id="editor2"></textarea>
+                                <textarea class="form-control form-control-sm" name="event_theme_title"  id="editor2"><?= $events_detail['event_theme_title'] ?></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <span for="">Desription</span>
-                                <textarea id="editor" name="description"></textarea>
+                                <textarea id="editor" name="description"><?= $events_detail['description'] ?></textarea>
                             </div>
                         </div>
                         <div class="col-md-6">
