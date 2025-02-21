@@ -21,7 +21,7 @@
                     <?= session()->getFlashdata('status'); ?>
                 <?php endif; ?>
 
-                <form action="<?= base_url() ?>admin/event-organizer" method="post">
+                <form action="<?= base_url() ?>admin/edit-event-organizer/<?= $event_organizer_id ?>" method="post">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -29,7 +29,7 @@
                                 <select name="event_id" class="form-control form-control-sm my-select">
                                     <option value="">Select Event</option>
                                 <?php foreach ($events as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?php if($event_organizers_detail['event_id'] == $value['id']){ echo "selected"; } ?>><?= $value['title'] ?></option>
                                 <?php } ?>
                                 </select>
                             </div>
@@ -37,9 +37,9 @@
                         <div class="col-md-6">
                             <span>Organizer Type:</span>
                             <select name="evtorg_type" class="form-control form-control-sm" required>
-                                <option value="Department">Department</option>
-                                <option value="Institute">Institute</option>
-                                <option value="Industry">Industry</option>
+                                <option value="Department" <?php if($event_organizers_detail['organizer_type'] == "Department") { echo "selected"; } ?>>Department</option>
+                                <option value="Institute" <?php if($event_organizers_detail['organizer_type'] == "Institute") { echo "selected"; } ?>>Institute</option>
+                                <option value="Industry" <?php if($event_organizers_detail['organizer_type'] == "Industry") { echo "selected"; } ?>>Industry</option>
                             </select>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <span>Organizer Name:</span>
-                            <input type="text" name="evtorg_name" class="form-control form-control-sm" value="<?= old('evtorg_name') ?>" required>
+                            <input type="text" name="evtorg_name" class="form-control form-control-sm" value="<?= $event_organizers_detail['organizer_name'] ?>" required>
                         </div>
                     </div>
                     <br>

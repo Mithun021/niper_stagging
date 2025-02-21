@@ -40,6 +40,10 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     
     $routes->match(['get','post'],'event-members', 'EventsController::event_members');
     $routes->match(['get','post'],'event-organizer', 'EventsController::event_organizer');
+    $routes->match(['get','post'],'edit-event-organizer/(:num)', 'EventsController::edit_event_organizer/$1');
+    $routes->get('delete-event-organizer/(:num)', 'EventsController::delete_event_organizer/$1');
+
+
     $routes->match(['get','post'],'event-fees', 'EventsController::event_fees');
     $routes->match(['get','post'],'event-highlight', 'EventsController::event_highlight');
     $routes->match(['get','post'],'event-category', 'EventsController::event_category');

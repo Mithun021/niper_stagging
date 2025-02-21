@@ -439,6 +439,37 @@ use App\Models\Program_department_mapping_model;
             }
         }
 
+        public function edit_event_organizer($id){
+            $events_model = new Events_model();
+            $event_organizer_model = new Event_organizer_model();
+            $data = ['title' => 'Event Organizer','event_organizer_id' => $id];
+            $data['event_organizers_detail'] = $event_organizer_model->get($id);
+            if ($this->request->is("get")) {
+                $data['events'] = $events_model->get();
+                $data['event_organizers'] = $event_organizer_model->get();
+                return view('admin/events/edit-event-organizer',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }else{
+                    return redirect()->to(base_url('admin/login'));
+                }
+                $data = [
+                    'event_id' => $this->request->getPost('event_id'),
+                    'organizer_type' => $this->request->getPost('evtorg_type'),
+                    'organizer_name' => $this->request->getPost('evtorg_name'),
+                    'upload_by' => $loggeduserId,
+                ];
+                $result = $event_organizer_model->add($data,$id);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-event-organizer/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-event-organizer/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
         public function event_fees(){
             $events_model = new Events_model();
             $event_fees_model = new Event_fees_model();
