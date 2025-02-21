@@ -37,7 +37,7 @@ $employee_model = new Employee_model();
                             <span for="">Student Title<span class="text-danger">*</span></span>
                             <input type="text" name="student_title" id="" class="form-control form-control-sm" required>
                         </div> -->
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <span for="">Name of the Student</span>
                             <select name="student_name" id="" class="form-control form-control-sm" required>
                                 <option value="">--Select--</option>
