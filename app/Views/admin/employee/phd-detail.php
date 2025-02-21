@@ -51,20 +51,23 @@ $department_model = new Department_model();
                             <span for="">Degree Status</span>
                             <select name="degree_status" id="degree_status" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
-                                <option value="Onging">Onging</option>
+                                <option value="Onging">Ongoing</option>
                                 <option value="Awarded">Awarded</option>
                                 <option value="Submitted">Submitted</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-4" style="display: none;">
+
+                        <div class="form-group col-md-4" id="registration_date_group" style="display: none;">
                             <span for="">Registration Date</span>
                             <input type="date" name="registration_date" id="registration_date" class="form-control form-control-sm">
                         </div>
-                        <div class="form-group col-md-4" style="display: none;">
+
+                        <div class="form-group col-md-4" id="submission_date_group" style="display: none;">
                             <span for="">Submission Date</span>
                             <input type="date" name="submission_date" id="submission_date" class="form-control form-control-sm">
                         </div>
-                        <div class="form-group col-md-4" style="display: none;">
+
+                        <div class="form-group col-md-4" id="award_date_group" style="display: none;">
                             <span for="">Award Date</span>
                             <input type="date" name="award_date" id="award_date" class="form-control form-control-sm">
                         </div>
@@ -152,32 +155,6 @@ $department_model = new Department_model();
             </div>
         </div>
     </div>
-</div>
-
-
-<div class="form-group col-md-6">
-    <span for="">Degree Status</span>
-    <select name="degree_status" id="degree_status" class="form-control form-control-sm">
-        <option value="">--Select--</option>
-        <option value="Onging">Ongoing</option>
-        <option value="Awarded">Awarded</option>
-        <option value="Submitted">Submitted</option>
-    </select>
-</div>
-
-<div class="form-group col-md-4" id="registration_date_group" style="display: none;">
-    <span for="">Registration Date</span>
-    <input type="date" name="registration_date" id="registration_date" class="form-control form-control-sm">
-</div>
-
-<div class="form-group col-md-4" id="submission_date_group" style="display: none;">
-    <span for="">Submission Date</span>
-    <input type="date" name="submission_date" id="submission_date" class="form-control form-control-sm">
-</div>
-
-<div class="form-group col-md-4" id="award_date_group" style="display: none;">
-    <span for="">Award Date</span>
-    <input type="date" name="award_date" id="award_date" class="form-control form-control-sm">
 </div>
 
 <script>
