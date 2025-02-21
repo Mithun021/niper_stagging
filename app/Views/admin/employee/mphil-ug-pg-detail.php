@@ -3,8 +3,10 @@
 <?php
 
 use App\Models\Employee_model;
+use App\Models\Student_model;
 
 $employee_model = new Employee_model();
+$student_model = new Student_model();
 ?>
 <style>
 
@@ -159,7 +161,7 @@ $employee_model = new Employee_model();
                                     <td><?php $emp = $employee_model->get($value['employee_id']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                    
-                                    <td><?= $value['student_name'] ?></td>
+                                    <td><?php $student = $student_model->get($value['student_name']); if($student){ echo $student['first_name']." ".$student['middle_name']." ".$student['last_name']." - ".$student['enrollment_no']; }  ?></td>
                                     <td><?= $value['student_category'] ?></td>
                                     <td><?= $value['synopsis_name'] ?></td>
                                     
