@@ -35,8 +35,9 @@
         <link href="<?= base_url() ?>public/admin/plugins/datatables/buttons.bootstrap4.css" rel="stylesheet" type="text/css" />
         <link href="<?= base_url() ?>public/admin/plugins/datatables/select.bootstrap4.css" rel="stylesheet" type="text/css" />
         <!-- jQuery UI Stylesheet (for sortable styling) -->
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+            <!-- Include the Select2 CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
         <style>
             /* .ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred {
                 height: 250px;
@@ -52,6 +53,30 @@
                 margin: 0;
                 padding: 0;
             }
+
+        .select2-container {
+            width: 100% !important;  /* Make the Select2 container take 100% width */
+            }
+
+            .select2-selection {
+            height: 40px !important;  /* Set the height of the selected item */
+            line-height: 36px;        /* Adjust line-height to vertically center the text */
+            }
+
+            .select2-selection__rendered {
+            padding-top: 7px;         /* Adjust padding to ensure text is centered */
+            }
+
+            .select2-container--default .select2-selection--single {
+            border-radius: 4px;       /* Optional: Add border radius for styling */
+            border: 1px solid #ccc;   /* Optional: Border styling */
+            }
+
+            .select2-dropdown {
+            max-width: 100% !important;  /* Make the dropdown width 100% */
+            }
+
+
         </style>
     </head>
 

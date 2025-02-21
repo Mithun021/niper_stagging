@@ -41,7 +41,7 @@ $student_model = new Student_model();
                         </div> -->
                         <div class="form-group col-md-6">
                             <span for="">Name of the Student</span>
-                            <select name="student_name" id="" class="form-control form-control-sm" required>
+                            <select name="student_name" id="" class="form-control form-control-sm my-select" required>
                                 <option value="">--Select--</option>
                             <?php foreach ($student as $key => $value) { ?>
                                 <option value="<?= $value['id'] ?>"><?= $value['first_name'] ?> <?= $value['middle_name'] ?> <?= $value['last_name'] ?> - <?= $value['enrollment_no'] ?></option>

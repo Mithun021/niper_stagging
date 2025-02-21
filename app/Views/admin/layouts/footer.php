@@ -61,6 +61,9 @@
         <script src="<?= base_url() ?>public/admin/assets/pages/datatables-demos.js"></script>
         <script src="<?= base_url() ?>public/admin/assets/js/adminScript.js"></script>
 
+        <!-- Select2 js -->
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
         <!-- Jquery Validation Plugin -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -192,6 +195,24 @@
 
             
         </script>
+
+<script>
+    class Select2Handler {
+      constructor(selectElementId) {
+        this.selectElement = document.getElementById(selectElementId);
+        this.initSelect2();
+      }
+
+      initSelect2() {
+        // Ensure jQuery is available before using Select2
+        $(this.selectElement).select2();
+      }
+    }
+
+    // Initialize the class
+    const select2Instance = new Select2Handler("mySelect");
+  </script>
+
 
     </body>
 
