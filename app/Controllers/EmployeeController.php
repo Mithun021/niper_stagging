@@ -1002,8 +1002,8 @@ use App\Models\Phd_detail_model;
 
                 $data = [
                     'employee_id' => $this->request->getPost('employee_id'),
-                    'degree_type' => $this->request->getPost('degree_type'),
-                    'subject_studied' => $this->request->getPost('subject_studied'),
+                    'degree_type' => $this->request->getPost('degree_type') ?? '',
+                    'subject_studied' => $this->request->getPost('subject_studied') ?? '',
                     'phd_thesis' => $this->request->getPost('phd_thesis'),
                     'degree_status' => $this->request->getPost('degree_status'),
                     'registration_date' => $this->request->getPost('registration_date'),
