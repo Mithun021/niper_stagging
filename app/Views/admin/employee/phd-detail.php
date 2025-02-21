@@ -49,19 +49,24 @@ $department_model = new Department_model();
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Degree Status</span>
-                            <input type="text" name="degree_status" id="" class="form-control form-control-sm">
+                            <select name="degree_status" id="degree_status" class="form-control form-control-sm">
+                                <option value="">--Select--</option>
+                                <option value="Onging">Onging</option>
+                                <option value="Awarded">Awarded</option>
+                                <option value="Submitted">Submitted</option>
+                            </select>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" style="display: none;">
                             <span for="">Registration Date</span>
-                            <input type="date" name="registration_date" id="" class="form-control form-control-sm">
+                            <input type="date" name="registration_date" id="registration_date" class="form-control form-control-sm">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" style="display: none;">
                             <span for="">Submission Date</span>
-                            <input type="date" name="submission_date" id="" class="form-control form-control-sm">
+                            <input type="date" name="submission_date" id="submission_date" class="form-control form-control-sm">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" style="display: none;">
                             <span for="">Award Date</span>
-                            <input type="date" name="award_date" id="" class="form-control form-control-sm">
+                            <input type="date" name="award_date" id="award_date" class="form-control form-control-sm">
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">University</span>
@@ -75,7 +80,7 @@ $department_model = new Department_model();
                             <span for="">University(State/UT)</span>
                             <input type="text" name="university_state" id="" class="form-control form-control-sm">
                         </div>
-<!--                         
+                        <!--                         
                         <div class="form-group col-md-4">
                             <span for="">Document Upload (jpg,jpeg,pdf,png)</span>
                             <input type="file" name="document_file" id="" class="form-control form-control-sm" accept=".png,.jpg,.jpeg">
@@ -115,32 +120,32 @@ $department_model = new Department_model();
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($phd_detail as $key => $value) { ?>
-                            <tr>
-                                <td><?= ++$key ?></td>
-                                <td><?php $emp = $employee_model->get($value['employee_id']);
-                                    echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
-                                <td><?= $value['degree_type'] ?></td>
-                                <td><?= $value['subject_studied'] ?></td>
-                                <td><?= $value['phd_thesis'] ?></td>
-                                <td><?= $value['degree_status'] ?></td>
-                                <td><?= $value['registration_date'] ?></td>
-                                <td><?= $value['submission_date'] ?></td>
-                                <td><?= $value['award_date'] ?></td>
-                                <td><?= $value['university'] ?></td>
-                                <td><?= $value['university_country'] ?></td>
-                                <td><?= $value['university_state'] ?></td>
-                                <td><?php $emp = $employee_model->get($value['upload_by']);
-                                    echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
-                                <td>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
-                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
-                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php } ?>
+                            <?php foreach ($phd_detail as $key => $value) { ?>
+                                <tr>
+                                    <td><?= ++$key ?></td>
+                                    <td><?php $emp = $employee_model->get($value['employee_id']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                    <td><?= $value['degree_type'] ?></td>
+                                    <td><?= $value['subject_studied'] ?></td>
+                                    <td><?= $value['phd_thesis'] ?></td>
+                                    <td><?= $value['degree_status'] ?></td>
+                                    <td><?= $value['registration_date'] ?></td>
+                                    <td><?= $value['submission_date'] ?></td>
+                                    <td><?= $value['award_date'] ?></td>
+                                    <td><?= $value['university'] ?></td>
+                                    <td><?= $value['university_country'] ?></td>
+                                    <td><?= $value['university_state'] ?></td>
+                                    <td><?php $emp = $employee_model->get($value['upload_by']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                            <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                            <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                            <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
@@ -148,5 +153,59 @@ $department_model = new Department_model();
         </div>
     </div>
 </div>
+
+
+<div class="form-group col-md-6">
+    <span for="">Degree Status</span>
+    <select name="degree_status" id="degree_status" class="form-control form-control-sm">
+        <option value="">--Select--</option>
+        <option value="Onging">Ongoing</option>
+        <option value="Awarded">Awarded</option>
+        <option value="Submitted">Submitted</option>
+    </select>
+</div>
+
+<div class="form-group col-md-4" id="registration_date_group" style="display: none;">
+    <span for="">Registration Date</span>
+    <input type="date" name="registration_date" id="registration_date" class="form-control form-control-sm">
+</div>
+
+<div class="form-group col-md-4" id="submission_date_group" style="display: none;">
+    <span for="">Submission Date</span>
+    <input type="date" name="submission_date" id="submission_date" class="form-control form-control-sm">
+</div>
+
+<div class="form-group col-md-4" id="award_date_group" style="display: none;">
+    <span for="">Award Date</span>
+    <input type="date" name="award_date" id="award_date" class="form-control form-control-sm">
+</div>
+
+<script>
+    // Function to handle degree status change
+    document.getElementById('degree_status').addEventListener('change', function() {
+        const degreeStatus = this.value;
+
+        // Show/hide date fields based on the selected degree status
+        if (degreeStatus === 'Onging') {
+            document.getElementById('registration_date_group').style.display = 'block';
+            document.getElementById('submission_date_group').style.display = 'none';
+            document.getElementById('award_date_group').style.display = 'none';
+        } else if (degreeStatus === 'Submitted') {
+            document.getElementById('registration_date_group').style.display = 'block';
+            document.getElementById('submission_date_group').style.display = 'block';
+            document.getElementById('award_date_group').style.display = 'none';
+        } else if (degreeStatus === 'Awarded') {
+            document.getElementById('registration_date_group').style.display = 'block';
+            document.getElementById('submission_date_group').style.display = 'block';
+            document.getElementById('award_date_group').style.display = 'block';
+        } else {
+            // If no selection or invalid, hide all date fields
+            document.getElementById('registration_date_group').style.display = 'none';
+            document.getElementById('submission_date_group').style.display = 'none';
+            document.getElementById('award_date_group').style.display = 'none';
+        }
+    });
+</script>
+
 
 <?= $this->endSection() ?>
