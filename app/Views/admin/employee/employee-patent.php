@@ -78,10 +78,18 @@ $employee_model = new Employee_model();
                                 <div class="col-lg-6">
                                     <!-- Award Photo Upload -->
                                     <div class="form-group">
-                                        <span for="Awardphotoupload">Document Upload(.pdf,.jpg,.jpeg,.png):</span>
-                                        <input type="file" name="patent_document[]" id="Awardphotoupload" class="form-control form-control-sm" accept=".pdf,.jpg,.jpeg,.png">
+                                        <span for="Awardphotoupload">Document Upload(.pdf):</span>
+                                        <input type="file" name="patent_document[]" id="Awardphotoupload" class="form-control form-control-sm" accept=".pdf">
                                     </div>
                                 </div>
+                              <div class="col-lg-6 form-group">
+                                  <span>Patent Status <span class="text-danger">*</span></span>
+                                  <select class="form-control form-control-sm" name="patent_status[]" required>
+                                      <option value="In Process">In Process</option>
+                                      <option value="Applied" selected>Applied</option>
+                                      <option value="Granted" selected>Granted</option>
+                                  </select>
+                              </div>
                                 <div class="col-lg-12">
                                     <button type="button" id="remove-clone" class="btn btn-danger" style="width: 120px;">Remove Clone</button>
                                 </div>
@@ -112,6 +120,7 @@ $employee_model = new Employee_model();
                                 <td>File</td>
                                 <td>Emp. ID</td>
                                 <td>Patent Title</td>
+                              	<td>Status</td>
                                 <td>Level</td>
                                 <td>Patent Number</td>
                                 <td>Date of Awarding</td>
@@ -134,6 +143,7 @@ $employee_model = new Employee_model();
                                     <td><?php $emp = $employee_model->get($value['employee_id']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                     <td><?= $value['patent_title'] ?></td>
+                                  	<td><?= $value['patent_status'] ?></td>
                                     <td><?= $value['patent_level'] ?></td>
                                     <td><?= $value['patent_number'] ?></td>
                                     <td><?= $value['awards_date'] ?></td>

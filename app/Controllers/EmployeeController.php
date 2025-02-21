@@ -327,6 +327,7 @@ use App\Models\Phd_detail_model;
                         'patent_level' => $this->request->getPost('level')[$key],
                         'awards_date' => $this->request->getPost('date_of_awarding')[$key],
                         'fund_generated' => $this->request->getPost('fund_generate')[$key],
+                        'patent_status' => $this->request->getPost('patent_status')[$key],
                         'upload_by' =>  $loggeduserId,
                     ]; 
 
