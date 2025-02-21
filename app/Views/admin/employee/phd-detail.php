@@ -184,6 +184,7 @@ $department_model = new Department_model();
     // Function to handle degree status change
     document.getElementById('degree_status').addEventListener('change', function() {
         const degreeStatus = this.value;
+        console.log(degreeStatus);
 
         // Show/hide date fields based on the selected degree status
         if (degreeStatus === 'Onging') {
