@@ -196,21 +196,14 @@
             
         </script>
 
-<script>
-    class Select2Handler {
-      constructor(selectElementId) {
-        this.selectElement = document.getElementById(selectElementId);
-        this.initSelect2();
-      }
-
-      initSelect2() {
-        // Ensure jQuery is available before using Select2
-        $(this.selectElement).select2();
-      }
-    }
-
-    // Initialize the class
-    const select2Instance = new Select2Handler("mySelect");
+    <script>
+        $(document).ready(function() {
+            $('.my-select').select2({
+                placeholder: "--Select--",
+                allowClear: true,
+                width: '100%'
+            });
+        });
   </script>
 
 
