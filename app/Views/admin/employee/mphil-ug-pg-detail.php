@@ -33,13 +33,18 @@ $employee_model = new Employee_model();
                                 <?php } ?>
                             </select>
                         </div>
-                        <div class="form-group col-md-6">
+                        <!-- <div class="form-group col-md-6">
                             <span for="">Student Title<span class="text-danger">*</span></span>
                             <input type="text" name="student_title" id="" class="form-control form-control-sm" required>
-                        </div>
+                        </div> -->
                         <div class="form-group col-md-4">
                             <span for="">Name of the Student</span>
-                            <input type="text" name="student_name" id="" class="form-control form-control-sm" maxlength="4">
+                            <select name="student_name" id="" class="form-control form-control-sm" required>
+                                <option value="">--Select--</option>
+                            <?php foreach ($student as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['first_name'] ?> <?= $value['middle_name'] ?> <?= $value['last_name'] ?> - <?= $value['enrollment_no'] ?></option>
+                            <?php } ?>
+                            </select>
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Student Category</span>
@@ -55,10 +60,10 @@ $employee_model = new Employee_model();
                             <span for="">Name of the Synopsis</span>
                             <input type="text" name="synopsis_name" id="" class="form-control form-control-sm">
                         </div>
-                        <div class="form-group col-md-4">
+                        <!-- <div class="form-group col-md-4">
                             <span for="">Roll No</span>
                             <input type="text" name="roll_no" id="" class="form-control form-control-sm">
-                        </div>
+                        </div> -->
                         <div class="form-group col-md-4">
                             <span for="">Semester</span>
                             <select name="semester" id="" class="form-control form-control-sm">
@@ -126,11 +131,11 @@ $employee_model = new Employee_model();
                                 <td>SN</td>
                                 <td>File</td>
                                 <td>Emp. ID</td>
-                                <td>Student Title</td>
+                                <!-- <td>Student Title</td> -->
                                 <td>Student Name</td>
                                 <td>Category</td>
                                 <td>Synopsis</td>
-                                <td>Roll No</td>
+                                <!-- <td>Roll No</td> -->
                                 <td>Semester</td>
                                 <td>Remarks</td>
                                 <td>University Name</td>
@@ -153,11 +158,11 @@ $employee_model = new Employee_model();
                                     </td>
                                     <td><?php $emp = $employee_model->get($value['employee_id']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
-                                    <td><?= $value['student_title'] ?></td>
+                                   
                                     <td><?= $value['student_name'] ?></td>
                                     <td><?= $value['student_category'] ?></td>
                                     <td><?= $value['synopsis_name'] ?></td>
-                                    <td><?= $value['roll_no'] ?></td>
+                                    
                                     <td><?= $value['semester'] ?></td>
                                     <td><?= $value['remarks'] ?></td>
                                     <td><?= $value['university_name'] ?></td>

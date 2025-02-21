@@ -23,6 +23,7 @@ use App\Models\Nature_of_work_model;
 use App\Models\Ongoing_phd_model;
 use App\Models\Organisation_type_model;
 use App\Models\Phd_detail_model;
+use App\Models\Student_model;
 
     class EmployeeController extends BaseController{
         public function employee(){
@@ -1025,10 +1026,12 @@ use App\Models\Phd_detail_model;
         }
 
         public function mphil_ug_pg_detail(){
+            $student_model = new Student_model();
             $employee_model = new Employee_model();
             $mphil_ug_pg_model = new Mphil_ug_pg_model();
             $data = ['title' => 'MPhil/PG/UG Ongoing Details'];
             if ($this->request->is('get')) {
+                $data['student'] = $student_model->get();
                 $data['employee'] = $employee_model->get();
                 $data['mphil_ug_pg'] = $mphil_ug_pg_model->get();
                 return view('admin/employee/mphil-ug-pg-detail',$data);
@@ -1046,11 +1049,11 @@ use App\Models\Phd_detail_model;
                 }
                 $data = [
                     'employee_id' => $this->request->getPost('employee_id'),
-                    'student_title' => $this->request->getPost('student_title'),
+                    // 'student_title' => $this->request->getPost('student_title'),
                     'student_name' => $this->request->getPost('student_name'),
                     'student_category' => $this->request->getPost('student_category'),
                     'synopsis_name' => $this->request->getPost('synopsis_name'),
-                    'roll_no' => $this->request->getPost('roll_no'),
+                    // 'roll_no' => $this->request->getPost('roll_no'),
                     'semester' => $this->request->getPost('semester'),
                     'remarks' => $this->request->getPost('remarks'),
                     'university_name' => $this->request->getPost('university_name'),
