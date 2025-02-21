@@ -76,12 +76,19 @@ $department_model = new Department_model();
                             <input type="text" name="university" id="" class="form-control form-control-sm">
                         </div>
                         <div class="form-group col-md-4">
-                            <span for="">University(Country)</span>
-                            <input type="text" name="university_country" id="" class="form-control form-control-sm">
+                            <span for="">University (Country)</span>
+                            <select name="university_country" id="university_country" class="form-control form-control-sm">
+                                <option value="">--Select--</option>
+                            <?php foreach ($country as $key => $value) { ?>
+                                <option value="<?= $value['country'] ?>"><?= $value['country'] ?></option>
+                            <?php } ?>
+                            </select>
                         </div>
                         <div class="form-group col-md-4">
-                            <span for="">University(State/UT)</span>
-                            <input type="text" name="university_state" id="" class="form-control form-control-sm">
+                            <span for="">University (State/UT)</span>
+                            <select name="university_state" id="university_state" class="form-control form-control-sm">
+                                <option value="">--Select--</option>
+                            </select>
                         </div>
                         <!--                         
                         <div class="form-group col-md-4">
@@ -183,6 +190,39 @@ $department_model = new Department_model();
             document.getElementById('award_date_group').style.display = 'none';
         }
     });
+</script>
+
+
+<!-- jQuery  -->
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+
+<script>
+    $('#university_country').on('change', function () { 
+        var country_name = $(this).val();
+        $.ajax({
+            type: "post",
+            url: "<?= base_url('getStates'); ?>",
+            data: { country_name: country_name },
+            dataType: "json",
+            success: function (response) {
+                var stateDropdown = $('#university_state');
+                stateDropdown.empty(); 
+                stateDropdown.append('<option value="">--Select--</option>');
+
+                if (response.length > 0) {
+                    $.each(response, function(index, state) {
+                        stateDropdown.append('<option value="' + state.state + '">' + state.state + '</option>');
+                    });
+                } else {
+                    stateDropdown.append('<option value="">No states available</option>');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Error: " + error);
+            }
+        });
+    });
+
 </script>
 
 

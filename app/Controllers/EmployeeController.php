@@ -976,11 +976,13 @@ use App\Models\Phd_detail_model;
 
 
         public function phd_detail(){
+            $country_model = new Country_model();
             $employee_model = new Employee_model();
             $department_model = new Department_model();
            $phd_detail_model =  new Phd_detail_model();
             $data = ['title' => 'PHD Details'];
             if ($this->request->is('get')) {
+                $data['country'] = $country_model->getCountry();
                 $data['employee'] = $employee_model->get();
                 $data['department'] = $department_model->get();
                 $data['phd_detail'] = $phd_detail_model->get();
