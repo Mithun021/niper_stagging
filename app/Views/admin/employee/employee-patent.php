@@ -86,8 +86,8 @@ $employee_model = new Employee_model();
                                   <span>Patent Status <span class="text-danger">*</span></span>
                                   <select class="form-control form-control-sm" name="patent_status[]" required>
                                       <option value="In Process">In Process</option>
-                                      <option value="Applied" selected>Applied</option>
-                                      <option value="Granted" selected>Granted</option>
+                                      <option value="Applied" >Applied</option>
+                                      <option value="Granted" >Granted</option>
                                   </select>
                               </div>
                                 <div class="col-lg-12">
