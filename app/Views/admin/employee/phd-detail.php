@@ -115,8 +115,8 @@ $department_model = new Department_model();
                             <tr>
                                 <td>SN</td>
                                 <td>Emp. ID</td>
-                                <td>Degree Type</td>
-                                <td>Subjects Studied</td>
+                                <!-- <td>Degree Type</td>
+                                <td>Subjects Studied</td> -->
                                 <td>Title of the Ph.D thesis</td>
                                 <td>Degree Status</td>
                                 <td>Registration Date</td>
@@ -135,8 +135,8 @@ $department_model = new Department_model();
                                     <td><?= ++$key ?></td>
                                     <td><?php $emp = $employee_model->get($value['employee_id']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
-                                    <td><?= $value['degree_type'] ?></td>
-                                    <td><?= $value['subject_studied'] ?></td>
+                                    <!-- <td><?= $value['degree_type'] ?></td>
+                                    <td><?= $value['subject_studied'] ?></td> -->
                                     <td><?= $value['phd_thesis'] ?></td>
                                     <td><?= $value['degree_status'] ?></td>
                                     <td><?= $value['registration_date'] ?></td>
