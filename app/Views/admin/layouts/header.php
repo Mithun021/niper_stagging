@@ -59,8 +59,8 @@
             }
 
             .select2-selection {
-            height: 40px !important;  /* Set the height of the selected item */
-            line-height: 36px;        /* Adjust line-height to vertically center the text */
+            height: 30px !important;  /* Set the height of the selected item */
+            line-height: 30px;        /* Adjust line-height to vertically center the text */
             }
 
             .select2-selection__rendered {
