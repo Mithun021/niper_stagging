@@ -141,7 +141,7 @@ $employee_model = new Employee_model();
                                     <td><?= $value['program_name'] ?></td>
                                     <td><?= $value['semester'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
-                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                       if($emp){ echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
                                     <td><?= $value['created_at'] ?></td>
                                     <td>
                                         <a href="<?= base_url() ?>admin/edit-program-dept-std-mapping/<?= $value['student_mapping_id'] ?>" class="btn btn-sm btn-primary">Edit</a>
