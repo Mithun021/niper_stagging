@@ -26,7 +26,7 @@ $department_model = new Department_model();
                 ?>
                 <form method="post" action="<?= base_url('admin/phd-detail') ?>" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <span for="">Employee Id<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="employee_id" required>
                                 <option value="">--Select--</option>
@@ -35,19 +35,19 @@ $department_model = new Department_model();
                                 <?php } ?>
                             </select>
                         </div>
-                        <div class="form-group col-md-6">
+                        <!-- <div class="form-group col-md-6">
                             <span for="">Type of the Degree<span class="text-danger">*</span></span>
                             <input type="text" name="degree_type" id="" class="form-control form-control-sm" required>
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Subjects Studied</span>
                             <input type="text" name="subject_studied" id="" class="form-control form-control-sm" >
-                        </div>
-                        <div class="form-group col-md-4">
+                        </div> -->
+                        <div class="form-group col-md-6">
                             <span for="">Title of the Ph.D thesis</span>
                             <input type="text" name="phd_thesis" id="" class="form-control form-control-sm">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <span for="">Degree Status</span>
                             <input type="text" name="degree_status" id="" class="form-control form-control-sm">
                         </div>
