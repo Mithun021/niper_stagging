@@ -639,7 +639,6 @@ use App\Models\Program_department_mapping_model;
             $data = ['title' => 'Event Highlight','event_highlight_id' => $id];
             $data['event_highlights_detail'] = $event_gallery_model->get($id);
             if ($this->request->is("get")) {
-            echo $id; die;
                 $data['events'] = $events_model->get();
                 $data['event_gallery'] = $event_gallery_model->get();
                 // $data['event_highlights'] = $event_highlights_model->get();
@@ -672,7 +671,7 @@ use App\Models\Program_department_mapping_model;
                     'upload_by' => $loggeduserId,
                 ];
     
-                $result = $event_gallery_model->save($data,$id);
+                $result = $event_gallery_model->add($data,$id);
                 if ($result === true) {
                     return redirect()->to('admin/edit-event-highlight/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data update Successful </div>');
                 } else {
