@@ -237,10 +237,11 @@ use App\Models\Student_model;
                 // echo "<pre>";print_r($data);
                 $result = $employee_publication_model->add($data);
                 if ($result === true) {
+                    $insertId = $employee_publication_model->getInsertID();
                     foreach ($author_name as $value) {
                         $data2 = [
                             'author_name' => $value,
-                            'emp_publication_id' => $result,
+                            'emp_publication_id' => $insertId,
                         ];
                         $employee_publication_author_model->add($data2);
                     }
