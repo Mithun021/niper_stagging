@@ -25,13 +25,13 @@ $designation_model = new Designation_model();
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/event-contact-info') ?>">
+                <form method="post" action="<?= base_url('admin/edit-event-contact-info/'.$event_contact_info_id) ?>">
                     <div class="form-group">
                         <span>Event ID:</span>
                         <select name="event_id" id="event_id" class="form-control form-control-sm my-select" required>
                             <option value="">Select Event</option>
                             <?php foreach ($events as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                                <option value="<?= $value['id'] ?>" <?php if($event_contact_info_detail['event_id']== $value['id']){ echo "selected"; } ?>><?= $value['title'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -52,7 +52,7 @@ $designation_model = new Designation_model();
                         <select class="form-control form-control-sm my-select" name="designation" required>
                             <option value="">--Select--</option>
                         <?php foreach ($designation as $key => $value) { ?>
-                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                            <option value="<?= $value['id'] ?>" <?php if($event_contact_info_detail['designation']== $value['id']){ echo "selected"; } ?>><?= $value['name'] ?></option>
                         <?php } ?>
                         </select>
                     </div>

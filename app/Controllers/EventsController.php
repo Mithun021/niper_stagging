@@ -926,5 +926,41 @@ use App\Models\Program_department_mapping_model;
                 }
             }
         }
+
+        public function edit_event_contact_info($id){
+            $designation_model = new Designation_model();
+            $events_model = new Events_model();
+            $event_contact_info_model = new Event_contact_info_model();
+            $data = ['title' => 'Event Contact Info','event_contact_info_id' => $id];
+            $data['event_contact_info_detail'] = $event_contact_info_model->get($id);
+            if ($this->request->is("get")) {
+                $data['events_contact'] = $event_contact_info_model->get();
+                $data['events'] = $events_model->get();
+                $data['designation'] = $designation_model->get();
+                return view('admin/events/edit-event-contact-info',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }else{
+                    return redirect()->to(base_url('admin/login'));
+                }
+                $data = [
+                    'event_id' => $this->request->getPost('event_id'),
+                    'name' => $this->request->getPost('name'),
+                    'email' => $this->request->getPost('email'),
+                    'phone_number' => $this->request->getPost('phone'),
+                    'designation' => $this->request->getPost('designation'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $event_contact_info_model->add($data,$id);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-event-contact-info/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-event-contact-info/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
     }
 ?>
