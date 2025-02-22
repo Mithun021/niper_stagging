@@ -31,7 +31,7 @@ $member_type_model = new Member_type_model();
                     <div class="row">
                         <div class="col-md-6">
                             <span>Event ID:</span>
-                            <select name="event_id" class="form-control form-control-sm">
+                            <select name="event_id" class="form-control form-control-sm  my-select" required>
                                 <option value="">Select Event</option>
                                 <?php foreach ($events as $key => $value) { ?>
                                     <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>

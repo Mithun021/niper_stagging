@@ -31,7 +31,7 @@ $member_type_model = new Member_type_model();
                     <div class="row">
                         <div class="col-md-6">
                             <span>Event ID:</span>
-                            <select name="event_id" class="form-control form-control-sm">
+                            <select name="event_id" class="form-control form-control-sm my-select" required>
                                 <option value="">Select Event</option>
                                 <?php foreach ($events as $key => $value) { ?>
                                     <option value="<?= $value['id'] ?>" <?php if($event_members_detail['event_id']== $value['id']){ echo "selected"; } ?>><?= $value['title'] ?></option>
@@ -49,32 +49,32 @@ $member_type_model = new Member_type_model();
 
                         <div class="form-group col-md-6">
                             <span>Member Name:</span>
-                            <input type="text" name="member_name[]" class="form-control form-control-sm" required>
+                            <input type="text" name="member_name" class="form-control form-control-sm" required>
                         </div>
 
                         <div class="form-group col-md-6">
                             <span>Member Designation:</span>
-                            <select name="member_designation[]" id="member_designation" class="form-control form-control-sm" required>
-                                <option value="Assistant Professor">Assistant Professor</option>
-                                <option value="Associate Professor">Associate Professor</option>
-                                <option value="Professor">Professor</option>
-                                <option value="Scientist">Scientist</option>
-                                <option value="Any Other">Any Other</option>
+                            <select name="member_designation" id="member_designation" class="form-control form-control-sm" required>
+                                <option value="Assistant Professor" <?php if($event_members_detail['member_name']=="Assistant Professor"){ echo "selected"; } ?> >Assistant Professor</option>
+                                <option value="Associate Professor" <?php if($event_members_detail['member_name']=="Associate Professor"){ echo "selected"; } ?>>Associate Professor</option>
+                                <option value="Professor" <?php if($event_members_detail['member_name']=="Professor"){ echo "selected"; } ?>>Professor</option>
+                                <option value="Scientist" <?php if($event_members_detail['member_name']=="Scientist"){ echo "selected"; } ?>>Scientist</option>
+                                <option value="Any Other" <?php if($event_members_detail['member_name']=="Any Other"){ echo "selected"; } ?>>Any Other</option>
                             </select>
                             <div class="form-group" id="other_designation" style="display: none;">
                                 <span>Specify Other Designation:</span>
-                                <input type="text" name="member_desig_other[]" class="form-control form-control-sm">
+                                <input type="text" name="member_desig_other" class="form-control form-control-sm">
                             </div>
                         </div>
 
                         <div class="form-group col-md-6">
                             <span>Member Affiliation:</span>
-                            <input type="text" name="member_affiliation[]" class="form-control form-control-sm" required>
+                            <input type="text" name="member_affiliation" class="form-control form-control-sm" required>
                         </div>
 
                         <div class="form-group col-md-6">
                             <span>Upload File(.pdf):</span>
-                            <input type="file" name="upload_file[]" class="form-control form-control-sm" accept=".pdf">
+                            <input type="file" name="upload_file" class="form-control form-control-sm" accept=".pdf">
                         </div>
 
                     </div>
@@ -162,7 +162,24 @@ $member_type_model = new Member_type_model();
 </div>
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
-    
+    $(document).ready(function() {
+        // Check the initial selected value on page load
+        toggleOtherDesignation($('#member_designation').val());
+        
+        // Event listener for when the select value changes
+        $('#member_designation').change(function() {
+            toggleOtherDesignation($(this).val());
+        });
+
+        // Function to show or hide the 'other_designation' based on the selected value
+        function toggleOtherDesignation(value) {
+            if(value === "Any Other") {
+                $('#other_designation').show();
+            } else {
+                $('#other_designation').hide();
+            }
+        }
+    });
 </script>
 
 <?= $this->endSection() ?>
