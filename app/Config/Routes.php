@@ -51,6 +51,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete-event-category/(:num)', 'EventsController::delete_event_category/$1');
 
     $routes->match(['get','post'],'event-fee-category', 'EventsController::event_fee_category');
+    $routes->match(['get','post'],'edit-event-fee-category/(:num)', 'EventsController::edit_event_fee_category/$1');
+    $routes->get('delete-event-fee-category/(:num)', 'EventsController::delete_event_fee_category/$1');
+    
     $routes->match(['get','post'],'event-fee-subcategory', 'EventsController::event_fee_subcategory');
     $routes->match(['get','post'],'event-contact-info', 'EventsController::event_contact_info');
     $routes->match(['get','post'],'member_type_category', 'EventsController::member_type_category');

@@ -23,20 +23,20 @@ use App\Models\Events_model;
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/event-fee-category') ?>">
+                <form method="post" action="<?= base_url('admin/edit-event-fee-category/'.$event_fee_category_id) ?>">
                     <div class="form-group">
                         <span>Event ID:</span>
                         <select name="event_id" class="form-control form-control-sm">
                             <option value="">Select Event</option>
                             <?php foreach ($events as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                                <option value="<?= $value['id'] ?>" <?php if($event_fee_category_detail['event_id'] == $value['id']) ?>><?= $value['title'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
                 
                     <div class="form-group">
                         <span for="">Category Name<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="event_category" required>
+                        <input type="text" class="form-control form-control-sm" name="event_category" value="<?= $event_fee_category_detail['name'] ?>" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
