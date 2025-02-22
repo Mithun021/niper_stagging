@@ -414,7 +414,7 @@ use App\Models\Program_department_mapping_model;
             $member_type_model = new Member_type_model();
             $employee_model =new Employee_model();
             $event_members_model = new Event_members_model();
-            $data = ['title' => 'Event Members', 'event_member_id' => $id];
+            $data = ['title' => 'Event Members', 'title2' => 'Update Event Members', 'event_member_id' => $id];
             $data['event_members_detail'] = $event_members_model->get($id);
             if ($this->request->is("get")) {
                 $data['member_type'] = $member_type_model->get();

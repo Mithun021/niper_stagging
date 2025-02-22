@@ -20,7 +20,7 @@ $member_type_model = new Member_type_model();
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title m-0"><?= $title; ?></h4>
+                <h4 class="card-title m-0"><?= $title2; ?></h4>
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')): ?>
