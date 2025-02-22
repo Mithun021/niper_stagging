@@ -633,6 +633,7 @@ use App\Models\Program_department_mapping_model;
         }
 
         public function edit_event_highlight($id){
+            echo $id; die;
             $event_gallery_model = new Event_gallery_model();
             $events_model = new Events_model();
             // $event_highlights_model = new Event_highlights_model();
