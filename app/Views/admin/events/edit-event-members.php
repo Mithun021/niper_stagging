@@ -177,6 +177,7 @@ $member_type_model = new Member_type_model();
                 $('#other_designation').show();
             } else {
                 $('#other_designation').hide();
+                $('#other_designation').val('');
             }
         }
     });
