@@ -593,12 +593,12 @@ use App\Models\Program_department_mapping_model;
         public function event_highlight(){
             $event_gallery_model = new Event_gallery_model();
             $events_model = new Events_model();
-            $event_highlights_model = new Event_highlights_model();
+            // $event_highlights_model = new Event_highlights_model();
             $data = ['title' => 'Event Highlight'];
             if ($this->request->is("get")) {
                 $data['events'] = $events_model->get();
                 $data['event_gallery'] = $event_gallery_model->get();
-                $data['event_highlights'] = $event_highlights_model->get();
+                // $data['event_highlights'] = $event_highlights_model->get();
                 return view('admin/events/event-highlight',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
@@ -635,13 +635,13 @@ use App\Models\Program_department_mapping_model;
         public function edit_event_highlight($id){
             $event_gallery_model = new Event_gallery_model();
             $events_model = new Events_model();
-            $event_highlights_model = new Event_highlights_model();
+            // $event_highlights_model = new Event_highlights_model();
             $data = ['title' => 'Event Highlight','event_highlight_id' => $id];
-            $data['event_highlights_detail'] = $event_highlights_model->get($id);
+            $data['event_highlights_detail'] = $event_gallery_model->get($id);
             if ($this->request->is("get")) {
                 $data['events'] = $events_model->get();
                 $data['event_gallery'] = $event_gallery_model->get();
-                $data['event_highlights'] = $event_highlights_model->get();
+                // $data['event_highlights'] = $event_highlights_model->get();
                 return view('admin/events/edit-event-highlight',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
