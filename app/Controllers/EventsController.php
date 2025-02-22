@@ -409,6 +409,60 @@ use App\Models\Program_department_mapping_model;
             }
         }
 
+        public function edit_event_members($id){
+            $events_model = new Events_model();
+            $member_type_model = new Member_type_model();
+            $employee_model =new Employee_model();
+            $event_members_model = new Event_members_model();
+            $data = ['title' => 'Event Members', 'event_member_id' => $id];
+            $data['event_members_detail'] = $event_members_model->get($id);
+            if ($this->request->is("get")) {
+                $data['member_type'] = $member_type_model->get();
+                $data['events'] = $events_model->get();
+                $data['employees'] = $employee_model->get();
+                $data['event_members'] = $event_members_model->get();
+                return view('admin/events/event-members',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }else{
+                    return redirect()->to(base_url('admin/login'));
+                }
+
+                $member_name = $this->request->getPost('member_name');
+                $member_file = $this->request->getFileMultiple('upload_file');
+                foreach ($member_name as $key => $value) {
+                    $file = $member_file[$key];
+                    $fileName = "";
+                    if ($file->isValid() && !$file->hasMoved()) {
+                        $fileName = "membersFile".$file->getRandomName();
+                        $file->move(ROOTPATH . 'public/admin/uploads/events', $fileName);
+                    }
+                    $data =[
+                        'event_id' => $this->request->getPost('event_id'),
+                        'member_name' => $value,
+                        'member_type' => $this->request->getPost('member_type'),
+                        'member_designation' => $this->request->getPost('member_designation')[$key],
+                        'other_designation' => $this->request->getPost('member_desig_other')[$key] ?? '',
+                        'member_affiliation' => $this->request->getPost('member_affiliation')[$key],
+                        'upload_file' => $fileName,
+                        'upload_by' => $loggeduserId,
+                    ];
+                    // echo "<pre>"; print_r($data);
+                    $result = $event_members_model->add($data);
+                }
+                // die;
+                
+                if ($result === true) {
+                    return redirect()->to('admin/event-members')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/event-members')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
+
         public function event_organizer(){
             $events_model = new Events_model();
             $event_organizer_model = new Event_organizer_model();

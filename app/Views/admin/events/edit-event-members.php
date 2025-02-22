@@ -27,14 +27,14 @@ $member_type_model = new Member_type_model();
                     <?= session()->getFlashdata('status'); ?>
                 <?php endif; ?>
 
-                <form action="<?= base_url() ?>admin/event-members" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/edit-event-members/<?= $event_member_id ?>" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
                             <span>Event ID:</span>
                             <select name="event_id" class="form-control form-control-sm">
                                 <option value="">Select Event</option>
                                 <?php foreach ($events as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?php if($event_contact_info_detail['event_id']== $value['id']){ echo "selected"; } ?>><?= $value['title'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -42,7 +42,7 @@ $member_type_model = new Member_type_model();
                             <span>Member Type:</span>
                             <select name="member_type" class="form-control form-control-sm" required>
                                 <?php foreach ($member_type as $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['member_type'] ?></option>
+                                    <option value="<?= $value['id'] ?>"<?php if($event_contact_info_detail['member_name']== $value['id']){ echo "selected"; } ?>><?= $value['member_type'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -192,50 +192,7 @@ $member_type_model = new Member_type_model();
 </div>
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
-    $(document).ready(function() {
-        var cloneLimit = 10; // Maximum number of cloned rows allowed
-        var currentClones = 0;
-
-        // Add new row when the 'Add new member' button is clicked
-        $("#addnewMemberRow").click(function(e) {
-            e.preventDefault();
-            if (currentClones < cloneLimit) {
-                currentClones++;
-                // Clone the first row and append it to the tbody
-                var cloneCatrow = $('#memberTrow').clone().appendTo('#memberTbody');
-                // Clear the input fields in the cloned row
-                $(cloneCatrow).find('input').val('');
-                $(cloneCatrow).find('select[name="member_designation[]"]').val(""); // Reset the designation select field
-
-                // Attach the change event for the 'member_designation' field in the cloned row
-                $(cloneCatrow).find('select[name="member_designation[]"]').change(function() {
-                    toggleOtherDesignation($(this)); // Call the toggle function to show/hide the 'Other Designation' field
-                });
-            }
-        });
-
-        // Remove row functionality when the 'Remove' button is clicked
-        $('#memberTbody').on('click', '#removenewMemberRow', function() {
-            $(this).closest('tr').remove();
-            currentClones--; // Decrement the clone counter when a row is removed
-        });
-
-        // Initial setup for existing rows
-        $('#memberTbody').on('change', 'select[name="member_designation[]"]', function() {
-            toggleOtherDesignation($(this)); // Call the toggle function to show/hide the 'Other Designation' field
-        });
-
-        // Function to show/hide the 'Other Designation' field based on the selected value
-        function toggleOtherDesignation(selectElement) {
-            var selectedValue = selectElement.val();
-            var otherDesignationField = selectElement.closest('tr').find('#other_designation');
-            if (selectedValue === "Any Other") {
-                otherDesignationField.show(); // Show the "Other Designation" field
-            } else {
-                otherDesignationField.hide(); // Hide the "Other Designation" field
-            }
-        }
-    });
+    
 </script>
 
 <?= $this->endSection() ?>

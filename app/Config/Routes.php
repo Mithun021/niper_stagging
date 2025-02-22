@@ -39,6 +39,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete-event-extension-notice/(:num)', 'EventsController::delete_event_extension_notice/$1');
     
     $routes->match(['get','post'],'event-members', 'EventsController::event_members');
+    $routes->match(['get','post'],'edit-event-members/(:num)', 'EventsController::edit_event_members/$1');
+    $routes->get('delete-event-members/(:num)', 'EventsController::delete_event_members/$1');
+
     $routes->match(['get','post'],'event-organizer', 'EventsController::event_organizer');
     $routes->match(['get','post'],'edit-event-organizer/(:num)', 'EventsController::edit_event_organizer/$1');
     $routes->get('delete-event-organizer/(:num)', 'EventsController::delete_event_organizer/$1');
