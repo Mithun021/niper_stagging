@@ -475,6 +475,16 @@ use App\Models\Program_department_mapping_model;
             }
         }
 
+        public function delete_event_members($id){
+            $event_members_model = new Event_members_model();
+            $delete = $event_members_model->delete($id);
+            if ($delete) {
+                return redirect()->to('admin/event-members')->with('status','<div class="alert alert-success" role="alert"> Data delete Successful </div>');
+            } else {
+                return redirect()->to('admin/event-members')->with('status','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+            }
+        }
+
 
         public function event_organizer(){
             $events_model = new Events_model();
