@@ -433,7 +433,7 @@ use App\Models\Program_department_mapping_model;
                 $new_member_file = $this->request->getFile('upload_file');
 
                 $event_members_detail = $event_members_model->get($id);
-                $old_member_file = $event_members_detail['event_report_file'];
+                $old_member_file = $event_members_detail['upload_file'];
 
                 if (empty($old_member_file)) {
                     if ($new_member_file->isValid() && !$new_member_file->hasMoved()) {
