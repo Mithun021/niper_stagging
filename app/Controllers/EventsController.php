@@ -680,6 +680,22 @@ use App\Models\Program_department_mapping_model;
             }
         }
 
+        public function delete_event_highlight($id){
+            $event_gallery_model = new Event_gallery_model();
+
+            $event_highlights_detail = $event_gallery_model->get($id);
+            $old_image_name =  $event_highlights_detail['gallery_file'];
+            if(file_exists("public/admin/uploads/event_gallery/".$old_image_name)){
+                unlink("public/admin/uploads/event_gallery/".$old_image_name);
+            }
+            $delete = $event_gallery_model->delete($id);
+            if ($delete) {
+                return redirect()->to('admin/event-highlight')->with('status','<div class="alert alert-success" role="alert"> Data delete Successful </div>');
+            } else {
+                return redirect()->to('admin/event-highlight')->with('status','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+            }
+        }
+
         public function event_category(){
             $event_category_model = new Event_category_model();
             $data = ['title' => 'Event Category'];
