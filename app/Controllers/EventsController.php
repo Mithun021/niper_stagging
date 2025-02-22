@@ -430,32 +430,45 @@ use App\Models\Program_department_mapping_model;
                     return redirect()->to(base_url('admin/login'));
                 }
 
-                $member_name = $this->request->getPost('member_name');
-                $member_file = $this->request->getFileMultiple('upload_file');
-                foreach ($member_name as $key => $value) {
-                    $file = $member_file[$key];
-                    $fileName = "";
-                    if ($file->isValid() && !$file->hasMoved()) {
-                        $fileName = "membersFile".$file->getRandomName();
-                        $file->move(ROOTPATH . 'public/admin/uploads/events', $fileName);
+                $new_member_file = $this->request->getFile('upload_file');
+
+                $event_members_detail = $event_members_model->get($id);
+                $old_member_file = $event_members_detail['event_report_file'];
+
+                if (empty($old_member_file)) {
+                    if ($new_member_file->isValid() && !$new_member_file->hasMoved()) {
+                        $new_member_file_name = "membersFile" . $new_member_file->getRandomName();
+                        $new_member_file->move(ROOTPATH . 'public/admin/uploads/events/', $new_member_file_name);
+                    } else {
+                        $new_member_file_name = null;
                     }
-                    $data =[
-                        'event_id' => $this->request->getPost('event_id'),
-                        'member_name' => $value,
-                        'member_type' => $this->request->getPost('member_type'),
-                        'member_designation' => $this->request->getPost('member_designation')[$key],
-                        'other_designation' => $this->request->getPost('member_desig_other')[$key] ?? '',
-                        'member_affiliation' => $this->request->getPost('member_affiliation')[$key],
-                        'upload_file' => $fileName,
-                        'upload_by' => $loggeduserId,
-                    ];
-                    // echo "<pre>"; print_r($data);
-                    $result = $event_members_model->add($data,$id);
+                } else {
+                    if ($new_member_file->isValid() && !$new_member_file->hasMoved()) {
+                        if (file_exists("public/admin/uploads/events/" . $old_member_file)) {
+                            unlink("public/admin/uploads/events/" . $old_member_file);
+                        }
+                        $new_member_file_name = "membersFile" . $new_member_file->getRandomName();
+                        $new_member_file->move(ROOTPATH . 'public/admin/uploads/events/', $new_member_file_name);
+                    } else {
+                        $new_member_file_name = $old_member_file;
+                    }
                 }
-                // die;
+
+                $data =[
+                    'event_id' => $this->request->getPost('event_id'),
+                    'member_name' => $this->request->getPost('member_name'),
+                    'member_type' => $this->request->getPost('member_type'),
+                    'member_designation' => $this->request->getPost('member_designation'),
+                    'other_designation' => $this->request->getPost('member_desig_other') ?? '',
+                    'member_affiliation' => $this->request->getPost('member_affiliation'),
+                    'upload_file' => $new_member_file_name,
+                    'upload_by' => $loggeduserId,
+                ];
+               
+                $result = $event_members_model->add($data,$id);
                 
                 if ($result === true) {
-                    return redirect()->to('admin/edit-event-members')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                    return redirect()->to('admin/edit-event-members')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
                 } else {
                     return redirect()->to('admin/edit-event-members')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
