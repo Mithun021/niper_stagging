@@ -69,12 +69,17 @@ $member_type_model = new Member_type_model();
 
                         <div class="form-group col-md-6">
                             <span>Member Affiliation:</span>
-                            <input type="text" name="member_affiliation" class="form-control form-control-sm" required>
+                            <input type="text" name="member_affiliation" class="form-control form-control-sm" value="<?= $event_members_detail['member_affiliation'] ?>" required>
                         </div>
 
                         <div class="form-group col-md-6">
                             <span>Upload File(.pdf):</span>
                             <input type="file" name="upload_file" class="form-control form-control-sm" accept=".pdf">
+                            <?php if (!empty($event_members_detail['upload_file']) && file_exists('public/admin/uploads/events/' . $event_members_detail['upload_file'])): ?>
+                                <a href="<?= base_url() ?>public/admin/uploads/events/<?= $event_members_detail['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                            <?php else: ?>
+                                <img src="<?= base_url() ?>public/admin/uploads/events/invalid_image.png" alt="" height="30px">
+                            <?php endif; ?>
                         </div>
 
                     </div>
