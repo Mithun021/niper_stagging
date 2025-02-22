@@ -20,22 +20,27 @@ $events_model = new Events_model();
                     <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
 
-                <form action="<?= base_url() ?>admin/event-highlight" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/edit-event-highlight/<?= $event_highlight_id ?>" method="post" enctype="multipart/form-data">
                     <!-- Event ID -->
                     <div class="form-group">
                         <span>Event ID:</span>
                         <select name="event_id" class="form-control form-control-sm my-select" required>
                             <option value="">Select Event</option>
                             <?php foreach ($events as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                                <option value="<?= $value['id'] ?>" <?php if($event_highlights_detail['event_id']== $value['id']){ echo "selected"; } ?>><?= $value['title'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
 
                     <!-- Highlight Title -->
                     <div class="form-group">
-                        <span for="evthightitle">Gallery Images(.png,.jpg) <span class="text-danger">*</span></span>
-                        <input type="file" class="form-control form-control-sm" name="gallery_file[]" id="gallery_file" accept=".png,.jpg,.jpeg" multiple required>
+                        <span for="evthightitle">Gallery New Images(.png,.jpg) <span class="text-danger">*</span></span>
+                        <input type="file" class="form-control form-control-sm" name="gallery_file" id="gallery_file" accept=".png,.jpg,.jpeg" required>
+                        <?php if (!empty($event_highlights_detail['gallery_file']) && file_exists('public/admin/uploads/event_gallery/' . $event_highlights_detail['gallery_file'])): ?>
+                            <a href="<?= base_url() ?>public/admin/uploads/event_gallery/<?= $event_highlights_detail['gallery_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/event_gallery/<?= $event_highlights_detail['gallery_file'] ?>" alt="" height="30px"></a>
+                        <?php else: ?>
+                            <img src="<?= base_url() ?>public/admin/uploads/event_gallery/invalid_image.png" alt="" height="40px">
+                        <?php endif; ?>
                     </div>
 
                     <!-- Submit Button -->
