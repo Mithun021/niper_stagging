@@ -34,7 +34,7 @@ $member_type_model = new Member_type_model();
                             <select name="event_id" class="form-control form-control-sm">
                                 <option value="">Select Event</option>
                                 <?php foreach ($events as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>" <?php if($event_contact_info_detail['event_id']== $value['id']){ echo "selected"; } ?>><?= $value['title'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?php if($event_members_detail['event_id']== $value['id']){ echo "selected"; } ?>><?= $value['title'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -42,7 +42,7 @@ $member_type_model = new Member_type_model();
                             <span>Member Type:</span>
                             <select name="member_type" class="form-control form-control-sm" required>
                                 <?php foreach ($member_type as $value) { ?>
-                                    <option value="<?= $value['id'] ?>"<?php if($event_contact_info_detail['member_name']== $value['id']){ echo "selected"; } ?>><?= $value['member_type'] ?></option>
+                                    <option value="<?= $value['id'] ?>"<?php if($event_members_detail['member_name']== $value['id']){ echo "selected"; } ?>><?= $value['member_type'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
