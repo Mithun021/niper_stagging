@@ -581,6 +581,42 @@ use App\Models\Program_department_mapping_model;
             }
         }
 
+        public function edit_event_category($id){
+            $event_category_model = new Event_category_model();
+            $data = ['title' => 'Event Category','event_category_id' => $id];
+            $data['event_category_detail'] = $event_category_model->get($id);
+            if ($this->request->is("get")) {
+                $data['event_categories'] = $event_category_model->get();
+                return view('admin/events/edit-event-category',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }else{
+                    return redirect()->to(base_url('admin/login'));
+                }
+                $data = [
+                    'name' => $this->request->getPost('event_category'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $event_category_model->add($data,$id);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-event-category/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-event-category/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+        public function delete_event_category($id){
+            $event_category_model = new Event_category_model();
+            $delete = $event_category_model->delete($id);
+            if ($delete) {
+                return redirect()->to('admin/event-category')->with('status','<div class="alert alert-success" role="alert"> Data delete Successful </div>');
+            } else {
+                return redirect()->to('admin/event-category')->with('status','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+            }
+        }
+
         public function event_fee_category(){
             $events_model = new Events_model();
             $event_fee_category_model = new Event_fee_category_model();

@@ -20,11 +20,11 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/event-category') ?>">
+                <form method="post" action="<?= base_url('admin/edit-event-category/'.$event_category_id) ?>">
                     
                     <div class="form-group">
                         <span for="">Category Name<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="event_category" required>
+                        <input type="text" class="form-control form-control-sm" name="event_category" value="<?= $event_category_detail['name'] ?>" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
