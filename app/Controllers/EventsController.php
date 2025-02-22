@@ -421,7 +421,7 @@ use App\Models\Program_department_mapping_model;
                 $data['events'] = $events_model->get();
                 $data['employees'] = $employee_model->get();
                 $data['event_members'] = $event_members_model->get();
-                return view('admin/events/event-members',$data);
+                return view('admin/events/edit-event-members',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
                 if ($sessionData) {
@@ -450,14 +450,14 @@ use App\Models\Program_department_mapping_model;
                         'upload_by' => $loggeduserId,
                     ];
                     // echo "<pre>"; print_r($data);
-                    $result = $event_members_model->add($data);
+                    $result = $event_members_model->add($data,$id);
                 }
                 // die;
                 
                 if ($result === true) {
-                    return redirect()->to('admin/event-members')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                    return redirect()->to('admin/edit-event-members')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
-                    return redirect()->to('admin/event-members')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                    return redirect()->to('admin/edit-event-members')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
         }
