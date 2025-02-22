@@ -962,5 +962,15 @@ use App\Models\Program_department_mapping_model;
             }
         }
 
+        public function delete_event_contact_info($id){
+            $event_contact_info_model = new Event_contact_info_model();
+            $delete = $event_contact_info_model->delete($id);
+            if ($delete) {
+                return redirect()->to('admin/event-contact-info')->with('status','<div class="alert alert-success" role="alert"> Data delete Successful </div>');
+            } else {
+                return redirect()->to('admin/event-contact-info')->with('status','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+            }
+        }
+
     }
 ?>
