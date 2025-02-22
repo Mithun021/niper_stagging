@@ -51,6 +51,8 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'event-fee-subcategory', 'EventsController::event_fee_subcategory');
     $routes->match(['get','post'],'event-contact-info', 'EventsController::event_contact_info');
     $routes->match(['get','post'],'member_type_category', 'EventsController::member_type_category');
+    $routes->match(['get','post'],'edit_member_type_category/(:num)', 'EventsController::edit_member_type_category/$1');
+    $routes->get('delete_member_type_category/(:num)', 'EventsController::delete_member_type_category/$1');
     
     $routes->match(['get','post'],'accouncement', 'AcademicControllers::accouncement');
     $routes->match(['get','post'],'classified-mou-value', 'AcademicControllers::classified_mou_value');

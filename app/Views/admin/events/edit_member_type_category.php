@@ -20,10 +20,10 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/member_type_category') ?>">
+                <form method="post" action="<?= base_url('admin/edit_member_type_category/'.$member_category_id) ?>">
                     <div class="form-group">
                         <span for="">Member Type<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="member_type" required>
+                        <input type="text" class="form-control form-control-sm" name="member_type" value="<?= $member_type_detail['member_type'] ?>" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
