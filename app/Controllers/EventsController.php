@@ -468,9 +468,9 @@ use App\Models\Program_department_mapping_model;
                 $result = $event_members_model->add($data,$id);
                 
                 if ($result === true) {
-                    return redirect()->to('admin/edit-event-members')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                    return redirect()->to('admin/edit-event-members/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
                 } else {
-                    return redirect()->to('admin/edit-event-members')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                    return redirect()->to('admin/edit-event-members/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
         }
