@@ -29,7 +29,7 @@ use App\Models\Events_model;
                         <select name="event_id" class="form-control form-control-sm">
                             <option value="">Select Event</option>
                             <?php foreach ($events as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>" <?php if($event_fee_category_detail['event_id'] == $value['id']) ?>><?= $value['title'] ?></option>
+                                <option value="<?= $value['id'] ?>" <?php if($event_fee_category_detail['event_id'] == $value['id']){ echo "selected"; } ?>><?= $value['title'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
