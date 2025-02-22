@@ -642,7 +642,7 @@ use App\Models\Program_department_mapping_model;
                 $data['events'] = $events_model->get();
                 $data['event_gallery'] = $event_gallery_model->get();
                 $data['event_highlights'] = $event_highlights_model->get();
-                return view('admin/events/event-highlight',$data);
+                return view('admin/events/edit-event-highlight',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
                 if ($sessionData) {
