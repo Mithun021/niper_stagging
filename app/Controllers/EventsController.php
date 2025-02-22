@@ -650,9 +650,33 @@ use App\Models\Program_department_mapping_model;
                 }else{
                     return redirect()->to(base_url('admin/login'));
                 }
-                $gallery_file = $this->request->getFiles();
+                $gallery_file = $this->request->getFile('gallery_file');
+                $event_highlights_detail = $event_gallery_model->get($id);
+                $old_image_name =  $event_highlights_detail['gallery_file'];
+
+                if ($gallery_file->isValid() && !$gallery_file->hasMoved()) {
+                    if(file_exists("public/admin/uploads/event_gallery/".$old_image_name)){
+                        unlink("public/admin/uploads/event_gallery/".$old_image_name);
+                    }
+                    $new_image_name = $gallery_file->getRandomName();
+                    $gallery_file->move(ROOTPATH.'public/admin/uploads/event_gallery/', $new_image_name);
+                }
+                else{
+                    $new_image_name = $old_image_name;
+                }
                 
-                
+                $data = [
+                    'event_id' => $this->request->getPost('event_id'),
+                    'gallery_file' => $new_image_name,
+                    'upload_by' => $loggeduserId,
+                ];
+    
+                $result = $event_gallery_model->save($data);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-event-highlight/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data update Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-event-highlight/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 
