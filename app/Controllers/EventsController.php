@@ -697,7 +697,7 @@ use App\Models\Program_department_mapping_model;
                     'name' => $this->request->getPost('event_category'),
                     'upload_by' => $loggeduserId
                 ];
-                $result = $event_category_model->add($data);
+                $result = $event_category_model->add($data,$id);
                 if ($result === true) {
                     return redirect()->to('admin/event-category')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
