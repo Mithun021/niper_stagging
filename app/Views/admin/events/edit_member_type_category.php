@@ -54,7 +54,7 @@
                         <tr>
                             <td><?= $key+1 ?></td>
                             <td><?= $value['member_type'] ?></td>
-                            <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; }  ?></td>
                             <td><?= date("d-m-Y", strtotime($value['created_at'])) ?></td>
                             <td>
                                 <a href="<?= base_url('admin/edit_member_type_category/'.$value['id']) ?>" class="btn btn-sm btn-primary">Edit</a>
