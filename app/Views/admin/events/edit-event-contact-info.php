@@ -37,15 +37,15 @@ $designation_model = new Designation_model();
                     </div>
                     <div class="form-group">
                         <span for="">Name<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="name" required>
+                        <input type="text" class="form-control form-control-sm" name="name" value="<?= $event_contact_info_detail['name'] ?>" required>
                     </div>
                     <div class="form-group">
                         <span for="">Email<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="email" required>
+                        <input type="text" class="form-control form-control-sm" name="email" value="<?= $event_contact_info_detail['email'] ?>" required>
                     </div>
                     <div class="form-group">
                         <span for="">Phone<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="phone" maxlength="10" required>
+                        <input type="text" class="form-control form-control-sm" name="phone" maxlength="10" value="<?= $event_contact_info_detail['phone_number'] ?>" required>
                     </div>
                     <div class="form-group">
                         <span for="">Designation<span class="text-danger">*</span></span>
