@@ -46,67 +46,37 @@ $member_type_model = new Member_type_model();
                                 <?php } ?>
                             </select>
                         </div>
-                    </div>
-                    <br>
 
-                    <div class="row">
-                        <div class="col-md-12">
+                        <div class="form-group col-md-6">
+                            <span>Member Name:</span>
+                            <input type="text" name="member_name[]" class="form-control form-control-sm" required>
+                        </div>
 
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="addServicetable">
-                                    <thead class="bg-light">
-                                        <tr>
-                                            <td>Members Name</td>
-                                            <td>Members Designation</td>
-                                            <td>Member Affiliation</td>
-                                            <td>Upload File</td>
-                                            <td><button type="button" class="btn btn-sm btn-primary" id="addnewMemberRow">+</button></td>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="memberTbody">
-                                        <tr id="memberTrow">
-                                            <td>
-                                                <div class="form-group">
-                                                    <span>Member Name:</span>
-                                                    <input type="text" name="member_name[]" class="form-control form-control-sm" required>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group">
-                                                    <span>Member Designation:</span>
-                                                    <select name="member_designation[]" id="member_designation" class="form-control form-control-sm" required>
-                                                        <option value="Assistant Professor">Assistant Professor</option>
-                                                        <option value="Associate Professor">Associate Professor</option>
-                                                        <option value="Professor">Professor</option>
-                                                        <option value="Scientist">Scientist</option>
-                                                        <option value="Any Other">Any Other</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group" id="other_designation" style="display: none;">
-                                                    <span>Specify Other Designation:</span>
-                                                    <input type="text" name="member_desig_other[]" class="form-control form-control-sm">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group">
-                                                    <span>Member Affiliation:</span>
-                                                    <input type="text" name="member_affiliation[]" class="form-control form-control-sm" required>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group">
-                                                    <span>Upload File(.pdf):</span>
-                                                    <input type="file" name="upload_file[]" class="form-control form-control-sm" accept=".pdf">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-sm btn-danger" id="removenewMemberRow">-</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class="form-group col-md-6">
+                            <span>Member Designation:</span>
+                            <select name="member_designation[]" id="member_designation" class="form-control form-control-sm" required>
+                                <option value="Assistant Professor">Assistant Professor</option>
+                                <option value="Associate Professor">Associate Professor</option>
+                                <option value="Professor">Professor</option>
+                                <option value="Scientist">Scientist</option>
+                                <option value="Any Other">Any Other</option>
+                            </select>
+                            <div class="form-group" id="other_designation" style="display: none;">
+                                <span>Specify Other Designation:</span>
+                                <input type="text" name="member_desig_other[]" class="form-control form-control-sm">
                             </div>
                         </div>
+
+                        <div class="form-group col-md-6">
+                            <span>Member Affiliation:</span>
+                            <input type="text" name="member_affiliation[]" class="form-control form-control-sm" required>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <span>Upload File(.pdf):</span>
+                            <input type="file" name="upload_file[]" class="form-control form-control-sm" accept=".pdf">
+                        </div>
+
                     </div>
                     <br>
 
