@@ -22,8 +22,16 @@
                             <input type="text" name="Annualreporttitle" id="Annualreporttitle" class="form-control form-control-sm" required>
                         </div>
 
-                        <!-- Annual Report Description -->
                         <div class="form-group col-lg-6">
+                            <span for="Annualreporttitle">Report Submit Start and End Year:</span>
+                            <div class="input-group">
+                                <input type="number" name="start_year" class="form-control form-control-sm" max="2000" maxlength="4">
+                                <input type="number" name="end_year" class="form-control form-control-sm"  max="2000" maxlength="4">
+                            </div>
+                        </div>
+
+                        <!-- Annual Report Description -->
+                        <div class="form-group col-lg-12">
                             <span for="Annualreportdesc">Annual Report Description:</span>
                             <textarea name="Annualreportdesc" id="editor" class="form-control form-control-sm" rows="4"></textarea>
                         </div>
