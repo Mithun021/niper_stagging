@@ -44,7 +44,7 @@ $employee_model = new Employee_model();
                             <input type="file" class="form-control form-control-sm" name="ext_notice_file" accept=".jpg, .png, .pdf" required>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group col-lg-6">
+                            <div class="form-group">
                                 <span for="">Revised application last datetime<span class="text-danger">*</span></span>
                                 <div class="input-group">
                                     <input type="text" class="form-control form-control-sm" name="revised_app_last_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
@@ -53,7 +53,7 @@ $employee_model = new Employee_model();
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group col-lg-6">
+                            <div class="form-group">
                                 <span for="">Revised hardcopy last datetime<span class="text-danger">*</span></span>
                                 <div class="input-group">
                                     <input type="text" class="form-control form-control-sm" name="revised_copy_last_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
