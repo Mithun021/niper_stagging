@@ -230,6 +230,7 @@ use App\Models\Student_model;
                     'impact_factor' => $this->request->getPost('impact_factor'),
                     'web_link' => $this->request->getPost('web_link'),
                     'publication_type' => $this->request->getPost('Pubtype'),
+                    'joining_date' => $this->request->getPost('joining_date'),
                     'status' => $this->request->getPost('Pubstatus'),
                     'upload_by' =>  $loggeduserId,
                 ]; 
@@ -249,8 +250,6 @@ use App\Models\Student_model;
                 } else {
                     return redirect()->to('admin/employee-publication')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
-
-
             }
         }
 
