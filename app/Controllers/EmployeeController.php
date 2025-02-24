@@ -86,6 +86,7 @@ use App\Models\Student_model;
                     'scopus_h_index' => $this->request->getPost('scopus_h_index'),
                     'password' => password_hash($password, PASSWORD_DEFAULT),
                     'status' => $this->request->getPost('status'),
+                    'joining_date' => $this->request->getPost('joining_date'),
                     'authority' => 'user',
                     'upload_by' =>  $loggeduserId,
                     // 'first_name' => $this->request->getPost('first_name'),
@@ -230,7 +231,6 @@ use App\Models\Student_model;
                     'impact_factor' => $this->request->getPost('impact_factor'),
                     'web_link' => $this->request->getPost('web_link'),
                     'publication_type' => $this->request->getPost('Pubtype'),
-                    'joining_date' => $this->request->getPost('joining_date'),
                     'status' => $this->request->getPost('Pubstatus'),
                     'upload_by' =>  $loggeduserId,
                 ]; 
