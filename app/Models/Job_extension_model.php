@@ -5,7 +5,7 @@
     {
         protected $table         = 'job_extension';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['job_id','ext_notice_title','ext_notice_file','upload_by'];
+        protected $allowedFields = ['job_id','ext_notice_title','revised_app_last_date','revised_app_last_time','revised_copy_last_date','revised_copy_last_time','ext_notice_file','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

@@ -68,7 +68,7 @@ $employee_model = new Employee_model();
             </div>
         </div>
     </div>
-    <div class="col-lg-7">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> List</h4>
