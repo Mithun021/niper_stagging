@@ -13,7 +13,7 @@ $employee_model = new Employee_model();
 </style>
 <!-- start page title -->
 <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> </h4>
@@ -26,7 +26,7 @@ $employee_model = new Employee_model();
                 ?>
                 <form method="post" action="<?= base_url() ?>admin/job-extension" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="form-group">
+                        <div class="form-group col-lg-6">
                             <span for="">Job id<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="job_id" required>
                                 <option value="">--Select--</option>
@@ -35,16 +35,16 @@ $employee_model = new Employee_model();
                                 <?php } ?>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-lg-6">
                             <span for="">Extension notice title<span class="text-danger">*</span></span>
                             <input type="text" class="form-control form-control-sm" name="ext_notice_title">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-lg-6">
                             <span for="">Extension notice file upload(JPG,PNG,PDF)<span class="text-danger">*</span></span>
                             <input type="file" class="form-control form-control-sm" name="ext_notice_file" accept=".jpg, .png, .pdf" required>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div class="form-group col-lg-6">
                                 <span for="">Revised application last datetime<span class="text-danger">*</span></span>
                                 <div class="input-group">
                                     <input type="text" class="form-control form-control-sm" name="revised_app_last_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
@@ -53,7 +53,7 @@ $employee_model = new Employee_model();
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div class="form-group col-lg-6">
                                 <span for="">Revised hardcopy last datetime<span class="text-danger">*</span></span>
                                 <div class="input-group">
                                     <input type="text" class="form-control form-control-sm" name="revised_copy_last_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
