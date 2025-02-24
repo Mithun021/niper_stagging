@@ -81,6 +81,8 @@ $employee_model = new Employee_model();
                                 <td>SN</td>
                                 <td>File</td>
                                 <td>Job id</td>
+                                <td>Revised application last datetime</td>
+                                <td>Revised hardcopy last datetime</td>
                                 <td>Notice Title</td>
                                 <td>Upload by</td>
                                 <td>Action</td>
@@ -98,6 +100,8 @@ $employee_model = new Employee_model();
                                         <?php endif; ?>
                                     </td>
                                     <td><?= $job_detail_model->get($value['job_id'])['title'] ?? '' ?></td>
+                                    <td><?= date("d:M:Y", strtotime($value['revised_app_last_date'])) ?> <?= date("h:i A", strtotime($value['revised_app_last_time'])) ?> </td>
+                                    <td><?= date("d:M:Y", strtotime($value['revised_copy_last_date'])) ?> <?= date("h:i A", strtotime($value['revised_copy_last_time'])) ?></td>
                                     <td><?= $value['ext_notice_title'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
