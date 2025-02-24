@@ -840,6 +840,8 @@ use App\Models\Youtube_link_model;
                 }
                 $data = [
                     'title' => $this->request->getPost('Annualreporttitle'),
+                    'start_year' => $this->request->getPost('start_year'),
+                    'end_year' => $this->request->getPost('end_year'),
                     'upload_photo' => $report_photoImageName,
                     'upload_file' => $report_fileImageName,
                     'description' => $this->request->getPost('Annualreportdesc'),

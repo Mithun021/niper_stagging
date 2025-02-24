@@ -25,8 +25,8 @@
                         <div class="form-group col-lg-6">
                             <span for="Annualreporttitle">Report Submit Start and End Year:</span>
                             <div class="input-group">
-                                <input type="number" name="start_year" class="form-control form-control-sm" max="2000" maxlength="4">
-                                <input type="number" name="end_year" class="form-control form-control-sm"  max="2000" maxlength="4">
+                                <input type="number" name="start_year" placeholder="Start Year" class="form-control form-control-sm" min="2000" maxlength="4">
+                                <input type="number" name="end_year" placeholder="End Year" class="form-control form-control-sm"  min="2000" maxlength="4">
                             </div>
                         </div>
 
@@ -68,6 +68,7 @@
                             <tr>
                                 <td>SN</td>
                                 <td>Report Title</td>
+                                <td>Report Submit Year</td>
                                 <td>Description</td>
                                 <td>File</td>
                                 <td>Action</td>
@@ -78,6 +79,7 @@
                                 <tr>
                                     <td><?= $key + 1 ?></td>
                                     <td><?= $value['title'] ?></td>
+                                    <td><?= $value['start_year']. " - ". $value['end_year'] ?></td>
                                     <td><?= $value['description'] ?></td>
                                     <td>
                                         <?php if (!empty($value['upload_photo']) && file_exists('public/admin/uploads/annual_report/' . $value['upload_photo'])): ?>

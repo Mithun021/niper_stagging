@@ -5,7 +5,7 @@
     {
         protected $table         = 'annual_report';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['title','description','upload_photo','upload_file','upload_by'];
+        protected $allowedFields = ['title','start_year','end_year','description','upload_photo','upload_file','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
