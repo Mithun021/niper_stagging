@@ -101,7 +101,7 @@
                             </div>
                         </div>
                         
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Revised application last datetime<span class="text-danger">*</span></span>
                                 <div class="input-group">
@@ -118,7 +118,7 @@
                                     <input type="text" class="form-control form-control-sm" name="revised_copy_last_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Payment Link<span class="text-danger">*</span></span>
