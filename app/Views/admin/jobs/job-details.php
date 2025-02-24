@@ -62,7 +62,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="form-group">
                                 <span>Department<span class="text-danger">*</span></span>
                                 <select name="department" id="department" class="form-control form-control-sm" required>
@@ -72,7 +72,7 @@
                                     <?php } ?>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Application Start Date & Time<span class="text-danger">*</span></span>
@@ -170,7 +170,7 @@
                                 <td>Adv Title</td>
                                 <td>App. Date & Time</td>
                                 <td>Adv type</td>
-                                <td>Department</td>
+                                <!-- <td>Department</td> -->
                                 <td>Hardcopy Last Date Time</td>
                                 <td>Upload by</td>
                                 <td>Action</td>
@@ -203,7 +203,7 @@
                                 <td><?= date("d:M:Y", strtotime($value['application_start_date'])) ?> <?= date("h:i A", strtotime($value['application_start_time'])) ?> - <br><?= date("d:M:Y", strtotime($value['application_end_date'])) ?> <?= date("h:i A", strtotime($value['application_end_time'])) ?></td>
 
                                 <td><?php $job_cat = $job_category_model->get($value['job_type_id']); echo $job_cat['name'] ?? ''; ?></td>
-                                <td><?php $department = $department_model->get($value['department_id']); echo $department['name'] ?? ''; ?></td>
+                                <!-- <td><?php ""//$department = $department_model->get($value['department_id']); echo $department['name'] ?? ''; ?></td> -->
                                 <td><?= date("d:M:Y", strtotime($value['hardcopy_last_date'])) ?> <?= date("h:i A", strtotime($value['hardcopy_last_time'])) ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td>
