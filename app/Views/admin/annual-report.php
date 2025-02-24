@@ -4,7 +4,7 @@
 
 <div class="row">
     <!-- Form Section for Adding Annual Report -->
-    <div class="col-lg-4">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Add Annual Report</h4>
@@ -15,28 +15,30 @@
                 <?php endif; ?>
                 <!-- Form Start -->
                 <form action="<?= base_url() ?>admin/annual-report" method="post" enctype="multipart/form-data">
-                    <!-- Annual Report Title -->
-                    <div class="form-group">
-                        <span for="Annualreporttitle">Annual Report Title:</span>
-                        <input type="text" name="Annualreporttitle" id="Annualreporttitle" class="form-control form-control-sm" required>
-                    </div>
+                    <div class="row">
+                        <!-- Annual Report Title -->
+                        <div class="form-group col-lg-6">
+                            <span for="Annualreporttitle">Annual Report Title:</span>
+                            <input type="text" name="Annualreporttitle" id="Annualreporttitle" class="form-control form-control-sm" required>
+                        </div>
 
-                    <!-- Annual Report Description -->
-                    <div class="form-group">
-                        <span for="Annualreportdesc">Annual Report Description:</span>
-                        <textarea name="Annualreportdesc" id="editor" class="form-control form-control-sm" rows="4"></textarea>
-                    </div>
+                        <!-- Annual Report Description -->
+                        <div class="form-group col-lg-6">
+                            <span for="Annualreportdesc">Annual Report Description:</span>
+                            <textarea name="Annualreportdesc" id="editor" class="form-control form-control-sm" rows="4"></textarea>
+                        </div>
 
-                    <!-- Annual Report Photo Upload -->
-                    <div class="form-group">
-                        <span for="Annualreportphotoupload">Upload Photo .jpg,.jpeg,.png (Optional):</span>
-                        <input type="file" name="Annualreportphotoupload" id="Annualreportphotoupload" class="form-control form-control-sm" accept=".jpg,.jpeg,.png">
-                    </div>
+                        <!-- Annual Report Photo Upload -->
+                        <div class="form-group col-lg-6">
+                            <span for="Annualreportphotoupload">Upload Photo .jpg,.jpeg,.png (Optional):</span>
+                            <input type="file" name="Annualreportphotoupload" id="Annualreportphotoupload" class="form-control form-control-sm" accept=".jpg,.jpeg,.png">
+                        </div>
 
-                    <!-- Annual Report File Upload -->
-                    <div class="form-group">
-                        <span for="Annualreportfileupload">Upload Report File(.pdf):</span>
-                        <input type="file" name="Annualreportfileupload" id="Annualreportfileupload" class="form-control form-control-sm" accept=".pdf" required>
+                        <!-- Annual Report File Upload -->
+                        <div class="form-group col-lg-6">
+                            <span for="Annualreportfileupload">Upload Report File(.pdf):</span>
+                            <input type="file" name="Annualreportfileupload" id="Annualreportfileupload" class="form-control form-control-sm" accept=".pdf" required>
+                        </div>
                     </div>
                     <!-- Submit Button -->
                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
@@ -46,7 +48,7 @@
     </div>
 
     <!-- Table Section to Display Existing Annual Reports (Optional) -->
-    <div class="col-lg-8">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Annual Reports List</h4>
@@ -64,30 +66,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($annual_report as $key => $value) { ?>
-                            <tr>
-                                <td><?= $key+1 ?></td>
-                                <td><?= $value['title'] ?></td>
-                                <td><?= $value['description'] ?></td>
-                                <td>
-                                    <?php if (!empty($value['upload_photo']) && file_exists('public/admin/uploads/annual_report/' . $value['upload_photo'])): ?>
-                                        <a href="<?= base_url() ?>public/admin/uploads/annual_report/<?= $value['upload_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/annual_report/<?= $value['upload_photo'] ?>" alt="" height="30px"></a>
-                                    <?php else: ?>
-                                        <img src="<?= base_url() ?>public/admin/uploads/annual_report/invalid_image.png" alt="" height="40px">
-                                    <?php endif; ?>
+                            <?php foreach ($annual_report as $key => $value) { ?>
+                                <tr>
+                                    <td><?= $key + 1 ?></td>
+                                    <td><?= $value['title'] ?></td>
+                                    <td><?= $value['description'] ?></td>
+                                    <td>
+                                        <?php if (!empty($value['upload_photo']) && file_exists('public/admin/uploads/annual_report/' . $value['upload_photo'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/annual_report/<?= $value['upload_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/annual_report/<?= $value['upload_photo'] ?>" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/annual_report/invalid_image.png" alt="" height="40px">
+                                        <?php endif; ?>
 
-                                    <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/annual_report/' . $value['upload_file'])): ?>
-                                        <a href="<?= base_url() ?>public/admin/uploads/annual_report/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
-                                    <?php else: ?>
-                                        <img src="<?= base_url() ?>public/admin/uploads/annual_report/invalid_image.png" alt="" height="40px">
-                                    <?php endif; ?>
-                                </td>
-                                <td>
-                                    <a href="<?= base_url() ?>admin/annual-report/<?= $value['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
-                                    <a href="<?= base_url() ?>admin/annual-report/<?= $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
-                                </td>
-                            </tr>
-                        <?php } ?>
+                                        <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/annual_report/' . $value['upload_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/annual_report/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/annual_report/invalid_image.png" alt="" height="40px">
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <a href="<?= base_url() ?>admin/annual-report/<?= $value['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                        <a href="<?= base_url() ?>admin/annual-report/<?= $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
