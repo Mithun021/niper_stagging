@@ -25,9 +25,13 @@ $designation_model = new Designation_model();
                 <form action="<?= base_url() ?>admin/employee" method="post" enctype="multipart/form-data">
                     <!-- Employee Name Fields -->
                     <div class="form-group row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <span for="EmpFirstName">Employee ID:</span>
                             <input type="text" name="employee_unique_id" id="employee_unique_id" class="form-control form-control-sm" required minlength="3">
+                        </div>
+                        <div class="col-sm-6">
+                            <span for="EmpFirstName">Joining Date:</span>
+                            <input type="date" name="joining_date" id="joining_date" class="form-control form-control-sm" required>
                         </div>
                         <div class="col-sm-4">
                             <span for="EmpFirstName">First Name:</span>
