@@ -1148,7 +1148,7 @@ use App\Models\Student_model;
                 // die;
                 $data = [
                     'employee_id' => $this->request->getPost('Empid'),
-                    'course_name' => implode(', ', $course_names),
+                    'course_name' => implode(',', $course_names),
                     'department_id' => $this->request->getPost('department_id'),
                     'upload_by' => $loggeduserId,
                 ];
