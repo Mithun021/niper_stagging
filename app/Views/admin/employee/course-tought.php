@@ -48,7 +48,7 @@ $books_chapter_author = new Books_chapter_author();
                         <div class="col-lg-12 form-group">
                             <span for="">Course Name<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm my-select" name="course_name[]" id="course_name" multiple required>
-                                <option value="" selected default>--Select--</option>
+                                
                             </select>
                         </div>
                         <div class="col-lg-12 form-group">
