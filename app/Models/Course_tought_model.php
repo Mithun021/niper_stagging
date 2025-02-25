@@ -5,7 +5,7 @@
     {
         protected $table         = 'course_tought';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['employee_id','course_name','course_code','upload_by'];
+        protected $allowedFields = ['employee_id','course_name','department_id','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

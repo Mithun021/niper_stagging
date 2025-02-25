@@ -1145,7 +1145,7 @@ use App\Models\Student_model;
                 $data = [
                     'employee_id' => $this->request->getPost('Empid'),
                     'course_name' => $this->request->getPost('course_name'),
-                    'course_code' => $this->request->getPost('course_code'),
+                    'department_id' => $this->request->getPost('department_id'),
                     'upload_by' => $loggeduserId,
                 ];
                 $result = $course_tought_model->add($data);
