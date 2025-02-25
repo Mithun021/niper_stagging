@@ -29,7 +29,7 @@ $books_chapter_author = new Books_chapter_author();
                     <div class="row">
                         <div class="col-lg-6 form-group">
                             <span for="Empid">Employee:</span>
-                            <select name="Empid" id="Empid" class="form-control form-control-sm my-select" required>
+                            <select name="employee_id" id="Empid" class="form-control form-control-sm my-select" required>
                                 <option value="">Select Employee</option>
                                 <?php foreach ($employee as $value) { ?>
                                     <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
@@ -72,8 +72,8 @@ $books_chapter_author = new Books_chapter_author();
                             </select>
                         </div>
                         <div class="col-lg-4 form-group">
-                            <span for="">Upload File<span class="text-danger">*</span></span>
-                            <input type="file" class="form-control form-control-sm" name="upload_file" required>
+                            <span for="">Upload File(.pdf)</span>
+                            <input type="file" class="form-control form-control-sm" name="upload_file" accept=".pdf">
                         </div>
                         
                         <div class="col-lg-12 form-group">
