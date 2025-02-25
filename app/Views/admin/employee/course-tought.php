@@ -2,10 +2,12 @@
 <?= $this->section("body-content"); ?>
 <?php
 
-use App\Models\Books_chapter_author;
+use App\Models\Courses_model;
+use App\Models\Department_model;
 use App\Models\Employee_model;
 $employee_model = new Employee_model();
-$books_chapter_author = new Books_chapter_author();
+$courses_model = new Courses_model();
+$department_model = new Department_model();
 ?>
 <style>
     #addServicetable #coAuthorTbody #coAuthorRow:first-child td:last-child button {
@@ -70,8 +72,8 @@ $books_chapter_author = new Books_chapter_author();
                             <tr>
                                 <td>SN</td>
                                 <td>Employee</td>
+                                <td>Department</td>
                                 <td>Course Name</td>
-                                <td>Course Code</td>
                                 <td>Upload By</td>
                                 <td>Action</td>
                             </tr>
@@ -82,8 +84,13 @@ $books_chapter_author = new Books_chapter_author();
                                 <td><?= $key + 1 ?></td>
                                 <td><?php $emp = $employee_model->get($value['employee_id']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
-                                <td><?= $value['course_name'] ?></td>
-                                <td><?= $value['course_code'] ?></td>
+                                <td><?= $department_model->get($value['department_id'])['name'] ?? '' ?></td>
+                                <td><?php $course_id = explode(',',$value['course_name']); 
+                                        foreach($course_id as $course){
+                                            $course_name = $courses_model->get($course);
+                                            echo '<i class="fa fa-angle-right"></i> '.$course_name['course_name'] . " - " . $course_name['course_code'] . "<br>";
+                                        }
+                                ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                 <td>
