@@ -42,7 +42,7 @@ use App\Models\Student_model;
                 return view('admin/employee/employee',$data);
             }else if ($this->request->is("post")) {
                 // echo "<pre>";print_r($this->request->getPost('department_id')); die;
-                echo implode(",",  $this->request->getPost('department_id')); die;
+                // $department =  implode(",",  $this->request->getPost('department_id'));
                 $sessionData = session()->get('loggedUserData');
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
@@ -72,7 +72,7 @@ use App\Models\Student_model;
                     'gender' => $this->request->getPost('gender'),
                     'material_status' => $this->request->getPost('material_status'),
                     'designation_id' => $this->request->getPost('designation_id'),
-                    'department_id' => $this->request->getPost('department_id'),
+                    'department_id' => implode(",",  $this->request->getPost('department_id')),
                     'mobile_no' => $this->request->getPost('mobile_no'),
                     'landline_no' => $this->request->getPost('landline_no'),
                     'official_mail' => $this->request->getPost('official_mail'),
