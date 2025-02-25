@@ -108,7 +108,7 @@ $books_chapter_author = new Books_chapter_author();
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($variable as $key => $value) { ?>
+                        <?php foreach ($employee_fellowship as $key => $value) { ?>
                             <tr>
                                 <td><?= ++$key ?></td>
                                 <td>
