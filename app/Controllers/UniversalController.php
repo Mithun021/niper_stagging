@@ -1,6 +1,7 @@
 <?php
     namespace App\Controllers;
 
+use App\Models\Assign_course_model;
 use App\Models\Country_model;
 use App\Models\Department_model;
 use App\Models\Designation_model;
@@ -45,5 +46,13 @@ use App\Models\Student_model;
             $states = $country_model->getState($country_name);
             return $this->response->setJSON($states);
         }
+
+        public function getCourseByDepartment(){
+            $department_id = $this->request->getPost('department_id');
+            $assign_course_model = new Assign_course_model();
+            $course = $assign_course_model->getCourseByDepartment($department_id);
+            return $this->response->setJSON($course);
+        }
+
     }
 ?>

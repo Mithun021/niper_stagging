@@ -47,4 +47,12 @@ class Assign_course_model extends Model
     // public function getActiveData(){
     //     return $this->orderBy('id','asc')->findAll();
     // }
+
+    public function getCourseByDepartment($department_id)
+    {
+        $this->select('courses.id as course_id, courses.course_name, courses.course_code');
+        $this->join('courses', 'courses.id = assign_course.course_id');
+        $this->where('assign_course.dept_id', $department_id);
+        return $this->findAll(); 
+    }
 }

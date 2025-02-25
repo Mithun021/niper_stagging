@@ -106,5 +106,23 @@ $books_chapter_author = new Books_chapter_author();
 </div>
 
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#department_id').change(function() {
+            var department_id = $(this).val();
+            $.ajax({
+                url: '<?= base_url('getCourseByDepartment') ?>',
+                type: 'post',
+                data: {
+                    department_id: department_id
+                },
+                success: function(response) {
+                    console.log(response);
+                    // $('#course_name').html(response);
+                }
+            });
+        });
+    });
+</script>
 
 <?= $this->endSection() ?>

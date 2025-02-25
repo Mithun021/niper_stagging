@@ -12,6 +12,7 @@ $routes->post('fetch_menu_heading', 'UniversalController::fetch_menu_heading');
 $routes->post('get_event_fee_category', 'UniversalController::get_event_fee_category');
 $routes->post('get_event_fee_subcategory', 'UniversalController::get_event_fee_subcategory');
 $routes->post('getStates', 'UniversalController::getStates');
+$routes->post('getCourseByDepartment', 'UniversalController::getCourseByDepartment');
 
 $routes->match(['get','post'],'admin/login', 'AdminControllers::adminLogin');
 $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
