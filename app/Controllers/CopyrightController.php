@@ -37,7 +37,7 @@ class CopyrightController extends BaseController
                 'submission_date' => $this->request->getPost('submission_date'),
                 'grant_date' => $this->request->getPost('grant_date'),
                 'upload_file' => $copyrightImageName,
-                'employee_id' => $this->request->getPost('emp_id'),
+                'employee_id' => implode(",",  $this->request->getPost('emp_id')), //$this->request->getPost('emp_id'),
                 'current_status' => $this->request->getPost('current_status'),
                 'status' => $this->request->getPost('Copyright_status'),
                 'upload_by' => $loggeduserId
