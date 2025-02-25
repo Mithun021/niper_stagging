@@ -1142,14 +1142,14 @@ use App\Models\Student_model;
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
                 $course_names = $this->request->getPost('course_name'); 
-                if (!empty($course_names)) {
-                    echo "Selected Courses: " . implode(', ', $course_names);
-                }
-                die;
+                // if (!empty($course_names)) {
+                //     echo "Selected Courses: " . implode(', ', $course_names);
+                // }
+                // die;
                 $data = [
                     'employee_id' => $this->request->getPost('Empid'),
-                    'course_name' => $this->request->getPost('course_name'),
-                    'department_id' => implode(',',$this->request->getPost('department_id')),
+                    'course_name' => implode(', ', $course_names),
+                    'department_id' => $this->request->getPost('department_id'),
                     'upload_by' => $loggeduserId,
                 ];
                 print_r($data); die;
