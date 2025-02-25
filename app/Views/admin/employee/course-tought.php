@@ -106,8 +106,33 @@ $books_chapter_author = new Books_chapter_author();
 </div>
 
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+<div class="col-lg-6 form-group">
+    <label for="department_id">Department:</label>
+    <select name="department_id" id="department_id" class="form-control form-control-sm" required>
+        <option value="">Select Department</option>
+        <?php foreach ($department as $value) { ?>
+            <option value="<?= $value['id'] ?>"><?= $value['name']; ?></option>
+        <?php } ?>
+    </select>
+</div>
+
+<div class="col-lg-12 form-group">
+    <label for="course_name">Course Name<span class="text-danger">*</span></label>
+    <select class="form-control form-control-sm my-select2" name="course_name[]" id="course_name" multiple required>
+        <!-- Courses will be populated here -->
+    </select>
+</div>
+
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
+        var selectedCourses = [];  // Array to keep track of selected courses
+        
+        // Track selected courses before changing the dropdown
+        $('#course_name').on('change', function() {
+            selectedCourses = $(this).val() || [];
+        });
+
         // Change event on department selection
         $('#department_id').change(function() {
             var department_id = $(this).val();
@@ -115,20 +140,24 @@ $books_chapter_author = new Books_chapter_author();
                 $.ajax({
                     url: '<?= base_url('getCourseByDepartment') ?>',
                     type: 'post',
-                    dataType: 'json',  // Make sure the response is parsed as JSON
+                    dataType: 'json',  // Ensure the response is parsed as JSON
                     data: {
                         department_id: department_id
                     },
                     success: function(response) {
+                        // Store currently selected options
+                        var currentSelection = selectedCourses;
+
                         // Empty the course select and set default option
                         $('#course_name').empty();
                         $('#course_name').append('<option value="" selected disabled>Select Course</option>');
-                        
+
                         // Check if response contains courses
                         if (response && response.length > 0) {
                             // Append courses to the select dropdown
                             $.each(response, function(key, value) {
-                                $('#course_name').append('<option value="' + value.course_id + '">' + value.course_name + ' - ' + value.course_code + '</option>');
+                                var selected = currentSelection.includes(value.course_id) ? 'selected' : '';
+                                $('#course_name').append('<option value="' + value.course_id + '" ' + selected + '>' + value.course_name + ' - ' + value.course_code + '</option>');
                             });
                         } else {
                             // If no courses available, show a message
@@ -136,7 +165,11 @@ $books_chapter_author = new Books_chapter_author();
                         }
                         
                         // Re-initialize Select2 to reflect new options
-                        $('#course_name').trigger('change');
+                        $('#course_name').select2('destroy').select2({
+                            placeholder: "--Select--",
+                            allowClear: true,
+                            width: '100%'
+                        }).val(currentSelection).trigger('change');
                     },
                     error: function() {
                         // Handle error (e.g., if AJAX fails)
