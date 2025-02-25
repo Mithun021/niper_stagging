@@ -83,7 +83,7 @@ $copyright_author_model = new Copyright_author_model();
                         </div>
                         <div class="col-lg-6 form-group">
                             <span>Employee ID <span class="text-danger">*</span></span>
-                            <select class="form-control form-control-sm my-select" name="emp_id" multiple required>
+                            <select class="form-control form-control-sm my-select" name="emp_id[]" multiple required>
                                 <option value="">--Select--</option>
                                 <?php foreach ($employees as $key => $value) { ?>
                                     <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
