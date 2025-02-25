@@ -199,7 +199,23 @@ $designation_model = new Designation_model();
                             <span for="Scopushindex">Scopus H-Index:</span>
                             <input type="number" name="scopus_h_index" id="scopus_h_index" class="form-control form-control-sm">
                         </div>
-                        <div class="col-sm-12 form-group mt-1">
+                        <div class="col-sm-4 form-group mt-1">
+                            <div class="form-group">
+                                <span>Employee Status</span>
+                                <select name="employee_status" id="employee_status" class="form-control form-control-sm">
+                                    <option value="">--Select--</option>
+                                    <option value="Working">Working</option>
+                                    <option value="Suspend">Suspend</option>
+                                    <option value="Retired">Retired</option>
+                                    <option value="Any Other">Any Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 form-group mt-1">
+                            <span for="Scopushindex">Relieving Date:</span>
+                            <input type="date" name="releiving_date" id="releiving_date" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-sm-4 form-group mt-1">
                             <div class="form-group">
                                 <span>Status</span>
                                 <select name="status" id="status" class="form-control form-control-sm">

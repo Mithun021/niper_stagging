@@ -91,6 +91,8 @@ use App\Models\Student_model;
                     'password' => password_hash($password, PASSWORD_DEFAULT),
                     'status' => $this->request->getPost('status'),
                     'joining_date' => $this->request->getPost('joining_date'),
+                    'employee_status' => $this->request->getPost('employee_status'),
+                    'relieving_date' => $this->request->getPost('releiving_date'),
                     'authority' => 'user',
                     'upload_by' =>  $loggeduserId,
                     // 'first_name' => $this->request->getPost('first_name'),
