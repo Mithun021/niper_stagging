@@ -1145,9 +1145,10 @@ use App\Models\Student_model;
                 $data = [
                     'employee_id' => $this->request->getPost('Empid'),
                     'course_name' => $this->request->getPost('course_name'),
-                    'department_id' => $this->request->getPost('department_id'),
+                    'department_id' => implode(',',$this->request->getPost('department_id')),
                     'upload_by' => $loggeduserId,
                 ];
+                print_r($data); die;
                 $result = $course_tought_model->add($data);
                 if ($result === true) {
                     return redirect()->to('admin/course-tought')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
