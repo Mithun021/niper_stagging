@@ -1127,6 +1127,7 @@ use App\Models\Student_model;
             $data = ['title' => 'Employee Course Tought'];
             if ($this->request->is('get')) {
                 $data['employee'] = $employee_model->get();
+                $data['course_tought'] = $course_tought_model->get();
                 return view('admin/employee/course-tought',$data);
             }else if ($this->request->is('post')) {
                 $sessionData = session()->get('loggedUserData');

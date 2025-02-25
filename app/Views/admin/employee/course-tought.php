@@ -73,7 +73,24 @@ $books_chapter_author = new Books_chapter_author();
                             </tr>
                         </thead>
                         <tbody>
-                            
+                         <?php foreach ($variable as $key => $value) { ?>
+                            <tr>
+                                <td><?= $key + 1 ?></td>
+                                <td><?php $emp = $employee_model->get($value['emplyee_id']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                <td><?= $value['course_name'] ?></td>
+                                <td><?= $value['course_code'] ?></td>
+                                <td><?php $emp = $employee_model->get($value['upload_by']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                         <?php } ?>   
                         </tbody>
                     </table>
                 </div>
