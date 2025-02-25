@@ -48,7 +48,7 @@ class PatentController extends BaseController
                 'grant_date' => $this->request->getPost('grant_date'),
                 'current_status' => $this->request->getPost('current_status'),
                 'upload_file' => $patentImageName,
-                'employee_id' => $this->request->getPost('emp_id'),
+                'employee_id' => implode(",",  $this->request->getPost('emp_id')), //$this->request->getPost('emp_id'),
                 'status' => $this->request->getPost('patent_status'),
                 'upload_by' => $loggeduserId
             ];
