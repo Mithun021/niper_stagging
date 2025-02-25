@@ -97,19 +97,45 @@ $books_chapter_author = new Books_chapter_author();
                             <tr>
                                 <td>SN</td>
                                 <td>File</td>
-                                <td>Book Title</td>
-                                <td>Book Chapter</td>
-                                <td>Month Year</td>
                                 <td>Employee</td>
-                                <td>Author</td>
-                                <td>ISBN/ISSN no</td>
-                                <td>DOI</td>
+                                <td>Membership Title</td>
+                                <td>Organization</td>
+                                <td>Member Reg. no</td>
+                                <td>Member Since</td>
+                                <td>Membership End</td>
                                 <td>Upload By</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            
+                        <?php foreach ($variable as $key => $value) { ?>
+                            <tr>
+                                <td><?= ++$key ?></td>
+                                <td>
+                                    <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/employee/' . $value['upload_file'])): ?>
+                                        <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                    <?php else: ?>
+                                        <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="40px">
+                                    <?php endif; ?>
+                                </td>
+                                <td><?php $emp = $employee_model->get($value['employee_id']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                <td><?= $value['membership_title'] ?></td>
+                                <td><?= $value['organization'] ?></td>
+                                <td><?= $value['member_reg_no'] ?></td>
+                                <td><?= $value['member_since'] ?></td>
+                                <td><?= $value['membership_end'] ?></td>
+                                <td><?php $emp = $employee_model->get($value['upload_by']);
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
