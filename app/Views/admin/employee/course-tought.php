@@ -76,7 +76,7 @@ $books_chapter_author = new Books_chapter_author();
                          <?php foreach ($course_tought as $key => $value) { ?>
                             <tr>
                                 <td><?= $key + 1 ?></td>
-                                <td><?php $emp = $employee_model->get($value['emplyee_id']);
+                                <td><?php $emp = $employee_model->get($value['employee_id']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                 <td><?= $value['course_name'] ?></td>
                                 <td><?= $value['course_code'] ?></td>
