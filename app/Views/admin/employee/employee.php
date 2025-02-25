@@ -256,12 +256,11 @@ $designation_model = new Designation_model();
                                     <td><?php $designations = $designation_model->get($value['designation_id']);
                                         echo (!empty($designations['name'])) ? $designations['name'] : '____';  ?></td>
                                     <td>
-                                        <i class="fa fa-angle-left" aria-hidden="true"></i>
                                         <?php
                                             $dept_id = explode(',',$value['department_id']);
                                             foreach ($dept_id as $key => $ids) {
                                                 $department = $department_model->get($ids);
-                                                echo (!empty($department['name'])) ? '<i class="fa fa-circle"></i> '. $department['name'] : '____';
+                                                echo (!empty($department['name'])) ? '<i class="fa fa-angle-right"></i> '. $department['name'] : '____';
                                                 echo "<br>";
                                             }
 
