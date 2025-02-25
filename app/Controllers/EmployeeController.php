@@ -42,6 +42,7 @@ use App\Models\Student_model;
                 return view('admin/employee/employee',$data);
             }else if ($this->request->is("post")) {
                 // echo "<pre>";print_r($this->request->getPost('department_id')); die;
+                echo implode(",",  $this->request->getPost('department_id')); die;
                 $sessionData = session()->get('loggedUserData');
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
