@@ -1120,5 +1120,35 @@ use App\Models\Student_model;
             }
         }
 
+        public function course_tought(){
+            $employee_model = new Employee_model();
+            $data = ['title' => 'Employee Course Tought'];
+            if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
+                return view('admin/employee/course-tought',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                
+            }
+        }
+
+        public function emp_fellowship(){
+            $employee_model = new Employee_model();
+            $data = ['title' => 'Employee Fellowship'];
+            if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
+                return view('admin/employee/emp-fellowship',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                
+            }
+        }
+
     }
 ?>

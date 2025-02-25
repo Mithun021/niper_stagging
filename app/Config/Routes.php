@@ -98,6 +98,8 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'phd-detail', 'EmployeeController::phd_detail');
     $routes->match(['get','post'],'mphil-ug-pg-detail', 'EmployeeController::mphil_ug_pg_detail');
     $routes->match(['get','post'],'ongoing-phd', 'EmployeeController::ongoing_phd');
+    $routes->match(['get','post'],'course-tought', 'EmployeeController::course_tought');
+    $routes->match(['get','post'],'emp-fellowship', 'EmployeeController::emp_fellowship');
 
     $routes->match(['get','post'],'images', 'AdminControllers::images');
     $routes->match(['get','post'],'photo-album', 'AdminControllers::photo_album');
