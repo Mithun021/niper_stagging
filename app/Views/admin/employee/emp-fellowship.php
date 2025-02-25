@@ -55,7 +55,7 @@ $books_chapter_author = new Books_chapter_author();
                         </div>
                         <div class="col-lg-4 form-group">
                             <span for="">Member Since</span>
-                            <select class="form-control form-control-sm my-select" name="member since">
+                            <select class="form-control form-control-sm my-select" name="member_since">
                                 <option value="">--Select--</option>
                             <?php for ($i=1998; $i <= date('Y'); $i++) { ?>
                                 <option value="<?= $i ?>"><?= $i ?></option>
@@ -63,8 +63,17 @@ $books_chapter_author = new Books_chapter_author();
                             </select>
                         </div>
                         <div class="col-lg-4 form-group">
-                            <span for="">Membership Title<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="membership_title" required>
+                            <span for="">Membership End</span>
+                            <select class="form-control form-control-sm my-select" name="membership_end">
+                                <option value="">--Select--</option>
+                            <?php for ($i=1998; $i <= date('Y'); $i++) { ?>
+                                <option value="<?= $i ?>"><?= $i ?></option>
+                            <?php } ?>
+                            </select>
+                        </div>
+                        <div class="col-lg-4 form-group">
+                            <span for="">Upload File<span class="text-danger">*</span></span>
+                            <input type="file" class="form-control form-control-sm" name="upload_file" required>
                         </div>
                         
                         <div class="col-lg-12 form-group">
