@@ -124,68 +124,45 @@ $books_chapter_author = new Books_chapter_author();
 </div>
 
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+
 <script>
-    $(document).ready(function() {
-        var selectedCourses = [];  // Array to keep track of selected courses
-        
-        // Track selected courses before changing the dropdown
-        $('#course_name').on('change', function() {
-            selectedCourses = $(this).val() || [];
-        });
+        $(document).ready(function() {
+            // Initialize Select2 for the course dropdown
+            $('.my-select2').select2({
+                placeholder: "--Select--",
+                allowClear: true,
+                width: '100%'
+            });
 
-        // Change event on department selection
-        $('#department_id').change(function() {
-            var department_id = $(this).val();
-            if (department_id) {
-                $.ajax({
-                    url: '<?= base_url('getCourseByDepartment') ?>',
-                    type: 'post',
-                    dataType: 'json',  // Ensure the response is parsed as JSON
-                    data: {
-                        department_id: department_id
-                    },
-                    success: function(response) {
-                        // Store currently selected options
-                        var currentSelection = selectedCourses;
+            // Handle change event on department dropdown
+            $('#department_id').change(function() {
+                var department_id = $(this).val();
+                if (department_id) {
+                    $.ajax({
+                        url: '<?= base_url('yourcontroller/get_courses_by_department') ?>',
+                        type: 'post',
+                        dataType: 'json',
+                        data: { department_id: department_id },
+                        success: function(response) {
+                            // Clear previous options
+                            $('#course_name').empty();
+                            $('#course_name').append('<option value="" selected disabled>Select Course</option>');
 
-                        // Empty the course select and set default option
-                        $('#course_name').empty();
-                        $('#course_name').append('<option value="" selected disabled>Select Course</option>');
-
-                        // Check if response contains courses
-                        if (response && response.length > 0) {
-                            // Append courses to the select dropdown
+                            // Append new options from AJAX response
                             $.each(response, function(key, value) {
-                                var selected = currentSelection.includes(value.course_id) ? 'selected' : '';
-                                $('#course_name').append('<option value="' + value.course_id + '" ' + selected + '>' + value.course_name + ' - ' + value.course_code + '</option>');
+                                $('#course_name').append('<option value="' + value.course_id + '">' + value.course_name + ' - ' + value.course_code + '</option>');
                             });
-                        } else {
-                            // If no courses available, show a message
-                            $('#course_name').append('<option value="" disabled>No courses available</option>');
-                        }
-                        
-                        // Re-initialize Select2 to reflect new options
-                        $('#course_name').select2('destroy').select2({
-                            placeholder: "--Select--",
-                            allowClear: true,
-                            width: '100%'
-                        }).val(currentSelection).trigger('change');
-                    },
-                    error: function() {
-                        // Handle error (e.g., if AJAX fails)
-                        alert('Error fetching courses. Please try again.');
-                    }
-                });
-            }
-        });
 
-        // Initialize Select2 for the course dropdown
-        $('.my-select2').select2({
-            placeholder: "--Select--",
-            allowClear: true,
-            width: '100%'
+                            // Re-initialize Select2 to update the new options
+                            $('#course_name').trigger('change');
+                        },
+                        error: function() {
+                            alert('Error fetching courses.');
+                        }
+                    });
+                }
+            });
         });
-    });
-</script>
+    </script>
 
 <?= $this->endSection() ?>
