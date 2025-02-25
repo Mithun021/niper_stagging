@@ -4,7 +4,7 @@
 use App\Models\Designation_model;
 
     class DesignationController extends BaseController{
-        public function designation(){
+        public function designation(){ 
             $designation_model = new Designation_model();
             $data = ['title' => 'Designation'];
             if ($this->request->is("get")) {
@@ -17,6 +17,7 @@ use App\Models\Designation_model;
                 }
                 $data = [
                     'name' => $this->request->getPost('designation_title'),
+                    'designation_hold' => $this->request->getPost('designation_hold'),
                     // 'description' => $this->request->getPost('description'),
                     'status' => $this->request->getPost('status'),
                     'upload_by' => $loggeduserId

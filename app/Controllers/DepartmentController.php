@@ -23,7 +23,6 @@ use App\Models\Program_model;
                 $data = [
                     'name' => $this->request->getPost('dept_name'),
                     'description' => $this->request->getPost('description'),
-                    'designation_hold' => $this->request->getPost('designation_hold'),
                     'status' => $this->request->getPost('status'),
                     'upload_by' => $loggeduserId,
                 ];

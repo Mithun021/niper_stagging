@@ -8,7 +8,7 @@
 <style>
     
 </style>
-<!-- start page title -->
+<!-- start page title --> 
 <div class="row">
     <div class="col-lg-4">
         <div class="card">
@@ -30,6 +30,14 @@
                         <span for="">Desription</span>
                         <textarea id="editor" name="description"></textarea>
                     </div> -->
+                    <div class="form-group">
+                        <span for="">Designation Holds</span>
+                        <select name="designation_hold" class="form-control form-control-sm">
+                            <option value="Teaching">Teaching</option>
+                            <option value="Non-teaching">Non-teaching</option>
+                            <option value="Administrative">Administrative</option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <span>Status</span>
                         <select name="status" id="status" class="form-control form-control-sm">
@@ -56,6 +64,7 @@
                         <tr>
                             <td>SN</td>
                             <td>Title</td>
+                            <td>Desig. Hold</td>
                             <td>Status</td>
                             <td>Upload by</td>
                             <td>Create at</td>
@@ -67,6 +76,7 @@
                         <tr>
                             <td><?= ++$key ?></td>
                             <td><?= $value['name'] ?></td>
+                            <td><?= $value['designation_hold'] ?></td>
                             <td><?= ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                             <td><?= $value['created_at'] ?></td>
