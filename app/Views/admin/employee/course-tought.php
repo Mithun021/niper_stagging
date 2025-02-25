@@ -46,8 +46,8 @@ $books_chapter_author = new Books_chapter_author();
                             </select>
                         </div>
                         <div class="col-lg-12 form-group">
-                            <span for="">Course Name<span class="text-danger">*</span></span>
-                            <select class="form-control form-control-sm my-select" name="course_name[]" id="course_name" multiple required>
+                            <label for="course_name">Course Name<span class="text-danger">*</span></label>
+                            <select class="form-control form-control-sm my-select2" name="course_name[]" id="course_name" multiple required>
                                 
                             </select>
                         </div>
@@ -108,23 +108,49 @@ $books_chapter_author = new Books_chapter_author();
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
+        // Change event on department selection
         $('#department_id').change(function() {
             var department_id = $(this).val();
-            $.ajax({
-                url: '<?= base_url('getCourseByDepartment') ?>',
-                type: 'post',
-                data: {
-                    department_id: department_id
-                },
-                success: function(response) {
-                    //console.log(response);
-                    $('#course_name').empty();
-                    $('#course_name').append('<option value="" selected default>Select Course</option>');
-                    $.each(response, function(key, value) {
-                        $('#course_name').append('<option value="' + value.course_id + '">' + value.course_name + ' - ' + value.course_code + '</option>');
-                    });
-                }
-            });
+            if (department_id) {
+                $.ajax({
+                    url: '<?= base_url('getCourseByDepartment') ?>',
+                    type: 'post',
+                    dataType: 'json',  // Make sure the response is parsed as JSON
+                    data: {
+                        department_id: department_id
+                    },
+                    success: function(response) {
+                        // Empty the course select and set default option
+                        $('#course_name').empty();
+                        $('#course_name').append('<option value="" selected disabled>Select Course</option>');
+                        
+                        // Check if response contains courses
+                        if (response && response.length > 0) {
+                            // Append courses to the select dropdown
+                            $.each(response, function(key, value) {
+                                $('#course_name').append('<option value="' + value.course_id + '">' + value.course_name + ' - ' + value.course_code + '</option>');
+                            });
+                        } else {
+                            // If no courses available, show a message
+                            $('#course_name').append('<option value="" disabled>No courses available</option>');
+                        }
+                        
+                        // Re-initialize Select2 to reflect new options
+                        $('#course_name').trigger('change');
+                    },
+                    error: function() {
+                        // Handle error (e.g., if AJAX fails)
+                        alert('Error fetching courses. Please try again.');
+                    }
+                });
+            }
+        });
+
+        // Initialize Select2 for the course dropdown
+        $('.my-select2').select2({
+            placeholder: "--Select--",
+            allowClear: true,
+            width: '100%'
         });
     });
 </script>
