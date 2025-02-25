@@ -47,9 +47,7 @@ $books_chapter_author = new Books_chapter_author();
                         </div>
                         <div class="col-lg-12 form-group">
                             <label for="course_name">Course Name<span class="text-danger">*</span></label>
-                            <select class="form-control form-control-sm my-select2" name="course_name[]" id="course_name" multiple required>
-                                
-                            </select>
+                            <select class="form-control form-control-sm my-select2" name="course_name[]" id="course_name" multiple required></select>
                         </div>
                         <div class="col-lg-12 form-group">
                             <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
@@ -106,63 +104,59 @@ $books_chapter_author = new Books_chapter_author();
 </div>
 
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
-<div class="col-lg-6 form-group">
-    <label for="department_id">Department:</label>
-    <select name="department_id" id="department_id" class="form-control form-control-sm" required>
-        <option value="">Select Department</option>
-        <?php foreach ($department as $value) { ?>
-            <option value="<?= $value['id'] ?>"><?= $value['name']; ?></option>
-        <?php } ?>
-    </select>
-</div>
-
-<div class="col-lg-12 form-group">
-    <label for="course_name">Course Name<span class="text-danger">*</span></label>
-    <select class="form-control form-control-sm my-select2" name="course_name[]" id="course_name" multiple required>
-        <!-- Courses will be populated here -->
-    </select>
-</div>
-
-<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
 <script>
-        $(document).ready(function() {
-            // Initialize Select2 for the course dropdown
-            $('.my-select2').select2({
-                placeholder: "--Select--",
-                allowClear: true,
-                width: '100%'
-            });
+    // $(document).ready(function() {
+    //     $('#department_id').change(function() {
+    //         var department_id = $(this).val();
+    //         $.ajax({
+    //             url: '<?= base_url('getCourseByDepartment') ?>',
+    //             type: 'post',
+    //             data: {
+    //                 department_id: department_id
+    //             },
+    //             success: function(response) {
+    //                 //console.log(response);
+    //                 $('#course_name').empty();
+    //                 $('#course_name').append('<option value="" selected default>Select Course</option>');
+    //                 $.each(response, function(key, value) {
+    //                     $('#course_name').append('<option value="' + value.course_id + '">' + value.course_name + ' - ' + value.course_code + '</option>');
+    //                 });
+    //             }
+    //         });
+    //     });
+    // });
 
-            // Handle change event on department dropdown
-            $('#department_id').change(function() {
-                var department_id = $(this).val();
-                if (department_id) {
-                    $.ajax({
-                        url: '<?= base_url('getCourseByDepartment') ?>',
-                        type: 'post',
-                        dataType: 'json',
-                        data: { department_id: department_id },
-                        success: function(response) {
-                            // Clear previous options
-                            $('#course_name').empty();
-                            $('#course_name').append('<option value="" selected disabled>Select Course</option>');
-
-                            // Append new options from AJAX response
-                            $.each(response, function(key, value) {
-                                $('#course_name').append('<option value="' + value.course_id + '">' + value.course_name + ' - ' + value.course_code + '</option>');
-                            });
-
-                            // Re-initialize Select2 to update the new options
-                            $('#course_name').trigger('change');
-                        },
-                        error: function() {
-                            alert('Error fetching courses.');
-                        }
-                    });
-                }
-            });
+    $(document).ready(function() {
+        // Initialize Select2
+        $('.my-select2').select2({
+            placeholder: "Select Course",
+            allowClear: true
         });
-    </script>
+
+        $('#department_id').change(function() {
+            var department_id = $(this).val();
+            if(department_id) {
+                $.ajax({
+                    url: '<?= base_url('getCourseByDepartment') ?>',
+                    type: 'POST',
+                    data: { department_id: department_id },
+                    dataType: 'json',
+                    success: function(response) {
+                        $('#course_name').empty();
+                        $.each(response, function(key, value) {
+                            $('#course_name').append('<option value="' + value.course_id + '">' + value.course_name + ' - ' + value.course_code + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#course_name').empty();
+            }
+        });
+    });
+
+
+</script>
 
 <?= $this->endSection() ?>
