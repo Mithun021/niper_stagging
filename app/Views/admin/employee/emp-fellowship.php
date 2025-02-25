@@ -25,7 +25,7 @@ $books_chapter_author = new Books_chapter_author();
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url('admin/book-chapter') ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url('admin/emp-fellowship') ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-lg-4 form-group">
                             <span for="Empid">Employee:</span>
@@ -37,102 +37,36 @@ $books_chapter_author = new Books_chapter_author();
                             </select>
                         </div>
                         <div class="col-lg-4 form-group">
-                            <span for="">Book Chapter Paper<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="book_chapter" required>
+                            <span for="">Membership Title<span class="text-danger">*</span></span>
+                            <input type="text" class="form-control form-control-sm" name="membership_title" required>
                         </div>
 
+                        <div class="col-lg-12 form-group">
+                            <span for="">Description<span class="text-danger">*</span></span>
+                            <textarea class="form-control form-control-sm" name="description" id="editor" ></textarea>
+                        </div>
                         <div class="col-lg-4 form-group">
-                            <span for="">Title<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="title" required>
+                            <span for="">Organization<span class="text-danger">*</span></span>
+                            <input type="text" class="form-control form-control-sm" name="organization" required>
                         </div>
-
-                        <div class="col-lg-12">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="addServicetable">
-                                    <thead class="bg-light">
-                                        <tr>
-                                            <td scope="col">Author Details</td>
-                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewservicerow">+</button></td>
-                                        </tr>
-
-                                    </thead>
-                                    <tbody id="stockTbody">
-                                        <tr id="stockTrow">
-                                            <td>
-                                                <input type="text" class="form-control" id="author_name" name="author_name[]" placeholder="Enter Author Name">
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="addServicetable">
-                                    <thead class="bg-light">
-                                        <tr>
-                                            <td scope="col">Co-Author Details</td>
-                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewCoAuthor">+</button></td>
-                                        </tr>
-
-                                    </thead>
-                                    <tbody id="coAuthorTbody">
-                                        <tr id="coAuthorRow">
-                                            <td>
-                                                <input type="text" class="form-control" id="co_author_name" name="co_author_name[]" placeholder="Enter Co-Author Name">
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-sm btn-danger" id="removeCoAuthorrow">-</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
                         <div class="col-lg-4 form-group">
-                            <span for="">Publisher<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="publisher" required>
+                            <span for="">Member Reg. no<span class="text-danger">*</span></span>
+                            <input type="text" class="form-control form-control-sm" name="member_reg_no" required>
                         </div>
-
                         <div class="col-lg-4 form-group">
-                            <span for="">Month<span class="text-danger">*</span></span>
-                            <input type="month" class="form-control form-control-sm" name="month">
+                            <span for="">Member Since</span>
+                            <select class="form-control form-control-sm" name="member since">
+                                <option value="">--Select--</option>
+                            <?php for ($i=2000; $i <= date('Y'); $i++) { ?>
+                                <option value="<?= $i ?>"><?= $i ?></option>
+                            <?php } ?>
+                            </select>
                         </div>
-
-                        <!-- <div class="col-lg-4 form-group">
-                        <span for="">Year<span class="text-danger">*</span></span>
-                        <input type="year" class="form-control form-control-sm" name="year" required>
-                    </div> -->
-
                         <div class="col-lg-4 form-group">
-                            <span for="">ISBN</span>
-                            <input type="text" class="form-control form-control-sm" name="isbn">
+                            <span for="">Membership Title<span class="text-danger">*</span></span>
+                            <input type="text" class="form-control form-control-sm" name="membership_title" required>
                         </div>
-
-                        <div class="col-lg-4 form-group">
-                            <span for="">ISSN No.</span>
-                            <input type="text" class="form-control form-control-sm" name="issn_no">
-                        </div>
-
-                        <div class="col-lg-4 form-group">
-                            <span for="">Digital Object Identify</span>
-                            <input type="text" class="form-control form-control-sm" name="doi">
-                        </div>
-
-                        <div class="col-lg-4 form-group">
-                            <span for="">Web Link</span>
-                            <input type="url" class="form-control form-control-sm" name="web_link">
-                        </div>
-
-                        <div class="col-lg-4 form-group">
-                            <span for="">Upload File(.pdf)</span>
-                            <input type="file" class="form-control form-control-sm" name="upload_file" accept=".pdf">
-                        </div>
+                        
                         <div class="col-lg-12 form-group">
                             <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
                         </div>
