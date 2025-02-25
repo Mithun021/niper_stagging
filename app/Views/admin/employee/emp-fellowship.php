@@ -29,7 +29,7 @@ $books_chapter_author = new Books_chapter_author();
                     <div class="row">
                         <div class="col-lg-4 form-group">
                             <span for="Empid">Employee:</span>
-                            <select name="Empid" id="Empid" class="form-control form-control-sm" required>
+                            <select name="Empid" id="Empid" class="form-control form-control-sm my-select" required>
                                 <option value="">Select Employee</option>
                                 <?php foreach ($employee as $value) { ?>
                                     <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
@@ -55,9 +55,9 @@ $books_chapter_author = new Books_chapter_author();
                         </div>
                         <div class="col-lg-4 form-group">
                             <span for="">Member Since</span>
-                            <select class="form-control form-control-sm" name="member since">
+                            <select class="form-control form-control-sm my-select" name="member since">
                                 <option value="">--Select--</option>
-                            <?php for ($i=2000; $i <= date('Y'); $i++) { ?>
+                            <?php for ($i=1998; $i <= date('Y'); $i++) { ?>
                                 <option value="<?= $i ?>"><?= $i ?></option>
                             <?php } ?>
                             </select>
