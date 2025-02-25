@@ -255,8 +255,17 @@ $designation_model = new Designation_model();
                                                                                                             } ?></td>
                                     <td><?php $designations = $designation_model->get($value['designation_id']);
                                         echo (!empty($designations['name'])) ? $designations['name'] : '____';  ?></td>
-                                    <td><?php $department = $department_model->get($value['department_id']);
-                                        echo (!empty($department['name'])) ? $department['name'] : '____';  ?></td>
+                                    <td>
+                                        <?php
+                                            $dept_id = explode(',',$value['department_id']);
+                                            foreach ($dept_id as $key => $ids) {
+                                                $department = $department_model->get($ids);
+                                                echo (!empty($department['name'])) ? $department['name'] : '____';
+                                                echo "<br>";
+                                            }
+
+                                        ?>
+                                    </td>
                                     <td><?= $value['created_at'] ?></td>
                                     <td>
                                         <?php if ($value['authority'] !== "admin") { ?>
