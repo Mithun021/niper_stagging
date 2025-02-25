@@ -154,8 +154,15 @@ $employee_model = new Employee_model();
                                 <td><?= $value['current_status'] ?></td>
                                 <td><?= $value['filling_date'] ?></td>
                                 <td><?= $value['status'] == 0 ? '<span class="badge badge-danger badge-pill">Draft</span>' : '<span class="badge badge-success badge-pill">Active</span>' ?></td>
-                                <td><?php $emp = $employee_model->get($value['employee_id']);
-                                    echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                <td> <?php
+                                    $emp_ids = explode(',',$value['employee_id']);
+                                    foreach ($emp_ids as $key => $ids) {
+                                        $emp = $employee_model->get($ids); if($emp){
+                                        echo '<i class="fa fa-angle-right"></i> '.$emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name'] . "<br>";
+                                        }
+                                    }
+                                ?>
+                                </td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']);
                                     echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                 <td>
