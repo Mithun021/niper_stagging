@@ -139,7 +139,7 @@ $books_chapter_author = new Books_chapter_author();
                 var department_id = $(this).val();
                 if (department_id) {
                     $.ajax({
-                        url: '<?= base_url('yourcontroller/get_courses_by_department') ?>',
+                        url: '<?= base_url('getCourseByDepartment') ?>',
                         type: 'post',
                         dataType: 'json',
                         data: { department_id: department_id },
