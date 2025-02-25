@@ -260,7 +260,7 @@ $designation_model = new Designation_model();
                                             $dept_id = explode(',',$value['department_id']);
                                             foreach ($dept_id as $key => $ids) {
                                                 $department = $department_model->get($ids);
-                                                echo (!empty($department['name'])) ? $department['name'] : '____';
+                                                echo (!empty($department['name'])) ? '<i class="fa fa-list-ul"></i>'. $department['name'] : '____';
                                                 echo "<br>";
                                             }
 
