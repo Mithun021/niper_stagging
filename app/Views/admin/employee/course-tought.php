@@ -117,8 +117,12 @@ $books_chapter_author = new Books_chapter_author();
                     department_id: department_id
                 },
                 success: function(response) {
-                    console.log(response);
-                    // $('#course_name').html(response);
+                    //console.log(response);
+                    $('#course_name').empty();
+                    $('#course_name').append('<option value="" selected default>Select Course</option>');
+                    $.each(response, function(key, value) {
+                        $('#course_name').append('<option value="' + value.course_id + '">' + value.course_name + ' - ' + value.course_code + '</option>');
+                    });
                 }
             });
         });
