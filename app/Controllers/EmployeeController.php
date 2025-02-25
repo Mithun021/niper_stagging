@@ -1141,7 +1141,7 @@ use App\Models\Student_model;
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
-
+               print_r($this->request->getPost('department_id')); die;
                 $data = [
                     'employee_id' => $this->request->getPost('Empid'),
                     'course_name' => $this->request->getPost('course_name'),
