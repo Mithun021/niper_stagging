@@ -5,6 +5,7 @@ use App\Models\Books_chapter_author;
 use App\Models\Books_chapter_coauthor;
 use App\Models\Books_chapter_model;
 use App\Models\Country_model;
+use App\Models\Course_tought_model;
 use App\Models\Department_model;
 use App\Models\Designation_model;
 use App\Models\Emp_other_academic_detail_model;
@@ -1122,6 +1123,7 @@ use App\Models\Student_model;
 
         public function course_tought(){
             $employee_model = new Employee_model();
+            $course_tought_model = new Course_tought_model();
             $data = ['title' => 'Employee Course Tought'];
             if ($this->request->is('get')) {
                 $data['employee'] = $employee_model->get();
@@ -1131,7 +1133,19 @@ use App\Models\Student_model;
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
-                
+
+                $data = [
+                    'employee_id' => $this->request->getPost('Empid'),
+                    'course_name' => $this->request->getPost('course_name'),
+                    'course_code' => $this->request->getPost('course_code'),
+                    'upload_by' => $loggeduserId,
+                ];
+                $result = $course_tought_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/course-tought')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/course-tought')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 

@@ -38,12 +38,12 @@ $books_chapter_author = new Books_chapter_author();
                         </div>
                         <div class="col-lg-4 form-group">
                             <span for="">Course Name<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="book_chapter" required>
+                            <input type="text" class="form-control form-control-sm" name="course_name" required>
                         </div>
 
                         <div class="col-lg-4 form-group">
                             <span for="">Course Code<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="title" required>
+                            <input type="text" class="form-control form-control-sm" name="course_code" required>
                         </div>
                         <div class="col-lg-12 form-group">
                             <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
@@ -65,14 +65,9 @@ $books_chapter_author = new Books_chapter_author();
                         <thead>
                             <tr>
                                 <td>SN</td>
-                                <td>File</td>
-                                <td>Book Title</td>
-                                <td>Book Chapter</td>
-                                <td>Month Year</td>
                                 <td>Employee</td>
-                                <td>Author</td>
-                                <td>ISBN/ISSN no</td>
-                                <td>DOI</td>
+                                <td>Course Name</td>
+                                <td>Course Code</td>
                                 <td>Upload By</td>
                                 <td>Action</td>
                             </tr>
