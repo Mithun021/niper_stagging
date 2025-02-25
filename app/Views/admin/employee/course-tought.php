@@ -73,7 +73,7 @@ $books_chapter_author = new Books_chapter_author();
                             </tr>
                         </thead>
                         <tbody>
-                         <?php foreach ($variable as $key => $value) { ?>
+                         <?php foreach ($course_tought as $key => $value) { ?>
                             <tr>
                                 <td><?= $key + 1 ?></td>
                                 <td><?php $emp = $employee_model->get($value['emplyee_id']);
