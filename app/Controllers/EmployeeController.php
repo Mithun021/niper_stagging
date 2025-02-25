@@ -1128,10 +1128,12 @@ use App\Models\Student_model;
 
         public function course_tought(){
             $employee_model = new Employee_model();
+            $department_model = new Department_model();
             $course_tought_model = new Course_tought_model();
             $data = ['title' => 'Employee Course Tought'];
             if ($this->request->is('get')) {
                 $data['employee'] = $employee_model->get();
+                $data['department'] = $department_model->get();
                 $data['course_tought'] = $course_tought_model->get();
                 return view('admin/employee/course-tought',$data);
             }else if ($this->request->is('post')) {

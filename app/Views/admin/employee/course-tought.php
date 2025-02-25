@@ -27,7 +27,7 @@ $books_chapter_author = new Books_chapter_author();
                 ?>
                 <form method="post" action="<?= base_url('admin/course-tought') ?>" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="col-lg-4 form-group">
+                        <div class="col-lg-6 form-group">
                             <span for="Empid">Employee:</span>
                             <select name="Empid" id="Empid" class="form-control form-control-sm" required>
                                 <option value="">Select Employee</option>
@@ -36,14 +36,20 @@ $books_chapter_author = new Books_chapter_author();
                                 <?php } ?>
                             </select>
                         </div>
-                        <div class="col-lg-4 form-group">
-                            <span for="">Course Name<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="course_name" required>
+                        <div class="col-lg-6 form-group">
+                            <span for="Empid">Department:</span>
+                            <select name="Empid" id="Empid" class="form-control form-control-sm" required>
+                                <option value="">Select Department</option>
+                                <?php foreach ($department as $value) { ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['name']; ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
-
-                        <div class="col-lg-4 form-group">
-                            <span for="">Course Code<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="course_code" required>
+                        <div class="col-lg-12 form-group">
+                            <span for="">Course Name<span class="text-danger">*</span></span>
+                            <select class="form-control form-control-sm" name="course_name" id="course_name" required>
+                                <option value="">--Select--</option>
+                            </select>
                         </div>
                         <div class="col-lg-12 form-group">
                             <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
