@@ -109,6 +109,8 @@
                 <li><a href="<?= base_url() ?>admin/phd-detail" class="waves-effect"><span>PHD Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/mphil-ug-pg-detail" class="waves-effect"><span>MPhil/PG/UG Ongoing Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/ongoing-phd" class="waves-effect"><span>Ongoing PHD</span></a></li>
+                <li><a href="<?= base_url() ?>admin/course-tought" class="waves-effect"><span>Course Taught</span></a></li>
+                <li><a href="<?= base_url() ?>admin/emp-fellowship" class="waves-effect"><span>Membership / Fellowships</span></a></li>
             </ul>
         </li>
 
