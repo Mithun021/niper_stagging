@@ -32,7 +32,7 @@ $event_fee_category_model = new Event_fee_category_model();
                         <select name="event_id" id="event_id" class="form-control form-control-sm">
                             <option value="">Select Event</option>
                             <?php foreach ($events as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                                <option value="<?= $value['id'] ?>" <?php if($event_fee_subcategory_detail['event_id']== $value['id']){ echo "selected"; } ?>><?= $value['title'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
