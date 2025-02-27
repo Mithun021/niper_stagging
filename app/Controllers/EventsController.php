@@ -596,6 +596,8 @@ use App\Models\Program_department_mapping_model;
             $event_fee_category_model = new Event_fee_category_model();
             $data = ['title' => 'Event Fees','event_fees_id' => $id];
             $data['event_fees_detail'] = $event_fees_model->get($id);
+            $data['fee_category_detail'] = $event_fee_category_model->getEventFeeCategories($data['event_fees_detail']['event_id']);
+
             if ($this->request->is("get")) {
                 $data['events_fee'] = $event_fee_category_model->get();
                 $data['events'] = $events_model->get();

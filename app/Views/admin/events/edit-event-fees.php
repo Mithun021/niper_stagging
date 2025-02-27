@@ -40,6 +40,9 @@ use App\Models\Events_model;
                         <span for="evtfeestype">Fee Type <span class="text-danger">*</span></span>
                         <select class="form-control form-control-sm" name="evtfeestype" id="evtfeestype" required>
                             <option value="">Select Fee Type</option>
+                        <?php foreach ($fee_category_detail as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>" <?php if($event_fees_detail['fee_type']== $value['id']){ echo "selected"; } ?>><?= $value['name'] ?></option>
+                        <?php } ?>
                         </select>
                         <!-- <select class="form-control form-control-sm" name="evtfeestype" id="evtfeestype" required>
                             <option value="">-- Select Fee Type --</option>
