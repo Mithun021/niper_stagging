@@ -70,7 +70,7 @@ use App\Models\Events_model;
                     <!-- Event Fees -->
                     <div class="form-group">
                         <span for="evtfees">Event Fees (in INR) <span class="text-danger">*</span></span>
-                        <input type="number" class="form-control form-control-sm" name="evtfees" id="evtfees" placeholder="Enter Fees Amount" min="0" required>
+                        <input type="number" class="form-control form-control-sm" name="evtfees" id="evtfees" placeholder="Enter Fees Amount" min="0" value="<?= $event_fees_detail['event_fees'] ?>" required>
                     </div>
 
                     <!-- Submit Button -->
