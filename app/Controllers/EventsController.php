@@ -1068,6 +1068,16 @@ use App\Models\Program_department_mapping_model;
             }
         }
 
+        public function delete_event_fee_subcategory($id){
+            $event_fee_subcategory_model = new Event_fee_subcategory_model();
+            $result = $event_fee_subcategory_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/event-fee-subcategory')->with('status','<div class="alert alert-success" role="alert"> Data delete Successful </div>');
+            } else {
+                return redirect()->to('admin/event-fee-subcategory')->with('status','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+            }
+        }
+
         public function event_contact_info(){
             $designation_model = new Designation_model();
             $events_model = new Events_model();
