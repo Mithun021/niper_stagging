@@ -40,6 +40,9 @@ $event_fee_category_model = new Event_fee_category_model();
                         <span>Event Fee Category</span>
                         <select name="event_fee_category_id" id="event_fee_category_id" class="form-control form-control-sm">
                             <option value="" default selected>Select Event Fee Category</option>
+                            <?php foreach ($fee_subcategory_detail as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>" <?php if($event_fee_subcategory_detail['event_fee_category_id']== $value['id']){ echo "selected"; } ?>><?= $value['name'] ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">
