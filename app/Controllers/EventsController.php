@@ -1034,6 +1034,40 @@ use App\Models\Program_department_mapping_model;
             }
         }
 
+
+        public function edit_event_fee_subcategory(){
+            $events_model = new Events_model();
+            $event_fee_subcategory_model = new Event_fee_subcategory_model();
+            $event_fee_category_model = new Event_fee_category_model();
+            $data = ['title' => 'Event Fee Sub Category'];
+            if ($this->request->is("get")) {
+                $data['events'] = $events_model->get();
+                $data['event_categories'] = $event_fee_subcategory_model->get();
+                return view('admin/events/edit-event-fee-subcategory',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }else{
+                    return redirect()->to(base_url('admin/login'));
+                }
+                $data = [
+                    'event_id' => $this->request->getPost('event_id'),
+                    'event_fee_category_id' => $this->request->getPost('event_fee_category_id'),
+                    'name' => $this->request->getPost('event_category'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $event_fee_subcategory_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-event-fee-subcategory')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-event-fee-subcategory')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+                
+                
+            }
+        }
+
         public function event_contact_info(){
             $designation_model = new Designation_model();
             $events_model = new Events_model();
