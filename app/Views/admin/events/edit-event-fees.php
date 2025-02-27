@@ -64,7 +64,7 @@ use App\Models\Events_model;
                         <?php foreach ($fee_subcategory_detail as $key => $value) { ?>
                             <option value="<?= $value['id'] ?>" <?php if($event_fees_detail['evtfeesvalue']== $value['id']){ echo "selected"; }else if($event_fees_detail['evtfeesvalue']== "Any Category"){ echo "Selected"; } ?>><?= $value['name'] ?></option>
                         <?php } ?>
-                            <option value="Any Category">Any Category</option>
+                            <option value="Any Category" <?php if($event_fees_detail['evtfeesvalue']== "Any Category"){ echo "Selected"; } ?>>Any Category</option>
                         </select>
                     </div>
                     <!-- Event Fees -->
