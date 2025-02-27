@@ -83,8 +83,8 @@ $event_fee_category_model = new Event_fee_category_model();
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                     <td><?= date("d-m-Y", strtotime($value['created_at'])) ?></td>
                                     <td>
-                                        <a href="<?= base_url('admin/edit-event-fee-subcategory/' . $value['id']) ?>" class="btn btn-sm btn-primary">Edit</a>
-                                        <a href="<?= base_url('admin/delete-event-fee-subcategory/' . $value['id']) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure...!')">Delete</a>
+                                        <a href="<?= base_url('admin/edit-event-fee-subcategory/' . $value['id']) ?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
+                                        <a href="<?= base_url('admin/delete-event-fee-subcategory/' . $value['id']) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure...!')"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             <?php } ?>
