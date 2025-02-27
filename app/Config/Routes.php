@@ -49,6 +49,10 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
 
 
     $routes->match(['get','post'],'event-fees', 'EventsController::event_fees');
+    $routes->match(['get','post'],'edit-event-fees/(:num)', 'EventsController::edit_event_fees/$1');
+    $routes->match(['get','post'],'delete-event-fees/(:num)', 'EventsController::delete_event_fees/$1');
+
+
     $routes->match(['get','post'],'event-highlight', 'EventsController::event_highlight');
     $routes->match(['get','post'],'edit-event-highlight/(:num)', 'EventsController::edit_event_highlight/$1');
     $routes->get('delete-event-highlight/(:num)', 'EventsController::delete_event_highlight/$1');

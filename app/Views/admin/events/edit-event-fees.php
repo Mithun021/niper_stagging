@@ -23,7 +23,7 @@ use App\Models\Events_model;
                     <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
 
-                <form action="<?= base_url() ?>admin/event-fees" method="post">
+                <form action="<?= base_url() ?>admin/edit-event-fees/<?= $event_fees_id ?>" method="post">
                     <!-- Event ID -->
                     <div class="form-group">
                         <span>Event ID:</span>

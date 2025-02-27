@@ -590,11 +590,45 @@ use App\Models\Program_department_mapping_model;
             }
         }
 
+        public function edit_event_fees($id){
+            $events_model = new Events_model();
+            $event_fees_model = new Event_fees_model();
+            $event_fee_category_model = new Event_fee_category_model();
+            $data = ['title' => 'Event Fees','event_fees_id' => $id];
+            $data['event_fees_detail'] = $event_fees_model->get($id);
+            if ($this->request->is("get")) {
+                $data['events_fee'] = $event_fee_category_model->get();
+                $data['events'] = $events_model->get();
+                $data['event_fees'] = $event_fees_model->get();
+                return view('admin/events/edit-event-fees',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }else{
+                    return redirect()->to(base_url('admin/login'));
+                }
+                $data = [
+                    'event_id' => $this->request->getPost('event_id'),
+                    'fee_type' => $this->request->getPost('evtfeestype'),
+                    'evtfeesvalue' => $this->request->getPost('evtfeesvalue'),
+                    'event_fees' => $this->request->getPost('evtfees'),
+                    'upload_by' => $loggeduserId,
+                ];
+                $result = $event_fees_model->add($data,$id);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-event-fees/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-event-fees/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
         public function event_highlight(){
             $event_gallery_model = new Event_gallery_model();
             $events_model = new Events_model();
             // $event_highlights_model = new Event_highlights_model();
-            $data = ['title' => 'Event Highlight'];
+            $data = ['title' => 'Event Gallery'];
             if ($this->request->is("get")) {
                 $data['events'] = $events_model->get();
                 $data['event_gallery'] = $event_gallery_model->get();
