@@ -47,7 +47,7 @@ $event_fee_category_model = new Event_fee_category_model();
                     </div>
                     <div class="form-group">
                         <span for="">Category Name<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="event_category" required>
+                        <input type="text" class="form-control form-control-sm" name="event_category" value="<?= $event_fee_subcategory_detail['name'] ?>" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
