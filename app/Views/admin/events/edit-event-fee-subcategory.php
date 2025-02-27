@@ -26,7 +26,7 @@ $event_fee_category_model = new Event_fee_category_model();
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url('admin/edit-event-fee-subcategory') ?>">
+                <form method="post" action="<?= base_url('admin/edit-event-fee-subcategory/'.$event_fee_subcategory_id) ?>">
                     <div class="form-group">
                         <span>Event ID:</span>
                         <select name="event_id" id="event_id" class="form-control form-control-sm">

@@ -1035,11 +1035,12 @@ use App\Models\Program_department_mapping_model;
         }
 
 
-        public function edit_event_fee_subcategory(){
+        public function edit_event_fee_subcategory($id){
             $events_model = new Events_model();
             $event_fee_subcategory_model = new Event_fee_subcategory_model();
             $event_fee_category_model = new Event_fee_category_model();
-            $data = ['title' => 'Event Fee Sub Category'];
+            $data = ['title' => 'Event Fee Sub Category','event_fee_subcategory_id' => $id];
+            $data['event_fee_subcategory_detail'] = $event_fee_subcategory_model->get($id);
             if ($this->request->is("get")) {
                 $data['events'] = $events_model->get();
                 $data['event_categories'] = $event_fee_subcategory_model->get();
