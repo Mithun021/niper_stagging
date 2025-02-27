@@ -628,6 +628,16 @@ use App\Models\Program_department_mapping_model;
             }
         }
 
+        public function delete_event_fees($id){
+            $event_fees_model = new Event_fees_model();
+            $delete = $event_fees_model->delete($id);
+            if ($delete) {
+                return redirect()->to('admin/event-fees')->with('status','<div class="alert alert-success" role="alert"> Data delete Successful </div>');
+            } else {
+                return redirect()->to('admin/event-fees')->with('status','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+            }
+        }
+
         public function event_highlight(){
             $event_gallery_model = new Event_gallery_model();
             $events_model = new Events_model();
