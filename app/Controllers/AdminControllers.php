@@ -1319,7 +1319,7 @@ use App\Models\Youtube_link_model;
                 $data = [
                     'title' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),
-                    'puslish_date' => $this->request->getPost('puslish_date'),
+                    'publish_date' => $this->request->getPost('publish_date'),
                     'upload_file' => $upload_file_new_name,
                     'upload_by' => $loggeduserId,
                 ];
