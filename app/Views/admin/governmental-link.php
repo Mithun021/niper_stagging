@@ -64,7 +64,7 @@
                             <td><?= $key+1 ?></td>
                             <td><img src="<?= base_url() ?>public/admin/uploads/government_link/<?= $value['upload_image'] ?>" alt="" style="width: auto; height: 40px;"></td>
                             <td><a href="<?= $value['web_url'] ?>" target="_blank"><?= $value['title'] ?></a></td>
-                            <td><?php $emp = $employee_model->get($value['employee_id']); if($emp){
+                            <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){
                                     echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
                             <td><?= date('d-m-Y', strtotime($value['created_at'])) ?></td>
                             <td>
