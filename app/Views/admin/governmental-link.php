@@ -22,25 +22,16 @@
                 ?>
                 <form method="post" action="<?= base_url() ?>admin/governmental-link" enctype="multipart/form-data">
                     <div class="form-group">
-                        <span for="">Media Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="media_title">
+                        <span for="">Title<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="title">
+                    </div>
+                    <div class="form-group">
+                        <span for="">Web URL<span class="text-danger">*</span></span>
+                        <input type="url" class="form-control form-control-sm" name="web_url">
                     </div>
                     <div class="form-group">
                         <span for="">Upload Image(JPG,PNG)<span class="text-danger">*</span></span>
-                        <input type="file" class="form-control form-control-sm" name="media_photo" accept=".jpg, .png, .jpeg" required>
-                    </div>
-                    <div class="form-group">
-                        <span for="">Upload File(PDF)</span>
-                        <input type="file" class="form-control form-control-sm" name="media_file" accept=".pdf" required>
-                    </div>
-                    <div class="form-group">
-                        <span for="">Description:</span>
-                        <textarea name="mediadesc" id="editor" class="form-control form-control-sm"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <span>Publish Date</span>
-                        <input type="date" name="publish_date" class="form-control form-control-sm">
+                        <input type="file" class="form-control form-control-sm" name="upload_file" accept=".jpg, .png, .jpeg" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>

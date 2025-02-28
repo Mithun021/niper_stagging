@@ -17,6 +17,7 @@ use App\Models\Department_model;
 use App\Models\Designation_model;
 use App\Models\Download_form_model;
 use App\Models\Employee_model;
+use App\Models\Governmental_link_model;
 use App\Models\Image_gallery_model;
 use App\Models\Instrument_gallery_model;
 use App\Models\Instrument_rates_model;
@@ -1208,11 +1209,35 @@ use App\Models\Youtube_link_model;
 
 
         public function governmental_link(){
+            $governmental_link_model = new Governmental_link_model();
             $data = ['title' => 'Governmental Link'];
             if ($this->request->is("get")) {
+                $data['governmental_link'] = $governmental_link_model->get();
                 return view('admin/governmental-link',$data);
             }else if ($this->request->is("post")) {
-    
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $upload_file = $this->request->getFile('upload_file');
+                if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
+                    $upload_file_new_name = rand(0,9999) . $upload_file->getRandomName();
+                    $upload_file->move(ROOTPATH . 'public/admin/uploads/government_link', $upload_file_new_name);
+                } else {
+                    $upload_file_new_name = "";
+                }
+                $data = [
+                    'title' => $this->request->getPost('title'),
+                    'web_url' => $this->request->getPost('web_url'),
+                    'upload_image' => $upload_file_new_name,
+                    'loggeduserId' => $loggeduserId,
+                ];
+                $result = $governmental_link_model->add($data);
+                if ($result) {
+                    return redirect()->to('admin/governmental-link')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/governmental-link')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+                }
             }
         }
     
