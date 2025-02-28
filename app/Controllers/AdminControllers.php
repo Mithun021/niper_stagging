@@ -1255,7 +1255,7 @@ use App\Models\Youtube_link_model;
                 }
                 $new_upload_file = $this->request->getFile('upload_file');
                 $governmental_link = $governmental_link_model->get($id);
-                $old_image_name =  $governmental_link['upload_file'];
+                $old_image_name =  $governmental_link['upload_image'];
                 if ($new_upload_file->isValid() && !$new_upload_file->hasMoved()) {
                     if(file_exists("public/admin/uploads/government_link/".$old_image_name)){
                         unlink("public/admin/uploads/government_link/".$old_image_name);
