@@ -1280,6 +1280,21 @@ use App\Models\Youtube_link_model;
                 }
             }
         }
+
+        public function delete_governmental_link($id){
+            $governmental_link_model = new Governmental_link_model();
+            $governmental_link = $governmental_link_model->get($id);
+            $old_image_name =  $governmental_link['upload_image'];
+            if(file_exists("public/admin/uploads/government_link/".$old_image_name)){
+                unlink("public/admin/uploads/government_link/".$old_image_name);
+            }
+            $result = $governmental_link_model->delete($id);
+            if ($result) {
+                return redirect()->to('admin/governmental-link')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/governmental-link')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
+        }
     
         public function newsletter(){
             $data = ['title' => 'Newsletter'];
