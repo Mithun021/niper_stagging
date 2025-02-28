@@ -137,6 +137,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'delete-governmental-link/(:num)', 'AdminControllers::delete_governmental_link/$1');
 
     $routes->match(['get','post'],'newsletter', 'AdminControllers::newsletter');
+    
     $routes->match(['get','post'],'flash-news', 'AdminControllers::flash_news');
 
     $routes->match(['get','post'],'job-details', 'JobControllers::job_details');

@@ -29,6 +29,7 @@ use App\Models\Membership_model;
 use App\Models\Menu_heading_model;
 use App\Models\Menu_name_model;
 use App\Models\Menu_pages_model;
+use App\Models\Newsletter_model;
 use App\Models\Permission_model;
 use App\Models\Photo_album_file_model;
 use App\Models\Photo_album_model;
@@ -1298,11 +1299,37 @@ use App\Models\Youtube_link_model;
         }
     
         public function newsletter(){
+            $newsletter_model = new Newsletter_model();
             $data = ['title' => 'Newsletter'];
             if ($this->request->is("get")) {
+                $data['newsletter'] = $newsletter_model->get();
                 return view('admin/newsletter',$data);
             }else if ($this->request->is("post")) {
-    
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $upload_file = $this->request->getFile('upload_file');
+                if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
+                    $upload_file_new_name = rand(0,9999) . $upload_file->getRandomName();
+                    $upload_file->move(ROOTPATH . 'public/admin/uploads/newsletter', $upload_file_new_name);
+                } else {
+                    $upload_file_new_name = "";
+                }
+                $data = [
+                    'title' => $this->request->getPost('title'),
+                    'description' => $this->request->getPost('description'),
+                    'puslish_date' => $this->request->getPost('puslish_date'),
+                    'upload_file' => $upload_file_new_name,
+                    'upload_by' => $loggeduserId,
+                ];
+                $result = $newsletter_model->add($data);
+                if ($result) {
+                    return redirect()->to('admin/newsletter')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/newsletter')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+                }
+            
             }
         }
     
