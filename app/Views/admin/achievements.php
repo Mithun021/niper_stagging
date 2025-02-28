@@ -20,11 +20,11 @@
                 <form method="post" action="<?= base_url() ?>achievements">
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="notice_title">
+                        <input type="text" class="form-control form-control-sm" name="title" required>
                     </div>
                     <div class="form-group">
-                        <span for="">Upload File(JPG,PNG,PDF)</span>
-                        <input type="file" class="form-control form-control-sm" name="notice_file" accept=".jpg, .png, .pdf" required>
+                        <span for="">Counter Value</span>
+                        <input type="number" class="form-control form-control-sm" name="counter" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
@@ -45,13 +45,24 @@
                         <tr>
                             <td>SN</td>
                             <td>Title</td>
-                            <td>Files</td>
-                            <td>Create at</td>
+                            <td>Counter Value</td>
                             <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    <?php foreach ($achievements as $key => $value) { ?>
+                        <tr>
+                            <td><?= ++$key ?></td>
+                            <td><?= $value['title'] ?></td>
+                            <td><?= $value['counter_value'] ?></td>
+                            <td>
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                    <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                    <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 </div>

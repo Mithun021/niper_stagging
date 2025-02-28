@@ -1379,7 +1379,8 @@ use App\Models\Youtube_link_model;
                 return view('admin/achievements',$data);
             }else if ($this->request->is("post")) {
                 $data =[
-
+                    'title' => $this->request->getPost('title'),
+                    'counter_value' => $this->request->getPost('counter'),
                 ];
                 $result = $achievements_model->add($data);
                 if ($result === true) {
