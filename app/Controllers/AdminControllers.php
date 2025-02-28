@@ -1310,6 +1310,7 @@ use App\Models\Youtube_link_model;
             $flash_news_model = new Flash_news_model();
             $data = ['title' => 'Flash News'];
             if ($this->request->is("get")) {
+                $data['flash_news'] = $flash_news_model->get();
                 return view('admin/flash-news',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
@@ -1327,7 +1328,7 @@ use App\Models\Youtube_link_model;
 
                 if ($flash_file->isValid() && ! $flash_file->hasMoved()) {
                     $flash_fileNewName = 'file_' .$flash_file->getRandomName();
-                    $flash_file->move(ROOTPATH . 'public/admin/uploads/media', $flash_fileNewName);    
+                    $flash_file->move(ROOTPATH . 'public/admin/uploads/flash_news', $flash_fileNewName);    
                 }else{
                  $flash_fileNewName = "";
                 }
