@@ -1247,7 +1247,7 @@ use App\Models\Youtube_link_model;
             $data['governmental_link'] = $governmental_link_model->get($id);
             if ($this->request->is("get")) {
                 $data['governmental_link'] = $governmental_link_model->get();
-                return view('admin/governmental-link',$data);
+                return view('admin/edit-governmental-link',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
                 if ($sessionData) {
@@ -1274,9 +1274,9 @@ use App\Models\Youtube_link_model;
                 ];
                 $result = $governmental_link_model->add($data);
                 if ($result) {
-                    return redirect()->to('admin/governmental-link/'.$id)->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                    return redirect()->to('admin/edit-governmental-link/'.$id)->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
-                    return redirect()->to('admin/governmental-link/'.$id)->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+                    return redirect()->to('admin/edit-governmental-link/'.$id)->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
                 }
             }
         }
