@@ -20,7 +20,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/edit-governmental-link" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/edit-governmental-link/<?= $government_link_id ?>" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="title" value="<?= $governmental_link_detail['title'] ?>">
