@@ -1269,7 +1269,7 @@ use App\Models\Youtube_link_model;
                 $data = [
                     'title' => $this->request->getPost('title'),
                     'web_url' => $this->request->getPost('web_url'),
-                    'upload_image' => $new_upload_file,
+                    'upload_image' => $new_file_name,
                     'upload_by' => $loggeduserId,
                 ];
                 $result = $governmental_link_model->add($data,$id);
