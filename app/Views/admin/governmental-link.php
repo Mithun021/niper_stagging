@@ -60,7 +60,7 @@
                     </thead>
                     <tbody>
                     <?php foreach ($governmental_link as $key => $value) { ?>
-                       tr>
+                       <tr>
                             <td><?= $key+1 ?></td>
                             <td><img src="<?= base_url() ?>public/admin/uploads/government_link/<?= $value['upload_image'] ?>" alt="" style="width: auto; height: 40px;"></td>
                             <td><a href="<?= $value['web_url'] ?>" target="_blank"><?= $value['title'] ?></a></td>
