@@ -17,6 +17,7 @@ use App\Models\Department_model;
 use App\Models\Designation_model;
 use App\Models\Download_form_model;
 use App\Models\Employee_model;
+use App\Models\Flash_news_model;
 use App\Models\Governmental_link_model;
 use App\Models\Image_gallery_model;
 use App\Models\Instrument_gallery_model;
@@ -1306,11 +1307,47 @@ use App\Models\Youtube_link_model;
         }
     
         public function flash_news(){
+            $flash_news_model = new Flash_news_model();
             $data = ['title' => 'Flash News'];
             if ($this->request->is("get")) {
                 return view('admin/flash-news',$data);
             }else if ($this->request->is("post")) {
-    
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $flash_photo = $this->request->getFile('flash_photo');
+                $flash_file = $this->request->getFile('flash_file');
+                if ($flash_photo->isValid() && ! $flash_photo->hasMoved()) {
+                    $flash_photoNewName = 'photo_' .$flash_photo->getRandomName();
+                    $flash_photo->move(ROOTPATH . 'public/admin/uploads/flash_news', $flash_photoNewName);    
+                }else{
+                 $flash_photoNewName = "";
+                }
+
+                if ($flash_file->isValid() && ! $flash_file->hasMoved()) {
+                    $flash_fileNewName = 'file_' .$flash_file->getRandomName();
+                    $flash_file->move(ROOTPATH . 'public/admin/uploads/media', $flash_fileNewName);    
+                }else{
+                 $flash_fileNewName = "";
+                }
+
+                $data = [
+                    'title' => $this->request->getPost('title'),
+                    'publish_Date' => $this->request->getPost('publish_date'),
+                    'upload_image' => $flash_photoNewName,
+                    'upload_file' => $flash_fileNewName,
+                    'description' => $this->request->getPost('flashdesc'),
+                    'upload_by' =>  $loggeduserId,
+                ]; 
+
+                // echo "<pre>";print_r($data);
+                $result = $flash_news_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/flash-news')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/flash-news')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
             }
         }
 
