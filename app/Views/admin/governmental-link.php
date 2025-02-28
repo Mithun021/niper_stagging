@@ -51,15 +51,27 @@
                     <thead>
                         <tr>
                             <td>SN</td>
+                            <td>Image</td>
                             <td>Title</td>
-                            <td>Files</td>
-                            <td>Publish Date</td>
                             <td>Uploaded By</td>
                             <td>Create at</td>
                             <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
+                    <?php foreach ($governmental_link as $key => $value) { ?>
+                       tr>
+                            <td><?= $key+1 ?></td>
+                            <td><img src="<?= base_url() ?>public/admin/uploads/government_link/<?= $value['upload_image'] ?>" alt="" style="width: auto; height: 40px;"></td>
+                            <td><a href="<?= $value['web_url'] ?>" target="_blank"><?= $value['title'] ?></a></td>
+                            <td><?= $employee_model->get($value['upload_by'])['name'] ?? '' ?></td>
+                            <td><?= date('d-m-Y', strtotime($value['created_at'])) ?></td>
+                            <td>
+                                <a href="<?= base_url() ?>admin/edit-governmental-link/<?= $value['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                <a href="<?= base_url() ?>admin/delete-governmental-link/<?= $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 </div>
