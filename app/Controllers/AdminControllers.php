@@ -1240,6 +1240,46 @@ use App\Models\Youtube_link_model;
                 }
             }
         }
+
+        public function edit_governmental_link($id){
+            $governmental_link_model = new Governmental_link_model();
+            $data = ['title' => 'Governmental Link', 'government_link_id' => $id];
+            $data['governmental_link'] = $governmental_link_model->get($id);
+            if ($this->request->is("get")) {
+                $data['governmental_link'] = $governmental_link_model->get();
+                return view('admin/governmental-link',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $new_upload_file = $this->request->getFile('upload_file');
+                $governmental_link = $governmental_link_model->get($id);
+                $old_image_name =  $governmental_link['upload_file'];
+                if ($new_upload_file->isValid() && !$new_upload_file->hasMoved()) {
+                    if(file_exists("public/admin/uploads/government_link/".$old_image_name)){
+                        unlink("public/admin/uploads/government_link/".$old_image_name);
+                    }
+                    $new_file_name = rand(0,9999).$new_upload_file->getRandomName();
+                    $new_upload_file->move(ROOTPATH.'public/admin/uploads/government_link/', $new_file_name);
+                }
+                else{
+                    $new_file_name = $old_image_name;
+                }
+                $data = [
+                    'title' => $this->request->getPost('title'),
+                    'web_url' => $this->request->getPost('web_url'),
+                    'upload_image' => $new_upload_file,
+                    'upload_by' => $loggeduserId,
+                ];
+                $result = $governmental_link_model->add($data);
+                if ($result) {
+                    return redirect()->to('admin/governmental-link/'.$id)->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/governmental-link/'.$id)->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+                }
+            }
+        }
     
         public function newsletter(){
             $data = ['title' => 'Newsletter'];
