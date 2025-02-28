@@ -1373,7 +1373,7 @@ use App\Models\Youtube_link_model;
 
         public function achievements(){
             $achievements_model = new Achievements_model();
-            $data = ['title' => 'Achievements'];
+            $data = ['title' => 'Achievements -1'];
             if ($this->request->is("get")) {
                 $data['achievements'] = $achievements_model->get();
                 return view('admin/achievements',$data);
