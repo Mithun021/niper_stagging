@@ -23,15 +23,16 @@
                 <form method="post" action="<?= base_url() ?>admin/edit-governmental-link" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="title">
+                        <input type="text" class="form-control form-control-sm" name="title" value="<?= $governmental_link_detail['title'] ?>">
                     </div>
                     <div class="form-group">
                         <span for="">Web URL<span class="text-danger">*</span></span>
-                        <input type="url" class="form-control form-control-sm" name="web_url">
+                        <input type="url" class="form-control form-control-sm" name="web_url" value="<?= $governmental_link_detail['web_url'] ?>">
                     </div>
                     <div class="form-group">
                         <span for="">Upload Image(JPG,PNG)<span class="text-danger">*</span></span>
                         <input type="file" class="form-control form-control-sm" name="upload_file" accept=".jpg, .png, .jpeg">
+                        <img src="<?= base_url() ?>public/admin/uploads/government_link/<?= $governmental_link_detail['upload_image'] ?>" alt="" style="width: auto; height: 40px;">
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>

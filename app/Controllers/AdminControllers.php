@@ -1244,7 +1244,7 @@ use App\Models\Youtube_link_model;
         public function edit_governmental_link($id){
             $governmental_link_model = new Governmental_link_model();
             $data = ['title' => 'Governmental Link', 'government_link_id' => $id];
-            $data['governmental_link'] = $governmental_link_model->get($id);
+            $data['governmental_link_detail'] = $governmental_link_model->get($id);
             if ($this->request->is("get")) {
                 $data['governmental_link'] = $governmental_link_model->get();
                 return view('admin/edit-governmental-link',$data);
