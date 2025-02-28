@@ -2,6 +2,7 @@
     namespace App\Controllers;
 
 use App\Models\About_niper_model;
+use App\Models\Achievements_model;
 use App\Models\Act_rules_category_model;
 use App\Models\Act_rules_model;
 use App\Models\Admission_model;
@@ -91,15 +92,6 @@ use App\Models\Youtube_link_model;
             session_unset();
             session_destroy();
             return redirect()->to(base_url('admin/login'));
-        }
-
-        public function achievements(){
-            $data = ['title' => 'Achievements'];
-            if ($this->request->is("get")) {
-                return view('admin/achievements',$data);
-            }else if ($this->request->is("post")) {
-
-            }
         }
 
         // public function director_message(){
@@ -1379,6 +1371,24 @@ use App\Models\Youtube_link_model;
             }
         }
 
+        public function achievements(){
+            $achievements_model = new Achievements_model();
+            $data = ['title' => 'Achievements'];
+            if ($this->request->is("get")) {
+                $data['achievements'] = $achievements_model->get();
+                return view('admin/achievements',$data);
+            }else if ($this->request->is("post")) {
+                $data =[
+
+                ];
+                $result = $achievements_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/achievements')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/achievements')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
 
     }
 

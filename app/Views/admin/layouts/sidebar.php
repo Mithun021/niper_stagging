@@ -160,6 +160,7 @@
                 <li><a href="<?= base_url() ?>admin/governmental-link">Governmental Link</a></li>
                 <li><a href="<?= base_url() ?>admin/newsletter">Newsletter</a></li>
                 <li><a href="<?= base_url() ?>admin/flash-news">Flash News</a></li>
+                <li><a href="<?= base_url() ?>admin/achievements">Achievements</a></li>
             </ul>
         </li>
 

@@ -140,6 +140,8 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     
     $routes->match(['get','post'],'flash-news', 'AdminControllers::flash_news');
 
+    $routes->match(['get','post'],'achievements', 'AdminControllers::achievements');
+
     $routes->match(['get','post'],'job-details', 'JobControllers::job_details');
     $routes->match(['get','post'],'job-extension', 'JobControllers::job_extension');
     $routes->match(['get','post'],'job-web-link', 'JobControllers::job_web_link');

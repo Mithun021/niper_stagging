@@ -17,7 +17,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form id="noticeBoardForm">
+                <form method="post" action="<?= base_url() ?>achievements">
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="notice_title">
@@ -25,11 +25,6 @@
                     <div class="form-group">
                         <span for="">Upload File(JPG,PNG,PDF)</span>
                         <input type="file" class="form-control form-control-sm" name="notice_file" accept=".jpg, .png, .pdf" required>
-                    </div>
-
-                    <div class="form-group">
-                        <span for="">Desription</span>
-                        <textarea id="editor" name="content"></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
