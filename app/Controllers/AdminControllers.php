@@ -1230,7 +1230,7 @@ use App\Models\Youtube_link_model;
                     'title' => $this->request->getPost('title'),
                     'web_url' => $this->request->getPost('web_url'),
                     'upload_image' => $upload_file_new_name,
-                    'loggeduserId' => $loggeduserId,
+                    'upload_by' => $loggeduserId,
                 ];
                 $result = $governmental_link_model->add($data);
                 if ($result) {
