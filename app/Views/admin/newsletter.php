@@ -46,7 +46,7 @@
         </div>
     </div>
     <div class="col-lg-8">
-        <div class="card">
+        <div class="card p-2">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> List</h4>
             </div>
