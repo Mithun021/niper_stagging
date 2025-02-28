@@ -1272,7 +1272,7 @@ use App\Models\Youtube_link_model;
                     'upload_image' => $new_upload_file,
                     'upload_by' => $loggeduserId,
                 ];
-                $result = $governmental_link_model->add($data);
+                $result = $governmental_link_model->add($data,$id);
                 if ($result) {
                     return redirect()->to('admin/edit-governmental-link/'.$id)->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
