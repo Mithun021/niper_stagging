@@ -27,7 +27,7 @@
                     </div>
                     <div class="form-group">
                         <span for="">Upload Image(JPG,PNG)<span class="text-danger">*</span></span>
-                        <input type="file" class="form-control form-control-sm" name="puslish_date" accept=".jpg, .png, .jpeg" required>
+                        <input type="file" class="form-control form-control-sm" name="upload_file" accept=".jpg, .png, .jpeg" required>
                     </div>
                     <div class="form-group">
                         <span for="">Description:</span>
