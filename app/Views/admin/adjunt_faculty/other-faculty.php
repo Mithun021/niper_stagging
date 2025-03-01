@@ -25,7 +25,6 @@
                             <span>First Name<span class="text-danger">*</span></span>
                             <div class="input-group">
                                 <select class="form-control form-control-sm" name="annotation" required>
-                                    <option value="">--Select--</option>
                                     <option value="Mr.">Mr.</option>
                                     <option value="Mrs.">Mrs.</option>
                                     <option value="Prof.">Prof.</option>
