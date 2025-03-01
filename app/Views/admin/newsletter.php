@@ -1,11 +1,13 @@
 <?= $this->extend("admin/layouts/master") ?>
-<?=  $this->section("body-content"); ?>
+<?= $this->section("body-content"); ?>
 <?php
-    use App\Models\Employee_model;
-    $employee_model = new Employee_model();
+
+use App\Models\Employee_model;
+
+$employee_model = new Employee_model();
 ?>
 <style>
-    
+
 </style>
 <!-- start page title -->
 <div class="row">
@@ -16,9 +18,9 @@
             </div>
             <div class="card-body">
                 <?php
-                    if(session()->getFlashdata('status')){
-                        echo session()->getFlashdata('status');
-                    }
+                if (session()->getFlashdata('status')) {
+                    echo session()->getFlashdata('status');
+                }
                 ?>
                 <form method="post" action="<?= base_url() ?>admin/newsletter" enctype="multipart/form-data">
                     <div class="form-group">
@@ -37,15 +39,33 @@
                     <div class="form-group">
                         <span>Start Month and Year</span>
                         <div class="input-group">
-                            <input type="month" class="form-control form-control-sm" name="publish_date" required>
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                            </div>
+                            <select name="month" class="form-control form-control-sm my-select">
+                                <option value="">--Select Month</option>
+                                <option value="Jan">Jan</option>
+                                <option value="Feb">Feb</option>
+                                <option value="Mar">Mar</option>
+                                <option value="Apr">Apr</option>
+                                <option value="May">May</option>
+                                <option value="Jun">Jun</option>
+                                <option value="Jul">Jul</option>
+                                <option value="Aug">Aug</option>
+                                <option value="Sep">Sep</option>
+                                <option value="Oct">Oct</option>
+                                <option value="Nov">Nov</option>
+                                <option value="Dec">Dec</option>
+                            </select>
+
+                            <select name="year" class="form-control form-control-sm my-select">
+                                <option value="">--Select Year</option>
+                            <?php for ($i = 2000; $i <= date('Y'); $i++) { ?>
+                                <option value="<?= $i ?>"><?= $i ?></option>
+                            <?php } ?>
+                            </select>
                         </div>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
-                    
+
                 </form>
             </div>
         </div>
@@ -57,43 +77,46 @@
             </div>
             <div class="card-body p-2">
                 <div class="table-responsive">
-                <table class="table table-striped table-hover" id="basic-datatable">
-                    <thead>
-                        <tr>
-                            <td>SN</td>
-                            <td>Files</td>
-                            <td>Title</td>
-                            <td>Description</td>
-                            <td>Publish Date</td>
-                            <td>Uploaded By</td>
-                            <td>Action</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach ($newsletter as $key => $value) { ?>
-                        <tr>
-                            <td><?= ++$key ?></td>
-                            <td>
-                                <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/newsletter/' . $value['upload_file'])): ?>
-                                    <a href="<?= base_url() ?>public/admin/uploads/newsletter/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/newsletter/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
-                                <?php else: ?>
-                                    <img src="<?= base_url() ?>public/admin/uploads/newsletter/invalid_image.png" alt="" height="40px">
-                                <?php endif; ?>
-                            </td>
-                            <td><?= $value['title'] ?></td>
-                            <td><?= $value['description'] ?></td>
-                            <td><?= $value['publish_date'] ?></td>
-                            <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; }  ?></td>
-                            <td>
-                            <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                                    <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
-                                    <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                    <?php } ?>
-                    </tbody>
-                </table>
+                    <table class="table table-striped table-hover" id="basic-datatable">
+                        <thead>
+                            <tr>
+                                <td>SN</td>
+                                <td>Files</td>
+                                <td>Title</td>
+                                <td>Description</td>
+                                <td>Publish Date</td>
+                                <td>Uploaded By</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($newsletter as $key => $value) { ?>
+                                <tr>
+                                    <td><?= ++$key ?></td>
+                                    <td>
+                                        <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/newsletter/' . $value['upload_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/newsletter/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/newsletter/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/newsletter/invalid_image.png" alt="" height="40px">
+                                        <?php endif; ?>
+                                    </td>
+                                    <td><?= $value['title'] ?></td>
+                                    <td><?= $value['description'] ?></td>
+                                    <td><?= $value['publish_date'] ?></td>
+                                    <td><?php $emp = $employee_model->get($value['upload_by']);
+                                        if ($emp) {
+                                            echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name'];
+                                        }  ?></td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                            <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                            <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
