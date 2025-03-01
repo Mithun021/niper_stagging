@@ -44,7 +44,12 @@
                         </div>
                         <div class="form-group col-md-6">
                             <span>Designation<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="designation" required>
+                            <select class="form-control form-control-sm" name="designation" required>
+                                <option value="">--Select</option>
+                            <?php foreach ($designation as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                            <?php } ?>
+                            </select>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Organisation Name</span>
@@ -64,7 +69,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <span>Mobile<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="mobile" required>
+                            <input type="tel" class="form-control form-control-sm" name="mobile" required>
                         </div>
                         <div class="form-group col-md-4">
                             <span>LinkedIn</span>
@@ -119,7 +124,7 @@
                         <thead>
                             <tr>
                                 <th>SN</th>
-                                <th>Annotation</th>
+                                <th>Files</th>
                                 <th>Name</th>
                                 <th>Designation</th>
                                 <th>Organisation</th>
