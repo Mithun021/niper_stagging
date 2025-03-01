@@ -91,20 +91,28 @@
                             <span>Description</span>
                             <textarea class="form-control form-control-sm" name="description" id="editor2"></textarea>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <span>Photo Upload</span>
                             <input type="file" class="form-control form-control-sm" name="photo">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <span>Resume File Upload</span>
                             <input type="file" class="form-control form-control-sm" name="resume">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <span>Faculty Type<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="faculty_type" required>
                                 <option value="">--Select--</option>
                                 <option value="Permanent">Permanent</option>
                                 <option value="Visiting">Visiting</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span>Status<span class="text-danger">*</span></span>
+                            <select class="form-control form-control-sm" name="status" required>
+                                <option value="">--Select--</option>
+                                <option value="1">Active</option>
+                                <option value="0">Draft</option>
                             </select>
                         </div>
                     </div>
