@@ -109,6 +109,11 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'course-tought', 'EmployeeController::course_tought');
     $routes->match(['get','post'],'emp-fellowship', 'EmployeeController::emp_fellowship');
 
+    $routes->match(['get','post'],'other-faculty', 'AdminControllers::other_faculty');
+    $routes->match(['get','post'],'adjunt-faculty-webpage', 'AdminControllers::adjunt_faculty_webpage');
+    $routes->match(['get','post'],'adjunt-faculty-notification', 'AdminControllers::adjunt_faculty_notification');
+    $routes->match(['get','post'],'adjunt-faculty-video', 'AdminControllers::adjunt_faculty_video');
+
     $routes->match(['get','post'],'images', 'AdminControllers::images');
     $routes->match(['get','post'],'photo-album', 'AdminControllers::photo_album');
     $routes->match(['get','post'],'media', 'AdminControllers::media');
