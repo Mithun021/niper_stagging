@@ -87,15 +87,15 @@
                             <span>Description</span>
                             <textarea class="form-control form-control-sm" name="description" id="editor2"></textarea>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <span>Photo Upload</span>
-                            <input type="file" class="form-control-file" name="photo">
+                            <input type="file" class="form-control form-control-sm" name="photo">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <span>Resume File Upload</span>
-                            <input type="file" class="form-control-file" name="resume">
+                            <input type="file" class="form-control form-control-sm" name="resume">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <span>Faculty Type<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="faculty_type" required>
                                 <option value="">--Select--</option>
