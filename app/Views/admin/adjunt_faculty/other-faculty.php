@@ -67,25 +67,25 @@
                             <span>Mobile<span class="text-danger">*</span></span>
                             <input type="text" class="form-control form-control-sm" name="mobile" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <span>LinkedIn</span>
                             <input type="url" class="form-control form-control-sm" name="linkedin">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <span>Twitter</span>
                             <input type="url" class="form-control form-control-sm" name="twitter">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <span>Facebook</span>
                             <input type="url" class="form-control form-control-sm" name="facebook">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <span>Research Interest</span>
-                            <textarea class="form-control form-control-sm" name="research_interest"></textarea>
+                            <textarea class="form-control form-control-sm" name="research_interest" id="editor"></textarea>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <span>Description</span>
-                            <textarea class="form-control form-control-sm" name="description"></textarea>
+                            <textarea class="form-control form-control-sm" name="description" id="editor2"></textarea>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Photo Upload</span>
