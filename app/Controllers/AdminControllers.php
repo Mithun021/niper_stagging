@@ -1355,6 +1355,8 @@ use App\Models\Youtube_link_model;
                 $data = [
                     'title' => $this->request->getPost('title'),
                     'publish_Date' => $this->request->getPost('publish_date'),
+                    'web_link' => $this->request->getPost('web_link'),
+                    'status' => $this->request->getPost('status'),
                     'upload_image' => $flash_photoNewName,
                     'upload_file' => $flash_fileNewName,
                     'description' => $this->request->getPost('flashdesc'),

@@ -39,8 +39,21 @@
                     </div>
 
                     <div class="form-group">
-                        <span>Publish Date</span>
-                        <input type="date" name="publish_date" class="form-control form-control-sm">
+                        <span>Publish Date<span class="text-danger">*</span></span>
+                        <input type="date" name="publish_date" class="form-control form-control-sm" required>
+                    </div>
+
+                    <div class="form-group">
+                        <span>Web Link<span class="text-danger">*</span></span>
+                        <input type="url" name="web_link" class="form-control form-control-sm" required>
+                    </div>
+
+                    <div class="form-group">
+                        <span>Status</span>
+                        <select name="status" class="form-control form-control-sm">
+                            <option value="1">Active</option>
+                            <option value="0">Draft</option>
+                        </select>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
@@ -64,6 +77,7 @@
                             <td>Title</td>
                             <td>Description</td>
                             <td>Publish Date</td>
+                            <td>Status</td>
                             <td>Uploaded By</td>
                             <td>Action</td>
                         </tr>
@@ -84,9 +98,10 @@
                                     <img src="<?= base_url() ?>public/admin/uploads/flash_news/invalid_image.png" alt="" height="40px">
                                 <?php endif; ?>
                             </td>
-                            <td><?= $value['title'] ?></td>
+                            <td><a href="<?php echo $value['web_link']; ?>" target="_blank" rel="noopener noreferrer"><?php echo $value['title']; ?></a></td>
                             <td><?= $value['description'] ?></td>
                             <td><?= $value['publish_Date'] ?></td>
+                            <td><?= ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; }  ?></td>
                             <td>
                             <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">

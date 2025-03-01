@@ -5,7 +5,7 @@
     {
         protected $table         = 'flash_news';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['title','description','upload_image','upload_file','publish_Date','upload_by'];
+        protected $allowedFields = ['title','description','web_link','status','upload_image','upload_file','publish_Date','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
