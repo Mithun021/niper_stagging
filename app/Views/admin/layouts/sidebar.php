@@ -115,6 +115,17 @@
         </li>
 
         <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect"><i
+                    class="mdi mdi-table-merge-cells"></i><span>Adjunt Faculty Details</span></a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="<?= base_url() ?>admin/other-faculty">Other Faculty Details</a></li>
+                <li><a href="<?= base_url() ?>admin/adjunt-faculty-webpage">Adjunct Faculty Webpage</a></li>
+                <li><a href="<?= base_url() ?>admin/adjunt-faculty-notification">Adjunct Faculty Notification</a></li>
+                <li><a href="<?= base_url() ?>admin/adjunt-faculty-video">Adjunct Faculty Video</a></li>
+            </ul>
+        </li>
+
+        <li>
             <a href="<?= base_url() ?>admin/students" class="waves-effect"><i class="mdi mdi-table-merge-cells"></i><span>Student Details</span></a>
         </li>
 
