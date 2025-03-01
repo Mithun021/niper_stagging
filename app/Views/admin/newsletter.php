@@ -35,8 +35,13 @@
                     </div>
 
                     <div class="form-group">
-                        <span>Publish Date</span>
-                        <input type="date" name="publish_date" class="form-control form-control-sm">
+                        <span>Start Month and Year</span>
+                        <div class="input-group">
+                            <input type="month" class="form-control form-control-sm" name="publish_date" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                            </div>
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
