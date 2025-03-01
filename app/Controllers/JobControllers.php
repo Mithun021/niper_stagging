@@ -7,6 +7,7 @@ use App\Models\Job_category_model;
 use App\Models\Job_detail_model;
 use App\Models\Job_extension_model;
 use App\Models\Job_result_model;
+use App\Models\Job_result_postdata_model;
 use App\Models\Job_videolink_model;
 use App\Models\Job_weblink_model;
 
@@ -126,6 +127,29 @@ class JobControllers extends BaseController
             ];
             $result = $job_result_model->add($data);
             if ($result === true) {
+                $insertedId = $job_result_model->getInsertID();
+                $awards_photo = $this->request->getFileMultiple('upload_file');
+                $postcode = $this->request->getPost('postcode');
+                if (!empty($postcode)) {
+                    $job_result_postdata_model = new Job_result_postdata_model();
+                    foreach ($postcode as $key => $value) {
+                        $photo = $awards_photo[$key];
+                        $photoName = "";
+                        if ($photo->isValid() && !$photo->hasMoved()) {
+                            $photoName = "post".$photo->getRandomName();
+                            $photo->move(ROOTPATH . 'public/admin/uploads/jobs', $photoName);
+                        }
+                        $postdata = [
+                            'job_result_id' => $insertedId,
+                            'postcode' => $value,
+                            'postname' => $this->request->getPost('postname')[$key],
+                            'description' => $this->request->getPost('description')[$key],
+                            'upload_file' => $photoName,
+                        ];
+                        $result = $job_result_postdata_model->add($postdata);
+                    }
+                }
+
                 return redirect()->to('admin/job-result')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
                 return redirect()->to('admin/job-result')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
