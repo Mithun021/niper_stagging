@@ -25,7 +25,7 @@
                     </div>
                     <div class="form-group">
                         <span for="">Description (Optional)</span>
-                        <textarea class="form-control form-control-sm" name="video_description"></textarea>
+                        <textarea class="form-control form-control-sm" name="video_description" id="editor"></textarea>
                     </div>
                     <div class="form-group">
                         <span for="">Video Upload<span class="text-danger">*</span></span>
