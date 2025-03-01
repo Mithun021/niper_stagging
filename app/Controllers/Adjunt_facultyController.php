@@ -16,4 +16,17 @@ class Adjunt_facultyController extends BaseController
             }
         }
     }
+
+    public function adjunt_faculty_webpage()
+    {
+        $data = ['title' => 'Adjunt Facuty Webpage'];
+        if ($this->request->is("get")) {
+            return view('admin/adjunt_faculty/adjunt-faculty-webpage',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+        }
+    }
 }

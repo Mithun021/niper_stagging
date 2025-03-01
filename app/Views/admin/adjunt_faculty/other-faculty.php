@@ -13,13 +13,13 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title m-0">Faculty Details</h4>
+                <h4 class="card-title m-0">Add <?= $title ?></h4>
             </div>
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')) {
                     echo session()->getFlashdata('status');
                 } ?>
-                <form method="post" action="<?= base_url('admin/faculty-save') ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url('admin/other-faculty') ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-4">
                             <span>First Name<span class="text-danger">*</span></span>
@@ -111,7 +111,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title m-0">Faculty List</h4>
+                <h4 class="card-title m-0"><?= $title ?> List</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
