@@ -119,7 +119,8 @@ $employee_model = new Employee_model();
                                 <td>Files</td>
                                 <td>Title</td>
                                 <td>Description</td>
-                                <td>Publish Date</td>
+                                <td>Start Month & Year</td>
+                                <td>End Month & Year</td>
                                 <td>Uploaded By</td>
                                 <td>Action</td>
                             </tr>
@@ -137,7 +138,8 @@ $employee_model = new Employee_model();
                                     </td>
                                     <td><?= $value['title'] ?></td>
                                     <td><?= $value['description'] ?></td>
-                                    <td><?= $value['publish_date'] ?></td>
+                                    <td><?= $value['start_month'] ?> <?= $value['start_year'] ?></td>
+                                    <td><?= $value['end_month'] ?> <?= $value['end_year'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         if ($emp) {
                                             echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name'];

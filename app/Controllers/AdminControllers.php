@@ -1311,7 +1311,10 @@ use App\Models\Youtube_link_model;
                 $data = [
                     'title' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),
-                    'publish_date' => $this->request->getPost('publish_date'),
+                    'start_month' => $this->request->getPost('start_month'),
+                    'start_year' => $this->request->getPost('start_year'),
+                    'end_month' => $this->request->getPost('end_month'),
+                    'end_year' => $this->request->getPost('end_year'),
                     'upload_file' => $upload_file_new_name,
                     'upload_by' => $loggeduserId,
                 ];
