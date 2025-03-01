@@ -52,19 +52,19 @@ use App\Models\Employee_model;
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <span for="resultfile">Result File Upload:</span>
                                 <input type="file" name="resultfile" id="resultfile" class="form-control form-control-sm" required>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <span for="resultfile">Corrigendum:</span>
                                 <input type="text" name="corrigendum" id="corrigendum" class="form-control form-control-sm" >
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <span for="resulttype">Result Type:</span>
                                 <select name="resulttype" id="resulttype" class="form-control form-control-sm" required>
@@ -81,7 +81,12 @@ use App\Models\Employee_model;
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+
+                        </div>
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <span for="result_status">Result Status:</span>
                                 <select name="result_status" id="result_status" class="form-control form-control-sm" required>
