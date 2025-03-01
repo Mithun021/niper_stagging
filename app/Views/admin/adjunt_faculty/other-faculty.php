@@ -21,10 +21,6 @@
                 } ?>
                 <form method="post" action="<?= base_url('admin/faculty-save') ?>" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="form-group col-md-6">
-                            <span>Annotation<span class="text-danger">*</span></span>
-
-                        </div>
                         <div class="form-group col-md-4">
                             <span>First Name<span class="text-danger">*</span></span>
                             <div class="input-group">
