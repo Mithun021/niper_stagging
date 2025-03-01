@@ -56,7 +56,7 @@ class Adjunt_facultyController extends BaseController
                 'photo' => $photoNewName,
                 'resume' => $resumeNewName,
                 'faculty_type' => $this->request->getPost('faculty_type'),
-                'status' => $this->request->getPost('status'),
+                'status' => 1,//$this->request->getPost('status'),
                 'upload_by' => $loggeduserId
             ];
 
