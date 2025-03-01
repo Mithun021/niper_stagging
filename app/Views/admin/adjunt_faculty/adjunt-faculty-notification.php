@@ -25,7 +25,7 @@
                     </div>
                     <div class="form-group">
                         <span for="">Description<span class="text-danger">*</span></span>
-                        <textarea class="form-control form-control-sm" name="notification_description" required></textarea>
+                        <textarea class="form-control form-control-sm" name="notification_description" id="editor"></textarea>
                     </div>
                     <div class="form-group">
                         <span for="">Date<span class="text-danger">*</span></span>

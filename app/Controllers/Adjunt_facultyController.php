@@ -42,4 +42,17 @@ class Adjunt_facultyController extends BaseController
             }
         }
     }
+
+    public function adjunt_faculty_video()
+    {
+        $data = ['title' => 'Adjunt Facuty Video'];
+        if ($this->request->is("get")) {
+            return view('admin/adjunt_faculty/adjunt-faculty-video',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+        }
+    }
 }
