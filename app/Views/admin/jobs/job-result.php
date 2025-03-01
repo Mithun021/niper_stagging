@@ -88,7 +88,10 @@ $employee_model = new Employee_model();
                                 <table class="table table-bordered" id="addServicetable">
                                     <thead class="bg-light">
                                         <tr>
-                                            <td scope="col">Author Details</td>
+                                            <td scope="col">Post Code</td>
+                                            <td scope="col">Post Name</td>
+                                            <td scope="col">Description</td>
+                                            <td scope="col">Upload File</td>
                                             <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewservicerow">+</button></td>
                                         </tr>
 
@@ -96,7 +99,16 @@ $employee_model = new Employee_model();
                                     <tbody id="stockTbody">
                                         <tr id="stockTrow">
                                             <td>
-                                                <input type="text" class="form-control" id="author_name" name="author_name[]" placeholder="Enter Author Name">
+                                                <input type="text" class="form-control" id="postcode" name="postcode[]" placeholder="Post Code">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" id="postname" name="postname[]" placeholder="Post Name">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" id="description" name="description[]" placeholder="Description">
+                                            </td>
+                                            <td>
+                                                <input type="file" class="form-control" id="upload_file" name="upload_file[]" accept=".pdf">
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
