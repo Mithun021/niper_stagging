@@ -2,6 +2,10 @@
 <?= $this->section("body-content"); ?>
 <?php
 
+use App\Models\Designation_model;
+use App\Models\Employee_model;
+$employee_model = new Employee_model();
+$designation_model = new Designation_model();
 ?>
 
 <style>
@@ -135,13 +139,45 @@
                                 <th>Name</th>
                                 <th>Designation</th>
                                 <th>Organisation</th>
+                                <th>Faculty Type</th>
                                 <th>Email</th>
                                 <th>Mobile</th>
+                                <th>Upload by</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-
+                        <?php foreach ($adjunt_other_faculty as $key => $value) { ?>
+                            <tr>
+                                <td><?= ++$key ?></td>
+                                <td>
+                                    <?php if (!empty($value['photo']) && file_exists('public/admin/uploads/adjunt_faculty/' . $value['photo'])): ?>
+                                        <a href="<?= base_url() ?>public/admin/uploads/adjunt_faculty/<?= $value['photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/adjunt_faculty/<?= $value['photo'] ?>" alt="" height="30px"></a>
+                                    <?php else: ?>
+                                        <img src="<?= base_url() ?>public/admin/uploads/adjunt_faculty/invalid_image.png" alt="" height="40px">
+                                    <?php endif; ?>
+                                    <?php if (!empty($value['resume']) && file_exists('public/admin/uploads/adjunt_faculty/' . $value['resume'])): ?>
+                                        <a href="<?= base_url() ?>public/admin/uploads/adjunt_faculty/<?= $value['resume'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                    <?php else: ?>
+                                        <img src="<?= base_url() ?>public/admin/uploads/adjunt_faculty/invalid_image.png" alt="" height="40px">
+                                    <?php endif; ?>
+                                </td>
+                                <td><?= $value['annotation']." ".$value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></td>
+                                <td><?= $designation_model->get($value['designation'])['name'] ?? '' ?></td>
+                                <td><?= $value['organisation_name'] ?></td>
+                                <td><?= $value['faculty_type'] ?></td>
+                                <td><?= $value['personal_email'] ?> <?php if($value['official_email']){ echo "<br>".$value['official_email']; }  ?></td>
+                                <td><?= $value['mobile'] ?></td>
+                                <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; }  ?></td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <!-- <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a> -->
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>

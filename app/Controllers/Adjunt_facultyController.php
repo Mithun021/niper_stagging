@@ -14,6 +14,7 @@ class Adjunt_facultyController extends BaseController
         $data = ['title' => 'Other Facuty Details'];
         if ($this->request->is("get")) {
             $data['designation'] = $designation_model->get();
+            $data['adjunt_other_faculty'] = $adjunt_other_faculty_model->get();
             return view('admin/adjunt_faculty/other-faculty',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
