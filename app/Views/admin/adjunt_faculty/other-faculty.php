@@ -110,7 +110,6 @@
                         <div class="form-group col-md-6">
                             <span>Status<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="status" required>
-                                <option value="">--Select--</option>
                                 <option value="1">Active</option>
                                 <option value="0">Draft</option>
                             </select>
