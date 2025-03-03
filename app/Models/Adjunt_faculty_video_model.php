@@ -5,7 +5,7 @@
     {
         protected $table         = 'adjunt_faculty_video';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['notification_title','notification_description','notification_date','notification_file','notification_marquee','upload_by'];
+        protected $allowedFields = ['video_title','video_description','video_file','video_venue','video_datetime','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
