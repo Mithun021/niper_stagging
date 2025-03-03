@@ -65,7 +65,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                        
+                        <?php foreach ($adjunt_faculty_notification as $key => $value) { ?>
+                            <tr>
+                                <td><?= $key + 1 ?></td>
+                                <td><?= $value['notification_title'] ?></td>
+                                <td><?= $value['notification_description'] ?></td>
+                                <td><?= $value['notification_date'] ?></td>
+                                <td>
+                                <?php if (!empty($value['notification_file']) && file_exists('public/admin/uploads/adjunt_faculty/' . $value['notification_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/adjunt_faculty/<?= $value['notification_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/adjunt_faculty/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
+                                </td>
+                                <td><?= $value['notification_marquee'] == 1 ? 'Yes' : 'No' ?></td>
+                                <td>
+                                    <a href="<?= base_url('admin/adjunt-faculty-notification/' . $value['id']) ?>" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="<?= base_url('admin/adjunt-faculty-notification/' . $value['id']) ?>" class="btn btn-sm btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
