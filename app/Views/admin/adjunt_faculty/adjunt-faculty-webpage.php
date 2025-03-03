@@ -60,7 +60,7 @@ $employee_model = new Employee_model();
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($variable as $key => $value) { ?>
+                        <?php foreach ($adjunt_faculty_webpage as $key => $value) { ?>
                             <tr>
                                 <td><?= $key+1 ?></td>
                                 <td><?= $value['section_title'] ?></td>
