@@ -3,7 +3,7 @@
     use CodeIgniter\Model;
     class Adjunt_faculty_video_model extends Model
     {
-        protected $table         = 'adjunt_faculty_notification';
+        protected $table         = 'adjunt_faculty_video';
         protected $primaryKey = 'id';
         protected $allowedFields = ['notification_title','notification_description','notification_date','notification_file','notification_marquee','upload_by'];
         protected $createdField  = 'created_at';
