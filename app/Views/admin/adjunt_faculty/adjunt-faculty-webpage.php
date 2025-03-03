@@ -18,14 +18,14 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/adjunct-faculty-section') ?>">
+                <form method="post" action="<?= base_url('admin/adjunct-faculty-webpage') ?>">
                     <div class="form-group">
                         <span for="">Section Title<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="section_title" required>
                     </div>
                     <div class="form-group">
                         <span for="">Section Description<span class="text-danger">*</span></span>
-                        <textarea class="form-control form-control-sm" name="section_description" required></textarea>
+                        <textarea class="form-control form-control-sm" name="section_description" id="editor" required></textarea>
                     </div>
                     <div class="form-group">
                         <span for="">Section Priority<span class="text-danger">*</span></span>
