@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Adjunt_faculty_notification_model;
 use App\Models\Adjunt_faculty_webpage_model;
 use App\Models\Adjunt_other_faculty_model;
 use App\Models\Designation_model;
@@ -104,14 +105,41 @@ class Adjunt_facultyController extends BaseController
 
     public function adjunt_faculty_notification()
     {
+        $adjunt_faculty_notification_model = new Adjunt_faculty_notification_model();
         $data = ['title' => 'Adjunt Facuty Notification'];
         if ($this->request->is("get")) {
+            $data['adjunt_faculty_notification'] = $adjunt_faculty_notification_model->get();
             return view('admin/adjunt_faculty/adjunt-faculty-notification',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId']; 
             }
+
+            $photo = $this->request->getFile('notification_file');
+            if ($photo->isValid() && ! $photo->hasMoved()) {
+                $photoNewName = "notification".$photo->getRandomName();
+                $photo->move(ROOTPATH . 'public/admin/uploads/adjunt_faculty', $photoNewName);    
+            }else{
+                $photoNewName = "";
+            }
+
+            $data =[
+                'notification_title' => $this->request->getPost('notification_title'),
+                'notification_description' => $this->request->getPost('notification_description'),
+                'notification_date' => $this->request->getPost('notification_date'),
+                'notification_file' => $photoNewName,
+                'notification_marquee' => $this->request->getPost('notification_marquee') ?? 0,
+                'upload_by' => $loggeduserId
+            ];
+
+            $result = $adjunt_faculty_notification_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/adjunt-faculty-notification')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/adjunt-faculty-notification')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+
         }
     }
 

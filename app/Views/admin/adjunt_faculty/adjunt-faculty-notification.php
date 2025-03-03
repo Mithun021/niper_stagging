@@ -18,7 +18,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/adjunct-faculty-notification') ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url('admin/adjunt-faculty-notification') ?>" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="notification_title" required>
