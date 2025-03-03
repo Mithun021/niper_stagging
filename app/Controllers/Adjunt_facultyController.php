@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Adjunt_faculty_notification_model;
+use App\Models\Adjunt_faculty_video_model;
 use App\Models\Adjunt_faculty_webpage_model;
 use App\Models\Adjunt_other_faculty_model;
 use App\Models\Designation_model;
@@ -145,13 +146,38 @@ class Adjunt_facultyController extends BaseController
 
     public function adjunt_faculty_video()
     {
+        $adjunt_faculty_video_model = new Adjunt_faculty_video_model();
         $data = ['title' => 'Adjunt Facuty Video'];
         if ($this->request->is("get")) {
+            $data['adjunt_faculty_video'] = $adjunt_faculty_video_model->get();
             return view('admin/adjunt_faculty/adjunt-faculty-video',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId']; 
+            }
+
+            $video = $this->request->getFile('video_file');
+            if ($video->isValid() && ! $video->hasMoved()) {
+                $videoNewName = "video".$video->getRandomName();
+                $video->move(ROOTPATH . 'public/admin/uploads/adjunt_faculty', $videoNewName);    
+            }else{
+                $videoNewName = "";
+            }
+
+            $data = [
+                'video_title' => $this->request->getPost('video_title'),
+                'video_description' => $this->request->getPost('video_description'),
+                'video_file' => $videoNewName,
+                'video_venue' => $this->request->getPost('video_venue'),
+                'video_datetime' => $this->request->getPost('video_datetime'),
+                'upload_by' => $loggeduserId
+            ];
+            $result = $adjunt_faculty_video_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/adjunt-faculty-video')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/adjunt-faculty-video')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
         }
     }
