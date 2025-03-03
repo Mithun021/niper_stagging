@@ -25,7 +25,7 @@
                     </div>
                     <div class="form-group">
                         <span for="">Section Description<span class="text-danger">*</span></span>
-                        <textarea class="form-control form-control-sm" name="section_description" id="editor" required></textarea>
+                        <textarea class="form-control form-control-sm" name="section_description" id="editor"></textarea>
                     </div>
                     <div class="form-group">
                         <span for="">Section Priority<span class="text-danger">*</span></span>
