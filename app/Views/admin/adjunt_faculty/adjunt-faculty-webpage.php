@@ -18,7 +18,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/adjunct-faculty-webpage') ?>">
+                <form method="post" action="<?= base_url('admin/adjunt-faculty-webpage') ?>">
                     <div class="form-group">
                         <span for="">Section Title<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="section_title" required>
