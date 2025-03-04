@@ -158,7 +158,7 @@ $designation_model = new Designation_model();
                                     <?php endif; ?>
                                 </td>
                                 <td><?= $value['annotation']." ".$value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></td>
-                                <td><?= $designation_model->get($value['designation'])['name'] ?? '' ?></td>
+                                <td><?= $value['designation'] ?></td>
                                 <td><?= $value['organisation_name'] ?></td>
                                 <td><?= $value['faculty_type'] ?></td>
                                 <td><?= $value['personal_email'] ?> <?php if($value['official_email']){ echo "<br>".$value['official_email']; }  ?></td>
