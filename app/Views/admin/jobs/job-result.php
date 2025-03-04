@@ -4,9 +4,11 @@
 
 use App\Models\Job_detail_model;
 use App\Models\Employee_model;
+use App\Models\Result_category_model;
 
 $job_detail_model = new Job_detail_model();
 $employee_model = new Employee_model();
+$result_category_model = new Result_category_model();
 ?>
 <style>
 </style>
@@ -68,16 +70,10 @@ $employee_model = new Employee_model();
                             <div class="form-group">
                                 <span for="resulttype">Result Type:</span>
                                 <select name="resulttype" id="resulttype" class="form-control form-control-sm" required>
-                                    <option value="Eligibility">Eligibility</option>
-                                    <option value="Non Eligibility">Non Eligibility</option>
-                                    <option value="Admit Card">Admit Card</option>
-                                    <option value="Cancellation">Cancellation</option>
-                                    <option value="Interview">Interview</option>
-                                    <option value="Screening">Screening</option>
-                                    <option value="Phase 1">Phase 1</option>
-                                    <option value="Phase 2">Phase 2</option>
-                                    <option value="Phase 3">Phase 3</option>
-                                    <option value="Phase 4">Phase 4</option>
+                                    <option value="">--Select--</option>
+                                <?php foreach ($result_category as $key => $value) { ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                <?php } ?>
                                 </select>
                             </div>
                         </div>
@@ -151,7 +147,7 @@ $employee_model = new Employee_model();
                                 <td>Advestisment ID</td>
                                 <td>Result Title</td>
                                 <td>Result type</td>
-                                <td>Corrigendum</td>
+                                <!-- <td>Corrigendum</td> -->
                                 <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
@@ -175,8 +171,7 @@ $employee_model = new Employee_model();
                                     <td><?php $jobs = $job_detail_model->get($value['jobs_id']);
                                         echo $jobs['title'] ?? ''; ?></td>
                                     <td><?= $value['result_title'] ?></td>
-                                    <td><?= $value['result_type'] ?></td>
-                                    <td><?= $value['corrigendum'] ?></td>
+                                    <td><?= $Result_category_model->get($value['result_type'])['name'] ?? '' ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                     <td>

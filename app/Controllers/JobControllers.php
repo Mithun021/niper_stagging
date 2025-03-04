@@ -32,7 +32,7 @@ class JobControllers extends BaseController
             }
         }
     }
-    
+
     public function result_category(){
         $result_category_model = new Result_category_model();
         $data = ['title' => 'Result Category'];
@@ -118,10 +118,12 @@ class JobControllers extends BaseController
     public function job_result(){
         $job_detail_model = new Job_detail_model();
         $job_result_model = new Job_result_model();
+        $result_category_model = new Result_category_model();
         $data = ['title' => 'Job Result'];
         if ($this->request->is("get")) {
             $data['job_details'] = $job_detail_model->get();
             $data['job_result'] = $job_result_model->get();
+            $data['result_category'] = $result_category_model->get();
             return view('admin/jobs/job-result',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
