@@ -10,6 +10,7 @@ use App\Models\Job_result_model;
 use App\Models\Job_result_postdata_model;
 use App\Models\Job_videolink_model;
 use App\Models\Job_weblink_model;
+use App\Models\Result_category_model;
 
 class JobControllers extends BaseController
 {
@@ -31,6 +32,26 @@ class JobControllers extends BaseController
             }
         }
     }
+    
+    public function result_category(){
+        $result_category_model = new Result_category_model();
+        $data = ['title' => 'Result Category'];
+        if ($this->request->is("get")) {
+            $data['result_category'] = $result_category_model->get();
+            return view('admin/jobs/result-category',$data);
+        }else if ($this->request->is("post")) {
+            $data =[
+                'name' => $this->request->getPost('category_name'),
+            ];
+            $result = $result_category_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/result-category')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/result-category')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+
     public function job_details(){
         $department_model = new Department_model();
         $job_category_model = new Job_category_model();
@@ -121,7 +142,7 @@ class JobControllers extends BaseController
                 'result_description' => $this->request->getPost('resultdesc'),
                 'file_upload' => $resultfileImageName,
                 'result_type' => $this->request->getPost('resulttype'),
-                'corrigendum' => $this->request->getPost('corrigendum'),
+                // 'corrigendum' => $this->request->getPost('corrigendum'),
                 'status' => $this->request->getPost('result_status'),
                 'upload_by' => $loggeduserId
             ];

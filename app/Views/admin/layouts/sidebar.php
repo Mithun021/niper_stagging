@@ -70,6 +70,7 @@
                 <li><a href="<?= base_url() ?>admin/job-video">Job Video</a></li>
                 <li><a href="<?= base_url() ?>admin/job-result">Job Result</a></li>
                 <li><a href="<?= base_url() ?>admin/job-category">Job Category</a></li>
+                <li><a href="<?= base_url() ?>admin/result-category">Result Category</a></li>
             </ul>
         </li>
 

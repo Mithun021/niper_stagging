@@ -55,15 +55,15 @@ $employee_model = new Employee_model();
                         <div class="col-md-4">
                             <div class="form-group">
                                 <span for="resultfile">Result File Upload:</span>
-                                <input type="file" name="resultfile" id="resultfile" class="form-control form-control-sm" required>
+                                <input type="file" name="resultfile" id="resultfile" class="form-control form-control-sm">
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <!-- <div class="col-md-4">
                             <div class="form-group">
                                 <span for="resultfile">Corrigendum:</span>
                                 <input type="text" name="corrigendum" id="corrigendum" class="form-control form-control-sm">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-4">
                             <div class="form-group">
                                 <span for="resulttype">Result Type:</span>

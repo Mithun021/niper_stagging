@@ -153,6 +153,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'job-video', 'JobControllers::job_video');
     $routes->match(['get','post'],'job-result', 'JobControllers::job_result');
     $routes->match(['get','post'],'job-category', 'JobControllers::job_category');
+    $routes->match(['get','post'],'result-category', 'JobControllers::result_category');
 
     $routes->match(['get','post'],'about', 'AdminControllers::about');
     $routes->match(['get','post'],'bog', 'AdminControllers::bog');
