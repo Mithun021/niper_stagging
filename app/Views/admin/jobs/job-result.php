@@ -171,7 +171,7 @@ $result_category_model = new Result_category_model();
                                     <td><?php $jobs = $job_detail_model->get($value['jobs_id']);
                                         echo $jobs['title'] ?? ''; ?></td>
                                     <td><?= $value['result_title'] ?></td>
-                                    <td><?= $Result_category_model->get($value['result_type'])['name'] ?? '' ?></td>
+                                    <td><?= $result_category_model->get($value['result_type'])['name'] ?? '' ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                     <td>
