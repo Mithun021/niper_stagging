@@ -136,7 +136,7 @@ $designation_model = new Designation_model();
                         <div class="col-sm-6">
                             <span for="Empphotoupload">Photo Upload(.pnd,.jpg,.jpeg):</span>
                             <input type="file" name="profile_photo" id="profile_photo" class="form-control form-control-sm" accept=".png,.jpg,.jpeg">
-                            <?php echo $employee_details['profile_photo']; ?>     
+                                
                             <?php if (!empty($employee_details['profile_photo']) && file_exists('public/admin/uploads/employee/' . $employee_details['profile_photo'])): ?>
                                 <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $employee_details['profile_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/employee/<?= $employee_details['profile_photo'] ?>" alt="" height="30px"></a>
                             <?php else: ?>
@@ -146,7 +146,7 @@ $designation_model = new Designation_model();
                         <div class="col-sm-6">
                             <span for="Empresumeupload">Resume Upload(.pdf,.docx):</span>
                             <input type="file" name="resume_file" id="resume_file" class="form-control form-control-sm" accept=".pdf,.docx">
-                            <?php echo $employee_details['resume_file']; ?>
+                            
                             <?php if (!empty($employee_details['resume_file']) && file_exists('public/admin/uploads/employee/' . $employee_details['resume_file'])): ?>
                                 <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $employee_details['resume_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
                             <?php else: ?>
