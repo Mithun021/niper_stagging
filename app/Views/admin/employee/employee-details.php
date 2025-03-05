@@ -225,7 +225,7 @@ $designation_model = new Designation_model();
                             </div>
                         </div>
                         <hr>
-                        <div class="row p-1">
+                        <div class="row p-1 m-0">
                             <div class="col-lg-6">
                                 <div class="card card-body p-2">
                                     <div class="emp-info">
