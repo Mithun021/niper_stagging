@@ -185,6 +185,10 @@ $designation_model = new Designation_model();
                             </div>
                             <div class="col-md-8">
                                 <div class="emp-info">
+                                    <div><p class="text-bold">Status</p><p>:</p></div>
+                                    <div><?= ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?></p></div>
+                                </div>
+                                <div class="emp-info">
                                     <div><p class="text-bold">Joining Date</p><p>:</p></div>
                                     <div><p><?= $employee_details['joining_date'] ?></p></div>
                                 </div>
