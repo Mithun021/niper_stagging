@@ -42,30 +42,13 @@ $designation_model = new Designation_model();
         padding: 10px;
         width: 100%;
     }
-    .emp-info div{
+    .emp-info div:first-child{
         width: 40%;
         display: flex;
         justify-content: space-between;
     }
-    .emp-info p:first-child{
-        font-weight: bold;
-        width: 80%;
-    }
-    .emp-info p:nth-child(2){
-        font-weight: bold;
-        width: 20%;
-    }
-    .emp-info p:last-child{
-        font-weight: 400;
+    .emp-info div:last-child{
         width: 60%;
-    }
-    @media(max-width : 552px){
-        .emp-info div{
-            width: 100%;
-        }
-        .emp-info p:last-child{
-            width: 100%;
-        }
     }
 </style>
 <div class="row">
@@ -181,11 +164,8 @@ $designation_model = new Designation_model();
                             </div>
                             <div class="col-md-8">
                                 <div class="emp-info">
-                                    <div>
-                                        <p class="text-bold">Joining Date</p>
-                                        <p>:</p>
-                                    </div>
-                                    <p><?= $employee_details['joining_date'] ?></p>
+                                    <div><p class="text-bold">Joining Date</p><p>:</p></div>
+                                    <div><p><?= $employee_details['joining_date'] ?></p></div>
                                 </div>
                             </div>
                         </div>
