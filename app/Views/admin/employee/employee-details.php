@@ -132,8 +132,8 @@
                                     <?php else: ?>
                                         <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="40px">
                                     <?php endif; ?>
-                                    <h4 class="mb-0">Mark A. McKnight</h4>
-                                    <p class="text-muted">@Webdesigner</p>
+                                    <h4 class="mb-0"><?= $employee_details['sir_name'] . " " .$employee_details['first_name'] . " " . $employee_details['middle_name'] . " " . $employee_details['last_name'] ?></h4>
+                                    <p class="text-muted"><?= $employee_details['employee_unique_id'] ?></p>
                                     <button type="button" class="btn btn-primary btn-xs waves-effect waves-light">Follow</button>
                                     <button type="button" class="btn btn-danger btn-xs waves-effect waves-light">Message</button>
                                 </div>
