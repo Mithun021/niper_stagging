@@ -91,7 +91,7 @@ $designation_model = new Designation_model();
                             <select name="designation_id" id="designation_id" class="form-control form-control-sm" required>
                                 <option value="">--Select--</option>
                                 <?php foreach ($designations as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?php if($employee_details['designation_id'] == $value['id']){ echo "selected"; } ?>><?= $value['name'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
