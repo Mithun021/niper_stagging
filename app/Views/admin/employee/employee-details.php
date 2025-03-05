@@ -139,8 +139,8 @@
                                         <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="40px">
                                     <?php endif; ?>
                                     <h4 class="mb-0"><?= $employee_details['sir_name'] . " " .$employee_details['first_name'] . " " . $employee_details['middle_name'] . " " . $employee_details['last_name'] ?></h4>
-                                    <p class="text-muted">Emp. ID : <?= $employee_details['employee_unique_id'] ?></p>
-                                    <p class="text-primary"><?php $designations = $designation_model->get($employee_details['designation_id']);
+                                    <p class="text-muted m-0">Emp. ID : <?= $employee_details['employee_unique_id'] ?></p>
+                                    <p class="text-primary my-1"><?php $designations = $designation_model->get($employee_details['designation_id']);
                                         echo (!empty($designations['name'])) ? $designations['name'] : '____';  ?></p>
                                     <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $employee_details['resume_file'] ?>" class="btn btn-outline-success btn-rounded waves-effect waves-light"><i class="mdi mdi-cloud-download-outline"></i> Download Resume</a>
                                 </div>
