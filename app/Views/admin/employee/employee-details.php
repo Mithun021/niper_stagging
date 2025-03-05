@@ -39,7 +39,7 @@ $designation_model = new Designation_model();
     .emp-info{
         display: flex;
         justify-content: space-between;
-        padding: 10px;
+        padding-left: 10px;
         width: 100%;
         margin-bottom: 0px;
     }
