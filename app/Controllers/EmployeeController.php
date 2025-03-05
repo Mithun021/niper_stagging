@@ -123,7 +123,7 @@ use App\Models\Student_model;
                 $data['designations'] = $designation_model->get();
                 $data['employee'] = $employee_model->get();
                 // print_r($data['employee_detail']); die;
-                return view('admin/employee/employee',$data);
+                return view('admin/employee/edit-employee',$data);
             }else if ($this->request->is("post")) {
                 // echo "<pre>";print_r($this->request->getPost('department_id')); die;
                 // $department =  implode(",",  $this->request->getPost('department_id'));
@@ -185,9 +185,9 @@ use App\Models\Student_model;
                 // echo "<pre>";print_r($data);
                 $result = $employee_model->add($data);
                 if ($result === true) {
-                    return redirect()->to('admin/employee/'.$id)->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                    return redirect()->to('admin/edit-employee/'.$id)->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
-                    return redirect()->to('admin/employee/'.$id)->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                    return redirect()->to('admin/edit-employee/'.$id)->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
 
             }
