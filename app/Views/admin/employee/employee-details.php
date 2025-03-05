@@ -57,18 +57,21 @@ $designation_model = new Designation_model();
 
     .emp-info {
         display: flex;
-        justify-content: flex-start;
+        flex-wrap: wrap;
+        /* Allow wrapping for mobile */
         align-items: center;
         gap: 5px;
         /* Space between elements */
         padding: 10px;
         width: 100%;
-        flex-wrap: wrap;
-        /* Ensures wrapping for small screens */
     }
 
-    /* Styles for medium (≥768px) and large screens */
+    /* Desktop and Tablet View (≥768px) */
     @media (min-width: 768px) {
+        .emp-info p {
+            margin: 0;
+        }
+
         .emp-info p:first-child {
             font-weight: bold;
             width: 20%;
@@ -85,13 +88,13 @@ $designation_model = new Designation_model();
         }
     }
 
-    /* Mobile (≤767px) adjustments */
+    /* Mobile View (≤767px) */
     @media (max-width: 767px) {
         .emp-info {
             flex-direction: column;
-            /* Stack elements vertically */
+            /* Stack elements */
             align-items: flex-start;
-            /* Align to left */
+            /* Align text to left */
         }
 
         .emp-info p:first-child,
@@ -101,15 +104,19 @@ $designation_model = new Designation_model();
             font-weight: bold;
         }
 
+        .emp-info p:nth-child(2) {
+            margin-right: 5px;
+            /* Add some space between ":" and date */
+        }
+
         .emp-info p:last-child {
             display: block;
-            /* Move the last item below */
+            /* Move date to the next line */
             width: 100%;
-            /* Take full width */
             margin-left: 10px;
-            /* Indentation for better alignment */
+            /* Indent the date slightly */
             margin-top: 3px;
-            /* Space between text and date */
+            /* Space between "Joining Date :" and date */
         }
     }
 </style>
