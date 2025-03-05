@@ -174,7 +174,7 @@ $designation_model = new Designation_model();
                                     <?php if (!empty($employee_details['profile_photo']) && file_exists('public/admin/uploads/employee/' . $employee_details['profile_photo'])): ?>
                                         <center><img src="<?= base_url() ?>public/admin/uploads/employee/<?= $employee_details['profile_photo'] ?>" alt="" class="d-flex align-self-center avatar-lg rounded mr-3 border p-1" height="110px"></center>
                                     <?php else: ?>
-                                        <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="40px">
+                                        <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="110px">
                                     <?php endif; ?>
                                     <h4 class="mb-0 mt-1"><?= $employee_details['sir_name'] . " " . $employee_details['first_name'] . " " . $employee_details['middle_name'] . " " . $employee_details['last_name'] ?></h4>
                                     <p class="text-muted m-0">Emp. ID : <?= $employee_details['employee_unique_id'] ?></p>
