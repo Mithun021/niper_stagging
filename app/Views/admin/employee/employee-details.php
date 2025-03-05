@@ -128,7 +128,7 @@
                             <div class="col-md-4">
                                 <div>
                                     <?php if (!empty($employee_details['profile_photo']) && file_exists('public/admin/uploads/employee/' . $employee_details['profile_photo'])): ?>
-                                        <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $employee_details['profile_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/employee/<?= $employee_details['profile_photo'] ?>" alt="" class="d-flex align-self-center rounded mr-3" height="80px"></a>
+                                        <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $employee_details['profile_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/employee/<?= $employee_details['profile_photo'] ?>" alt="" class="d-flex align-self-center rounded mr-3 bordered" height="80px"></a>
                                     <?php else: ?>
                                         <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="40px">
                                     <?php endif; ?>
