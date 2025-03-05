@@ -52,6 +52,7 @@ $designation_model = new Designation_model();
     }
     .emp-info div:last-child{
         width: 60%;
+        margin-left: 10px;
     }
     @media(max-width : 552px){
         .emp-info{
