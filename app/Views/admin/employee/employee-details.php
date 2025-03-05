@@ -248,6 +248,14 @@ $designation_model = new Designation_model();
                                         <div><p class="text-bold">LinkedIn</p><p>:</p></div>
                                         <div><p><?= $employee_details['linkedin'] ?></p></div>
                                     </div>
+                                    <div class="emp-info">
+                                        <div><p class="text-bold">Employee Status</p><p>:</p></div>
+                                        <div><p><?= $employee_details['employee_status'] ?></p></div>
+                                    </div>
+                                    <div class="emp-info">
+                                        <div><p class="text-bold">Relieving Date</p><p>:</p></div>
+                                        <div><p><?= $employee_details['relieving_date'] ?></p></div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-6"></div>
