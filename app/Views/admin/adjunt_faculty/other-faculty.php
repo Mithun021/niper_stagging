@@ -2,10 +2,12 @@
 <?= $this->section("body-content"); ?>
 <?php
 
+use App\Models\Adjunt_faculty_notification_model;
 use App\Models\Designation_model;
 use App\Models\Employee_model;
 $employee_model = new Employee_model();
 $designation_model = new Designation_model();
+$adjunt_faculty_notification_model = new Adjunt_faculty_notification_model();
 ?>
 
 <style>
@@ -107,6 +109,15 @@ $designation_model = new Designation_model();
                             </select>
                         </div> -->
                         <div class="form-group col-md-6">
+                            <span>Faculty Type<span class="text-danger">*</span></span>
+                            <select class="form-control form-control-sm" name="faculty_type" required>
+                                <option value="">--Select--</option>
+                            <?php foreach ($adjunt_faculty_notification as $key => $value) { ?>
+                               <option value="<?= $value['id'] ?>"><?= $value['notification_title'] ?></option>
+                            <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
                             <span>Status<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="status" required>
                                 <option value="1">Active</option>
@@ -137,6 +148,7 @@ $designation_model = new Designation_model();
                                 <th>Faculty Type</th>
                                 <th>Email</th>
                                 <th>Mobile</th>
+                                <td>Notification</td>
                                 <th>Upload by</th>
                                 <th>Action</th>
                             </tr>
@@ -163,6 +175,7 @@ $designation_model = new Designation_model();
                                 <!-- <td><?= $value['faculty_type'] ?></td> -->
                                 <td><?= $value['personal_email'] ?> <?php if($value['official_email']){ echo "<br>".$value['official_email']; }  ?></td>
                                 <td><?= $value['mobile'] ?></td>
+                                <td><?= $adjunt_faculty_notification->get($value['mobile'])['notification_title'] ?? '' ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; }  ?></td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">

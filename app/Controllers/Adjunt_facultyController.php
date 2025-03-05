@@ -12,11 +12,13 @@ class Adjunt_facultyController extends BaseController
 {
     public function other_faculty()
     {
+        $adjunt_faculty_notification_model = new Adjunt_faculty_notification_model();
         $designation_model = new Designation_model();
         $adjunt_other_faculty_model = new Adjunt_other_faculty_model();
         $data = ['title' => 'Other Facuty Details'];
         if ($this->request->is("get")) {
             $data['designation'] = $designation_model->get();
+            $data['adjunt_faculty_notification'] = $adjunt_faculty_notification_model->get();
             $data['adjunt_other_faculty'] = $adjunt_other_faculty_model->get();
             return view('admin/adjunt_faculty/other-faculty',$data);
         }else if ($this->request->is("post")) {
