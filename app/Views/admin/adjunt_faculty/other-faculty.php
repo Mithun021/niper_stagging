@@ -1,12 +1,9 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
 <?php
-
 use App\Models\Adjunt_faculty_notification_model;
-use App\Models\Designation_model;
 use App\Models\Employee_model;
 $employee_model = new Employee_model();
-$designation_model = new Designation_model();
 $adjunt_faculty_notification_model = new Adjunt_faculty_notification_model();
 ?>
 
@@ -100,17 +97,17 @@ $adjunt_faculty_notification_model = new Adjunt_faculty_notification_model();
                             <span>Resume File Upload</span>
                             <input type="file" class="form-control form-control-sm" name="resume">
                         </div>
-                        <!-- <div class="form-group col-md-6">
+                        <!--<div class="form-group col-md-6">
                             <span>Faculty Type<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="faculty_type" required>
                                 <option value="">--Select--</option>
                                 <option value="Permanent">Permanent</option>
                                 <option value="Visiting">Visiting</option>
                             </select>
-                        </div> -->
-                        <div class="form-group col-md-6">
-                            <span>Faculty Type<span class="text-danger">*</span></span>
-                            <select class="form-control form-control-sm" name="faculty_type" required>
+                        </div>-->
+                      	<div class="form-group col-md-6">
+                            <span>Adjunt Faculty Notification<span class="text-danger">*</span></span>
+                            <select class="form-control form-control-sm" name="adjunt_faculty_notification_id" required>
                                 <option value="">--Select--</option>
                             <?php foreach ($adjunt_faculty_notification as $key => $value) { ?>
                                <option value="<?= $value['id'] ?>"><?= $value['notification_title'] ?></option>
@@ -135,22 +132,22 @@ $adjunt_faculty_notification_model = new Adjunt_faculty_notification_model();
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> List</h4>
             </div>
-            <div class="card-body p-2">
+            <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-hover" id="basic-datatable">
                         <thead>
                             <tr>
-                                <th>SN</th>
-                                <th>Files</th>
-                                <th>Name</th>
-                                <th>Designation</th>
-                                <th>Organisation</th>
-                                <th>Faculty Type</th>
-                                <th>Email</th>
-                                <th>Mobile</th>
-                                <td>Notification</td>
-                                <th>Upload by</th>
-                                <th>Action</th>
+                                <td>SN</th>
+                                <td>Files</th>
+                                <td>Name</th>
+                                <td>Designation</th>
+                                <td>Organisation</th>
+                                <!--<td>Faculty Type</th>-->
+                                <td>Email</th>
+                                <td>Mobile</th>
+                              	<td>Notification</td>
+                                <td>Upload by</th>
+                                <td>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -172,10 +169,10 @@ $adjunt_faculty_notification_model = new Adjunt_faculty_notification_model();
                                 <td><?= $value['annotation']." ".$value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></td>
                                 <td><?= $value['designation'] ?></td>
                                 <td><?= $value['organisation_name'] ?></td>
-                                <!-- <td><?= $value['faculty_type'] ?></td> -->
+                                <!--<td><?= $value['faculty_type'] ?></td>-->
                                 <td><?= $value['personal_email'] ?> <?php if($value['official_email']){ echo "<br>".$value['official_email']; }  ?></td>
                                 <td><?= $value['mobile'] ?></td>
-                                <td><?= $adjunt_faculty_notification->get($value['mobile'])['notification_title'] ?? '' ?></td>
+                              	<td><?= $adjunt_faculty_notification->get($value['adjunt_faculty_notification_id'])['notification_title'] ?? '' ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; }  ?></td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">

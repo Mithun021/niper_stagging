@@ -5,7 +5,7 @@
     {
         protected $table         = 'adjunt_other_faculty';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['annotation','first_name','middle_name','last_name','designation','organisation_name','organisation_address','personal_email','official_email','mobile','linkedin','twitter','facebook','research_interest','description','photo','resume','faculty_type','status','upload_by'];
+        protected $allowedFields = ['annotation','first_name','middle_name','last_name','designation','organisation_name','organisation_address','personal_email','official_email','mobile','linkedin','twitter','facebook','research_interest','description','photo','resume','faculty_type','adjunt_faculty_notification_id','status','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
