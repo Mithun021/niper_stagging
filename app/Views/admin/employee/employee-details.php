@@ -50,6 +50,14 @@ $designation_model = new Designation_model();
     .emp-info div:last-child{
         width: 60%;
     }
+    @media(max-width : 552px){
+        .emp-info div:first-child{
+            width: 100%;
+        }
+        .emp-info div:last-child{
+            width: 100%;
+        }
+    }
 </style>
 <div class="row">
     <div class="col-xl-12">
