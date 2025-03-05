@@ -1,10 +1,12 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
 <?php
-    use App\Models\Department_model;
-    use App\Models\Designation_model;
-    $department_model = new Department_model();
-    $designation_model = new Designation_model();
+
+use App\Models\Department_model;
+use App\Models\Designation_model;
+
+$department_model = new Department_model();
+$designation_model = new Designation_model();
 ?>
 <style>
     .nav-tabs-wrapper {
@@ -32,6 +34,65 @@
     /* Optional: Hide scrollbar in Webkit browsers */
     .nav-tabs-wrapper::-webkit-scrollbar {
         display: none;
+    }
+
+    /* .emp-info{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        width: 100%;
+    }
+    .emp-info p:first-child{
+        font-weight: bold;
+        width: 20%;
+    }
+    .emp-info p:nth-child(2){
+        font-weight: bold;
+        width: 20%;
+    }
+    .emp-info p:last-child{
+        font-weight: 400;
+        width: 60%;
+    } */
+
+    .emp-info {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        width: 100%;
+        flex-wrap: wrap;
+        /* Ensures proper wrapping on small screens */
+    }
+
+    /* Apply styles for medium (≥768px) and large screens */
+    @media (min-width: 768px) {
+        .emp-info p:first-child {
+            font-weight: bold;
+            width: 20%;
+        }
+
+        .emp-info p:nth-child(2) {
+            font-weight: bold;
+            width: 20%;
+        }
+
+        .emp-info p:last-child {
+            font-weight: 400;
+            width: 60%;
+        }
+    }
+
+    /* On small screens (mobile), stack the last <p> below the first two */
+    @media (max-width: 767px) {
+        .emp-info {
+            flex-direction: column;
+            /* Stack items vertically */
+        }
+
+        .emp-info p {
+            width: 100%;
+            /* Make all items full width */
+        }
     }
 </style>
 <div class="row">
@@ -138,11 +199,18 @@
                                     <?php else: ?>
                                         <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="40px">
                                     <?php endif; ?>
-                                    <h4 class="mb-0 mt-1"><?= $employee_details['sir_name'] . " " .$employee_details['first_name'] . " " . $employee_details['middle_name'] . " " . $employee_details['last_name'] ?></h4>
+                                    <h4 class="mb-0 mt-1"><?= $employee_details['sir_name'] . " " . $employee_details['first_name'] . " " . $employee_details['middle_name'] . " " . $employee_details['last_name'] ?></h4>
                                     <p class="text-muted m-0">Emp. ID : <?= $employee_details['employee_unique_id'] ?></p>
                                     <p class="text-primary my-1"><?php $designations = $designation_model->get($employee_details['designation_id']);
-                                        echo (!empty($designations['name'])) ? $designations['name'] : '____';  ?></p>
+                                                                    echo (!empty($designations['name'])) ? $designations['name'] : '____';  ?></p>
                                     <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $employee_details['resume_file'] ?>" class="btn btn-outline-success btn-rounded waves-effect waves-light"><i class="mdi mdi-cloud-download-outline"></i> Download Resume</a>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="emp-info">
+                                    <p class="text-bold">Joining Date</p>
+                                    <p>:</p>
+                                    <p><?= $employee_details['joining_date'] ?></p>
                                 </div>
                             </div>
                         </div>
