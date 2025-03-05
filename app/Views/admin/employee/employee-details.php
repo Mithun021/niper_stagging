@@ -49,6 +49,7 @@ $designation_model = new Designation_model();
     }
     .emp-info div:first-child p{
         font-weight: 600;
+        color: #000;
     }
     .emp-info div:last-child{
         width: 60%;
