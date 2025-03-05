@@ -131,21 +131,53 @@ use App\Models\Student_model;
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
+                $employee_details = $employee_model->get($id);
+                $old_profile_image = $employee_details['profile_photo'];
+                $old_resume_file = $employee_details['resume_file'];
+
                 $profile_image = $this->request->getFile('profile_photo');
-                if ($profile_image->isValid() && ! $profile_image->hasMoved()) {
-                    $imageName = $profile_image->getRandomName();
-                    $profile_image->move(ROOTPATH . 'public/admin/uploads/employee', $imageName);    
-                }else{
-                 $imageName = "";
+                
+                if (empty($old_profile_image)) {
+                    if ($profile_image->isValid() && !$profile_image->hasMoved()) {
+                        $new_profile_image = "profile" . $profile_image->getRandomName();
+                        $profile_image->move(ROOTPATH . 'public/admin/uploads/employee/', $new_profile_image);
+                    } else {
+                        $new_profile_image = null;
+                    }
+                } else {
+                    if ($profile_image->isValid() && !$profile_image->hasMoved()) {
+                        if (file_exists("public/admin/uploads/employee/" . $old_profile_image)) {
+                            unlink("public/admin/uploads/employee/" . $old_profile_image);
+                        }
+                        $new_profile_image = "report" . $profile_image->getRandomName();
+                        $profile_image->move(ROOTPATH . 'public/admin/uploads/employee/', $new_profile_image);
+                    } else {
+                        $new_profile_image = $old_profile_image;
+                    }
                 }
+
+
                 $resume_file = $this->request->getFile('resume_file');
-                if ($resume_file->isValid() && ! $resume_file->hasMoved()) {
-                    $resumeimageName = $resume_file->getRandomName();
-                    $resume_file->move(ROOTPATH . 'public/admin/uploads/employee', $resumeimageName);    
-                }else{
-                 $resumeimageName = "";
+                if (empty($old_resume_file)) {
+                    if ($resume_file->isValid() && !$resume_file->hasMoved()) {
+                        $new_resume_file = "report" . $resume_file->getRandomName();
+                        $resume_file->move(ROOTPATH . 'public/admin/uploads/employee/', $new_resume_file);
+                    } else {
+                        $new_resume_file = null;
+                    }
+                } else {
+                    if ($resume_file->isValid() && !$resume_file->hasMoved()) {
+                        if (file_exists("public/admin/uploads/employee/" . $old_resume_file)) {
+                            unlink("public/admin/uploads/employee/" . $old_resume_file);
+                        }
+                        $new_resume_file = "resume" . $resume_file->getRandomName();
+                        $resume_file->move(ROOTPATH . 'public/admin/uploads/employee/', $new_resume_file);
+                    } else {
+                        $new_resume_file = $old_resume_file;
+                    }
                 }
-                $password = "123456";
+                
+                
                 $data = [
                     'employee_unique_id' => $this->request->getPost('employee_unique_id'),
                     'sir_name' => $this->request->getPost('sir_name'),
@@ -163,8 +195,8 @@ use App\Models\Student_model;
                     'personal_mail' => $this->request->getPost('personal_mail'),
                     'employee_nature' => $this->request->getPost('employee_nature'),
                     'employee_type' => $this->request->getPost('employee_type'),
-                    'profile_photo' => $imageName,
-                    'resume_file' => $resumeimageName,
+                    'profile_photo' => $new_profile_image,
+                    'resume_file' => $new_resume_file,
                     'twitter' => $this->request->getPost('twitter'),
                     'facebook' => $this->request->getPost('facebook'),
                     'linkedin' => $this->request->getPost('linkedin'),
@@ -172,7 +204,6 @@ use App\Models\Student_model;
                     'google_h_index' => $this->request->getPost('google_h_index'),
                     'i10_index' => $this->request->getPost('i10_index'),
                     'scopus_h_index' => $this->request->getPost('scopus_h_index'),
-                    'password' => password_hash($password, PASSWORD_DEFAULT),
                     'status' => $this->request->getPost('status'),
                     'joining_date' => $this->request->getPost('joining_date'),
                     'employee_status' => $this->request->getPost('employee_status'),
@@ -183,9 +214,9 @@ use App\Models\Student_model;
                 ];
 
                 // echo "<pre>";print_r($data);
-                $result = $employee_model->add($data);
+                $result = $employee_model->add($data,$id);
                 if ($result === true) {
-                    return redirect()->to('admin/edit-employee/'.$id)->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                    return redirect()->to('admin/edit-employee/'.$id)->with('msg','<div class="alert alert-success" role="alert"> Data update Successful </div>');
                 } else {
                     return redirect()->to('admin/edit-employee/'.$id)->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
