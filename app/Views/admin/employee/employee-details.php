@@ -124,8 +124,18 @@
 
                 <div class="tab-content">
                     <div class="tab-pane show active" id="profile1">
-                        <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p>
-                        <p class="mb-0">Leggings occaecat dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <img src="assets/images/users/user-1.jpg" class="rounded-circle avatar-lg img-thumbnail"
+                                        alt="profile-image">
+                                    <h4 class="mb-0">Mark A. McKnight</h4>
+                                    <p class="text-muted">@Webdesigner</p>
+                                    <button type="button" class="btn btn-primary btn-xs waves-effect waves-light">Follow</button>
+                                    <button type="button" class="btn btn-danger btn-xs waves-effect waves-light">Message</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane" id="home1">
                         <p>Leggings occaecat dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
