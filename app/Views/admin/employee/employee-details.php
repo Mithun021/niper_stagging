@@ -57,11 +57,14 @@ $designation_model = new Designation_model();
 
     .emp-info {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5px;
+        /* Space between elements */
         padding: 10px;
         width: 100%;
         flex-wrap: wrap;
-        /* Ensures proper wrapping on small screens */
+        /* Ensures wrapping for small screens */
     }
 
     /* Styles for medium (≥768px) and large screens */
@@ -73,12 +76,12 @@ $designation_model = new Designation_model();
 
         .emp-info p:nth-child(2) {
             font-weight: bold;
-            width: 20%;
+            width: 5%;
         }
 
         .emp-info p:last-child {
             font-weight: 400;
-            width: 60%;
+            width: 75%;
         }
     }
 
@@ -86,13 +89,15 @@ $designation_model = new Designation_model();
     @media (max-width: 767px) {
         .emp-info {
             flex-direction: column;
-            /* Stack items vertically */
+            /* Stack elements vertically */
+            align-items: flex-start;
+            /* Align to left */
         }
 
         .emp-info p:first-child,
         .emp-info p:nth-child(2) {
             display: inline;
-            /* Keep the first two inline */
+            /* Keep "Joining Date :" in the same line */
             font-weight: bold;
         }
 
@@ -101,8 +106,10 @@ $designation_model = new Designation_model();
             /* Move the last item below */
             width: 100%;
             /* Take full width */
-            margin-top: 5px;
-            /* Add spacing */
+            margin-left: 10px;
+            /* Indentation for better alignment */
+            margin-top: 3px;
+            /* Space between text and date */
         }
     }
 </style>
