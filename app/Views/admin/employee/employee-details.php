@@ -134,8 +134,7 @@
                                     <?php endif; ?>
                                     <h4 class="mb-0"><?= $employee_details['sir_name'] . " " .$employee_details['first_name'] . " " . $employee_details['middle_name'] . " " . $employee_details['last_name'] ?></h4>
                                     <p class="text-muted"><?= $employee_details['employee_unique_id'] ?></p>
-                                    <button type="button" class="btn btn-primary btn-xs waves-effect waves-light">Follow</button>
-                                    <button type="button" class="btn btn-danger btn-xs waves-effect waves-light">Message</button>
+                                    <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light"><i class="far fa-download"></i> Download Resume</button>
                                 </div>
                             </div>
                         </div>
