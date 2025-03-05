@@ -31,7 +31,7 @@ $designation_model = new Designation_model();
                         </div>
                         <div class="col-sm-6">
                             <span for="EmpFirstName">Joining Date:</span>
-                            <input type="date" name="joining_date" id="joining_date" class="form-control form-control-sm" value="<?= $employee_details['employee_unique_id'] ?>" required>
+                            <input type="date" name="joining_date" id="joining_date" class="form-control form-control-sm" value="<?= $employee_details['joining_date'] ?>" required>
                         </div>
                         <div class="col-sm-4">
                             <span for="EmpFirstName">First Name:</span>
