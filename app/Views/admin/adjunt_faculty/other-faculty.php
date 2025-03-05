@@ -1,10 +1,10 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
 <?php
-use App\Models\Adjunt_faculty_notification_model;
+use App\Models\Adjunt_faculty_webpage_model;
 use App\Models\Employee_model;
 $employee_model = new Employee_model();
-$adjunt_faculty_notification_model = new Adjunt_faculty_notification_model();
+$adjunt_faculty_webpage_model = new Adjunt_faculty_webpage_model();
 ?>
 
 <style>
@@ -107,10 +107,10 @@ $adjunt_faculty_notification_model = new Adjunt_faculty_notification_model();
                         </div>-->
                       	<div class="form-group col-md-6">
                             <span>Adjunt Faculty Notification<span class="text-danger">*</span></span>
-                            <select class="form-control form-control-sm" name="adjunt_faculty_notification_id" required>
+                            <select class="form-control form-control-sm" name="adjunt_faculty_webpage_id" required>
                                 <option value="">--Select--</option>
-                            <?php foreach ($adjunt_faculty_notification as $key => $value) { ?>
-                               <option value="<?= $value['id'] ?>"><?= $value['notification_title'] ?></option>
+                            <?php foreach ($adjunt_faculty_webpage as $key => $value) { ?>
+                               <option value="<?= $value['id'] ?>"><?= $value['section_title'] ?></option>
                             <?php } ?>
                             </select>
                         </div>
@@ -172,7 +172,7 @@ $adjunt_faculty_notification_model = new Adjunt_faculty_notification_model();
                                 <!--<td><?= $value['faculty_type'] ?></td>-->
                                 <td><?= $value['personal_email'] ?> <?php if($value['official_email']){ echo "<br>".$value['official_email']; }  ?></td>
                                 <td><?= $value['mobile'] ?></td>
-                              	<td><?= $adjunt_faculty_notification->get($value['adjunt_faculty_notification_id'])['notification_title'] ?? '' ?></td>
+                              	<td><?= $adjunt_faculty_webpage_model->get($value['adjunt_faculty_webpage_id'])['section_title'] ?? '' ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; }  ?></td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
