@@ -59,16 +59,16 @@ $designation_model = new Designation_model();
                             <input type="text" class="form-control form-control-sm" name="organisation_address">
                         </div>
                         <div class="form-group col-md-6">
-                            <span>Personal Email<span class="text-danger">*</span></span>
-                            <input type="email" class="form-control form-control-sm" name="personal_email" required>
+                            <span>Personal Email</span>
+                            <input type="email" class="form-control form-control-sm" name="personal_email">
                         </div>
                         <div class="form-group col-md-6">
                             <span>Official Email</span>
                             <input type="email" class="form-control form-control-sm" name="official_email">
                         </div>
                         <div class="form-group col-md-6">
-                            <span>Mobile<span class="text-danger">*</span></span>
-                            <input type="tel" class="form-control form-control-sm" name="mobile" required>
+                            <span>Mobile</span>
+                            <input type="tel" class="form-control form-control-sm" name="mobile">
                         </div>
                         <div class="form-group col-md-4">
                             <span>LinkedIn</span>
@@ -98,14 +98,14 @@ $designation_model = new Designation_model();
                             <span>Resume File Upload</span>
                             <input type="file" class="form-control form-control-sm" name="resume">
                         </div>
-                        <div class="form-group col-md-6">
+                        <!-- <div class="form-group col-md-6">
                             <span>Faculty Type<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="faculty_type" required>
                                 <option value="">--Select--</option>
                                 <option value="Permanent">Permanent</option>
                                 <option value="Visiting">Visiting</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="form-group col-md-6">
                             <span>Status<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="status" required>
@@ -160,7 +160,7 @@ $designation_model = new Designation_model();
                                 <td><?= $value['annotation']." ".$value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></td>
                                 <td><?= $value['designation'] ?></td>
                                 <td><?= $value['organisation_name'] ?></td>
-                                <td><?= $value['faculty_type'] ?></td>
+                                <!-- <td><?= $value['faculty_type'] ?></td> -->
                                 <td><?= $value['personal_email'] ?> <?php if($value['official_email']){ echo "<br>".$value['official_email']; }  ?></td>
                                 <td><?= $value['mobile'] ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; }  ?></td>
