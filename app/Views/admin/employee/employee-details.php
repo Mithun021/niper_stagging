@@ -44,6 +44,8 @@ $designation_model = new Designation_model();
     }
     .emp-info div{
         width: 40%;
+        display: flex;
+        justify-content: space-between;
     }
     .emp-info p:first-child{
         font-weight: bold;
