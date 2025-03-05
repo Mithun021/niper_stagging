@@ -31,55 +31,55 @@ $designation_model = new Designation_model();
                         </div>
                         <div class="col-sm-6">
                             <span for="EmpFirstName">Joining Date:</span>
-                            <input type="date" name="joining_date" id="joining_date" class="form-control form-control-sm" required>
+                            <input type="date" name="joining_date" id="joining_date" class="form-control form-control-sm" value="<?= $employee_details['employee_unique_id'] ?>" required>
                         </div>
                         <div class="col-sm-4">
                             <span for="EmpFirstName">First Name:</span>
                             <div class="input-group">
                                 <select name="sir_name" id="sir_name" class="form-control form-control-sm">
-                                    <option value="Mr.">Mr.</option>
-                                    <option value="Mrs.">Mrs.</option>
-                                    <option value="Miss.">Miss.</option>
-                                    <option value="Sir">Sir</option>
-                                    <option value="Dr.">Dr.</option>
+                                    <option value="Mr." <?php if($employee_details['sir_name'] == "Mr."){ echo "seleced"; } ?>>Mr.</option>
+                                    <option value="Mrs." <?php if($employee_details['sir_name'] == "Mrs."){ echo "seleced"; } ?>>Mrs.</option>
+                                    <option value="Miss." <?php if($employee_details['sir_name'] == "Miss."){ echo "seleced"; } ?>>Miss.</option>
+                                    <option value="Sir" <?php if($employee_details['sir_name'] == "Sir"){ echo "seleced"; } ?>>Sir</option>
+                                    <option value="Dr." <?php if($employee_details['sir_name'] == "Dr."){ echo "seleced"; } ?>>Dr.</option>
                                 </select>
-                                <input type="text" name="first_name" id="first_name" class="form-control form-control-sm" required minlength="3">
+                                <input type="text" name="first_name" id="first_name" class="form-control form-control-sm" value="<?= $employee_details['first_name'] ?>" required minlength="3">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <span for="EmpMiddleName">Middle Name:</span>
-                            <input type="text" name="middle_name" id="middle_name" class="form-control form-control-sm">
+                            <input type="text" name="middle_name" id="middle_name" class="form-control form-control-sm" value="<?= $employee_details['middle_name'] ?>">
                         </div>
                         <div class="col-sm-4">
                             <span for="EmpLastName">Last Name:</span>
-                            <input type="text" name="last_name" id="last_name" class="form-control form-control-sm" required>
+                            <input type="text" name="last_name" id="last_name" class="form-control form-control-sm" value="<?= $employee_details['last_name'] ?>" required>
                         </div>
                         <div class="col-sm-4">
                             <span for="EmpLastName">Blood Group:</span>
                             <select name="blood_group" id="blood_group" class="form-control form-control-sm" required>
-                                <option value="A+">A+</option>
-                                <option value="A-">A-</option>
-                                <option value="B+">B+</option>
-                                <option value="B-">B-</option>
-                                <option value="AB+">AB+</option>
-                                <option value="AB-">AB-</option>
-                                <option value="O+">O+</option>
-                                <option value="O-">O-</option>
+                                <option value="A+" <?php if($employee_details['bloods_group'] == "A+"){ echo "seleced"; } ?>>A+</option>
+                                <option value="A-" <?php if($employee_details['bloods_group'] == "A-"){ echo "seleced"; } ?>>A-</option>
+                                <option value="B+" <?php if($employee_details['bloods_group'] == "B+"){ echo "seleced"; } ?>>B+</option>
+                                <option value="B-" <?php if($employee_details['bloods_group'] == "B-"){ echo "seleced"; } ?>>B-</option>
+                                <option value="AB+" <?php if($employee_details['bloods_group'] == "AB+"){ echo "seleced"; } ?>>AB+</option>
+                                <option value="AB-" <?php if($employee_details['bloods_group'] == "AB-"){ echo "seleced"; } ?>>AB-</option>
+                                <option value="O+" <?php if($employee_details['bloods_group'] == "O+"){ echo "seleced"; } ?>>O+</option>
+                                <option value="O-" <?php if($employee_details['bloods_group'] == "O-"){ echo "seleced"; } ?>>O-</option>
                             </select>
                         </div>
                         <div class="col-sm-4">
                             <span for="EmpLastName">Gender:</span>
                             <select name="gender" id="gender" class="form-control form-control-sm" required>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Any Other">Any Other</option>
+                                <option value="Male" <?php if($employee_details['gender'] == "Male"){ echo "seleced"; } ?>>Male</option>
+                                <option value="Female" <?php if($employee_details['gender'] == "Female"){ echo "seleced"; } ?>>Female</option>
+                                <option value="Any Other" <?php if($employee_details['gender'] == "Any Other"){ echo "seleced"; } ?>>Any Other</option>
                             </select>
                         </div>
                         <div class="col-sm-4">
                             <span for="EmpLastName">Material Status:</span>
                             <select name="material_status" id="material_status" class="form-control form-control-sm" required>
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option>
+                                <option value="No" <?php if($employee_details['material_status'] == "No"){ echo "seleced"; } ?>>No</option>
+                                <option value="Yes" <?php if($employee_details['material_status'] == "Yes"){ echo "seleced"; } ?>>Yes</option>
                             </select>
                         </div>
                     </div>
@@ -109,11 +109,11 @@ $designation_model = new Designation_model();
                     <div class="form-group row">
                         <div class="col-sm-6">
                             <span for="Empmobile">Mobile Number:</span>
-                            <input type="tel" name="mobile_no" id="mobile_no" class="form-control form-control-sm" required>
+                            <input type="tel" name="mobile_no" id="mobile_no" class="form-control form-control-sm" value="<?= $employee_details['mobile_no'] ?>" required>
                         </div>
                         <div class="col-sm-6">
                             <span for="Emplandlineno">Landline Number:</span>
-                            <input type="tel" name="landline_no" id="landline_no" class="form-control form-control-sm">
+                            <input type="tel" name="landline_no" id="landline_no" class="form-control form-control-sm" value="<?= $employee_details['landline_no'] ?>">
                         </div>
                     </div>
 
@@ -121,11 +121,11 @@ $designation_model = new Designation_model();
                     <div class="form-group row">
                         <div class="col-sm-6">
                             <span for="Empofficialemail">Official Email:</span>
-                            <input type="email" name="official_mail" id="official_mail" class="form-control form-control-sm" required>
+                            <input type="email" name="official_mail" id="official_mail" class="form-control form-control-sm" value="<?= $employee_details['official_mail'] ?>" required>
                         </div>
                         <div class="col-sm-6">
                             <span for="Emppersonalemail">Personal Email:</span>
-                            <input type="email" name="personal_mail" id="personal_mail" class="form-control form-control-sm">
+                            <input type="email" name="personal_mail" id="personal_mail" class="form-control form-control-sm" value="<?= $employee_details['personal_mail'] ?>">
                         </div>
                     </div>
 
@@ -150,8 +150,8 @@ $designation_model = new Designation_model();
                         <div class="col-sm-6">
                             <span for="Emptype">Employee Type:</span>
                             <select name="employee_type" id="employee_type" class="form-control form-control-sm" required>
-                                <option value="Teaching">Teaching</option>
-                                <option value="NonTeaching">Non-Teaching</option>
+                                <option value="Teaching" <?php if($employee_details['employee_type'] == "Teaching"){ echo "selected"; } ?>>Teaching</option>
+                                <option value="NonTeaching" <?php if($employee_details['employee_type'] == "NonTeaching"){ echo "selected"; } ?>>Non-Teaching</option>
                             </select>
                         </div>
                         <div class="col-sm-6">
@@ -159,7 +159,7 @@ $designation_model = new Designation_model();
                             <select name="employee_nature" id="employee_nature" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
                             <?php foreach ($employee_nature as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                <option value="<?= $value['id'] ?>" <?php if($employee_details['employee_nature'] == $value['id']){ echo "selected"; } ?>><?= $value['name'] ?></option>
                             <?php } ?>
                             </select>
                         </div>
@@ -169,15 +169,15 @@ $designation_model = new Designation_model();
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <span for="Emptwitterlink">Twitter:</span>
-                            <input type="url" name="twitter" id="twitter" class="form-control form-control-sm">
+                            <input type="url" name="twitter" id="twitter" class="form-control form-control-sm" value="<?= $employee_details['twitter'] ?>">
                         </div>
                         <div class="col-sm-4">
                             <span for="Empfacebooklink">Facebook:</span>
-                            <input type="url" name="facebook" id="facebook" class="form-control form-control-sm">
+                            <input type="url" name="facebook" id="facebook" class="form-control form-control-sm" value="<?= $employee_details['facebook'] ?>">
                         </div>
                         <div class="col-sm-4">
                             <span for="Emplinkdinlink">LinkedIn:</span>
-                            <input type="url" name="linkedin" id="linkedin" class="form-control form-control-sm">
+                            <input type="url" name="linkedin" id="linkedin" class="form-control form-control-sm" value="<?= $employee_details['linkedin'] ?>">
                         </div>
                     </div>
 
@@ -185,42 +185,42 @@ $designation_model = new Designation_model();
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <span for="Researchinterest">Research Interest:</span>
-                            <textarea name="research" id="editor" class="form-control form-control-sm" rows="3"></textarea>
+                            <textarea name="research" id="editor" class="form-control form-control-sm" rows="3"><?= $employee_details['research'] ?></textarea>
                         </div>
                         <div class="col-sm-4 form-group mt-1">
                             <span for="Googlehindex">Google H-Index:</span>
-                            <input type="number" name="google_h_index" id="google_h_index" class="form-control form-control-sm">
+                            <input type="number" name="google_h_index" id="google_h_index" class="form-control form-control-sm" value="<?= $employee_details['google_h_index'] ?>">
                         </div>
                         <div class="col-sm-4 form-group mt-1">
                             <span for="I10index">i10-Index:</span>
-                            <input type="number" name="i10_index" id="i10_index" class="form-control form-control-sm">
+                            <input type="number" name="i10_index" id="i10_index" class="form-control form-control-sm" value="<?= $employee_details['i10_index'] ?>">
                         </div>
                         <div class="col-sm-4 form-group mt-1">
                             <span for="Scopushindex">Scopus H-Index:</span>
-                            <input type="number" name="scopus_h_index" id="scopus_h_index" class="form-control form-control-sm">
+                            <input type="number" name="scopus_h_index" id="scopus_h_index" class="form-control form-control-sm" value="<?= $employee_details['scopus_h_index'] ?>">
                         </div>
                         <div class="col-sm-4 form-group mt-1">
                             <div class="form-group">
                                 <span>Employee Status</span>
                                 <select name="employee_status" id="employee_status" class="form-control form-control-sm">
                                     <option value="">--Select--</option>
-                                    <option value="Working">Working</option>
-                                    <option value="Suspend">Suspend</option>
-                                    <option value="Retired">Retired</option>
-                                    <option value="Any Other">Any Other</option>
+                                    <option value="Working" <?php if($employee_details['employee_status'] == "Working"){ echo "selected"; } ?>>Working</option>
+                                    <option value="Suspend" <?php if($employee_details['employee_status'] == "Suspend"){ echo "selected"; } ?>>Suspend</option>
+                                    <option value="Retired" <?php if($employee_details['employee_status'] == "Retired"){ echo "selected"; } ?>>Retired</option>
+                                    <option value="Any Other" <?php if($employee_details['employee_status'] == "Any Other"){ echo "selected"; } ?>>Any Other</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-sm-4 form-group mt-1">
                             <span for="Scopushindex">Relieving Date:</span>
-                            <input type="date" name="releiving_date" id="releiving_date" class="form-control form-control-sm">
+                            <input type="date" name="releiving_date" id="releiving_date" class="form-control form-control-sm" value="<?= $employee_details['relieving_date'] ?>">
                         </div>
                         <div class="col-sm-4 form-group mt-1">
                             <div class="form-group">
                                 <span>Status</span>
                                 <select name="status" id="status" class="form-control form-control-sm">
-                                    <option value="1">Active</option>
-                                    <option value="0">Draft</option>
+                                    <option value="1" <?php if($employee_details['status'] == 1){ echo "selected"; } ?>>Active</option>
+                                    <option value="0" <?php if($employee_details['status'] == 0){ echo "selected"; } ?>>Draft</option>
                                 </select>
                             </div>
                         </div>
