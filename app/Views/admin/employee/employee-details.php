@@ -47,10 +47,16 @@ $designation_model = new Designation_model();
         display: flex;
         justify-content: space-between;
     }
+    .emp-info div:first-child p{
+        font-weight: 600;
+    }
     .emp-info div:last-child{
         width: 60%;
     }
     @media(max-width : 552px){
+        .emp-info{
+            flex-direction: column;
+        }
         .emp-info div:first-child{
             width: 100%;
         }
