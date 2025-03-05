@@ -202,7 +202,12 @@ $designation_model = new Designation_model();
                                 </div>
                                 <div class="emp-info">
                                     <div><p class="text-bold">Department</p><p>:</p></div>
-                                    <div><p><?= $employee_details['joining_date'] ?></p></div>
+                                    <div><p><?php $department = explode(',',$employee_details['department_id']); 
+                                        foreach ($department as $key => $dept_id) {
+                                            $departments = $department_model->get($dept_id);
+                                            echo (!empty($departments['name'])) ? $departments['name'] : '____';
+                                        }
+                                    ?></p></div>
                                 </div>
                                 <div class="emp-info">
                                     <div><p class="text-bold">Mobile Number</p><p>:</p></div>
