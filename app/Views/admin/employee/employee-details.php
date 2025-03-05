@@ -258,7 +258,24 @@ $designation_model = new Designation_model();
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6"></div>
+                            <div class="col-lg-6">
+                                <div class="card card-body p-2">
+                                    <div class="emp-info">
+                                        <div><p class="text-bold">Google H-Index</p><p>:</p></div>
+                                        <div><p><?= $employee_details['google_h_index'] ?></p></div>
+                                    </div>
+                                    <div class="emp-info">
+                                        <div><p class="text-bold">i10-Index</p><p>:</p></div>
+                                        <div><p><?= $employee_details['i10_index'] ?></p></div>
+                                    </div>
+                                    <div class="emp-info">
+                                        <div><p class="text-bold">Scopus H-Index</p><p>:</p></div>
+                                        <div><p><?= $employee_details['scopus_h_index'] ?></p></div>
+                                    </div>
+                                    <h4 class="my-1">Research Interest</h4>
+                                    <?= $employee_details['research'] ?>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="tab-pane" id="home1">
