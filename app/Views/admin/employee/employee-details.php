@@ -1,96 +1,126 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
+<style>
+    .nav-tabs-wrapper {
+        overflow-x: auto;
+        /* Enables horizontal scrolling */
+        white-space: nowrap;
+        /* Prevents wrapping initially */
+        -webkit-overflow-scrolling: touch;
+        /* Smooth scrolling on mobile */
+    }
 
+    .nav-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+        /* Optional spacing between tabs */
+    }
+
+    .nav-item {
+        flex-grow: 1;
+        /* Distributes tabs evenly */
+        text-align: center;
+    }
+
+    /* Optional: Hide scrollbar in Webkit browsers */
+    .nav-tabs-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+</style>
 <div class="row">
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <ul class="nav nav-tabs nav-justified mb-3">
-                    <li class="nav-item">
-                        <a href="#profile1" data-toggle="tab" aria-expanded="true" class="nav-link active">
-                            <i class="mdi mdi-account-circle d-lg-none d-block"></i>
-                            <span class="d-none d-lg-block">Profile</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#home1" data-toggle="tab" aria-expanded="false" class="nav-link">
-                            <i class="mdi mdi-home-variant d-lg-none d-block"></i>
-                            <span class="d-none d-lg-block">Experience</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#settings1" data-toggle="tab" aria-expanded="false" class="nav-link">
-                            <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
-                            <span class="d-none d-lg-block">Projects</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#settings1" data-toggle="tab" aria-expanded="false" class="nav-link">
-                            <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
-                            <span class="d-none d-lg-block">Publications</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#settings1" data-toggle="tab" aria-expanded="false" class="nav-link">
-                            <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
-                            <span class="d-none d-lg-block">Awards</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#settings1" data-toggle="tab" aria-expanded="false" class="nav-link">
-                            <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
-                            <span class="d-none d-lg-block">Books Chapter</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#settings1" data-toggle="tab" aria-expanded="false" class="nav-link">
-                            <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
-                            <span class="d-none d-lg-block">Patents</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#settings1" data-toggle="tab" aria-expanded="false" class="nav-link">
-                            <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
-                            <span class="d-none d-lg-block">Academic Details</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#settings1" data-toggle="tab" aria-expanded="false" class="nav-link">
-                            <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
-                            <span class="d-none d-lg-block">Other Academic Details</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#settings1" data-toggle="tab" aria-expanded="false" class="nav-link">
-                            <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
-                            <span class="d-none d-lg-block">PHD Detail</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#settings1" data-toggle="tab" aria-expanded="false" class="nav-link">
-                            <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
-                            <span class="d-none d-lg-block">MPhil/PG/UG</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#settings1" data-toggle="tab" aria-expanded="false" class="nav-link">
-                            <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
-                            <span class="d-none d-lg-block">Ongoing PHD</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#settings1" data-toggle="tab" aria-expanded="false" class="nav-link">
-                            <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
-                            <span class="d-none d-lg-block">Course Tought</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#settings1" data-toggle="tab" aria-expanded="false" class="nav-link">
-                            <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
-                            <span class="d-none d-lg-block">Membership/Fellowship</span>
-                        </a>
-                    </li>
-                </ul>
+                <div class="nav-tabs-wrapper">
+                    <ul class="nav nav-tabs nav-justified mb-3">
+                        <li class="nav-item">
+                            <a href="#profile1" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                <i class="mdi mdi-account-circle d-lg-none d-block"></i>
+                                <span class="d-none d-lg-block">Profile</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#home1" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="mdi mdi-home-variant d-lg-none d-block"></i>
+                                <span class="d-none d-lg-block">Experience</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#settings1" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
+                                <span class="d-none d-lg-block">Projects</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#publication" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
+                                <span class="d-none d-lg-block">Publications</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#awards" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
+                                <span class="d-none d-lg-block">Awards</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#booksChapter" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
+                                <span class="d-none d-lg-block">Books Chapter</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#patents" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
+                                <span class="d-none d-lg-block">Patents</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#academicDetail" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
+                                <span class="d-none d-lg-block">Academic Details</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#otherAcademic" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
+                                <span class="d-none d-lg-block">Other Academic Details</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#phdDetail" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
+                                <span class="d-none d-lg-block">PHD Detail</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#mphil" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
+                                <span class="d-none d-lg-block">MPhil/PG/UG</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#ongoingPHD" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
+                                <span class="d-none d-lg-block">Ongoing PHD</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#courseTought" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
+                                <span class="d-none d-lg-block">Course Tought</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#membership" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
+                                <span class="d-none d-lg-block">Membership/Fellowship</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
                 <div class="tab-content">
                     <div class="tab-pane show active" id="profile1">
