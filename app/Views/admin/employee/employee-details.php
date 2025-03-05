@@ -189,28 +189,28 @@ $designation_model = new Designation_model();
                                     <div><p><?= $employee_details['joining_date'] ?></p></div>
                                 </div>
                                 <div class="emp-info">
-                                    <div><p class="text-bold m-0">Joining Date</p><p>:</p></div>
+                                    <div><p class="text-bold m-0">Blood Group</p><p>:</p></div>
+                                    <div><p><?= $employee_details['bloods_group'] ?></p></div>
+                                </div>
+                                <div class="emp-info">
+                                    <div><p class="text-bold">Gender</p><p>:</p></div>
+                                    <div><p><?= $employee_details['gender'] ?></p></div>
+                                </div>
+                                <div class="emp-info">
+                                    <div><p class="text-bold">Material Status</p><p>:</p></div>
+                                    <div><p><?= $employee_details['material_status'] ?></p></div>
+                                </div>
+                                <div class="emp-info">
+                                    <div><p class="text-bold">Department</p><p>:</p></div>
                                     <div><p><?= $employee_details['joining_date'] ?></p></div>
                                 </div>
                                 <div class="emp-info">
-                                    <div><p class="text-bold">Joining Date</p><p>:</p></div>
-                                    <div><p><?= $employee_details['joining_date'] ?></p></div>
+                                    <div><p class="text-bold">Mobile Number</p><p>:</p></div>
+                                    <div><p><?= $employee_details['mobile_no'] ?> / <?= $employee_details['landline_no'] ?></p></div>
                                 </div>
                                 <div class="emp-info">
-                                    <div><p class="text-bold">Joining Date</p><p>:</p></div>
-                                    <div><p><?= $employee_details['joining_date'] ?></p></div>
-                                </div>
-                                <div class="emp-info">
-                                    <div><p class="text-bold">Joining Date</p><p>:</p></div>
-                                    <div><p><?= $employee_details['joining_date'] ?></p></div>
-                                </div>
-                                <div class="emp-info">
-                                    <div><p class="text-bold">Joining Date</p><p>:</p></div>
-                                    <div><p><?= $employee_details['joining_date'] ?></p></div>
-                                </div>
-                                <div class="emp-info">
-                                    <div><p class="text-bold">Joining Date</p><p>:</p></div>
-                                    <div><p><?= $employee_details['joining_date'] ?></p></div>
+                                    <div><p class="text-bold">Email Address</p><p>:</p></div>
+                                    <div><p><?= $employee_details['official_mail'] ?> / <?= $employee_details['personal_mail'] ?></p></div>
                                 </div>
                             </div>
                         </div>
