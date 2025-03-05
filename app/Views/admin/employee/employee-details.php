@@ -183,6 +183,30 @@ $designation_model = new Designation_model();
                                     <div><p class="text-bold">Joining Date</p><p>:</p></div>
                                     <div><p><?= $employee_details['joining_date'] ?></p></div>
                                 </div>
+                                <div class="emp-info">
+                                    <div><p class="text-bold">Joining Date</p><p>:</p></div>
+                                    <div><p><?= $employee_details['joining_date'] ?></p></div>
+                                </div>
+                                <div class="emp-info">
+                                    <div><p class="text-bold">Joining Date</p><p>:</p></div>
+                                    <div><p><?= $employee_details['joining_date'] ?></p></div>
+                                </div>
+                                <div class="emp-info">
+                                    <div><p class="text-bold">Joining Date</p><p>:</p></div>
+                                    <div><p><?= $employee_details['joining_date'] ?></p></div>
+                                </div>
+                                <div class="emp-info">
+                                    <div><p class="text-bold">Joining Date</p><p>:</p></div>
+                                    <div><p><?= $employee_details['joining_date'] ?></p></div>
+                                </div>
+                                <div class="emp-info">
+                                    <div><p class="text-bold">Joining Date</p><p>:</p></div>
+                                    <div><p><?= $employee_details['joining_date'] ?></p></div>
+                                </div>
+                                <div class="emp-info">
+                                    <div><p class="text-bold">Joining Date</p><p>:</p></div>
+                                    <div><p><?= $employee_details['joining_date'] ?></p></div>
+                                </div>
                             </div>
                         </div>
                     </div>
