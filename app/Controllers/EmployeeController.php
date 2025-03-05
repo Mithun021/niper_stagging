@@ -224,6 +224,13 @@ use App\Models\Student_model;
             }
         }
 
+        public function employee_details($id){
+            $employee_model = new Employee_model();
+            $data = ['title' => 'Employee Details','employee_id' => $id];
+            $data['employee_details'] = $employee_model->get($id);
+            return view('admin/employee/employee-details',$data);
+        }
+
         public function delete_employee($id){
             $employee_model = new Employee_model();
             $employee_details = $employee_model->get($id);
