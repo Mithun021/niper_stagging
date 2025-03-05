@@ -47,7 +47,7 @@ $designation_model = new Designation_model();
         margin: 0px;
     }
     .emp-info div:first-child{
-        width: 40%;
+        width: 30%;
         display: flex;
         justify-content: space-between;
     }
@@ -56,7 +56,7 @@ $designation_model = new Designation_model();
         color: #000;
     }
     .emp-info div:last-child{
-        width: 60%;
+        width: 70%;
         margin-left: 10px;
     }
     @media(max-width : 552px){
