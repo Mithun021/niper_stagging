@@ -227,26 +227,26 @@ $designation_model = new Designation_model();
                         <hr>
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="card card-body">
+                                <div class="card card-body p-2">
                                     <div class="emp-info">
-                                        <div><p class="text-bold">Email Address</p><p>:</p></div>
-                                        <div><p><?= $employee_details['official_mail'] ?> / <?= $employee_details['personal_mail'] ?></p></div>
+                                        <div><p class="text-bold">Employee Type</p><p>:</p></div>
+                                        <div><p><?= $employee_details['employee_type'] ?></p></div>
                                     </div>
                                     <div class="emp-info">
-                                        <div><p class="text-bold">Email Address</p><p>:</p></div>
-                                        <div><p><?= $employee_details['official_mail'] ?> / <?= $employee_details['personal_mail'] ?></p></div>
+                                        <div><p class="text-bold">Employee Nature</p><p>:</p></div>
+                                        <div><p><?= $employee_details['employee_nature'] ?></p></div>
                                     </div>
                                     <div class="emp-info">
-                                        <div><p class="text-bold">Email Address</p><p>:</p></div>
-                                        <div><p><?= $employee_details['official_mail'] ?> / <?= $employee_details['personal_mail'] ?></p></div>
+                                        <div><p class="text-bold">Twitter</p><p>:</p></div>
+                                        <div><p><?= $employee_details['twitter'] ?></p></div>
                                     </div>
                                     <div class="emp-info">
-                                        <div><p class="text-bold">Email Address</p><p>:</p></div>
-                                        <div><p><?= $employee_details['official_mail'] ?> / <?= $employee_details['personal_mail'] ?></p></div>
+                                        <div><p class="text-bold">Facebook</p><p>:</p></div>
+                                        <div><p><?= $employee_details['facebook'] ?></p></div>
                                     </div>
                                     <div class="emp-info">
-                                        <div><p class="text-bold">Email Address</p><p>:</p></div>
-                                        <div><p><?= $employee_details['official_mail'] ?> / <?= $employee_details['personal_mail'] ?></p></div>
+                                        <div><p class="text-bold">LinkedIn</p><p>:</p></div>
+                                        <div><p><?= $employee_details['linkedin'] ?></p></div>
                                     </div>
                                 </div>
                             </div>
