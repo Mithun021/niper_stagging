@@ -109,6 +109,88 @@ use App\Models\Student_model;
             }
         }
 
+        public function edit_employee($id){
+            $employee_nature_model = new Employee_nature_model();
+            $department_model = new Department_model();
+            $designation_model = new Designation_model();
+            $employee_model = new Employee_model();
+            $data = ['title' => 'Employee Details','employee_id' => $id];
+            $data['employee_detail'] = $employee_model->get($id);
+            if ($this->request->is("get")) {
+                $data['employee_nature'] = $employee_nature_model->get();
+                $data['departments'] = $department_model->get();
+                $data['designations'] = $designation_model->get();
+                $data['employee'] = $employee_model->get();
+                return view('admin/employee/employee',$data);
+            }else if ($this->request->is("post")) {
+                // echo "<pre>";print_r($this->request->getPost('department_id')); die;
+                // $department =  implode(",",  $this->request->getPost('department_id'));
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $profile_image = $this->request->getFile('profile_photo');
+                if ($profile_image->isValid() && ! $profile_image->hasMoved()) {
+                    $imageName = $profile_image->getRandomName();
+                    $profile_image->move(ROOTPATH . 'public/admin/uploads/employee', $imageName);    
+                }else{
+                 $imageName = "";
+                }
+                $resume_file = $this->request->getFile('resume_file');
+                if ($resume_file->isValid() && ! $resume_file->hasMoved()) {
+                    $resumeimageName = $resume_file->getRandomName();
+                    $resume_file->move(ROOTPATH . 'public/admin/uploads/employee', $resumeimageName);    
+                }else{
+                 $resumeimageName = "";
+                }
+                $password = "123456";
+                $data = [
+                    'employee_unique_id' => $this->request->getPost('employee_unique_id'),
+                    'sir_name' => $this->request->getPost('sir_name'),
+                    'first_name' => $this->request->getPost('first_name'),
+                    'middle_name' => $this->request->getPost('middle_name'),
+                    'last_name' => $this->request->getPost('last_name'),
+                    'bloods_group' => $this->request->getPost('blood_group'),
+                    'gender' => $this->request->getPost('gender'),
+                    'material_status' => $this->request->getPost('material_status'),
+                    'designation_id' => $this->request->getPost('designation_id'),
+                    'department_id' => implode(",",  $this->request->getPost('department_id')),
+                    'mobile_no' => $this->request->getPost('mobile_no'),
+                    'landline_no' => $this->request->getPost('landline_no'),
+                    'official_mail' => $this->request->getPost('official_mail'),
+                    'personal_mail' => $this->request->getPost('personal_mail'),
+                    'employee_nature' => $this->request->getPost('employee_nature'),
+                    'employee_type' => $this->request->getPost('employee_type'),
+                    'profile_photo' => $imageName,
+                    'resume_file' => $resumeimageName,
+                    'twitter' => $this->request->getPost('twitter'),
+                    'facebook' => $this->request->getPost('facebook'),
+                    'linkedin' => $this->request->getPost('linkedin'),
+                    'research' => $this->request->getPost('research'),
+                    'google_h_index' => $this->request->getPost('google_h_index'),
+                    'i10_index' => $this->request->getPost('i10_index'),
+                    'scopus_h_index' => $this->request->getPost('scopus_h_index'),
+                    'password' => password_hash($password, PASSWORD_DEFAULT),
+                    'status' => $this->request->getPost('status'),
+                    'joining_date' => $this->request->getPost('joining_date'),
+                    'employee_status' => $this->request->getPost('employee_status'),
+                    'relieving_date' => $this->request->getPost('releiving_date'),
+                    'authority' => 'user',
+                    'upload_by' =>  $loggeduserId,
+                    // 'first_name' => $this->request->getPost('first_name'),
+                ];
+
+                // echo "<pre>";print_r($data);
+                $result = $employee_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/employee/'.$id)->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/employee/'.$id)->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+
+            }
+        }
+
         public function employee_experience(){
             $organisation_type_model = new Organisation_type_model();
             $nature_of_work_model = new Nature_of_work_model();
