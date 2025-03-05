@@ -40,7 +40,7 @@ $designation_model = new Designation_model();
         display: flex;
         justify-content: space-between;
         padding-left: 10px;
-        margin-bottom: 5px;
+        padding-bottom: 5px;
         width: 100%;
         margin-bottom: 0px;
     }
