@@ -1,5 +1,11 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
+<?php
+    use App\Models\Department_model;
+    use App\Models\Designation_model;
+    $department_model = new Department_model();
+    $designation_model = new Designation_model();
+?>
 <style>
     .nav-tabs-wrapper {
         overflow-x: auto;
@@ -134,6 +140,8 @@
                                     <?php endif; ?>
                                     <h4 class="mb-0"><?= $employee_details['sir_name'] . " " .$employee_details['first_name'] . " " . $employee_details['middle_name'] . " " . $employee_details['last_name'] ?></h4>
                                     <p class="text-muted">Emp. ID : <?= $employee_details['employee_unique_id'] ?></p>
+                                    <p class="text-primary"><?php $designations = $designation_model->get($value['designation_id']);
+                                        echo (!empty($designations['name'])) ? $designations['name'] : '____';  ?></p>
                                     <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $employee_details['resume_file'] ?>" class="btn btn-outline-success btn-rounded waves-effect waves-light"><i class="mdi mdi-cloud-download-outline"></i> Download Resume</a>
                                 </div>
                             </div>
