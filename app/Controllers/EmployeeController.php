@@ -177,7 +177,7 @@ use App\Models\Student_model;
                     }
                 }
                 
-                
+
                 $data = [
                     'employee_unique_id' => $this->request->getPost('employee_unique_id'),
                     'sir_name' => $this->request->getPost('sir_name'),
@@ -221,6 +221,25 @@ use App\Models\Student_model;
                     return redirect()->to('admin/edit-employee/'.$id)->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
 
+            }
+        }
+
+        public function delete_employee($id){
+            $employee_model = new Employee_model();
+            $employee_details = $employee_model->get($id);
+            $old_profile_image = $employee_details['profile_photo'];
+            $old_resume_file = $employee_details['resume_file'];
+            if(file_exists("public/admin/uploads/employee/".$old_profile_image)){
+                unlink("public/admin/uploads/employee/".$old_profile_image);
+            }
+            if(file_exists("public/admin/uploads/employee/".$old_resume_file)){
+                unlink("public/admin/uploads/employee/".$old_resume_file);
+            }
+            $result = $employee_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/employee')->with('msg','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/employee')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
         }
 
