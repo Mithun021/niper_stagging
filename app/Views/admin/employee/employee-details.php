@@ -226,7 +226,7 @@ $designation_model = new Designation_model();
                         </div>
                         <hr>
                         <div class="row g-1">
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 g-0">
                                 <div class="card card-body p-2">
                                     <div class="emp-info">
                                         <div><p class="text-bold">Employee Type</p><p>:</p></div>
@@ -258,7 +258,7 @@ $designation_model = new Designation_model();
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 g-0">
                                 <div class="card card-body p-2">
                                     <div class="emp-info">
                                         <div><p class="text-bold">Google H-Index</p><p>:</p></div>
