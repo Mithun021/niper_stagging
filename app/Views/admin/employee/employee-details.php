@@ -64,7 +64,7 @@ $designation_model = new Designation_model();
         /* Ensures proper wrapping on small screens */
     }
 
-    /* Apply styles for medium (≥768px) and large screens */
+    /* Styles for medium (≥768px) and large screens */
     @media (min-width: 768px) {
         .emp-info p:first-child {
             font-weight: bold;
@@ -82,16 +82,27 @@ $designation_model = new Designation_model();
         }
     }
 
-    /* On small screens (mobile), stack the last <p> below the first two */
+    /* Mobile (≤767px) adjustments */
     @media (max-width: 767px) {
         .emp-info {
             flex-direction: column;
             /* Stack items vertically */
         }
 
-        .emp-info p {
+        .emp-info p:first-child,
+        .emp-info p:nth-child(2) {
+            display: inline;
+            /* Keep the first two inline */
+            font-weight: bold;
+        }
+
+        .emp-info p:last-child {
+            display: block;
+            /* Move the last item below */
             width: 100%;
-            /* Make all items full width */
+            /* Take full width */
+            margin-top: 5px;
+            /* Add spacing */
         }
     }
 </style>
