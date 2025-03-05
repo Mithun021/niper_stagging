@@ -41,6 +41,10 @@ $designation_model = new Designation_model();
         justify-content: space-between;
         padding: 10px;
         width: 100%;
+        margin-bottom: 0px;
+    }
+    .emp-info p{
+        margin: 0px;
     }
     .emp-info div:first-child{
         width: 40%;
@@ -184,7 +188,7 @@ $designation_model = new Designation_model();
                                     <div><p><?= $employee_details['joining_date'] ?></p></div>
                                 </div>
                                 <div class="emp-info">
-                                    <div><p class="text-bold">Joining Date</p><p>:</p></div>
+                                    <div><p class="text-bold m-0">Joining Date</p><p>:</p></div>
                                     <div><p><?= $employee_details['joining_date'] ?></p></div>
                                 </div>
                                 <div class="emp-info">
