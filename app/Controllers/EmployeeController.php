@@ -115,14 +115,14 @@ use App\Models\Student_model;
             $designation_model = new Designation_model();
             $employee_model = new Employee_model();
             $data = ['title' => 'Employee Details','employee_id' => $id];
-            $data['employee_detail'] = $employee_model->get($id);
+            $data['employee_details'] = $employee_model->get($id);
             
             if ($this->request->is("get")) {
                 $data['employee_nature'] = $employee_nature_model->get();
                 $data['departments'] = $department_model->get();
                 $data['designations'] = $designation_model->get();
                 $data['employee'] = $employee_model->get();
-                print_r($data['employee_detail']); die;
+                // print_r($data['employee_detail']); die;
                 return view('admin/employee/employee',$data);
             }else if ($this->request->is("post")) {
                 // echo "<pre>";print_r($this->request->getPost('department_id')); die;

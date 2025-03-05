@@ -28,7 +28,7 @@ $designation_model = new Designation_model();
                     <div class="form-group row">
                         <div class="col-sm-6">
                             <span for="EmpFirstName">Employee ID:</span>
-                            <input type="text" name="employee_unique_id" id="employee_unique_id" class="form-control form-control-sm" value="<?= $employee_detail['employee_unique_id'] ?>" required minlength="3">
+                            <input type="text" name="employee_unique_id" id="employee_unique_id" class="form-control form-control-sm" value="1-<?= $employee_details['employee_unique_id'] ?>" required minlength="3">
                         </div>
                         <div class="col-sm-6">
                             <span for="EmpFirstName">Joining Date:</span>
