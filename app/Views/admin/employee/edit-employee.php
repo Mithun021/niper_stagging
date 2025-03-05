@@ -21,6 +21,7 @@ $designation_model = new Designation_model();
                     echo session()->getFlashdata('msg');
                 }
                 ?>
+                <?php print_r($employee_detail); ?>
                 <!-- Form Start -->
                 <form action="<?= base_url() ?>admin/edit-employee/<?= $employee_id ?>" method="post" enctype="multipart/form-data">
                     <!-- Employee Name Fields -->
