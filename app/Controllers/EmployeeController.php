@@ -229,11 +229,16 @@ use App\Models\Student_model;
             $employee_details = $employee_model->get($id);
             $old_profile_image = $employee_details['profile_photo'];
             $old_resume_file = $employee_details['resume_file'];
-            if(file_exists("public/admin/uploads/employee/".$old_profile_image)){
-                unlink("public/admin/uploads/employee/".$old_profile_image);
+            $profile_image_path = "public/admin/uploads/employee/" . $old_profile_image;
+            $resume_file_path = "public/admin/uploads/employee/" . $old_resume_file;
+
+            // Check if the file exists and is actually a file (not a directory)
+            if (!empty($old_profile_image) && file_exists($profile_image_path) && is_file($profile_image_path)) {
+                unlink($profile_image_path);
             }
-            if(file_exists("public/admin/uploads/employee/".$old_resume_file)){
-                unlink("public/admin/uploads/employee/".$old_resume_file);
+
+            if (!empty($old_resume_file) && file_exists($resume_file_path) && is_file($resume_file_path)) {
+                unlink($resume_file_path);
             }
             $result = $employee_model->delete($id);
             if ($result === true) {
