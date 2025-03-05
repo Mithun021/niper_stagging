@@ -131,7 +131,7 @@
                 <div class="tab-content mt-3">
                     <div class="tab-pane show active" id="profile1">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4 border-left">
                                 <div class="text-center">
                                     <?php if (!empty($employee_details['profile_photo']) && file_exists('public/admin/uploads/employee/' . $employee_details['profile_photo'])): ?>
                                         <center><img src="<?= base_url() ?>public/admin/uploads/employee/<?= $employee_details['profile_photo'] ?>" alt="" class="d-flex align-self-center avatar-lg rounded mr-3 border p-1" height="110px"></center>
