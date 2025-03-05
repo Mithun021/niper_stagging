@@ -122,7 +122,7 @@
                 </div>
 
 
-                <div class="tab-content">
+                <div class="tab-content mt-3">
                     <div class="tab-pane show active" id="profile1">
                         <div class="row">
                             <div class="col-md-4">
