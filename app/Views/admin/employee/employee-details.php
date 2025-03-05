@@ -126,9 +126,12 @@
                     <div class="tab-pane show active" id="profile1">
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="text-center">
-                                    <img src="assets/images/users/user-1.jpg" class="rounded-circle avatar-lg img-thumbnail"
-                                        alt="profile-image">
+                                <div>
+                                    <?php if (!empty($employee_details['profile_photo']) && file_exists('public/admin/uploads/employee/' . $employee_details['profile_photo'])): ?>
+                                        <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $employee_details['profile_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/employee/<?= $employee_details['profile_photo'] ?>" alt="" height="110px"></a>
+                                    <?php else: ?>
+                                        <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="40px">
+                                    <?php endif; ?>
                                     <h4 class="mb-0">Mark A. McKnight</h4>
                                     <p class="text-muted">@Webdesigner</p>
                                     <button type="button" class="btn btn-primary btn-xs waves-effect waves-light">Follow</button>
