@@ -2,13 +2,9 @@
 <?= $this->section("body-content"); ?>
 
 <div class="row">
-    <div class="col-xl-6">
+    <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-
-                <h4 class="card-title">Tabs Justified</h4>
-                <p class="card-subtitle mb-4">Example of justified tabs.</p>
-
                 <ul class="nav nav-tabs nav-justified mb-3">
                     <li class="nav-item">
                         <a href="#home1" data-toggle="tab" aria-expanded="false" class="nav-link">
