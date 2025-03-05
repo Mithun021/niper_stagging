@@ -5,23 +5,22 @@
         overflow-x: auto;
         /* Enables horizontal scrolling */
         white-space: nowrap;
-        /* Prevents wrapping initially */
+        /* Prevents wrapping to multiple lines */
         -webkit-overflow-scrolling: touch;
         /* Smooth scrolling on mobile */
+        border-bottom: 1px solid #ddd;
+        /* Optional border */
     }
 
     .nav-tabs {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 5px;
-        /* Optional spacing between tabs */
+        flex-wrap: nowrap;
+        /* Prevents wrapping */
     }
 
     .nav-item {
-        flex-grow: 1;
-        /* Distributes tabs evenly */
-        text-align: center;
+        flex-shrink: 0;
+        /* Prevents items from shrinking */
     }
 
     /* Optional: Hide scrollbar in Webkit browsers */
@@ -48,13 +47,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#settings1" data-toggle="tab" aria-expanded="false" class="nav-link">
+                            <a href="#projects" data-toggle="tab" aria-expanded="false" class="nav-link">
                                 <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
                                 <span class="d-none d-lg-block">Projects</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#publication" data-toggle="tab" aria-expanded="false" class="nav-link">
+                            <a href="#publications" data-toggle="tab" aria-expanded="false" class="nav-link">
                                 <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
                                 <span class="d-none d-lg-block">Publications</span>
                             </a>
@@ -110,7 +109,7 @@
                         <li class="nav-item">
                             <a href="#courseTought" data-toggle="tab" aria-expanded="false" class="nav-link">
                                 <i class="mdi mdi-settings-outline d-lg-none d-block"></i>
-                                <span class="d-none d-lg-block">Course Tought</span>
+                                <span class="d-none d-lg-block">Course Taught</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -121,6 +120,7 @@
                         </li>
                     </ul>
                 </div>
+
 
                 <div class="tab-content">
                     <div class="tab-pane show active" id="profile1">
