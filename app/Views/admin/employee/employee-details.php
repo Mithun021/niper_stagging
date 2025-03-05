@@ -226,8 +226,10 @@ $designation_model = new Designation_model();
                             </div>
                             <div class="col-md-8">
                                 <div class="emp-info">
-                                    <p class="text-bold">Joining Date</p>
-                                    <p>:</p>
+                                    <div>
+                                        <p class="text-bold">Joining Date</p>
+                                        <p>:</p>
+                                    </div>
                                     <p><?= $employee_details['joining_date'] ?></p>
                                 </div>
                             </div>
