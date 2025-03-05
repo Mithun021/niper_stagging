@@ -99,8 +99,9 @@ $designation_model = new Designation_model();
                             <span for="Empdepartmentid">Department:</span>
                             <select name="department_id[]" id="department_id" class="form-control form-control-sm my-select" multiple required>
                                 <option value="">--Select--</option>
-                                <?php foreach ($departments as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                <?php $selected_departments = explode(',', $employee_details['department_id']); ?>
+                                <?php foreach ($departments as $key => $value) { $selected = in_array($value['id'], $selected_departments) ? 'selected' : ''; ?>
+                                    <option value="<?= $value['id'] ?>" <?= $selected ?>><?= $value['name'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
