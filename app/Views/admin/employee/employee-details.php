@@ -227,7 +227,7 @@ $designation_model = new Designation_model();
                         <hr>
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="card card-boy">
+                                <div class="card card-body">
                                     <div class="emp-info">
                                         <div><p class="text-bold">Email Address</p><p>:</p></div>
                                         <div><p><?= $employee_details['official_mail'] ?> / <?= $employee_details['personal_mail'] ?></p></div>
