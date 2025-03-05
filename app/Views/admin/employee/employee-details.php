@@ -206,6 +206,7 @@ $designation_model = new Designation_model();
                                         foreach ($department as $key => $dept_id) {
                                             $departments = $department_model->get($dept_id);
                                             echo (!empty($departments['name'])) ? $departments['name'] : '____';
+                                            echo ($key == count($department)-1) ? '' : ', ';
                                         }
                                     ?></p></div>
                                 </div>
