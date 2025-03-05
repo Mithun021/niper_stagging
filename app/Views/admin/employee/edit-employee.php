@@ -97,7 +97,7 @@ $designation_model = new Designation_model();
                         </div>
                         <div class="col-sm-6">
                             <span for="Empdepartmentid">Department:</span>
-                            <?php $selected_departments = explode(',', $employee_details['department_id']); print_r($selected_departments); ?>
+                            <?php //$selected_departments = explode(',', $employee_details['department_id']); print_r($selected_departments); ?>
                             <select name="department_id[]" id="department_id" class="form-control form-control-sm my-select" multiple required>
                                 <option value="">--Select--</option>
                                 <?php $selected_departments = explode(',', $employee_details['department_id']); ?>
