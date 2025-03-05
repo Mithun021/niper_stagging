@@ -36,15 +36,18 @@ $designation_model = new Designation_model();
         display: none;
     }
 
-    /* .emp-info{
+    .emp-info{
         display: flex;
         justify-content: space-between;
         padding: 10px;
         width: 100%;
     }
+    .emp-info div{
+        width: 40%;
+    }
     .emp-info p:first-child{
         font-weight: bold;
-        width: 20%;
+        width: 80%;
     }
     .emp-info p:nth-child(2){
         font-weight: bold;
@@ -53,71 +56,6 @@ $designation_model = new Designation_model();
     .emp-info p:last-child{
         font-weight: 400;
         width: 60%;
-    } */
-
-    .emp-info {
-        display: flex;
-        flex-wrap: wrap;
-        /* Allow wrapping for mobile */
-        align-items: center;
-        gap: 5px;
-        /* Space between elements */
-        padding: 10px;
-        width: 100%;
-    }
-
-    /* Desktop and Tablet View (≥768px) */
-    @media (min-width: 768px) {
-        .emp-info p {
-            margin: 0;
-        }
-
-        .emp-info p:first-child {
-            font-weight: bold;
-            width: 20%;
-        }
-
-        .emp-info p:nth-child(2) {
-            font-weight: bold;
-            width: 5%;
-        }
-
-        .emp-info p:last-child {
-            font-weight: 400;
-            width: 75%;
-        }
-    }
-
-    /* Mobile View (≤767px) */
-    @media (max-width: 767px) {
-        .emp-info {
-            flex-direction: column;
-            /* Stack elements */
-            align-items: flex-start;
-            /* Align text to left */
-        }
-
-        .emp-info p:first-child,
-        .emp-info p:nth-child(2) {
-            display: inline;
-            /* Keep "Joining Date :" in the same line */
-            font-weight: bold;
-        }
-
-        .emp-info p:nth-child(2) {
-            margin-right: 5px;
-            /* Add some space between ":" and date */
-        }
-
-        .emp-info p:last-child {
-            display: block;
-            /* Move date to the next line */
-            width: 100%;
-            margin-left: 10px;
-            /* Indent the date slightly */
-            margin-top: 3px;
-            /* Space between "Joining Date :" and date */
-        }
     }
 </style>
 <div class="row">
