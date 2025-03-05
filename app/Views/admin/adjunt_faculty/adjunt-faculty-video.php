@@ -56,16 +56,32 @@
                         <thead>
                             <tr>
                                 <td>SN</td>
+                                <td>Video</td>
                                 <td>Title</td>
                                 <td>Description</td>
-                                <td>Video</td>
                                 <td>Venue</td>
                                 <td>Date & Time</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                        
+                        <?php foreach ($adjunt_faculty_video as $key => $value) { ?>
+                            <tr>
+                                <td><?= ++$key ?></td>
+                                <td><a href="<?= $value['video_file'] ?>"><i class="fa fa-file-video-o" aria-hidden="true"></i></a></td>
+                                <td><?= $value['video_title'] ?></td>
+                                <td><?= $value['video_description'] ?></td>
+                                <td><?= $value['video_venue'] ?></td>
+                                <td><?= $value['video_datetime'] ?></td>
+                                <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                    <!-- <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a> -->
+                                    <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                    <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
