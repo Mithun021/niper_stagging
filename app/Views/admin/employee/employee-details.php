@@ -48,7 +48,7 @@ $designation_model = new Designation_model();
         justify-content: space-between;
     }
     .emp-info div:first-child p{
-        font-weight: 600;
+        font-weight: 500;
         color: #000;
     }
     .emp-info div:last-child{
