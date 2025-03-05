@@ -127,9 +127,8 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="text-center">
-                                    <img src="https://via.placeholder.com/150" alt="image" class="rounded-circle avatar-lg mb-3">
                                     <?php if (!empty($employee_details['profile_photo']) && file_exists('public/admin/uploads/employee/' . $employee_details['profile_photo'])): ?>
-                                        <img src="<?= base_url() ?>public/admin/uploads/employee/<?= $employee_details['profile_photo'] ?>" alt="" class="d-flex align-self-center avatar-lg rounded mr-3 border" height="80px">
+                                        <center><img src="<?= base_url() ?>public/admin/uploads/employee/<?= $employee_details['profile_photo'] ?>" alt="" class="d-flex align-self-center avatar-lg rounded mr-3 border" height="80px"></center>
                                     <?php else: ?>
                                         <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="40px">
                                     <?php endif; ?>
