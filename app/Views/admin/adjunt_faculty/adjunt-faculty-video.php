@@ -68,7 +68,7 @@
                         <?php foreach ($adjunt_faculty_video as $key => $value) { ?>
                             <tr>
                                 <td><?= ++$key ?></td>
-                                <td><a href="<?= $value['video_file'] ?>"><i class="fa fa-file-video-o" aria-hidden="true"></i></a></td>
+                                <td><a href="<?= $value['video_file'] ?>"><i class="fa fa-video-camera" aria-hidden="true"></i></a></td>
                                 <td><?= $value['video_title'] ?></td>
                                 <td><?= $value['video_description'] ?></td>
                                 <td><?= $value['video_venue'] ?></td>
