@@ -29,7 +29,7 @@
                         <!-- Employee ID -->
                         <div class="form-group">
                             <span for="Empid">Employee:</span>
-                            <select name="Empid" id="Empid" class="form-control form-control-sm my-select" multiple required >
+                            <select name="Empid[]" id="Empid" class="form-control form-control-sm my-select" multiple required >
                                 <option value="">Select Employee</option>
                             <?php foreach($employee as $value){ ?>
                                 <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
