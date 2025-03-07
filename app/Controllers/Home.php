@@ -10,6 +10,6 @@ class Home extends BaseController
     }
     public function about()
     {
-        echo "<h1>This is About Us page</h1>";
+        echo "<h1>This is About Us page new version</h1>";
     }
 }
