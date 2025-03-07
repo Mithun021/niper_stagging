@@ -320,7 +320,7 @@ class FacilityController extends BaseController
 
             $userPhoto = $this->request->getFile('upload_file');
             if ($userPhoto->isValid() && ! $userPhoto->hasMoved()) {
-                $userPhotoImageName = "section_file".$userPhoto->getRandomName();
+                $userPhotoImageName = "section_image".$userPhoto->getRandomName();
                 $userPhoto->move(ROOTPATH . 'public/admin/uploads/facilities', $userPhotoImageName);    
             }else{
                 $userPhotoImageName = "";
