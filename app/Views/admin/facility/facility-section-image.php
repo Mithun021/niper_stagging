@@ -2,7 +2,12 @@
 <?=  $this->section("body-content"); ?>
 <?php
     use App\Models\Employee_model;
+    use App\Models\Facility_page_model;
+    use App\Models\Facility_section_model;
+
     $employee_model = new Employee_model();
+    $facility_page_model = new Facility_page_model();
+    $facility_section_model = new Facility_section_model();
 ?>
 <style>
     
