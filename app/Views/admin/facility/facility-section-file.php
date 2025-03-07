@@ -96,6 +96,10 @@
                 url: '<?= base_url() ?>getFacilitySection',
                 type: 'post',
                 data: {facility_id: facility_id},
+                beforeSend: function() {
+                    $('#section_id').empty();
+                    $('#section_id').append('<option value="">Please wait...</option>');
+                },
                 success: function(response) {
                     $('#section_id').empty();
                     $('#section_id').append('<option value="">--Select--</option>');
