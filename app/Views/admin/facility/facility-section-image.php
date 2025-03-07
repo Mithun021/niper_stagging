@@ -21,39 +21,37 @@
                     }
                 ?>
                 <form method="post" action="<?= base_url() ?>admin/flash-news" enctype="multipart/form-data">
+                <div class="form-group">
+                        <span>Facility Id</span>
+                        <select name="facility_id" id="facility_id" class="form-control form-control-sm" required>
+                            <option value="1">--Select--</option>
+                        <?php foreach ($facility_page as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span>Secton Id</span>
+                        <select name="section_id" id="section_id" class="form-control form-control-sm" required>
+                            <option value="1">--Select--</option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="title">
                     </div>
                     <div class="form-group">
-                        <span for="">Upload Image(JPG,PNG)<span class="text-danger">*</span></span>
-                        <input type="file" class="form-control form-control-sm" name="flash_photo" accept=".jpg, .png, .jpeg" required>
-                    </div>
-                    <div class="form-group">
-                        <span for="">Upload File(PDF)</span>
-                        <input type="file" class="form-control form-control-sm" name="flash_file" accept=".pdf">
-                    </div>
-                    <div class="form-group">
                         <span for="">Description:</span>
-                        <textarea name="flashdesc" id="editor" class="form-control form-control-sm"></textarea>
+                        <textarea name="description" id="editor" class="form-control form-control-sm"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <span for="">Upload Image(JPG,PNG)<span class="text-danger">*</span></span>
+                        <input type="file" class="form-control form-control-sm" name="upload_file" accept=".jpg, .png, .jpeg" required>
                     </div>
 
                     <div class="form-group">
-                        <span>Publish Date<span class="text-danger">*</span></span>
-                        <input type="date" name="publish_date" class="form-control form-control-sm" required>
-                    </div>
-
-                    <div class="form-group">
-                        <span>Web Link<span class="text-danger">*</span></span>
-                        <input type="url" name="web_link" class="form-control form-control-sm" required>
-                    </div>
-
-                    <div class="form-group">
-                        <span>Status</span>
-                        <select name="status" class="form-control form-control-sm">
-                            <option value="1">Active</option>
-                            <option value="0">Draft</option>
-                        </select>
+                        <span><input type="checkbox" name="carousal" id="" value="1">Carousel Status </span> <br>
+                        <span><input type="checkbox" name="gallery" id="" value="1">Gallery View </span>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
@@ -91,5 +89,30 @@
         </div>
     </div>
 </div>
+
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#facility_id').change(function() {
+            var facility_id = $(this).val();
+            $.ajax({
+                url: '<?= base_url() ?>getFacilitySection',
+                type: 'post',
+                data: {facility_id: facility_id},
+                beforeSend: function() {
+                    $('#section_id').empty();
+                    $('#section_id').append('<option value="">Please wait...</option>');
+                },
+                success: function(response) {
+                    $('#section_id').empty();
+                    $('#section_id').append('<option value="">--Select--</option>');
+                    $.each(response, function(index, value) {
+                        $('#section_id').append('<option value="'+value.id+'">'+value.title+'</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>
 
 <?= $this->endSection() ?>
