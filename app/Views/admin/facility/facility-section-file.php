@@ -81,7 +81,7 @@ use App\Models\Facility_section_model;
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($variable as $key => $value) { ?>
+                    <?php foreach ($facility_section_file as $key => $value) { ?>
                         <tr>
                             <td><?= $key + 1 ?></td>
                             <td>
