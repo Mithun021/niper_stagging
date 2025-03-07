@@ -6,6 +6,7 @@ use App\Models\Facility_banner_model;
 use App\Models\Facility_instruments_model;
 use App\Models\Facility_notification_model;
 use App\Models\Facility_page_model;
+use App\Models\Facility_section_file_model;
 use App\Models\Facility_section_model;
 use App\Models\Facility_services_model;
 
@@ -261,10 +262,12 @@ class FacilityController extends BaseController
     }
 
     public function facility_section_file(){
+        $facility_section_file_model = new Facility_section_file_model();
         $facility_page_model = new Facility_page_model();
         $data = ['title' => 'Facility Section File'];
         if ($this->request->is("get")) {
             $data['facility_page'] = $facility_page_model->get();
+            $data['facility_section_file'] = $facility_section_file_model->get();
             return view('admin/facility/facility-section-file',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
@@ -272,6 +275,28 @@ class FacilityController extends BaseController
                 $loggeduserId = $sessionData['loggeduserId']; 
             }else{
                 return redirect()->to(base_url('admin/login'));
+            }
+            $userPhoto = $this->request->getFile('upload_file');
+            if ($userPhoto->isValid() && ! $userPhoto->hasMoved()) {
+                $userPhotoImageName = "section_file".$userPhoto->getRandomName();
+                $userPhoto->move(ROOTPATH . 'public/admin/uploads/facilities', $userPhotoImageName);    
+            }else{
+                $userPhotoImageName = "";
+            }
+
+            $data =[
+                'facility_id' => $this->request->getVar('facility_id'),
+                'section_id' => $this->request->getVar('section_id'),
+                'title' => $this->request->getVar('title'),
+                'description' => $this->request->getVar('description'),
+                'upload_file' => $userPhotoImageName,
+                'upload_by' => $loggeduserId,
+            ];
+            $result = $facility_section_file_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/facility-section-file')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/facility-section-file')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
         }
     }
