@@ -261,8 +261,10 @@ class FacilityController extends BaseController
     }
 
     public function facility_section_file(){
+        $facility_page_model = new Facility_page_model();
         $data = ['title' => 'Facility Section File'];
         if ($this->request->is("get")) {
+            $data['facility_page'] = $facility_page_model->get();
             return view('admin/facility/facility-section-file',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
@@ -275,8 +277,10 @@ class FacilityController extends BaseController
     }
 
     public function facility_section_image(){
+        $facility_page_model = new Facility_page_model();
         $data = ['title' => 'Facility Section Image'];
         if ($this->request->is("get")) {
+            $data['facility_page'] = $facility_page_model->get();
             return view('admin/facility/facility-section-image',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');

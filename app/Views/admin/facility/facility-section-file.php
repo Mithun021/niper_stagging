@@ -2,7 +2,9 @@
 <?=  $this->section("body-content"); ?>
 <?php
     use App\Models\Employee_model;
+    use App\Models\Facility_page_model;
     $employee_model = new Employee_model();
+    $facility_page_model = new Facility_page_model();
 ?>
 <style>
     
@@ -20,7 +22,22 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/flash-news" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/facility-section-file" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <span>Facility Id</span>
+                        <select name="facility_id" class="form-control form-control-sm" required>
+                            <option value="1">--Select--</option>
+                        <?php foreach ($facility_page as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span>Secton Id</span>
+                        <select name="section_id" class="form-control form-control-sm" required>
+                            <option value="1">--Select--</option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="title">
@@ -30,30 +47,8 @@
                         <input type="file" class="form-control form-control-sm" name="flash_photo" accept=".jpg, .png, .jpeg" required>
                     </div>
                     <div class="form-group">
-                        <span for="">Upload File(PDF)</span>
-                        <input type="file" class="form-control form-control-sm" name="flash_file" accept=".pdf">
-                    </div>
-                    <div class="form-group">
                         <span for="">Description:</span>
                         <textarea name="flashdesc" id="editor" class="form-control form-control-sm"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <span>Publish Date<span class="text-danger">*</span></span>
-                        <input type="date" name="publish_date" class="form-control form-control-sm" required>
-                    </div>
-
-                    <div class="form-group">
-                        <span>Web Link<span class="text-danger">*</span></span>
-                        <input type="url" name="web_link" class="form-control form-control-sm" required>
-                    </div>
-
-                    <div class="form-group">
-                        <span>Status</span>
-                        <select name="status" class="form-control form-control-sm">
-                            <option value="1">Active</option>
-                            <option value="0">Draft</option>
-                        </select>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
