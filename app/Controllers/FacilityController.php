@@ -332,8 +332,8 @@ class FacilityController extends BaseController
                 'title' => $this->request->getVar('title'),
                 'description' => $this->request->getVar('description'),
                 'upload_file' => $userPhotoImageName,
-                'description' => $this->request->getVar('description') ?? 0,
-                'description' => $this->request->getVar('description') ?? 0,
+                'gallery' => $this->request->getVar('gallery') ?? '',
+                'carousal' => $this->request->getVar('carousal') ?? '',
                 'upload_by' => $loggeduserId,
             ];
             $result = $facility_section_image_model->add($data);
