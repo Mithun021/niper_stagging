@@ -20,7 +20,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/flash-news" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/facility-section-image" enctype="multipart/form-data">
                 <div class="form-group">
                         <span>Facility Id</span>
                         <select name="facility_id" id="facility_id" class="form-control form-control-sm" required>
