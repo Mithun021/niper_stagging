@@ -3,8 +3,11 @@
 <?php
     use App\Models\Employee_model;
     use App\Models\Facility_page_model;
+use App\Models\Facility_section_model;
+
     $employee_model = new Employee_model();
     $facility_page_model = new Facility_page_model();
+    $facility_section_model = new Facility_section_model();
 ?>
 <style>
     
@@ -68,9 +71,9 @@
                     <thead>
                         <tr>
                             <td>SN</td>
+                            <td>Files</td>
                             <td>Facility Id</td>
                             <td>Section Id</td>
-                            <td>Files</td>
                             <td>Title</td>
                             <td>Description</td>
                             <td>Uploaded By</td>
@@ -78,7 +81,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    <?php foreach ($variable as $key => $value) { ?>
+                        <tr>
+                            <td><?= $key + 1 ?></td>
+                            <td>
+                                <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/facilities/' . $value['upload_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/facilities/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/facilities/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/facilities/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
+                            </td>
+                            <td><?= $facility_page_model->get($value['facility_id'])['name'] ?? '' ?></td>
+                            <td><?= $facility_section_model->get($value['section_id'])['title'] ?? '' ?></td>
+                            <td><?= $value['title'] ?></td>
+                            <td><?= $value['description'] ?></td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
+                            <td>
+                                <a href="<?= base_url() ?>admin/edit-facility-section-file/<?= $value['id'] ?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
+                                <a href="<?= base_url() ?>admin/delete-facility-section-file/<?= $value['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure...!')"><i class="far fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 </div>
