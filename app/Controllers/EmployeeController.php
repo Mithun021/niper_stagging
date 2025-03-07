@@ -368,7 +368,7 @@ use App\Models\Student_model;
                 $author_name = $this->request->getPost('author_name');
 
                 $data = [
-                    'emplyee_id' => $this->request->getPost('Empid'),
+                    'emplyee_id' => implode(",",$this->request->getPost('Empid')),
                     'title' => $this->request->getPost('Pubtitle'),
                     'description' => $this->request->getPost('description'),
                     'keywords' => $this->request->getPost('Pubkeyword'),
