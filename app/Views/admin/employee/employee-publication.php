@@ -29,7 +29,7 @@
                         <!-- Employee ID -->
                         <div class="form-group">
                             <span for="Empid">Employee:</span>
-                            <select name="Empid" id="Empid" class="form-control form-control-sm" required >
+                            <select name="Empid" id="Empid" class="form-control form-control-sm my-select" multiple required >
                                 <option value="">Select Employee</option>
                             <?php foreach($employee as $value){ ?>
                                 <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
@@ -165,8 +165,12 @@
                             <span for="Pubstatus">Publication Status:</span>
                             <select name="Pubstatus" id="Pubstatus" class="form-control form-control-sm" required>
                                 <option value="">Select Status</option>
-                                <option value="0">In Proceeding</option>
-                                <option value="1">Published</option>
+                                <!-- <option value="0">In Proceeding</option>
+                                <option value="1">Published</option> -->
+                                <option value="Values">Values</option>
+                                <option value="Accepted">Accepted</option>
+                                <option value="Web-Link">Web-Link</option>
+                                <option value="In-Press">In-Press</option>
                             </select>
                         </div>
                     </div>
@@ -215,12 +219,12 @@
                                 <td><?php $emp = $employee_model->get($value['emplyee_id']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td><?= $value['title'] ?></td>
                                 <td>
-                                <?php
-                                    if ($value['status'] == 0) {
-                                        echo "<span class='badge badge-warning badge-pill'>In Proceeding</span>";
-                                    } elseif ($value['status'] == 1) {
-                                        echo "<span class='badge badge-success badge-pill'>Published</span>";
-                                    }
+                                <?php echo $value['status'];
+                                    // if ($value['status'] == 0) {
+                                    //     echo "<span class='badge badge-warning badge-pill'>In Proceeding</span>";
+                                    // } elseif ($value['status'] == 1) {
+                                    //     echo "<span class='badge badge-success badge-pill'>Published</span>";
+                                    // }
                                 ?>
                                 </td>
                                 <td><?= $value['doi_details'] ?></td>
