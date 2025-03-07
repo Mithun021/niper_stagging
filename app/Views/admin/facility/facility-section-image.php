@@ -82,7 +82,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($facility_section_file as $key => $value) { ?>
+                    <?php foreach ($facility_section_image as $key => $value) { ?>
                         <tr>
                             <td><?= $key + 1 ?></td>
                             <td>
