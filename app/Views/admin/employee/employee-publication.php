@@ -216,7 +216,15 @@
                                 <td>
                                     <a href="<?= base_url() ?>public/admin/uploads/publication/<?= $value['publication_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" height="30px"></a>
                                 </td>
-                                <td><?php $emp = $employee_model->get($value['emplyee_id']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                                <td>
+                                    <?php 
+                                        $employee = explode(',',$value['emplyee_id']); 
+                                        foreach ($employee as $key => $ids) {
+                                            $emp = $employee_model->get($ids); if($emp){ echo '<i class="fa fa-angle-right"></i> '.$emp['first_name']." ".$emp['middle_name']." ".$emp['last_name'];  }
+                                        }
+                                    ?>
+
+                                </td>
                                 <td><?= $value['title'] ?></td>
                                 <td>
                                 <?php echo $value['status'];
