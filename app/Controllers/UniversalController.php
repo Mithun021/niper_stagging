@@ -8,6 +8,7 @@ use App\Models\Designation_model;
 use App\Models\Employee_model;
 use App\Models\Event_fee_category_model;
 use App\Models\Event_fee_subcategory_model;
+use App\Models\Facility_section_model;
 use App\Models\Menu_heading_model;
 use App\Models\Menu_name_model;
 use App\Models\Program_department_mapping_model;
@@ -52,6 +53,13 @@ use App\Models\Student_model;
             $assign_course_model = new Assign_course_model();
             $course = $assign_course_model->getCourseByDepartment($department_id);
             return $this->response->setJSON($course);
+        }
+
+        public function getFacilitySection(){
+            $facility_section_model = new Facility_section_model();
+            $facility_id = $this->request->getPost('facility_id');
+            $sections = $facility_section_model->getFacilitySection($facility_id);
+            return $this->response->setJSON($sections);
         }
 
     }

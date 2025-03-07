@@ -26,5 +26,10 @@
             }
             return $result;
         }
+
+        public function getFacilitySection($id){
+            $result = $this->where('facility_id',$id)->findAll();
+            return $result;
+        }
     }
 ?>
