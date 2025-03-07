@@ -104,8 +104,8 @@
                             <td><?= ($value['carousal'] == "0") ? "<span class='badge badge-danger badge-pill'>No</span>" : (($value['carousal'] == "1") ? "<span class='badge badge-success badge-pill'>Yes</span>" : "") ?> / <?= ($value['gallery'] == "0") ? "<span class='badge badge-danger badge-pill'>No</span>" : (($value['gallery'] == "1") ? "<span class='badge badge-success badge-pill'>Yes</span>" : "") ?></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
                             <td>
-                                <a href="<?= base_url() ?>admin/edit-facility-section-file/<?= $value['id'] ?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
-                                <a href="<?= base_url() ?>admin/delete-facility-section-file/<?= $value['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure...!')"><i class="far fa-trash-alt"></i></a>
+                                <a href="<?= base_url() ?>admin/edit-facility-section-image/<?= $value['id'] ?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
+                                <a href="<?= base_url() ?>admin/delete-facility-section-image/<?= $value['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure...!')"><i class="far fa-trash-alt"></i></a>
                             </td>
                         </tr>
                     <?php } ?>
