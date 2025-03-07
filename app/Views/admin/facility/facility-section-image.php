@@ -72,16 +72,38 @@
                         <tr>
                             <td>SN</td>
                             <td>Files</td>
+                            <td>Facility Id</td>
+                            <td>Section Id</td>
                             <td>Title</td>
                             <td>Description</td>
-                            <td>Publish Date</td>
-                            <td>Status</td>
+                            <td>Carousel Status/Gallery View</td>
                             <td>Uploaded By</td>
                             <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    <?php foreach ($facility_section_file as $key => $value) { ?>
+                        <tr>
+                            <td><?= $key + 1 ?></td>
+                            <td>
+                                <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/facilities/' . $value['upload_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/facilities/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/facilities/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/facilities/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
+                            </td>
+                            <td><?= $facility_page_model->get($value['facility_id'])['name'] ?? '' ?></td>
+                            <td><?= $facility_section_model->get($value['section_id'])['title'] ?? '' ?></td>
+                            <td><?= $value['title'] ?></td>
+                            <td><?= $value['description'] ?></td>
+                            <td><?= ($value['carousal'] == "0") ? "<span class='badge badge-danger badge-pill'>No</span>" : (($value['carousal'] == "1") ? "<span class='badge badge-success badge-pill'>Yes</span>" : "") ?> / <?= ($value['gallery'] == "0") ? "<span class='badge badge-danger badge-pill'>No</span>" : (($value['gallery'] == "1") ? "<span class='badge badge-success badge-pill'>Yes</span>" : "") ?></td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
+                            <td>
+                                <a href="<?= base_url() ?>admin/edit-facility-section-file/<?= $value['id'] ?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
+                                <a href="<?= base_url() ?>admin/delete-facility-section-file/<?= $value['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure...!')"><i class="far fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 </div>
