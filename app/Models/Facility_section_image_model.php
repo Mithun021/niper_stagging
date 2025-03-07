@@ -3,7 +3,7 @@
     use CodeIgniter\Model;
     class Facility_section_image_model extends Model
     {
-        protected $table         = 'facility_section_file';
+        protected $table         = 'facility_section_image';
         protected $primaryKey    = 'id';
         protected $allowedFields = ['facility_id','section_id','title','description','upload_file','gallery','carousal','upload_by'];
         protected $createdField  = 'created_at';
