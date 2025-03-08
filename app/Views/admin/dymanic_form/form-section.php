@@ -77,6 +77,7 @@ use App\Models\Form_details_model;
                             <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; } ?></td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                <a href="<?= base_url() ?>admin/manage-questions/<?= $value['id'] ?>" class="btn btn-dark waves-effect waves-light">Manage Questions</a>
                                     <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
                                     <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
                                 </div>
