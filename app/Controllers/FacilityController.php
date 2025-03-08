@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Department_model;
 use App\Models\Facility_banner_model;
 use App\Models\Facility_instruments_model;
 use App\Models\Facility_notification_model;
@@ -14,9 +15,11 @@ use App\Models\Facility_services_model;
 class FacilityController extends BaseController
 {
     public function facility_page(){
+        $department_model = new Department_model();
         $facility_page_model = new Facility_page_model();
         $data = ['title' => 'Facility Page'];
         if ($this->request->is("get")) {
+            $data['departments'] = $department_model->get();
             $data['facility_page'] = $facility_page_model->get();
             return view('admin/facility/facility-page',$data);
         }else if ($this->request->is("post")) {
