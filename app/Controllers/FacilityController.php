@@ -47,10 +47,12 @@ class FacilityController extends BaseController
     }
 
     public function edit_facility_page($id){
+        $department_model = new Department_model();
         $facility_page_model = new Facility_page_model();
         $data = ['title' => 'Facility Page','facilty_page_id' => $id];
         $data['facility_page_detail'] = $facility_page_model->get($id);
         if ($this->request->is("get")) {
+            $data['departments'] = $department_model->get();
             $data['facility_page'] = $facility_page_model->get();
             return view('admin/facility/edit-facility-page',$data);
         }else if ($this->request->is("post")) {
