@@ -13,7 +13,7 @@ use App\Models\Form_details_model;
 </style>
 <!-- start page title --> 
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-3">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Add <?= $title ?> </h4>
@@ -49,12 +49,12 @@ use App\Models\Form_details_model;
             </div>
         </div>
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-9">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> List</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body p-2">
                 <div class="table-responsive">
                 <table class="table table-striped table-hover" id="basic-datatable">
                     <thead>
