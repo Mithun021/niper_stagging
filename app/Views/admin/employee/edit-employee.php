@@ -215,19 +215,19 @@ $designation_model = new Designation_model();
                         </div>
                         <div class="col-sm-6 form-group mt-1">
                             <span for="Scopushindex">Research Gate Id:</span>
-                            <input type="text" name="research_gate_id" id="research_gate_id" value="<?= $value['research_gate_id'] ?? '' ?>" class="form-control form-control-sm">
+                            <input type="text" name="research_gate_id" id="research_gate_id" value="<?= $employee_details['research_gate_id'] ?>" class="form-control form-control-sm">
                         </div>
                         <div class="col-sm-6 form-group mt-1">
                             <span for="Scopushindex">Orcid Id:</span>
-                            <input type="text" name="orcid_id" id="orcid_id" value="<?= $value['orcid_id'] ?? '' ?>" class="form-control form-control-sm">
+                            <input type="text" name="orcid_id" id="orcid_id" value="<?= $employee_details['orcid_id'] ?>" class="form-control form-control-sm">
                         </div>
                         <div class="col-sm-6 form-group mt-1">
                             <span for="Scopushindex">Google Scholar Id:</span>
-                            <input type="text" name="google_scholar_id" id="google_scholar_id" value="<?= $value['google_scholar_id'] ?? '' ?>" class="form-control form-control-sm">
+                            <input type="text" name="google_scholar_id" id="google_scholar_id" value="<?= $employee_details['google_scholar_id'] ?>" class="form-control form-control-sm">
                         </div>
                         <div class="col-sm-6 form-group mt-1">
                             <span for="Scopushindex">Vidwan:</span>
-                            <input type="text" name="vidwan" id="vidwan" class="form-control form-control-sm" value="<?= $value['vidwan'] ?? '' ?>">
+                            <input type="text" name="vidwan" id="vidwan" class="form-control form-control-sm" value="<?= $employee_details['vidwan'] ?>">
                         </div>
                         <div class="col-sm-4 form-group mt-1">
                             <div class="form-group">
