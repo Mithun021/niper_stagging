@@ -21,7 +21,7 @@
                         echo session()->getFlashdata('msg');
                     }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/designation">
+                <form method="post" action="<?= base_url() ?>admin/form-section">
                     <div class="form-group">
                         <span>Form Detail Id</span>
                         <select name="form_detail_id" id="form_detail_id" class="form-control form-control-sm">
