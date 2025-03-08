@@ -4,6 +4,7 @@
 use App\Models\Department_model;
 use App\Models\Department_photos_file_model;
 use App\Models\Department_photos_model;
+use App\Models\Department_research_area_model;
 use App\Models\Employee_model;
 use App\Models\Program_model;
 
@@ -114,6 +115,7 @@ use App\Models\Program_model;
 
 
         public function department_research_area(){
+            $department_research_area_model = new Department_research_area_model();
             $department_model =  new Department_model();
             $data = ['title' => 'Dept. Research Area'];
             if ($this->request->is("get")) {
@@ -146,7 +148,7 @@ use App\Models\Program_model;
                     'upload_image' => $flash_fileNewName,
                     'upload_by' => $loggeduserId,
                 ];
-                $save = $department_model->add($data);
+                $save = $department_research_area_model->add($data);
                 
                 if ($save) {
                     return redirect()->to('admin/department-research-area/')->with('msg','<div class="alert alert-success" role="alert"> Add Successful </div>');
