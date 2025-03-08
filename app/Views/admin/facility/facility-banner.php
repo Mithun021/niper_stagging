@@ -27,7 +27,7 @@
                 <form method="post" action="<?= base_url() ?>admin/facility-banner" enctype="multipart/form-data">
                     <div class="form-group">
                         <span>Facility Id</span>
-                        <select name="facility_id" class="form-control form-control-sm" required>
+                        <select name="facility_id" id="facility_id" class="form-control form-control-sm" required>
                             <option value="1">--Select--</option>
                         <?php foreach ($facility_page as $key => $value) { ?>
                             <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
