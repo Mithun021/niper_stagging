@@ -17,7 +17,7 @@ class DynamicformControllers extends BaseController
     }
 
     public function form_section(){
-        $data = ['title' => 'Departments'];
+        $data = ['title' => 'Form Section'];
         if ($this->request->is("get")) {
             return view('admin/dymanic_form/form-section',$data);
         }else if ($this->request->is("post")) {
