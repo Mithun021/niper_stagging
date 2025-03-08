@@ -32,21 +32,22 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <span for="">Department Name<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="dept_name" required minlength="5">
+                        <span for="">Research area title<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="title" required minlength="5">
                     </div>
                     <div class="form-group">
-                        <span for="">Desription</span>
+                        <span for="">Research area short desc</span>
                         <textarea id="editor" name="description"></textarea>
                     </div>
                     <div class="form-group">
-                        <span for="">Status</span>
-                        <select name="status" class="form-control form-control-sm">
-                            <option value="0">Teaching</option>
-                            <option value="1">Active</option>
-                        </select>
+                        <span for="">Research area file upload (pdf)</span>
+                        <input type="file" class="form-control form-control-sm" name="upload_file">
                     </div>
-
+                    <div class="form-group">
+                        <span for="">Research area image upload (jpegjpgpng)</span>
+                        <input type="file" class="form-control form-control-sm" name="upload_image">
+                    </div>
+                    
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
                     
                 </form>
