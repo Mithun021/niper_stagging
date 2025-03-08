@@ -215,7 +215,7 @@ $designation_model = new Designation_model();
                         </div>
                         <div class="col-sm-6 form-group mt-1">
                             <span for="Scopushindex">Research Gate Id:</span>
-                            <input type="text" name="research_gate_id" id="research_gate_id" value="<?= $value['research_gate_id'] ?>" class="form-control form-control-sm">
+                            <input type="text" name="research_gate_id" id="research_gate_id" value="<?= $value['research_gate_id'] ?? '' ?>" class="form-control form-control-sm">
                         </div>
                         <div class="col-sm-6 form-group mt-1">
                             <span for="Scopushindex">Orcid Id:</span>
