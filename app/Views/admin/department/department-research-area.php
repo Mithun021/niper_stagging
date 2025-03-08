@@ -21,7 +21,7 @@
                         echo session()->getFlashdata('msg');
                     }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/departments-section" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/department-research-area" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Department Id</span>
                         <select name="department_id" class="form-control form-control-sm">
