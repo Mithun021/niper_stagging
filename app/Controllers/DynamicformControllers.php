@@ -43,8 +43,10 @@ class DynamicformControllers extends BaseController
     }
 
     public function form_section(){
+        $form_details_model = new Form_details_model();
         $data = ['title' => 'Form Section'];
         if ($this->request->is("get")) {
+            $data['form_details'] = $form_details_model->get();
             return view('admin/dymanic_form/form-section',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');

@@ -23,27 +23,21 @@
                 ?>
                 <form method="post" action="<?= base_url() ?>admin/designation">
                     <div class="form-group">
-                        <span for="">Designation Name<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="designation_title" required minlength="3">
+                        <span>Form Detail Id</span>
+                        <select name="form_detail_id" id="form_detail_id" class="form-control form-control-sm">
+                            <option value="1">--Select--</option>
+                        <?php foreach ($form_details as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                        <?php } ?>
+                        </select>
                     </div>
-                    <!-- <div class="form-group">
+                    <div class="form-group">
+                        <span for="">Section Name<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="section_name" required minlength="3">
+                    </div>
+                    <div class="form-group">
                         <span for="">Desription</span>
                         <textarea id="editor" name="description"></textarea>
-                    </div> -->
-                    <div class="form-group">
-                        <span for="">Designation Holds</span>
-                        <select name="designation_hold" class="form-control form-control-sm">
-                            <option value="Teaching">Teaching</option>
-                            <option value="Non-teaching">Non-teaching</option>
-                            <option value="Administrative">Administrative</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <span>Status</span>
-                        <select name="status" id="status" class="form-control form-control-sm">
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
-                        </select>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
@@ -63,11 +57,10 @@
                     <thead>
                         <tr>
                             <td>SN</td>
-                            <td>Title</td>
-                            <td>Desig. Hold</td>
-                            <td>Status</td>
+                            <td>FOrm Detail id</td>
+                            <td>Name</td>
+                            <td>Description</td>
                             <td>Upload by</td>
-                            <td>Create at</td>
                             <td>Action</td>
                         </tr>
                     </thead>
