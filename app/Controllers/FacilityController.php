@@ -64,6 +64,7 @@ class FacilityController extends BaseController
             $data =[
                 'name' => $this->request->getVar('name'),
                 'description' => $this->request->getVar('description'),
+                'department_id' => $this->request->getVar('department_id'),
                 'status' => $this->request->getVar('status'),
                 'upload_by' => $loggeduserId
             ];
