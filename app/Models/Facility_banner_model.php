@@ -5,7 +5,7 @@
     {
         protected $table         = 'facility_banner';
         protected $primaryKey    = 'id';
-        protected $allowedFields = ['facility_id','upload_file','upload_by'];
+        protected $allowedFields = ['facility_id','section_id','upload_file','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
