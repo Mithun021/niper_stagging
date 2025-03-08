@@ -3,8 +3,10 @@
 <?php
     use App\Models\Employee_model;
     use App\Models\Facility_page_model;
+    use App\Models\Facility_section_model;
     $employee_model = new Employee_model();
     $facility_page_model = new Facility_page_model();
+    $facility_section_model = new Facility_section_model();
 ?>
 <style>
     
@@ -25,11 +27,18 @@
                 <form method="post" action="<?= base_url() ?>admin/facility-instruments" enctype="multipart/form-data">
                     <div class="form-group">
                         <span>Facility Id</span>
-                        <select name="facility_id" class="form-control form-control-sm" required>
+                        <select name="facility_id" id="facility_id" class="form-control form-control-sm" required>
                             <option value="1">--Select--</option>
                         <?php foreach ($facility_page as $key => $value) { ?>
                             <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
                         <?php } ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <span>Secton Id</span>
+                        <select name="section_id" id="section_id" class="form-control form-control-sm" required>
+                            <option value="">--Select--</option>
                         </select>
                     </div>
 
@@ -67,6 +76,7 @@
                             <td>SN</td>
                             <td>Files</td>
                             <td>Facility Id</td>
+                            <td>Section Id</td>
                             <td>Title</td>
                             <td>Description</td>
                             <td>Uploaded By</td>
@@ -85,6 +95,7 @@
                                 <?php endif; ?>
                             </td>
                             <td><?= $facility_page_model->get($value['facility_id'])['name'] ?? '' ?></td>
+                            <td><?= $facility_section_model->get($value['section_id'])['title'] ?? '' ?></td>
                             <td><?= $value['title'] ?></td>
                             <td><?= $value['description'] ?></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
@@ -101,5 +112,30 @@
         </div>
     </div>
 </div>
+
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#facility_id').change(function() {
+            var facility_id = $(this).val();
+            $.ajax({
+                url: '<?= base_url() ?>getFacilitySection',
+                type: 'post',
+                data: {facility_id: facility_id},
+                beforeSend: function() {
+                    $('#section_id').empty();
+                    $('#section_id').append('<option value="">Please wait...</option>');
+                },
+                success: function(response) {
+                    $('#section_id').empty();
+                    $('#section_id').append('<option value="">--Select--</option>');
+                    $.each(response, function(index, value) {
+                        $('#section_id').append('<option value="'+value.id+'">'+value.title+'</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>
 
 <?= $this->endSection() ?>
