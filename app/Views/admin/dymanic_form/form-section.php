@@ -57,7 +57,7 @@
                     <thead>
                         <tr>
                             <td>SN</td>
-                            <td>FOrm Detail id</td>
+                            <td>Form Detail id</td>
                             <td>Name</td>
                             <td>Description</td>
                             <td>Upload by</td>
