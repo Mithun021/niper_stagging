@@ -37,7 +37,7 @@
                         <select name="department_id" class="form-control form-control-sm" required>
                             <option value="">--Select--</option>
                         <?php foreach ($departments as $key => $value) { ?>
-                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                            <option value="<?= $value['id'] ?>" <?php if($value['id'] == $facility_page_detail['department_id']){ echo "selected"; } ?>><?= $value['name'] ?></option>
                         <?php } ?>
                         </select>
                     </div>
