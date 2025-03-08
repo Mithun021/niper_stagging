@@ -153,11 +153,22 @@ class FacilityController extends BaseController
             }else{
                 return redirect()->to(base_url('admin/login'));
             }
+            $upload_file = $this->request->getFile('upload_file');
+            if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
+                $upload_fileImageName = "noti_file".$upload_file->getRandomName();
+                $upload_file->move(ROOTPATH . 'public/admin/uploads/facilities', $upload_fileImageName);    
+            }else{
+                $upload_fileImageName = "";
+            }
             $data = [
                 'facility_id' => $this->request->getVar('facility_id'),
+                'section_id' => $this->request->getVar('section_id'),
                 'title' => $this->request->getVar('title'),
                 'description' => $this->request->getVar('description'),
                 'puslish_date' => $this->request->getVar('publish_date'),
+                'web_link' => $this->request->getVar('web_link'),
+                'marquee_status' => $this->request->getVar('marquee_status'),
+                'upload_file' => $upload_fileImageName,
                 'upload_by' => $loggeduserId,
             ];
             $result = $facility_notification_model->add($data);

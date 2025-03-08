@@ -5,7 +5,7 @@
     {
         protected $table         = 'facility_notification';
         protected $primaryKey    = 'id';
-        protected $allowedFields = ['facility_id','title','description','puslish_date','upload_by'];
+        protected $allowedFields = ['facility_id','section_id','title','description','puslish_date','web_link','upload_file','marquee_status','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
