@@ -31,6 +31,15 @@
                         <textarea id="editor" name="description"></textarea>
                     </div>
                     <div class="form-group">
+                        <span for="">HOD</span>
+                        <select name="employee_id" class="form-control form-control-sm">
+                            <option value="">--Select--</option>
+                        <?php foreach ($employee as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name']; ?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <span for="">Status</span>
                         <select name="status" class="form-control form-control-sm">
                             <option value="0">Teaching</option>

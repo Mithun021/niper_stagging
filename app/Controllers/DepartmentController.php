@@ -4,16 +4,19 @@
 use App\Models\Department_model;
 use App\Models\Department_photos_file_model;
 use App\Models\Department_photos_model;
+use App\Models\Employee_model;
 use App\Models\Program_model;
 
     class DepartmentController extends BaseController{
         public function departments_section(){
             $program_model = new Program_model();
             $department_model = new Department_model();
+            $employee_model = new Employee_model();
             $data = ['title' => 'Departments'];
             if ($this->request->is("get")) {
                 $data['program'] = $program_model->get();
                 $data['department'] = $department_model->get();
+                $data['employee'] = $employee_model->get();
                 return view('admin/department/departments-section',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
