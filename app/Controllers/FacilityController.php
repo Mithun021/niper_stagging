@@ -193,6 +193,7 @@ class FacilityController extends BaseController
             
                         $data = [
                             'facility_id' => $this->request->getPost('facility_id'),
+                            'section_id' => $this->request->getPost('section_id'),
                             'upload_file' => $newName,
                             'upload_by' => $loggeduserId,
                         ];
