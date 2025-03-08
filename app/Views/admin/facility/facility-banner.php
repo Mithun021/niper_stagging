@@ -3,8 +3,10 @@
 <?php
     use App\Models\Employee_model;
     use App\Models\Facility_page_model;
+    use App\Models\Facility_section_model;
     $employee_model = new Employee_model();
     $facility_page_model = new Facility_page_model();
+    $facility_section_model = new Facility_section_model();
 ?>
 <style>
     
@@ -33,6 +35,12 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <span>Secton Id</span>
+                        <select name="section_id" id="section_id" class="form-control form-control-sm" required>
+                            <option value="">--Select--</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <span for="">Upload Image(multiple)(JPG,PNG)<span class="text-danger">*</span></span>
                         <input type="file" class="form-control form-control-sm" name="gallery_file[]" accept=".jpg, .png, .jpeg" multiple required>
                     </div>
@@ -56,6 +64,7 @@
                             <td>SN</td>
                             <td>Files</td>
                             <td>Faculty Id</td>
+                            <td>Section Id</td>
                             <td>Uploaded By</td>
                             <td>Action</td>
                         </tr>
@@ -72,6 +81,7 @@
                                 <?php endif; ?>
                             </td>
                             <td><?= $facility_page_model->get($value['facility_id'])['name'] ?? '' ?></td>
+                            <td><?= $facility_section_model->get($value['section_id'])['title'] ?? '' ?></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
                             <td>
                                 <a href="<?= base_url() ?>admin/edit-facility-banner/<?= $value['id'] ?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
@@ -86,5 +96,30 @@
         </div>
     </div>
 </div>
+
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#facility_id').change(function() {
+            var facility_id = $(this).val();
+            $.ajax({
+                url: '<?= base_url() ?>getFacilitySection',
+                type: 'post',
+                data: {facility_id: facility_id},
+                beforeSend: function() {
+                    $('#section_id').empty();
+                    $('#section_id').append('<option value="">Please wait...</option>');
+                },
+                success: function(response) {
+                    $('#section_id').empty();
+                    $('#section_id').append('<option value="">--Select--</option>');
+                    $.each(response, function(index, value) {
+                        $('#section_id').append('<option value="'+value.id+'">'+value.title+'</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>
 
 <?= $this->endSection() ?>
