@@ -120,7 +120,7 @@ use App\Models\Student_model;
             $employee_model = new Employee_model();
             $data = ['title' => 'Employee Details','employee_id' => $id];
             $data['employee_details'] = $employee_model->get($id);
-            echo "<pre>";print_r($data['employee_details']); die;
+            // echo "<pre>";print_r($data['employee_details']); die;
             if ($this->request->is("get")) {
                 $data['employee_nature'] = $employee_nature_model->get();
                 $data['departments'] = $department_model->get();
