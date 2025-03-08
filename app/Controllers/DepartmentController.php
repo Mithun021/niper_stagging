@@ -25,6 +25,7 @@ use App\Models\Program_model;
                 }
                 $data = [
                     'name' => $this->request->getPost('dept_name'),
+                    'employee_id' => $this->request->getPost('employee_id'),
                     'description' => $this->request->getPost('description'),
                     'status' => $this->request->getPost('status'),
                     'upload_by' => $loggeduserId,

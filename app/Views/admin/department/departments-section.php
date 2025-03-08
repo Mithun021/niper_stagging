@@ -65,6 +65,7 @@
                         <tr>
                             <td>SN</td>
                             <td>Dept Name</td>
+                            <td>HOD</td>
                             <td>Status</td>
                             <td>Upload by</td>
                             <td>Created at</td>
@@ -82,7 +83,7 @@
                             <td><?= $value['created_at'] ?></td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                                    <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                    <!-- <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a> -->
                                     <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
                                     <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
                                 </div>
