@@ -145,8 +145,8 @@ use App\Models\Program_model;
                     'department_id' => $this->request->getPost('department_id'),
                     'title' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),
-                    'upload_file' => $flash_photoNewName,
-                    'upload_image' => $flash_fileNewName,
+                    'upload_file' => $flash_fileNewName,
+                    'upload_image' => $flash_photoNewName,
                     'upload_by' => $loggeduserId,
                 ];
                 $save = $department_research_area_model->add($data);
