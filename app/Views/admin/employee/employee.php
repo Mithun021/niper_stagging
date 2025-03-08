@@ -189,15 +189,31 @@ $designation_model = new Designation_model();
                         </div>
                         <div class="col-sm-4 form-group mt-1">
                             <span for="Googlehindex">Google H-Index:</span>
-                            <input type="number" name="google_h_index" id="google_h_index" class="form-control form-control-sm">
+                            <input type="text" name="google_h_index" id="google_h_index" class="form-control form-control-sm">
                         </div>
                         <div class="col-sm-4 form-group mt-1">
                             <span for="I10index">i10-Index:</span>
-                            <input type="number" name="i10_index" id="i10_index" class="form-control form-control-sm">
+                            <input type="text" name="i10_index" id="i10_index" class="form-control form-control-sm">
                         </div>
                         <div class="col-sm-4 form-group mt-1">
                             <span for="Scopushindex">Scopus H-Index:</span>
-                            <input type="number" name="scopus_h_index" id="scopus_h_index" class="form-control form-control-sm">
+                            <input type="text" name="scopus_h_index" id="scopus_h_index" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-sm-6 form-group mt-1">
+                            <span for="Scopushindex">Research Gate Id:</span>
+                            <input type="text" name="research_gate_id" id="research_gate_id" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-sm-6 form-group mt-1">
+                            <span for="Scopushindex">Orcid Id:</span>
+                            <input type="text" name="orcid_id" id="orcid_id" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-sm-6 form-group mt-1">
+                            <span for="Scopushindex">Google Scholar Id:</span>
+                            <input type="text" name="google_scholar_id" id="google_scholar_id" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-sm-6 form-group mt-1">
+                            <span for="Scopushindex">Vidwan:</span>
+                            <input type="text" name="vidwan" id="vidwan" class="form-control form-control-sm">
                         </div>
                         <div class="col-sm-4 form-group mt-1">
                             <div class="form-group">
