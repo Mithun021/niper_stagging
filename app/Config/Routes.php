@@ -141,6 +141,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'youtube-link', 'AdminControllers::youtube_link');
     $routes->match(['get','post'],'rules-regulations', 'AcademicControllers::rules_regulations');
     $routes->match(['get','post'],'departments-section', 'DepartmentController::departments_section');
+    $routes->match(['get','post'],'department-research-area', 'DepartmentController::department_research_area');
     $routes->match(['get','post'],'departments-photos', 'DepartmentController::departments_photos');
     $routes->match(['get','post'],'designation', 'DesignationController::designation');
     $routes->match(['get','post'],'program', 'ProgramController::program');

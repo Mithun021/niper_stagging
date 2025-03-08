@@ -112,5 +112,19 @@ use App\Models\Program_model;
             );
         }
 
+
+        public function department_research_area(){
+            $department_model =  new Department_model();
+            $data = ['title' => 'Dept. Research Area'];
+            if ($this->request->is("get")) {
+                $data['department'] = $department_model->activeData();
+                return view('admin/department/department-research-area', $data);
+            } else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                $loggeduserId = $sessionData['loggeduserId'] ?? null;
+                
+            }
+        }
+
     }
 ?>
