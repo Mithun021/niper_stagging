@@ -208,6 +208,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get', 'post'], 'instrument-rates', 'AdminControllers::instrument_rates');
     $routes->match(['get', 'post'], 'private-research-labs', 'AdminControllers::private_research_labs');
 
+    $routes->match(['get','post'],'form-details', 'DynamicformControllers::form_details');
+    $routes->match(['get','post'],'form-section', 'DynamicformControllers::form_section');
+
     $routes->match(['get', 'post'], 'modules', 'AdminControllers::modules');
     $routes->match(['get', 'post'], 'roles-permissions', 'AdminControllers::roles_permissions');
     $routes->match(['get', 'post'], 'permission/(:num)', 'AdminControllers::permission/$1');

@@ -214,6 +214,16 @@
                 <li><a href="<?= base_url() ?>admin/testimonial" class="waves-effect"><span>Testimonial</span></a></li>
             </ul>
         </li>
+
+        <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect"><i
+                    class="mdi mdi-table-merge-cells"></i><span>Dynamic Form</span></a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="<?= base_url() ?>admin/form-details" class="waves-effect"><span>Form Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/form-section" class="waves-effect"><span>Form Section</span></a></li>
+                <li><a href="<?= base_url() ?>admin/form-report" class="waves-effect"><span>View Report</span></a></li>
+            </ul>
+        </li>
         
         <li>
             <a href="javascript: void(0);" class="has-arrow waves-effect"><i
