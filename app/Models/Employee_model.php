@@ -5,7 +5,7 @@
     {
         protected $table         = 'employees';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['employee_unique_id','sir_name','first_name','middle_name','last_name','bloods_group','gender','material_status','designation_id','department_id','mobile_no','landline_no','official_mail','personal_mail','post_charge','employee_type','profile_photo','resume_file','employee_nature','twitter','facebook','linkedin','research','google_h_index','i10_index','scopus_h_index','password','status','authority','joining_date','employee_status','relieving_date','upload_by'];
+        protected $allowedFields = ['employee_unique_id','sir_name','first_name','middle_name','last_name','bloods_group','gender','material_status','designation_id','department_id','mobile_no','landline_no','official_mail','personal_mail','post_charge','employee_type','profile_photo','resume_file','employee_nature','twitter','facebook','linkedin','research','google_h_index','i10_index','scopus_h_index','password','status','authority','joining_date','employee_status','relieving_date','research_gate_id','orcid_id','google_scholar_id','vidwan','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
