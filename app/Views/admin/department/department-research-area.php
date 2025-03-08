@@ -65,11 +65,11 @@
                     <thead>
                         <tr>
                             <td>SN</td>
+                            <td>Files</td>
                             <td>Dept Name</td>
-                            <td>HOD</td>
-                            <td>Status</td>
+                            <td>Title</td>
+                            <td>Desc</td>
                             <td>Upload by</td>
-                            <td>Created at</td>
                             <td>Action</td>
                         </tr>
                     </thead>

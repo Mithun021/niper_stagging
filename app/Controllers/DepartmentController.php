@@ -122,7 +122,39 @@ use App\Models\Program_model;
             } else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
                 $loggeduserId = $sessionData['loggeduserId'] ?? null;
+                $flash_photo = $this->request->getFile('upload_image');
+                $flash_file = $this->request->getFile('upload_file');
+                if ($flash_photo->isValid() && ! $flash_photo->hasMoved()) {
+                    $flash_photoNewName = 'photo_' .$flash_photo->getRandomName();
+                    $flash_photo->move(ROOTPATH . 'public/admin/uploads/department', $flash_photoNewName);    
+                }else{
+                 $flash_photoNewName = "";
+                }
+
+                if ($flash_file->isValid() && ! $flash_file->hasMoved()) {
+                    $flash_fileNewName = 'file_' .$flash_file->getRandomName();
+                    $flash_file->move(ROOTPATH . 'public/admin/uploads/department', $flash_fileNewName);    
+                }else{
+                 $flash_fileNewName = "";
+                }
+
+                $data = [
+                    'department_id' => $this->request->getPost('department_id'),
+                    'title' => $this->request->getPost('title'),
+                    'description' => $this->request->getPost('description'),
+                    'upload_file' => $flash_photoNewName,
+                    'upload_image' => $flash_fileNewName,
+                    'upload_by' => $loggeduserId,
+                ];
+                $save = $department_model->add($data);
                 
+                if ($save) {
+                    return redirect()->to('admin/department-research-area/')->with('msg','<div class="alert alert-success" role="alert"> Add Successful </div>');
+                }
+                else{
+                    return redirect()->to('admin/department-research-area/')->with('msg','<div class="alert alert-danger" role="alert"> Failed to add </div>');
+                }
+
             }
         }
 
