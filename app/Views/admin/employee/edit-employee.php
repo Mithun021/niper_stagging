@@ -37,11 +37,11 @@ $designation_model = new Designation_model();
                             <span for="EmpFirstName">First Name:</span>
                             <div class="input-group">
                                 <select name="sir_name" id="sir_name" class="form-control form-control-sm">
-                                    <option value="Mr." <?php if($employee_details['sir_name'] == "Mr."){ echo "seleced"; } ?>>Mr.</option>
-                                    <option value="Mrs." <?php if($employee_details['sir_name'] == "Mrs."){ echo "seleced"; } ?>>Mrs.</option>
-                                    <option value="Miss." <?php if($employee_details['sir_name'] == "Miss."){ echo "seleced"; } ?>>Miss.</option>
-                                    <option value="Sir" <?php if($employee_details['sir_name'] == "Sir"){ echo "seleced"; } ?>>Sir</option>
-                                    <option value="Dr." <?php if($employee_details['sir_name'] == "Dr."){ echo "seleced"; } ?>>Dr.</option>
+                                    <option value="Mr." <?php if($employee_details['sir_name'] == "Mr."){ echo "selected"; } ?>>Mr.</option>
+                                    <option value="Mrs." <?php if($employee_details['sir_name'] == "Mrs."){ echo "selected"; } ?>>Mrs.</option>
+                                    <option value="Miss." <?php if($employee_details['sir_name'] == "Miss."){ echo "selected"; } ?>>Miss.</option>
+                                    <option value="Sir" <?php if($employee_details['sir_name'] == "Sir"){ echo "selected"; } ?>>Sir</option>
+                                    <option value="Dr." <?php if($employee_details['sir_name'] == "Dr."){ echo "selected"; } ?>>Dr.</option>
                                 </select>
                                 <input type="text" name="first_name" id="first_name" class="form-control form-control-sm" value="<?= $employee_details['first_name'] ?>" required minlength="3">
                             </div>
@@ -57,29 +57,29 @@ $designation_model = new Designation_model();
                         <div class="col-sm-4">
                             <span for="EmpLastName">Blood Group:</span>
                             <select name="blood_group" id="blood_group" class="form-control form-control-sm" required>
-                                <option value="A+" <?php if($employee_details['bloods_group'] == "A+"){ echo "seleced"; } ?>>A+</option>
-                                <option value="A-" <?php if($employee_details['bloods_group'] == "A-"){ echo "seleced"; } ?>>A-</option>
-                                <option value="B+" <?php if($employee_details['bloods_group'] == "B+"){ echo "seleced"; } ?>>B+</option>
-                                <option value="B-" <?php if($employee_details['bloods_group'] == "B-"){ echo "seleced"; } ?>>B-</option>
-                                <option value="AB+" <?php if($employee_details['bloods_group'] == "AB+"){ echo "seleced"; } ?>>AB+</option>
-                                <option value="AB-" <?php if($employee_details['bloods_group'] == "AB-"){ echo "seleced"; } ?>>AB-</option>
-                                <option value="O+" <?php if($employee_details['bloods_group'] == "O+"){ echo "seleced"; } ?>>O+</option>
-                                <option value="O-" <?php if($employee_details['bloods_group'] == "O-"){ echo "seleced"; } ?>>O-</option>
+                                <option value="A+" <?php if($employee_details['bloods_group'] == "A+"){ echo "selected"; } ?>>A+</option>
+                                <option value="A-" <?php if($employee_details['bloods_group'] == "A-"){ echo "selected"; } ?>>A-</option>
+                                <option value="B+" <?php if($employee_details['bloods_group'] == "B+"){ echo "selected"; } ?>>B+</option>
+                                <option value="B-" <?php if($employee_details['bloods_group'] == "B-"){ echo "selected"; } ?>>B-</option>
+                                <option value="AB+" <?php if($employee_details['bloods_group'] == "AB+"){ echo "selected"; } ?>>AB+</option>
+                                <option value="AB-" <?php if($employee_details['bloods_group'] == "AB-"){ echo "selected"; } ?>>AB-</option>
+                                <option value="O+" <?php if($employee_details['bloods_group'] == "O+"){ echo "selected"; } ?>>O+</option>
+                                <option value="O-" <?php if($employee_details['bloods_group'] == "O-"){ echo "selected"; } ?>>O-</option>
                             </select>
                         </div>
                         <div class="col-sm-4">
                             <span for="EmpLastName">Gender:</span>
                             <select name="gender" id="gender" class="form-control form-control-sm" required>
-                                <option value="Male" <?php if($employee_details['gender'] == "Male"){ echo "seleced"; } ?>>Male</option>
-                                <option value="Female" <?php if($employee_details['gender'] == "Female"){ echo "seleced"; } ?>>Female</option>
-                                <option value="Any Other" <?php if($employee_details['gender'] == "Any Other"){ echo "seleced"; } ?>>Any Other</option>
+                                <option value="Male" <?php if($employee_details['gender'] == "Male"){ echo "selected"; } ?>>Male</option>
+                                <option value="Female" <?php if($employee_details['gender'] == "Female"){ echo "selected"; } ?>>Female</option>
+                                <option value="Any Other" <?php if($employee_details['gender'] == "Any Other"){ echo "selected"; } ?>>Any Other</option>
                             </select>
                         </div>
                         <div class="col-sm-4">
                             <span for="EmpLastName">Material Status:</span>
                             <select name="material_status" id="material_status" class="form-control form-control-sm" required>
-                                <option value="No" <?php if($employee_details['material_status'] == "No"){ echo "seleced"; } ?>>No</option>
-                                <option value="Yes" <?php if($employee_details['material_status'] == "Yes"){ echo "seleced"; } ?>>Yes</option>
+                                <option value="No" <?php if($employee_details['material_status'] == "No"){ echo "selected"; } ?>>No</option>
+                                <option value="Yes" <?php if($employee_details['material_status'] == "Yes"){ echo "selected"; } ?>>Yes</option>
                             </select>
                         </div>
                     </div>
