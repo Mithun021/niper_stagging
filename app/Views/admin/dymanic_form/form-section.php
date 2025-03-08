@@ -3,7 +3,10 @@
 <?=  $this->section("body-content"); ?>
 <?php
     use App\Models\Employee_model;
+use App\Models\Form_details_model;
+
     $employee_model = new Employee_model();
+    $form_details_model = new Form_details_model();
 ?>
 <style>
     
@@ -17,8 +20,8 @@
             </div>
             <div class="card-body">
                 <?php
-                    if(session()->getFlashdata('msg')){
-                        echo session()->getFlashdata('msg');
+                    if(session()->getFlashdata('status')){
+                        echo session()->getFlashdata('status');
                     }
                 ?>
                 <form method="post" action="<?= base_url() ?>admin/form-section">
@@ -65,7 +68,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    <?php foreach ($form_section as $key => $value) { ?>
+                        <tr>
+                            <td><?= ++$key ?></td>
+                            <td><?= $form_details_model->get($value['form_detail_id'])['name'] ?? '' ?></td>
+                            <td><?= $value['name'] ?></td>
+                            <td><?= $value['description'] ?></td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; } ?></td>
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                    <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                    <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 </div>
