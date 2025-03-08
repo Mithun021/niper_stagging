@@ -77,7 +77,7 @@ $department_model = new Department_model();
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($variable as $key => $value) { ?>
+                    <?php foreach ($department_research_area as $key => $value) { ?>
                         <tr>
                             <td><?= $key + 1 ?></td>
                             <td>
