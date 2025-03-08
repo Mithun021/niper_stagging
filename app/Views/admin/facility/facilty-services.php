@@ -80,6 +80,7 @@
                             <td>SN</td>
                             <td>Files</td>
                             <td>Facility Id</td>
+                            <td>Section Id</td>
                             <td>Title</td>
                             <td>Description</td>
                             <td>Uploaded By</td>
@@ -91,14 +92,21 @@
                         <tr>
                             <td><?= ++$key ?></td>
                             <td>
+                                <?php if (!empty($value['upload_photo']) && file_exists('public/admin/uploads/facilities/' . $value['upload_photo'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/facilities/<?= $value['upload_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/facilities/<?= $value['upload_photo'] ?>" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/facilities/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
+
                                 <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/facilities/' . $value['upload_file'])): ?>
-                                    <a href="<?= base_url() ?>public/admin/uploads/facilities/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/facilities/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
+                                    <a href="<?= base_url() ?>public/admin/uploads/facilities/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
                                 <?php else: ?>
                                     <img src="<?= base_url() ?>public/admin/uploads/facilities/invalid_image.png" alt="" height="40px">
                                 <?php endif; ?>
                             </td>
                             <td><?= $facility_page_model->get($value['facility_id'])['name'] ?? '' ?></td>
-                            <td><?= $value['title'] ?></td>
+                            <td><?= $facility_section_model->get($value['section_id'])['title'] ?? '' ?></td>
+                            <td><a href="<?= $value['web_link'] ?>" target="_blank" rel="noopener noreferrer"><?= $value['title'] ?></a></td>
                             <td><?= $value['description'] ?></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
                             <td>

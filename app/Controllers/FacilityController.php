@@ -112,11 +112,22 @@ class FacilityController extends BaseController
                 $userPhotoImageName = "";
             }
 
+            $upload_file = $this->request->getFile('upload_file');
+            if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
+                $upload_fileImageName = "file".$upload_file->getRandomName();
+                $upload_file->move(ROOTPATH . 'public/admin/uploads/facilities', $upload_fileImageName);    
+            }else{
+                $upload_fileImageName = "";
+            }
+
             $data =[
                 'facility_id' => $this->request->getVar('facility_id'),
+                'section_id' => $this->request->getVar('section_id'),
                 'title' => $this->request->getVar('title'),
                 'description' => $this->request->getVar('description'),
-                'upload_file' => $userPhotoImageName,
+                'web_link' => $this->request->getVar('web_link'),
+                'upload_photo' => $userPhotoImageName,
+                'upload_file' => $upload_fileImageName,
                 'upload_by' => $loggeduserId,
             ];
             $result = $facility_services_model->add($data);
