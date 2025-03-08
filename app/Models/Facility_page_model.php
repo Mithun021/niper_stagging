@@ -5,7 +5,7 @@
     {
         protected $table         = 'facility_page';
         protected $primaryKey    = 'id';
-        protected $allowedFields = ['name','description','status','upload_by'];
+        protected $allowedFields = ['name','description','status','department_id','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

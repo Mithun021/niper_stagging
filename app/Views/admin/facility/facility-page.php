@@ -1,8 +1,10 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?=  $this->section("body-content"); ?>
 <?php
-    use App\Models\Employee_model;
-    $employee_model = new Employee_model();
+use App\Models\Department_model;
+use App\Models\Employee_model;
+$employee_model = new Employee_model();
+$department_model = new Department_model();
 ?>
 <style>
     
@@ -67,6 +69,7 @@
                             <td>Name</td>
                             <td>Description</td>
                             <td>Status</td>
+                            <td>Department</td>
                             <td>Uploaded By</td>
                             <td>Action</td>
                         </tr>
@@ -78,6 +81,7 @@
                             <td><?= $value['name'] ?></td>
                             <td><?= $value['description'] ?></td>
                             <td><?= $value['status'] == 1 ? 'Active' : 'Draft' ?></td>
+                            <td><?= $department_model->get($value['department_id'])['name'] ?? '' ?></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
                             <td>
                                 <a href="<?= base_url() ?>admin/edit-facility-page/<?= $value['id'] ?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
