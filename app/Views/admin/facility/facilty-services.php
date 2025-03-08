@@ -37,7 +37,7 @@
                     <div class="form-group">
                         <span>Secton Id</span>
                         <select name="section_id" id="section_id" class="form-control form-control-sm" required>
-                            <option value="1">--Select--</option>
+                            <option value="">--Select--</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -49,8 +49,16 @@
                         <textarea name="description" id="editor" class="form-control form-control-sm"></textarea>
                     </div>
                     <div class="form-group">
-                        <span for="">Upload Image(JPG,PNG)<span class="text-danger">*</span></span>
-                        <input type="file" class="form-control form-control-sm" name="upload_photo" accept=".jpg, .png, .jpeg" required>
+                        <span for="">Web Link</span>
+                        <input type="url" class="form-control form-control-sm" name="web_link">
+                    </div>
+                    <div class="form-group">
+                        <span for="">Upload Image(JPG,PNG)</span>
+                        <input type="file" class="form-control form-control-sm" name="upload_photo" accept=".jpg, .png, .jpeg">
+                    </div>
+                    <div class="form-group">
+                        <span for="">Upload File(JPDF)</span>
+                        <input type="file" class="form-control form-control-sm" name="upload_file" accept=".pdf">
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
