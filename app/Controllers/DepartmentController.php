@@ -120,6 +120,7 @@ use App\Models\Program_model;
             $data = ['title' => 'Dept. Research Area'];
             if ($this->request->is("get")) {
                 $data['department'] = $department_model->activeData();
+                $data['department_research_area'] = $department_model->get();
                 return view('admin/department/department-research-area', $data);
             } else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
