@@ -213,6 +213,22 @@ $designation_model = new Designation_model();
                             <span for="Scopushindex">Scopus H-Index:</span>
                             <input type="number" name="scopus_h_index" id="scopus_h_index" class="form-control form-control-sm" value="<?= $employee_details['scopus_h_index'] ?>">
                         </div>
+                        <div class="col-sm-6 form-group mt-1">
+                            <span for="Scopushindex">Research Gate Id:</span>
+                            <input type="text" name="research_gate_id" id="research_gate_id" value="<?= $value['research_gate_id'] ?>" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-sm-6 form-group mt-1">
+                            <span for="Scopushindex">Orcid Id:</span>
+                            <input type="text" name="orcid_id" id="orcid_id" value="<?= $value['orcid_id'] ?>" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-sm-6 form-group mt-1">
+                            <span for="Scopushindex">Google Scholar Id:</span>
+                            <input type="text" name="google_scholar_id" id="google_scholar_id" value="<?= $value['google_scholar_id'] ?>" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-sm-6 form-group mt-1">
+                            <span for="Scopushindex">Vidwan:</span>
+                            <input type="text" name="vidwan" id="vidwan" class="form-control form-control-sm" value="<?= $value['vidwan'] ?>">
+                        </div>
                         <div class="col-sm-4 form-group mt-1">
                             <div class="form-group">
                                 <span>Employee Status</span>
