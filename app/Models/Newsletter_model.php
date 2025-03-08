@@ -5,7 +5,7 @@
     {
         protected $table         = 'newsletter';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['title','description','upload_file','start_month','start_year','end_month','end_year','upload_by'];
+        protected $allowedFields = ['title','description','upload_image','upload_file','start_month','start_year','end_month','end_year','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

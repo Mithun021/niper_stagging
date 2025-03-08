@@ -1301,6 +1301,13 @@ use App\Models\Youtube_link_model;
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
+              	$upload_image = $this->request->getFile('upload_image');
+                if ($upload_image->isValid() && ! $upload_image->hasMoved()) {
+                    $upload_image_new_name = "img".rand(0,9999) . $upload_image->getRandomName();
+                    $upload_image->move(ROOTPATH . 'public/admin/uploads/newsletter', $upload_image_new_name);
+                } else {
+                    $upload_image_new_name = "";
+                }
                 $upload_file = $this->request->getFile('upload_file');
                 if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
                     $upload_file_new_name = rand(0,9999) . $upload_file->getRandomName();
@@ -1315,6 +1322,7 @@ use App\Models\Youtube_link_model;
                     'start_year' => $this->request->getPost('start_year'),
                     'end_month' => $this->request->getPost('end_month'),
                     'end_year' => $this->request->getPost('end_year'),
+                  	'upload_image' => $upload_image_new_name,
                     'upload_file' => $upload_file_new_name,
                     'upload_by' => $loggeduserId,
                 ];

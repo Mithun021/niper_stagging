@@ -24,13 +24,17 @@ $employee_model = new Employee_model();
                 ?>
                 <form method="post" action="<?= base_url() ?>admin/newsletter" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="form-group col-lg-6">
+                        <div class="form-group col-lg-4">
                             <span for="">Title<span class="text-danger">*</span></span>
                             <input type="text" class="form-control form-control-sm" name="title">
                         </div>
-                        <div class="form-group col-lg-6">
+                        <div class="form-group col-lg-4">
                             <span for="">Upload Image(JPG,PNG)<span class="text-danger">*</span></span>
-                            <input type="file" class="form-control form-control-sm" name="upload_file" accept=".jpg, .png, .jpeg" required>
+                            <input type="file" class="form-control form-control-sm" name="upload_image" accept=".jpg, .png, .jpeg" required>
+                        </div>
+                      	<div class="form-group col-lg-4">
+                            <span for="">Upload File(PDF)<span class="text-danger">*</span></span>
+                            <input type="file" class="form-control form-control-sm" name="upload_file" accept=".pdf" required>
                         </div>
                         <div class="form-group col-lg-12">
                             <span for="">Description:</span>
@@ -130,8 +134,14 @@ $employee_model = new Employee_model();
                                 <tr>
                                     <td><?= ++$key ?></td>
                                     <td>
-                                        <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/newsletter/' . $value['upload_file'])): ?>
-                                            <a href="<?= base_url() ?>public/admin/uploads/newsletter/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/newsletter/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
+                                        <?php if (!empty($value['upload_image']) && file_exists('public/admin/uploads/newsletter/' . $value['upload_image'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/newsletter/<?= $value['upload_image'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/newsletter/<?= $value['upload_image'] ?>" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/newsletter/invalid_image.png" alt="" height="40px">
+                                        <?php endif; ?>
+                                      
+                                      	<?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/newsletter/' . $value['upload_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/newsletter/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
                                         <?php else: ?>
                                             <img src="<?= base_url() ?>public/admin/uploads/newsletter/invalid_image.png" alt="" height="40px">
                                         <?php endif; ?>
