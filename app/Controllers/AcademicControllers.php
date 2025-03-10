@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Academic_model;
+use App\Models\Admission_brochure_model;
 use App\Models\Announcement_model;
 use App\Models\Classified_mou_value_model;
 use App\Models\Collaboration_gallery_model;
@@ -332,6 +333,7 @@ class AcademicControllers extends BaseController
 
     public function admission_brochure()
     {
+        $admission_brochure_model = new Admission_brochure_model();
         $data = ['title' => 'Admission Brochure'];
         if ($this->request->is("get")) {
             return view('admin/academics/admission-brochure', $data);
@@ -340,19 +342,27 @@ class AcademicControllers extends BaseController
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId'];
             }
-            $institutelogo = $this->request->getFile('institutelogo');
-            if ($institutelogo->isValid() && ! $institutelogo->hasMoved()) {
-                $institutelogoNewName = "calendar" . $institutelogo->getRandomName();
-                $institutelogo->move(ROOTPATH . 'public/admin/uploads/collaboration', $institutelogoNewName);
+            $upload_file = $this->request->getFile('upload_file');
+            if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
+                $upload_fileNewName = "brochure" . $upload_file->getRandomName();
+                $upload_file->move(ROOTPATH . 'public/admin/uploads/brochure', $upload_fileNewName);
             } else {
-                $institutelogoNewName = "";
+                $upload_fileNewName = "";
             }
-            $Collabfile = $this->request->getFile('Collabfile');
-            if ($Collabfile->isValid() && ! $Collabfile->hasMoved()) {
-                $CollabfileNewName = "file" . $Collabfile->getRandomName();
-                $Collabfile->move(ROOTPATH . 'public/admin/uploads/collaboration', $CollabfileNewName);
+
+            $data = [
+                'title' => $this->request->getPost('title'),
+                'upload_file' => $upload_fileNewName,
+                'description' => $this->request->getPost('description'),
+                'start_batch' => $this->request->getPost('start_year'),
+                'end_batch' => $this->request->getPost('end_year'),
+                'upload_by' => $loggeduserId,
+            ];
+            $result = $admission_brochure_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/admission-brochure')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
-                $CollabfileNewName = "";
+                return redirect()->to('admin/admission-brochure')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
 
         }
