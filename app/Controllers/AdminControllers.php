@@ -35,6 +35,7 @@ use App\Models\Permission_model;
 use App\Models\Photo_album_file_model;
 use App\Models\Photo_album_model;
 use App\Models\Placement_details_model;
+use App\Models\Policy_model;
 use App\Models\Private_research_lab_model;
 use App\Models\Quick_link_model;
 use App\Models\Recruiter_details_model;
@@ -1406,21 +1407,37 @@ use App\Models\Youtube_link_model;
         }
 
         public function policy_details(){
+            $policy_model = new Policy_model();
             $data = ['title' => 'Policy Details'];
             if ($this->request->is("get")) {
+                $data['policy'] = $policy_model->get();
                 return view('admin/policy-details',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
-                $flash_photo = $this->request->getFile('flash_photo');
-                $flash_file = $this->request->getFile('flash_file');
-                if ($flash_photo->isValid() && ! $flash_photo->hasMoved()) {
-                    $flash_photoNewName = 'photo_' .$flash_photo->getRandomName();
-                    $flash_photo->move(ROOTPATH . 'public/admin/uploads/policy', $flash_photoNewName);    
+                $upload_file = $this->request->getFile('upload_file');
+                if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
+                    $upload_fileNewName = 'photo_' .$upload_file->getRandomName();
+                    $upload_file->move(ROOTPATH . 'public/admin/uploads/policy', $upload_fileNewName);    
                 }else{
-                 $flash_photoNewName = "";
+                 $upload_fileNewName = "";
+                }
+
+                $data = [
+                    'title' => $this->request->getPost('title'),
+                    'type' => $this->request->getPost('policy_type'),
+                    'upload_file' => $upload_fileNewName,
+                    'description' => $this->request->getPost('description'),
+                    'web_link' => $this->request->getPost('web_url'),
+                    'upload_by' => $loggeduserId,
+                ];
+                $result = $policy_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/policy-details')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/policy-details')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
         }

@@ -30,7 +30,7 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="form-group col-lg-6">
                             <span for="">Policy Type<span class="text-danger">*</span></span>
-                            <select class="form-control form-control-sm" name="upload_image" required>
+                            <select class="form-control form-control-sm" name="policy_type" required>
                                 <option value="">--Select--</option>
                                 <option value="privacy-policy">Privacy Policy</option>
                                 <option value="terms-conditions"> Terms & Conditions</option>
@@ -70,16 +70,34 @@ $employee_model = new Employee_model();
                             <tr>
                                 <td>SN</td>
                                 <td>Files</td>
+                                <td>Type</td>
                                 <td>Title</td>
-                                <td>Description</td>
-                                <td>Start Month & Year</td>
-                                <td>End Month & Year</td>
                                 <td>Uploaded By</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            
+                        <?php foreach ($policy as $key => $value) { ?>
+                            <tr>
+                                <td><?= ++$key ?></td>
+                                <td>
+                                <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/policy/' . $value['upload_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/policy/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/policy/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
+                                </td>
+                                <td><a href="<?= $value['web_link'] ?>" target="_blank"><?= $value['title'] ?></a></td>
+                                <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <!-- <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a> -->
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?> 
                         </tbody>
                     </table>
                 </div>
