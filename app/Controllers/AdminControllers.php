@@ -381,7 +381,18 @@ use App\Models\Youtube_link_model;
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
+                $thumbnail = $this->request->getFile('thumbnail');
+                if ($thumbnail->isValid() && ! $thumbnail->hasMoved()) {
+                    $thumbnailNewName = 'bg_' .$thumbnail->getRandomName();
+                    $thumbnail->move(ROOTPATH . 'public/admin/uploads/youtube', $thumbnailNewName);    
+                }else{
+                 $thumbnailNewName = "";
+                }
                 $data = [
+                    'title' => $this->request->getPost('title'),
+                    'description' => $this->request->getPost('description'),
+                    'thumbnail' => $thumbnailNewName,
+                    'featured' => $this->request->getPost('featured') ?? 0,
                     'link_url' => $this->request->getPost('youtube_url'),
                     'upload_by' =>  $loggeduserId,
                 ]; 

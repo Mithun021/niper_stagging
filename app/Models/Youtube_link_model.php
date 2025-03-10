@@ -5,7 +5,7 @@
     {
         protected $table         = 'youtube_link';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['link_url','upload_by'];
+        protected $allowedFields = ['title','description','thumbnail','featured','link_url','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
