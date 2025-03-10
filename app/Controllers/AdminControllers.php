@@ -1405,6 +1405,26 @@ use App\Models\Youtube_link_model;
             }
         }
 
+        public function policy_details(){
+            $data = ['title' => 'Policy Details'];
+            if ($this->request->is("get")) {
+                return view('admin/flash-news',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $flash_photo = $this->request->getFile('flash_photo');
+                $flash_file = $this->request->getFile('flash_file');
+                if ($flash_photo->isValid() && ! $flash_photo->hasMoved()) {
+                    $flash_photoNewName = 'photo_' .$flash_photo->getRandomName();
+                    $flash_photo->move(ROOTPATH . 'public/admin/uploads/policy', $flash_photoNewName);    
+                }else{
+                 $flash_photoNewName = "";
+                }
+            }
+        }
+
     }
 
 ?>

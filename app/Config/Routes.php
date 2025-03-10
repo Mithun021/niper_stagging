@@ -154,6 +154,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'admission', 'AdminControllers::admission');
     $routes->match(['get','post'],'act-rules', 'AdminControllers::act_rules');
     $routes->match(['get','post'],'act-rules-category', 'AdminControllers::act_rules_category');
+    $routes->match(['get','post'],'policy-details', 'AdminControllers::policy_details');
 
     $routes->match(['get','post'],'governmental-link', 'AdminControllers::governmental_link');
     $routes->match(['get','post'],'edit-governmental-link/(:num)', 'AdminControllers::edit_governmental_link/$1');

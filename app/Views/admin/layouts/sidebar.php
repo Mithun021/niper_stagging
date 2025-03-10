@@ -212,6 +212,7 @@
                 <li><a href="<?= base_url() ?>admin/act-rules" class="waves-effect"><span>Act Rules Details</span></a></li>
                 <li><a href="<?= base_url() ?>admin/act-rules-category" class="waves-effect"><span>Act Rules Category</span></a></li>
                 <li><a href="<?= base_url() ?>admin/testimonial" class="waves-effect"><span>Testimonial</span></a></li>
+                <li><a href="<?= base_url() ?>admin/policy-details" class="waves-effect"><span>Policy Details</span></a></li>
             </ul>
         </li>
 
