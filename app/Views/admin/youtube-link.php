@@ -20,7 +20,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/youtube-link">
+                <form method="post" action="<?= base_url() ?>admin/youtube-link" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Youtube Video Title<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="title" required>
