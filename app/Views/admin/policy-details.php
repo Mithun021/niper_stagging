@@ -87,6 +87,7 @@ $employee_model = new Employee_model();
                                     <img src="<?= base_url() ?>public/admin/uploads/policy/invalid_image.png" alt="" height="40px">
                                 <?php endif; ?>
                                 </td>
+                                <td><?= $value['type'] ?></td>
                                 <td><a href="<?= $value['web_link'] ?>" target="_blank"><?= $value['title'] ?></a></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td>
