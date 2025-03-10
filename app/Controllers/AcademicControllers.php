@@ -336,6 +336,7 @@ class AcademicControllers extends BaseController
         $admission_brochure_model = new Admission_brochure_model();
         $data = ['title' => 'Admission Brochure'];
         if ($this->request->is("get")) {
+            $data['admission_brochure'] = $admission_brochure_model->get();
             return view('admin/academics/admission-brochure', $data);
         } else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');

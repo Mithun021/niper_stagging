@@ -78,7 +78,7 @@ $employee_model = new Employee_model();
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($department_research_area as $key => $value) { ?>
+                        <?php foreach ($admission_brochure as $key => $value) { ?>
                             <tr>
                                 <td><?= $key + 1 ?></td>
                                 <td>
