@@ -17,8 +17,8 @@ $employee_model = new Employee_model();
             </div>
             <div class="card-body">
                 <?php
-                if (session()->getFlashdata('msg')) {
-                    echo session()->getFlashdata('msg');
+                if (session()->getFlashdata('status')) {
+                    echo session()->getFlashdata('status');
                 }
                 ?>
                 <form method="post" action="<?= base_url() ?>admin/admission-brochure" enctype="multipart/form-data">
