@@ -59,8 +59,10 @@
                     <thead>
                         <tr>
                             <td>SN</td>
+                            <td>Thumbanil</td>
                             <td>Video URL</td>
-                            <td>Create at</td>
+                            <td>Description</td>
+                            <td>Featured</td>
                             <td>Upload by</td>
                             <td>Action</td>
                         </tr>
@@ -69,8 +71,16 @@
                         <?php $i = 1; foreach($youtube_link as $link): ?>
                             <tr>
                                 <td><?= $i++ ?></td>
-                                <td><a href="<?= $link['link_url'] ?>" target="_blank"><?= $link['link_url'] ?></a></td>
-                                <td><?= date('d M Y', strtotime($link['created_at'])) ?></td>
+                                <td>
+                                    <?php if (!empty($value['thumbnail']) && file_exists('public/admin/uploads/youtube/' . $value['thumbnail'])): ?>
+                                        <a href="<?= base_url() ?>public/admin/uploads/youtube/<?= $value['thumbnail'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/youtube/<?= $value['thumbnail'] ?>" alt="" height="30px"></a>
+                                    <?php else: ?>
+                                        <img src="<?= base_url() ?>public/admin/uploads/youtube/invalid_image.png" alt="" height="40px">
+                                    <?php endif; ?>
+                                </td>
+                                <td><a href="<?= $link['link_url'] ?>" target="_blank"><?= $link['title'] ?></a></td>
+                                <td><?= $link['description'] //date('d M Y', strtotime($link['created_at'])) ?></td>
+                                <td><?= ($value['featured'] == "0") ? "<span class='badge badge-danger badge-pill'>No</span>" : (($value['featured'] == "1") ? "<span class='badge badge-success badge-pill'>Yes</span>" : "") ?></td>
                                 <td><?php $emp = $employee_model->get($link['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td>
                                     <a href="<?= base_url() ?>admin/youtube-link/<?= $link['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
