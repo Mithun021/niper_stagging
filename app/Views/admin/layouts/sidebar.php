@@ -38,6 +38,7 @@
                 <li><a href="<?= base_url() ?>admin/classified-mou-value" class="waves-effect"><span>Classified of MoU Value</span></a></li>
                 <li><a href="<?= base_url() ?>admin/research-publication" class="waves-effect"><span>Research & Publication</span></a></li>
                 <li><a href="<?= base_url() ?>admin/research-publication-type" class="waves-effect"><span>Research & Publication Type</span></a></li>
+                <li><a href="<?= base_url() ?>admin/admission-brochure" class="waves-effect"><span>Admission Brochure</span></a></li>
             </ul>
         </li>
         <li>

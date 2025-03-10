@@ -329,4 +329,33 @@ class AcademicControllers extends BaseController
         }
     }
 
+
+    public function admission_brochure()
+    {
+        $data = ['title' => 'Admission Brochure'];
+        if ($this->request->is("get")) {
+            return view('admin/academics/admission-brochure', $data);
+        } else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId'];
+            }
+            $institutelogo = $this->request->getFile('institutelogo');
+            if ($institutelogo->isValid() && ! $institutelogo->hasMoved()) {
+                $institutelogoNewName = "calendar" . $institutelogo->getRandomName();
+                $institutelogo->move(ROOTPATH . 'public/admin/uploads/collaboration', $institutelogoNewName);
+            } else {
+                $institutelogoNewName = "";
+            }
+            $Collabfile = $this->request->getFile('Collabfile');
+            if ($Collabfile->isValid() && ! $Collabfile->hasMoved()) {
+                $CollabfileNewName = "file" . $Collabfile->getRandomName();
+                $Collabfile->move(ROOTPATH . 'public/admin/uploads/collaboration', $CollabfileNewName);
+            } else {
+                $CollabfileNewName = "";
+            }
+
+        }
+    }
+
 }
