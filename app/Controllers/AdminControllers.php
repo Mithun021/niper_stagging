@@ -1408,7 +1408,7 @@ use App\Models\Youtube_link_model;
         public function policy_details(){
             $data = ['title' => 'Policy Details'];
             if ($this->request->is("get")) {
-                return view('admin/flash-news',$data);
+                return view('admin/policy-details',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
                 if ($sessionData) {
