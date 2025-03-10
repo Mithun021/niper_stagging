@@ -22,8 +22,24 @@
                 ?>
                 <form method="post" action="<?= base_url() ?>admin/youtube-link">
                     <div class="form-group">
+                        <span for="">Youtube Video Title<span class="text-danger">*</span></span>
+                        <input type="text" class="form-control form-control-sm" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <span for="">Youtube Video URL<span class="text-danger">*</span></span>
+                        <textarea class="form-control form-control-sm" name="description" id="editor" ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <span for="">Thumbnail Image(PNG,JPG)<span class="text-danger">*</span></span>
+                        <input type="file" class="form-control form-control-sm" name="thumbnail" accept=".png,jpg,.jpeg" required>
+                    </div>
+                    <div class="form-group">
                         <span for="">Youtube Video URL<span class="text-danger">*</span></span>
                         <input type="url" class="form-control form-control-sm" name="youtube_url" required>
+                    </div>
+
+                    <div class="form-group">
+                        <span><input type="checkbox" name="featured" value="1"> Show in Front</span>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
