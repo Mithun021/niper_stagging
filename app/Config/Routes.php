@@ -82,7 +82,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'classified-mou-value', 'AcademicControllers::classified_mou_value');
     $routes->match(['get','post'],'academic-details', 'AcademicControllers::academic_details');
     // $routes->match(['get','post'],'achievements', 'AdminControllers::achievements');
-    $routes->match(['get','post'],'admission-brochure', 'AdminControllers::admission_brochure');
+    $routes->match(['get','post'],'admission-brochure', 'AcademicControllers::admission_brochure');
     $routes->match(['get','post'],'testimonial', 'AdminControllers::testimonial');
     $routes->match(['get','post'],'research-publication', 'AcademicControllers::research_publication');
     $routes->match(['get','post'],'research-publication-type', 'AcademicControllers::research_publication_type');
