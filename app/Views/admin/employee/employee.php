@@ -136,18 +136,20 @@ $designation_model = new Designation_model();
                         <div class="col-sm-6 form-group">
                             <span for="Emptype">Caste:</span>
                             <select name="caste" id="caste" class="form-control form-control-sm" required>
+                                <option value="">--Select--</option>
                                 <option value="General">General</option>
                                 <option value="OBC">OBC</option>
                                 <option value="SC">SC</option>
                                 <option value="ST">ST</option>
                             </select>
-                            <div class="form-group" style="display: none;">
+                            <div class="form-group" id="ews-group" style="display: none;">
                                 <span><input type="checkbox" name="ews" value="1"> EWS</span>
                             </div>
                         </div>
                         <div class="col-sm-6 form-group">
                             <span for="Emptype">Religion:</span>
                             <select name="religion" id="religion" class="form-control form-control-sm" required>
+                                <option value="">--Select--</option>
                                 <option value="Hindu">Hindu</option>
                                 <option value="Muslim">Muslim</option>
                                 <option value="Sikh">Sikh</option>
