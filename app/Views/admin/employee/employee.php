@@ -132,22 +132,22 @@ $designation_model = new Designation_model();
                             <input type="email" name="personal_mail" id="personal_mail" class="form-control form-control-sm">
                         </div>
                     </div>
-
-                    <div class="col-sm-6">
-                        <span for="Emptype">Employee Type:</span>
-                        <select name="employee_type" id="employee_type" class="form-control form-control-sm" required>
-                            <option value="Teaching">Teaching</option>
-                            <option value="NonTeaching">Non-Teaching</option>
-                        </select>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <span for="Emptype">Employee Type:</span>
+                            <select name="employee_type" id="employee_type" class="form-control form-control-sm" required>
+                                <option value="Teaching">Teaching</option>
+                                <option value="NonTeaching">Non-Teaching</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <span for="Emptype">Employee Type:</span>
+                            <select name="employee_type" id="employee_type" class="form-control form-control-sm" required>
+                                <option value="Teaching">Teaching</option>
+                                <option value="NonTeaching">Non-Teaching</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <span for="Emptype">Employee Type:</span>
-                        <select name="employee_type" id="employee_type" class="form-control form-control-sm" required>
-                            <option value="Teaching">Teaching</option>
-                            <option value="NonTeaching">Non-Teaching</option>
-                        </select>
-                    </div>
-
                     <!-- Photo and Resume Uploads -->
                     <div class="form-group row">
                         <div class="col-sm-6">
