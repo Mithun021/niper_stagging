@@ -107,11 +107,15 @@ $designation_model = new Designation_model();
                     </div>
 
                     <div class="form-group row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <span for="Empmobile">Mobile Number:</span>
                             <input type="tel" name="mobile_no" id="mobile_no" class="form-control form-control-sm" required>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
+                            <span for="Empmobile">Alternate Mobile Number:</span>
+                            <input type="tel" name="alternate_mobile_no" id="alternate_mobile_no" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-sm-4">
                             <span for="Emplandlineno">Landline Number:</span>
                             <input type="tel" name="landline_no" id="landline_no" class="form-control form-control-sm">
                         </div>
@@ -127,6 +131,21 @@ $designation_model = new Designation_model();
                             <span for="Emppersonalemail">Personal Email:</span>
                             <input type="email" name="personal_mail" id="personal_mail" class="form-control form-control-sm">
                         </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <span for="Emptype">Employee Type:</span>
+                        <select name="employee_type" id="employee_type" class="form-control form-control-sm" required>
+                            <option value="Teaching">Teaching</option>
+                            <option value="NonTeaching">Non-Teaching</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <span for="Emptype">Employee Type:</span>
+                        <select name="employee_type" id="employee_type" class="form-control form-control-sm" required>
+                            <option value="Teaching">Teaching</option>
+                            <option value="NonTeaching">Non-Teaching</option>
+                        </select>
                     </div>
 
                     <!-- Photo and Resume Uploads -->
