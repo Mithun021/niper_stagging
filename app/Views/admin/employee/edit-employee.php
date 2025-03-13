@@ -130,7 +130,31 @@ $designation_model = new Designation_model();
                             <input type="email" name="personal_mail" id="personal_mail" class="form-control form-control-sm" value="<?= $employee_details['personal_mail'] ?>">
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="col-sm-6 form-group">
+                            <span for="Emptype">Caste:</span>
+                            <select name="caste" id="caste" class="form-control form-control-sm" required>
+                                <option value="">--Select--</option>
+                                <option value="General" <?php if($employee_details['caste'] == "General"){ echo "selected"; } ?>>General</option>
+                                <option value="OBC" <?php if($employee_details['caste'] == "OBC"){ echo "selected"; } ?>>OBC</option>
+                                <option value="SC" <?php if($employee_details['caste'] == "SC"){ echo "selected"; } ?>>SC</option>
+                                <option value="ST" <?php if($employee_details['caste'] == "ST"){ echo "selected"; } ?>>ST</option>
+                            </select>
+                            <div class="form-group" id="ews-group" style="display: none;">
+                                <span><input type="checkbox" name="ews" value="1" <?php if($employee_details['ews'] == 1){ echo "checked"; } ?>> EWS</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <span for="Emptype">Religion:</span>
+                            <select name="religion" id="religion" class="form-control form-control-sm" required>
+                                <option value="">--Select--</option>
+                                <option value="Hindu" <?php if($employee_details['caste'] == "Hindu"){ echo "selected"; } ?>>Hindu</option>
+                                <option value="Muslim" <?php if($employee_details['caste'] == "Muslim"){ echo "selected"; } ?>>Muslim</option>
+                                <option value="Sikh" <?php if($employee_details['caste'] == "Sikh"){ echo "selected"; } ?>>Sikh</option>
+                                <option value="Christian" <?php if($employee_details['caste'] == "Christian"){ echo "selected"; } ?>>Christian</option>
+                            </select>
+                        </div>
+                    </div>
                     <!-- Photo and Resume Uploads -->
                     <div class="form-group row">
                         <div class="col-sm-6">
@@ -331,5 +355,25 @@ $designation_model = new Designation_model();
         </div>
     </div>
 </div>
+
+<script>
+    // Function to toggle the visibility of the EWS checkbox
+    function toggleEWS() {
+        var caste = document.getElementById('caste').value;
+        var ewsGroup = document.getElementById('ews-group');
+        
+        // Show EWS checkbox if caste is General
+        if (caste === 'General') {
+            ewsGroup.style.display = 'block';
+        } else {
+            ewsGroup.style.display = 'none';
+        }
+    }
+
+    // Call the function on page load to set the initial state
+    window.onload = function() {
+        toggleEWS();
+    }
+</script>
 
 <?= $this->endSection() ?>
