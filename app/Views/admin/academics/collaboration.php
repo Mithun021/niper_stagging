@@ -98,13 +98,13 @@ $classified_mou_value_model = new Classified_mou_value_model();
                                 </table>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <span for="Collabfileupload">Collaboration Gallery(JPG,PNG):</span>
                                 <input type="file" name="collab_gallery[]" id="collab_gallery" class="form-control form-control-sm" accept=".jpg,.png,.jpeg" multiple>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <span for="Collabenddatetime">Classification of MoU:</span>
                                 <select name="classified_mou" id="classified_mou" class="form-control form-control-sm">
@@ -115,13 +115,13 @@ $classified_mou_value_model = new Classified_mou_value_model();
                                 </select>
                             </div>
                         </div>
-                        <!-- <div class="col-md-3">
+                        <!-- <div class="col-md-4">
                             <div class="form-group">
                                 <span for="Collabenddatetime">Collaboration tenure year:<span class="text-danger">*</span></span>
                                 <input type="number" name="Collabtenure" id="Collabtenure" class="form-control form-control-sm" required>
                             </div>
                         </div> -->
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <span for="Collabstatus">Collaboration Status:</span>
                                 <select name="Collabstatus" id="Collabstatus" class="form-control form-control-sm" required>
