@@ -6,6 +6,7 @@ use App\Models\Academic_model;
 use App\Models\Admission_brochure_model;
 use App\Models\Announcement_model;
 use App\Models\Classified_mou_value_model;
+use App\Models\Collaboration_faculties_model;
 use App\Models\Collaboration_gallery_model;
 use App\Models\Collaboration_model;
 use App\Models\Department_model;
@@ -213,6 +214,7 @@ class AcademicControllers extends BaseController
 
     public function collaboration()
     {
+        $collaboration_faculties_model = new Collaboration_faculties_model();
         $collaboration_gallery_model = new Collaboration_gallery_model();
         $collaboration_model = new Collaboration_model();
         $classified_mou_value_model = new Classified_mou_value_model();
@@ -250,7 +252,7 @@ class AcademicControllers extends BaseController
                 'institute_logo' => $institutelogoNewName,
                 'institute_link' => $this->request->getPost('Collabinstituelink'),
                 'collaboration_file' => $CollabfileNewName,
-                'faculty_coordinator' => $this->request->getPost('faculty_coordinator'),
+                // 'faculty_coordinator' => $this->request->getPost('faculty_coordinator'),
                 'classified_mou' => $this->request->getPost('classified_mou'),
                 // 'collaboration_tenure_year' => $this->request->getPost('Collabtenure'),
                 'status' => $this->request->getPost('Collabstatus'),
@@ -260,6 +262,18 @@ class AcademicControllers extends BaseController
             $result = $collaboration_model->add($data);
             if ($result === true) {
                 $insert_id = $collaboration_model->getInsertID();
+
+                $faculty_coordinator = $this->request->getPost('faculty_coordinator');
+                if (!empty($faculty_coordinator)) {
+                    foreach ($faculty_coordinator as $key => $faculty) {
+                       $data2 = [
+                        'collaboration_id' => $insert_id,
+                        'faculty_name' => $faculty,
+                       ];
+                       $result = $collaboration_faculties_model->add($data2);
+                    }
+                }
+
                 if ($gallery_file) {
                     foreach ($gallery_file['collab_gallery'] as $file) {
                         if ($file->isValid() && !$file->hasMoved()) {
