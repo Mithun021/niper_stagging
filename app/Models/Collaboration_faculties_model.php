@@ -26,5 +26,8 @@
             }
             return $result;
         }
+        public function getByColId($id){
+            return $this->where('collaboration_id',$id)->findAll();
+        }
     }
 ?>

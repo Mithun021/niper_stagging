@@ -3,10 +3,12 @@
 <?php
 
 use App\Models\Classified_mou_value_model;
+use App\Models\Collaboration_faculties_model;
 use App\Models\Employee_model;
 
 $employee_model = new Employee_model();
 $classified_mou_value_model = new Classified_mou_value_model();
+$collaboration_faculties_model = new Collaboration_faculties_model()
 ?>
 
 <!-- Page title and form layout -->
@@ -163,6 +165,7 @@ $classified_mou_value_model = new Classified_mou_value_model();
                                 <td>Title</td>
                                 <td>Institute</td>
                                 <td>Collaboration Date</td>
+                                <td>Coll. Faculty</td>
                                 <td>Class. MoU</td>
                                 <td>Status</td>
                                 <td>Upload by</td>
@@ -189,6 +192,11 @@ $classified_mou_value_model = new Classified_mou_value_model();
                                     <td><?= $value['title'] ?></td>
                                     <td><a href="<?= $value['institute_link'] ?>" target="_blank"><?= $value['institute_name'] ?></a></td>
                                     <td><?= $value['collaboration_date'] ?></td>
+                                    <td><?php $faculty = $collaboration_faculties_model->getByColId($value['id']); if ($faculty) {
+                                        foreach ($faculty as $key => $value2) {
+                                            echo '<i class="fa fa-angle-right"></i> '.$value2['faculty_name']."<br>";
+                                        }
+                                    } ?></td>
                                     <td><?= $classified_mou_value_model->get($value['classified_mou'])['name'] ?? '' ?></td>
                                     <td><?= $value['status'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
