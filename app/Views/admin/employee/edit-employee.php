@@ -109,11 +109,15 @@ $designation_model = new Designation_model();
                     </div>
 
                     <div class="form-group row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <span for="Empmobile">Mobile Number:</span>
                             <input type="tel" name="mobile_no" id="mobile_no" class="form-control form-control-sm" value="<?= $employee_details['mobile_no'] ?>" required>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
+                            <span for="Empmobile">Alternate Mobile Number:</span>
+                            <input type="tel" name="alternate_mobile_no" id="alternate_mobile_no" class="form-control form-control-sm" value="<?= $employee_details['alternate_mobile_no'] ?>">
+                        </div>
+                        <div class="col-sm-4">
                             <span for="Emplandlineno">Landline Number:</span>
                             <input type="tel" name="landline_no" id="landline_no" class="form-control form-control-sm" value="<?= $employee_details['landline_no'] ?>">
                         </div>
@@ -148,10 +152,10 @@ $designation_model = new Designation_model();
                             <span for="Emptype">Religion:</span>
                             <select name="religion" id="religion" class="form-control form-control-sm" required>
                                 <option value="">--Select--</option>
-                                <option value="Hindu" <?php if($employee_details['caste'] == "Hindu"){ echo "selected"; } ?>>Hindu</option>
-                                <option value="Muslim" <?php if($employee_details['caste'] == "Muslim"){ echo "selected"; } ?>>Muslim</option>
-                                <option value="Sikh" <?php if($employee_details['caste'] == "Sikh"){ echo "selected"; } ?>>Sikh</option>
-                                <option value="Christian" <?php if($employee_details['caste'] == "Christian"){ echo "selected"; } ?>>Christian</option>
+                                <option value="Hindu" <?php if($employee_details['religion'] == "Hindu"){ echo "selected"; } ?>>Hindu</option>
+                                <option value="Muslim" <?php if($employee_details['religion'] == "Muslim"){ echo "selected"; } ?>>Muslim</option>
+                                <option value="Sikh" <?php if($employee_details['religion'] == "Sikh"){ echo "selected"; } ?>>Sikh</option>
+                                <option value="Christian" <?php if($employee_details['religion'] == "Christian"){ echo "selected"; } ?>>Christian</option>
                             </select>
                         </div>
                     </div>
