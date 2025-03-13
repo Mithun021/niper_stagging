@@ -133,7 +133,7 @@ $designation_model = new Designation_model();
                     <div class="row">
                         <div class="col-sm-6 form-group">
                             <span for="Emptype">Caste:</span>
-                            <select name="caste" id="caste" class="form-control form-control-sm" required>
+                            <select name="caste" id="caste" class="form-control form-control-sm"  onchange="toggleEWS()" required>
                                 <option value="">--Select--</option>
                                 <option value="General" <?php if($employee_details['caste'] == "General"){ echo "selected"; } ?>>General</option>
                                 <option value="OBC" <?php if($employee_details['caste'] == "OBC"){ echo "selected"; } ?>>OBC</option>
