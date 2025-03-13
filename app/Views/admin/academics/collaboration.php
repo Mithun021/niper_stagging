@@ -75,6 +75,29 @@ $classified_mou_value_model = new Classified_mou_value_model();
                                 <input type="file" name="Collabfile" id="Collabfile" class="form-control form-control-sm" accept=".pdf">
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="addServicetable"> 
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <td scope="col">Faculty Coordinator</td>
+                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewservicerow">+</button></td>
+                                        </tr>
+                            
+                                    </thead>
+                                    <tbody id="stockTbody">
+                                        <tr id="stockTrow">
+                                            <td>
+                                            <input type="text" name="faculty_coordinator[]" id="faculty_coordinator" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <span for="Collabfileupload">Collaboration Gallery(JPG,PNG):</span>
@@ -98,12 +121,6 @@ $classified_mou_value_model = new Classified_mou_value_model();
                                 <input type="number" name="Collabtenure" id="Collabtenure" class="form-control form-control-sm" required>
                             </div>
                         </div> -->
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <span for="Collabenddatetime">Faculty Coordinator:</span>
-                                <input type="text" name="faculty_coordinator" id="faculty_coordinator" class="form-control form-control-sm">
-                            </div>
-                        </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <span for="Collabstatus">Collaboration Status:</span>
