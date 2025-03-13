@@ -133,18 +133,25 @@ $designation_model = new Designation_model();
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6">
-                            <span for="Emptype">Employee Type:</span>
-                            <select name="employee_type" id="employee_type" class="form-control form-control-sm" required>
-                                <option value="Teaching">Teaching</option>
-                                <option value="NonTeaching">Non-Teaching</option>
+                        <div class="col-sm-6 form-group">
+                            <span for="Emptype">Caste:</span>
+                            <select name="caste" id="caste" class="form-control form-control-sm" required>
+                                <option value="General">General</option>
+                                <option value="OBC">OBC</option>
+                                <option value="SC">SC</option>
+                                <option value="ST">ST</option>
                             </select>
+                            <div class="form-group" style="display: none;">
+                                <span><input type="checkbox" name="ews" value="1"> EWS</span>
+                            </div>
                         </div>
-                        <div class="col-sm-6">
-                            <span for="Emptype">Employee Type:</span>
-                            <select name="employee_type" id="employee_type" class="form-control form-control-sm" required>
-                                <option value="Teaching">Teaching</option>
-                                <option value="NonTeaching">Non-Teaching</option>
+                        <div class="col-sm-6 form-group">
+                            <span for="Emptype">Religion:</span>
+                            <select name="religion" id="religion" class="form-control form-control-sm" required>
+                                <option value="Hindu">Hindu</option>
+                                <option value="Muslim">Muslim</option>
+                                <option value="Sikh">Sikh</option>
+                                <option value="Christian">Christian</option>
                             </select>
                         </div>
                     </div>
@@ -336,5 +343,19 @@ $designation_model = new Designation_model();
         </div>
     </div>
 </div>
+
+<script>
+    // JavaScript to handle the condition for enabling/disabling the EWS checkbox
+    document.getElementById('caste').addEventListener('change', function() {
+        var caste = this.value;
+        var ewsGroup = document.getElementById('ews-group');
+
+        if (caste === 'General') {
+            ewsGroup.style.display = 'block'; // Show the EWS checkbox
+        } else {
+            ewsGroup.style.display = 'none'; // Hide the EWS checkbox
+        }
+    });
+</script>
 
 <?= $this->endSection() ?>
