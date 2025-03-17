@@ -82,6 +82,10 @@ $employee_model = new Employee_model();
                                         <option value="<?= $value['name'] ?>"><?= $value['name'] ?></option>
                                     <?php } ?> 
                                     </select>
+
+                                    <div id="work_details" style="display: none;">
+                                        <input type="text" name="work_description" id="work_description" class="form-control form-control-sm">
+                                    </div>
                                 </div>
 
 
@@ -211,20 +215,43 @@ $employee_model = new Employee_model();
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
-        // Add Clone Button Click
+        // Show/Hide work details based on Nature of Work selection
+        function toggleWorkDetails() {
+            if ($("#natureofwork").val() !== "Teaching") {
+                $("#work_details").show();
+            } else {
+                $("#work_details").hide();
+            }
+        }
+
+        // Trigger the function on dropdown change
+        $("#natureofwork").change(function() {
+            toggleWorkDetails();
+        });
+
+        // Trigger once on page load in case of pre-selected values
+        toggleWorkDetails();
+
+        // Clone Employee Data
         $("#add-clone").click(function(e) {
             e.preventDefault();
 
-            // Clone the employee data card
             var cloneCatrow = $('#clone_employee_data').first().clone();
             cloneCatrow.appendTo('#clone_content');
 
-            // Reset all input fields and ensure checkbox state is maintained
+            // Reset inputs inside the cloned row
             $(cloneCatrow).find('input, textarea, select').val('');
 
-            // Ensure that the cloned checkbox has the same checked state as the original one
-            $(cloneCatrow).find('input[type="checkbox"]').each(function() {
-                $(this).prop('checked', false); // Set the checkbox as unchecked by default
+            // Uncheck all checkboxes in the cloned row
+            $(cloneCatrow).find('input[type="checkbox"]').prop('checked', false);
+
+            // Re-bind the event for nature of work dropdown in the cloned row
+            $(cloneCatrow).find("#natureofwork").change(function() {
+                if ($(this).val() !== "Teaching") {
+                    $(this).closest('.form-group').find("#work_details").show();
+                } else {
+                    $(this).closest('.form-group').find("#work_details").hide();
+                }
             });
         });
 
@@ -233,16 +260,16 @@ $employee_model = new Employee_model();
             $(this).closest('.card-body').remove();
         });
 
-        // Synchronize form data before form submission
+        // Ensure unchecked checkboxes pass value as '0' on form submission
         $('form').on('submit', function() {
-            // Ensure the checkbox values are passed even if unchecked
             $('input[type="checkbox"]').each(function() {
                 if (!$(this).prop('checked')) {
-                    $(this).val('0'); // Set unchecked checkboxes' value to '0'
+                    $(this).after('<input type="hidden" name="' + $(this).attr('name') + '" value="0">');
                 }
             });
         });
     });
 </script>
+
 
 <?= $this->endSection() ?>
