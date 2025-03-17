@@ -302,6 +302,7 @@ use App\Models\Student_model;
                         'exp_description' => $this->request->getVar('expdesc')[$key],
                         'org_type' => $this->request->getPost('orgtype')[$key],
                         'work_nature' => $this->request->getPost('natureofwork')[$key],
+                        'work_description' => $this->request->getPost('work_description')[$key] ?? '',
                         'upload_by' =>  $loggeduserId,
                     ];
     

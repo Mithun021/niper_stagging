@@ -5,7 +5,7 @@
     {
         protected $table         = 'employee_experience';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['emplyee_id','organization_name','start_date','end_date','stillwork','exp_description','org_type','work_nature','upload_by'];
+        protected $allowedFields = ['emplyee_id','organization_name','start_date','end_date','stillwork','exp_description','org_type','work_nature','work_description','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
