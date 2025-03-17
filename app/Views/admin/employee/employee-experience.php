@@ -60,7 +60,7 @@ $employee_model = new Employee_model();
                                 <div class="col-lg-4 form-group">
                                     <span for="enddate">End Date:</span>
                                     <input type="date" name="enddate[]" id="enddate" class="form-control form-control-sm">
-                                    <span for="enddate"><input type="checkbox" name="stillwork[]" id="stillwork" value="1"> Still Work (check if you are still working):</span>
+                                  	<span for="enddate"><input type="checkbox" name="stillwork[]" id="stillwork" value="1"> Still Work (check if you are still working):</span>
                                 </div>
                                 <div class="col-lg-12 form-group">
                                     <span for="expdesc">Experience Designation:<span class="text-danger">*</span></span>
@@ -70,17 +70,17 @@ $employee_model = new Employee_model();
                                 <div class="col-lg-6 form-group">
                                     <span for="orgtype">Organization Type:<span class="text-danger">*</span></span>
                                     <select name="orgtype[]" id="orgtype" class="form-control form-control-sm" required>
-                                        <?php foreach ($organisation_type as $value) { ?>
-                                            <option value="<?= $value['name'] ?>"><?= $value['name'] ?></option>
-                                        <?php } ?>
+                                    <?php foreach($organisation_type as $value){ ?>
+                                        <option value="<?= $value['name'] ?>"><?= $value['name'] ?></option>
+                                    <?php } ?>    
                                     </select>
                                 </div>
                                 <div class="col-lg-6 form-group">
                                     <span for="natureofwork">Nature of Work:<span class="text-danger">*</span></span>
                                     <select name="natureofwork[]" id="natureofwork" class="form-control form-control-sm">
-                                        <?php foreach ($nature_of_work as $value) { ?>
-                                            <option value="<?= $value['name'] ?>"><?= $value['name'] ?></option>
-                                        <?php } ?>
+                                    <?php foreach($nature_of_work as $value){ ?>
+                                        <option value="<?= $value['name'] ?>"><?= $value['name'] ?></option>
+                                    <?php } ?> 
                                     </select>
 
                                     <div id="work_details" style="display: none;">
@@ -132,13 +132,7 @@ $employee_model = new Employee_model();
                                     <td><?php $emp = $employee_model->get($value['emplyee_id']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                     <td><?= $value['organization_name'] ?></td>
-                                    <td><?= $value['start_date'] . " - " ?> <?php if ($value['end_date'] === '0000-00-00') {
-                                                                                if ($value['stillwork'] == 1) {
-                                                                                    echo "Still Work.";
-                                                                                }
-                                                                            } else {
-                                                                                echo $value['end_date'];
-                                                                            } ?></td>
+                                    <td><?= $value['start_date'] . " - " ?> <?php if ($value['end_date'] === '0000-00-00') { if($value['stillwork'] == 1){ echo "Still Work."; } }else { echo $value['end_date']; } ?></td>
                                     <td><?= $value['org_type'] ?></td>
                                     <td><?= $value['work_nature'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
@@ -222,36 +216,21 @@ $employee_model = new Employee_model();
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
-        // Show/Hide work details based on Nature of Work selection
-        $(document).on("change", '[name="natureofwork[]"]', function() {
-            let workDetails = $(this).closest('.form-group').find(".work_details");
-            if ($(this).val() !== "Teaching") {
-                workDetails.show();
-            } else {
-                workDetails.hide();
-            }
-        });
-
-        // Clone Employee Data
+        // Add Clone Button Click
         $("#add-clone").click(function(e) {
             e.preventDefault();
 
+            // Clone the employee data card
             var cloneCatrow = $('#clone_employee_data').first().clone();
             cloneCatrow.appendTo('#clone_content');
 
-            // Reset inputs inside the cloned row
+            // Reset all input fields and ensure checkbox state is maintained
             $(cloneCatrow).find('input, textarea, select').val('');
 
-            // Uncheck all checkboxes in the cloned row
-            $(cloneCatrow).find('input[type="checkbox"]').prop('checked', false);
-
-            // Ensure unique IDs for cloned elements
-            $(cloneCatrow).find('[id]').each(function() {
-                $(this).attr('id', $(this).attr('id') + '_' + Math.random().toString(36).substr(2, 5));
+            // Ensure that the cloned checkbox has the same checked state as the original one
+            $(cloneCatrow).find('input[type="checkbox"]').each(function() {
+                $(this).prop('checked', false); // Set the checkbox as unchecked by default
             });
-
-            // Hide work details in cloned row initially
-            $(cloneCatrow).find('.work_details').hide();
         });
 
         // Remove Clone Button Click
@@ -259,15 +238,17 @@ $employee_model = new Employee_model();
             $(this).closest('.card-body').remove();
         });
 
-        // Ensure unchecked checkboxes pass value as '0' on form submission
+        // Synchronize form data before form submission
         $('form').on('submit', function() {
+            // Ensure the checkbox values are passed even if unchecked
             $('input[type="checkbox"]').each(function() {
                 if (!$(this).prop('checked')) {
-                    $(this).after('<input type="hidden" name="' + $(this).attr('name') + '" value="0">');
+                    $(this).val('0'); // Set unchecked checkboxes' value to '0'
                 }
             });
         });
     });
+
 </script>
 
 
