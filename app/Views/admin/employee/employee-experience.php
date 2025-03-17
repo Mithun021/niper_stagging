@@ -84,6 +84,7 @@ $employee_model = new Employee_model();
                                     </select>
 
                                     <div id="work_details" style="display: none;">
+                                        <span>Description of Works</span>
                                         <input type="text" name="work_description" id="work_description" class="form-control form-control-sm">
                                     </div>
                                 </div>
