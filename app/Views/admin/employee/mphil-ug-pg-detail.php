@@ -48,7 +48,7 @@ $student_model = new Student_model();
                             <?php } ?>
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
+                        <!-- <div class="form-group col-md-4">
                             <span for="">Student Category</span>
                             <select name="student_category" id="" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
@@ -57,7 +57,7 @@ $student_model = new Student_model();
                                 <option value="ST">ST</option>
                                 <option value="EWS">EWS</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="form-group col-md-4">
                             <span for="">Name of the Synopsis</span>
                             <input type="text" name="synopsis_name" id="" class="form-control form-control-sm">
