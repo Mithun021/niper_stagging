@@ -135,7 +135,7 @@ $student_model = new Student_model();
                                 <td>Emp. ID</td>
                                 <!-- <td>Student Title</td> -->
                                 <td>Student Name</td>
-                                <td>Category</td>
+                                <!-- <td>Category</td> -->
                                 <td>Synopsis</td>
                                 <!-- <td>Roll No</td> -->
                                 <td>Semester</td>
@@ -162,7 +162,7 @@ $student_model = new Student_model();
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                    
                                     <td><?php $student = $student_model->get($value['student_name']); if($student){ echo $student['first_name']." ".$student['middle_name']." ".$student['last_name']." - ".$student['enrollment_no']; }  ?></td>
-                                    <td><?= $value['student_category'] ?></td>
+                                    
                                     <td><?= $value['synopsis_name'] ?></td>
                                     
                                     <td><?= $value['semester'] ?></td>

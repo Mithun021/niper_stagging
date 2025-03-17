@@ -1219,7 +1219,7 @@ use App\Models\Student_model;
                     'employee_id' => $this->request->getPost('employee_id'),
                     // 'student_title' => $this->request->getPost('student_title'),
                     'student_name' => $this->request->getPost('student_name'),
-                    'student_category' => $this->request->getPost('student_category'),
+                    // 'student_category' => $this->request->getPost('student_category'),
                     'synopsis_name' => $this->request->getPost('synopsis_name'),
                     // 'roll_no' => $this->request->getPost('roll_no'),
                     'semester' => $this->request->getPost('semester'),
