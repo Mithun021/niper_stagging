@@ -65,7 +65,7 @@ $student_model = new Student_model();
                         <!-- <div class="form-group col-md-4">
                             <span for="">Roll No</span>
                             <input type="text" name="roll_no" id="" class="form-control form-control-sm">
-                        </div> -->
+                        </div>
                         <div class="form-group col-md-4">
                             <span for="">Semester</span>
                             <select name="semester" id="" class="form-control form-control-sm">
@@ -81,7 +81,7 @@ $student_model = new Student_model();
                                 <option value="IX">IX</option>
                                 <option value="X">X</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="form-group col-md-4">
                             <span for="">Remarks</span>
                             <input type="text" name="remarks" id="" class="form-control form-control-sm">
@@ -138,7 +138,6 @@ $student_model = new Student_model();
                                 <!-- <td>Category</td> -->
                                 <td>Synopsis</td>
                                 <!-- <td>Roll No</td> -->
-                                <td>Semester</td>
                                 <td>Remarks</td>
                                 <td>University Name</td>
                                 <td>Reg. Date</td>
@@ -165,7 +164,6 @@ $student_model = new Student_model();
                                     
                                     <td><?= $value['synopsis_name'] ?></td>
                                     
-                                    <td><?= $value['semester'] ?></td>
                                     <td><?= $value['remarks'] ?></td>
                                     <td><?= $value['university_name'] ?></td>
                                     <td><?= $value['registration_date'] ?></td>

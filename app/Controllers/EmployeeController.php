@@ -1222,7 +1222,7 @@ use App\Models\Student_model;
                     // 'student_category' => $this->request->getPost('student_category'),
                     'synopsis_name' => $this->request->getPost('synopsis_name'),
                     // 'roll_no' => $this->request->getPost('roll_no'),
-                    'semester' => $this->request->getPost('semester'),
+                    // 'semester' => $this->request->getPost('semester'),
                     'remarks' => $this->request->getPost('remarks'),
                     'university_name' => $this->request->getPost('university_name'),
                     'registration_date' => $this->request->getPost('registration_date'),
