@@ -216,6 +216,19 @@ $employee_model = new Employee_model();
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
+        // Function to toggle work description field
+        function toggleWorkDescription(selectElement) {
+            var selectedValue = $(selectElement).val();
+            var workDetails = $(selectElement).closest('.row').find('#work_details');
+
+            if (selectedValue !== "Teaching") {
+                workDetails.show();
+            } else {
+                workDetails.hide();
+                workDetails.find('input').val(''); // Clear input field when hidden
+            }
+        }
+
         // Add Clone Button Click
         $("#add-clone").click(function(e) {
             e.preventDefault();
@@ -224,12 +237,16 @@ $employee_model = new Employee_model();
             var cloneCatrow = $('#clone_employee_data').first().clone();
             cloneCatrow.appendTo('#clone_content');
 
-            // Reset all input fields and ensure checkbox state is maintained
+            // Reset all input fields and uncheck checkboxes
             $(cloneCatrow).find('input, textarea, select').val('');
+            $(cloneCatrow).find('input[type="checkbox"]').prop('checked', false);
 
-            // Ensure that the cloned checkbox has the same checked state as the original one
-            $(cloneCatrow).find('input[type="checkbox"]').each(function() {
-                $(this).prop('checked', false); // Set the checkbox as unchecked by default
+            // Ensure that the work description section is hidden initially
+            $(cloneCatrow).find('#work_details').hide();
+
+            // Bind event listener to new clone
+            $(cloneCatrow).find('#natureofwork').on('change', function() {
+                toggleWorkDescription(this);
             });
         });
 
@@ -238,17 +255,25 @@ $employee_model = new Employee_model();
             $(this).closest('.card-body').remove();
         });
 
-        // Synchronize form data before form submission
+        // Nature of Work Change Event
+        $('#clone_content').on('change', '#natureofwork', function() {
+            toggleWorkDescription(this);
+        });
+
+        // Synchronize form data before submission
         $('form').on('submit', function() {
-            // Ensure the checkbox values are passed even if unchecked
             $('input[type="checkbox"]').each(function() {
                 if (!$(this).prop('checked')) {
                     $(this).val('0'); // Set unchecked checkboxes' value to '0'
                 }
             });
         });
-    });
 
+        // Initial call for default selection
+        $('#natureofwork').each(function() {
+            toggleWorkDescription(this);
+        });
+    });
 </script>
 
 
