@@ -54,11 +54,11 @@
                     </div>
                     <div class="form-group col-lg-6">
                         <span for="">Description2:</span>
-                        <textarea name="description" id="editor" class="form-control form-control-sm"></textarea>
+                        <textarea name="description" id="editor2" class="form-control form-control-sm"></textarea>
                     </div>
                     <div class="form-group col-lg-6">
                         <span for="">Description3:</span>
-                        <textarea name="description" id="editor" class="form-control form-control-sm"></textarea>
+                        <textarea name="description" id="editor3" class="form-control form-control-sm"></textarea>
                     </div>
 
                     <div class="form-group col-lg-4">
