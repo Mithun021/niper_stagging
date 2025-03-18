@@ -88,7 +88,7 @@
                             <span for="projectvalue">Project Value (in INR):<span class="text-danger">*</span></span>
                             <input type="number" name="projectvalue[]" id="projectvalue" class="form-control form-control-sm" step="0.01">
                         </div>
-                        <div class="col-lg-5 form-group">
+                        <div class="col-lg-6 form-group">
                             <span for="projectvalue">Role</span>
                             <select name="role[]" id="role" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
@@ -96,7 +96,7 @@
                                 <option value="Co-PI">Co-PI</option>
                             </select>
                         </div>
-                        <div class="col-lg-5 form-group">
+                        <div class="col-lg-6 form-group">
                             <span for="projectvalue">Funding Source </span>
                             <select name="funding_source[]" id="funding_source" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
@@ -251,6 +251,17 @@
 // });
 
 $(document).ready(function () {
+    // Show/Hide "Other Funding Source" Input Based on Selection
+    $(document).on('change', '.funding_source', function () {
+        var parentCard = $(this).closest('.card-body');
+        if ($(this).val() === "Others") {
+            parentCard.find('.other_funding_source').show();
+        } else {
+            parentCard.find('.other_funding_source').hide();
+            parentCard.find('.other_funding_source input').val('');
+        }
+    });
+
     // Add Clone Button Click
     $("#add-clone").click(function (e) {
         e.preventDefault();
@@ -260,14 +271,15 @@ $(document).ready(function () {
 
         // Reset the cloned fields
         cloneCatrow.find('input, textarea, select').val('');
-        cloneCatrow.find('.ck-editor').remove(); // Remove existing CKEditor container if any
+        cloneCatrow.find('.ck-editor').remove(); // Remove CKEditor instance if any
+        cloneCatrow.find('.other_funding_source').hide(); // Hide Other Funding Source initially
 
-        // Append the cloned element to the clone content container
+        // Update cloned element class and IDs
+        cloneCatrow.find('#funding_source').addClass('funding_source');
+        cloneCatrow.find('#other_funding_source').addClass('other_funding_source');
+
+        // Append the cloned element to the container
         cloneCatrow.appendTo('#clone_content');
-
-        // Reinitialize CKEditor for cloned textarea
-        cloneCatrow.find('.clone_editor').removeAttr('data-ckeditor-initialized'); // Reset the initialized flag
-        initializeEditors(); // Reinitialize editors
     });
 
     // Remove Clone Button Click
