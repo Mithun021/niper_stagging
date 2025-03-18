@@ -88,7 +88,7 @@
                             <span for="projectvalue">Project Value (in INR):<span class="text-danger">*</span></span>
                             <input type="number" name="projectvalue[]" id="projectvalue" class="form-control form-control-sm" step="0.01">
                         </div>
-                        <div class="col-lg- form-group">
+                        <div class="col-lg-6 form-group">
                             <span for="projectvalue">Role</span>
                             <select name="role[]" id="role" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
@@ -96,7 +96,7 @@
                                 <option value="Co-PI">Co-PI</option>
                             </select>
                         </div>
-                        <div class="col-lg- form-group">
+                        <div class="col-lg-6 form-group">
                             <span for="projectvalue">Funding Source </span>
                             <select name="funding_source[]" id="funding_source" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
