@@ -151,6 +151,17 @@
 
         <li>
             <a href="javascript: void(0);" class="has-arrow waves-effect"><i
+                    class="mdi mdi-table-merge-cells"></i><span>Admission</span></a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="<?= base_url() ?>admin/admission-page" class="waves-effect"><span>Admission Page</span></a></li>
+                <li><a href="<?= base_url() ?>admin/admission-page-section" class="waves-effect"><span>Admission Page Section</span></a></li>
+                <li><a href="<?= base_url() ?>admin/admission-section-image" class="waves-effect"><span>Admission Section Image</span></a></li>
+                <li><a href="<?= base_url() ?>admin/admission-section-file" class="waves-effect"><span>Admission Section File</span></a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect"><i
                     class="mdi mdi-table-merge-cells"></i><span>Facilities</span></a>
             <ul class="sub-menu" aria-expanded="false">
                 <li><a href="<?= base_url() ?>admin/facility-page" class="waves-effect"><span>Facility Page</span></a></li>
