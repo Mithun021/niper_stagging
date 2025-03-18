@@ -88,6 +88,28 @@
                             <span for="projectvalue">Project Value (in INR):<span class="text-danger">*</span></span>
                             <input type="number" name="projectvalue[]" id="projectvalue" class="form-control form-control-sm" step="0.01">
                         </div>
+                        <div class="col-lg-5 form-group">
+                            <span for="projectvalue">Role</span>
+                            <select name="role[]" id="role" class="form-control form-control-sm">
+                                <option value="">--Select--</option>
+                                <option value="PI">PI</option>
+                                <option value="Co-PI">Co-PI</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-5 form-group">
+                            <span for="projectvalue">Funding Source </span>
+                            <select name="funding_source[]" id="funding_source" class="form-control form-control-sm">
+                                <option value="">--Select--</option>
+                                <option value="Government">Government</option>
+                                <option value="Private">Private</option>
+                                <option value="Industry">Industry</option>
+                                <option value="Others">Others</option>    
+                            </select>
+                            <div id="other_funding_source" style="display: none;">
+                                <span>Other Funding Source</span>
+                                <input type="text" class="form-control form-control-sm" name="other_funding_source">
+                            </div>
+                        </div>
                     </div>
                         <button type="button" id="remove-clone" class="btn btn-danger" style="width: 120px;">Remove Clone</button>
                      </div>
