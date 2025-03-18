@@ -5,7 +5,7 @@
     {
         protected $table         = 'employee_projects';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['emplyee_id','project_title','project_description','start_date','start_time','end_date','end_time','sanctioned_year','project_status','sponsored_by','project_value','upload_by'];
+        protected $allowedFields = ['emplyee_id','project_title','project_description','start_date','start_time','end_date','end_time','sanctioned_year','project_status','sponsored_by','project_value','role','funding_source','other_funding_source','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

@@ -98,7 +98,7 @@ $employee_model = new Employee_model();
                                         <option value="Co-PI">Co-PI</option>
                                     </select>
                                 </div>
-                                <div class="col-lg-4 form-group">
+                                <div class="col-lg-6 form-group">
                                     <span for="funding_source">Funding Source </span>
                                     <select name="funding_source[]" class="form-control form-control-sm">
                                         <option value="">--Select--</option>

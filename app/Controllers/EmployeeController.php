@@ -345,6 +345,9 @@ use App\Models\Student_model;
                         'project_status' => $this->request->getPost('projectstatus')[$key],
                         'sponsored_by' => $this->request->getPost('projectsponseredby')[$key],
                         'project_value' => $this->request->getPost('projectvalue')[$key],
+                        'role' => $this->request->getPost('role')[$key],
+                        'funding_source' => $this->request->getPost('funding_source')[$key],
+                        'other_funding_source' => $this->request->getPost('other_funding_source')[$key] ?? '',
                         'upload_by' =>  $loggeduserId,
                     ];
 
