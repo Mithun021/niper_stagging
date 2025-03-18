@@ -54,11 +54,11 @@
                     </div>
                     <div class="form-group col-lg-6">
                         <span for="">Description2:</span>
-                        <textarea name="description" id="editor2" class="form-control form-control-sm"></textarea>
+                        <textarea name="description2" id="editor2" class="form-control form-control-sm"></textarea>
                     </div>
                     <div class="form-group col-lg-6">
                         <span for="">Description3:</span>
-                        <textarea name="description" id="editor3" class="form-control form-control-sm"></textarea>
+                        <textarea name="description3" id="editor3" class="form-control form-control-sm"></textarea>
                     </div>
 
                     <div class="form-group col-lg-4">
@@ -108,8 +108,13 @@
                         <tr>
                             <td><?= $key + 1 ?></td>
                             <td>
+                                <?php if (!empty($value['upload_photo']) && file_exists('public/admin/uploads/facilities/' . $value['upload_photo'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/facilities/<?= $value['upload_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/facilities/<?= $value['upload_photo'] ?>" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/facilities/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
                                 <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/facilities/' . $value['upload_file'])): ?>
-                                    <a href="<?= base_url() ?>public/admin/uploads/facilities/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/facilities/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
+                                    <a href="<?= base_url() ?>public/admin/uploads/facilities/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
                                 <?php else: ?>
                                     <img src="<?= base_url() ?>public/admin/uploads/facilities/invalid_image.png" alt="" height="40px">
                                 <?php endif; ?>
