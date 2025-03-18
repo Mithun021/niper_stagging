@@ -13,7 +13,7 @@
 </style>
 <!-- start page title -->
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
@@ -25,7 +25,8 @@
                     }
                 ?>
                 <form method="post" action="<?= base_url() ?>admin/facility-instruments" enctype="multipart/form-data">
-                    <div class="form-group">
+                    <div class="row">
+                    <div class="form-group col-lg-6">
                         <span>Facility Id</span>
                         <select name="facility_id" id="facility_id" class="form-control form-control-sm" required>
                             <option value="1">--Select--</option>
@@ -35,35 +36,54 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group col-lg-6">
                         <span>Secton Id</span>
                         <select name="section_id" id="section_id" class="form-control form-control-sm" required>
                             <option value="">--Select--</option>
                         </select>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group col-lg-6">
                         <span for="">Instrument Title<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="title">
                     </div>
 
-                    <div class="form-group">
-                        <span for="">Description:</span>
+                    <div class="form-group col-lg-12">
+                        <span for="">Description1:</span>
+                        <textarea name="description" id="editor" class="form-control form-control-sm"></textarea>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <span for="">Description2:</span>
+                        <textarea name="description" id="editor" class="form-control form-control-sm"></textarea>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <span for="">Description3:</span>
                         <textarea name="description" id="editor" class="form-control form-control-sm"></textarea>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group col-lg-6">
+                        <span for="">Web Link</span>
+                        <input type="text" class="form-control form-control-sm" name="weblink">
+                    </div>
+
+                    <div class="form-group col-lg-6">
                         <span for="">Upload Image(JPG,PNG)<span class="text-danger">*</span></span>
                         <input type="file" class="form-control form-control-sm" name="upload_photo" accept=".jpg, .png, .jpeg" required>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <span for="">Upload File(PDF)</span>
+                        <input type="file" class="form-control form-control-sm" name="upload_file" accept=".pdf">
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
                     
                 </form>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> List</h4>
