@@ -88,7 +88,7 @@
                             <span for="projectvalue">Project Value (in INR):<span class="text-danger">*</span></span>
                             <input type="number" name="projectvalue[]" id="projectvalue" class="form-control form-control-sm" step="0.01">
                         </div>
-                        <div class="col-lg-6 form-group">
+                        <div class="col-lg- form-group">
                             <span for="projectvalue">Role</span>
                             <select name="role[]" id="role" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
@@ -96,7 +96,7 @@
                                 <option value="Co-PI">Co-PI</option>
                             </select>
                         </div>
-                        <div class="col-lg-6 form-group">
+                        <div class="col-lg- form-group">
                             <span for="projectvalue">Funding Source </span>
                             <select name="funding_source[]" id="funding_source" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
@@ -107,7 +107,7 @@
                             </select>
                             <div id="other_funding_source" style="display: none;">
                                 <span>Other Funding Source</span>
-                                <input type="text" class="form-control form-control-sm" name="other_funding_source">
+                                <input type="text" class="form-control form-control-sm" name="other_funding_source[]" id="other_funding_source[]">
                             </div>
                         </div>
                     </div>
@@ -251,16 +251,18 @@
 // });
 
 $(document).ready(function () {
-    // Show/Hide "Other Funding Source" Input Based on Selection
-    $(document).on('change', '.funding_source', function () {
-        var parentCard = $(this).closest('.card-body');
-        if ($(this).val() === "Others") {
-            parentCard.find('.other_funding_source').show();
+    // Function to show/hide Other Funding Source field
+    function handleFundingSourceChange(selectElement) {
+        var container = $(selectElement).closest('#clone_employee_data');
+        var otherField = container.find('.other_funding_source_container');
+
+        if ($(selectElement).val() === "Others") {
+            otherField.show();
         } else {
-            parentCard.find('.other_funding_source').hide();
-            parentCard.find('.other_funding_source input').val('');
+            otherField.hide();
+            otherField.find('input').val(''); // Clear the field when hidden
         }
-    });
+    }
 
     // Add Clone Button Click
     $("#add-clone").click(function (e) {
@@ -271,15 +273,15 @@ $(document).ready(function () {
 
         // Reset the cloned fields
         cloneCatrow.find('input, textarea, select').val('');
-        cloneCatrow.find('.ck-editor').remove(); // Remove CKEditor instance if any
-        cloneCatrow.find('.other_funding_source').hide(); // Hide Other Funding Source initially
+        cloneCatrow.find('.ck-editor').remove(); // Remove existing CKEditor container if any
+        cloneCatrow.find('.other_funding_source_container').hide(); // Hide "Other Funding Source" initially
 
-        // Update cloned element class and IDs
-        cloneCatrow.find('#funding_source').addClass('funding_source');
-        cloneCatrow.find('#other_funding_source').addClass('other_funding_source');
-
-        // Append the cloned element to the container
+        // Append the cloned element to the clone content container
         cloneCatrow.appendTo('#clone_content');
+
+        // Reinitialize CKEditor for cloned textarea
+        cloneCatrow.find('.clone_editor').removeAttr('data-ckeditor-initialized'); // Reset the initialized flag
+        initializeEditors(); // Reinitialize editors
     });
 
     // Remove Clone Button Click
@@ -287,16 +289,10 @@ $(document).ready(function () {
         $(this).closest('#clone_employee_data').remove();
     });
 
-    // Modal Trigger (Optional Example for Context)
-    $('#upload_emp_exp_btn').on('click', function (e) {
-        e.preventDefault();
-        $('#upload_emp_exp_modal').modal('show');
+    // Handle Funding Source change event dynamically
+    $('#clone_content').on('change', 'select[name="funding_source[]"]', function () {
+        handleFundingSourceChange(this);
     });
-
-    $('#export_sample_btn').on('click',function (e) { 
-        e.preventDefault();
-        $('#export_emp_sample_modal').modal('show');
-    })
 
     // Sync CKEditor Data Before Form Submission
     $('form').on('submit', function () {
@@ -324,6 +320,7 @@ function initializeEditors() {
 
 // Initialize editors for existing elements on page load
 initializeEditors();
+
 
 
 </script>
