@@ -26,7 +26,7 @@
                 ?>
                 <form method="post" action="<?= base_url() ?>admin/facility-instruments" enctype="multipart/form-data">
                     <div class="row">
-                    <div class="form-group col-lg-6">
+                    <div class="form-group col-lg-4">
                         <span>Facility Id</span>
                         <select name="facility_id" id="facility_id" class="form-control form-control-sm" required>
                             <option value="1">--Select--</option>
@@ -36,14 +36,14 @@
                         </select>
                     </div>
 
-                    <div class="form-group col-lg-6">
+                    <div class="form-group col-lg-4">
                         <span>Secton Id</span>
                         <select name="section_id" id="section_id" class="form-control form-control-sm" required>
                             <option value="">--Select--</option>
                         </select>
                     </div>
 
-                    <div class="form-group col-lg-6">
+                    <div class="form-group col-lg-4">
                         <span for="">Instrument Title<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="title">
                     </div>
@@ -61,17 +61,17 @@
                         <textarea name="description" id="editor" class="form-control form-control-sm"></textarea>
                     </div>
 
-                    <div class="form-group col-lg-6">
+                    <div class="form-group col-lg-4">
                         <span for="">Web Link</span>
                         <input type="text" class="form-control form-control-sm" name="weblink">
                     </div>
 
-                    <div class="form-group col-lg-6">
+                    <div class="form-group col-lg-4">
                         <span for="">Upload Image(JPG,PNG)<span class="text-danger">*</span></span>
                         <input type="file" class="form-control form-control-sm" name="upload_photo" accept=".jpg, .png, .jpeg" required>
                     </div>
 
-                    <div class="form-group col-lg-6">
+                    <div class="form-group col-lg-4">
                         <span for="">Upload File(PDF)</span>
                         <input type="file" class="form-control form-control-sm" name="upload_file" accept=".pdf">
                     </div>
