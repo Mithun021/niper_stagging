@@ -320,12 +320,20 @@ class FacilityController extends BaseController
             }else{
                 return redirect()->to(base_url('admin/login'));
             }
-            $userPhoto = $this->request->getFile('upload_file');
+            $userPhoto = $this->request->getFile('upload_photo');
             if ($userPhoto->isValid() && ! $userPhoto->hasMoved()) {
-                $userPhotoImageName = "section_file".$userPhoto->getRandomName();
+                $userPhotoImageName = "section_photo".$userPhoto->getRandomName();
                 $userPhoto->move(ROOTPATH . 'public/admin/uploads/facilities', $userPhotoImageName);    
             }else{
                 $userPhotoImageName = "";
+            }
+
+            $userFile = $this->request->getFile('upload_file');
+            if ($userFile->isValid() && ! $userFile->hasMoved()) {
+                $userFileImageName = "section_file".$userFile->getRandomName();
+                $userFile->move(ROOTPATH . 'public/admin/uploads/facilities', $userFileImageName);    
+            }else{
+                $userFileImageName = "";
             }
 
             $data =[
@@ -333,7 +341,8 @@ class FacilityController extends BaseController
                 'section_id' => $this->request->getVar('section_id'),
                 'title' => $this->request->getVar('title'),
                 'description' => $this->request->getVar('description'),
-                'upload_file' => $userPhotoImageName,
+                'upload_image' => $userPhotoImageName,
+                'upload_file' => $userFileImageName,
                 'upload_by' => $loggeduserId,
             ];
             $result = $facility_section_file_model->add($data);

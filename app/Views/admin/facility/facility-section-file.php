@@ -51,7 +51,11 @@ use App\Models\Facility_section_model;
                     </div>
                     <div class="form-group">
                         <span for="">Upload Image(JPG,PNG)<span class="text-danger">*</span></span>
-                        <input type="file" class="form-control form-control-sm" name="upload_file" accept=".jpg, .png, .jpeg" required>
+                        <input type="file" class="form-control form-control-sm" name="upload_photo" accept=".jpg, .png, .jpeg" required>
+                    </div>
+                    <div class="form-group">
+                        <span for="">Upload File(PDF)<span class="text-danger">*</span></span>
+                        <input type="file" class="form-control form-control-sm" name="upload_file" accept=".pdf" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
@@ -85,8 +89,14 @@ use App\Models\Facility_section_model;
                         <tr>
                             <td><?= $key + 1 ?></td>
                             <td>
+                                <?php if (!empty($value['upload_image']) && file_exists('public/admin/uploads/facilities/' . $value['upload_image'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/facilities/<?= $value['upload_image'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/facilities/<?= $value['upload_image'] ?>" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/facilities/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
+
                                 <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/facilities/' . $value['upload_file'])): ?>
-                                    <a href="<?= base_url() ?>public/admin/uploads/facilities/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/facilities/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
+                                    <a href="<?= base_url() ?>public/admin/uploads/facilities/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
                                 <?php else: ?>
                                     <img src="<?= base_url() ?>public/admin/uploads/facilities/invalid_image.png" alt="" height="40px">
                                 <?php endif; ?>
