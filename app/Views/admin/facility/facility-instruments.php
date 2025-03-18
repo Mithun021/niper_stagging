@@ -121,7 +121,7 @@
                             </td>
                             <td><?= $facility_page_model->get($value['facility_id'])['name'] ?? '' ?></td>
                             <td><?= $facility_section_model->get($value['section_id'])['title'] ?? '' ?></td>
-                            <td><?= $value['title'] ?></td>
+                            <td><a href="<?= $value['weblink'] ?>" target="_blank" ><?= $value['title'] ?></a></td>
                             <td><?= $value['description'] ?></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
                             <td>
