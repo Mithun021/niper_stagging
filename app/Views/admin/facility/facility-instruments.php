@@ -75,9 +75,9 @@
                         <span for="">Upload File(PDF)</span>
                         <input type="file" class="form-control form-control-sm" name="upload_file" accept=".pdf">
                     </div>
-
+                    <div class="form-group col-lg-12">
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
-                    
+                    </div>
                 </form>
                 </div>
             </div>
