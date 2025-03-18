@@ -144,6 +144,8 @@ $employee_model = new Employee_model();
                                 <td>Project Date</td>
                                 <td>Sponsored by</td>
                                 <td>Project Value</td>
+                                <td>Role</td>
+                              	<td>Funding Source</td>
                                 <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
@@ -160,6 +162,8 @@ $employee_model = new Employee_model();
                                     <td><?= $value['start_date'] . " - " . $value['end_date'] ?></td>
                                     <td><?= $value['sponsored_by'] ?></td>
                                     <td><?= $value['project_value'] ?></td>
+                                    <td><?= $value['role'] ?></td>
+                              	    <td><?= $value['funding_source'] ?> <?= $value['other_funding_source'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                     <td>
@@ -308,6 +312,18 @@ $employee_model = new Employee_model();
                 }
             });
         });
+
+        // Modal Trigger (Optional Example for Context)
+        $('#upload_emp_exp_btn').on('click', function (e) {
+            e.preventDefault();
+            $('#upload_emp_exp_modal').modal('show');
+        });
+
+        $('#export_sample_btn').on('click',function (e) { 
+            e.preventDefault();
+            $('#export_emp_sample_modal').modal('show');
+        })
+
     });
 
     // CKEditor Initialization
