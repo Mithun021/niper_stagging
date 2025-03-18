@@ -5,7 +5,7 @@
     {
         protected $table         = 'pargram_department_mapping';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['program_id','department_id','eligibility_criteria','no_of_seats','batch_start','batch_end','syllabus_files','current_session','status','upload_by'];
+        protected $allowedFields = ['program_id','department_id','eligibility_criteria','no_of_seats','batch_start','batch_end','syllabus_files','current_session','status','admission','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

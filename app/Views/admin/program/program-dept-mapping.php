@@ -107,6 +107,9 @@
                             </select>
                         </div>
                     </div>
+                    <div class="col-md-12 form-group">
+                        <span><input type="checkbox" name="admission" value="1"> Check for Admission Page</span>
+                    </div>
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-primary mt-4">Submit</button>
                     </div>
@@ -136,6 +139,7 @@
                                 <td>No. of Seats</td>
                                 <td>Batch</td>
                                 <td>Active Session</td>
+                                <td>Admission</td>
                                 <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
@@ -152,6 +156,7 @@
                                 <td><?= $value['no_of_seats'] ?></td>
                                 <td><?= $value['batch_start']." - ".$value['batch_end'] ?></td>
                                 <td><?= $value['current_session'] ?></td>
+                                <td><?= ($value['admission'] == "0") ? "<span class='badge badge-danger badge-pill'>No</span>" : (($value['admission'] == "1") ? "<span class='badge badge-success badge-pill'>Yes</span>" : "") ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">

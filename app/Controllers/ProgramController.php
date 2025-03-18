@@ -69,6 +69,7 @@ use App\Models\Program_model;
                     'batch_end' => $this->request->getPost('batchEnd'),
                     'syllabus_files' => $syllabusimageName,
                     'status' => $this->request->getPost('status'),
+                    'admission' => $this->request->getPost('admission') ?? '',
                     'current_session' => $this->request->getPost('current_session'),
                     'upload_by' =>  $loggedUserId,
                 ]; 
