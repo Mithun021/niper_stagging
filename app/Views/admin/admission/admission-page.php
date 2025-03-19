@@ -42,14 +42,14 @@
                 <h4 class="card-title m-0">Admission List</h4>
             </div>
             <div class="card-body p-2">
-                <table class="table table-striped">
+                <table class="table table-striped table-hover" id="basic-datatable">
                     <thead>
                         <tr>
-                            <th>SN</th>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Banner Image</th>
-                            <th>Action</th>
+                            <td>SN</td>
+                            <td>Title</td>
+                            <td>Description</td>
+                            <td>Banner Image</td>
+                            <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
