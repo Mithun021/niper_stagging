@@ -12,7 +12,7 @@
                 <h4 class="card-title m-0">Admission Page Section</h4>
             </div>
             <div class="card-body p-2">
-                <form method="post" action="<?= base_url() ?>admin/admission_section" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/admission-page-section" enctype="multipart/form-data">
                     <div class="form-group">
                         <span>Section Title<span class="text-danger">*</span></span>
                         <input type="text" name="section_title" class="form-control form-control-sm" required>

@@ -12,7 +12,7 @@
                 <h4 class="card-title m-0">Admission Section File Upload</h4>
             </div>
             <div class="card-body p-2">
-                <form method="post" action="<?= base_url() ?>admin/admission_section_file" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/admission-section-file" enctype="multipart/form-data">
                     <div class="form-group">
                         <span>Section ID<span class="text-danger">*</span></span>
                         <input type="text" name="section_id" class="form-control form-control-sm" required>

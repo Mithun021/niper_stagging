@@ -17,7 +17,7 @@
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/admission" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/admission-page" enctype="multipart/form-data">
                     <div class="form-group">
                         <span>Title<span class="text-danger">*</span></span>
                         <input type="text" name="title" class="form-control form-control-sm" required>
