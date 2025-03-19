@@ -46,13 +46,36 @@
                     <thead>
                         <tr>
                             <td>SN</td>
+                            <td>Banner Image</td>
                             <td>Title</td>
                             <td>Description</td>
-                            <td>Banner Image</td>
+                            <td>Upload by</td>
                             <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
+                    <?php foreach ($admission as $key => $value) { ?>
+                        <tr>
+                            <td><?= ++$key ?></td>
+                            <td>
+                            <?php if (!empty($value['banner_image']) && file_exists('public/admin/uploads/admission/' . $value['banner_image'])): ?>
+                                <a href="<?= base_url() ?>public/admin/uploads/admission/<?= $value['banner_image'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/admission/<?= $value['banner_image'] ?>" alt="" height="30px"></a>
+                            <?php else: ?>
+                                <img src="<?= base_url() ?>public/admin/uploads/admission/invalid_image.png" alt="" height="40px">
+                            <?php endif; ?>
+                            </td>
+                            <td><?= $value['title'] ?></td>
+                            <td><?= $value['description'] ?></td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; }  ?></td>
+                            <td>
+                             <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                    <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                    <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                    <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
             </div>
