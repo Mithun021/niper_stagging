@@ -67,7 +67,7 @@ use App\Models\Employee_model;
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($variable as $key => $value) { ?>
+                    <?php foreach ($admission_section_images as $key => $value) { ?>
                         <tr>
                             <td><?= ++$key ?></td>
                             <td>
