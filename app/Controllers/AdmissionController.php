@@ -5,7 +5,7 @@ namespace App\Controllers;
 class AdmissionController extends BaseController
 {
     public function admission_page(){
-        $data = ['title' => 'Facility Section File'];
+        $data = ['title' => 'Admission Page'];
         if ($this->request->is("get")) {
             return view('admin/admission/admission-page',$data);
         }else if ($this->request->is("post")) {
