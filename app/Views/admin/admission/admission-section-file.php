@@ -38,6 +38,31 @@
             </div>
         </div>
     </div>
+
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title m-0">Admission Page Section List</h4>
+            </div>
+            <div class="card-body p-2">
+                <table  class="table table-striped table-hover" id="basic-datatable">
+                    <thead>
+                        <tr>
+                            <th>SN</th>
+                            <th>Section Title</th>
+                            <th>Section Description</th>
+                            <th>Section Image</th>
+                            <th>Priority</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <?= $this->endSection() ?>
