@@ -35,6 +35,30 @@
             </div>
         </div>
     </div>
+
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title m-0">Admission List</h4>
+            </div>
+            <div class="card-body p-2">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>SN</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Banner Image</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <?= $this->endSection() ?>
