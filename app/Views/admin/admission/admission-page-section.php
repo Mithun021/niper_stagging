@@ -12,7 +12,7 @@
                 <h4 class="card-title m-0">Admission Page Section</h4>
             </div>
             <div class="card-body p-2">
-                 <?php
+                <?php
                 if (session()->getFlashdata('status')) {
                     echo session()->getFlashdata('status');
                 }
@@ -74,7 +74,7 @@
                             <td><?= $value['section_priority'] ?></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; }  ?></td>
                             <td>
-                             <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                     <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
                                     <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
                                 </div>

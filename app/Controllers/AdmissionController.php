@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Admission_page_model;
 use App\Models\Admission_page_section_model;
+use App\Models\Admission_section_images_model;
 
 class AdmissionController extends BaseController
 {
@@ -83,8 +84,12 @@ class AdmissionController extends BaseController
     }
 
     public function admission_section_image(){
+        $admission_page_section_model = new Admission_page_section_model();
+        $admission_section_images_model = new Admission_section_images_model();
         $data = ['title' => 'Admission Section Image'];
         if ($this->request->is("get")) {
+            $data['admission'] = $admission_page_section_model->get();
+            $data['admission_section_images'] = $admission_section_images_model->get();
             return view('admin/admission/admission-section-image',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
@@ -92,6 +97,28 @@ class AdmissionController extends BaseController
                 $loggeduserId = $sessionData['loggeduserId']; 
             }else{
                 return redirect()->to(base_url('admin/login'));
+            }
+
+            $userPhoto = $this->request->getFile('image_upload');
+            if ($userPhoto->isValid() && ! $userPhoto->hasMoved()) {
+                $userPhotoImageName = "image".$userPhoto->getRandomName();
+                $userPhoto->move(ROOTPATH . 'public/admin/uploads/admission', $userPhotoImageName);    
+            }else{
+                $userPhotoImageName = "";
+            }
+
+            $data =[
+                'section_id' => $this->request->getVar('section_id'),
+                'image_title' => $this->request->getVar('image_title'),
+                'image_description' => $this->request->getVar('image_description'),
+                'image_upload' => $userPhotoImageName,
+                'upload_by' => $loggeduserId,
+            ];
+            $result = $admission_section_images_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/admission-section-image')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/admission-section-image')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
         }
     }
@@ -107,6 +134,8 @@ class AdmissionController extends BaseController
             }else{
                 return redirect()->to(base_url('admin/login'));
             }
+
+            
         }
     }
 }
