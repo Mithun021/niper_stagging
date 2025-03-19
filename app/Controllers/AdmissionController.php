@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Admission_page_model;
+use App\Models\Admission_page_section_model;
 
 class AdmissionController extends BaseController
 {
@@ -45,8 +46,10 @@ class AdmissionController extends BaseController
     }
 
     public function admission_page_section(){
+        $admission_page_section_model = new Admission_page_section_model();
         $data = ['title' => 'Admission Page Section'];
         if ($this->request->is("get")) {
+            $data['admission'] = $admission_page_section_model->get();
             return view('admin/admission/admission-page-section',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
@@ -54,6 +57,27 @@ class AdmissionController extends BaseController
                 $loggeduserId = $sessionData['loggeduserId']; 
             }else{
                 return redirect()->to(base_url('admin/login'));
+            }
+            $userPhoto = $this->request->getFile('section_image');
+            if ($userPhoto->isValid() && ! $userPhoto->hasMoved()) {
+                $userPhotoImageName = "section".$userPhoto->getRandomName();
+                $userPhoto->move(ROOTPATH . 'public/admin/uploads/admission', $userPhotoImageName);    
+            }else{
+                $userPhotoImageName = "";
+            }
+
+            $data =[
+                'section_title' => $this->request->getVar('section_title'),
+                'section_description' => $this->request->getVar('section_description'),
+                'section_priority' => $this->request->getVar('section_priority'),
+                'section_image' => $userPhotoImageName,
+                'upload_by' => $loggeduserId,
+            ];
+            $result = $admission_page_section_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/admission-page-section')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/admission-page-section')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
         }
     }
