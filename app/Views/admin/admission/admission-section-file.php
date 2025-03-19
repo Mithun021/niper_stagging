@@ -48,12 +48,12 @@
                 <table  class="table table-striped table-hover" id="basic-datatable">
                     <thead>
                         <tr>
-                            <th>SN</th>
-                            <th>Section Title</th>
-                            <th>Section Description</th>
-                            <th>Section Image</th>
-                            <th>Priority</th>
-                            <th>Action</th>
+                            <td>SN</td>
+                            <td>Section Title</td>
+                            <td>Section Description</td>
+                            <td>Section Image</td>
+                            <td>Priority</td>
+                            <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
