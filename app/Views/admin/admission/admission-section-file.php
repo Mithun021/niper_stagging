@@ -14,6 +14,11 @@
                 <h4 class="card-title m-0">Admission Section File Upload</h4>
             </div>
             <div class="card-body p-2">
+                <?php
+                if (session()->getFlashdata('status')) {
+                    echo session()->getFlashdata('status');
+                }
+                ?>
                 <form method="post" action="<?= base_url() ?>admin/admission-section-file" enctype="multipart/form-data">
                     <div class="form-group">
                         <span>Section ID<span class="text-danger">*</span></span>
