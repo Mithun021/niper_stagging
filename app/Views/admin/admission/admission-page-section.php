@@ -12,6 +12,11 @@
                 <h4 class="card-title m-0">Admission Page Section</h4>
             </div>
             <div class="card-body p-2">
+                 <?php
+                if (session()->getFlashdata('status')) {
+                    echo session()->getFlashdata('status');
+                }
+                ?>
                 <form method="post" action="<?= base_url() ?>admin/admission-page-section" enctype="multipart/form-data">
                     <div class="form-group">
                         <span>Section Title<span class="text-danger">*</span></span>
@@ -27,7 +32,7 @@
                     </div>
                     <div class="form-group">
                         <span>Section Priority</span>
-                        <input type="number" name="section_priority" class="form-control form-control-sm" required>
+                        <input type="text" name="section_priority" class="form-control form-control-sm" required>
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary">Save</button>
                 </form>
@@ -45,14 +50,36 @@
                     <thead>
                         <tr>
                             <td>SN</td>
+                            <td>Section Image</td>
                             <td>Section Title</td>
                             <td>Section Description</td>
-                            <td>Section Image</td>
                             <td>Priority</td>
                             <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
+                    <?php foreach ($admission as $key => $value) { ?>
+                        <tr>
+                            <td><?= ++$key ?></td>
+                            <td>
+                            <?php if (!empty($value['section_image']) && file_exists('public/admin/uploads/admission/' . $value['section_image'])): ?>
+                                <a href="<?= base_url() ?>public/admin/uploads/admission/<?= $value['section_image'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/admission/<?= $value['section_image'] ?>" alt="" height="30px"></a>
+                            <?php else: ?>
+                                <img src="<?= base_url() ?>public/admin/uploads/admission/invalid_image.png" alt="" height="40px">
+                            <?php endif; ?>
+                            </td>
+                            <td><?= $value['section_title'] ?></td>
+                            <td><?= $value['section_description'] ?></td>
+                            <td><?= $value['section_priority'] ?></td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; }  ?></td>
+                            <td>
+                             <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                    <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                    <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
             </div>
