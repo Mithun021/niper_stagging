@@ -50,10 +50,11 @@
                     <thead>
                         <tr>
                             <td>SN</td>
-                            <td>Section Image</td>
+                            <td>File</td>
                             <td>Section Title</td>
                             <td>Section Description</td>
                             <td>Priority</td>
+                            <td>Upload by</td>
                             <td>Action</td>
                         </tr>
                     </thead>
