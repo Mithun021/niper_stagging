@@ -189,6 +189,12 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get', 'post'], 'patent-type', 'PatentController::patent_type');
     $routes->match(['get', 'post'], 'current-status', 'PatentController::current_status');
 
+    // Admission Rotes ----------------------
+    $routes->match(['get', 'post'], 'admission-page', 'AdmissionController::admission_page');
+    $routes->match(['get', 'post'], 'admission-page-section', 'AdmissionController::admission_page_section');
+    $routes->match(['get', 'post'], 'admission-section-image', 'AdmissionController::admission_section_image');
+    $routes->match(['get', 'post'], 'admission-section-file', 'AdmissionController::admission_section_file');
+
     // Student Routes /----------------------------
     $routes->match(['get', 'post'], 'students', 'StudentController::students');
     $routes->match(['get','post'],'program-dept-std-mapping', 'StudentController::program_dept_std_mapping');
