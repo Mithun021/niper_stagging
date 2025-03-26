@@ -104,7 +104,7 @@ class DynamicformControllers extends BaseController
     public function manage_questions($form_id){
         $question_type_model = new Question_type_model();
         $manage_question_model = new Manage_question_model();
-        $data = ['title' => 'Manage Questions'];
+        $data = ['title' => 'Manage Questions','form_id' => $form_id];
         if ($this->request->is("get")) {
             $data['question'] = $question_type_model->getActiveQuestion();
             return view('admin/dymanic_form/manage-questions',$data);
@@ -114,6 +114,12 @@ class DynamicformControllers extends BaseController
                 'question_type' => $this->request->getPost('question_type'),
                 'question_details_id' => implode(",",  $this->request->getPost('question_details')),
             ];
+            $result = $manage_question_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/manage-questions/'.$form_id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/manage-questions/'.$form_id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
         }
     }
 
