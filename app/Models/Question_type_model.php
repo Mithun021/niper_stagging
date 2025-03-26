@@ -26,5 +26,8 @@
             }
             return $result;
         }
+        public function getActiveQuestion(){
+            return $this->where('status',1)->findAll();
+        }
     }
 ?>
