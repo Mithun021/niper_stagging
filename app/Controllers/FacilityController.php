@@ -341,6 +341,7 @@ class FacilityController extends BaseController
                 'section_id' => $this->request->getVar('section_id'),
                 'title' => $this->request->getVar('title'),
                 'description' => $this->request->getVar('description'),
+                'web_link' => $this->request->getVar('web_link'),
                 'upload_image' => $userPhotoImageName,
                 'upload_file' => $userFileImageName,
                 'upload_by' => $loggeduserId,

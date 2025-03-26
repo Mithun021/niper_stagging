@@ -50,6 +50,10 @@ use App\Models\Facility_section_model;
                         <textarea name="description" id="editor" class="form-control form-control-sm"></textarea>
                     </div>
                     <div class="form-group">
+                        <span for="">Web Link</span>
+                        <input type="url" class="form-control form-control-sm" name="web_link">
+                    </div>
+                    <div class="form-group">
                         <span for="">Upload Image(JPG,PNG)<span class="text-danger">*</span></span>
                         <input type="file" class="form-control form-control-sm" name="upload_photo" accept=".jpg, .png, .jpeg" required>
                     </div>
