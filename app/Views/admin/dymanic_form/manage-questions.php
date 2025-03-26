@@ -60,10 +60,13 @@ $employee_model = new Employee_model();
                         </select>
                     </div>
 
+                    <br><br><br>
+
+                </div>
+                <div class="card-footer">
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
-
                 </div>
             </form>
         </div>
