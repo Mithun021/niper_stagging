@@ -4,8 +4,10 @@
 <?php
 
 use App\Models\Employee_model;
+use App\Models\Question_type_model;
 
 $employee_model = new Employee_model();
+$question_type_model = new Question_type_model();
 ?>
 <style>
 
@@ -83,7 +85,13 @@ $employee_model = new Employee_model();
                     echo '<h4>'.$form_section['name'].'</h4>';
                     echo $form_section['description'];
                     foreach ($manage_question as $key => $value) {
-                        # code...
+                        $question = implode(',', $question_type_model->get($value['question_type']));
+                        $question_type = $value['question_type'];
+                ?>
+                        <div class="card card-body">
+                            <h4 class="m-0"><?= $question_type ?></h4>
+                        </div>
+                <?php
                     }    
                 ?>
 
