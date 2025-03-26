@@ -22,14 +22,14 @@
                     }
                 ?>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <span>Question Title</span>
                     <input type="text" class="form-control form-control-sm" name="question_type" required minlength="3">
                 </div>
                 <div class="form-group">
                     <span>Question Description</span>
                     <input type="text" class="form-control form-control-sm" name="question_description" id="editor">
-                </div>
+                </div> -->
 
                 <div class="form-group">
                     <span>Question Type</span>
@@ -44,6 +44,16 @@
                         <option value="Date">Date</option>
                         <option value="Time">Time</option>
                         <option value="File Upload ">File Upload </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <span>Question Details</span>
+                    <select class="form-control form-control-sm mt-select" name="question_details">
+                        <option value="">--Select--</option>
+                    <?php foreach ($question as $key => $value) { ?>
+                        <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                    <?php } ?>
                     </select>
                 </div>
 
