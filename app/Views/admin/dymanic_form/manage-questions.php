@@ -17,7 +17,7 @@ $question_type_model = new Question_type_model();
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title m-0"><?= $title ?>1 </h4>
+                <h4 class="card-title m-0"><?= $title ?> </h4>
             </div>
             <form action="<?= base_url() ?>admin/manage-questions/<?= $form_id ?>" method="post">
                 <div class="card-body">
@@ -61,7 +61,7 @@ $question_type_model = new Question_type_model();
                     </div>
                     <div class="form-group multiple-choice" style="display: none;">
                         <span>Question Description</span>
-                        <input type="text" class="form-control form-control-sm" name="question_description" id="editor-new">
+                        <input type="text" class="form-control form-control-sm" name="question_description">
                     </div>
 
                 </div>
@@ -110,7 +110,6 @@ $question_type_model = new Question_type_model();
 
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
-
 <script>
     $(document).ready(function() {
         // Initialize select2
@@ -123,39 +122,23 @@ $question_type_model = new Question_type_model();
         $('#question_type').on('change', function () {
             let selectedType = $(this).val();
             let questionDetails = $('#question_details');
-            let multipleChoiceDiv = $('.multiple-choice');
+            let multipleChoiceDiv = $('.multiple-choice'); // Select all elements with class
 
+            // Check if selected type requires multiple selection
             if (selectedType === "Checkbox" || selectedType === "Radio Button" || selectedType === "Drop Down") {
                 questionDetails.attr("multiple", "multiple");
-                multipleChoiceDiv.show();
+                multipleChoiceDiv.show();  // Show additional input fields
             } else {
                 questionDetails.removeAttr("multiple");
-                multipleChoiceDiv.hide();
+                multipleChoiceDiv.hide();  // Hide additional input fields
             }
 
+            // Reinitialize select2 after modifying attributes
             questionDetails.select2({
                 placeholder: "--Select--",
                 allowClear: true,
                 width: '100%'
             });
-        });
-
-        // Initialize CKEditor
-        ClassicEditor.create(document.querySelector('#editor'))
-            .then(editor => {
-                // Store editor instance globally
-                window.editorInstance = editor;
-            })
-            .catch(error => {
-                console.error(error);
-            });
-
-        // Ensure CKEditor data is updated before form submission
-        $('form').on('submit', function(e) {
-            if (window.editorInstance) {
-                let editorData = window.editorInstance.getData();
-                $('#editor').val(editorData);  // Set data to hidden input field before submitting
-            }
         });
     });
 </script>
