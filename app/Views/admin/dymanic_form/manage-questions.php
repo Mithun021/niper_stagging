@@ -99,8 +99,15 @@ $question_type_model = new Question_type_model();
                             }
                             foreach ($question_data as $question) {
                                 echo '<div id="choice-question">';
-                                echo '<h6 class="m-0 mt-3 text-secondary">' . $question['title'] . '</h6>';
-                                echo '<p>' . $question['description'] . '</p>';
+                                if($value['question_type']== "Radio Button"){
+                                    echo '<input type="radio" name="choice1" ><div>';
+                                    echo '<h6 class="m-0 mt-3 text-secondary">' . $question['title'] . '</h6>';
+                                    echo '<p>' . $question['description'] . '</p>';
+                                    echo "</div>";
+                                }else{
+                                    echo '<h6 class="m-0 mt-3 text-secondary">' . $question['title'] . '</h6>';
+                                    echo '<p>' . $question['description'] . '</p>';
+                                }
                                 echo '</div>';
                             }
                             echo '</div>';
