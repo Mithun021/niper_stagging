@@ -111,14 +111,28 @@ $question_type_model = new Question_type_model();
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
     let editorInstance; // Store CKEditor instance
 
+    // Function to initialize CKEditor
     function initializeEditor() {
-        if (!editorInstance) {  // Ensure CKEditor is initialized only once
+        if (!editorInstance) {
             ClassicEditor.create(document.querySelector('#editor'))
                 .then(editor => {
                     editorInstance = editor;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    }
+
+    // Function to destroy CKEditor
+    function destroyEditor() {
+        if (editorInstance) {
+            editorInstance.destroy()
+                .then(() => {
+                    editorInstance = null;
                 })
                 .catch(error => {
                     console.error(error);
@@ -132,18 +146,28 @@ $question_type_model = new Question_type_model();
 
         if (selectedType === "Checkbox" || selectedType === "Radio Button" || selectedType === "Drop Down") {
             multipleChoiceDiv.show();
-            initializeEditor(); // Call function to initialize CKEditor only if not already initialized
+            destroyEditor(); // Destroy if already exists
+            initializeEditor(); // Initialize CKEditor
         } else {
             multipleChoiceDiv.hide();
+            destroyEditor(); // Destroy when not needed
         }
     });
 
-    $('#question_form').on('submit', function(event) {
+    // Ensure CKEditor content is passed on form submission
+    $('form').on('submit', function () {
         if (editorInstance) {
-            editorInstance.updateSourceElement(); // Ensure CKEditor content is passed
+            editorInstance.updateSourceElement();
         }
     });
+
+    // Initialize CKEditor on page load (if needed)
+    if ($('.multiple-choice').is(':visible')) {
+        initializeEditor();
+    }
 });
+
+
 
 </script>
 
