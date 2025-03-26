@@ -79,7 +79,13 @@ $employee_model = new Employee_model();
                 <h4 class="card-title m-0"><?= $title ?> Details </h4>
             </div>
             <div class="card-body">
-                <?php if($manage_question){ print_r($manage_question); ?>
+                <?php if($manage_question){ 
+                    echo '<h4>'.$question_details['name'].'</h4>';
+                    echo $question_details['description'];
+                    foreach ($manage_question as $key => $value) {
+                        # code...
+                    }    
+                ?>
 
                 <?php }else{ ?>
                 <div class="alert alert-danger">No question details found.</div>
