@@ -108,67 +108,63 @@ $question_type_model = new Question_type_model();
     </div>
 </div>
 
-<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
     $(document).ready(function () {
-    let editorInstance; // Store CKEditor instance
+        let editorInstance; // Store CKEditor instance
 
-    // Function to initialize CKEditor
-    function initializeEditor() {
-        if (!editorInstance) {
-            ClassicEditor.create(document.querySelector('#editor'))
-                .then(editor => {
-                    editorInstance = editor;
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+        function initializeEditor() {
+            if (!editorInstance) {
+                ClassicEditor.create(document.querySelector('#editor'))
+                    .then(editor => {
+                        editorInstance = editor;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
         }
-    }
 
-    // Function to destroy CKEditor
-    function destroyEditor() {
-        if (editorInstance) {
-            editorInstance.destroy()
-                .then(() => {
-                    editorInstance = null;
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+        function destroyEditor() {
+            if (editorInstance) {
+                editorInstance.destroy()
+                    .then(() => {
+                        editorInstance = null; // Reset instance
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
         }
-    }
 
-    $('#question_type').on('change', function () {
-        let selectedType = $(this).val();
-        let multipleChoiceDiv = $('.multiple-choice');
+        $('#question_type').on('change', function () {
+            let selectedType = $(this).val();
+            let multipleChoiceDiv = $('.multiple-choice');
 
-        if (selectedType === "Checkbox" || selectedType === "Radio Button" || selectedType === "Drop Down") {
-            multipleChoiceDiv.show();
-            destroyEditor(); // Destroy if already exists
-            initializeEditor(); // Initialize CKEditor
-        } else {
-            multipleChoiceDiv.hide();
-            destroyEditor(); // Destroy when not needed
+            if (selectedType === "Checkbox" || selectedType === "Radio Button" || selectedType === "Drop Down") {
+                multipleChoiceDiv.show();
+                destroyEditor(); // Destroy existing instance
+                initializeEditor(); // Initialize CKEditor
+            } else {
+                multipleChoiceDiv.hide();
+                destroyEditor(); // Destroy editor when not needed
+            }
+        });
+
+        // Ensure CKEditor content is passed in form submission
+        $('form').on('submit', function () {
+            if (editorInstance) {
+                editorInstance.updateSourceElement();
+            }
+        });
+
+        // Initialize CKEditor on page load (if visible)
+        if ($('.multiple-choice').is(':visible')) {
+            initializeEditor();
         }
     });
-
-    // Ensure CKEditor content is passed on form submission
-    $('form').on('submit', function () {
-        if (editorInstance) {
-            editorInstance.updateSourceElement();
-        }
-    });
-
-    // Initialize CKEditor on page load (if needed)
-    if ($('.multiple-choice').is(':visible')) {
-        initializeEditor();
-    }
-});
-
-
-
 </script>
 
 <?= $this->endSection() ?>
