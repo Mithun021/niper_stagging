@@ -14,6 +14,9 @@ $question_type_model = new Question_type_model();
         display: flex;
         align-items: flex-start;
     }
+    #choice-question:first-child{
+        margin-top: 20px;
+    }
     #choice-question div{
         padding-left: 10px;
     }
