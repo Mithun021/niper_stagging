@@ -30,6 +30,23 @@
                     <span>Question Description</span>
                     <input type="text" class="form-control form-control-sm" name="question_description" id="editor">
                 </div>
+
+                <div class="form-group">
+                    <span>Question Type</span>
+                    <select class="form-control form-control-sm" name="question_type">
+                        <option value="">--Select--</option>
+                        <option value="Short Text">Short Text</option>
+                        <option value="Paragraph">Paragraph</option>
+                        <option value="Checkbox">Checkbox</option>
+                        <option value="Radio Button">Radio Button</option>
+                        <option value="Drop Down">Drop Down</option>
+                        <option value="Linear Scale">Linear Scale</option>
+                        <option value="Date">Date</option>
+                        <option value="Time">Time</option>
+                        <option value="File Upload ">File Upload </option>
+                    </select>
+                </div>
+
             </div>
         </div>
     </div>
