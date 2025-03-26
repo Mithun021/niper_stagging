@@ -61,7 +61,7 @@ $question_type_model = new Question_type_model();
                     </div>
                     <div class="form-group multiple-choice" style="display: none;">
                         <span>Question Description</span>
-                        <input type="text" class="form-control form-control-sm" name="question_description" id="editor">
+                        <input type="text" class="form-control form-control-sm" name="descripition" id="editor">
                     </div>
 
                 </div>
