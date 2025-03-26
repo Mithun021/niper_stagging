@@ -17,7 +17,7 @@ $question_type_model = new Question_type_model();
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title m-0"><?= $title ?> </h4>
+                <h4 class="card-title m-0"><?= $title ?>1 </h4>
             </div>
             <form action="<?= base_url() ?>admin/manage-questions/<?= $form_id ?>" method="post">
                 <div class="card-body">
@@ -141,23 +141,23 @@ $question_type_model = new Question_type_model();
         });
 
         // Initialize CKEditor
-        ClassicEditor.create(document.querySelector('#editor-new'))
+        ClassicEditor.create(document.querySelector('#editor'))
             .then(editor => {
-                // Save editor instance
+                // Store editor instance globally
                 window.editorInstance = editor;
             })
             .catch(error => {
                 console.error(error);
             });
 
-        // Ensure editor data is updated before form submission
-        $('form').on('submit', function() {
+        // Ensure CKEditor data is updated before form submission
+        $('form').on('submit', function(e) {
             if (window.editorInstance) {
-                $('input[name="descripition"]').val(window.editorInstance.getData());
+                let editorData = window.editorInstance.getData();
+                $('#editor').val(editorData);  // Set data to hidden input field before submitting
             }
         });
     });
 </script>
-
 
 <?= $this->endSection() ?>
