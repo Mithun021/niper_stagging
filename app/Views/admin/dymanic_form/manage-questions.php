@@ -10,7 +10,17 @@
 </style>
 <!-- start page title --> 
 <div class="row">
-
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <?php
+                    if(session()->getFlashdata('status')){
+                        echo session()->getFlashdata('status');
+                    }
+                ?>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?= $this->endSection() ?>
