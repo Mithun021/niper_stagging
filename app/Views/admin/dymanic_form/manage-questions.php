@@ -10,7 +10,13 @@ $employee_model = new Employee_model();
 $question_type_model = new Question_type_model();
 ?>
 <style>
-
+    #choice-question{
+        display: flex;
+        align-items: flex-start;
+    }
+    #choice-question div{
+        padding-left: 10px;
+    }
 </style>
 <!-- start page title -->
 <div class="row">
