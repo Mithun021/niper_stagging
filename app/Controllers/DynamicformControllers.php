@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Form_details_model;
 use App\Models\Form_section_model;
+use App\Models\Manage_question_model;
 use App\Models\Question_type_model;
 
 class DynamicformControllers extends BaseController
@@ -102,12 +103,17 @@ class DynamicformControllers extends BaseController
 
     public function manage_questions($form_id){
         $question_type_model = new Question_type_model();
+        $manage_question_model = new Manage_question_model();
         $data = ['title' => 'Manage Questions'];
         if ($this->request->is("get")) {
             $data['question'] = $question_type_model->getActiveQuestion();
             return view('admin/dymanic_form/manage-questions',$data);
         }else if ($this->request->is("post")) {
-
+            $data = [
+                'form_section_id' => $form_id,
+                'question_type' => $this->request->getPost('question_type'),
+                'question_details_id' => implode(",",  $this->request->getPost('question_details')),
+            ];
         }
     }
 
