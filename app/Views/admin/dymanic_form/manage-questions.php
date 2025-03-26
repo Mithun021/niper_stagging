@@ -109,8 +109,10 @@ $question_type_model = new Question_type_model();
 </div>
 
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
-<script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 <script>
+    let editorInstance; // Store CKEditor instance
+
     $(document).ready(function() {
         // Initialize select2
         $('.my-select').select2({
@@ -119,8 +121,14 @@ $question_type_model = new Question_type_model();
             width: '100%'
         });
 
-        // Initialize CKEditor
-        CKEDITOR.replace('editor');
+        // Initialize CKEditor 5 once
+        ClassicEditor.create(document.querySelector('#editor'))
+            .then(editor => {
+                editorInstance = editor; // Save the instance
+            })
+            .catch(error => {
+                console.error(error);
+            });
 
         $('#question_type').on('change', function () {
             let selectedType = $(this).val();
@@ -144,10 +152,10 @@ $question_type_model = new Question_type_model();
             });
         });
 
-        // Ensure CKEditor data is passed on form submission
-        $('#question_form').on('submit', function() {
-            for (instance in CKEDITOR.instances) {
-                CKEDITOR.instances[instance].updateElement();
+        // Ensure CKEditor 5 data is passed on form submission
+        $('#question_form').on('submit', function(event) {
+            if (editorInstance) {
+                editorInstance.updateSourceElement(); // Update textarea with editor content
             }
         });
     });
