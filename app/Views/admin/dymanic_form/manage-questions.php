@@ -98,10 +98,10 @@ $question_type_model = new Question_type_model();
                                 echo $value['descripition'];
                             }
                             foreach ($question_data as $question) {
-                                echo '<div id="choice-question"> <input type="radio" name="choice1" ><div>';
+                                echo '<div id="choice-question">';
                                 echo '<h6 class="m-0 mt-3 text-secondary">' . $question['title'] . '</h6>';
                                 echo '<p>' . $question['description'] . '</p>';
-                                echo '</div></div>';
+                                echo '</div>';
                             }
                             echo '</div>';
                         }
