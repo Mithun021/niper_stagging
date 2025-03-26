@@ -62,18 +62,31 @@
     </div>
 </div>
 
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-    const questionType = document.getElementById("question_type");
-    const questionDetails = document.getElementById("question_details");
+    $(document).ready(function() {
+    $('.my-select').select2({
+        placeholder: "--Select--",
+        allowClear: true,
+        width: '100%'
+    });
 
-    questionType.addEventListener("change", function () {
-        const selectedType = this.value;
+    $('#question_type').on('change', function () {
+        let selectedType = $(this).val();
+        let questionDetails = $('#question_details');
+
         if (selectedType === "Checkbox" || selectedType === "Radio Button" || selectedType === "Drop Down") {
-            questionDetails.setAttribute("multiple", "multiple");
+            questionDetails.attr("multiple", "multiple");
         } else {
-            questionDetails.removeAttribute("multiple");
+            questionDetails.removeAttr("multiple");
         }
+
+        // Reinitialize select2 to reflect changes
+        questionDetails.select2({
+            placeholder: "--Select--",
+            allowClear: true,
+            width: '100%'
+        });
     });
 });
 
