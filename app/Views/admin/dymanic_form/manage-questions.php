@@ -102,7 +102,7 @@ $question_type_model = new Question_type_model();
                         $question_data = $question_type_model->get($question_ids);
                         if (!empty($question_data)) {
                             echo '<div class="card card-body">';
-                            echo '<span class="btn btn-dark">'.$question_type.'</span>';
+                            echo '<span class="bg-dark display-inline">'.$question_type.'</span>';
                             if ($value['title'] !== "") {
                                 echo "<h5 class='m-0 text-danger'>".$value['title']."</h5>";
                             }
