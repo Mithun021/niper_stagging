@@ -80,8 +80,8 @@ $employee_model = new Employee_model();
             </div>
             <div class="card-body">
                 <?php if($manage_question){ 
-                    echo '<h4>'.$question_details['name'].'</h4>';
-                    echo $question_details['description'];
+                    echo '<h4>'.$form_section['name'].'</h4>';
+                    echo $form_section['description'];
                     foreach ($manage_question as $key => $value) {
                         # code...
                     }    
