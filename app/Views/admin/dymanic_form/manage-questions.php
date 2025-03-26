@@ -24,9 +24,13 @@ $question_type_model = new Question_type_model();
         margin: 0;
     }
     .question_type{
-        display: inline-block;
-        background-color: #000;
-        padding: 3px 6px;
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        background-color: red;
+        color: #FFF;
+        padding: 5px 8px;
+        border-radius: 20px;
     }
 </style>
 <!-- start page title -->
