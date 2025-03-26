@@ -63,12 +63,24 @@ $employee_model = new Employee_model();
                     <br><br><br>
 
                 </div>
-                <div class="card-footer py-0">
+                <div class="card-footer py-1">
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Question Details -->
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title m-0"><?= $title ?> Details </h4>
+            </div>
+            <div class="card-body">
+
+            </div>
         </div>
     </div>
 </div>
