@@ -96,6 +96,7 @@ $question_type_model = new Question_type_model();
                 <?php if($manage_question){ 
                     echo '<h4>'.$form_section['name'].'</h4>';
                     echo $form_section['description'];
+                    echo '<br>';
                     foreach ($manage_question as $key => $value) {
                         $question_ids = explode(',', $value['question_details_id']);
                         $question_type = $value['question_type'];
