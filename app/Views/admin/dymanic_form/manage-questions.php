@@ -17,6 +17,9 @@ $question_type_model = new Question_type_model();
     #choice-question div{
         padding-left: 10px;
     }
+    #choice-question div p{
+        margin: 0;
+    }
 </style>
 <!-- start page title -->
 <div class="row">
