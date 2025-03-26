@@ -108,62 +108,37 @@ $question_type_model = new Question_type_model();
     </div>
 </div>
 
-<script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
-        let editorInstance; // Store CKEditor instance
-
-        function initializeEditor() {
-            if (!editorInstance) {
-                ClassicEditor.create(document.querySelector('#editor'))
-                    .then(editor => {
-                        editorInstance = editor;
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-            }
-        }
-
-        function destroyEditor() {
-            if (editorInstance) {
-                editorInstance.destroy()
-                    .then(() => {
-                        editorInstance = null; // Reset instance
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-            }
-        }
+    $(document).ready(function() {
+        // Initialize select2
+        $('.my-select').select2({
+            placeholder: "--Select--",
+            allowClear: true,
+            width: '100%'
+        });
 
         $('#question_type').on('change', function () {
             let selectedType = $(this).val();
-            let multipleChoiceDiv = $('.multiple-choice');
+            let questionDetails = $('#question_details');
+            let multipleChoiceDiv = $('.multiple-choice'); // Select all elements with class
 
+            // Check if selected type requires multiple selection
             if (selectedType === "Checkbox" || selectedType === "Radio Button" || selectedType === "Drop Down") {
-                multipleChoiceDiv.show();
-                destroyEditor(); // Destroy existing instance
-                initializeEditor(); // Initialize CKEditor
+                questionDetails.attr("multiple", "multiple");
+                multipleChoiceDiv.show();  // Show additional input fields
             } else {
-                multipleChoiceDiv.hide();
-                destroyEditor(); // Destroy editor when not needed
+                questionDetails.removeAttr("multiple");
+                multipleChoiceDiv.hide();  // Hide additional input fields
             }
-        });
 
-        // Ensure CKEditor content is passed in form submission
-        $('form').on('submit', function () {
-            if (editorInstance) {
-                editorInstance.updateSourceElement();
-            }
+            // Reinitialize select2 after modifying attributes
+            questionDetails.select2({
+                placeholder: "--Select--",
+                allowClear: true,
+                width: '100%'
+            });
         });
-
-        // Initialize CKEditor on page load (if visible)
-        if ($('.multiple-choice').is(':visible')) {
-            initializeEditor();
-        }
     });
 </script>
 
