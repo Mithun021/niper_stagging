@@ -26,5 +26,8 @@
             }
             return $result;
         }
+        public function getBYformId($id){
+            return $this->where('form_section_id',$id)->findAll();
+        }
     }
 ?>

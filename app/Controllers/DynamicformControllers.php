@@ -107,6 +107,7 @@ class DynamicformControllers extends BaseController
         $data = ['title' => 'Manage Questions','form_id' => $form_id];
         if ($this->request->is("get")) {
             $data['question'] = $question_type_model->getActiveQuestion();
+            $data['manage_question'] = $manage_question_model->getBYformId($form_id);
             return view('admin/dymanic_form/manage-questions',$data);
         }else if ($this->request->is("post")) {
             $data = [

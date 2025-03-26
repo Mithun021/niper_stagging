@@ -79,7 +79,11 @@ $employee_model = new Employee_model();
                 <h4 class="card-title m-0"><?= $title ?> Details </h4>
             </div>
             <div class="card-body">
+                <?php if($manage_question){ print_r($manage_question); ?>
 
+                <?php }else{ ?>
+                <div class="alert alert-danger">No question details found.</div>
+                <?php } ?>
             </div>
         </div>
     </div>
