@@ -91,13 +91,13 @@ $question_type_model = new Question_type_model();
                         if (!empty($question_data)) {
                             echo '<div class="card card-body">';
                             echo $question_type;
+                            if ($value['title'] !== "") {
+                                echo "<h4 class=;m-0 text-primary>".$value['title']."</h4>";
+                            }
+                            if ($value['descripition'] !=="") {
+                                echo $value['descripition'];
+                            }
                             foreach ($question_data as $question) {
-                                if ($value['title'] !== "") {
-                                    echo "<h4 class=;m-0 text-primary>".$value['title']."</h4>";
-                                }
-                                if ($value['descripition'] !=="") {
-                                    echo $value['descripition'];
-                                }
                                 echo '<h5 class="m-0 text-secondary">' . $question['title'] . '</h5>';
                                 echo '<p>' . $question['description'] . '</p>';
                             }
