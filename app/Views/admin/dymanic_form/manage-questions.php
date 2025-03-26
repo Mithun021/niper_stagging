@@ -55,11 +55,11 @@ $question_type_model = new Question_type_model();
 
                     <br><br><br>
 
-                    <div class="form-group" id="multple-choice" style="display: none;">
+                    <div class="form-group multiple-choice" style="display: none;">
                         <span>Question Title</span>
                         <input type="text" class="form-control form-control-sm" name="question_type" required minlength="3">
                     </div>
-                    <div class="form-group" id="multple-choice" style="display: none;">
+                    <div class="form-group multiple-choice" style="display: none;">
                         <span>Question Description</span>
                         <input type="text" class="form-control form-control-sm" name="question_description" id="editor">
                     </div>
@@ -111,7 +111,7 @@ $question_type_model = new Question_type_model();
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
-        // Initialize select2 for better dropdown UI
+        // Initialize select2
         $('.my-select').select2({
             placeholder: "--Select--",
             allowClear: true,
@@ -121,7 +121,7 @@ $question_type_model = new Question_type_model();
         $('#question_type').on('change', function () {
             let selectedType = $(this).val();
             let questionDetails = $('#question_details');
-            let multipleChoiceDiv = $('#multiple-choice');
+            let multipleChoiceDiv = $('.multiple-choice'); // Select all elements with class
 
             // Check if selected type requires multiple selection
             if (selectedType === "Checkbox" || selectedType === "Radio Button" || selectedType === "Drop Down") {
@@ -140,7 +140,6 @@ $question_type_model = new Question_type_model();
             });
         });
     });
-
 </script>
 
 <?= $this->endSection() ?>
