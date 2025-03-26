@@ -111,54 +111,40 @@ $question_type_model = new Question_type_model();
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 <script>
+    $(document).ready(function() {
     let editorInstance; // Store CKEditor instance
 
-    $(document).ready(function() {
-        // Initialize select2
-        $('.my-select').select2({
-            placeholder: "--Select--",
-            allowClear: true,
-            width: '100%'
-        });
+    function initializeEditor() {
+        if (!editorInstance) {  // Ensure CKEditor is initialized only once
+            ClassicEditor.create(document.querySelector('#editor'))
+                .then(editor => {
+                    editorInstance = editor;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    }
 
-        // Initialize CKEditor 5 once
-        ClassicEditor.create(document.querySelector('#editor'))
-            .then(editor => {
-                editorInstance = editor; // Save the instance
-            })
-            .catch(error => {
-                console.error(error);
-            });
+    $('#question_type').on('change', function () {
+        let selectedType = $(this).val();
+        let multipleChoiceDiv = $('.multiple-choice');
 
-        $('#question_type').on('change', function () {
-            let selectedType = $(this).val();
-            let questionDetails = $('#question_details');
-            let multipleChoiceDiv = $('.multiple-choice');
-
-            // Check if selected type requires multiple selection
-            if (selectedType === "Checkbox" || selectedType === "Radio Button" || selectedType === "Drop Down") {
-                questionDetails.attr("multiple", "multiple");
-                multipleChoiceDiv.show();  // Show additional input fields
-            } else {
-                questionDetails.removeAttr("multiple");
-                multipleChoiceDiv.hide();  // Hide additional input fields
-            }
-
-            // Reinitialize select2 after modifying attributes
-            questionDetails.select2({
-                placeholder: "--Select--",
-                allowClear: true,
-                width: '100%'
-            });
-        });
-
-        // Ensure CKEditor 5 data is passed on form submission
-        $('#question_form').on('submit', function(event) {
-            if (editorInstance) {
-                editorInstance.updateSourceElement(); // Update textarea with editor content
-            }
-        });
+        if (selectedType === "Checkbox" || selectedType === "Radio Button" || selectedType === "Drop Down") {
+            multipleChoiceDiv.show();
+            initializeEditor(); // Call function to initialize CKEditor only if not already initialized
+        } else {
+            multipleChoiceDiv.hide();
+        }
     });
+
+    $('#question_form').on('submit', function(event) {
+        if (editorInstance) {
+            editorInstance.updateSourceElement(); // Ensure CKEditor content is passed
+        }
+    });
+});
+
 </script>
 
 <?= $this->endSection() ?>
