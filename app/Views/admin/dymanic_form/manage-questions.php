@@ -109,6 +109,7 @@ $question_type_model = new Question_type_model();
 </div>
 
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
 <script>
     $(document).ready(function() {
         // Initialize select2
@@ -118,10 +119,13 @@ $question_type_model = new Question_type_model();
             width: '100%'
         });
 
+        // Initialize CKEditor
+        CKEDITOR.replace('editor');
+
         $('#question_type').on('change', function () {
             let selectedType = $(this).val();
             let questionDetails = $('#question_details');
-            let multipleChoiceDiv = $('.multiple-choice'); // Select all elements with class
+            let multipleChoiceDiv = $('.multiple-choice');
 
             // Check if selected type requires multiple selection
             if (selectedType === "Checkbox" || selectedType === "Radio Button" || selectedType === "Drop Down") {
@@ -138,6 +142,13 @@ $question_type_model = new Question_type_model();
                 allowClear: true,
                 width: '100%'
             });
+        });
+
+        // Ensure CKEditor data is passed on form submission
+        $('#question_form').on('submit', function() {
+            for (instance in CKEDITOR.instances) {
+                CKEDITOR.instances[instance].updateElement();
+            }
         });
     });
 </script>
