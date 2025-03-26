@@ -61,7 +61,7 @@ $question_type_model = new Question_type_model();
                     </div>
                     <div class="form-group multiple-choice" style="display: none;">
                         <span>Question Description</span>
-                        <input type="text" class="form-control form-control-sm" name="descripition" id="editor">
+                        <input type="text" class="form-control form-control-sm" name="descripition" id="editor-new">
                     </div>
 
                 </div>
@@ -141,7 +141,7 @@ $question_type_model = new Question_type_model();
         });
 
         // Initialize CKEditor
-        ClassicEditor.create(document.querySelector('#editor'))
+        ClassicEditor.create(document.querySelector('#editor-new'))
             .then(editor => {
                 // Save editor instance
                 window.editorInstance = editor;
