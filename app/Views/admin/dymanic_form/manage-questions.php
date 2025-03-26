@@ -109,6 +109,8 @@ $question_type_model = new Question_type_model();
 </div>
 
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+
 <script>
     $(document).ready(function() {
         // Initialize select2
@@ -121,25 +123,41 @@ $question_type_model = new Question_type_model();
         $('#question_type').on('change', function () {
             let selectedType = $(this).val();
             let questionDetails = $('#question_details');
-            let multipleChoiceDiv = $('.multiple-choice'); // Select all elements with class
+            let multipleChoiceDiv = $('.multiple-choice');
 
-            // Check if selected type requires multiple selection
             if (selectedType === "Checkbox" || selectedType === "Radio Button" || selectedType === "Drop Down") {
                 questionDetails.attr("multiple", "multiple");
-                multipleChoiceDiv.show();  // Show additional input fields
+                multipleChoiceDiv.show();
             } else {
                 questionDetails.removeAttr("multiple");
-                multipleChoiceDiv.hide();  // Hide additional input fields
+                multipleChoiceDiv.hide();
             }
 
-            // Reinitialize select2 after modifying attributes
             questionDetails.select2({
                 placeholder: "--Select--",
                 allowClear: true,
                 width: '100%'
             });
         });
+
+        // Initialize CKEditor
+        ClassicEditor.create(document.querySelector('#editor'))
+            .then(editor => {
+                // Save editor instance
+                window.editorInstance = editor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        // Ensure editor data is updated before form submission
+        $('form').on('submit', function() {
+            if (window.editorInstance) {
+                $('input[name="descripition"]').val(window.editorInstance.getData());
+            }
+        });
     });
 </script>
+
 
 <?= $this->endSection() ?>
