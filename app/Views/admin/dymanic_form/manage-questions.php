@@ -49,7 +49,7 @@
 
                 <div class="form-group">
                     <span>Question Details</span>
-                    <select class="form-control form-control-sm mt-select" name="question_details">
+                    <select class="form-control form-control-sm my-select" name="question_details">
                         <option value="">--Select--</option>
                     <?php foreach ($question as $key => $value) { ?>
                         <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
