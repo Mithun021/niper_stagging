@@ -119,7 +119,7 @@ class DynamicformControllers extends BaseController
                 'title' => $this->request->getPost('question_title'),
                 'descripition' => $this->request->getPost('question_description'),
             ];
-            print_r($data); die;
+            // print_r($data); die;
             $result = $manage_question_model->add($data);
             if ($result === true) {
                 return redirect()->to('admin/manage-questions/'.$form_id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
