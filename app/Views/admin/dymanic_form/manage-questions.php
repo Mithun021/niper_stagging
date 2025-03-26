@@ -23,6 +23,11 @@ $question_type_model = new Question_type_model();
     #choice-question div p{
         margin: 0;
     }
+    .question_type{
+        display: inline-block;
+        background-color: #000;
+        padding: 3px 6px;
+    }
 </style>
 <!-- start page title -->
 <div class="row">
@@ -102,7 +107,7 @@ $question_type_model = new Question_type_model();
                         $question_data = $question_type_model->get($question_ids);
                         if (!empty($question_data)) {
                             echo '<div class="card card-body">';
-                            echo '<span class="bg-dark display-inline">'.$question_type.'</span>';
+                            echo '<span class="question_type">'.$question_type.'</span>';
                             if ($value['title'] !== "") {
                                 echo "<h5 class='m-0 text-danger'>".$value['title']."</h5>";
                             }
