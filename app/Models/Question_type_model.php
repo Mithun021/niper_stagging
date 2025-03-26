@@ -19,12 +19,15 @@
         }
 
         public function get($id = null){
-            if($id != null){
-                $result = $this->where('id',$id)->first();
-            }else{
-                $result = $this->orderBy('id','asc')->findAll();
+            if ($id !== null) {
+                if (is_array($id)) {
+                    return $this->whereIn('id', $id)->findAll(); // Fetch multiple question types
+                } else {
+                    return $this->where('id', $id)->first(); // Fetch a single question type
+                }
+            } else {
+                return $this->orderBy('id', 'asc')->findAll();
             }
-            return $result;
         }
         public function getActiveQuestion(){
             return $this->where('status',1)->findAll();

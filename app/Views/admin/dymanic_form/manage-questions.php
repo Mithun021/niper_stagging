@@ -85,13 +85,18 @@ $question_type_model = new Question_type_model();
                     echo '<h4>'.$form_section['name'].'</h4>';
                     echo $form_section['description'];
                     foreach ($manage_question as $key => $value) {
-                        $question = implode(',', $question_type_model->get($value['question_type']));
+                        $question_ids = explode(',', $value['question_details_id']);
                         $question_type = $value['question_type'];
-                ?>
-                        <div class="card card-body">
-                            <h4 class="m-0"><?= $question_type ?></h4>
-                        </div>
-                <?php
+                        $question_data = $question_type_model->get($question_ids);
+                        if (!empty($question_data)) {
+                            echo '<div class="card card-body">';
+                            echo $question_type;
+                            foreach ($question_data as $question) {
+                                echo '<h4 class="m-0">' . $question['title'] . '</h4>';
+                                echo '<p>' . $question['description'] . '</p>';
+                            }
+                            echo '</div>';
+                        }
                     }    
                 ?>
 
