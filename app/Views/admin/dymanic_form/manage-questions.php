@@ -96,7 +96,6 @@ $question_type_model = new Question_type_model();
                 <?php if($manage_question){ 
                     echo '<h4>'.$form_section['name'].'</h4>';
                     echo $form_section['description'];
-                    echo '<br>';
                     foreach ($manage_question as $key => $value) {
                         $question_ids = explode(',', $value['question_details_id']);
                         $question_type = $value['question_type'];
@@ -110,18 +109,19 @@ $question_type_model = new Question_type_model();
                             if ($value['descripition'] !=="") {
                                 echo $value['descripition'];
                             }
+                            echo '<br>';
                             foreach ($question_data as $question) {
-                                echo '<div id="choice-question">';
                                 if($value['question_type']== "Radio Button"){
-                                    echo '<input type="radio" name="choice1" ><div>';
-                                    echo '<h6 class="m-0 text-secondary">' . $question['title'] . '</h6>';
-                                    echo '<p>' . $question['description'] . '</p>';
-                                    echo "</div>";
+                                    echo '<div id="choice-question">';
+                                        echo '<input type="radio" name="choice1" ><div>';
+                                            echo '<h6 class="m-0 text-secondary">' . $question['title'] . '</h6>';
+                                            echo '<p>' . $question['description'] . '</p>';
+                                        echo "</div>";
+                                    echo '</div>';
                                 }else{
                                     echo '<h6 class="m-0 text-secondary">' . $question['title'] . '</h6>';
                                     echo '<p>' . $question['description'] . '</p>';
                                 }
-                                echo '</div>';
                             }
                             echo '</div>';
                         }
