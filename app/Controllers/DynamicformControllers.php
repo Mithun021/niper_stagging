@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Form_details_model;
 use App\Models\Form_section_model;
+use App\Models\Question_type_model;
 
 class DynamicformControllers extends BaseController
 {
@@ -68,6 +69,33 @@ class DynamicformControllers extends BaseController
                 return redirect()->to('admin/form-section')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
                 return redirect()->to('admin/form-section')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+
+    public function question_type(){
+       $question_type_model =  new Question_type_model();
+        $data = ['title' => 'Question Type'];
+        if ($this->request->is("get")) {
+            $data['question'] = $question_type_model->get();
+            return view('admin/dymanic_form/question-type',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+
+            $data = [
+                'title' => $this->request->getPost('title'),
+                'description' => $this->request->getPost('description'),
+                'status' => $this->request->getPost('status'),
+                'upload_by' => $loggeduserId,
+            ];
+            $result = $question_type_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/question-type')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/question-type')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
         }
     }

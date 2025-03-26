@@ -218,6 +218,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
 
     $routes->match(['get','post'],'form-details', 'DynamicformControllers::form_details');
     $routes->match(['get','post'],'form-section', 'DynamicformControllers::form_section');
+    $routes->match(['get','post'],'question-type', 'DynamicformControllers::question_type');
     $routes->match(['get','post'],'manage-questions/(:num)', 'DynamicformControllers::manage_questions/$1');
 
     $routes->match(['get', 'post'], 'modules', 'AdminControllers::modules');
