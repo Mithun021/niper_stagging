@@ -71,4 +71,17 @@ class DynamicformControllers extends BaseController
             }
         }
     }
+
+    public function manage_questions($form_id){
+        $form_details_model = new Form_details_model();
+        $form_section_model = new Form_section_model();
+        $data = ['title' => 'Manage Questions'];
+        if ($this->request->is("get")) {
+            return view('admin/dymanic_form/manage-questions',$data);
+        }else if ($this->request->is("post")) {
+
+        }
+    }
+
+
 }
