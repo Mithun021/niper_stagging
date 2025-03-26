@@ -63,7 +63,7 @@ $employee_model = new Employee_model();
                     <br><br><br>
 
                 </div>
-                <div class="card-footer">
+                <div class="card-footer py-0">
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
