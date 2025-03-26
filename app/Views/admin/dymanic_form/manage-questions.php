@@ -27,15 +27,6 @@ $question_type_model = new Question_type_model();
                     }
                     ?>
 
-                    <!-- <div class="form-group">
-                    <span>Question Title</span>
-                    <input type="text" class="form-control form-control-sm" name="question_type" required minlength="3">
-                </div>
-                <div class="form-group">
-                    <span>Question Description</span>
-                    <input type="text" class="form-control form-control-sm" name="question_description" id="editor">
-                </div> -->
-
                     <div class="form-group">
                         <span>Question Type</span>
                         <select class="form-control form-control-sm" name="question_type" id="question_type">
@@ -63,6 +54,15 @@ $question_type_model = new Question_type_model();
                     </div>
 
                     <br><br><br>
+
+                    <div class="form-group" id="multple-choice" style="display: none;">
+                        <span>Question Title</span>
+                        <input type="text" class="form-control form-control-sm" name="question_type" required minlength="3">
+                    </div>
+                    <div class="form-group" id="multple-choice" style="display: none;">
+                        <span>Question Description</span>
+                        <input type="text" class="form-control form-control-sm" name="question_description" id="editor">
+                    </div>
 
                 </div>
                 <div class="card-footer py-1">
@@ -111,30 +111,35 @@ $question_type_model = new Question_type_model();
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('.my-select').select2({
+    $('.my-select').select2({
+        placeholder: "--Select--",
+        allowClear: true,
+        width: '100%'
+    });
+
+    $('#question_type').on('change', function () {
+        let selectedType = $(this).val();
+        let questionDetails = $('#question_details');
+        let multipleChoiceDiv = $('#multiple-choice');
+
+        // Toggle 'multiple' attribute
+        if (selectedType === "Checkbox" || selectedType === "Radio Button" || selectedType === "Drop Down") {
+            questionDetails.attr("multiple", "multiple");
+            multipleChoiceDiv.show();  // Show the input fields
+        } else {
+            questionDetails.removeAttr("multiple");
+            multipleChoiceDiv.hide();  // Hide the input fields
+        }
+
+        // Reinitialize select2 to reflect changes
+        questionDetails.select2({
             placeholder: "--Select--",
             allowClear: true,
             width: '100%'
         });
-
-        $('#question_type').on('change', function() {
-            let selectedType = $(this).val();
-            let questionDetails = $('#question_details');
-
-            if (selectedType === "Checkbox" || selectedType === "Radio Button" || selectedType === "Drop Down") {
-                questionDetails.attr("multiple", "multiple");
-            } else {
-                questionDetails.removeAttr("multiple");
-            }
-
-            // Reinitialize select2 to reflect changes
-            questionDetails.select2({
-                placeholder: "--Select--",
-                allowClear: true,
-                width: '100%'
-            });
-        });
     });
+});
+
 </script>
 
 <?= $this->endSection() ?>
