@@ -1284,6 +1284,8 @@ use App\Models\Student_model;
                     'university_country' => $this->request->getPost('university_country'),
                     'role' => $this->request->getPost('role'),
                     'registration_date' => $this->request->getPost('registration_date'),
+                    'registration_date' => $this->request->getPost('registration_date'),
+                    'registration_date' => $this->request->getPost('registration_date'),
                     'status' => $this->request->getPost('status'),
                     'submission_date' => $this->request->getPost('submission_date') ?? '',
                     'document_file' => $documentNewName,

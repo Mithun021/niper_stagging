@@ -85,9 +85,14 @@ $department_model = new Department_model();
                                 <option value="Awarded">Awarded</option>
                             </select>
                         </div>
-                        <div class="form-group reg_date col-md-4" style="display : none;">
-                            <span for="">Submission/Award Date</span>
+                        <div class="form-group submission_date col-md-4" style="display : none;">
+                            <span for="">Submission Date</span>
                             <input type="date" name="submission_date" id="" class="form-control form-control-sm">
+                        </div>
+                        
+                        <div class="form-group col-md-4 award_date" style="display : none;">
+                            <span for="">Award Date</span>
+                            <input type="date" name="award_date" id="" class="form-control form-control-sm">
                         </div>
                         <div class="form-group col-md-12">
                             <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
@@ -164,11 +169,18 @@ $department_model = new Department_model();
 <script>
     function toggleRegDateField() {
         var status = document.getElementById("status").value;
-        var regDateDiv = document.querySelector(".reg_date");
-        if (status === "Ongoing" || status === "") {
-            regDateDiv.style.display = "none";
-        } else {
-            regDateDiv.style.display = "block";
+        var submissionDateField = document.querySelector(".submission_date");
+        var awardDateField = document.querySelector(".award_date");
+
+        // Hide both fields by default
+        submissionDateField.style.display = "none";
+        awardDateField.style.display = "none";
+
+        // Show the relevant field based on the selected status
+        if (status === "Submitted") {
+            submissionDateField.style.display = "block";
+        } else if (status === "Awarded") {
+            awardDateField.style.display = "block";
         }
     }
 </script>
