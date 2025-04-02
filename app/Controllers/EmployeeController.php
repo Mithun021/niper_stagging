@@ -1288,6 +1288,7 @@ use App\Models\Student_model;
                     'registration_date' => $this->request->getPost('registration_date'),
                     'status' => $this->request->getPost('status'),
                     'submission_date' => $this->request->getPost('submission_date') ?? '',
+                    'award_date' => $this->request->getPost('award_date') ?? '',
                     'document_file' => $documentNewName,
                     'upload_by' => $loggeduserId,
                 ];

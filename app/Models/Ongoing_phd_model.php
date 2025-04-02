@@ -5,7 +5,7 @@
     {
         protected $table         = 'ongoing_phd';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['employee_id','student_name','subject_thesis','university_name','department','university_country','role','registration_date','document_file','submission_date','status','upload_by'];
+        protected $allowedFields = ['employee_id','student_name','subject_thesis','university_name','department','university_country','role','registration_date','document_file','submission_date','award_date','status','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
