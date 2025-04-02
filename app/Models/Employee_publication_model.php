@@ -5,7 +5,7 @@
     {
         protected $table         = 'employee_publication';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['emplyee_id','title','description','keywords','publication_photo','doi_details','publication_year','journal_name','page_no','reffered','issn_no','isbn_no','impact_factor','web_link','publication_type','status','upload_by'];
+        protected $allowedFields = ['emplyee_id','title','description','keywords','publication_photo','published_name','volume_number','publish_date_online','publish_date_print','date_of_acceptance','date_of_communication','doi_details','publication_year','journal_name','page_no','reffered','issn_no','isbn_no','impact_factor','web_link','publication_type','status','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

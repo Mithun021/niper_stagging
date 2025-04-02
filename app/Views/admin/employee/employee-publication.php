@@ -87,6 +87,42 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
+                        <div class="form-group">
+                            <span for="DoIdetails">Published Name</span>
+                            <input type="text" name="published_name" id="published_name" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span for="DoIdetails">Volume Number</span>
+                            <input type="text" name="volume_number" id="volume_number" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span for="DoIdetails">Publish Date Online</span>
+                            <input type="date" name="publish_date_online" id="publish_date_online" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span for="DoIdetails">Publish Date Print</span>
+                            <input type="date" name="publish_date_print" id="publish_date_print" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span for="DoIdetails">Date of Acceptance </span>
+                            <input type="date" name="date_of_acceptance" id="date_of_acceptance" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <span for="DoIdetails">Date of Communication </span>
+                            <input type="date" name="date_of_communication" id="date_of_communication" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
                          <!-- DOI Details -->
                         <div class="form-group">
                             <span for="DoIdetails">DOI Details:</span>
