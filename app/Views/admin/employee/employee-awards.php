@@ -75,6 +75,8 @@ $employee_model = new Employee_model();
                                         <option value="">--Select--</option>
                                         <option value="National">National</option>
                                         <option value="International">International</option>
+                                        <option value="University">University</option>
+                                        <option value="Industry">Industry</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-6">
