@@ -23,15 +23,15 @@ $employee_model = new Employee_model();
                 <!-- Form Start -->
                 <form action="<?= base_url() ?>admin/employee-seed-money" method="post" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="form-group col-mg-6">
+                        <div class="form-group col-md-6">
                             <span>Title of MoU</span>
                             <input type="number" class="form-control form-control-sm" name="mou_title" required>
                         </div>
-                        <div class="form-group col-mg-6">
+                        <div class="form-group col-md-6">
                             <span>Name of Institution</span>
                             <input type="text" class="form-control form-control-sm my-select" name="institution_name" required>
                         </div>
-                        <div class="form-group col-mg-6">
+                        <div class="form-group col-md-6">
                             <span>Year of Entering MoU</span>
                             <select name="entring_mou_year" class="form-control form-control-sm" required>
                                 <option value="">--Select--</option>
@@ -40,18 +40,18 @@ $employee_model = new Employee_model();
                                 <?php } ?>
                             </select>
                         </div>
-                        <div class="form-group col-mg-6">
+                        <div class="form-group col-md-6">
                             <span>Duration</span>
                             <input type="text" class="form-control form-control-sm my-select" name="duration" required>
                         </div>
-                        <div class="form-group col-mg-6">
+                        <div class="form-group col-md-6">
                             <span>Status </span>
                             <select class="form-control form-control-sm" name="status" required>
                                 <option value="0">Expired</option>
                                 <option value="1">Active</option>
                             </select>
                         </div>
-                        <div class="form-group col-mg-12">
+                        <div class="form-group col-md-12">
                             <button type="submit" class="btn btn-primary mt-4">Submit</button>
                         </div>
                     </div>
