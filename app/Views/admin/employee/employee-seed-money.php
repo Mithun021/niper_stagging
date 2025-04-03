@@ -10,7 +10,7 @@ $employee_model = new Employee_model();
 ?>
 
 <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-4">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
@@ -54,7 +54,7 @@ $employee_model = new Employee_model();
         </div>
     </div>
 
-    <div class="col-lg-7">
+    <div class="col-lg-8">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title m-0">List of <?= $title ?></h4>
