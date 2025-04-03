@@ -25,7 +25,7 @@ $employee_model = new Employee_model();
                     <div class="row">
                         <div class="form-group col-md-6">
                             <span>Title of MoU</span>
-                            <input type="number" class="form-control form-control-sm" name="mou_title" required>
+                            <input type="text" class="form-control form-control-sm" name="mou_title" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Name of Institution</span>
