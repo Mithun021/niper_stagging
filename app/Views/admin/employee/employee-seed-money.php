@@ -35,11 +35,11 @@
                 </div>
                 <div class="form-group">
                     <span>Duration of Grant</span>
-                    <input type="number" class="form-control form-control-sm" name="grant_duration" required>
+                    <input type="number" class="form-control form-control-sm my-select" name="grant_duration" required>
                 </div>
                 <div class="form-group">
                     <span>Status </span>
-                    <select class="form-control form-control-sm" name="received_money" required>
+                    <select class="form-control form-control-sm" name="status" required>
                         <option value="0">Ongoing</option>
                         <option value="1">Complete</option>
                     </select>
