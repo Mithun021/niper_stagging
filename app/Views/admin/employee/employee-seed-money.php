@@ -18,10 +18,33 @@
                 <?= session()->getFlashdata('msg') ?>
             <?php endif; ?>
 
-                <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/employee-publication" method="post" enctype="multipart/form-data">
-
-                </form>
+            <!-- Form Start -->
+            <form action="<?= base_url() ?>admin/employee-seed-money" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <span>Amount of Seed Money Received</span>
+                    <input type="number" class="form-control form-control-sm" name="received_money" required>
+                </div>
+                <div class="form-group">
+                    <span>Year</span>
+                    <select name="years" class="form-control form-control-sm" required>
+                        <option value="">--Select--</option>
+                    <?php for ($i=2000; $i <= date('Y') ; $i++) { ?>
+                        <option value="<?= $i ?>"><?= $i ?></option>
+                    <?php } ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <span>Duration of Grant</span>
+                    <input type="number" class="form-control form-control-sm" name="grant_duration" required>
+                </div>
+                <div class="form-group">
+                    <span>Status </span>
+                    <select class="form-control form-control-sm" name="received_money" required>
+                        <option value="0">Ongoing</option>
+                        <option value="1">Complete</option>
+                    </select>
+                </div>
+            </form>
             </div>
         </div>
     </div>
