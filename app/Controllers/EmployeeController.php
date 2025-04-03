@@ -1379,7 +1379,7 @@ use App\Models\Student_model;
         public function employee_seed_money(){
             $data = ['title' => 'Employee Seed Money'];
             if ($this->request->is('get')) {
-                return view('asmin/employee/employee-seed-money');
+                return view('admin/employee/employee-seed-money');
             }else if ($this->request->is('post')) {
 
             }
