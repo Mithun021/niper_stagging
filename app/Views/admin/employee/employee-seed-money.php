@@ -37,7 +37,7 @@ $employee_model = new Employee_model();
                     </div>
                     <div class="form-group">
                         <span>Duration of Grant</span>
-                        <input type="number" class="form-control form-control-sm my-select" name="grant_duration" required>
+                        <input type="text" class="form-control form-control-sm my-select" name="grant_duration" required>
                     </div>
                     <div class="form-group">
                         <span>Status </span>
@@ -45,6 +45,9 @@ $employee_model = new Employee_model();
                             <option value="0">Ongoing</option>
                             <option value="1">Complete</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary mt-4">Submit</button>
                     </div>
                 </form>
             </div>
