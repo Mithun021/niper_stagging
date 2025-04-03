@@ -21,7 +21,7 @@ $employee_model = new Employee_model();
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/employee-seed-money" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/employee-mou" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <span>Title of MoU</span>
