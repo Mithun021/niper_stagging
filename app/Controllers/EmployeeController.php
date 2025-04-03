@@ -12,9 +12,11 @@ use App\Models\Emp_other_academic_detail_model;
 use App\Models\Employee_academic_details_model;
 use App\Models\Employee_additioonal_charge_model;
 use App\Models\Employee_awards_model;
+use App\Models\Employee_collaboration_model;
 use App\Models\Employee_experience_model;
 use App\Models\Employee_fellowship_model;
 use App\Models\Employee_model;
+use App\Models\Employee_mou_model;
 use App\Models\Employee_nature_model;
 use App\Models\Employee_patent_model;
 use App\Models\Employee_projects_model;
@@ -1400,6 +1402,71 @@ use App\Models\Student_model;
                     return redirect()->to('admin/employee-seed-money')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
                     return redirect()->to('admin/employee-seed-money')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
+        public function employee_collaboration(){
+            $employee_collaboration_model = new Employee_collaboration_model();
+            $data = ['title' => 'Employee Collaboration'];
+            if ($this->request->is('get')) {
+                $data['employee_collaboration'] = $employee_collaboration_model->get();
+                return view('admin/employee/employee-collaboration',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                
+                $document = $this->request->getFile('file_upload');
+                if ($document->isValid() && ! $document->hasMoved()) {
+                    $documentNewName = "coll".rand(0,9999).$document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/employee', $documentNewName);    
+                }else{
+                 $documentNewName = "";
+                }
+                $data = [
+                    'title' => $this->request->getPost('title'),
+                    'collaborative_agency' => $this->request->getPost('collaborative_agency'),
+                    'collaboration_year' => $this->request->getPost('collaboration_year'),
+                    'duartion_in_month' => $this->request->getPost('duartion_in_month'),
+                    'name_of_activity' => $this->request->getPost('name_of_activity'),
+                    'file_upload' => $documentNewName,
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $employee_collaboration_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/employee-collaboration')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/employee-collaboration')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
+        public function employee_mou(){
+            $employee_mou_model = new Employee_mou_model();
+            $data = ['title' => 'Employee MoUs'];
+            if ($this->request->is('get')) {
+                $data['employee_mou'] = $employee_mou_model->get();
+                return view('admin/employee/employee-mou',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $data = [
+                    'mou_title' => $this->request->getPost('mou_title'),
+                    'institution_name' => $this->request->getPost('institution_name'),
+                    'entring_mou_year' => $this->request->getPost('entring_mou_year'),
+                    'duration' => $this->request->getPost('duration'),
+                    'status' => $this->request->getPost('status'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $employee_mou_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/employee-mou')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/employee-mou')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
         }

@@ -114,6 +114,8 @@
                 <li><a href="<?= base_url() ?>admin/course-tought" class="waves-effect"><span>Course Taught</span></a></li>
                 <li><a href="<?= base_url() ?>admin/emp-fellowship" class="waves-effect"><span>Membership / Fellowships</span></a></li>
                 <li><a href="<?= base_url() ?>admin/employee-seed-money" class="waves-effect"><span>Employee Seed Money</span></a></li>
+                <li><a href="<?= base_url() ?>admin/employee-collaboration" class="waves-effect"><span>Employee Colaboration</span></a></li>
+                <li><a href="<?= base_url() ?>admin/employee-mou" class="waves-effect"><span>Employee MoUs</span></a></li>
             </ul>
         </li>
 
