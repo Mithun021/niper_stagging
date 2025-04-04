@@ -413,6 +413,7 @@ use App\Models\Student_model;
                     'web_link' => $this->request->getPost('web_link'),
                     'publication_type' => $this->request->getPost('Pubtype'),
                     'status' => $this->request->getPost('Pubstatus'),
+                    'publication_role' => $this->request->getPost('publication_role'),
                     'upload_by' =>  $loggeduserId,
                 ]; 
 

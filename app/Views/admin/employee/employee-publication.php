@@ -210,6 +210,20 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="col-lg-4">
+                        <!-- Publication Status -->
+                        <div class="form-group">
+                            <span for="Pubstatus">Role in Publication:</span>
+                            <select name="publication_role" id="" class="form-control form-control-sm" required>
+                                <option value="">--Select--</option>
+                                <option value="First/Principal/Corresponding">First/Principal/Corresponding</option>
+                                <option value="Author">Author</option>
+                                <option value="Co-Author">Co-Author</option>
+                            </select>
+                        </div>
+                    </div>
+                    
                 </div>
                     
                 <div class="col-lg-12">
