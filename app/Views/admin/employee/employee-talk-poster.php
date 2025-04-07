@@ -119,7 +119,7 @@ $employee_model = new Employee_model();
                                 <td><?= $value['event_name'] ?></td>
                                 <td><?= $value['location'] ?></td>
                                 <td><?= $value['organizing_institute_name'] ?></td>
-                                <td><?= $value['role'] ?> <?= ($value['other_role']) ? "-".$value['other_role'] : '' ?></td>
+                                <td><?= $value['role'] ?> <?= ($value['other_role']) ? " - ".$value['other_role'] : '' ?></td>
                                 <td><?= $value['start_date'] ?> -<?= $value['end_date'] ?></td>
                                 <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                 <td>
