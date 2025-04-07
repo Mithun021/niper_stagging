@@ -109,6 +109,71 @@ $employee_model = new Employee_model();
             </div>
         </div>
     </div>
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title m-0"><?= $title ?> List</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover" id="basic-datatable">
+                        <thead>
+                            <tr>
+                                <td>SN</td>
+                                <td>Employee</td>
+                                <td>Activity</td>
+                                <td>Saminar Name</td>
+                                <td>Date(From - To)</td>
+                                <td>Designation</td>
+                                <td>level</td>
+                                <td>Start End Date</td>
+                                <td>Participant no</td>
+                                <td>Funding Agency Name</td>
+                                <td>Fund Amount</td>
+                                <td>Upload by</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach($employee_seminar_conference as $key => $value){ ?>
+                            <tr>
+                                <td><?= ++$key ?></td>
+                                <td>
+                                    <?php 
+                                        $employees = explode(',',$value['employee_id']); 
+                                        foreach ($employees as $key => $ids) {
+                                            $emp = $employee_model->get($ids); if($emp){ echo '<i class="fa fa-angle-right"></i> '.$emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']."<br>";  }
+                                        }
+                                    ?>
+                                </td>
+                                <td><?php if($value['type_of_activity'] == 'Other'){ echo $value['other_activity']; } else { echo $value['type_of_activity']; } ?></td>
+                                <td><?= $value['seminar_name'] ?></td>
+                                <td><?= $value['from_date']." - ".$value['to_date'] ?></td>
+                                <td><?= $value['designation'] ?></td>
+                                <td><?= $value['level'] ?></td>
+                                <td><?= $value['start_date']." - ".$value['end_date'] ?></td>
+                                <td><?= $value['no_of_participant'] ?></td>
+                                <td><?= $value['funding_agency_name'] ?></td>
+                                <td><?= $value['fund_amount'] ?></td>
+                                <td><?php $emp = $employee_model->get($value['upload_by']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
+                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
 <script>
