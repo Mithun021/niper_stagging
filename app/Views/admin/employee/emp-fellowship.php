@@ -61,8 +61,9 @@ $books_chapter_author = new Books_chapter_author();
                                 <option value="<?= $i ?>"><?= $i ?></option>
                             <?php } ?>
                             </select>
+                            <span><input type="checkbox" name="current_member" id="current_member"> Current Member</span>
                         </div>
-                        <div class="col-lg-4 form-group">
+                        <div class="col-lg-4 form-group membership-end">
                             <span for="">Membership End</span>
                             <select class="form-control form-control-sm my-select" name="membership_end">
                                 <option value="">--Select--</option>
@@ -145,6 +146,26 @@ $books_chapter_author = new Books_chapter_author();
 </div>
 
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const checkbox = document.getElementById('current_member');
+    const membershipEndDiv = document.querySelector('.membership-end');
+
+    function toggleMembershipEnd() {
+        if (checkbox.checked) {
+            membershipEndDiv.style.display = 'none';
+        } else {
+            membershipEndDiv.style.display = 'block';
+        }
+    }
+
+    // Initial check on page load
+    toggleMembershipEnd();
+
+    // Event listener
+    checkbox.addEventListener('change', toggleMembershipEnd);
+});
+</script>
 <script>
     // $(document).ready(function() {
     //     var cloneLimit = 10;
