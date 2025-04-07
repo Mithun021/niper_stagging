@@ -1473,5 +1473,17 @@ use App\Models\Student_model;
             }
         }
 
+        public function employee_seminar_conference(){
+            $data = ['title' => 'Employee Seminar Conference'];
+            if ($this->request->is('get')) {
+                return view('admin/employee/employee-seminar-conference',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+            }
+        }
+
     }
 ?>
