@@ -3,9 +3,9 @@
     use CodeIgniter\Model;
     class Employee_seminar_conference_model extends Model
     {
-        protected $table         = 'employee_mou';
+        protected $table         = 'employee_seminar_conference';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['mou_title','institution_name','entring_mou_year','duration','status','upload_by'];
+        protected $allowedFields = ['employee_id','type_of_activity','other_activity','seminar_name','from_date','to_date','role','designation','level','start_date','end_date','no_of_participant','funding_agency_name','fund_amount','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

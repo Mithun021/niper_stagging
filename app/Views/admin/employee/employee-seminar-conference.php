@@ -22,7 +22,7 @@ $employee_model = new Employee_model();
                     <div class="row">
                         <div class="form-group col-md-12">
                             <span for="Empid">Employee:</span>
-                            <select name="Empid" id="Empid" class="form-control form-control-sm my-select" multiple required >
+                            <select name="employee_id" id="employee_id" class="form-control form-control-sm my-select" required >
                                 <option value="">Select Employee</option>
                             <?php foreach($employee as $value){ ?>
                                 <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
@@ -44,7 +44,7 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="form-group col-md-6 other_activity" style="display: none;">
                             <span>Other Activity</span>
-                            <input type="text" class="form-control form-control-sm" name="other_activity" required>
+                            <input type="text" class="form-control form-control-sm" name="other_activity">
                         </div>
                         <div class="form-group col-md-6">
                             <span>Name </span>
@@ -73,7 +73,7 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="form-group col-md-6">
                             <span>Level</span>
-                            <select class="form-control form-control-sm" name="role" required>
+                            <select class="form-control form-control-sm" name="level" required>
                                 <option value="">--Select--</option>
                                 <option value="Internation">Internation</option>
                                 <option value="National">National</option>
@@ -91,19 +91,19 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="form-group col-md-6">
                             <span>No of Participants</span>
-                            <input type="text" class="form-control form-control-sm" name="no_of_participant" required>
+                            <input type="text" class="form-control form-control-sm" name="no_of_participant" >
                         </div>
                         <div class="form-group col-md-6">
                             <span>Funding Agency Name</span>
-                            <input type="text" class="form-control form-control-sm" name="funding_agency_name" required>
+                            <input type="text" class="form-control form-control-sm" name="funding_agency_name" >
                         </div>
                         <div class="form-group col-md-6">
                             <span>Fund Amount</span>
-                            <input type="text" class="form-control form-control-sm" name="fund_amount" required>
+                            <input type="text" class="form-control form-control-sm" name="fund_amount" >
                         </div>  
                         <div class="form-group col-md-12">
-                        <button type="submit" class="btn btn-primary mt-4">Submit</button>
-                    </div>
+                            <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                        </div>
                     </div>
                 </form>
             </div>
