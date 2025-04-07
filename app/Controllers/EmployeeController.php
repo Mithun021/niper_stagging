@@ -1474,8 +1474,10 @@ use App\Models\Student_model;
         }
 
         public function employee_seminar_conference(){
+            $employee_model = new Employee_model();
             $data = ['title' => 'Employee Seminar Conference'];
             if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
                 return view('admin/employee/employee-seminar-conference',$data);
             }else if ($this->request->is('post')) {
                 $sessionData = session()->get('loggedUserData');

@@ -20,6 +20,15 @@ $employee_model = new Employee_model();
                 <!-- Form Start -->
                 <form action="<?= base_url() ?>admin/employee-collaboration" method="post" enctype="multipart/form-data">
                     <div class="row">
+                        <div class="form-group col-md-12">
+                            <span for="Empid">Employee:</span>
+                            <select name="Empid" id="Empid" class="form-control form-control-sm my-select" multiple required >
+                                <option value="">Select Employee</option>
+                            <?php foreach($employee as $value){ ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                            <?php } ?>
+                            </select>
+                        </div>
                         <div class="form-group col-md-6">
                             <span>Type of Activity</span>
                             <select class="form-control form-control-sm" name="type_of_activity" required>
