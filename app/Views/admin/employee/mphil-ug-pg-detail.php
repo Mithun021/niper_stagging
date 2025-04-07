@@ -107,9 +107,14 @@ $student_model = new Student_model();
                                 <option value="Awarded">Awarded</option>
                             </select>
                         </div>
-                        <div class="form-group reg_date col-md-4" style="display : none;">
-                            <span for="">Submission/Award Date</span>
+                        <div class="form-group submission_date col-md-4" style="display : none;">
+                            <span for="">Submission Date</span>
                             <input type="date" name="submission_date" id="" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="form-group award_date col-md-4" style="display : none;">
+                            <span for="">Award Date</span>
+                            <input type="date" name="award_date" id="" class="form-control form-control-sm">
                         </div>
 
                         <div class="form-group col-md-12">
@@ -187,15 +192,26 @@ $student_model = new Student_model();
 </div>
 
 <script>
-    function toggleRegDateField() {
-        var status = document.getElementById("status").value;
-        var regDateDiv = document.querySelector(".reg_date");
-        if (status === "Ongoing" || status === "") {
-            regDateDiv.style.display = "none";
-        } else {
-            regDateDiv.style.display = "block";
-        }
+function toggleRegDateField() {
+    const status = document.getElementById('status').value;
+    const submissionDate = document.querySelector('.submission_date');
+    const awardDate = document.querySelector('.award_date');
+
+    if (status === 'Submitted') {
+        submissionDate.style.display = 'block';
+        awardDate.style.display = 'none';
+    } else if (status === 'Awarded') {
+        submissionDate.style.display = 'block';
+        awardDate.style.display = 'block';
+    } else {
+        submissionDate.style.display = 'none';
+        awardDate.style.display = 'none';
     }
+}
+
+// Optional: Run on page load to handle form repopulation scenarios
+document.addEventListener('DOMContentLoaded', toggleRegDateField);
 </script>
+
 
 <?= $this->endSection() ?>
