@@ -13,8 +13,8 @@ $employee_model = new Employee_model();
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
             </div>
             <div class="card-body">
-                <?php if (session()->getFlashdata('msg')): ?>
-                    <?= session()->getFlashdata('msg') ?>
+                <?php if (session()->getFlashdata('status')): ?>
+                    <?= session()->getFlashdata('status') ?>
                 <?php endif; ?>
 
                 <!-- Form Start -->
