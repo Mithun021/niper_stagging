@@ -5,7 +5,7 @@
     {
         protected $table         = 'mphil_ug_pg_detail';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['employee_id','student_title','student_name','student_category','synopsis_name','roll_no','semester','remarks','university_name','registration_date','documemt_file','status','submission_date','upload_by'];
+        protected $allowedFields = ['employee_id','student_title','student_name','student_category','synopsis_name','roll_no','semester','remarks','university_name','registration_date','award_date','documemt_file','status','submission_date','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
