@@ -18,7 +18,7 @@ $employee_model = new Employee_model();
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/employee-collaboration" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/employee-seminar-conference" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <span for="Empid">Employee:</span>
@@ -91,7 +91,7 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="form-group col-md-6">
                             <span>No of Participants</span>
-                            <input type="text" class="form-control form-control-sm" name="no_of_participant" >
+                            <input type="number" class="form-control form-control-sm" name="no_of_participant" >
                         </div>
                         <div class="form-group col-md-6">
                             <span>Funding Agency Name</span>
@@ -99,7 +99,7 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="form-group col-md-6">
                             <span>Fund Amount</span>
-                            <input type="text" class="form-control form-control-sm" name="fund_amount" >
+                            <input type="number" class="form-control form-control-sm" name="fund_amount" step="1" min="0" >
                         </div>  
                         <div class="form-group col-md-12">
                             <button type="submit" class="btn btn-primary mt-4">Submit</button>
