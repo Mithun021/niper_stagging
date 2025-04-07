@@ -99,7 +99,7 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="form-group col-md-6">
                             <span>Fund Amount</span>
-                            <input type="number" class="form-control form-control-sm" name="fund_amount" step="1" min="0" >
+                            <input type="number" class="form-control form-control-sm" name="fund_amount" step="1" min="1" >
                         </div>  
                         <div class="form-group col-md-12">
                             <button type="submit" class="btn btn-primary mt-4">Submit</button>
