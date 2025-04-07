@@ -117,6 +117,7 @@
                 <li><a href="<?= base_url() ?>admin/employee-collaboration" class="waves-effect"><span>Employee Colaboration</span></a></li>
                 <li><a href="<?= base_url() ?>admin/employee-mou" class="waves-effect"><span>Employee MoUs</span></a></li>
                 <li><a href="<?= base_url() ?>admin/employee-seminar-conference" class="waves-effect"><span>Employee Seminar/Conference</span></a></li>
+                <li><a href="<?= base_url() ?>admin/employee-talk-poster" class="waves-effect"><span>Employee Talk/Poster Presented</span></a></li>
             </ul>
         </li>
 

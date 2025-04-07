@@ -118,6 +118,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'employee-collaboration', 'EmployeeController::employee_collaboration');
     $routes->match(['get','post'],'employee-mou', 'EmployeeController::employee_mou');
     $routes->match(['get','post'],'employee-seminar-conference', 'EmployeeController::employee_seminar_conference');
+    $routes->match(['get','post'],'employee-talk-poster', 'EmployeeController::employee_talk_poster');
 
     $routes->match(['get','post'],'other-faculty', 'Adjunt_facultyController::other_faculty');
     $routes->match(['get','post'],'adjunt-faculty-webpage', 'Adjunt_facultyController::adjunt_faculty_webpage');
