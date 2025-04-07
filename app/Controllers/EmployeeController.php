@@ -1367,6 +1367,7 @@ use App\Models\Student_model;
                     'member_reg_no' => $this->request->getPost('member_reg_no'),
                     'member_since' => $this->request->getPost('member_since'),
                     'membership_end' => $this->request->getPost('membership_end'),
+                    'current_member' => $this->request->getPost('current_member') ?? 0,
                     'upload_file' => $documentNewName,
                     'upload_by' => $loggeduserId,
                 ];

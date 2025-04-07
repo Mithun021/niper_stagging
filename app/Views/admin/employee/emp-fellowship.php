@@ -61,7 +61,7 @@ $books_chapter_author = new Books_chapter_author();
                                 <option value="<?= $i ?>"><?= $i ?></option>
                             <?php } ?>
                             </select>
-                            <span><input type="checkbox" name="current_member" id="current_member"> Current Member</span>
+                            <span><input type="checkbox" name="current_member" id="current_member" value="1"> Current Member</span>
                         </div>
                         <div class="col-lg-4 form-group membership-end">
                             <span for="">Membership End</span>
