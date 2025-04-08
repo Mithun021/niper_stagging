@@ -5,7 +5,7 @@
     {
         protected $table         = 'employee_collaboration';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['emplyee_id','title','collaborative_agency','collaboration_year','duartion_in_month','name_of_activity','file_upload','upload_by'];
+        protected $allowedFields = ['employee_id','title','collaborative_agency','collaboration_year','duartion_in_month','name_of_activity','file_upload','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

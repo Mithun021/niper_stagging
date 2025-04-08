@@ -5,7 +5,7 @@
     {
         protected $table         = 'employee_seed_money';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['emplyee_id','received_money','years','grant_duration','status','upload_by'];
+        protected $allowedFields = ['employee_id','received_money','years','grant_duration','status','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
