@@ -108,7 +108,7 @@ $employee_model = new Employee_model();
                         <?php foreach($employee_talk_poster as $key => $value){ ?>
                             <tr>
                                 <td><?= ++$key ?></td>
-                                <td><?php $emp = $employee_model->get($value['emplyee_id']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; }  ?></td>
+                                <td><?php $emp = $employee_model->get($value['employee_id']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; }  ?></td>
                                 <td><?= $value['event_name'] ?></td>
                                 <td><?= $value['location'] ?></td>
                                 <td><?= $value['organizing_institute_name'] ?></td>

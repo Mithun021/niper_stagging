@@ -139,7 +139,7 @@ $employee_model = new Employee_model();
                         <?php foreach($employee_seminar_conference as $key => $value){ ?>
                             <tr>
                                 <td><?= ++$key ?></td>
-                                <td><?php $emp = $employee_model->get($value['emplyee_id']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; }  ?></td>
+                                <td><?php $emp = $employee_model->get($value['employee_id']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; }  ?></td>
                                 <td><?php if($value['type_of_activity'] == 'Other'){ echo $value['other_activity']; } else { echo $value['type_of_activity']; } ?></td>
                                 <td><?= $value['seminar_name'] ?></td>
                                 <td><?= $value['from_date']." - ".$value['to_date'] ?></td>

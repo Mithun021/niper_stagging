@@ -104,7 +104,7 @@ $employee_model = new Employee_model();
                                             <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="30px">
                                         <?php endif; ?>
                                     </td>
-                                    <td><?php $emp = $employee_model->get($value['emplyee_id']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; }  ?></td>
+                                    <td><?php $emp = $employee_model->get($value['employee_id']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; }  ?></td>
                                     <td><?= $value['title'] ?></td>
                                     <td><?= $value['collaborative_agency'] ?></td>
                                     <td><?= $value['collaboration_year'] ?></td>
