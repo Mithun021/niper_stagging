@@ -115,11 +115,11 @@ $books_chapter_author = new Books_chapter_author();
                             <input type="date" class="form-control form-control-sm" name="publich_date_online">
                         </div>
                         <div class="col-lg-4 form-group">
-                            <span for="">Published Date Print<</span>
+                            <span for="">Published Date Print</span>
                             <input type="date" class="form-control form-control-sm" name="publich_date_print">
                         </div>
                         <div class="col-lg-4 form-group">
-                            <span for="">Date Of Acceptance<</span>
+                            <span for="">Date Of Acceptance</span>
                             <input type="date" class="form-control form-control-sm" name="acceptance_date">
                         </div>
 
