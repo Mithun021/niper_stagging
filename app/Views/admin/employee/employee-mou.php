@@ -94,7 +94,7 @@ $employee_model = new Employee_model();
                             <?php foreach ($employee_mou as $key => $value) { ?>
                                 <tr>
                                     <td><?= ++$key ?></td>
-                                    <td><?php $emp = $employee_model->get($value['emplyee_id']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
+                                    <td><?php $emp = $employee_model->get($value['emplyee_id']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; }  ?></td>
                                     <td><?= $value['mou_title'] ?></td>
                                     <td><?= $value['institution_name'] ?></td>
                                     <td><?= $value['entring_mou_year'] ?></td>
