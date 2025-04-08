@@ -98,11 +98,40 @@ $books_chapter_author = new Books_chapter_author();
                             <span for="">Publisher<span class="text-danger">*</span></span>
                             <input type="text" class="form-control form-control-sm" name="publisher" required>
                         </div>
+                        <div class="col-lg-4 form-group">
+                            <span for="">Level<</span>
+                            <select class="form-control form-control-sm" name="level">
+                                    <option value="">--Select--</option>
+                                    <option value="National">National</option>
+                                    <option value="International">International</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4 form-group">
+                            <span for="">Total no. of pages/Page Range<</span>
+                            <input type="text" class="form-control form-control-sm" name="total_pages">
+                        </div>
+                        <div class="col-lg-4 form-group">
+                            <span for="">Published Date Online<</span>
+                            <input type="date" class="form-control form-control-sm" name="publich_date_online">
+                        </div>
+                        <div class="col-lg-4 form-group">
+                            <span for="">Published Date Print<</span>
+                            <input type="date" class="form-control form-control-sm" name="publich_date_print">
+                        </div>
+                        <div class="col-lg-4 form-group">
+                            <span for="">Date Of Acceptance<</span>
+                            <input type="month" class="form-control form-control-sm" name="acceptance_date">
+                        </div>
 
                         <div class="col-lg-4 form-group">
+                            <span for="">Date of Communication<</span>
+                            <input type="month" class="form-control form-control-sm" name="communication_date">
+                        </div>
+
+                        <!-- <div class="col-lg-4 form-group">
                             <span for="">Month<span class="text-danger">*</span></span>
                             <input type="month" class="form-control form-control-sm" name="month">
-                        </div>
+                        </div> -->
 
                         <!-- <div class="col-lg-4 form-group">
                         <span for="">Year<span class="text-danger">*</span></span>
