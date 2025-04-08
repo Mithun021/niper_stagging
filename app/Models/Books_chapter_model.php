@@ -5,7 +5,7 @@
     {
         protected $table         = 'book_chapter';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['emplyee_id','book_chapter','title','publisher','month','isbn','issn_no','doi','web_link','upload_file','upload_by'];
+        protected $allowedFields = ['emplyee_id','book_chapter','title','publisher','level','total_pages','publich_date_online','publich_date_print','acceptance_date','communication_date','month','isbn','issn_no','doi','web_link','upload_file','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
