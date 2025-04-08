@@ -80,6 +80,7 @@ $employee_model = new Employee_model();
                         <thead>
                             <tr>
                                 <td>SN</td>
+                                <td>Employee</td>
                                 <td>Title of MoU</td>
                                 <td>Name of Institution</td>
                                 <td>Year of Entering MoU</td>
@@ -93,6 +94,14 @@ $employee_model = new Employee_model();
                             <?php foreach ($employee_mou as $key => $value) { ?>
                                 <tr>
                                     <td><?= ++$key ?></td>
+                                    <td>
+                                        <?php 
+                                            $employees = explode(',',$value['employee_id']); 
+                                            foreach ($employees as $key => $ids) {
+                                                $emp = $employee_model->get($ids); if($emp){ echo '<i class="fa fa-angle-right"></i> '.$emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']."<br>";  }
+                                            }
+                                        ?>
+                                    </td>
                                     <td><?= $value['mou_title'] ?></td>
                                     <td><?= $value['institution_name'] ?></td>
                                     <td><?= $value['entring_mou_year'] ?></td>
