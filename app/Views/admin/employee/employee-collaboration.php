@@ -104,14 +104,7 @@ $employee_model = new Employee_model();
                                             <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="30px">
                                         <?php endif; ?>
                                     </td>
-                                    <td>
-                                        <?php 
-                                            $employees = explode(',',$value['employee_id']); 
-                                            foreach ($employees as $key => $ids) {
-                                                $emp = $employee_model->get($ids); if($emp){ echo '<i class="fa fa-angle-right"></i> '.$emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']."<br>";  }
-                                            }
-                                        ?>
-                                    </td>
+                                    <td><?php $emp = $employee_model->get($value['emplyee_id']); echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']  ?></td>
                                     <td><?= $value['title'] ?></td>
                                     <td><?= $value['collaborative_agency'] ?></td>
                                     <td><?= $value['collaboration_year'] ?></td>
