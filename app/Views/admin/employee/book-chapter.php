@@ -108,7 +108,7 @@ $books_chapter_author = new Books_chapter_author();
                         </div>
                         <div class="col-lg-4 form-group">
                             <span for="">Total no. of pages/Page Range<</span>
-                            <input type="text" class="form-control form-control-sm" name="total_pages">
+                            <input type="number" class="form-control form-control-sm" name="total_pages">
                         </div>
                         <div class="col-lg-4 form-group">
                             <span for="">Published Date Online<</span>
@@ -120,12 +120,12 @@ $books_chapter_author = new Books_chapter_author();
                         </div>
                         <div class="col-lg-4 form-group">
                             <span for="">Date Of Acceptance<</span>
-                            <input type="month" class="form-control form-control-sm" name="acceptance_date">
+                            <input type="date" class="form-control form-control-sm" name="acceptance_date">
                         </div>
 
                         <div class="col-lg-4 form-group">
-                            <span for="">Date of Communication<</span>
-                            <input type="month" class="form-control form-control-sm" name="communication_date">
+                            <span for="">Date of Communication</span>
+                            <input type="date" class="form-control form-control-sm" name="communication_date">
                         </div>
 
                         <!-- <div class="col-lg-4 form-group">
