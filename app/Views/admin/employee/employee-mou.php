@@ -23,7 +23,16 @@ $employee_model = new Employee_model();
                 <!-- Form Start -->
                 <form action="<?= base_url() ?>admin/employee-mou" method="post" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
+                            <span for="Empid">Employee:</span>
+                            <select name="employee_id" id="employee_id" class="form-control form-control-sm my-select" required >
+                                <option value="">Select Employee</option>
+                            <?php foreach($employee as $value){ ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                            <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-12">
                             <span>Title of MoU</span>
                             <input type="text" class="form-control form-control-sm" name="mou_title" required>
                         </div>

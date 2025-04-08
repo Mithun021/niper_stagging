@@ -23,6 +23,15 @@ $employee_model = new Employee_model();
                 <!-- Form Start -->
                 <form action="<?= base_url() ?>admin/employee-seed-money" method="post" enctype="multipart/form-data">
                     <div class="form-group">
+                        <span for="Empid">Employee:</span>
+                        <select name="employee_id" id="employee_id" class="form-control form-control-sm my-select" required >
+                            <option value="">Select Employee</option>
+                        <?php foreach($employee as $value){ ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <span>Amount of Seed Money Received</span>
                         <input type="number" class="form-control form-control-sm" name="received_money" required>
                     </div>

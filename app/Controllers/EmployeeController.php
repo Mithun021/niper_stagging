@@ -1390,9 +1390,11 @@ use App\Models\Student_model;
 
 
         public function employee_seed_money(){
+            $employee_model = new Employee_model();
             $employee_seed_money_model = new Employee_seed_money_model();
             $data = ['title' => 'Employee Seed Money'];
             if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
                 $data['employee_seed_money'] = $employee_seed_money_model->get();
                 return view('admin/employee/employee-seed-money',$data);
             }else if ($this->request->is('post')) {
@@ -1401,6 +1403,7 @@ use App\Models\Student_model;
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
                 $data = [
+                    'employee_id' => $this->request->getPost('employee_id'),
                     'received_money' => $this->request->getPost('received_money'),
                     'years' => $this->request->getPost('years'),
                     'grant_duration' => $this->request->getPost('grant_duration'),
@@ -1417,9 +1420,11 @@ use App\Models\Student_model;
         }
 
         public function employee_collaboration(){
+            $employee_model = new Employee_model();
             $employee_collaboration_model = new Employee_collaboration_model();
             $data = ['title' => 'Employee Collaboration'];
             if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
                 $data['employee_collaboration'] = $employee_collaboration_model->get();
                 return view('admin/employee/employee-collaboration',$data);
             }else if ($this->request->is('post')) {
@@ -1436,6 +1441,7 @@ use App\Models\Student_model;
                  $documentNewName = "";
                 }
                 $data = [
+                    'employee_id' => $this->request->getPost('employee_id'),
                     'title' => $this->request->getPost('title'),
                     'collaborative_agency' => $this->request->getPost('collaborative_agency'),
                     'collaboration_year' => $this->request->getPost('collaboration_year'),
@@ -1454,9 +1460,11 @@ use App\Models\Student_model;
         }
 
         public function employee_mou(){
+            $employee_model = new Employee_model();
             $employee_mou_model = new Employee_mou_model();
             $data = ['title' => 'Employee MoUs'];
             if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
                 $data['employee_mou'] = $employee_mou_model->get();
                 return view('admin/employee/employee-mou',$data);
             }else if ($this->request->is('post')) {
@@ -1465,6 +1473,7 @@ use App\Models\Student_model;
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
                 $data = [
+                    'employee_id' => $this->request->getPost('employee_id'),
                     'mou_title' => $this->request->getPost('mou_title'),
                     'institution_name' => $this->request->getPost('institution_name'),
                     'entring_mou_year' => $this->request->getPost('entring_mou_year'),
