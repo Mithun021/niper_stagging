@@ -426,5 +426,15 @@ class FacilityController extends BaseController
         }
     }
 
+    public function delete_mapping_facility_page($id){
+        $mapping_facility_page_model = new Mapping_facility_page_model();
+        $result = $mapping_facility_page_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/facility-section')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/facility-section')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+        }
+    }
+
     
 }
