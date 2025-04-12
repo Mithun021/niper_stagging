@@ -21,7 +21,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/question-type" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/mapping-question/<?= $question_id ?>" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="title" required minlength="3">
@@ -63,22 +63,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($question as $key => $value) { ?>
-                        <tr>
-                            <td><?= $key + 1 ?></td>
-                            <td><?= $value['title'] ?></td>
-                            <td><?= $value['description'] ?></td>
-                            <td><?= ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Draft</span>" : (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?></td>
-                            <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; } ?></td>
-                            <td>
-                                <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                                    <a href="<?= base_url() ?>admin/mapping-question/<?= $value['id'] ?>" class="btn btn-dark waves-effect waves-light"><i class="fas fa-bars"></i></a>
-                                    <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
-                                    <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                    <?php } ?>
+                    
                     </tbody>
                 </table>
                 </div>

@@ -101,6 +101,15 @@ class DynamicformControllers extends BaseController
         }
     }
 
+    public function mapping_question($id){
+        $data = ['title' => 'Manage Questions','question_id' => $id];
+        if ($this->request->is("get")) {
+            return view('admin/dymanic_form/mapping-question',$data);
+        }else if ($this->request->is("post")) {
+
+        }
+    }
+
     public function manage_questions($form_id){
         $form_section_model = new Form_section_model();
         $question_type_model = new Question_type_model();
