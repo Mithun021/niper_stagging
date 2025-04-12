@@ -67,7 +67,7 @@ $question_type_model = new Question_type_model();
                     <div class="form-group">
                         <span>Question Details</span>
                         <select class="form-control form-control-sm my-select" name="question_details" id="question_details">
-                            <!-- <option value="">--Select--</option> -->
+                            <option value="">--Select--</option>
                             <?php foreach ($question as $key => $value) { ?>
                                 <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
                             <?php } ?>
