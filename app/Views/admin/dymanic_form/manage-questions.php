@@ -10,20 +10,24 @@ $employee_model = new Employee_model();
 $question_type_model = new Question_type_model();
 ?>
 <style>
-    #choice-question{
+    #choice-question {
         display: flex;
         align-items: flex-start;
     }
-    #choice-question:first-child{
+
+    #choice-question:first-child {
         margin-top: 20px;
     }
-    #choice-question div{
+
+    #choice-question div {
         padding-left: 10px;
     }
-    #choice-question div p{
+
+    #choice-question div p {
         margin: 0;
     }
-    .question_type{
+
+    .question_type {
         position: absolute;
         top: -10px;
         left: -10px;
@@ -76,14 +80,16 @@ $question_type_model = new Question_type_model();
 
                     <br><br><br>
 
-                    <div class="form-group multiple-choice" style="display: none;">
-                        <span>Question Title</span>
-                        <input type="text" class="form-control form-control-sm" name="question_title" minlength="3">
+                    <div class="form-group multiple-choice">
+                        <span>Select Answer Option</span>
+                        <select class="form-control form-control-sm my-select" name="answer_option[]" id="answer_option" multiple>
+
+                        </select>
                     </div>
-                    <div class="form-group multiple-choice" style="display: none;">
+                    <!-- <div class="form-group multiple-choice" style="display: none;">
                         <span>Question Description</span>
                         <input type="text" class="form-control form-control-sm" name="question_description">
-                    </div>
+                    </div> -->
 
                 </div>
                 <div class="card-footer py-1">
@@ -102,8 +108,8 @@ $question_type_model = new Question_type_model();
                 <h4 class="card-title m-0"><?= $title ?> Details </h4>
             </div>
             <div class="card-body">
-                <?php if($manage_question){ 
-                    echo '<h4>'.$form_section['name'].'</h4>';
+                <?php if ($manage_question) {
+                    echo '<h4>' . $form_section['name'] . '</h4>';
                     echo $form_section['description'];
                     foreach ($manage_question as $key => $value) {
                         $question_ids = explode(',', $value['question_details_id']);
@@ -111,34 +117,34 @@ $question_type_model = new Question_type_model();
                         $question_data = $question_type_model->get($question_ids);
                         if (!empty($question_data)) {
                             echo '<div class="card card-body">';
-                            echo '<span class="question_type">'.$question_type.'</span>';
+                            echo '<span class="question_type">' . $question_type . '</span>';
                             if ($value['title'] !== "") {
-                                echo "<h5 class='m-0 text-danger'>".$value['title']."</h5>";
+                                echo "<h5 class='m-0 text-danger'>" . $value['title'] . "</h5>";
                             }
-                            if ($value['descripition'] !=="") {
+                            if ($value['descripition'] !== "") {
                                 echo $value['descripition'];
                             }
                             echo '<br>';
                             foreach ($question_data as $question) {
-                                if($value['question_type']== "Radio Button"){
+                                if ($value['question_type'] == "Radio Button") {
                                     echo '<div id="choice-question">';
-                                        echo '<input type="radio" name="choice1" ><div>';
-                                            echo '<h6 class="m-0 text-secondary">' . $question['title'] . '</h6>';
-                                            echo '<p>' . $question['description'] . '</p>';
-                                        echo "</div>";
+                                    echo '<input type="radio" name="choice1" ><div>';
+                                    echo '<h6 class="m-0 text-secondary">' . $question['title'] . '</h6>';
+                                    echo '<p>' . $question['description'] . '</p>';
+                                    echo "</div>";
                                     echo '</div>';
-                                }else{
+                                } else {
                                     echo '<h6 class="m-0 text-secondary">' . $question['title'] . '</h6>';
                                     echo '<p>' . $question['description'] . '</p>';
                                 }
                             }
                             echo '</div>';
                         }
-                    }    
+                    }
                 ?>
 
-                <?php }else{ ?>
-                <div class="alert alert-danger">No question details found.</div>
+                <?php } else { ?>
+                    <div class="alert alert-danger">No question details found.</div>
                 <?php } ?>
             </div>
         </div>
@@ -148,6 +154,30 @@ $question_type_model = new Question_type_model();
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 <script>
+    $(document).ready(function() {
+        // Initialize select2
+        $('.my-select').select2({
+            placeholder: "--Select--",
+            allowClear: true,
+            width: '100%'
+        });
 
+
+        $('#question_type').on('change', function () {
+            let selectedType = $(this).val();
+            let questionDetails = $('#question_details');
+            let multipleChoiceDiv = $('.multiple-choice'); // Select all elements with class
+
+            // Check if selected type requires multiple selection
+            if (selectedType === "Checkbox" || selectedType === "Radio Button" || selectedType === "Drop Down") {
+                questionDetails.attr("multiple", "multiple");
+                multipleChoiceDiv.show();  // Show additional input fields
+            } else {
+                questionDetails.removeAttr("multiple");
+                multipleChoiceDiv.hide();  // Hide additional input fields
+            }
+        });
+
+    })
 </script>
 <?= $this->endSection() ?>
