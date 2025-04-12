@@ -153,6 +153,7 @@ $question_type_model = new Question_type_model();
 
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+
 <script>
 $(document).ready(function () {
     // Initialize Select2
@@ -171,16 +172,14 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 let options = $('#answer_option');
-                options.empty();           // Clear old options
-                options.attr("multiple", "multiple"); // Add 'multiple' attribute here
+                options.empty();  // Clear old options
 
                 data.forEach(function (item) {
                     options.append('<option value="' + item.id + '">' + item.title + '</option>');
                 });
             },
-            error: function (xhs,t, error) {
+            error: function (xhs, t, error) {
                 console.error("Error loading answer options:", xhs, t, error);
-                // alert('Failed to load options.');
             }
         });
     }
@@ -188,12 +187,10 @@ $(document).ready(function () {
     $('#question_type').on('change', function () {
         let type = $(this).val();
         let answerDiv = $('.multiple-choice');
-        $('#answer_option').removeAttr("multiple"); // Remove any previous 'multiple'
 
         if (type === "Checkbox" || type === "Radio Button" || type === "Drop Down") {
             answerDiv.show();
 
-            // Optionally fetch immediately if already selected
             let selectedDetail = $('#question_details').val();
             if (selectedDetail) {
                 loadAnswerOptions(selectedDetail);
@@ -207,14 +204,14 @@ $(document).ready(function () {
     $('#question_details').on('change', function () {
         let type = $('#question_type').val();
         let id = $(this).val();
-        
 
         if ((type === "Checkbox" || type === "Radio Button" || type === "Drop Down") && id) {
-            alert(id); return false;
-            loadAnswerOptions(id);
+            alert("Selected Question ID: " + id); // Display the selected ID
+            loadAnswerOptions(id);               // Then call the function
         }
     });
 });
 </script>
+
 
 <?= $this->endSection() ?>
