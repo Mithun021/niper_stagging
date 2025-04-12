@@ -11,6 +11,7 @@ use App\Models\Facility_section_file_model;
 use App\Models\Facility_section_image_model;
 use App\Models\Facility_section_model;
 use App\Models\Facility_services_model;
+use App\Models\Mapping_facility_page_model;
 
 class FacilityController extends BaseController
 {
@@ -394,6 +395,22 @@ class FacilityController extends BaseController
                 return redirect()->to('admin/facility-section-image')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
                 return redirect()->to('admin/facility-section-image')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+
+    public function mapping_facility_page($id){
+        $mapping_facility_page_model = new Mapping_facility_page_model();
+        $data = ['title' => 'Facility Section Image'];
+        if ($this->request->is("get")) {
+            $data['facility_page'] = $mapping_facility_page_model->get();
+            return view('admin/facility/mapping-facility-page',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }else{
+                return redirect()->to(base_url('admin/login'));
             }
         }
     }

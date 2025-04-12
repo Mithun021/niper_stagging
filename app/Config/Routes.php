@@ -134,6 +134,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'facility-banner', 'FacilityController::facility_banner');
     $routes->match(['get','post'],'facility-instruments', 'FacilityController::facility_instruments');
     $routes->match(['get','post'],'facility-section', 'FacilityController::facility_section');
+    $routes->match(['get','post'],'mapping-facility-page/(:num)', 'FacilityController::mapping_facility_page/$1');
     $routes->match(['get','post'],'facility-section-file', 'FacilityController::facility_section_file');
     $routes->match(['get','post'],'facility-section-image', 'FacilityController::facility_section_image');
 
