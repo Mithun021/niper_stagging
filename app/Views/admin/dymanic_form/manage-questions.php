@@ -66,7 +66,7 @@ $question_type_model = new Question_type_model();
 
                     <div class="form-group">
                         <span>Question Details</span>
-                        <select class="form-control form-control-sm my-select" name="question_details[]" id="question_details">
+                        <select class="form-control form-control-sm my-select" name="question_details" id="question_details">
                             <!-- <option value="">--Select--</option> -->
                             <?php foreach ($question as $key => $value) { ?>
                                 <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
@@ -148,36 +148,6 @@ $question_type_model = new Question_type_model();
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 <script>
-    $(document).ready(function() {
-        // Initialize select2
-        $('.my-select').select2({
-            placeholder: "--Select--",
-            allowClear: true,
-            width: '100%'
-        });
 
-        $('#question_type').on('change', function () {
-            let selectedType = $(this).val();
-            let questionDetails = $('#question_details');
-            let multipleChoiceDiv = $('.multiple-choice'); // Select all elements with class
-
-            // Check if selected type requires multiple selection
-            if (selectedType === "Checkbox" || selectedType === "Radio Button" || selectedType === "Drop Down") {
-                questionDetails.attr("multiple", "multiple");
-                multipleChoiceDiv.show();  // Show additional input fields
-            } else {
-                questionDetails.removeAttr("multiple");
-                multipleChoiceDiv.hide();  // Hide additional input fields
-            }
-
-            // Reinitialize select2 after modifying attributes
-            questionDetails.select2({
-                placeholder: "--Select--",
-                allowClear: true,
-                width: '100%'
-            });
-        });
-    });
 </script>
-
 <?= $this->endSection() ?>

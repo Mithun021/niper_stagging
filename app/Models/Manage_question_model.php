@@ -5,7 +5,7 @@
     {
         protected $table         = 'manage_question';
         protected $primaryKey    = 'id';
-        protected $allowedFields = ['form_section_id','question_type','question_details_id','title','descripition'];
+        protected $allowedFields = ['form_section_id','question_type','question_details_id','multioption_questions_detail','title','descripition'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
