@@ -135,14 +135,47 @@ $mapping_question_model = new Mapping_question_model();
                                     // echo $answer_data['title']."<br>";
                                     if ($value['question_type'] == "Radio Button") {
                                         echo '<div id="choice-question">';
-                                        echo '<input type="radio" name="choice1" ><div>';
+                                        echo '<input type="radio" name="choice1">';
+                                        echo '<div>';
                                         echo '<h6 class="m-0 text-secondary">' . $answer_data['title'] . '</h6>';
                                         echo '<p>' . $answer_data['description'] . '</p>';
-                                        echo "</div>";
                                         echo '</div>';
-                                    } else {
+                                        echo '</div>';
+                                    } else if ($value['question_type'] == "Checkbox") {
+                                        echo '<div id="choice-question">';
+                                        echo '<input type="checkbox" name="choice1">';
+                                        echo '<div>';
                                         echo '<h6 class="m-0 text-secondary">' . $answer_data['title'] . '</h6>';
                                         echo '<p>' . $answer_data['description'] . '</p>';
+                                        echo '</div>';
+                                        echo '</div>';
+                                    } else if ($value['question_type'] == "Drop Down") {
+                                        echo '<div id="choice-question">';
+                                        echo '<select class="form-control form-control-sm my-select">';
+                                        echo '<option value="' . $answer_data['id'] . '">' . $answer_data['title'] . '</option>';
+                                        echo '</select>';
+                                        echo '</div>';
+                                    } else if ($value['question_type'] == "Linear Scale") {
+                                        echo '<div id="choice-question">';
+                                        echo '<label for="scaleRange">Select a value (1 to 10):</label>';
+                                        echo '<input type="range" id="scaleRange" name="linear_scale" min="1" max="10">';
+                                        echo '</div>';
+                                    } else if ($value['question_type'] == "Short Text" || $value['question_type'] == "Paragraph") {
+                                        echo '<div id="choice-question">';
+                                        echo '<input type="text" name="short_text" class="form-control">';
+                                        echo '</div>';
+                                    } else if ($value['question_type'] == "Date") {
+                                        echo '<div id="choice-question">';
+                                        echo '<input type="date" name="date" class="form-control">';
+                                        echo '</div>';
+                                    } else if ($value['question_type'] == "Time") {
+                                        echo '<div id="choice-question">';
+                                        echo '<input type="time" name="time" class="form-control">';
+                                        echo '</div>';
+                                    } else if ($value['question_type'] == "File Upload") {
+                                        echo '<div id="choice-question">';
+                                        echo '<input type="file" name="file_upload" class="form-control">';
+                                        echo '</div>';
                                     }
                                 }
                             }
