@@ -412,6 +412,17 @@ class FacilityController extends BaseController
             }else{
                 return redirect()->to(base_url('admin/login'));
             }
+            $data =[
+                'section_id' => $id,
+                'page_name' => $this->request->getVar('page_name'),
+                'upload_by' => $loggeduserId,
+            ];
+            $result = $mapping_facility_page_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/mapping-facility-page/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/mapping-facility-page/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
         }
     }
 

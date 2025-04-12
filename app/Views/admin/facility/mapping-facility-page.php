@@ -25,8 +25,13 @@
                 <form method="post" action="<?= base_url() ?>admin/facility-section" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Arrange Page<span class="text-danger">*</span></span>
-                        <select class="form-control form-control-sm" name="arrange_page" required>
+                        <select class="form-control form-control-sm" name="page_name" required>
                             <option value="">--Select--</option>
+                            <option value="Facility Services">Facility Services</option>
+                            <option value="Facility Notification">Facility Notification</option>
+                            <option value="Facility Banner">Facility Banner</option>
+                            <option value="Facility Instruments">Facility Instruments</option>
+                            <option value="Facility Section File">Facility Section File</option>
                         </select>
                     </div>
 
