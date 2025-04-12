@@ -80,7 +80,7 @@ $question_type_model = new Question_type_model();
 
                     <br><br><br>
 
-                    <div class="form-group multiple-choice">
+                    <div class="form-group multiple-choice" style="display: none;">
                         <span>Select Answer Option</span>
                         <select class="form-control form-control-sm my-select" name="answer_option[]" id="answer_option" multiple>
 
