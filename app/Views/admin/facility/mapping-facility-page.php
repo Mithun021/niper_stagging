@@ -53,7 +53,7 @@
                         <tr>
                             <td>SN</td>
                             <td>Facility Section</td>
-                            <td>Arranged Page No</td>
+                            <td>Arranged Page Name</td>
                             <td>Uploaded By</td>
                             <td>Action</td>
                         </tr>
