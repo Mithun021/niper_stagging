@@ -164,7 +164,7 @@ $(document).ready(function () {
     });
 
     function loadAnswerOptions(questionId) {
-        alert("Loading answer options for question ID: " + questionId); // Display the selected ID
+        // alert("Loading answer options for question ID: " + questionId); // Display the selected ID
         $.ajax({
             url: '<?= base_url('get-answer-options') ?>',
             type: 'POST',
