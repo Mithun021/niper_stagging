@@ -172,6 +172,7 @@ $question_type_model = new Question_type_model();
             if (selectedType === "Checkbox" || selectedType === "Radio Button" || selectedType === "Drop Down") {
                 // questionDetails.attr("multiple", "multiple");
                 multipleChoiceDiv.show();  // Show additional input fields
+                alert(selectedType);
             } else {
                 questionDetails.removeAttr("multiple");
                 multipleChoiceDiv.hide();  // Hide additional input fields
