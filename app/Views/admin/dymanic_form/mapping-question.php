@@ -60,7 +60,7 @@ $question_type_model = new Question_type_model();
                     <tbody>
                     <?php foreach ($question as $key => $value) { ?>
                         <tr>
-                            <td><?= $key + 1 ?></td>
+                            <td><?= $key ?></td>
                             <td><?php $question_type = $question_type_model->get($value['question_type_id']); if($question_type){ echo $question_type['title']; } ?></td>
                             <td><?= $value['title'] ?></td>
                             <td><?= $value['description'] ?></td>
