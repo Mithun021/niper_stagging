@@ -16,7 +16,7 @@
             <div class="card-header">
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
             </div>
-            <div class="card-body">
+            <div class="card-body p-1">
                 <?php
                     if(session()->getFlashdata('status')){
                         echo session()->getFlashdata('status');
@@ -52,12 +52,12 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-8 p-1">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> List</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body p-1">
                 <div class="table-responsive">
                 <table class="table table-striped table-hover" id="basic-datatable" style="width: 120%;">
                     <thead>
