@@ -168,6 +168,7 @@ $(document).ready(function () {
             type: 'POST',
             data: { question_id: questionId },
             success: function (data) {
+                console.log(data);
                 let options = $('#answer_option');
                 options.empty();           // Clear old options
                 options.attr("multiple", "multiple"); // Add 'multiple' attribute here
@@ -176,8 +177,9 @@ $(document).ready(function () {
                     options.append('<option value="' + item.id + '">' + item.title + '</option>');
                 });
             },
-            error: function () {
-                alert('Failed to load options.');
+            error: function (xhs,t, error) {
+                console.error("Error loading answer options:", xhs, t, error);
+                // alert('Failed to load options.');
             }
         });
     }
