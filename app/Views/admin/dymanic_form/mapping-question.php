@@ -58,10 +58,10 @@ $question_type_model = new Question_type_model();
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($question as $key => $value) { ?>
+                    <?php foreach ($mapping_question as $key => $value) { ?>
                         <tr>
                             <td><?= ++$key ?></td>
-                            <td></td>
+                            <td><?= $question_type_model->get($value['question_type_id'])['title'] ?? '' ?></td>
                             <td><?= $value['title'] ?></td>
                             <td><?= $value['description'] ?></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; } ?></td>
