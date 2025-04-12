@@ -164,6 +164,7 @@ $(document).ready(function () {
     });
 
     function loadAnswerOptions(questionId) {
+        alert("Loading answer options for question ID: " + questionId); // Display the selected ID
         $.ajax({
             url: '<?= base_url('get-answer-options') ?>',
             type: 'POST',
@@ -206,7 +207,7 @@ $(document).ready(function () {
         let id = $(this).val();
 
         if ((type === "Checkbox" || type === "Radio Button" || type === "Drop Down") && id) {
-            alert("Selected Question ID: " + id); // Display the selected ID
+            // alert("Selected Question ID: " + id); // Display the selected ID
             loadAnswerOptions(id);               // Then call the function
         }
     });
