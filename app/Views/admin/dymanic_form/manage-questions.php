@@ -171,16 +171,15 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 let options = $('#answer_option');
-                options.empty();           // Clear old options
-                options.attr("multiple", "multiple"); // Add 'multiple' attribute here
+                options.empty();
+                options.attr("multiple", "multiple"); // only for answer_option
 
                 data.forEach(function (item) {
                     options.append('<option value="' + item.id + '">' + item.title + '</option>');
                 });
             },
-            error: function (xhs,t, error) {
-                console.error("Error loading answer options:", xhs, t, error);
-                // alert('Failed to load options.');
+            error: function (xhr, t, error) {
+                console.error("Error loading answer options:", xhr, t, error);
             }
         });
     }
@@ -188,12 +187,11 @@ $(document).ready(function () {
     $('#question_type').on('change', function () {
         let type = $(this).val();
         let answerDiv = $('.multiple-choice');
-        $('#answer_option').removeAttr("multiple"); // Remove any previous 'multiple'
+        $('#answer_option').removeAttr("multiple");
 
         if (type === "Checkbox" || type === "Radio Button" || type === "Drop Down") {
             answerDiv.show();
 
-            // Optionally fetch immediately if already selected
             let selectedDetail = $('#question_details').val();
             if (selectedDetail) {
                 loadAnswerOptions(selectedDetail);
@@ -206,15 +204,15 @@ $(document).ready(function () {
 
     $('#question_details').on('change', function () {
         let type = $('#question_type').val();
-        let id = $(this).val();
-        
+        let id = $(this).val(); // will return string if 'multiple' is not set
 
         if ((type === "Checkbox" || type === "Radio Button" || type === "Drop Down") && id) {
-            alert(id); return false;
+            alert(id); return false; // check what's being passed
             loadAnswerOptions(id);
         }
     });
 });
+
 </script>
 
 <?= $this->endSection() ?>
