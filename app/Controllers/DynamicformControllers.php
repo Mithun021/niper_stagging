@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Form_details_model;
 use App\Models\Form_section_model;
 use App\Models\Manage_question_model;
+use App\Models\Mapping_question_model;
 use App\Models\Question_type_model;
 
 class DynamicformControllers extends BaseController
@@ -102,11 +103,27 @@ class DynamicformControllers extends BaseController
     }
 
     public function mapping_question($id){
+        $mapping_question_model = new Mapping_question_model();
         $data = ['title' => 'Manage Questions','question_id' => $id];
         if ($this->request->is("get")) {
             return view('admin/dymanic_form/mapping-question',$data);
         }else if ($this->request->is("post")) {
-
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $data = [
+                'question_type_id' => $id,
+                'title' => $this->request->getPost('title'),
+                'description' => $this->request->getPost('description'),
+                'upload_by' => $loggeduserId,
+            ];
+            $result = $mapping_question_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/mapping-question/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/mapping-question/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
         }
     }
 

@@ -30,13 +30,6 @@
                         <span for="">Desription</span>
                         <textarea id="editor" name="description"></textarea>
                     </div>
-                    <div class="form-group">
-                        <span>Status</span>
-                        <select name="status" id="status" class="form-control form-control-sm">
-                            <option value="1">Active</option>
-                            <option value="0">Draft</option>
-                        </select>
-                    </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
                     
