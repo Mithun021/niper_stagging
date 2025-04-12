@@ -38,6 +38,9 @@ $mapping_question_model = new Mapping_question_model();
         padding: 5px 8px;
         border-radius: 20px;
     }
+    .answer-option p{
+        margin: 0;
+    }
 </style>
 <!-- start page title -->
 <div class="row">
@@ -123,7 +126,7 @@ $mapping_question_model = new Mapping_question_model();
                                 $questionDetail = $question_type_model->get($value['question_details_id']);
                                 
                                 echo "<h5 class='m-0 mt-3 text-danger'>" . ($questionDetail['title'] ?? '') . "</h5>";
-                                echo "<p class='m-0'>" . ($questionDetail['description'] ?? '') . "</p>";
+                                echo "<div class='answer-option'>" . ($questionDetail['description'] ?? '') . "</div>";
                             }
                             
                             if (!empty($answer_option)) {
