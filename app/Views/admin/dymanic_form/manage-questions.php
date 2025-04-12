@@ -121,8 +121,10 @@ $mapping_question_model = new Mapping_question_model();
                             echo '<div class="card card-body">';
                                 echo '<span class="question_type">' . $question_type . '</span>';
                                 if ($value['question_details_id'] !== "") {
-                                    echo "<h5 class='m-0 mt-3 text-danger'>" . $question_type_model->get($value['question_details_id'])['title'] ?? '' . "</h5>";
-                                    echo $question_type_model->get($value['question_details_id'])['description'] ?? '';
+                                    $questionDetail = $question_type_model->get($value['question_details_id']);
+                                    
+                                    echo "<h5 class='m-0 mt-3 text-danger'>" . ($questionDetail['title'] ?? '') . "</h5>";
+                                    echo "<p>" . ($questionDetail['description'] ?? '') . "</p>";
                                 }
                             echo '</div>';
                         }
