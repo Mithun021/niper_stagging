@@ -114,20 +114,27 @@ $mapping_question_model = new Mapping_question_model();
                     echo '<h4>' . $form_section['name'] . '</h4>';
                     echo $form_section['description'];
                     foreach ($manage_question as $key => $value) {
-                        $question_ids = explode(',', $value['question_details_id']);
+                        $answer_option = explode(',', $value['answer_option']);
                         $question_type = $value['question_type'];
-                        $question_data = $question_type_model->get($question_ids);
-                        if (!empty($question_data)) {
-                            echo '<div class="card card-body">';
-                                echo '<span class="question_type">' . $question_type . '</span>';
-                                if ($value['question_details_id'] !== "") {
-                                    $questionDetail = $question_type_model->get($value['question_details_id']);
-                                    
-                                    echo "<h5 class='m-0 mt-3 text-danger'>" . ($questionDetail['title'] ?? '') . "</h5>";
-                                    echo "<p class='m-0'>" . ($questionDetail['description'] ?? '') . "</p>";
+                       
+                        echo '<div class="card card-body">';
+                            echo '<span class="question_type">' . $question_type . '</span>';
+                            if ($value['question_details_id'] !== "") {
+                                $questionDetail = $question_type_model->get($value['question_details_id']);
+                                
+                                echo "<h5 class='m-0 mt-3 text-danger'>" . ($questionDetail['title'] ?? '') . "</h5>";
+                                echo "<p class='m-0'>" . ($questionDetail['description'] ?? '') . "</p>";
+                            }
+                            echo '<br>';
+                            
+                            if (!empty($answer_option)) {
+                                foreach ($answer_option as $answer) {
+                                    $answer_data = $mapping_question_model->get($answer);
+                                    echo $answer_data['title']."<br>";
                                 }
-                            echo '</div>';
-                        }
+                            }
+                        echo '</div>';
+                       
                     }
                 ?>
 
