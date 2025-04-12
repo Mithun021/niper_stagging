@@ -4,10 +4,12 @@
 <?php
 
 use App\Models\Employee_model;
+use App\Models\Mapping_question_model;
 use App\Models\Question_type_model;
 
 $employee_model = new Employee_model();
 $question_type_model = new Question_type_model();
+$mapping_question_model = new Mapping_question_model();
 ?>
 <style>
     #choice-question {
@@ -117,27 +119,10 @@ $question_type_model = new Question_type_model();
                         $question_data = $question_type_model->get($question_ids);
                         if (!empty($question_data)) {
                             echo '<div class="card card-body">';
-                            echo '<span class="question_type">' . $question_type . '</span>';
-                            if ($value['title'] !== "") {
-                                echo "<h5 class='m-0 text-danger'>" . $value['title'] . "</h5>";
-                            }
-                            if ($value['descripition'] !== "") {
-                                echo $value['descripition'];
-                            }
-                            echo '<br>';
-                            foreach ($question_data as $question) {
-                                if ($value['question_type'] == "Radio Button") {
-                                    echo '<div id="choice-question">';
-                                    echo '<input type="radio" name="choice1" ><div>';
-                                    echo '<h6 class="m-0 text-secondary">' . $question['title'] . '</h6>';
-                                    echo '<p>' . $question['description'] . '</p>';
-                                    echo "</div>";
-                                    echo '</div>';
-                                } else {
-                                    echo '<h6 class="m-0 text-secondary">' . $question['title'] . '</h6>';
-                                    echo '<p>' . $question['description'] . '</p>';
+                                echo '<span class="question_type">' . $question_type . '</span>';
+                                if ($value['question_details_id'] !== "") {
+                                    echo "<h5 class='m-0 text-danger'>" . $question_type_model->get($value['question_details_id'])['title'] ?? '' . "</h5>";
                                 }
-                            }
                             echo '</div>';
                         }
                     }
