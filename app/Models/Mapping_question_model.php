@@ -26,5 +26,10 @@
             }
             return $result;
         }
+
+        public function getByQuestionType($id){
+            return $this->where('question_type_id',$id)->orderBy('id','asc')->findAll();
+        }
+
     }
 ?>
