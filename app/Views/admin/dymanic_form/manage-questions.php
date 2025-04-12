@@ -154,31 +154,62 @@ $question_type_model = new Question_type_model();
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 <script>
-    $(document).ready(function() {
-        // Initialize select2
-        $('.my-select').select2({
-            placeholder: "--Select--",
-            allowClear: true,
-            width: '100%'
-        });
+$(document).ready(function () {
+    // Initialize Select2
+    $('.my-select').select2({
+        placeholder: "--Select--",
+        allowClear: true,
+        width: '100%'
+    });
 
+    function loadAnswerOptions(questionId) {
+        $.ajax({
+            url: '<?= base_url('get-answer-options') ?>',
+            type: 'POST',
+            data: { question_id: questionId },
+            success: function (data) {
+                let options = $('#answer_option');
+                options.empty();           // Clear old options
+                options.attr("multiple", "multiple"); // Add 'multiple' attribute here
 
-        $('#question_type').on('change', function () {
-            let selectedType = $(this).val();
-            let questionDetails = $('#question_details');
-            let multipleChoiceDiv = $('.multiple-choice'); // Select all elements with class
-
-            // Check if selected type requires multiple selection
-            if (selectedType === "Checkbox" || selectedType === "Radio Button" || selectedType === "Drop Down") {
-                // questionDetails.attr("multiple", "multiple");
-                multipleChoiceDiv.show();  // Show additional input fields
-                alert(selectedType);
-            } else {
-                questionDetails.removeAttr("multiple");
-                multipleChoiceDiv.hide();  // Hide additional input fields
+                data.forEach(function (item) {
+                    options.append('<option value="' + item.id + '">' + item.text + '</option>');
+                });
+            },
+            error: function () {
+                alert('Failed to load options.');
             }
         });
+    }
 
-    })
+    $('#question_type').on('change', function () {
+        let type = $(this).val();
+        let answerDiv = $('.multiple-choice');
+        $('#answer_option').removeAttr("multiple"); // Remove any previous 'multiple'
+
+        if (type === "Checkbox" || type === "Radio Button" || type === "Drop Down") {
+            answerDiv.show();
+
+            // Optionally fetch immediately if already selected
+            let selectedDetail = $('#question_details').val();
+            if (selectedDetail) {
+                loadAnswerOptions(selectedDetail);
+            }
+        } else {
+            answerDiv.hide();
+            $('#answer_option').empty();
+        }
+    });
+
+    $('#question_details').on('change', function () {
+        let type = $('#question_type').val();
+        let id = $(this).val();
+
+        if ((type === "Checkbox" || type === "Radio Button" || type === "Drop Down") && id) {
+            loadAnswerOptions(id);
+        }
+    });
+});
 </script>
+
 <?= $this->endSection() ?>
