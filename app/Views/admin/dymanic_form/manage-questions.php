@@ -124,7 +124,7 @@ $mapping_question_model = new Mapping_question_model();
                                     $questionDetail = $question_type_model->get($value['question_details_id']);
                                     
                                     echo "<h5 class='m-0 mt-3 text-danger'>" . ($questionDetail['title'] ?? '') . "</h5>";
-                                    echo "<p>" . ($questionDetail['description'] ?? '') . "</p>";
+                                    echo "<p class='m-0'>" . ($questionDetail['description'] ?? '') . "</p>";
                                 }
                             echo '</div>';
                         }
