@@ -207,6 +207,7 @@ $(document).ready(function () {
     $('#question_details').on('change', function () {
         let type = $('#question_type').val();
         let id = $(this).val();
+        alert(id);
 
         if ((type === "Checkbox" || type === "Radio Button" || type === "Drop Down") && id) {
             loadAnswerOptions(id);
