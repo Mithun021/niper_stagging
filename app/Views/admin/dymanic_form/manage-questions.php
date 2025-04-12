@@ -82,8 +82,8 @@ $question_type_model = new Question_type_model();
 
                     <div class="form-group multiple-choice" style="display: none;">
                         <span>Select Answer Option</span>
-                        <select class="form-control form-control-sm my-select" name="answer_option[]" id="answer_option" multiple>
-
+                        <select class="form-control form-control-sm my-select" name="answer_option" id="answer_option">
+                            <!-- Options will be loaded dynamically -->
                         </select>
                     </div>
                     <!-- <div class="form-group multiple-choice" style="display: none;">
@@ -171,15 +171,16 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 let options = $('#answer_option');
-                options.empty();
-                options.attr("multiple", "multiple"); // only for answer_option
+                options.empty();           // Clear old options
+                options.attr("multiple", "multiple"); // Add 'multiple' attribute here
 
                 data.forEach(function (item) {
                     options.append('<option value="' + item.id + '">' + item.title + '</option>');
                 });
             },
-            error: function (xhr, t, error) {
-                console.error("Error loading answer options:", xhr, t, error);
+            error: function (xhs,t, error) {
+                console.error("Error loading answer options:", xhs, t, error);
+                // alert('Failed to load options.');
             }
         });
     }
@@ -187,11 +188,12 @@ $(document).ready(function () {
     $('#question_type').on('change', function () {
         let type = $(this).val();
         let answerDiv = $('.multiple-choice');
-        $('#answer_option').removeAttr("multiple");
+        $('#answer_option').removeAttr("multiple"); // Remove any previous 'multiple'
 
         if (type === "Checkbox" || type === "Radio Button" || type === "Drop Down") {
             answerDiv.show();
 
+            // Optionally fetch immediately if already selected
             let selectedDetail = $('#question_details').val();
             if (selectedDetail) {
                 loadAnswerOptions(selectedDetail);
@@ -204,15 +206,15 @@ $(document).ready(function () {
 
     $('#question_details').on('change', function () {
         let type = $('#question_type').val();
-        let id = $(this).val(); // will return string if 'multiple' is not set
+        let id = $(this).val();
+        
 
         if ((type === "Checkbox" || type === "Radio Button" || type === "Drop Down") && id) {
-            alert(id); return false; // check what's being passed
+            alert(id); return false;
             loadAnswerOptions(id);
         }
     });
 });
-
 </script>
 
 <?= $this->endSection() ?>
