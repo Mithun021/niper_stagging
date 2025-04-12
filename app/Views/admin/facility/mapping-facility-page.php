@@ -2,9 +2,9 @@
 <?=  $this->section("body-content"); ?>
 <?php
     use App\Models\Employee_model;
-    use App\Models\Facility_page_model;
+    use App\Models\Facility_section_model;
     $employee_model = new Employee_model();
-    $facility_page_model = new Facility_page_model();
+    $facility_section_model = new Facility_section_model();
 ?>
 <style>
     
@@ -52,14 +52,25 @@
                     <thead>
                         <tr>
                             <td>SN</td>
-                            <td>Facility Id</td>
+                            <td>Facility Section</td>
                             <td>Arranged Page No</td>
                             <td>Uploaded By</td>
                             <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    <?php foreach ($facility_page as $key => $value) { ?>
+                        <tr>
+                            <td><?= $key + 1 ?></td>
+                            <td><?= $facility_section_model->get($value['section_id'])['title'] ?? '' ?></td>
+                            <td><?= $value['page_name'] ?></td>
+                            <td><?= $employee_model->get($value['upload_by'])['name'] ?></td>
+                            <td>
+                                <a href="<?= base_url() ?>admin/edit-mapping-facility-page/<?= $value['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                <a href="<?= base_url() ?>admin/delete-mapping-facility-page/<?= $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 </div>
