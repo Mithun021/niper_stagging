@@ -65,7 +65,7 @@ use App\Models\Student_model;
 
         public function get_answer_options(){
             $mapping_question_model =new Mapping_question_model();
-            $questionId = 1;//$this->request->getPost('questionId');
+            $questionId = $this->request->getPost('questionId');
             $answers = $mapping_question_model->getByQuestionType($questionId);
             return $this->response->setJSON($answers);
         }
