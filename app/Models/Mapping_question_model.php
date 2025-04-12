@@ -5,7 +5,7 @@
     {
         protected $table         = 'mapping_questions';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['question_type_id','title','description','upload_by'];
+        protected $allowedFields = ['question_type_id','title','description','correct_answer','upload_by'];
         // protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {

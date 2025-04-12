@@ -33,6 +33,10 @@ $question_type_model = new Question_type_model();
                         <textarea id="editor" name="description"></textarea>
                     </div>
 
+                    <div class="form-group">
+                        <span><input type="checkbox" name="correct_answer" value="1"> Correct Answer</span>
+                    </div>
+
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
                     
                 </form>
@@ -53,6 +57,7 @@ $question_type_model = new Question_type_model();
                             <td>Question</td>
                             <td>Title</td>
                             <td>Description</td>
+                            <td>Correct Ans</td>
                             <td>Upload by</td>
                             <td>Action</td>
                         </tr>
@@ -64,6 +69,7 @@ $question_type_model = new Question_type_model();
                             <td><?= $question_type_model->get($value['question_type_id'])['title'] ?? '' ?></td>
                             <td><?= $value['title'] ?></td>
                             <td><?= $value['description'] ?></td>
+                            <td><?= ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>No</span>" : (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Yes</span>" : "") ?></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; } ?></td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">

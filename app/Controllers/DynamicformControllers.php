@@ -117,6 +117,7 @@ class DynamicformControllers extends BaseController
                 'question_type_id' => $id,
                 'title' => $this->request->getPost('title'),
                 'description' => $this->request->getPost('description'),
+                'correct_answer' => $this->request->getPost('correct_answer') ?? 0,
                 'upload_by' => $loggeduserId,
             ];
             $result = $mapping_question_model->add($data);
