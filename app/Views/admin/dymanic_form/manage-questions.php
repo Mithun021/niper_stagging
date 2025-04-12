@@ -171,13 +171,13 @@ $(document).ready(function () {
             dataType: 'json',
             data: { question_id: questionId },
             success: function (data) {
-                console.log(data);
-                // let options = $('#answer_option');
-                // options.empty();  // Clear old options
+                // console.log(data);
+                let options = $('#answer_option');
+                options.empty();  // Clear old options
 
-                // data.forEach(function (item) {
-                //     options.append('<option value="' + item.id + '">' + item.title + '</option>');
-                // });
+                data.forEach(function (item) {
+                    options.append('<option value="' + item.id + '">' + item.title + '</option>');
+                });
             },
             error: function (xhs, t, error) {
                 console.error("Error loading answer options:", xhs, t, error);
