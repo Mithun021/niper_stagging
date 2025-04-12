@@ -143,9 +143,10 @@ class DynamicformControllers extends BaseController
             $data = [
                 'form_section_id' => $form_id,
                 'question_type' => $this->request->getPost('question_type'),
-                'question_details_id' => implode(",",  $this->request->getPost('question_details') ?? []),
-                'title' => $this->request->getPost('question_title'),
-                'descripition' => $this->request->getPost('question_description'),
+                'question_details_id' => $this->request->getPost('question_details'),
+                'answer_option' => implode(",",  $this->request->getPost('answer_option') ?? []),
+                
+                // 'descripition' => $this->request->getPost('question_description'),
             ];
             // print_r($data); die;
             $result = $manage_question_model->add($data);
