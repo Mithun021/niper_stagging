@@ -173,7 +173,7 @@ $(document).ready(function () {
                 options.attr("multiple", "multiple"); // Add 'multiple' attribute here
 
                 data.forEach(function (item) {
-                    options.append('<option value="' + item.id + '">' + item.text + '</option>');
+                    options.append('<option value="' + item.id + '">' + item.title + '</option>');
                 });
             },
             error: function () {

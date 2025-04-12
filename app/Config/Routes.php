@@ -14,6 +14,7 @@ $routes->post('get_event_fee_subcategory', 'UniversalController::get_event_fee_s
 $routes->post('getStates', 'UniversalController::getStates');
 $routes->post('getCourseByDepartment', 'UniversalController::getCourseByDepartment');
 $routes->post('getFacilitySection', 'UniversalController::getFacilitySection');
+$routes->post('get-answer-options', 'UniversalController::get_answer_options');
 
 $routes->match(['get','post'],'admin/login', 'AdminControllers::adminLogin');
 $routes->group('admin',['filter'=>'adminLogin'], static function($routes){

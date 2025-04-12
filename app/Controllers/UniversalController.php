@@ -9,6 +9,7 @@ use App\Models\Employee_model;
 use App\Models\Event_fee_category_model;
 use App\Models\Event_fee_subcategory_model;
 use App\Models\Facility_section_model;
+use App\Models\Mapping_question_model;
 use App\Models\Menu_heading_model;
 use App\Models\Menu_name_model;
 use App\Models\Program_department_mapping_model;
@@ -60,6 +61,13 @@ use App\Models\Student_model;
             $facility_id = $this->request->getPost('facility_id');
             $sections = $facility_section_model->getFacilitySection($facility_id);
             return $this->response->setJSON($sections);
+        }
+
+        public function get_answer_options(){
+            $mapping_question_model =new Mapping_question_model();
+            $questionId = $this->request->getPost('questionId');
+            $answers = $mapping_question_model->getByQuestionType($questionId);
+            return $this->response->setJSON($answers);
         }
 
     }
