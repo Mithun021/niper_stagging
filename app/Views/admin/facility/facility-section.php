@@ -81,6 +81,7 @@
                             <td><?= $value['priority'] ?></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
                             <td>
+                                <a href="<?= base_url() ?>admin/mapping-facility-page/<?= $value['id'] ?>" class="btn btn-sm btn-dark"><i class="fas fa-bars"></i></a>
                                 <a href="<?= base_url() ?>admin/edit-facility-section/<?= $value['id'] ?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
                                 <a href="<?= base_url() ?>admin/delete-facility-section/<?= $value['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure...!')"><i class="far fa-trash-alt"></i></a>
                             </td>
