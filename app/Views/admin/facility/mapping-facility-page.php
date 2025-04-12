@@ -64,7 +64,7 @@
                             <td><?= $key + 1 ?></td>
                             <td><?= $facility_section_model->get($value['section_id'])['title'] ?? '' ?></td>
                             <td><?= $value['page_name'] ?></td>
-                            <td><?= $employee_model->get($value['upload_by'])['name'] ?></td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
                             <td>
                                 <a href="<?= base_url() ?>admin/edit-mapping-facility-page/<?= $value['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
                                 <a href="<?= base_url() ?>admin/delete-mapping-facility-page/<?= $value['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
