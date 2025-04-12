@@ -106,6 +106,7 @@ class DynamicformControllers extends BaseController
         $mapping_question_model = new Mapping_question_model();
         $data = ['title' => 'Manage Questions','question_id' => $id];
         if ($this->request->is("get")) {
+            $data['question'] = $mapping_question_model->get($id);
             return view('admin/dymanic_form/mapping-question',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');

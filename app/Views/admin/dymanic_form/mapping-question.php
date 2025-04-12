@@ -2,8 +2,10 @@
 
 <?=  $this->section("body-content"); ?>
 <?php
-    use App\Models\Employee_model;
-    $employee_model = new Employee_model();
+use App\Models\Employee_model;
+use App\Models\Question_type_model;
+$employee_model = new Employee_model();
+$question_type_model = new Question_type_model();
 ?>
 <style>
     
@@ -48,15 +50,29 @@
                     <thead>
                         <tr>
                             <td>SN</td>
+                            <td>Question</td>
                             <td>Title</td>
                             <td>Description</td>
-                            <td>Status</td>
                             <td>Upload by</td>
                             <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    <?php foreach ($question as $key => $value) { ?>
+                        <tr>
+                            <td><?= $key + 1 ?></td>
+                            <td><?php $question_type = $question_type_model->get($value['question_type_id']); if($question_type){ echo $question_type['title']; } ?></td>
+                            <td><?= $value['title'] ?></td>
+                            <td><?= $value['description'] ?></td>
+                            <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; } ?></td>
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                    <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                    <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 </div>
