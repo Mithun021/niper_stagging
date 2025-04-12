@@ -125,12 +125,22 @@ $mapping_question_model = new Mapping_question_model();
                                 echo "<h5 class='m-0 mt-3 text-danger'>" . ($questionDetail['title'] ?? '') . "</h5>";
                                 echo "<p class='m-0'>" . ($questionDetail['description'] ?? '') . "</p>";
                             }
-                            echo '<br>';
                             
                             if (!empty($answer_option)) {
                                 foreach ($answer_option as $answer) {
                                     $answer_data = $mapping_question_model->get($answer);
-                                    echo $answer_data['title']."<br>";
+                                    // echo $answer_data['title']."<br>";
+                                    if ($value['question_type'] == "Radio Button") {
+                                        echo '<div id="choice-question">';
+                                        echo '<input type="radio" name="choice1" ><div>';
+                                        echo '<h6 class="m-0 text-secondary">' . $answer_data['title'] . '</h6>';
+                                        echo '<p>' . $answer_data['description'] . '</p>';
+                                        echo "</div>";
+                                        echo '</div>';
+                                    } else {
+                                        echo '<h6 class="m-0 text-secondary">' . $answer_data['title'] . '</h6>';
+                                        echo '<p>' . $answer_data['description'] . '</p>';
+                                    }
                                 }
                             }
                         echo '</div>';
