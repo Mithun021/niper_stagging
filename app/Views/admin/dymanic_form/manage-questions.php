@@ -166,6 +166,7 @@ $(document).ready(function () {
         $.ajax({
             url: '<?= base_url('get-answer-options') ?>',
             type: 'POST',
+            dataType: 'json',
             data: { question_id: questionId },
             success: function (data) {
                 console.log(data);
