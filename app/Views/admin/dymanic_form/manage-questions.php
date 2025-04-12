@@ -82,7 +82,7 @@ $question_type_model = new Question_type_model();
 
                     <div class="form-group multiple-choice" style="display: none;">
                         <span>Select Answer Option</span>
-                        <select class="form-control form-control-sm my-select" name="answer_option" id="answer_option">
+                        <select class="form-control form-control-sm my-select" name="answer_option[]" id="answer_option" multiple>
                             <!-- Options will be loaded dynamically -->
                         </select>
                     </div>
