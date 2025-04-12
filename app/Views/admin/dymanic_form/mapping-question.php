@@ -60,8 +60,8 @@ $question_type_model = new Question_type_model();
                     <tbody>
                     <?php foreach ($question as $key => $value) { ?>
                         <tr>
-                            <td><?= $key ?></td>
-                            <td><?= $question_type_model->get($value['question_type_id'])['title'] ?? '' ?></td>
+                            <td><?= ++$key ?></td>
+                            <td><?=$value['question_type_id'] ?></td>
                             <td><?= $value['title'] ?></td>
                             <td><?= $value['description'] ?></td>
                             <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){ echo $emp['first_name']." ".$emp['middle_name']." ".$emp['last_name']; } ?></td>
