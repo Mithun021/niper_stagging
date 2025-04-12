@@ -401,7 +401,7 @@ class FacilityController extends BaseController
 
     public function mapping_facility_page($id){
         $mapping_facility_page_model = new Mapping_facility_page_model();
-        $data = ['title' => 'Facility Section Image'];
+        $data = ['title' => 'Facility Section Image','facilty_page_id' => $id];
         if ($this->request->is("get")) {
             $data['facility_page'] = $mapping_facility_page_model->get();
             return view('admin/facility/mapping-facility-page',$data);

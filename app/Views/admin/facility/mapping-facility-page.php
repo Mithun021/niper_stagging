@@ -22,7 +22,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/facility-section" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/mapping-facility-page/<?= $facilty_page_id ?>" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Arrange Page<span class="text-danger">*</span></span>
                         <select class="form-control form-control-sm" name="page_name" required>
