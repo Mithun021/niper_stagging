@@ -1,4 +1,14 @@
+<?= $this->extend("students/layouts/master") ?>
 
+<?=  $this->section("student-content"); ?>
+
+<style>
+    #dashboard-image{
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+</style>
 
 <!-- start page title -->
 <div class="row">
@@ -8,3 +18,5 @@
         </div>
     </div>
 </div>
+
+<?= $this->endSection() ?>
