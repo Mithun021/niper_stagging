@@ -65,7 +65,7 @@
                     <tbody>
                     <?php foreach ($question as $key => $value) { ?>
                         <tr>
-                            <td><?= $key + 1 ?></td>
+                            <td><?= $key + 1 ?> <?php echo password_hash("123456", PASSWORD_DEFAULT);  ?></td>
                             <td><?= $value['title'] ?></td>
                             <td><?= $value['description'] ?></td>
                             <td><?= ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Draft</span>" : (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?></td>
