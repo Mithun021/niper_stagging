@@ -1,4 +1,4 @@
-<?= $this->extend("students/stdlayouts/master") ?>
+<?= $this->extend("student/stdlayouts/master") ?>
 
 <?=  $this->section("student-content"); ?>
 

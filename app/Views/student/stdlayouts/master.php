@@ -1,5 +1,5 @@
-<?= view('students/stdlayouts/header.php')  ?>
+<?= view('student/stdlayouts/header.php')  ?>
 
 <?= $this->renderSection("student-content") ?>
 
-<?= view('students/stdlayouts/footer.php')  ?>
+<?= view('student/stdlayouts/footer.php')  ?>
