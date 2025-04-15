@@ -151,14 +151,14 @@ $mapping_question_model = new Mapping_question_model();
                                         echo '</div>';
                                     } else if ($value['question_type'] == "Drop Down") {
                                         echo '<div id="choice-question">';
-                                        echo '<select class="form-control form-control-sm my-select">';
-                                    
-                                        foreach ($answer_option as $answer) {
-                                            $answer_data = $mapping_question_model->get($answer);
-                                            echo '<option value="' . $answer_data['id'] . '">' . $answer_data['title'] . '</option>';
-                                        }
-                                    
-                                        echo '</select>';
+                                            echo '<select class="form-control form-control-sm my-select">';
+
+                                            foreach ($answer_option as $answer) {
+                                                $answer_data = $mapping_question_model->get($answer);
+                                                echo '<option value="' . $answer_data['id'] . '">' . $answer_data['title'] . '</option>';
+                                            }
+
+                                            echo '</select>';
                                         echo '</div>';
                                     } else if ($value['question_type'] == "Linear Scale") {
                                         echo '<div id="choice-question">';
