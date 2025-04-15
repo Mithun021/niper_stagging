@@ -157,7 +157,7 @@ if ($sessionData) {
 
                 <!--- Sidemenu -->
 
-                <?= view('admin/layouts/sidebar') ?>
+                <?= view('student/stdlayouts/sidebar') ?>
 
                 <!-- Sidebar -->
             </div>
