@@ -258,4 +258,4 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     
 });
 
-$routes->get('student/', 'student\StudentDashboardController::index');
+$routes->get('student/', 'student\StudentController::index');

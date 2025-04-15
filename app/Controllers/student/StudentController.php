@@ -4,7 +4,7 @@ namespace App\Controllers\student;
 
 use App\Controllers\BaseController;
 
-class StudentDashboardController extends BaseController
+class StudentController extends BaseController
 {
     public function index()
     {
