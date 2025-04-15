@@ -9,6 +9,6 @@ class StudentDashboardController extends BaseController
     public function index()
     {
         $data = ['title' =>'Student Dashboard'];
-        return view('students/index',$data); 
+        return view('student/index',$data); 
     }
 }
