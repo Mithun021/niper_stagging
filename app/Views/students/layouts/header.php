@@ -11,9 +11,9 @@ if ($sessionData) {
 
 <head>
     <meta charset="utf-8" />
-    <title>Agomps India - <?= $title ?> </title>
+    <title>NIPER - <?= $title ?> </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta content="Agomps India" name="description" />
+    <meta content="NIPER" name="description" />
     <meta content="Dcode Materials" name="author" />
     <meta content="Dcode Materials" name="developer" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
