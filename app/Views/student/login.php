@@ -116,7 +116,7 @@
                     // console.log(requestedData);
                     $.ajax({
                         type: "post",
-                        url: "<?= base_url() ?>student/login",
+                        url: "<?= base_url() ?>stdlogin",
                         data: requestedData,
                         success: function (response) {
                             if(response == "dataMatch") {
@@ -127,7 +127,7 @@
                                     showConfirmButton: false,
                                     timer: 2500
                                 }).then(function(){
-                                    window.location.href = "<?= base_url() ?>stdlogin";
+                                    window.location.href = "<?= base_url() ?>student/";
                                 });
                                 
                             }  
