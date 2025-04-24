@@ -43,7 +43,7 @@
                                             </a>
                                         </div>
                                         <h1 class="h5 mb-1">Student Login</h1>
-                                        <p class="text-muted mb-4">Enter your email address and password to access admin panel.</p>
+                                        <p class="text-muted mb-4">Enter your university roll no and password to access dashboard.</p>
                                         <form class="user"  id="adminLoginForm">
                                             <div class="form-group">
                                                 <input type="text" name="username" class="form-control form-control-user" id="username" placeholder="Phone/Email">
