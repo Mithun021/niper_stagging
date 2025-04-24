@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="<?= base_url() ?>public/admin/assets/images/favicon.ico">
+    <link rel="shortcut icon" href="<?= base_url() ?>public/admin/assets/images/niperclg.jpg">
 
     <!-- App css -->
     <link href="<?= base_url() ?>public/admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -42,8 +42,8 @@
                                             <img src="<?= base_url() ?>public/assets/image/logo.jpg" alt="" height="90">
                                             </a>
                                         </div>
-                                        <h1 class="h5 mb-1">Welcome Back!</h1>
-                                        <p class="text-muted mb-4">Enter your email address and password to access admin panel.</p>
+                                        <h1 class="h5 mb-1">Student Login</h1>
+                                        <p class="text-muted mb-4">Enter your University roll no and password.</p>
                                         <form class="user"  id="adminLoginForm">
                                             <div class="form-group">
                                                 <input type="text" name="username" class="form-control form-control-user" id="username" placeholder="Phone/Email">
