@@ -30,12 +30,10 @@
  
     <div>
         <div class="container">
-            <div class="row">
-                <div class="col-12">
                     <div class="d-flex justify-content-center align-items-center min-vh-100">
                         <div class="d-block bg-white shadow-lg rounded my-5">
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-lg-6">
                                     <div class="p-5">
                                         <div class="text-center mb-5">
                                             <a href="<?= base_url() ?>" class="text-dark font-size-22 font-family-secondary">
@@ -65,8 +63,6 @@
                             </div> <!-- end row -->
                         </div> <!-- end .w-100 -->
                     </div> <!-- end .d-flex -->
-                </div> <!-- end col-->
-            </div> <!-- end row -->
         </div>
         <!-- end container -->
     </div>
