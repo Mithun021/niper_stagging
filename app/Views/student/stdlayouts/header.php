@@ -118,7 +118,7 @@ if ($sessionData) {
                     <div class="dropdown d-inline-block ml-2">
                         <button type="button" class="btn header-item waves-effect"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="rounded-circle header-profile-user" src="<?= base_url() ?>public/assets/images/favicon.png"
+                            <img class="rounded-circle header-profile-user" src="<?= base_url() ?>public/assets/images/avatar.png"
                                 alt="Header Avatar">
                             <span class="d-none d-sm-inline-block ml-1"><?php if ($sessionData) {
                                                                             echo $LoggedStudentName;
