@@ -19,6 +19,7 @@ class AuthController extends BaseController
 
             $data = $student_model->where('enrollment_no', $userId)->first();
             if ($data) {
+                session()->remove(['loggedstudentName','loggedstudentId', 'studentLoginned']);
                 $session_data = [
                     'loggedstudentName' => $data['first_name'],
                     'loggedstudentId' => $data['id']
