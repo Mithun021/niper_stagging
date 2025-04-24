@@ -4,11 +4,11 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-6">
-                                <?= date('Y') ?> © AGOMPS INDIA
+                                <?= date('Y') ?> © NIPER
                             </div>
                             <div class="col-sm-6">
                                 <div class="text-sm-right d-none d-sm-block">
-                                    Design & Develop by Dcode Materials
+                                    Design & Develop by Vocman India
                                 </div>
                             </div>
                         </div>
