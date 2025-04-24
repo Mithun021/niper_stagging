@@ -11,7 +11,7 @@ class IsStudentFilter implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         $session = session();
-        if ($session->adminLoginned != "studentLoginned") {
+        if ($session->studentLoginned != "studentLoginned") {
             return redirect()->to(base_url('stdlogin'));
         }
     }
