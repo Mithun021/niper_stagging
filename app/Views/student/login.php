@@ -29,8 +29,8 @@
 
     <div>
         <div class="container">
-            <div class="row">
-                <div class="col-12">
+            <div class="row d-flex justify-content-center align-items-center min-vh-100">
+                <div class="col-lg-6">
                     <div class="p-5">
                         <div class="text-center mb-5">
                             <a href="<?= base_url() ?>" class="text-dark font-size-22 font-family-secondary">
