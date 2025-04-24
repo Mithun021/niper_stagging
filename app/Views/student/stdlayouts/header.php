@@ -1,8 +1,8 @@
 <?php
-$sessionData = session()->get('loggedUserData');
+$sessionData = session()->get('loggedStudentData');
 if ($sessionData) {
-    $LoggedUserName = $sessionData['loggeduserFirstName'];
-    $loggeduserId = $sessionData['loggeduserId'];
+    $LoggedStudentName = $sessionData['loggedstudentName'];
+    $loggedstudentId = $sessionData['loggedstudentId'];
 }
 ?>
 
@@ -121,7 +121,7 @@ if ($sessionData) {
                             <img class="rounded-circle header-profile-user" src="<?= base_url() ?>public/assets/images/favicon.png"
                                 alt="Header Avatar">
                             <span class="d-none d-sm-inline-block ml-1"><?php if ($sessionData) {
-                                                                            echo $LoggedUserName;
+                                                                            echo $LoggedStudentName;
                                                                         }  ?></span>
                             <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
                         </button>
@@ -131,7 +131,7 @@ if ($sessionData) {
                                 <span>Profile</span>
                             </a>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                href="<?= base_url() ?>admin/logout">
+                                href="<?= base_url() ?>student/logout">
                                 <span>Log Out</span>
                             </a>
                         </div>

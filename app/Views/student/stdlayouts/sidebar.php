@@ -4,12 +4,12 @@
         <li class="menu-title">Menu</li>
 
         <li>
-            <a href="<?= base_url() ?>admin/" class="waves-effect"><i class="mdi mdi-home-analytics"></i><span>Dashboard</span></a>
+            <a href="<?= base_url() ?>student/" class="waves-effect"><i class="mdi mdi-home-analytics"></i><span>Dashboard</span></a>
         </li>
 
         <li>
             <a href="javascript: void(0);" class="has-arrow waves-effect"><i
-                    class="mdi mdi-table-merge-cells"></i><span>Tournament Details</span></a>
+                    class="mdi mdi-table-merge-cells"></i><span>Placement Details</span></a>
             <ul class="sub-menu" aria-expanded="false">
                 <li><a href="<?= base_url() ?>admin/add-tournament">Add Tournament</a></li>
                 <li><a href="<?= base_url() ?>admin/tournament-list">Tournament List</a></li>
