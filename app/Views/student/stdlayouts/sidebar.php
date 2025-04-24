@@ -9,26 +9,34 @@
 
         <li>
             <a href="javascript: void(0);" class="has-arrow waves-effect"><i
-                    class="mdi mdi-table-merge-cells"></i><span>Placement Details</span></a>
+                    class="mdi mdi-table-merge-cells"></i><span>Student Profile</span></a>
             <ul class="sub-menu" aria-expanded="false">
-                <li><a href="<?= base_url() ?>admin/add-tournament">Add Tournament</a></li>
-                <li><a href="<?= base_url() ?>admin/tournament-list">Tournament List</a></li>
+                <li><a href="<?= base_url() ?>student/student-profile">View Profile</a></li>
+                <li><a href="<?= base_url() ?>student/personal-details">Personal Details</a></li>
+                <li><a href="<?= base_url() ?>student/academic-details">Acadmic Details</a></li>
+                <li><a href="<?= base_url() ?>student/phd-details">PHD Details</a></li>
+                <li><a href="<?= base_url() ?>student/publication-details">Publication Details</a></li>
+                <li><a href="<?= base_url() ?>student/book-chapter-details">Book Chapter Details</a></li>
+                <li><a href="<?= base_url() ?>student/patent-details">Patent Details</a></li>
+                <li><a href="<?= base_url() ?>student/copyright-details">Copyright Details</a></li>
+                <li><a href="<?= base_url() ?>student/achievement-details">Achievements Details</a></li>
+                <li><a href="<?= base_url() ?>student/experience-details">Experience Details</a></li>
             </ul>
         </li>
         
-        <li>
+        <!-- <li>
             <a href="javascript: void(0);" class="has-arrow waves-effect"><i
                     class="mdi mdi-table-merge-cells"></i><span>Master</span></a>
             <ul class="sub-menu" aria-expanded="false">
-                <li><a href="<?= base_url() ?>admin/sports-category">Sports Category</a></li>
-                <li><a href="<?= base_url() ?>admin/sports-subcategory">Sports Subcategory</a></li>
-                <li><a href="<?= base_url() ?>admin/league-session">League Session</a></li>
-                <li><a href="<?= base_url() ?>admin/teams">Teams</a></li>
-                <li><a href="<?= base_url() ?>admin/players-category">Players Category</a></li>
+                <li><a href="<?= base_url() ?>student/sports-category">Sports Category</a></li>
+                <li><a href="<?= base_url() ?>student/sports-subcategory">Sports Subcategory</a></li>
+                <li><a href="<?= base_url() ?>student/league-session">League Session</a></li>
+                <li><a href="<?= base_url() ?>student/teams">Teams</a></li>
+                <li><a href="<?= base_url() ?>student/players-category">Players Category</a></li>
             </ul>
-        </li>
+        </li> -->
         <li>
-            <a href="<?= base_url() ?>admin/logout" class="waves-effect"><i class="mdi mdi-table-merge-cells"></i><span>Logout</span></a>
+            <a href="<?= base_url() ?>student/logout" class="waves-effect"><i class="mdi mdi-table-merge-cells"></i><span>Logout</span></a>
         </li>
         
 
