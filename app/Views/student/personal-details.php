@@ -24,7 +24,7 @@
                             <!-- Student Enrollment ID -->
                             <div class="form-group">
                                 <span for="Stdenrollid">Student Enrollment ID: <span class="text-danger">*</span></span>
-                                <input type="text" name="Stdenrollid" id="Stdenrollid" class="form-control form-control-sm" required>
+                                <input type="text" name="Stdenrollid" id="Stdenrollid" class="form-control form-control-sm" value="<?= $studentData['enrollment_no'] ?>" readonly required>
                             </div>
                         </div>
                         <div class="col-lg-4">

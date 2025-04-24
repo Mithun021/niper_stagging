@@ -3,6 +3,7 @@
 namespace App\Controllers\student;
 
 use App\Controllers\BaseController;
+use App\Models\Student_model;
 
 class StudentController extends BaseController
 {
@@ -24,9 +25,15 @@ class StudentController extends BaseController
 
     public function personal_details()
     {
+        $student_model = new Student_model();
         $data = ['title' =>'Personal Details'];
+        $sessionData = session()->get('loggedStudentData');
+        if ($sessionData) {
+            $loggedstudentId = $sessionData['loggedstudentId'];
+        }
+        $data['studentData'] = $student_model->get($loggedstudentId);
         if ($this->request->is('get')) {
-        return view('student/personal-details',$data);
+            return view('student/personal-details',$data);
         }else  if ($this->request->is('post')) {
             
         }
