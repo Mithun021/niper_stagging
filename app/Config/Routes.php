@@ -258,5 +258,8 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     
 });
 
-$routes->get('student/', 'student\StudentController::index');
+
 $routes->match(['get','post'],'stdlogin/', 'student\AuthController::login');
+$routes->group('student',['filter'=>'studentLogin'], static function($routes){
+    $routes->get('/', 'student\StudentController::index');
+});
