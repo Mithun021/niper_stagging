@@ -127,7 +127,7 @@
                                     showConfirmButton: false,
                                     timer: 2500
                                 }).then(function(){
-                                    window.location.href = "<?= base_url() ?>admin/";
+                                    window.location.href = "<?= base_url() ?>stdlogin";
                                 });
                                 
                             }  
