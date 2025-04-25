@@ -117,7 +117,7 @@
                             <div class="form-group">
                                 <label for="category">Category :<span class="text-danger">*</span></label>
                                 <select name="category" id="category" class="form-control form-control-sm" required onchange="toggleEWS()">
-                                    <option value="">Select Gender</option>
+                                    <option value="">Select Category</option>
                                     <option value="Gen" <?php if($studentData['category'] == "Gen"){ echo "selected"; } ?>>Gen</option>
                                     <option value="OBC" <?php if($studentData['category'] == "OBC"){ echo "selected"; } ?>>OBC</option>
                                     <option value="SC" <?php if($studentData['category'] == "SC"){ echo "selected"; } ?>>SC</option>
@@ -126,6 +126,23 @@
 
                                 <span id="ews-container" style="display: none;">
                                     <input type="checkbox" name="ews" id="ews" value="1" <?php if($studentData['ews'] == 1){ echo "checked"; } ?>> EWS
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="relegion">Religion :<span class="text-danger">*</span></label>
+                                <select name="relegion" id="relegion" class="form-control form-control-sm" required onchange="toggleRelegion()">
+                                    <option value="">Select Religion</option>
+                                    <option value="Hindu" <?php if($studentData['relegion'] == "Hindu"){ echo "selected"; } ?>>Hindu</option>
+                                    <option value="Muslim" <?php if($studentData['relegion'] == "Muslim"){ echo "selected"; } ?>>Muslim</option>
+                                    <option value="Sikh" <?php if($studentData['relegion'] == "Sikh"){ echo "selected"; } ?>>Sikh</option>
+                                    <option value="Christian" <?php if($studentData['relegion'] == "Christian"){ echo "selected"; } ?>>Christian</option>
+                                    <option value="other" <?php if(!in_array($studentData['relegion'], ["Hindu", "Muslim", "Sikh", "Christian"])){ echo "selected"; } ?>>Other</option>
+                                </select>
+
+                                <span id="relegion-container" style="display: none;">
+                                    <input type="text" name="other_relegion" id="other_relegion" class="form-control form-control-sm mt-2" placeholder="Specify Religion" value="<?php if(!in_array($studentData['relegion'], ["Hindu", "Muslim", "Sikh", "Christian"])){ echo $studentData['relegion']; } ?>">
                                 </span>
                             </div>
                         </div>
@@ -173,6 +190,23 @@
     // Call on page load to apply visibility based on pre-selected value
     document.addEventListener("DOMContentLoaded", function() {
         toggleEWS();
+    });
+
+    function toggleRelegion() {
+        var selectedReligion = document.getElementById("relegion").value;
+        var otherFieldContainer = document.getElementById("relegion-container");
+
+        if (selectedReligion === "other") {
+            otherFieldContainer.style.display = "block";
+        } else {
+            otherFieldContainer.style.display = "none";
+            document.getElementById("other_relegion").value = "";
+        }
+    }
+
+    // Initialize on page load
+    document.addEventListener("DOMContentLoaded", function() {
+        toggleRelegion();
     });
 </script>
 <?= $this->endSection() ?>
