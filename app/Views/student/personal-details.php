@@ -240,6 +240,32 @@
         </div>
     </div>
 </div>
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#state').change(function() {
+            var state = $(this).val();
+            $.ajax({
+                url: '<?= base_url() ?>findcity',
+                type: 'POST',
+                data: { state: state },
+                dataType: 'json',
+                beforeSend: function() {
+                    $('#city').empty().append('<option value="">Loading...</option>');
+                },
+                success: function(response) {
+                    $('#city').empty().append('<option value="">Select City</option>');
+                    $.each(response, function(index, city) {
+                        $('#city').append('<option value="' + city.city + '">' + city.city + '</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+
 <script>
     function toggleEWS() {
         var category = document.getElementById("category").value;
