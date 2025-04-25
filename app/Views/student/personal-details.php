@@ -113,19 +113,21 @@
                                 <textarea name="std_corrospondence_address" id="std_corrospondence_address" class="form-control form-control-sm" required><?= $studentData['correspondence_address'] ?></textarea>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="category">Category :<span class="text-danger">*</span></label>
-                            <select name="category" id="category" class="form-control form-control-sm" required onchange="toggleEWS()">
-                                <option value="">Select Gender</option>
-                                <option value="Gen" <?php if($studentData['category'] == "Gen"){ echo "selected"; } ?>>Gen</option>
-                                <option value="OBC" <?php if($studentData['category'] == "OBC"){ echo "selected"; } ?>>OBC</option>
-                                <option value="SC" <?php if($studentData['category'] == "SC"){ echo "selected"; } ?>>SC</option>
-                                <option value="ST" <?php if($studentData['category'] == "ST"){ echo "selected"; } ?>>ST</option>
-                            </select>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="category">Category :<span class="text-danger">*</span></label>
+                                <select name="category" id="category" class="form-control form-control-sm" required onchange="toggleEWS()">
+                                    <option value="">Select Gender</option>
+                                    <option value="Gen" <?php if($studentData['category'] == "Gen"){ echo "selected"; } ?>>Gen</option>
+                                    <option value="OBC" <?php if($studentData['category'] == "OBC"){ echo "selected"; } ?>>OBC</option>
+                                    <option value="SC" <?php if($studentData['category'] == "SC"){ echo "selected"; } ?>>SC</option>
+                                    <option value="ST" <?php if($studentData['category'] == "ST"){ echo "selected"; } ?>>ST</option>
+                                </select>
 
-                            <span id="ews-container" style="display: none;">
-                                <input type="checkbox" name="ews" id="ews" value="1" <?php if($studentData['ews'] == 1){ echo "checked"; } ?>> EWS
-                            </span>
+                                <span id="ews-container" style="display: none;">
+                                    <input type="checkbox" name="ews" id="ews" value="1" <?php if($studentData['ews'] == 1){ echo "checked"; } ?>> EWS
+                                </span>
+                            </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
