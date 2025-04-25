@@ -154,7 +154,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <span>Course</span>
+                                <span>Course <?= $batchName['batch_start'] ?></span>
                                 <input type="text" class="form-control form-control-sm" name="std_blood_group" value="<?= $studentDataCourses['program_name'] ?>">
                             </div>
                         </div>

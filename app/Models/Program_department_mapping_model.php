@@ -30,6 +30,10 @@
         public function activeData() {
             return $this->where('status',1)->findAll();
         }
+
+        public function getBatchName($prog_id,$depart_id){
+            return $this->where('program_id',$prog_id)->where('department_id',$depart_id)->first();
+        }
         
     }
 ?>

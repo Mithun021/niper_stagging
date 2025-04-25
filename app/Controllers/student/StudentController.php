@@ -3,6 +3,7 @@
 namespace App\Controllers\student;
 
 use App\Controllers\BaseController;
+use App\Models\Program_department_mapping_model;
 use App\Models\Student_model;
 use App\Models\Student_prog_dept_mapping_model;
 
@@ -28,6 +29,8 @@ class StudentController extends BaseController
     {
         $student_prog_dept_mapping_model = new Student_prog_dept_mapping_model();
         $student_model = new Student_model();
+        $program_department_mapping_model = new Program_department_mapping_model();
+        
         $data = ['title' =>'Personal Details'];
         $sessionData = session()->get('loggedStudentData');
         if ($sessionData) {
@@ -35,6 +38,7 @@ class StudentController extends BaseController
         }
         $data['studentData'] = $student_model->get($loggedstudentId);
         $data['studentDataCourses'] = $student_prog_dept_mapping_model->getStudentProgramDeptData($loggedstudentId);
+        $data['batchName'] = $program_department_mapping_model->getBatchName($data['studentDataCourses']['program_id'],$data['studentDataCourses']['department_id']);
         if ($this->request->is('get')) {
             return view('student/personal-details',$data);
         }else  if ($this->request->is('post')) {
