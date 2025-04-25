@@ -184,7 +184,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span>LinkedIn Id :</span>
-                                <input type="text" class="form-control form-control-sm" name="linkedin_id" value="<?= $studentData['linkedin_id'] ?>" readonly>
+                                <input type="text" class="form-control form-control-sm" name="linkedin_id" value="<?= $studentData['linkedin_id'] ?>">
                             </div>
                         </div>
                         <div class="col-lg-6">
