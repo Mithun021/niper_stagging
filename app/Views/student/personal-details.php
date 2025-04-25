@@ -138,7 +138,7 @@
                                     <option value="Muslim" <?php if($studentData['relegion'] == "Muslim"){ echo "selected"; } ?>>Muslim</option>
                                     <option value="Sikh" <?php if($studentData['relegion'] == "Sikh"){ echo "selected"; } ?>>Sikh</option>
                                     <option value="Christian" <?php if($studentData['relegion'] == "Christian"){ echo "selected"; } ?>>Christian</option>
-                                    <option value="other" <?php if(!in_array($studentData['relegion'], ["Hindu", "Muslim", "Sikh", "Christian"])){ echo "selected"; } ?>>Other</option>
+                                    <option value="Other" <?php if($studentData['relegion'] == "Other"){ echo "selected"; } ?>>Other</option>
                                 </select>
 
                                 <span id="relegion-container" style="display: none;">
@@ -196,7 +196,7 @@
         var selectedReligion = document.getElementById("relegion").value;
         var otherFieldContainer = document.getElementById("relegion-container");
 
-        if (selectedReligion === "other") {
+        if (selectedReligion === "Other") {
             otherFieldContainer.style.display = "block";
         } else {
             otherFieldContainer.style.display = "none";
