@@ -5,6 +5,7 @@ namespace App\Controllers\student;
 use App\Controllers\BaseController;
 use App\Models\Employee_model;
 use App\Models\Program_department_mapping_model;
+use App\Models\State_city_model;
 use App\Models\Student_model;
 use App\Models\Student_prog_dept_mapping_model;
 
@@ -29,6 +30,7 @@ class StudentController extends BaseController
     public function personal_details()
     {
         $employee_model = new Employee_model();
+        $state_city_model = new State_city_model();
         $student_prog_dept_mapping_model = new Student_prog_dept_mapping_model();
         $student_model = new Student_model();
         $program_department_mapping_model = new Program_department_mapping_model();
@@ -43,6 +45,7 @@ class StudentController extends BaseController
         $data['studentDataCourses'] = $student_prog_dept_mapping_model->getStudentProgramDeptData($loggedstudentId);
         $data['batchName'] = $program_department_mapping_model->getBatchName($data['studentDataCourses']['program_id'],$data['studentDataCourses']['department_id']);
         $data['employeeData'] = $employee_model->get();
+        $data['stateData'] = $state_city_model->get_state();
         if ($this->request->is('get')) {
             return view('student/personal-details',$data);
         }else  if ($this->request->is('post')) {

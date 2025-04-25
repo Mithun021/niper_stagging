@@ -14,8 +14,15 @@ use App\Models\Menu_heading_model;
 use App\Models\Menu_name_model;
 use App\Models\Program_department_mapping_model;
 use App\Models\Program_model;
+use App\Models\State_city_model;
 use App\Models\Student_model;   
     class UniversalController extends BaseController{
+        public function findcity(){
+            $state_city_model = new State_city_model();
+            $state = $this->request->getPost('state');
+            $data = $state_city_model->find_city($state);
+            return $this->response->setJSON($data);
+        }
         public function fetch_programs(){
             $program_model = new Program_model();
             $department_id = $this->request->getPost('dept_id');

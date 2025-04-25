@@ -68,14 +68,14 @@
                             <!-- Student Email ID -->
                             <div class="form-group">
                                 <span for="Stdemailid">Personal Email ID:<span class="text-danger">*</span></span>
-                                <input type="email" name="std_personal_mail" id="std_personal_mail" class="form-control form-control-sm" value="<?= $studentData['personal_mail'] ?>" required>
+                                <input type="email" name="std_personal_mail" id="std_personal_mail" class="form-control form-control-sm" value="<?= $studentData['personal_mail'] ?>" required readonly>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <!-- Student Email ID -->
                             <div class="form-group">
                                 <span for="Stdemailid">Offical Email ID:<span class="text-danger">*</span></span>
-                                <input type="email" name="std_official_mail" id="std_official_mail" class="form-control form-control-sm" value="<?= $studentData['official_mail'] ?>" readonly>
+                                <input type="email" name="std_official_mail" id="std_official_mail" class="form-control form-control-sm" value="<?= $studentData['official_mail'] ?>">
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -185,6 +185,31 @@
                             <div class="form-group">
                                 <span>LinkedIn Id :</span>
                                 <input type="text" class="form-control form-control-sm" name="linkedin_id" value="<?= $studentData['linkedin_id'] ?>">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <span for="relegion">State :<span class="text-danger">*</span></span>
+                                <select name="state" id="state" class="form-control form-control-sm" required>
+                                    <option value="">Select State</option>
+                                <?php foreach ($stateData as $state): ?>
+                                    <option value="<?= $state['state'] ?>"><?= $state['state'] ?></option>
+                                <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <span for="relegion">City :<span class="text-danger">*</span></span>
+                                <select name="city" id="city" class="form-control form-control-sm" required>
+                                    <option value="">Select City</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <span>Pincode :</span>
+                                <input type="text" class="form-control form-control-sm" name="pincode" value="<?= $studentData['pincode'] ?>">
                             </div>
                         </div>
                         <div class="col-lg-6">
