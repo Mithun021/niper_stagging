@@ -228,7 +228,11 @@
                             <div class="form-group">
                                 <span>Upload Signature Image <span class="text-danger">*</span></span>
                                 <input type="file" class="form-control form-control-sm" name="std_signature_image" accept=".png,.jpg,.jpeg">
-
+                                <?php if (!empty($studentData['signature']) && file_exists('public/admin/uploads/students/' . $studentData['signature'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/students/<?= $studentData['signature'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/students/<?= $studentData['signature'] ?>" alt="" height="40px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/students/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
