@@ -149,25 +149,25 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span>Department</span>
-                                <input type="text" class="form-control form-control-sm" name="std_blood_group" value="<?= $studentDataCourses['department_name'] ?>">
+                                <input type="text" class="form-control form-control-sm" name="department" value="<?= $studentDataCourses['department_name'] ?>" readonly>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span>Course</span>
-                                <input type="text" class="form-control form-control-sm" name="std_blood_group" value="<?= $studentDataCourses['program_name'] ?>">
+                                <input type="text" class="form-control form-control-sm" name="program" value="<?= $studentDataCourses['program_name'] ?>" readonly>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span>Semester</span>
-                                <input type="text" class="form-control form-control-sm" name="std_blood_group" value="<?= $studentDataCourses['semester'] ?>">
+                                <input type="text" class="form-control form-control-sm" name="semester" value="<?= $studentDataCourses['semester'] ?>" readonly>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span>Batch</span>
-                                <input type="text" class="form-control form-control-sm" name="std_blood_group" value="<?= $batchName['batch_start']." - ".$batchName['batch_end'] ?>">
+                                <input type="text" class="form-control form-control-sm" name="batch" value="<?= $batchName['batch_start']." - ".$batchName['batch_end'] ?>" readonly>
                             </div>
                         </div>
                         <div class="col-lg-6">
