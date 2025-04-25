@@ -8,7 +8,7 @@
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title m-0"><?= $title ?></h4>
             </div>
-            <form action="<?= base_url() ?>admin/students" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url() ?>student/personal-details" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                     <?php if (session()->getFlashdata('status')): ?>
                         <?= session()->getFlashdata('status') ?>

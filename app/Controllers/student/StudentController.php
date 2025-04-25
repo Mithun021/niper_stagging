@@ -49,7 +49,7 @@ class StudentController extends BaseController
         if ($this->request->is('get')) {
             return view('student/personal-details',$data);
         }else  if ($this->request->is('post')) {
-            
+            echo $loggedstudentId;
         }
     }
 

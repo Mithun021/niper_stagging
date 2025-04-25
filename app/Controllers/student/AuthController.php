@@ -35,5 +35,12 @@ class AuthController extends BaseController
                 echo "Given Userid not found";
             }
         }
+        
+    }
+    public function logout(){
+        $session = session();
+        session_unset();
+        session_destroy();
+        return redirect()->to(base_url('stdlogin'));    
     }
 }
