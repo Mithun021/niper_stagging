@@ -4,6 +4,7 @@ namespace App\Controllers\student;
 
 use App\Controllers\BaseController;
 use App\Models\Student_model;
+use App\Models\Student_prog_dept_mapping_model;
 
 class StudentController extends BaseController
 {
@@ -25,6 +26,7 @@ class StudentController extends BaseController
 
     public function personal_details()
     {
+        $student_prog_dept_mapping_model = new Student_prog_dept_mapping_model();
         $student_model = new Student_model();
         $data = ['title' =>'Personal Details'];
         $sessionData = session()->get('loggedStudentData');
@@ -32,6 +34,7 @@ class StudentController extends BaseController
             $loggedstudentId = $sessionData['loggedstudentId'];
         }
         $data['studentData'] = $student_model->get($loggedstudentId);
+        $data['studentDataCourses'] = $student_prog_dept_mapping_model->getStudentProgramDeptData($loggedstudentId);
         if ($this->request->is('get')) {
             return view('student/personal-details',$data);
         }else  if ($this->request->is('post')) {
