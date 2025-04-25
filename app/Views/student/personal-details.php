@@ -172,6 +172,17 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
+                                <span for="relegion">Supervisor Name :<span class="text-danger">*</span></span>
+                                <select name="supervisor" id="supervisor" class="form-control form-control-sm" required>
+                                    <option value="">Select Supervisor</option>
+                                <?php foreach ($employeeData as $emp): ?>
+                                    <option value="<?= $emp['id'] ?>"><?= $emp['sir_name']." ".$emp['first_name']." ".$emp['middle_name']." ".$emp['last_name'] ?></option>
+                                <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
                                 <span>Upload Profile Image <span class="text-danger">*</span></span>
                                 <input type="file" class="form-control form-control-sm" name="std_profile_image" accept=".png,.jpg,.jpeg">
                                 <?php if (!empty($studentData['profile_image']) && file_exists('public/admin/uploads/students/' . $studentData['profile_image'])): ?>
