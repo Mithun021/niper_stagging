@@ -146,6 +146,24 @@
                                 </span>
                             </div>
                         </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <span>Department</span>
+                                <input type="text" class="form-control form-control-sm" name="std_blood_group" value="<?= $studentDataCourses['department_name'] ?>">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <span>Course</span>
+                                <input type="text" class="form-control form-control-sm" name="std_blood_group" value="<?= $studentDataCourses['program_name'] ?>">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <span>Semester</span>
+                                <input type="text" class="form-control form-control-sm" name="std_blood_group" value="<?= $studentDataCourses['semester'] ?>">
+                            </div>
+                        </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span>Upload Profile Image <span class="text-danger">*</span></span>
