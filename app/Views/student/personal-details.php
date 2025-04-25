@@ -25,7 +25,7 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <span>First Name <span class="text-danger">*</span></span>
-                                <input type="text" class="form-control form-control-sm" name="std_first_name" value="<?= $studentData['first_name'] ?>" required minlength="3">
+                                <input type="text" class="form-control form-control-sm" name="std_first_name" value="<?= $studentData['first_name'] ?>" required minlength="3" readonly>
                             </div>
                         </div>
                         <div class="col-lg-4">
@@ -142,7 +142,7 @@
                                 </select>
 
                                 <span id="relegion-container" style="display: none;">
-                                    <input type="text" name="other_relegion" id="other_relegion" class="form-control form-control-sm mt-2" placeholder="Specify Religion" value="<?php if(!in_array($studentData['relegion'], ["Hindu", "Muslim", "Sikh", "Christian"])){ echo $studentData['relegion']; } ?>">
+                                    <input type="text" name="other_relegion" id="other_relegion" class="form-control form-control-sm mt-2" placeholder="Specify Religion" value="<?php echo $studentData['other_relegion'] ?>">
                                 </span>
                             </div>
                         </div>
@@ -176,7 +176,7 @@
                                 <select name="supervisor" id="supervisor" class="form-control form-control-sm" required>
                                     <option value="">Select Supervisor</option>
                                 <?php foreach ($employeeData as $emp): ?>
-                                    <option value="<?= $emp['id'] ?>"><?= $emp['sir_name']." ".$emp['first_name']." ".$emp['middle_name']." ".$emp['last_name'] ?></option>
+                                    <option value="<?= $emp['id'] ?>" <?php if($studentData['supervisor_name'] == $emp['id']){ echo "selected"; }  ?>><?= $emp['sir_name']." ".$emp['first_name']." ".$emp['middle_name']." ".$emp['last_name'] ?></option>
                                 <?php endforeach; ?>
                                 </select>
                             </div>
@@ -193,7 +193,7 @@
                                 <select name="state" id="state" class="form-control form-control-sm" required>
                                     <option value="">Select State</option>
                                 <?php foreach ($stateData as $state): ?>
-                                    <option value="<?= $state['state'] ?>"><?= $state['state'] ?></option>
+                                    <option value="<?= $state['state'] ?>" <?php if($studentData['state'] == $state['state']){ echo "selected"; }  ?>><?= $state['state'] ?></option>
                                 <?php endforeach; ?>
                                 </select>
                             </div>
@@ -201,6 +201,7 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <span for="relegion">City :<span class="text-danger">*</span></span>
+                                <input type="hidden" name="old_city" id="old_city" value="<?= $studentData['city'] ?>">
                                 <select name="city" id="city" class="form-control form-control-sm" required>
                                     <option value="">Select City</option>
                                 </select>
@@ -243,25 +244,43 @@
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 
 <script>
-    $(document).ready(function() {
-        $('#state').change(function() {
-            var state = $(this).val();
-            $.ajax({
-                url: '<?= base_url() ?>findcity',
-                type: 'POST',
-                data: { state: state },
-                dataType: 'json',
-                beforeSend: function() {
-                    $('#city').empty().append('<option value="">Loading...</option>');
-                },
-                success: function(response) {
-                    $('#city').empty().append('<option value="">Select City</option>');
-                    $.each(response, function(index, city) {
-                        $('#city').append('<option value="' + city.city + '">' + city.city + '</option>');
-                    });
-                }
+
+function loadCities(state, old_city = '') {
+    $.ajax({
+        url: '<?= base_url() ?>findcity',
+        type: 'POST',
+        data: { state: state },
+        dataType: 'json',
+        beforeSend: function() {
+            $('#city').empty().append('<option value="">Loading...</option>');
+        },
+        success: function(response) {
+            $('#city').empty().append('<option value="">Select City</option>');
+            $.each(response, function(index, city) {
+                let selected = (old_city === city.city) ? 'selected' : '';
+                $('#city').append('<option value="' + city.city + '"' + selected + '>' + city.city + '</option>');
             });
+        }
+    });
+}
+
+    $(document).ready(function() {
+        var selectedState = $('#state').val();
+        var oldCity = $('#old_city').val();
+
+        if (selectedState) {
+            loadCities(selectedState, oldCity);
+        }
+
+        // On state change
+        $('#state').change(function () {
+            var state = $(this).val();
+            loadCities(state, ''); // Reset old_city when user changes state
         });
+        // $('#state').change(function() {
+        //     var state = $(this).val();
+            
+        // });
     });
 </script>
 
