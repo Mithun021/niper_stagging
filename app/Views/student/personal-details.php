@@ -115,7 +115,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="category">Category :<span class="text-danger">*</span></label>
+                                <span for="category">Category :<span class="text-danger">*</span></span>
                                 <select name="category" id="category" class="form-control form-control-sm" required onchange="toggleEWS()">
                                     <option value="">Select Category</option>
                                     <option value="Gen" <?php if($studentData['category'] == "Gen"){ echo "selected"; } ?>>Gen</option>
@@ -131,7 +131,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="relegion">Religion :<span class="text-danger">*</span></label>
+                                <span for="relegion">Religion :<span class="text-danger">*</span></span>
                                 <select name="relegion" id="relegion" class="form-control form-control-sm" required onchange="toggleRelegion()">
                                     <option value="">Select Religion</option>
                                     <option value="Hindu" <?php if($studentData['relegion'] == "Hindu"){ echo "selected"; } ?>>Hindu</option>
