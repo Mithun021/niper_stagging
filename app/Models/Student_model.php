@@ -5,7 +5,7 @@
     {
         protected $table         = 'students';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['first_name','middle_name','last_name','enrollment_no','father_name','mother_name','date_of_birth','blood_group','personal_mail','official_mail','phone_no','gender','permanent_address','correspondence_address','profile_image','upload_by'];
+        protected $allowedFields = ['first_name','middle_name','last_name','enrollment_no','father_name','mother_name','date_of_birth','blood_group','personal_mail','official_mail','phone_no','gender','permanent_address','correspondence_address','category','ews','relegion','other_relegion','supervisor_name','state','city','pincode','linkedin_id','signature','profile_image','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
