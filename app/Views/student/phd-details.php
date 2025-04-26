@@ -94,7 +94,7 @@ document.getElementById('current_status').addEventListener('change', function() 
     if (status === 'Submitted') {
         submissionDiv.style.display = 'block';
     } else if (status === 'Awarded') {
-        submissionDiv.style.display = 'block';
+        // submissionDiv.style.display = 'none';
         awardDiv.style.display = 'block';
     }
 });
