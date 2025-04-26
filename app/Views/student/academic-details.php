@@ -83,6 +83,50 @@
             </form>
         </div>
     </div>
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title m-0"><?= $title ?> List</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm" id="datatable-buttons">
+                        <thead>
+                            <tr>
+                                <th>Degree Type</th>
+                                <th>Board/ Institute Name</th>
+                                <th>Subjects Studied</th>
+                                <th>Marks Type</th>
+                                <th>Marks Obtained</th>
+                                <th>Date of Result Declaration</th>
+                                <th>Date of Degree</th>
+                                <th>File Upload</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if ($studentAcademicDetails): ?>
+                                <?php foreach ($studentAcademicDetails as $detail): ?>
+                                    <tr>
+                                        <td><?= $detail['degree_type'] ?></td>
+                                        <td><?= $detail['board_institute_name'] ?></td>
+                                        <td><?= $detail['subject_studied'] ?></td>
+                                        <td><?= $detail['marks_type'] ?></td>
+                                        <td><?= $detail['marks_obtained'] ?></td>
+                                        <td><?= date('d-m-Y', strtotime($detail['result_declaration_date'])) ?></td>
+                                        <td><?= date('d-m-Y', strtotime($detail['degree_date'])) ?></td>
+                                        <td><a href="<?= base_url() ?>public/admin/uploads/students/<?= $detail['upload_file'] ?>" target="_blank">View File</a></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr><td colspan="8" class="text-center">No records found.</td></tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
