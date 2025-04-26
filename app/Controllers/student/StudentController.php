@@ -49,7 +49,85 @@ class StudentController extends BaseController
         if ($this->request->is('get')) {
             return view('student/personal-details',$data);
         }else  if ($this->request->is('post')) {
-            echo $loggedstudentId;
+            $studentData = $student_model->get($loggedstudentId);
+
+            $std_profile_image = $this->request->getFile('std_profile_image');
+            $std_signature_image = $this->request->getFile('std_signature_image');
+
+            $old_profile_image = $studentData['profile_image'];
+            $old_signature_image = $studentData['signature'];
+
+            if (empty($old_profile_image)) {
+                if ($std_profile_image->isValid() && !$std_profile_image->hasMoved()) {
+                    $new_profile_file = "profile" . $std_profile_image->getRandomName();
+                    $std_profile_image->move(ROOTPATH . 'public/admin/uploads/students/', $new_profile_file);
+                } else {
+                    $new_profile_file = null;
+                }
+            } else {
+                if ($std_profile_image->isValid() && !$std_profile_image->hasMoved()) {
+                    if (file_exists("public/admin/uploads/students/" . $old_profile_image)) {
+                        unlink("public/admin/uploads/students/" . $old_profile_image);
+                    }
+                    $new_profile_file = "profile" . $std_profile_image->getRandomName();
+                    $std_profile_image->move(ROOTPATH . 'public/admin/uploads/students/', $new_profile_file);
+                } else {
+                    $new_profile_file = $old_profile_image;
+                }
+            }
+
+            if (empty($old_signature_image)) {
+                if ($std_signature_image->isValid() && !$std_signature_image->hasMoved()) {
+                    $new_signature_file = "signature" . $std_signature_image->getRandomName();
+                    $std_signature_image->move(ROOTPATH . 'public/admin/uploads/students/', $new_signature_file);
+                } else {
+                    $new_signature_file = null;
+                }
+            } else {
+                if ($std_signature_image->isValid() && !$std_signature_image->hasMoved()) {
+                    if (file_exists("public/admin/uploads/students/" . $old_signature_image)) {
+                        unlink("public/admin/uploads/students/" . $old_signature_image);
+                    }
+                    $new_signature_file = "signature" . $std_signature_image->getRandomName();
+                    $std_signature_image->move(ROOTPATH . 'public/admin/uploads/students/', $new_signature_file);
+                } else {
+                    $new_signature_file = $old_signature_image;
+                }
+            }
+
+            $data = [
+                // 'first_name' => $this->request->getPost('std_first_name'),
+                'middle_name' => $this->request->getPost('std_middle_name'),
+                'last_name' => $this->request->getPost('std_last_name'),
+                // 'enrollment_no' => $this->request->getPost('Stdenrollid'),
+                'father_name' => $this->request->getPost('std_father_name'),
+                'mother_name' => $this->request->getPost('std_mother_name'),
+                'date_of_birth' => $this->request->getPost('std_date_of_birth'),
+                'blood_group' => $this->request->getPost('std_blood_group'),
+                // 'personal_mail' => $this->request->getPost('std_personal_mail'),
+                'official_mail' => $this->request->getPost('std_official_mail'),
+                'phone_no' => $this->request->getPost('Stdphone'),
+                'gender' => $this->request->getPost('gender'),
+                'permanent_address' => $this->request->getPost('std_permanent_address'),
+                'correspondence_address' => $this->request->getPost('std_corrospondence_address'),
+                'category' => $this->request->getPost('category'),
+                'ews' => $this->request->getPost('ews') ?? 0,
+                'relegion' => $this->request->getPost('relegion'),
+                'other_relegion' => $this->request->getPost('other_relegion'),
+                'supervisor' => $this->request->getPost('supervisor'),
+                'linkedin_id' => $this->request->getPost('linkedin_id'),
+                'state' => $this->request->getPost('state'),
+                'city' => $this->request->getPost('city'),
+                'pincode' => $this->request->getPost('pincode'),
+                'profile_image' => $new_profile_file ?? '',
+                'signature' => $new_signature_file ?? '',
+            ];
+            $result = $student_model->add($data, $loggedstudentId);
+            if ($result === true) {
+                return redirect()->to('students/personal-details')->with('status', '<div class="alert alert-success" role="alert">Profile update successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
         }
     }
 
