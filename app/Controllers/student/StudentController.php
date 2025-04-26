@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\Employee_model;
 use App\Models\Program_department_mapping_model;
 use App\Models\State_city_model;
+use App\Models\Student_academic_details_model;
 use App\Models\Student_model;
 use App\Models\Student_prog_dept_mapping_model;
 
@@ -131,13 +132,39 @@ class StudentController extends BaseController
         }
     }
 
-    public function academic_details()
-    {
+    public function academic_details(){
+        $student_academic_details_model = new Student_academic_details_model();
+        $sessionData = session()->get('loggedStudentData');
+        if ($sessionData) {
+            $loggedstudentId = $sessionData['loggedstudentId'];
+        }
         $data = ['title' =>'Academic Details'];
         if ($this->request->is('get')) {
-        return view('student/academic-details',$data);
+            $data['studentAcademicDetails'] = $student_academic_details_model->getByStudent($loggedstudentId);
+            return view('student/academic-details',$data);
         }else  if ($this->request->is('post')) {
-            
+            $upload_file = $this->request->getFile('upload_file');
+            if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
+                $studentFileName = "acadmic".$upload_file->getRandomName();
+                $upload_file->move(ROOTPATH . 'public/admin/uploads/students', $studentFileName);    
+            }
+            $data = [
+                'degree_type' => $this->request->getPost('degree_type'),
+                'other_degree_name' => $this->request->getPost('other_degree_name') ?? '',
+                'board_institute_name' => $this->request->getPost('board_institute_name'),
+                'subject_studied' => $this->request->getPost('subject_studied'),
+                'marks_type' => $this->request->getPost('marks_type'),
+                'marks_obtained' => $this->request->getPost('marks_obtained'),
+                'result_declaration_date' => $this->request->getPost('result_declaration_date'),
+                'degree_date' => $this->request->getPost('degree_date'),
+                'upload_file' => $studentFileName ?? '',
+            ];
+            $result = $student_academic_details_model->add($data);
+            if ($result === true) {
+                return redirect()->to('student/academic-details')->with('status', '<div class="alert alert-success" role="alert">Academic details added successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
         }
     }
 

@@ -60,19 +60,19 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <span>Date of Result Declaration<span class="text-danger">*</span></span>
-                                <input type="month" class="form-control form-control-sm" name="marks_obtained" value="">
+                                <input type="month" class="form-control form-control-sm" name="result_declaration_date" value="">
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <span>Date of Degree <span class="text-danger">*</span></span>
-                                <input type="month" class="form-control form-control-sm" name="marks_obtained" value="">
+                                <input type="month" class="form-control form-control-sm" name="degree_date" value="">
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <span>File Upload Option(.pdf)<span class="text-danger">*</span></span>
-                                <input type="file" class="form-control form-control-sm" name="marks_obtained" accept=".pdf">
+                                <input type="file" class="form-control form-control-sm" name="upload_file" accept=".pdf">
                             </div>
                         </div>
                     </div>
