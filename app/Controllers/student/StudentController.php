@@ -124,7 +124,7 @@ class StudentController extends BaseController
             ];
             $result = $student_model->add($data, $loggedstudentId);
             if ($result === true) {
-                return redirect()->to('students/personal-details')->with('status', '<div class="alert alert-success" role="alert">Profile update successfully.</div>');
+                return redirect()->to('student/personal-details')->with('status', '<div class="alert alert-success" role="alert">Profile update successfully.</div>');
             } else {
                 return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
             }
