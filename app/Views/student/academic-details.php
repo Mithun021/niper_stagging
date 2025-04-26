@@ -17,7 +17,7 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <span>Degree Type <span class="text-danger">*</span></span>
-                                <select class="form-control form-control-sm" name="degree_type" value="" required>
+                                <select class="form-control form-control-sm" name="degree_type" id="degree_type" required>
                                     <option value="">Select Degree Type</option>
                                     <option value="10th">10th</option>
                                     <option value="12th">12th</option>
@@ -25,7 +25,8 @@
                                     <option value="Post Graduate">Post Graduate</option>
                                     <option value="Other">Other</option>
                                 </select>
-                                <input type="text" class="form-control form-control-sm" name="other_degree_name" value="">
+
+                                <input type="text" class="form-control form-control-sm mt-2" name="other_degree_name" id="other_degree_name" placeholder="Enter Other Degree Name" style="display: none;">
                             </div>
                         </div>
                         <div class="col-lg-4">
@@ -83,5 +84,19 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('degree_type').addEventListener('change', function() {
+        var otherInput = document.getElementById('other_degree_name');
+        if (this.value === 'Other') {
+            otherInput.style.display = 'block';
+            otherInput.required = true; // Make it required if shown
+        } else {
+            otherInput.style.display = 'none';
+            otherInput.value = ''; // Clear previous value
+            otherInput.required = false;
+        }
+    });
+</script>
 
 <?= $this->endSection() ?>
