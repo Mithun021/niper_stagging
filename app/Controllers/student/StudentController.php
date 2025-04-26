@@ -149,6 +149,7 @@ class StudentController extends BaseController
                 $upload_file->move(ROOTPATH . 'public/admin/uploads/students', $studentFileName);    
             }
             $data = [
+                'student_id' => $loggedstudentId,
                 'degree_type' => $this->request->getPost('degree_type'),
                 'other_degree_name' => $this->request->getPost('other_degree_name') ?? '',
                 'board_institute_name' => $this->request->getPost('board_institute_name'),

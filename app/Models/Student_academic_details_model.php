@@ -26,5 +26,8 @@
             }
             return $result;
         }
+        public function getByStudent($id){
+            return $this->where('student_id',$id)->findAll();
+        }
     }
 ?>
