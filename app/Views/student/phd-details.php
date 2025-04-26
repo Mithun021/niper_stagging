@@ -32,7 +32,7 @@
                                 <select name="supervisor" id="supervisor" class="form-control form-control-sm" required>
                                     <option value="">Select Supervisor</option>
                                 <?php foreach ($employeeData as $emp): ?>
-                                    <option value="<?= $emp['id'] ?>" <?php if($studentData['supervisor_name'] == $emp['id']){ echo "selected"; }  ?>><?= $emp['sir_name']." ".$emp['first_name']." ".$emp['middle_name']." ".$emp['last_name'] ?></option>
+                                    <option value="<?= $emp['id'] ?>"><?= $emp['sir_name']." ".$emp['first_name']." ".$emp['middle_name']." ".$emp['last_name'] ?></option>
                                 <?php endforeach; ?>
                                 </select>
                             </div>
