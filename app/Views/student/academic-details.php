@@ -14,18 +14,10 @@
                         <?= session()->getFlashdata('status') ?>
                     <?php endif; ?>
                     <div class="row">
-
-                        <div class="col-lg-12">
-                            <!-- Student Enrollment ID -->
-                            <div class="form-group">
-                                <span for="Stdenrollid">Student Enrollment ID: <span class="text-danger">*</span></span>
-                                <input type="text" name="Stdenrollid" id="Stdenrollid" class="form-control form-control-sm" value="" readonly required>
-                            </div>
-                        </div>
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <span>First Name <span class="text-danger">*</span></span>
-                                <input type="text" class="form-control form-control-sm" name="std_first_name" value="" required minlength="3" readonly>
+                                <input type="text" class="form-control form-control-sm" name="std_first_name" value="" required minlength="3">
                             </div>
                         </div>
                         <div class="col-lg-4">
