@@ -16,17 +16,68 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <span>First Name <span class="text-danger">*</span></span>
-                                <input type="text" class="form-control form-control-sm" name="std_first_name" value="" required minlength="3">
+                                <span>Degree Type <span class="text-danger">*</span></span>
+                                <select class="form-control form-control-sm" name="degree_type" value="" required>
+                                    <option value="">Select Degree Type</option>
+                                    <option value="10th">10th</option>
+                                    <option value="12th">12th</option>
+                                    <option value="Under Graduate">Under Graduate</option>
+                                    <option value="Post Graduate">Post Graduate</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <input type="text" class="form-control form-control-sm" name="other_degree_name" value="">
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <span>Middle Name</span>
-                                <input type="text" class="form-control form-control-sm" name="std_middle_name" value="">
+                                <span>Board/ Institute	Name<span class="text-danger">*</span></span>
+                                <input type="text" class="form-control form-control-sm" name="board_institute_name" value="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <span>Subjects Studied<span class="text-danger">*</span></span>
+                                <input type="text" class="form-control form-control-sm" name="subject_studied" value="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <span>Marks Type <span class="text-danger">*</span></span>
+                                <select class="form-control form-control-sm" name="marks_type" value="" required>
+                                    <option value="">Select Marks Type</option>
+                                    <option value="CGPA">CGPA</option>
+                                    <option value="GPA">GPA</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <span>Marks Obtained<span class="text-danger">*</span></span>
+                                <input type="text" class="form-control form-control-sm" name="marks_obtained" value="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <span>Date of Result Declaration<span class="text-danger">*</span></span>
+                                <input type="month" class="form-control form-control-sm" name="marks_obtained" value="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <span>Date of Degree <span class="text-danger">*</span></span>
+                                <input type="month" class="form-control form-control-sm" name="marks_obtained" value="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <span>File Upload Option(.pdf)<span class="text-danger">*</span></span>
+                                <input type="file" class="form-control form-control-sm" name="marks_obtained" accept=".pdf">
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="card-footer py-1">
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
         </div>
