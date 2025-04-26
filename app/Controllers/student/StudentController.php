@@ -160,7 +160,7 @@ class StudentController extends BaseController
                 'degree_date' => $this->request->getPost('degree_date')."-01",
                 'upload_file' => $studentFileName ?? '',
             ];
-            print_r($data);die;
+            // print_r($data);die;
             $result = $student_academic_details_model->add($data);
             if ($result === true) {
                 return redirect()->to('student/academic-details')->with('status', '<div class="alert alert-success" role="alert">Academic details added successfully.</div>');
