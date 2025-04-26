@@ -94,14 +94,14 @@
                     <table class="table table-bordered table-sm" id="datatable-buttons">
                         <thead>
                             <tr>
-                                <th>Degree Type</th>
-                                <th>Board/ Institute Name</th>
-                                <th>Subjects Studied</th>
-                                <th>Marks Type</th>
-                                <th>Marks Obtained</th>
-                                <th>Date of Result Declaration</th>
-                                <th>Date of Degree</th>
-                                <th>File Upload</th>
+                                <td>Degree Type</td>
+                                <td>Board/ Institute Name</td>
+                                <td>Subjects Studied</td>
+                                <td>Marks Type</td>
+                                <td>Marks Obtained</td>
+                                <td>Date of Result Declaration</td>
+                                <td>Date of Degree</td>
+                                <td>File Upload</td>
                             </tr>
                         </thead>
                         <tbody>
