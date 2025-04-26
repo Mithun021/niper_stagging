@@ -29,7 +29,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span for="relegion">Supervisor Name :<span class="text-danger">*</span></span>
-                                <select name="supervisor" id="supervisor" class="form-control form-control-sm" required>
+                                <select name="supervisor_name" id="supervisor_name" class="form-control form-control-sm" required>
                                     <option value="">Select Supervisor</option>
                                 <?php foreach ($employeeData as $emp): ?>
                                     <option value="<?= $emp['id'] ?>"><?= $emp['sir_name']." ".$emp['first_name']." ".$emp['middle_name']." ".$emp['last_name'] ?></option>
@@ -39,28 +39,66 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <span>Degree Type <span class="text-danger">*</span></span>
-                                <select class="form-control form-control-sm" name="degree_type" id="degree_type" required>
+                                <span>Current Status <span class="text-danger">*</span></span>
+                                <select class="form-control form-control-sm" name="current_status" id="current_status" required>
                                     <option value="">Select Degree Type</option>
-                                    <option value="10th">10th</option>
-                                    <option value="12th">12th</option>
-                                    <option value="Under Graduate">Under Graduate</option>
-                                    <option value="Post Graduate">Post Graduate</option>
-                                    <option value="Other">Other</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Submitted">Submitted</option>
+                                    <option value="Awarded">Awarded</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <span>Board/ Institute Name<span class="text-danger">*</span></span>
-                                <input type="text" class="form-control form-control-sm" name="board_institute_name" value="">
+                                <span>Date of Registration<span class="text-danger">*</span></span>
+                                <input type="date" class="form-control form-control-sm" name="registration_date" value="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <span>Date of Submission<span class="text-danger">*</span></span>
+                                <input type="date" class="form-control form-control-sm" name="submission_date" value="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4" id="submission_date_div" style="display: none;">
+                            <div class="form-group">
+                                <span>Date of Award <span class="text-danger">*</span></span>
+                                <input type="date" class="form-control form-control-sm" name="award_date" value="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4" id="award_date_div" style="display: none;">
+                            <div class="form-group">
+                                <span>File Upload Option(.pdf)<span class="text-danger">*</span></span>
+                                <input type="file" class="form-control form-control-sm" name="file_upload" accept=".pdf">
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="card-footer py-1">
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<script>
+document.getElementById('current_status').addEventListener('change', function() {
+    var status = this.value;
+    var submissionDiv = document.getElementById('submission_date_div');
+    var awardDiv = document.getElementById('award_date_div');
+
+    // Hide all by default
+    submissionDiv.style.display = 'none';
+    awardDiv.style.display = 'none';
+
+    if (status === 'Submitted') {
+        submissionDiv.style.display = 'block';
+    } else if (status === 'Awarded') {
+        submissionDiv.style.display = 'block';
+        awardDiv.style.display = 'block';
+    }
+});
+</script>
+
 
 <?= $this->endSection() ?>
