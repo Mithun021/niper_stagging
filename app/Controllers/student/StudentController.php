@@ -8,6 +8,7 @@ use App\Models\Program_department_mapping_model;
 use App\Models\State_city_model;
 use App\Models\Student_academic_details_model;
 use App\Models\Student_model;
+use App\Models\Student_phd_details_model;
 use App\Models\Student_prog_dept_mapping_model;
 
 class StudentController extends BaseController
@@ -172,9 +173,17 @@ class StudentController extends BaseController
 
     public function phd_details()
     {
+        $sessionData = session()->get('loggedStudentData');
+        if ($sessionData) {
+            $loggedstudentId = $sessionData['loggedstudentId'];
+        }
+        $student_phd_details_model = new Student_phd_details_model();
+        $employee_model = new Employee_model();
         $data = ['title' =>'PHD Details'];
         if ($this->request->is('get')) {
-        return view('student/phd-details',$data);
+            $data['employeeData'] = $employee_model->get();
+            $data['studentData'] = $student_phd_details_model->getByStudent($loggedstudentId);
+            return view('student/phd-details',$data);
         }else  if ($this->request->is('post')) {
             
         }
@@ -182,6 +191,7 @@ class StudentController extends BaseController
 
     public function publication_details()
     {
+        
         $data = ['title' =>'Publication Details'];
         if ($this->request->is('get')) {
         return view('student/publication-details',$data);

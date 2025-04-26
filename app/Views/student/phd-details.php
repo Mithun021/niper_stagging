@@ -23,10 +23,21 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <span>Description<span class="text-danger">*</span></span>
-                                <textarea class="form-control form-control-sm" name="description" id="cke-editro"></textarea>
+                                <textarea class="form-control form-control-sm" name="description" id="editor"></textarea>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <span for="relegion">Supervisor Name :<span class="text-danger">*</span></span>
+                                <select name="supervisor" id="supervisor" class="form-control form-control-sm" required>
+                                    <option value="">Select Supervisor</option>
+                                <?php foreach ($employeeData as $emp): ?>
+                                    <option value="<?= $emp['id'] ?>" <?php if($studentData['supervisor_name'] == $emp['id']){ echo "selected"; }  ?>><?= $emp['sir_name']." ".$emp['first_name']." ".$emp['middle_name']." ".$emp['last_name'] ?></option>
+                                <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
                             <div class="form-group">
                                 <span>Degree Type <span class="text-danger">*</span></span>
                                 <select class="form-control form-control-sm" name="degree_type" id="degree_type" required>
