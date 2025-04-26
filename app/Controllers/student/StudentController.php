@@ -114,7 +114,7 @@ class StudentController extends BaseController
                 'ews' => $this->request->getPost('ews') ?? 0,
                 'relegion' => $this->request->getPost('relegion'),
                 'other_relegion' => $this->request->getPost('other_relegion'),
-                'supervisor' => $this->request->getPost('supervisor'),
+                'supervisor_name' => $this->request->getPost('supervisor'),
                 'linkedin_id' => $this->request->getPost('linkedin_id'),
                 'state' => $this->request->getPost('state'),
                 'city' => $this->request->getPost('city'),
