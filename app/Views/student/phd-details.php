@@ -54,19 +54,19 @@
                                 <input type="date" class="form-control form-control-sm" name="registration_date" value="">
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-4" id="submission_date_div" style="display: none;">
                             <div class="form-group">
                                 <span>Date of Submission<span class="text-danger">*</span></span>
                                 <input type="date" class="form-control form-control-sm" name="submission_date" value="">
                             </div>
                         </div>
-                        <div class="col-lg-4" id="submission_date_div" style="display: none;">
+                        <div class="col-lg-4" id="award_date_div" style="display: none;">
                             <div class="form-group">
                                 <span>Date of Award <span class="text-danger">*</span></span>
                                 <input type="date" class="form-control form-control-sm" name="award_date" value="">
                             </div>
                         </div>
-                        <div class="col-lg-4" id="award_date_div" style="display: none;">
+                        <div class="col-lg-4">
                             <div class="form-group">
                                 <span>File Upload Option(.pdf)<span class="text-danger">*</span></span>
                                 <input type="file" class="form-control form-control-sm" name="file_upload" accept=".pdf">
