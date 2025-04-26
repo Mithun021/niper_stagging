@@ -19,19 +19,19 @@
                             <!-- Student Enrollment ID -->
                             <div class="form-group">
                                 <span for="Stdenrollid">Student Enrollment ID: <span class="text-danger">*</span></span>
-                                <input type="text" name="Stdenrollid" id="Stdenrollid" class="form-control form-control-sm" value="<?= $studentData['enrollment_no'] ?>" readonly required>
+                                <input type="text" name="Stdenrollid" id="Stdenrollid" class="form-control form-control-sm" value="" readonly required>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <span>First Name <span class="text-danger">*</span></span>
-                                <input type="text" class="form-control form-control-sm" name="std_first_name" value="<?= $studentData['first_name'] ?>" required minlength="3" readonly>
+                                <input type="text" class="form-control form-control-sm" name="std_first_name" value="" required minlength="3" readonly>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <span>Middle Name</span>
-                                <input type="text" class="form-control form-control-sm" name="std_middle_name" value="<?= $studentData['middle_name'] ?>">
+                                <input type="text" class="form-control form-control-sm" name="std_middle_name" value="">
                             </div>
                         </div>
                     </div>
