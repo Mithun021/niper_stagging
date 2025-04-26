@@ -156,8 +156,8 @@ class StudentController extends BaseController
                 'subject_studied' => $this->request->getPost('subject_studied'),
                 'marks_type' => $this->request->getPost('marks_type'),
                 'marks_obtained' => $this->request->getPost('marks_obtained'),
-                'result_declaration_date' => $this->request->getPost('result_declaration_date')."01",
-                'degree_date' => $this->request->getPost('degree_date')."01",
+                'result_declaration_date' => $this->request->getPost('result_declaration_date')."-01",
+                'degree_date' => $this->request->getPost('degree_date')."-01",
                 'upload_file' => $studentFileName ?? '',
             ];
             print_r($data);die;
