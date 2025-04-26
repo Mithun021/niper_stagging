@@ -1,11 +1,42 @@
 <?= $this->extend("student/stdlayouts/master") ?>
-<?=  $this->section("student-content"); ?>
+<?= $this->section("student-content"); ?>
 
 <!-- start page title -->
 <div class="row">
     <div class="col-lg-12">
-        <div class="card card-body">
-            <h1>Welcome to NIPER Student Portal</h1>
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title m-0"><?= $title ?></h4>
+            </div>
+            <form action="<?= base_url() ?>student/academic-details" method="post" enctype="multipart/form-data">
+                <div class="card-body">
+                    <?php if (session()->getFlashdata('status')): ?>
+                        <?= session()->getFlashdata('status') ?>
+                    <?php endif; ?>
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <!-- Student Enrollment ID -->
+                            <div class="form-group">
+                                <span for="Stdenrollid">Student Enrollment ID: <span class="text-danger">*</span></span>
+                                <input type="text" name="Stdenrollid" id="Stdenrollid" class="form-control form-control-sm" value="<?= $studentData['enrollment_no'] ?>" readonly required>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <span>First Name <span class="text-danger">*</span></span>
+                                <input type="text" class="form-control form-control-sm" name="std_first_name" value="<?= $studentData['first_name'] ?>" required minlength="3" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <span>Middle Name</span>
+                                <input type="text" class="form-control form-control-sm" name="std_middle_name" value="<?= $studentData['middle_name'] ?>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
