@@ -113,8 +113,8 @@
                                         <td><?= $detail['subject_studied'] ?></td>
                                         <td><?= $detail['marks_type'] ?></td>
                                         <td><?= $detail['marks_obtained'] ?></td>
-                                        <td><?= date('d-m-Y', strtotime($detail['result_declaration_date'])) ?></td>
-                                        <td><?= date('d-m-Y', strtotime($detail['degree_date'])) ?></td>
+                                        <td><?= date('M-Y', strtotime($detail['result_declaration_date'])) ?></td>
+                                        <td><?= date('M-Y', strtotime($detail['degree_date'])) ?></td>
                                         <td><a href="<?= base_url() ?>public/admin/uploads/students/<?= $detail['upload_file'] ?>" target="_blank">View File</a></td>
                                     </tr>
                                 <?php endforeach; ?>
