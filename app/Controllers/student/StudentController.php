@@ -375,7 +375,7 @@ class StudentController extends BaseController
                         $student_bookchapter_author_model->add($authorData);
                     }
                 }
-                return redirect()->to('student/book-chapter-details')->with('status', '<div class="alert alert-success" role="alert">Academic details added successfully.</div>');
+                return redirect()->to('student/book-chapter-details')->with('status', '<div class="alert alert-success" role="alert">Book Chapter details added successfully.</div>');
             } else {
                 return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
             }
@@ -445,10 +445,30 @@ class StudentController extends BaseController
                         $student_patent_author_model->add($authorData);
                     }
                 }
-                return redirect()->to('student/patent-details')->with('status', '<div class="alert alert-success" role="alert">Academic details added successfully.</div>');
+                return redirect()->to('student/patent-details')->with('status', '<div class="alert alert-success" role="alert">Patent details added successfully.</div>');
             } else {
                 return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
             }
+        }
+    }
+
+    public function delete_patent_details($id){
+        $student_patent_model = new Student_patent_model();
+        $student_patent_author_model = new Student_patent_author_model();
+        $studentData = $student_patent_model->get($id);
+        if ($studentData) {
+            if (file_exists("public/admin/uploads/students/" . $studentData['file_upload'])) {
+                unlink("public/admin/uploads/students/" . $studentData['file_upload']);
+            }
+            $result = $student_patent_model->delete($id);
+            if ($result === true) {
+                $student_patent_author_model->where('student_patent_id', $id)->delete();
+                return redirect()->to('student/patent-details')->with('status', '<div class="alert alert-success" role="alert">Patent details deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
+        } else {
+            return redirect()->to('student/patent-details')->with('status', '<div class="alert alert-danger" role="alert">Patent details not found.</div>');
         }
     }
 
