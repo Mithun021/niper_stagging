@@ -111,7 +111,7 @@ $employee_model = new Employee_model();
                             <tr>
                                 <td><?= $phd['phd_title'] ?></td>
                                 <td><?= $phd['description'] ?></td>
-                                <td><?php $emp = $employee_model->get($value['supervisor_name']);
+                                <td><?php $emp = $employee_model->get($phd['supervisor_name']);
                                         if($emp) { echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
                                 <td><?= $phd['current_status'] ?></td>
                                 <td><?= $phd['registration_date'] ?></td>
