@@ -156,6 +156,7 @@ $student_publication_author_model = new Student_publication_author_model();
                                 <td>Impact Factor</td>
                                 <td>Publication Year</td>
                                 <td>File Upload</td>
+                                <td>Action</td>
                             </tr>
                         </thead>
                         <tbody id="stockTbody">
@@ -183,10 +184,14 @@ $student_publication_author_model = new Student_publication_author_model();
                                         <td><?= $pub['impact_factor'] ?></td>
                                         <td><?= $pub['publication_year'] ?></td>
                                         <?php if ($pub['file_upload']): ?>
-                                            <td><a href="<?= base_url() ?>public/uploads/<?= $pub['file_upload'] ?>" target="_blank">View File</a></td>
+                                            <td><a href="<?= base_url() ?>public/admin/uploads/students/<?= $pub['file_upload'] ?>" target="_blank">View File</a></td>
                                         <?php else: ?>
                                             <td>No File Uploaded</td>
                                         <?php endif; ?>
+                                        <td>
+                                            <a href="<?= base_url() ?>student/delete-publication-details/<?= $pub['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>
+                                            <!-- <a href="<?= base_url() ?>student/edit-publication-details/<?= $pub['id'] ?>" class="btn btn-primary btn-sm">Edit</a> -->
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>

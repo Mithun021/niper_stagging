@@ -304,6 +304,26 @@ class StudentController extends BaseController
         }
     }
 
+    public function delete_publication_details($id){
+        $student_publication_model = new Student_publication_model();
+        $student_publication_author_model = new Student_publication_author_model();
+        $studentData = $student_publication_model->get($id);
+        if ($studentData) {
+            if (file_exists("public/admin/uploads/students/" . $studentData['file_upload'])) {
+                unlink("public/admin/uploads/students/" . $studentData['file_upload']);
+            }
+            $result = $student_publication_model->delete($id);
+            if ($result === true) {
+                $student_publication_author_model->where('student_publication_id', $id)->delete();
+                return redirect()->to('student/publication-details')->with('status', '<div class="alert alert-success" role="alert">Publication details deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
+        } else {
+            return redirect()->to('student/publication-details')->with('status', '<div class="alert alert-danger" role="alert">Publication details not found.</div>');
+        }
+    }
+
     public function book_chapter_details()
     {
         $data = ['title' =>'Book Chapter Details'];

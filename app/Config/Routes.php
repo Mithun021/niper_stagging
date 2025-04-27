@@ -272,6 +272,7 @@ $routes->group('student',['filter'=>'studentLogin'], static function($routes){
     $routes->match(['get','post'],'phd-details', 'student\StudentController::phd_details');
     $routes->get('delete-phd-details/(:num)', 'student\StudentController::delete_phd_details/$1');
     $routes->match(['get','post'],'publication-details', 'student\StudentController::publication_details');
+    $routes->get('delete-publication-details/(:num)', 'student\StudentController::delete_publication_details/$1');
     $routes->match(['get','post'],'book-chapter-details', 'student\StudentController::book_chapter_details');
     $routes->match(['get','post'],'patent-details', 'student\StudentController::patent_details');
     $routes->match(['get','post'],'copyright-details', 'student\StudentController::copyright_details');
