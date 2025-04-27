@@ -145,7 +145,7 @@ $student_bookchapter_author_model = new Student_bookchapter_author_model();
                 <h4 class="card-title m-0"><?= $title ?> List</h4>
             </div>
             <div class="card-body">
-                <div class="table-responsive">
+                <div class="table-responsive" style="width: 130%;">
                     <table class="table table-bordered table-sm" id="datatable-buttons">
                         <thead>
                             <tr>
