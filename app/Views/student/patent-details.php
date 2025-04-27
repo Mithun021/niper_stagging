@@ -16,20 +16,14 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <span for="Pubtitle">Chapter Title:<span class="text-danger">*</span></span>
-                                <input name="chapter_title" class="form-control form-control-sm" required>
+                                <span for="Pubtitle">Patent Title:<span class="text-danger">*</span></span>
+                                <input name="patent_title" class="form-control form-control-sm" required>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <span for="Pubtitle">Book Title:<span class="text-danger">*</span></span>
-                                <input name="book_title" class="form-control form-control-sm" required>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <span for="Pubdesc">Publication Description:<span class="text-danger">*</span></span>
-                                <textarea id="editor" name="publication_description"></textarea>
+                                <span for="Pubdesc">Description:<span class="text-danger">*</span></span>
+                                <textarea id="editor" name="description"></textarea>
                             </div>
                         </div>
                         <div class="col-lg-12">
@@ -55,11 +49,80 @@
                                 </table>
                             </div>
                         </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <span for="DoIdetails">Patent Number<span class="text-danger">*</span></span>
+                                <input type="text" name="patent_number" id="patent_number" class="form-control form-control-sm" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <span for="Pubtype">Patent Status:<span class="text-danger">*</span></span>
+                                <select name="patent_status" id="patent_status" class="form-control form-control-sm" required>
+                                    <option value="">--Select--</option>
+                                    <option value="Submitted">Submitted</option>
+                                    <option value="Granted">Granted</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <span for="DoIdetails">Patent Filing Date <span class="text-danger">*</span></span>
+                                <input type="date" name="patent_filing_date" id="patent_filing_date" class="form-control form-control-sm" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" id="patent_grant_date" style="display: none;">
+                            <div class="form-group">
+                                <span for="DoIdetails">Patent Grant Date<span class="text-danger">*</span></span>
+                                <input type="date" name="patent_grant_date" id="patent_grant_date" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <span for="Pubtype">Patent Level :<span class="text-danger">*</span></span>
+                                <select name="patent_level" id="patent_level" class="form-control form-control-sm" required>
+                                    <option value="">--Select--</option>
+                                    <option value="National">National</option>
+                                    <option value="International">International</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <span for="DoIdetails">Fund Generated<span class="text-danger">*</span></span>
+                                <input type="text" name="fund_generated" id="patent_number" class="form-control form-control-sm" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <span>File Upload Option(.pdf)<span class="text-danger">*</span></span>
+                                <input type="file" class="form-control form-control-sm" name="file_upload" accept=".pdf" required>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div class="card-footer py-1">
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+
+<script>
+    document.getElementById('patent_status').addEventListener('change', function () {
+        var selectedValue = this.value;
+        var grantDateDiv = document.getElementById('patent_grant_date');
+
+        if (selectedValue === 'Granted') {
+            grantDateDiv.style.display = 'block';
+        } else {
+            grantDateDiv.style.display = 'none';
+            // Optional: Also clear the date field when hidden
+            grantDateDiv.querySelector('input').value = '';
+        }
+    });
+</script>
 
 <?= $this->endSection() ?>
