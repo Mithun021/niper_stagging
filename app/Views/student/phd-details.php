@@ -102,7 +102,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($phdData as $phd): ?>
+                            <?php foreach ($studentData as $phd): ?>
                             <tr>
                                 <td><?= $phd['phd_title'] ?></td>
                                 <td><?= $phd['description'] ?></td>
