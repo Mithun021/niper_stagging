@@ -10,6 +10,8 @@ use App\Models\Student_academic_details_model;
 use App\Models\Student_model;
 use App\Models\Student_phd_details_model;
 use App\Models\Student_prog_dept_mapping_model;
+use App\Models\Student_publication_author_model;
+use App\Models\Student_publication_model;
 
 class StudentController extends BaseController
 {
@@ -249,12 +251,55 @@ class StudentController extends BaseController
 
     public function publication_details()
     {
-        
+        $sessionData = session()->get('loggedStudentData');
+        if ($sessionData) {
+            $loggedstudentId = $sessionData['loggedstudentId'];
+        }
+        $student_publication_model = new Student_publication_model();
+        $student_publication_author_model = new Student_publication_author_model();
         $data = ['title' =>'Publication Details'];
         if ($this->request->is('get')) {
         return view('student/publication-details',$data);
         }else  if ($this->request->is('post')) {
-            
+            $upload_file = $this->request->getFile('file_upload');
+            if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
+                $studentFileName = "publication".$upload_file->getRandomName();
+                $upload_file->move(ROOTPATH . 'public/admin/uploads/students', $studentFileName);    
+            }
+            $data = [
+                'student_id' => $loggedstudentId,
+                'publication_title' => $this->request->getPost('publication_title'),
+                'publication_description' => $this->request->getPost('publication_description') ?? '',
+                'journal_name' => $this->request->getPost('journal_name'),
+                'volume_number' => $this->request->getPost('volume_number'),
+                'page_number' => $this->request->getPost('page_number'),
+                'publication_type' => $this->request->getPost('publication_type'),
+                'issn_no' => $this->request->getPost('issn_no'),
+                'isbn_no' => $this->request->getPost('isbn_no'),
+                'doi' => $this->request->getPost('doi'),
+                'impact_factor' => $this->request->getPost('impact_factor'),
+                'publication_year' => $this->request->getPost('publication_year'),
+                'file_upload' => $studentFileName ?? '',
+            ];
+            // print_r($data);die;
+            $result = $student_publication_model->add($data);
+            if ($result === true) {
+                $publicationId = $student_publication_model->insertID();
+                $authors = $this->request->getPost('author_name');
+                if (!empty($authors)) {
+                    foreach ($authors as $author) {
+                        $authorData = [
+                            'student_publication_id' => $publicationId,
+                            'author_name' => $author,
+                        ];
+                        $student_publication_author_model->add($authorData);
+                    }
+                }
+                $student_publication_author_model->add($data);
+                return redirect()->to('student/publication-details')->with('status', '<div class="alert alert-success" role="alert">Academic details added successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
         }
     }
 
