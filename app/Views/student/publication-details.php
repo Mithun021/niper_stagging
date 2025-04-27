@@ -128,6 +128,75 @@
         </div>
         
     </div>
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title m-0"><?= $title ?> List</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm" id="datatable-buttons">
+                        <thead>
+                            <tr>
+                                <td>Publication Title</td>
+                                <td>Publication Description</td>
+                                <td>Author Name</td>
+                                <td>Journal Name</td>
+                                <td>Volume Number</td>
+                                <td>Page Number</td>
+                                <td>Publication Type</td>
+                                <td>ISSN No</td>
+                                <td>ISBN No</td>
+                                <td>DOI Details</td>
+                                <td>Impact Factor</td>
+                                <td>Publication Year</td>
+                                <td>File Upload</td>
+                            </tr>
+                        </thead>
+                        <tbody id="stockTbody">
+                            <?php if ($studentData): ?>
+                                <?php foreach ($studentData as $pub): ?>
+                                    <tr id="stockTrow">
+                                        <td><?= $pub['publication_title'] ?></td>
+                                        <td><?= $pub['publication_description'] ?></td>
+                                        <td>
+                                            <?php $authors = $this->Student_publication_author_model->getByPublication($pub['id']); ?>
+                                            <?php if ($authors): ?>
+                                                <?php foreach ($authors as $author): ?>
+                                                    <?= $author['author_name'] ?><br>
+                                                <?php endforeach; ?>
+                                            <?php else: ?>
+                                                No Author Found
+                                            <?php endif; ?>
+                                        </td>
+                                        <td><?= $pub['journal_name'] ?></td>
+                                        <td><?= $pub['volume_number'] ?></td>
+                                        <td><?= $pub['page_number'] ?></td>
+                                        <td><?= $pub['publication_type'] ?></td>
+                                        <td><?= $pub['issn_no'] ?></td>
+                                        <td><?= $pub['isbn_no'] ?></td>
+                                        <td><?= $pub['doi'] ?></td>
+                                        <td><?= $pub['impact_factor'] ?></td>
+                                        <td><?= $pub['publication_year'] ?></td>
+                                        <?php if ($pub['file_upload']): ?>
+                                            <td><a href="<?= base_url() ?>public/uploads/<?= $pub['file_upload'] ?>" target="_blank">View File</a></td>
+                                        <?php else: ?>
+                                            <td>No File Uploaded</td>
+                                        <?php endif; ?>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                No
+                                <tr><td colspan="13" class="text-center">No records found.</td></tr>    
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <?= $this->endSection() ?>

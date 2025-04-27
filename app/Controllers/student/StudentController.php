@@ -259,7 +259,9 @@ class StudentController extends BaseController
         $student_publication_author_model = new Student_publication_author_model();
         $data = ['title' =>'Publication Details'];
         if ($this->request->is('get')) {
-        return view('student/publication-details',$data);
+            $data['studentData'] = $student_publication_model->getByStudent($loggedstudentId);
+            // print_r($data);die;
+            return view('student/publication-details',$data);
         }else  if ($this->request->is('post')) {
             $upload_file = $this->request->getFile('file_upload');
             if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
