@@ -52,14 +52,59 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <span for="DoIdetails">Published Name</span>
-                                <input type="text" name="published_name" id="published_name" class="form-control form-control-sm">
+                                <span for="DoIdetails">Journal Name</span>
+                                <input type="text" name="journal_name" id="journal_name" class="form-control form-control-sm">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span for="DoIdetails">Volume Number</span>
                                 <input type="text" name="volume_number" id="volume_number" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <span for="DoIdetails">Page Number</span>
+                                <input type="text" name="volume_number" id="volume_number" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <span for="Pubtype">Publication Type:</span>
+                                <select name="reffered" id="reffered" class="form-control form-control-sm">
+                                    <option value="">--Select--</option>
+                                    <option value="Research">Research</option>
+                                    <option value="Review Article">Review Article</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <span for="Pubyear">ISSN no:</span>
+                                <input type="text" name="issn_no" id="issn_no" class="form-control form-control-sm" >
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <span for="Pubyear">ISBN no:</span>
+                                <input type="text" name="isbn_no" id="isbn_no" class="form-control form-control-sm" >
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <span for="Pubyear">Impact Factor Return List:</span>
+                                <input type="text" name="impact_factor" id="impact_factor" class="form-control form-control-sm" >
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <span for="Pubyear">Publication Year:</span>
+                                <select name="Pubyear" id="Pubyear" class="form-control form-control-sm" required >
+                                    <option value="">--Select--</option>
+                                    <?php for ($i = date('Y'); $i >= 1900; $i--): ?>
+                                        <option value="<?= $i ?>"><?= $i ?></option>
+                                    <?php endfor; ?>
+                                </select>
                             </div>
                         </div>
                     </div>
