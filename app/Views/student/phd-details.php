@@ -95,15 +95,15 @@ $employee_model = new Employee_model();
                     <table class="table table-bordered table-striped" id="datatable-buttons">
                         <thead>
                             <tr>
-                                <th>Phd Title</th>
-                                <th>Description</th>
-                                <th>Supervisor Name</th>
-                                <th>Current Status</th>
-                                <th>Date of Registration</th>
-                                <th>Date of Submission</th>
-                                <th>Date of Award</th>
-                                <th>File Upload</th>
-                                <th>Action</th>
+                                <td>Phd Title</td>
+                                <td>Description</td>
+                                <td>Supervisor Name</td>
+                                <td>Current Status</td>
+                                <td>Date of Registration</td>
+                                <td>Date of Submission</td>
+                                <td>Date of Award</td>
+                                <td>File Upload</td>
+                                <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
