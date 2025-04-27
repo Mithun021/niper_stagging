@@ -57,8 +57,8 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <span for="DoIdetails">Journal Name<span class="text-danger">*</span></span>
-                                <input type="text" name="journal_name" id="journal_name" class="form-control form-control-sm" required>
+                                <span for="DoIdetails">Publisher Name<span class="text-danger">*</span></span>
+                                <input type="text" name="publisher_name" id="journal_name" class="form-control form-control-sm" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -73,7 +73,7 @@
                                 <input type="text" name="page_number" id="page_number" class="form-control form-control-sm" required>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <!-- <div class="col-lg-6">
                             <div class="form-group">
                                 <span for="Pubtype">Publication Type:<span class="text-danger">*</span></span>
                                 <select name="publication_type" id="publication_type" class="form-control form-control-sm" required>
@@ -82,7 +82,7 @@
                                     <option value="Review Article">Review Article</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span for="Pubyear">ISSN no:<span class="text-danger">*</span></span>
