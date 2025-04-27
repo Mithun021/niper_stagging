@@ -484,7 +484,8 @@ class StudentController extends BaseController
         $student_copyright_author_model = new Student_copyright_author_model();
         $data = ['title' =>'Copyright Details'];
         if ($this->request->is('get')) {
-        return view('student/copyright-details',$data);
+            $data['studentData'] = $student_copyright_model->getByStudent($loggedstudentId);
+            return view('student/copyright-details',$data);
         }else  if ($this->request->is('post')) {
             $upload_file = $this->request->getFile('file_upload');
             if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
@@ -518,6 +519,26 @@ class StudentController extends BaseController
             } else {
                 return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
             }
+        }
+    }
+
+    public function delete_copyright_details($id){
+        $student_copyright_model = new Student_copyright_model();
+        $student_copyright_author_model = new Student_copyright_author_model();
+        $studentData = $student_copyright_model->get($id);
+        if ($studentData) {
+            if (file_exists("public/admin/uploads/students/" . $studentData['file_upload'])) {
+                unlink("public/admin/uploads/students/" . $studentData['file_upload']);
+            }
+            $result = $student_copyright_model->delete($id);
+            if ($result === true) {
+                $student_copyright_author_model->where('student_copyright_id', $id)->delete();
+                return redirect()->to('student/copyright-details')->with('status', '<div class="alert alert-success" role="alert">Copyright details deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
+        } else {
+            return redirect()->to('student/copyright-details')->with('status', '<div class="alert alert-danger" role="alert">Copyright details not found.</div>');
         }
     }
 

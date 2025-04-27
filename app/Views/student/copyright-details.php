@@ -1,6 +1,10 @@
 <?= $this->extend("student/stdlayouts/master") ?>
 <?=  $this->section("student-content"); ?>
+<?php
 
+use App\Models\Student_copyright_author_model;
+$student_copyright_author_model = new Student_copyright_author_model();
+?>
 <!-- start page title -->
 <div class="row">
     <div class="col-lg-12">
@@ -91,6 +95,65 @@
             </form>
         </div>
     </div>
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title m-0"><?= $title ?> List</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="datatable-buttons">
+                        <thead class="bg-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Copyright Title</th>
+                                <th scope="col">Author Name</th>
+                                <th scope="col">Copyright Number</th>
+                                <th scope="col">Copyright Status</th>
+                                <th scope="col">Copyright Filing Date</th>
+                                <th scope="col">Copyright Grant Date</th>
+                                <th scope="col">File Upload</th>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody id="stockTbody">
+                            <?php if ($copyrights): ?>
+                                <?php foreach ($copyrights as $key => $copyright): ?>
+                                    <tr id="stockTrow">
+                                        <td><?= $key + 1 ?></td>
+                                        <td><?= $copyright['copyright_title'] ?></td>
+                                        <td style="width: 150px;">
+                                            <?php $authors = $student_copyright_author_model->getByPaCopyright($copyright['id']); ?>
+                                            <?php if ($authors): ?>
+                                                <?php foreach ($authors as $author): ?>
+                                                    <?= '<i class="fas fa-arrow-circle-right"></i> '.$author['author_name'] ?><br>
+                                                <?php endforeach; ?>
+                                            <?php else: ?>
+                                                No Author Found
+                                            <?php endif; ?>
+                                        </td>
+                                        <td><?= $copyright['copyright_number'] ?></td>
+                                        <td><?= $copyright['copyright_status'] ?></td>
+                                        <td><?= date('d-m-Y', strtotime($copyright['copyright_filing_date'])) ?></td>
+                                        <td><?= date('d-m-Y', strtotime($copyright['copyright_grant_date'])) ?></td>
+                                        <td><a href="<?= base_url() ?>public/admin/uploads/students/<?= $copyright['file_upload'] ?>" target="_blank">View File</a></td>
+                                        <td>
+                                            <a href="<?= base_url() ?>student/delete-copyright-details/<?= $copyright['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>
+                                            <!-- <a href="<?= base_url() ?>student/edit-publication-details/<?= $copyright['id'] ?>" class="btn btn-primary btn-sm">Edit</a> -->
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr><td colspan="9" class="text-center">No records found.</td></tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script>
