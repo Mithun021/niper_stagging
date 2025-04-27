@@ -145,7 +145,7 @@ use App\Models\Student_patent_author_model;
                                             <?php $authors = $student_patent_author_model->getByPatent($row['id']); ?>
                                             <?php if ($authors): ?>
                                                 <?php foreach ($authors as $author): ?>
-                                                    <?= "⚫ ".$author['author_name'] ?><br>
+                                                    <?= '<i class="fas fa-arrow-right"></i>'.$author['author_name'] ?><br>
                                                 <?php endforeach; ?>
                                             <?php else: ?>
                                                 No Author Found
