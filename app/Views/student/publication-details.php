@@ -145,7 +145,6 @@ $student_publication_author_model = new Student_publication_author_model();
                         <thead>
                             <tr>
                                 <td>Publication Title</td>
-                                <td>Publication Description</td>
                                 <td>Author Name</td>
                                 <td>Journal Name</td>
                                 <td>Volume Number</td>
@@ -164,7 +163,6 @@ $student_publication_author_model = new Student_publication_author_model();
                                 <?php foreach ($studentData as $pub): ?>
                                     <tr id="stockTrow">
                                         <td><?= $pub['publication_title'] ?></td>
-                                        <td><?= $pub['publication_description'] ?></td>
                                         <td>
                                             <?php $authors = $student_publication_author_model->getByPublication($pub['id']); ?>
                                             <?php if ($authors): ?>
