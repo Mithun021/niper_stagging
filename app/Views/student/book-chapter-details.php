@@ -149,7 +149,8 @@ $student_bookchapter_author_model = new Student_bookchapter_author_model();
                     <table class="table table-bordered table-sm" id="datatable-buttons">
                         <thead>
                             <tr>
-                                <td>Publication Title</td>
+                                <td>Chapter Title</td>
+                                <td>Book Title</td>
                                 <td>Author Name</td>
                                 <td>Publisher Name</td>
                                 <td>Volume Number</td>
@@ -167,7 +168,8 @@ $student_bookchapter_author_model = new Student_bookchapter_author_model();
                             <?php if ($studentData): ?>
                                 <?php foreach ($studentData as $pub): ?>
                                     <tr id="stockTrow">
-                                        <td><?= $pub['publication_title'] ?></td>
+                                        <td><?= $pub['chapter_title'] ?></td>
+                                        <td><?= $pub['book_title'] ?></td>
                                         <td>
                                             <?php $authors = $student_bookchapter_author_model->getByBookchapter($pub['id']); ?>
                                             <?php if ($authors): ?>
