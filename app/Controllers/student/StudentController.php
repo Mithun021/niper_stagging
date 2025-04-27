@@ -380,6 +380,26 @@ class StudentController extends BaseController
         }
     }
 
+    public function delete_book_chapter_details($id){
+        $student_book_chapter_model = new Student_book_chapter_model();
+        $student_bookchapter_author_model = new Student_bookchapter_author_model();
+        $studentData = $student_book_chapter_model->get($id);
+        if ($studentData) {
+            if (file_exists("public/admin/uploads/students/" . $studentData['file_upload'])) {
+                unlink("public/admin/uploads/students/" . $studentData['file_upload']);
+            }
+            $result = $student_book_chapter_model->delete($id);
+            if ($result === true) {
+                $student_bookchapter_author_model->where('student_bookchapter_id', $id)->delete();
+                return redirect()->to('student/book-chapter-details')->with('status', '<div class="alert alert-success" role="alert">Book Chapter details deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
+        } else {
+            return redirect()->to('student/book-chapter-details')->with('status', '<div class="alert alert-danger" role="alert">Book Chapter details not found.</div>');
+        }
+    }
+
     public function patent_details()
     {
         $data = ['title' =>'Patent Details'];
