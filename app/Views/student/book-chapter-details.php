@@ -1,6 +1,12 @@
 <?= $this->extend("student/stdlayouts/master") ?>
 <?= $this->section("student-content"); ?>
 
+<?php
+
+use App\Models\Student_bookchapter_author_model;
+$student_bookchapter_author_model = new Student_bookchapter_author_model();
+?>
+
 <!-- start page title -->
 <div class="row">
     <div class="col-lg-12">
@@ -132,6 +138,76 @@
             </form>
         </div>
     </div>
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title m-0"><?= $title ?> List</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm" id="datatable-buttons">
+                        <thead>
+                            <tr>
+                                <td>Publication Title</td>
+                                <td>Author Name</td>
+                                <td>Publisher Name</td>
+                                <td>Volume Number</td>
+                                <td>Page Number</td>
+                                <td>ISSN No</td>
+                                <td>ISBN No</td>
+                                <td>DOI Details</td>
+                                <td>Impact Factor</td>
+                                <td>Publication Year</td>
+                                <td>File Upload</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody id="stockTbody">
+                            <?php if ($studentData): ?>
+                                <?php foreach ($studentData as $pub): ?>
+                                    <tr id="stockTrow">
+                                        <td><?= $pub['publication_title'] ?></td>
+                                        <td>
+                                            <?php $authors = $student_bookchapter_author_model->getByBookchapter($pub['id']); ?>
+                                            <?php if ($authors): ?>
+                                                <?php foreach ($authors as $author): ?>
+                                                    <?= "=> ".$author['author_name'] ?><br>
+                                                <?php endforeach; ?>
+                                            <?php else: ?>
+                                                No Author Found
+                                            <?php endif; ?>
+                                        </td>
+                                        <td><?= $pub['publisher_name'] ?></td>
+                                        <td><?= $pub['volume_number'] ?></td>
+                                        <td><?= $pub['page_number'] ?></td>
+                                        <td><?= $pub['issn_no'] ?></td>
+                                        <td><?= $pub['isbn_no'] ?></td>
+                                        <td><?= $pub['doi'] ?></td>
+                                        <td><?= $pub['impact_factor'] ?></td>
+                                        <td><?= $pub['publication_year'] ?></td>
+                                        <?php if ($pub['file_upload']): ?>
+                                            <td><a href="<?= base_url() ?>public/admin/uploads/students/<?= $pub['file_upload'] ?>" target="_blank">View File</a></td>
+                                        <?php else: ?>
+                                            <td>No File Uploaded</td>
+                                        <?php endif; ?>
+                                        <td>
+                                            <a href="<?= base_url() ?>student/delete-book-chapter-details/<?= $pub['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>
+                                            <!-- <a href="<?= base_url() ?>student/edit-publication-details/<?= $pub['id'] ?>" class="btn btn-primary btn-sm">Edit</a> -->
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                No
+                                <tr><td colspan="13" class="text-center">No records found.</td></tr>    
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <?= $this->endSection() ?>
