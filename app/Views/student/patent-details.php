@@ -137,8 +137,8 @@ use App\Models\Student_patent_author_model;
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if ($patent_details): ?>
-                                <?php foreach ($patent_details as $row): ?>
+                            <?php if ($studentData): ?>
+                                <?php foreach ($studentData as $row): ?>
                                     <tr>
                                         <td><?= $row['patent_title'] ?></td>
                                         <td style="width: 150px;">
