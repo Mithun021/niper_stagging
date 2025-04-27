@@ -8,7 +8,7 @@
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title m-0"><?= $title ?></h4>
             </div>
-            <form action="<?= base_url() ?>student/patent-details" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url() ?>student/copyright-details" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                     <?php if (session()->getFlashdata('status')): ?>
                         <?= session()->getFlashdata('status') ?>
@@ -16,8 +16,8 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <span for="Pubtitle">Patent Title:<span class="text-danger">*</span></span>
-                                <input name="patent_title" class="form-control form-control-sm" required>
+                                <span for="Pubtitle">Copyright Title:<span class="text-danger">*</span></span>
+                                <input name="copyright_title" class="form-control form-control-sm" required>
                             </div>
                         </div>
                         <div class="col-lg-12">
@@ -51,14 +51,14 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <span for="DoIdetails">Patent Number<span class="text-danger">*</span></span>
-                                <input type="text" name="patent_number" id="patent_number" class="form-control form-control-sm" required>
+                                <span for="DoIdetails">Copyright Number<span class="text-danger">*</span></span>
+                                <input type="text" name="copyright_number" id="copyright_number" class="form-control form-control-sm" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <span for="Pubtype">Patent Status:<span class="text-danger">*</span></span>
-                                <select name="patent_status" id="patent_status" class="form-control form-control-sm" required>
+                                <span for="Pubtype">Copyright Status:<span class="text-danger">*</span></span>
+                                <select name="copyright_status" id="copyright_status" class="form-control form-control-sm" required>
                                     <option value="">--Select--</option>
                                     <option value="Submitted">Submitted</option>
                                     <option value="Granted">Granted</option>
@@ -67,14 +67,14 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <span for="DoIdetails">Patent Filing Date <span class="text-danger">*</span></span>
-                                <input type="date" name="patent_filing_date" id="patent_filing_date" class="form-control form-control-sm" required>
+                                <span for="DoIdetails">Copyright Filing Date <span class="text-danger">*</span></span>
+                                <input type="date" name="copyright_filing_date" id="copyright_filing_date" class="form-control form-control-sm" required>
                             </div>
                         </div>
-                        <div class="col-lg-6" id="patent_grant_date" style="display: none;">
+                        <div class="col-lg-6" id="copyright_grant_date" style="display: none;">
                             <div class="form-group">
-                                <span for="DoIdetails">Patent Grant Date<span class="text-danger">*</span></span>
-                                <input type="date" name="patent_grant_date" id="patent_grant_date" class="form-control form-control-sm">
+                                <span for="DoIdetails">Copyright Grant Date<span class="text-danger">*</span></span>
+                                <input type="date" name="copyright_grant_date" id="copyright_grant_date" class="form-control form-control-sm">
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -108,5 +108,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('copyright_status').addEventListener('change', function () {
+        var selectedValue = this.value;
+        var grantDateDiv = document.getElementById('copyright_grant_date');
+
+        if (selectedValue === 'Granted') {
+            grantDateDiv.style.display = 'block';
+        } else {
+            grantDateDiv.style.display = 'none';
+            // Optional: Also clear the date field when hidden
+            grantDateDiv.querySelector('input').value = '';
+        }
+    });
+</script>
 
 <?= $this->endSection() ?>
