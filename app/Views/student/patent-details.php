@@ -125,15 +125,16 @@ use App\Models\Student_patent_author_model;
                     <table class="table table-bordered" id="datatable-buttons">
                         <thead class="bg-light">
                             <tr>
-                                <th>Patent Title</th>
-                                <th>Author Name</th>
-                                <th>Patent Number</th>
-                                <th>Patent Status</th>
-                                <th>Patent Filing Date</th>
-                                <th>Patent Grant Date</th>
-                                <th>Patent Level</th>
-                                <th>Fund Generated</th>
-                                <th>File Upload</th>
+                                <td>Patent Title</td>
+                                <td>Author Name</td>
+                                <td>Patent Number</td>
+                                <td>Patent Status</td>
+                                <td>Patent Filing Date</td>
+                                <td>Patent Grant Date</td>
+                                <td>Patent Level</td>
+                                <td>Fund Generated</td>
+                                <td>File Upload</td>
+                                <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -157,7 +158,11 @@ use App\Models\Student_patent_author_model;
                                         <td><?= date('d-m-Y', strtotime($row['patent_grant_date'])) ?></td>
                                         <td><?= $row['patent_level'] ?></td>
                                         <td><?= $row['fund_generated'] ?></td>
-                                        <td><a href="<?= base_url() ?>public/uploads/<?= $row['file_upload'] ?>" target="_blank">View File</a></td>
+                                        <td><a href="<?= base_url() ?>public/admin/uploads/students/<?= $row['file_upload'] ?>" target="_blank">View File</a></td>
+                                        <td>
+                                            <a href="<?= base_url() ?>student/delete-patent-details/<?= $pub['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>
+                                            <!-- <a href="<?= base_url() ?>student/edit-publication-details/<?= $pub['id'] ?>" class="btn btn-primary btn-sm">Edit</a> -->
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>
