@@ -80,6 +80,48 @@
             </form>
         </div>
     </div>
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title m-0"><?= $title ?> List</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped" id="datatable-buttons">
+                        <thead>
+                            <tr>
+                                <th>Phd Title</th>
+                                <th>Description</th>
+                                <th>Supervisor Name</th>
+                                <th>Current Status</th>
+                                <th>Date of Registration</th>
+                                <th>Date of Submission</th>
+                                <th>Date of Award</th>
+                                <th>File Upload</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($phdData as $phd): ?>
+                            <tr>
+                                <td><?= $phd['phd_title'] ?></td>
+                                <td><?= $phd['description'] ?></td>
+                                <td><?= $phd['supervisor_name'] ?></td>
+                                <td><?= $phd['current_status'] ?></td>
+                                <td><?= $phd['registration_date'] ?></td>
+                                <td><?= $phd['submission_date'] ?></td>
+                                <td><?= $phd['award_date'] ?></td>
+                                <td><a href="<?= base_url() ?>public/admin/uploads/students<?= $phd['file_upload'] ?>" target="_blank">View File</a></td>
+                                <td><a href="<?= base_url() ?>student/phd-details/edit/<?= $phd['id'] ?>" class="btn btn-primary btn-sm">Edit</a></td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 <script>
 document.getElementById('current_status').addEventListener('change', function() {
