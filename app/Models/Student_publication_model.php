@@ -3,7 +3,7 @@
     use CodeIgniter\Model;
     class Student_publication_model extends Model
     {
-        protected $table         = 'student_academic_Details';
+        protected $table         = 'student_publication';
         protected $primaryKey = 'id';
         protected $allowedFields = ['student_id','publication_title','publication_description','journal_name','volume_number','page_number','publication_type','issn_no','isbn_no','doi','impact_factor','publication_year','file_upload'];
         protected $createdField  = 'created_at';
