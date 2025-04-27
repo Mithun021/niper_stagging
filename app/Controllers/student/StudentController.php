@@ -185,7 +185,29 @@ class StudentController extends BaseController
             $data['studentData'] = $student_phd_details_model->getByStudent($loggedstudentId);
             return view('student/phd-details',$data);
         }else  if ($this->request->is('post')) {
-            
+            $upload_file = $this->request->getFile('file_upload');
+            if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
+                $studentFileName = "phdfile".$upload_file->getRandomName();
+                $upload_file->move(ROOTPATH . 'public/admin/uploads/students', $studentFileName);    
+            }
+            $data = [
+                'student_id' => $loggedstudentId,
+                'phd_title' => $this->request->getPost('phd_title'),
+                'description' => $this->request->getPost('description') ?? '',
+                'supervisor_name' => $this->request->getPost('supervisor_name'),
+                'current_status' => $this->request->getPost('current_status'),
+                'registration_date' => $this->request->getPost('registration_date'),
+                'submission_date' => $this->request->getPost('submission_date'),
+                'award_date' => $this->request->getPost('award_date'),
+                'file_upload' => $studentFileName ?? '',
+            ];
+            // print_r($data);die;
+            $result = $student_phd_details_model->add($data);
+            if ($result === true) {
+                return redirect()->to('student/phd-details')->with('status', '<div class="alert alert-success" role="alert">Academic details added successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
         }
     }
 
