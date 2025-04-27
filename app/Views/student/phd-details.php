@@ -1,6 +1,11 @@
 <?= $this->extend("student/stdlayouts/master") ?>
 <?= $this->section("student-content"); ?>
+<?php
 
+use App\Models\Employee_model;
+
+$employee_model = new Employee_model();
+?>
 <!-- start page title -->
 <div class="row">
     <div class="col-lg-12">
@@ -106,7 +111,8 @@
                             <tr>
                                 <td><?= $phd['phd_title'] ?></td>
                                 <td><?= $phd['description'] ?></td>
-                                <td><?= $phd['supervisor_name'] ?></td>
+                                <td><?php $emp = $employee_model->get($value['supervisor_name']);
+                                        if($emp) { echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
                                 <td><?= $phd['current_status'] ?></td>
                                 <td><?= $phd['registration_date'] ?></td>
                                 <td><?= $phd['submission_date'] ?></td>
