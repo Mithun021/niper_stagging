@@ -102,6 +102,7 @@
                                 <td>Date of Result Declaration</td>
                                 <td>Date of Degree</td>
                                 <td>File Upload</td>
+                                <td>Delete</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -116,6 +117,9 @@
                                         <td><?= date('M-Y', strtotime($detail['result_declaration_date'])) ?></td>
                                         <td><?= date('M-Y', strtotime($detail['degree_date'])) ?></td>
                                         <td><a href="<?= base_url() ?>public/admin/uploads/students/<?= $detail['upload_file'] ?>" target="_blank">View File</a></td>
+                                        <td>
+                                            <a href="<?= base_url() ?>student/delete-academic-details/<?= $detail['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>

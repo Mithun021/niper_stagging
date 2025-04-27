@@ -171,6 +171,24 @@ class StudentController extends BaseController
         }
     }
 
+    public function delete_academic_details($id){
+        $student_academic_details_model = new Student_academic_details_model();
+        $studentData = $student_academic_details_model->get($id);
+        if ($studentData) {
+            if (file_exists("public/admin/uploads/students/" . $studentData['upload_file'])) {
+                unlink("public/admin/uploads/students/" . $studentData['upload_file']);
+            }
+            $result = $student_academic_details_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('student/academic-details')->with('status', '<div class="alert alert-success" role="alert">Acadmic details deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
+        } else {
+            return redirect()->to('student/acadmic-details')->with('status', '<div class="alert alert-danger" role="alert">Acadmic details not found.</div>');
+        }
+    }
+
     public function phd_details()
     {
         $sessionData = session()->get('loggedStudentData');
