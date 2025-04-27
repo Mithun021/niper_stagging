@@ -142,7 +142,7 @@ use App\Models\Student_patent_author_model;
                                     <tr>
                                         <td><?= $row['patent_title'] ?></td>
                                         <td style="width: 150px;">
-                                            <?php $authors = $student_patent_author_model->getByPatent($pub['id']); ?>
+                                            <?php $authors = $student_patent_author_model->getByPatent($row['id']); ?>
                                             <?php if ($authors): ?>
                                                 <?php foreach ($authors as $author): ?>
                                                     <?= "⚫ ".$author['author_name'] ?><br>
