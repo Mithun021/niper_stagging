@@ -295,7 +295,6 @@ class StudentController extends BaseController
                         $student_publication_author_model->add($authorData);
                     }
                 }
-                $student_publication_author_model->add($data);
                 return redirect()->to('student/publication-details')->with('status', '<div class="alert alert-success" role="alert">Academic details added successfully.</div>');
             } else {
                 return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
