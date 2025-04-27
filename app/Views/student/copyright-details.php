@@ -118,8 +118,8 @@ $student_copyright_author_model = new Student_copyright_author_model();
                             </tr>
                         </thead>
                         <tbody id="stockTbody">
-                            <?php if ($copyrights): ?>
-                                <?php foreach ($copyrights as $key => $copyright): ?>
+                            <?php if ($studentData): ?>
+                                <?php foreach ($studentData as $key => $copyright): ?>
                                     <tr id="stockTrow">
                                         <td><?= $key + 1 ?></td>
                                         <td><?= $copyright['copyright_title'] ?></td>
