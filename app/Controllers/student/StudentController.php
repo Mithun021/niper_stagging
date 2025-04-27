@@ -10,6 +10,8 @@ use App\Models\Student_academic_details_model;
 use App\Models\Student_book_chapter_model;
 use App\Models\Student_bookchapter_author_model;
 use App\Models\Student_model;
+use App\Models\Student_patent_author_model;
+use App\Models\Student_patent_model;
 use App\Models\Student_phd_details_model;
 use App\Models\Student_prog_dept_mapping_model;
 use App\Models\Student_publication_author_model;
@@ -402,11 +404,51 @@ class StudentController extends BaseController
 
     public function patent_details()
     {
+        $sessionData = session()->get('loggedStudentData');
+        if ($sessionData) {
+            $loggedstudentId = $sessionData['loggedstudentId'];
+        }
+        $student_patent_model = new Student_patent_model();
+        $student_patent_author_model = new Student_patent_author_model();
         $data = ['title' =>'Patent Details'];
         if ($this->request->is('get')) {
-        return view('student/patent-details',$data);
+            $data['studentData'] = $student_patent_model->getByStudent($loggedstudentId);
+            return view('student/patent-details',$data);
         }else  if ($this->request->is('post')) {
-            
+            $upload_file = $this->request->getFile('file_upload');
+            if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
+                $studentFileName = "book".$upload_file->getRandomName();
+                $upload_file->move(ROOTPATH . 'public/admin/uploads/students', $studentFileName);    
+            }
+            $data = [
+                'student_id' => $loggedstudentId,
+                'patent_title' => $this->request->getPost('patent_title'),
+                'description' => $this->request->getPost('description') ?? '',
+                'patent_number' => $this->request->getPost('patent_number'),
+                'patent_status' => $this->request->getPost('patent_status'),
+                'patent_filing_date' => $this->request->getPost('patent_filing_date'),
+                'patent_grant_date' => $this->request->getPost('patent_grant_date') ?? '',
+                'patent_level' => $this->request->getPost('patent_level'),
+                'fund_generated' => $this->request->getPost('fund_generated'),
+                'file_upload' => $studentFileName ?? '',
+            ];
+            $result = $student_patent_model->add($data);
+            if ($result === true) {
+                $publicationId = $student_patent_model->insertID();
+                $authors = $this->request->getPost('author_name');
+                if (!empty($authors)) {
+                    foreach ($authors as $author) {
+                        $authorData = [
+                            'student_patent_id' => $publicationId,
+                            'author_name' => $author,
+                        ];
+                        $student_patent_author_model->add($authorData);
+                    }
+                }
+                return redirect()->to('student/patent-details')->with('status', '<div class="alert alert-success" role="alert">Academic details added successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
         }
     }
 
