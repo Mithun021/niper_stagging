@@ -121,11 +121,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="card-footer py-1">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
             </form>
         </div>
-        <div class="card-footer py-1">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
+        
     </div>
 </div>
 
