@@ -160,8 +160,8 @@ use App\Models\Student_patent_author_model;
                                         <td><?= $row['fund_generated'] ?></td>
                                         <td><a href="<?= base_url() ?>public/admin/uploads/students/<?= $row['file_upload'] ?>" target="_blank">View File</a></td>
                                         <td>
-                                            <a href="<?= base_url() ?>student/delete-patent-details/<?= $pub['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>
-                                            <!-- <a href="<?= base_url() ?>student/edit-publication-details/<?= $pub['id'] ?>" class="btn btn-primary btn-sm">Edit</a> -->
+                                            <a href="<?= base_url() ?>student/delete-patent-details/<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>
+                                            <!-- <a href="<?= base_url() ?>student/edit-publication-details/<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a> -->
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
