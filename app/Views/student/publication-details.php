@@ -1,5 +1,10 @@
 <?= $this->extend("student/stdlayouts/master") ?>
 <?=  $this->section("student-content"); ?>
+<?php
+
+use App\Models\Student_publication_author_model;
+$student_publication_author_model = new Student_publication_author_model();
+?>
 
 <!-- start page title -->
 <div class="row">
@@ -161,7 +166,7 @@
                                         <td><?= $pub['publication_title'] ?></td>
                                         <td><?= $pub['publication_description'] ?></td>
                                         <td>
-                                            <?php $authors = $this->Student_publication_author_model->getByPublication($pub['id']); ?>
+                                            <?php $authors = $student_publication_author_model->getByPublication($pub['id']); ?>
                                             <?php if ($authors): ?>
                                                 <?php foreach ($authors as $author): ?>
                                                     <?= $author['author_name'] ?><br>
