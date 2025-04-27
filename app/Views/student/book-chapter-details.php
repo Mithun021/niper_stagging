@@ -174,7 +174,7 @@ $student_bookchapter_author_model = new Student_bookchapter_author_model();
                                             <?php $authors = $student_bookchapter_author_model->getByBookchapter($pub['id']); ?>
                                             <?php if ($authors): ?>
                                                 <?php foreach ($authors as $author): ?>
-                                                    <?= "=> ".$author['author_name'] ?><br>
+                                                    <?= "⭐ ".$author['author_name'] ?><br>
                                                 <?php endforeach; ?>
                                             <?php else: ?>
                                                 No Author Found
