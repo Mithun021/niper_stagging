@@ -1,6 +1,13 @@
 <?= $this->extend("student/stdlayouts/master") ?>
 <?= $this->section("student-content"); ?>
 
+<?php
+
+use App\Models\Student_patent_author_model;
+
+   $student_patent_author_model = new Student_patent_author_model();
+?>
+
 <!-- start page title -->
 <div class="row">
     <div class="col-lg-12">
@@ -107,6 +114,62 @@
             </form>
         </div>
     </div>
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title m-0"><?= $title ?> List</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="datatable-buttons">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>Patent Title</th>
+                                <th>Author Name</th>
+                                <th>Patent Number</th>
+                                <th>Patent Status</th>
+                                <th>Patent Filing Date</th>
+                                <th>Patent Grant Date</th>
+                                <th>Patent Level</th>
+                                <th>Fund Generated</th>
+                                <th>File Upload</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if ($patent_details): ?>
+                                <?php foreach ($patent_details as $row): ?>
+                                    <tr>
+                                        <td><?= $row['patent_title'] ?></td>
+                                        <td style="width: 150px;">
+                                            <?php $authors = $student_patent_author_model->getByPatent($pub['id']); ?>
+                                            <?php if ($authors): ?>
+                                                <?php foreach ($authors as $author): ?>
+                                                    <?= "⚫ ".$author['author_name'] ?><br>
+                                                <?php endforeach; ?>
+                                            <?php else: ?>
+                                                No Author Found
+                                            <?php endif; ?>
+                                        </td>
+                                        <td><?= $row['patent_number'] ?></td>
+                                        <td><?= $row['patent_status'] ?></td>
+                                        <td><?= date('d-m-Y', strtotime($row['patent_filing_date'])) ?></td>
+                                        <td><?= date('d-m-Y', strtotime($row['patent_grant_date'])) ?></td>
+                                        <td><?= $row['patent_level'] ?></td>
+                                        <td><?= $row['fund_generated'] ?></td>
+                                        <td><a href="<?= base_url() ?>public/uploads/<?= $row['file_upload'] ?>" target="_blank">View File</a></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr><td colspan="10" class="text-center">No Records Found.</td></tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>                    
+
 </div>
 
 
