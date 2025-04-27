@@ -211,6 +211,24 @@ class StudentController extends BaseController
         }
     }
 
+    public function delete_phd_details($id){
+        $student_phd_details_model = new Student_phd_details_model();
+        $studentData = $student_phd_details_model->get($id);
+        if ($studentData) {
+            if (file_exists("public/admin/uploads/students/" . $studentData['file_upload'])) {
+                unlink("public/admin/uploads/students/" . $studentData['file_upload']);
+            }
+            $result = $student_phd_details_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('student/phd-details')->with('status', '<div class="alert alert-success" role="alert">PhD details deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
+        } else {
+            return redirect()->to('student/phd-details')->with('status', '<div class="alert alert-danger" role="alert">PhD details not found.</div>');
+        }
+    }
+
     public function publication_details()
     {
         

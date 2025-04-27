@@ -264,11 +264,12 @@ $routes->match(['get','post'],'stdlogin/', 'student\AuthController::login');
 $routes->group('student',['filter'=>'studentLogin'], static function($routes){
     $routes->get('/', 'student\StudentController::index');
     $routes->get('logout', 'student\AuthController::logout');
-    
+
     $routes->get('student-profile', 'student\StudentController::student_profile');
     $routes->match(['get','post'],'personal-details', 'student\StudentController::personal_details');
     $routes->match(['get','post'],'academic-details', 'student\StudentController::academic_details');
     $routes->match(['get','post'],'phd-details', 'student\StudentController::phd_details');
+    $routes->get('delete-phd-details/(:num)', 'student\StudentController::delete_phd_details/$1');
     $routes->match(['get','post'],'publication-details', 'student\StudentController::publication_details');
     $routes->match(['get','post'],'book-chapter-details', 'student\StudentController::book_chapter_details');
     $routes->match(['get','post'],'patent-details', 'student\StudentController::patent_details');

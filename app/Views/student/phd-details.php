@@ -118,7 +118,7 @@ $employee_model = new Employee_model();
                                 <td><?= $phd['submission_date'] ?></td>
                                 <td><?= $phd['award_date'] ?></td>
                                 <td><a href="<?= base_url() ?>public/admin/uploads/students/<?= $phd['file_upload'] ?>" target="_blank">View File</a></td>
-                                <td><a href="<?= base_url() ?>student/phd-details/edit/<?= $phd['id'] ?>" class="btn btn-primary btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></a><a href="<?= base_url() ?>student/phd-details/edit/<?= $phd['id'] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                <td><a href="<?= base_url() ?>student/delete-phd-details/<?= $phd['id'] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
