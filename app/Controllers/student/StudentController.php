@@ -9,6 +9,8 @@ use App\Models\State_city_model;
 use App\Models\Student_academic_details_model;
 use App\Models\Student_book_chapter_model;
 use App\Models\Student_bookchapter_author_model;
+use App\Models\Student_copyright_author_model;
+use App\Models\Student_copyright_model;
 use App\Models\Student_model;
 use App\Models\Student_patent_author_model;
 use App\Models\Student_patent_model;
@@ -417,7 +419,7 @@ class StudentController extends BaseController
         }else  if ($this->request->is('post')) {
             $upload_file = $this->request->getFile('file_upload');
             if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
-                $studentFileName = "book".$upload_file->getRandomName();
+                $studentFileName = "patent".$upload_file->getRandomName();
                 $upload_file->move(ROOTPATH . 'public/admin/uploads/students', $studentFileName);    
             }
             $data = [
@@ -474,11 +476,48 @@ class StudentController extends BaseController
 
     public function copyright_details()
     {
+        $sessionData = session()->get('loggedStudentData');
+        if ($sessionData) {
+            $loggedstudentId = $sessionData['loggedstudentId'];
+        }
+        $student_copyright_model = new Student_copyright_model();
+        $student_copyright_author_model = new Student_copyright_author_model();
         $data = ['title' =>'Copyright Details'];
         if ($this->request->is('get')) {
         return view('student/copyright-details',$data);
         }else  if ($this->request->is('post')) {
-            
+            $upload_file = $this->request->getFile('file_upload');
+            if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
+                $studentFileName = "copyright".$upload_file->getRandomName();
+                $upload_file->move(ROOTPATH . 'public/admin/uploads/students', $studentFileName);    
+            }
+            $data = [
+                'student_id' => $loggedstudentId,
+                'copyright_title' => $this->request->getPost('copyright_title'),
+                'description' => $this->request->getPost('description') ?? '',
+                'copyright_number' => $this->request->getPost('copyright_number'),
+                'copyright_status' => $this->request->getPost('copyright_status'),
+                'copyright_filing_date' => $this->request->getPost('copyright_filing_date'),
+                'copyright_grant_date' => $this->request->getPost('copyright_grant_date') ?? '',
+                'file_upload' => $studentFileName ?? '',
+            ];
+            $result = $student_copyright_model->add($data);
+            if ($result === true) {
+                $publicationId = $student_copyright_model->insertID();
+                $authors = $this->request->getPost('author_name');
+                if (!empty($authors)) {
+                    foreach ($authors as $author) {
+                        $authorData = [
+                            'student_copyright_id' => $publicationId,
+                            'author_name' => $author,
+                        ];
+                        $student_copyright_author_model->add($authorData);
+                    }
+                }
+                return redirect()->to('student/copyright-details')->with('status', '<div class="alert alert-success" role="alert">Copyright details added successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
         }
     }
 

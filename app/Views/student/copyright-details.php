@@ -77,22 +77,6 @@
                                 <input type="date" name="copyright_grant_date" id="copyright_grant_date" class="form-control form-control-sm">
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <span for="Pubtype">Patent Level :<span class="text-danger">*</span></span>
-                                <select name="patent_level" id="patent_level" class="form-control form-control-sm" required>
-                                    <option value="">--Select--</option>
-                                    <option value="National">National</option>
-                                    <option value="International">International</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <span for="DoIdetails">Fund Generated<span class="text-danger">*</span></span>
-                                <input type="text" name="fund_generated" id="patent_number" class="form-control form-control-sm" required>
-                            </div>
-                        </div>
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <span>File Upload Option(.pdf)<span class="text-danger">*</span></span>
