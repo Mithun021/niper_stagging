@@ -90,7 +90,7 @@ $employee_model = new Employee_model();
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title m-0"><?= $title ?> List</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body p-1">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped" id="datatable-buttons">
                         <thead>
