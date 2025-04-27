@@ -170,7 +170,7 @@ $student_bookchapter_author_model = new Student_bookchapter_author_model();
                                     <tr id="stockTrow">
                                         <td><?= $pub['chapter_title'] ?></td>
                                         <td><?= $pub['book_title'] ?></td>
-                                        <td style="width: 90px;">
+                                        <td style="width: 150px;">
                                             <?php $authors = $student_bookchapter_author_model->getByBookchapter($pub['id']); ?>
                                             <?php if ($authors): ?>
                                                 <?php foreach ($authors as $author): ?>
