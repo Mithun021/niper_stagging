@@ -1,5 +1,5 @@
 <?= $this->extend("student/stdlayouts/master") ?>
-<?=  $this->section("student-content"); ?>
+<?= $this->section("student-content"); ?>
 
 <!-- start page title -->
 <div class="row">
@@ -34,13 +34,13 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="addServicetable"> 
+                                <table class="table table-bordered" id="addServicetable">
                                     <thead class="bg-light">
                                         <tr>
                                             <td scope="col">Author Details<span class="text-danger">*</span></td>
                                             <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewservicerow">+</button></td>
                                         </tr>
-                            
+
                                     </thead>
                                     <tbody id="stockTbody">
                                         <tr id="stockTrow">
@@ -58,7 +58,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span for="DoIdetails">Publisher Name<span class="text-danger">*</span></span>
-                                <input type="text" name="publisher_name" id="journal_name" class="form-control form-control-sm" required>
+                                <input type="text" name="publisher_name" id="publisher_name" class="form-control form-control-sm" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -92,7 +92,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span for="Pubyear">ISBN no:<span class="text-danger">*</span></span>
-                                <input type="text" name="isbn_no" id="isbn_no" class="form-control form-control-sm" required >
+                                <input type="text" name="isbn_no" id="isbn_no" class="form-control form-control-sm" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -104,13 +104,13 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span for="Pubyear">Impact Factor:<span class="text-danger">*</span></span>
-                                <input type="text" name="impact_factor" id="impact_factor" class="form-control form-control-sm" required >
+                                <input type="text" name="impact_factor" id="impact_factor" class="form-control form-control-sm" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span for="Pubyear">Publication Year:<span class="text-danger">*</span></span>
-                                <select name="publication_year" id="publication_year" class="form-control form-control-sm" required >
+                                <select name="publication_year" id="publication_year" class="form-control form-control-sm" required>
                                     <option value="">--Select--</option>
                                     <?php for ($i = date('Y'); $i >= 1900; $i--): ?>
                                         <option value="<?= $i ?>"><?= $i ?></option>

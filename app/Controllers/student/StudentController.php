@@ -7,6 +7,8 @@ use App\Models\Employee_model;
 use App\Models\Program_department_mapping_model;
 use App\Models\State_city_model;
 use App\Models\Student_academic_details_model;
+use App\Models\Student_book_chapter_model;
+use App\Models\Student_bookchapter_author_model;
 use App\Models\Student_model;
 use App\Models\Student_phd_details_model;
 use App\Models\Student_prog_dept_mapping_model;
@@ -326,11 +328,55 @@ class StudentController extends BaseController
 
     public function book_chapter_details()
     {
+        $sessionData = session()->get('loggedStudentData');
+        if ($sessionData) {
+            $loggedstudentId = $sessionData['loggedstudentId'];
+        }
+        $student_book_chapter_model = new Student_book_chapter_model();
+        $student_bookchapter_author_model = new Student_bookchapter_author_model();
         $data = ['title' =>'Book Chapter Details'];
         if ($this->request->is('get')) {
-        return view('student/book-chapter-details',$data);
+            $data['studentData'] = $student_book_chapter_model->getByStudent($loggedstudentId);
+            return view('student/book-chapter-details',$data);
         }else  if ($this->request->is('post')) {
-            
+            $upload_file = $this->request->getFile('file_upload');
+            if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
+                $studentFileName = "book".$upload_file->getRandomName();
+                $upload_file->move(ROOTPATH . 'public/admin/uploads/students', $studentFileName);    
+            }
+            $data = [
+                'student_id' => $loggedstudentId,
+                'chapter_title' => $this->request->getPost('chapter_title'),
+                'book_title' => $this->request->getPost('book_title'),
+                'publication_description' => $this->request->getPost('publication_description') ?? '',
+                'publisher_name' => $this->request->getPost('publisher_name'),
+                'volume_number' => $this->request->getPost('volume_number'),
+                'page_number' => $this->request->getPost('page_number'),
+                'issn_no' => $this->request->getPost('issn_no'),
+                'isbn_no' => $this->request->getPost('isbn_no'),
+                'doi' => $this->request->getPost('doi'),
+                'impact_factor' => $this->request->getPost('impact_factor'),
+                'publication_year' => $this->request->getPost('publication_year'),
+                'file_upload' => $studentFileName ?? '',
+            ];
+            // print_r($data);die;
+            $result = $student_book_chapter_model->add($data);
+            if ($result === true) {
+                $publicationId = $student_book_chapter_model->insertID();
+                $authors = $this->request->getPost('author_name');
+                if (!empty($authors)) {
+                    foreach ($authors as $author) {
+                        $authorData = [
+                            'student_bookchapter_id' => $publicationId,
+                            'author_name' => $author,
+                        ];
+                        $student_bookchapter_author_model->add($authorData);
+                    }
+                }
+                return redirect()->to('student/book-chapter-details')->with('status', '<div class="alert alert-success" role="alert">Academic details added successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
         }
     }
 
