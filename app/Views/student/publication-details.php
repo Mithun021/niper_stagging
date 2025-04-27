@@ -107,9 +107,18 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <span>File Upload Option(.pdf)<span class="text-danger">*</span></span>
+                                <input type="file" class="form-control form-control-sm" name="upload_file" accept=".pdf">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>
+        </div>
+        <div class="card-footer py-1">
+            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
 </div>
