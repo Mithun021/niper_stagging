@@ -9,7 +9,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 5px;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #5e5959;
     }
 </style>
 
@@ -38,10 +38,14 @@
             </form>
 
             <div class="resumt-list">
-                <div class="skills-list">
-                    <p>Example</p>
-                    <a href="#">X</a>
-                </div>
+            <?php if (isset($studentSkills)) { ?>
+                <?php foreach ($studentSkills as $skill){ ?>
+                    <div class="skills-list">
+                        <p><?= $skill['skills'] ?></p>
+                        <a href="<?= base_url() ?>student/delete-skills/<?= $skill['id'] ?>" class="btn btn-danger btn-sm">X</a>
+                    </div>
+                <?php } ?>
+            <?php } ?>
             </div>
 
         </div>
