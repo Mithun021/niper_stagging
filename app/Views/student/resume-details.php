@@ -41,14 +41,14 @@
             </form>
 
             <div class="resumt-list">
-            <?php if (isset($studentSkills)) { ?>
-                <?php foreach ($studentSkills as $skill){ ?>
-                    <div class="skills-list">
-                        <p class="m-0"><?= $skill['skills'] ?></p>
-                        <a href="<?= base_url() ?>student/delete-skills/<?= $skill['id'] ?>">X</a>
-                    </div>
+                <?php if (isset($studentSkills)) { ?>
+                    <?php foreach ($studentSkills as $skill){ ?>
+                        <div class="skills-list">
+                            <p class="m-0"><?= $skill['skills'] ?></p>
+                            <a href="<?= base_url() ?>student/delete-skills/<?= $skill['id'] ?>">X</a>
+                        </div>
+                    <?php } ?>
                 <?php } ?>
-            <?php } ?>
             </div>
 
         </div>
@@ -70,6 +70,16 @@
                     </div>
                 </div>
             </form>
+            <div class="resumt-list">
+                <?php if (isset($studentAreaInterest)) { ?>
+                    <?php foreach ($studentAreaInterest as $skill){ ?>
+                        <div class="skills-list">
+                            <p class="m-0"><?= $skill['area_interest'] ?></p>
+                            <a href="<?= base_url() ?>student/delete-area-interest/<?= $skill['id'] ?>">X</a>
+                        </div>
+                    <?php } ?>
+                <?php } ?>
+            </div>
         </div>
     </div>
 
@@ -89,6 +99,16 @@
                     </div>
                 </div>
             </form>
+            <div class="resumt-list">
+                <?php if (isset($studentLanguage)) { ?>
+                    <?php foreach ($studentLanguage as $skill){ ?>
+                        <div class="skills-list">
+                            <p class="m-0"><?= $skill['language'] ?></p>
+                            <a href="<?= base_url() ?>student/delete-language/<?= $skill['id'] ?>">X</a>
+                        </div>
+                    <?php } ?>
+                <?php } ?>
+            </div>
         </div>
     </div>
 
@@ -108,6 +128,16 @@
                     </div>
                 </div>
             </form>
+            <div class="resumt-list">
+                <?php if (isset($studentHobbies)) { ?>
+                    <?php foreach ($studentHobbies as $skill){ ?>
+                        <div class="skills-list">
+                            <p class="m-0"><?= $skill['hobbies'] ?></p>
+                            <a href="<?= base_url() ?>student/delete-hobbies/<?= $skill['id'] ?>">X</a>
+                        </div>
+                    <?php } ?>
+                <?php } ?>
+            </div>
         </div>
     </div>
 
