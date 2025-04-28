@@ -41,8 +41,8 @@
             <?php if (isset($studentSkills)) { ?>
                 <?php foreach ($studentSkills as $skill){ ?>
                     <div class="skills-list">
-                        <p><?= $skill['skills'] ?></p>
-                        <a href="<?= base_url() ?>student/delete-skills/<?= $skill['id'] ?>" class="btn btn-danger btn-sm">X</a>
+                        <p class="m-0"><?= $skill['skills'] ?></p>
+                        <a href="<?= base_url() ?>student/delete-skills/<?= $skill['id'] ?>">X</a>
                     </div>
                 <?php } ?>
             <?php } ?>
