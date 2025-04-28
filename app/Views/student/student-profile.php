@@ -36,6 +36,9 @@
         width: auto;
         height: 130px;
     }
+    .student-personal-details{
+        margin-left: 10px;
+    }
 
     .resume-summery {
         margin-top: 20px;
