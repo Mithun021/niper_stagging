@@ -18,7 +18,15 @@
     }
     .resume-header img.header-profile-user{
         width: auto;
-        height: 160px;
+        height: 150px;
+    }
+    .resume-summery{
+        margin-top: 20px;
+    }
+    .resume-summery h5{
+        margin-bottom: 10px;
+        color: #00366d;
+        border-bottom: 1px solid #00366d;
     }
 </style>
 
@@ -39,6 +47,10 @@
                     <p>Address :</p>
                     <p>LinkedIn :</p>
                 </div>
+            </div>
+            <div class="resume-summery">
+                <h5>Career Objective</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque fugiat odit eligendi, blanditiis eveniet iste quisquam nostrum ad quidem omnis ex pariatur numquam quae hic porro repellendus odio perferendis vitae!</p>
             </div>
         </div>
     </div>
