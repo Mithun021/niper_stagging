@@ -646,12 +646,12 @@ class StudentController extends BaseController
             }
             $result = $student_experience_model->delete($id);
             if ($result === true) {
-                return redirect()->to('student/achievement-details')->with('status', '<div class="alert alert-success" role="alert">Experience details deleted successfully.</div>');
+                return redirect()->to('student/experience-details')->with('status', '<div class="alert alert-success" role="alert">Experience details deleted successfully.</div>');
             } else {
                 return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
             }
         } else {
-            return redirect()->to('student/achievement-details')->with('status', '<div class="alert alert-danger" role="alert">Experience details not found.</div>');
+            return redirect()->to('student/experience-details')->with('status', '<div class="alert alert-danger" role="alert">Experience details not found.</div>');
         }
     }
 
