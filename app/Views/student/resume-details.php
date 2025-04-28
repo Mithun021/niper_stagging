@@ -2,6 +2,9 @@
 <?= $this->section("student-content"); ?>
 
 <style>
+    .resumt-list{
+        border: 1px solid #5e5959;
+    }
     .skills-list{
         position: relative;
         width: 100%;
