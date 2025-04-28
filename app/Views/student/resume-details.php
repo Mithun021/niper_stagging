@@ -9,6 +9,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 5px;
+        border-bottom: 1px solid #ddd;
     }
 </style>
 
