@@ -266,6 +266,7 @@ $routes->group('student',['filter'=>'studentLogin'], static function($routes){
     $routes->get('logout', 'student\AuthController::logout');
 
     $routes->get('student-profile', 'student\StudentController::student_profile');
+    $routes->get('resume-details', 'student\StudentController::resume_details');
     $routes->match(['get','post'],'personal-details', 'student\StudentController::personal_details');
     $routes->match(['get','post'],'academic-details', 'student\StudentController::academic_details');
     $routes->get('delete-academic-details/(:num)', 'student\StudentController::delete_academic_details/$1');

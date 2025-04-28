@@ -40,6 +40,11 @@ class StudentController extends BaseController
             
         }
     }
+    public function resume_details()
+    {
+        $data = ['title' =>'Student Resume Details'];
+        return view('student/resume-details',$data);
+    }
 
     public function personal_details()
     {
