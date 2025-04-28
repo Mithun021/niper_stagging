@@ -252,8 +252,6 @@
                         <td>Organization Type</td>
                         <td>Date of Joining</td>
                         <td>Date of Relieving</td>
-                        <td>File Upload</td>
-                        <td>Action</td>
                     </tr>
                 </table>
             </div>
