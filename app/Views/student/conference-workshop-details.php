@@ -83,7 +83,7 @@
                             <tr>
                                 <td><?= $value['conference_title'] ?></td>
                                 <td><?= $value['description'] ?></td>
-                                <td><?= date('d-m-Y', strtotime($copyright['conference_date'])) ?></td>
+                                <td><?= date('d-m-Y', strtotime($value['conference_date'])) ?></td>
                                 <td><?= $value['conference_duration'] ?></td>
                                 <td><?= $value['paper_datils'] ?></td>
                                 <td><a href="<?= base_url() ?>public/admin/uploads/students/<?= $value['file_upload'] ?>" target="_blank">View File</a></td>
