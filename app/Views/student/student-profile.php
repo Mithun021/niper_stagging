@@ -2,6 +2,10 @@
 <?=  $this->section("student-content"); ?>
 
 <style>
+    #student-profile{
+        position: relative;
+        width: 100%;
+    }
     p,h3,h4,h5,h6{
         margin: 0px;
         padding: 0px;
@@ -47,7 +51,7 @@
 <!-- start page title -->
 <div class="row">
     <div class="col-lg-12">
-        <div class="card card-body p-1">
+        <div class="card card-body p-1" id="student-profile">
             <div class="resume-header flex-div">
                 <div class="student-image">
                     <img class="header-profile-user" src="<?= base_url() ?>public/assets/image/avatar.png"
