@@ -42,13 +42,13 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span for="Pubtitle">Date of Joining:<span class="text-danger">*</span></span>
-                                <input name="joining_date" class="form-control form-control-sm" required>
+                                <input type="date" name="joining_date" class="form-control form-control-sm" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span for="Pubtitle">Date of Relieving:</span>
-                                <input name="releiving_date" class="form-control form-control-sm" required>
+                                <input type="date" name="releiving_date" class="form-control form-control-sm" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
