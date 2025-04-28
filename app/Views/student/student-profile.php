@@ -2,7 +2,7 @@
 <?=  $this->section("student-content"); ?>
 
 <style>
-    p,h3,h4,h5{
+    p,h3,h4,h5,h6{
         margin: 0px;
         padding: 0px;
     }
