@@ -1,11 +1,11 @@
 <?php
     namespace App\Models;
     use CodeIgniter\Model;
-    class Student_achievement_model extends Model
+    class Student_profile_achievement_model extends Model
     {
-        protected $table         = 'student_achievements';
+        protected $table         = 'student_profile_achievement';
         protected $primaryKey    = 'id';
-        protected $allowedFields = ['student_id','title','description', 'upload_file','award_level', 'student_name', 'department_id', 'course_id', 'supervisor_id', 'award_date', 'agency_name', 'upload_by'];
+        protected $allowedFields = ['student_id','achievement_title','description', 'awarded_agency','award_level', 'award_date', 'file_upload'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
@@ -25,6 +25,9 @@
                 $result = $this->orderBy('id','asc')->findAll();
             }
             return $result;
+        }
+        public function getByStudent($id){
+            return $this->where('student_id',$id)->findAll();
         }
     }
 ?>
