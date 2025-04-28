@@ -62,6 +62,51 @@
             </form>
         </div>
     </div>
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title m-0"><?= $title ?> List</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="datatable-buttons">
+                        <thead>
+                            <tr>
+                                <th>Sl No</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Awarded Agency</th>
+                                <th>Award Level</th>
+                                <th>Award Date</th>
+                                <th>File Upload</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if ($student_acchievement): ?>
+                                <?php $i = 1; foreach ($student_acchievement as $achievement): ?>
+                                    <tr>
+                                        <td><?= $i++ ?></td>
+                                        <td><?= $achievement['achievement_title'] ?></td>
+                                        <td><?= $achievement['description'] ?></td>
+                                        <td><?= $achievement['awarded_agency'] ?></td>
+                                        <td><?= $achievement['award_level'] ?></td>
+                                        <td><?= date('d-m-Y', strtotime($achievement['award_date'])) ?></td>
+                                        <td><a href="<?= base_url() ?>public/admin/uploads/students/<?= $achievement['file_upload'] ?>" target="_blank">View File</a></td>
+                                        <td><a href="<?= base_url() ?>student/delete-achievement-details/<?= $achievement['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this record?');">Delete</a></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr><td colspan="8" class="text-center">No Records Found!</td></tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <?= $this->endSection() ?>
