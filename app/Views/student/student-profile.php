@@ -62,6 +62,9 @@
     .resume-content-box{
         margin-bottom: 10px;
     }
+    .signature{
+        margin-top: 60px;
+    }
 </style>
 
 <!-- start page title -->
@@ -308,7 +311,10 @@
                         <p>Pincode :</p>
                     </div>
 
-                    <p>Signature:</p>
+                    <div class="signature">
+                        <p>Signature:</p>
+
+                    </div>
                 </div>
             </div>
 
