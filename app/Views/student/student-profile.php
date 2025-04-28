@@ -53,10 +53,6 @@
     #width-full{
         width: 100%;
         background-color: red;
-        display: flex;
-    }
-    #width-full #parciate_div30{
-        width: 30%;
     }
 </style>
 
@@ -117,17 +113,17 @@
                 </div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quasi quaerat sequi ad consectetur! Esse assumenda quo saepe tenetur, similique voluptates maxime facere amet eos ipsa autem adipisci facilis impedit!</p>
                 <div id="width-full">
-                    <div class="justify-div2">
+                    <div class="justify-div">
                         <p>Journal Name : </p>
                         <p>Volume Number : </p>
                         <p>Page Number</p>
                     </div>
-                    <div class="justify-div2">
+                    <div class="justify-div">
                         <p>Publication Type : </p>
                         <p>ISSN no : </p>
                         <p>ISBN no</p>
                     </div>
-                    <div class="justify-div2">
+                    <div class="justify-div">
                         <p>DOI Details : </p>
                         <p>Impact Factor : </p>
                     </div>
