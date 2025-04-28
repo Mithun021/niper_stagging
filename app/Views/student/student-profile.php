@@ -108,6 +108,7 @@
                 <p>Status : </p>
                 <!-- SUbmit and Award date embed -->
             </div>
+
             <div class="resume-summery">
                 <h5>Publication Details</h5>
                 <div class="resume-content-box">
@@ -142,7 +143,7 @@
                     <div class="justify-div">
                         <div>
                             <h6>This is heading of details content</h6>
-                            <p>Book Title Name</p>
+                            <span>Book Title Name</span>
                         </div>
                         <h6>Pub Year : 2025</h6>
                     </div>
