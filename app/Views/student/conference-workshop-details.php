@@ -14,41 +14,34 @@
                         <?= session()->getFlashdata('status') ?>
                     <?php endif; ?>
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="form-group">
-                                <span for="Pubtitle">Designation:<span class="text-danger">*</span></span>
-                                <input name="designation" class="form-control form-control-sm" required>
+                                <span for="Pubtitle">Conference/ Workshop Title:<span class="text-danger">*</span></span>
+                                <input name="conference_title" class="form-control form-control-sm" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <span>Description<span class="text-danger">*</span></span>
+                                <textarea class="form-control form-control-sm" name="description" id="editor"></textarea>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <span for="Pubtitle">Name of Organization:<span class="text-danger">*</span></span>
-                                <input name="organization_name" class="form-control form-control-sm" required>
+                                <span for="Pubtitle">Date of Conference/ workshop:<span class="text-danger">*</span></span>
+                                <input type="date" name="conference_date" class="form-control form-control-sm" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <span for="Pubtitle">Organization Type :<span class="text-danger">*</span></span>
-                                <select name="organization_type" class="form-control form-control-sm" required>
-                                    <option value="">--Select--</option>
-                                    <option value="Central Government">Central Government</option>
-                                    <option value="State Government">State Government</option>
-                                    <option value="Autonomous">Autonomous</option>
-                                    <option value="Private">Private</option>
-                                    <option value="PSU">PSU</option>
-                                </select>
+                                <span for="Pubtitle">Duration of Conference/ Workshop:<span class="text-danger">*</span></span>
+                                <input type="text" name="conference_duration" class="form-control form-control-sm" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <span for="Pubtitle">Date of Joining:<span class="text-danger">*</span></span>
-                                <input type="date" name="joining_date" class="form-control form-control-sm" required>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <span for="Pubtitle">Date of Relieving:</span>
-                                <input type="date" name="releiving_date" class="form-control form-control-sm" required>
+                                <span for="Pubtitle">Paper details:<span class="text-danger">*</span></span>
+                                <input type="text" name="paper_datils" class="form-control form-control-sm" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
