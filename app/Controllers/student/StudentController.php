@@ -12,6 +12,7 @@ use App\Models\Student_book_chapter_model;
 use App\Models\Student_bookchapter_author_model;
 use App\Models\Student_copyright_author_model;
 use App\Models\Student_copyright_model;
+use App\Models\Student_experience_model;
 use App\Models\Student_model;
 use App\Models\Student_patent_author_model;
 use App\Models\Student_patent_model;
@@ -601,11 +602,38 @@ class StudentController extends BaseController
 
     public function experience_details()
     {
+        $sessionData = session()->get('loggedStudentData');
+        if ($sessionData) {
+            $loggedstudentId = $sessionData['loggedstudentId'];
+        }
+        $student_experience_model = new Student_experience_model();
         $data = ['title' =>'Experience Details'];
         if ($this->request->is('get')) {
-        return view('student/experience-details',$data);
+            $data['student_experience'] = $student_experience_model->getByStudent($loggedstudentId);
+            return view('student/experience-details',$data);
         }else  if ($this->request->is('post')) {
-            
+            $upload_file = $this->request->getFile('file_upload');
+            if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
+                $upload_file_new_name = 'achievement' . $upload_file->getRandomName();
+                $upload_file->move(ROOTPATH . 'public/admin/uploads/students', $upload_file_new_name);
+            } else {
+                $upload_file_new_name = "";
+            }
+            $data = [
+                'student_id' => $loggedstudentId,
+                'designation' => $this->request->getVar('designation'),
+                'organization_name' => $this->request->getVar('organization_name'),
+                'organization_type' => $this->request->getVar('organization_type'),
+                'joining_date' => $this->request->getVar('joining_date'),
+                'releiving_date' => $this->request->getVar('releiving_date'),
+                'file_upload' => $upload_file_new_name,
+            ];
+            $result = $student_experience_model->add($data);
+            if ($result === true) {
+                return redirect()->to('student/experience-details')->with('status', '<div class="alert alert-success" role="alert">Achievement details added successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
         }
     }
 
