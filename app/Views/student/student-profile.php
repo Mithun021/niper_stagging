@@ -16,6 +16,11 @@
         justify-content: space-between;
         align-items: center;
     }
+    .resume-header img.header-profile-user{
+        width: auto;
+        height: 200px;
+        border-radius: 50%;
+    }
 </style>
 
 <!-- start page title -->
