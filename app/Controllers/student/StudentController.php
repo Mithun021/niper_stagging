@@ -8,12 +8,15 @@ use App\Models\Program_department_mapping_model;
 use App\Models\State_city_model;
 use App\Models\Student_academic_details_model;
 use App\Models\Student_achievement_model;
+use App\Models\Student_area_interest_model;
 use App\Models\Student_book_chapter_model;
 use App\Models\Student_bookchapter_author_model;
 use App\Models\Student_conference_workshop_model;
 use App\Models\Student_copyright_author_model;
 use App\Models\Student_copyright_model;
 use App\Models\Student_experience_model;
+use App\Models\Student_hobbies_model;
+use App\Models\Student_language_model;
 use App\Models\Student_model;
 use App\Models\Student_patent_author_model;
 use App\Models\Student_patent_model;
@@ -60,6 +63,60 @@ class StudentController extends BaseController
         $result = $student_skills_model->add($data);
         if ($result === true) {
             return redirect()->to('student/resume-details')->with('status', '<div class="alert alert-success" role="alert">Skills details added successfully.</div>');
+        } else {
+            return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+        }
+    }
+
+    public function student_area_interest(){
+        $sessionData = session()->get('loggedStudentData');
+        if ($sessionData) {
+            $loggedstudentId = $sessionData['loggedstudentId'];
+        }
+        $student_skills_model = new Student_area_interest_model();
+        $data = [
+            'student_id' => $loggedstudentId,
+            'area_interest' => $this->request->getPost('area_interest'),
+        ];
+        $result = $student_skills_model->add($data);
+        if ($result === true) {
+            return redirect()->to('student/resume-details')->with('status', '<div class="alert alert-success" role="alert">Data added successfully.</div>');
+        } else {
+            return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+        }
+    }
+
+    public function student_language(){
+        $sessionData = session()->get('loggedStudentData');
+        if ($sessionData) {
+            $loggedstudentId = $sessionData['loggedstudentId'];
+        }
+        $student_skills_model = new Student_language_model();
+        $data = [
+            'student_id' => $loggedstudentId,
+            'language' => $this->request->getPost('language'),
+        ];
+        $result = $student_skills_model->add($data);
+        if ($result === true) {
+            return redirect()->to('student/resume-details')->with('status', '<div class="alert alert-success" role="alert">Data added successfully.</div>');
+        } else {
+            return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+        }
+    }
+
+    public function student_hobbies(){
+        $sessionData = session()->get('loggedStudentData');
+        if ($sessionData) {
+            $loggedstudentId = $sessionData['loggedstudentId'];
+        }
+        $student_skills_model = new Student_hobbies_model();
+        $data = [
+            'student_id' => $loggedstudentId,
+            'hobbies' => $this->request->getPost('hobbies'),
+        ];
+        $result = $student_skills_model->add($data);
+        if ($result === true) {
+            return redirect()->to('student/resume-details')->with('status', '<div class="alert alert-success" role="alert">Data added successfully.</div>');
         } else {
             return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
         }
