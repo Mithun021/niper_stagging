@@ -37,6 +37,7 @@ class StudentController extends BaseController
 
     public function student_profile()
     {
+        
         $data = ['title' =>'Student Profile'];
         if ($this->request->is('get')) {
         return view('student/student-profile',$data);
@@ -214,7 +215,15 @@ class StudentController extends BaseController
 
         $data['studentData'] = $student_model->get($loggedstudentId);
         $data['studentDataCourses'] = $student_prog_dept_mapping_model->getStudentProgramDeptData($loggedstudentId);
-        $data['batchName'] = $program_department_mapping_model->getBatchName($data['studentDataCourses']['program_id'],$data['studentDataCourses']['department_id']);
+        if ($data['studentDataCourses']) {
+            $data['batchName'] = $program_department_mapping_model->getBatchName(
+                $data['studentDataCourses']['program_id'],
+                $data['studentDataCourses']['department_id']
+            );
+        } else {
+            $data['batchName'] = null;
+        }
+
         $data['employeeData'] = $employee_model->get();
         $data['stateData'] = $state_city_model->get_state();
         if ($this->request->is('get')) {
