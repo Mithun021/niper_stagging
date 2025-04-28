@@ -282,4 +282,5 @@ $routes->group('student',['filter'=>'studentLogin'], static function($routes){
     $routes->match(['get','post'],'achievement-details', 'student\StudentController::achievement_details');
     $routes->get('delete-achievement-details/(:num)', 'student\StudentController::delete_achievement_details/$1');
     $routes->match(['get','post'],'experience-details', 'student\StudentController::experience_details');
+    $routes->get('delete-experience-details/(:num)', 'student\StudentController::delete_experience_details/$1');
 });

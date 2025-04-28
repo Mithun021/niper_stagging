@@ -630,10 +630,28 @@ class StudentController extends BaseController
             ];
             $result = $student_experience_model->add($data);
             if ($result === true) {
-                return redirect()->to('student/experience-details')->with('status', '<div class="alert alert-success" role="alert">Achievement details added successfully.</div>');
+                return redirect()->to('student/experience-details')->with('status', '<div class="alert alert-success" role="alert">Experience details added successfully.</div>');
             } else {
                 return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
             }
+        }
+    }
+
+    public function delete_experience_details($id){
+        $student_experience_model = new Student_experience_model();
+        $studentData = $student_experience_model->get($id);
+        if ($studentData) {
+            if (file_exists("public/admin/uploads/students/" . $studentData['file_upload'])) {
+                unlink("public/admin/uploads/students/" . $studentData['file_upload']);
+            }
+            $result = $student_experience_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('student/achievement-details')->with('status', '<div class="alert alert-success" role="alert">Experience details deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
+        } else {
+            return redirect()->to('student/achievement-details')->with('status', '<div class="alert alert-danger" role="alert">Experience details not found.</div>');
         }
     }
 
