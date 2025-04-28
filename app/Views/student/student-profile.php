@@ -1,11 +1,24 @@
 <?= $this->extend("student/stdlayouts/master") ?>
 <?=  $this->section("student-content"); ?>
 
+<style>
+    .flex-div{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .justify-div{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
+
 <!-- start page title -->
 <div class="row">
     <div class="col-lg-12">
         <div class="card card-body p-1">
-            <div class="resume-header">
+            <div class="resume-header flex-div">
                 <div class="student-image">
                     <img class="header-profile-user" src="<?= base_url() ?>public/assets/image/avatar.png"
                 alt="Header Avatar">
