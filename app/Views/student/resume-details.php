@@ -3,6 +3,11 @@
 
 <!-- start page title -->
 <div class="row">
+    <div class="col-lg-12">
+        <?php if (session()->getFlashdata('status')): ?>
+            <?= session()->getFlashdata('status') ?>
+        <?php endif; ?>
+    </div>
     <div class="col-lg-4">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
@@ -10,9 +15,6 @@
             </div>
             <form action="<?= base_url() ?>student/student-skills" method="post" enctype="multipart/form-data">
                 <div class="card-body p-1">
-                    <?php if (session()->getFlashdata('status')): ?>
-                        <?= session()->getFlashdata('status') ?>
-                    <?php endif; ?>
                     <div class="form-group">
                         <span for="skills" class="form-span">Skills</span>
                         <input type="text" class="form-control" id="skills" name="skills" placeholder="Enter your skills">
@@ -32,9 +34,6 @@
             </div>
             <form action="<?= base_url() ?>student/student-area-interest" method="post" enctype="multipart/form-data">
                 <div class="card-body p-1">
-                    <?php if (session()->getFlashdata('status')): ?>
-                        <?= session()->getFlashdata('status') ?>
-                    <?php endif; ?>
                     <div class="form-group">
                         <span for="skills" class="form-span">Area Interest</span>
                         <input type="text" class="form-control" id="area_interest" name="area_interest" placeholder="Enter your insterest">
@@ -54,9 +53,6 @@
             </div>
             <form action="<?= base_url() ?>student/student-language" method="post" enctype="multipart/form-data">
                 <div class="card-body p-1">
-                    <?php if (session()->getFlashdata('status')): ?>
-                        <?= session()->getFlashdata('status') ?>
-                    <?php endif; ?>
                     <div class="form-group">
                         <span for="skills" class="form-span">Language</span>
                         <input type="text" class="form-control" id="language" name="language" placeholder="Englis,Hindi...">
@@ -76,9 +72,6 @@
             </div>
             <form action="<?= base_url() ?>student/student-hobbies" method="post" enctype="multipart/form-data">
                 <div class="card-body p-1">
-                    <?php if (session()->getFlashdata('status')): ?>
-                        <?= session()->getFlashdata('status') ?>
-                    <?php endif; ?>
                     <div class="form-group">
                         <span for="skills" class="form-span">Hobbies</span>
                         <input type="text" class="form-control" id="hobbies" name="hobbies" placeholder="Cricket, Football...">
