@@ -24,6 +24,7 @@
     }
     .justify-div p{
         width: 30%;
+        text-align: left;
     }
 
     .resume-header img.header-profile-user {
