@@ -614,7 +614,7 @@ class StudentController extends BaseController
         }else  if ($this->request->is('post')) {
             $upload_file = $this->request->getFile('file_upload');
             if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
-                $upload_file_new_name = 'achievement' . $upload_file->getRandomName();
+                $upload_file_new_name = 'experience' . $upload_file->getRandomName();
                 $upload_file->move(ROOTPATH . 'public/admin/uploads/students', $upload_file_new_name);
             } else {
                 $upload_file_new_name = "";
