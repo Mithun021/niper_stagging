@@ -570,7 +570,7 @@ class StudentController extends BaseController
                 'award_level' => $this->request->getVar('award_level'),
                 'award_date' => $this->request->getVar('award_date'),
                 'awarded_agency' => $this->request->getVar('awarded_agency'),
-                'upload_file' => $upload_file_new_name,
+                'file_upload' => $upload_file_new_name,
             ];
             $result = $student_achievement_model->add($data);
             if ($result === true) {
