@@ -12,8 +12,8 @@
                     class="mdi mdi-table-merge-cells"></i><span>Student Profile</span></a>
             <ul class="sub-menu" aria-expanded="false">
                 <li><a href="<?= base_url() ?>student/student-profile">View Profile</a></li>
-                <li><a href="<?= base_url() ?>student/resume-details">Resume Details</a></li>
                 <li><a href="<?= base_url() ?>student/personal-details">Personal Details</a></li>
+                <li><a href="<?= base_url() ?>student/resume-details">Resume Details</a></li>
                 <li><a href="<?= base_url() ?>student/academic-details">Acadmic Details</a></li>
                 <li><a href="<?= base_url() ?>student/phd-details">PHD Details</a></li>
                 <li><a href="<?= base_url() ?>student/publication-details">Publication Details</a></li>
