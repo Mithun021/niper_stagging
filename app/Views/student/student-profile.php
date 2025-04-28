@@ -2,39 +2,38 @@
 <?=  $this->section("student-content"); ?>
 
 <style>
-    #student-profile{
+    #student-profile {
         position: relative;
         width: 100%;
     }
-    p,h3,h4,h5,h6{
+    p, h3, h4, h5, h6 {
         margin: 0px;
         padding: 0px;
     }
-    .flex-div{
+    .flex-div {
         display: flex;
         justify-content: flex-start;
-        /* align-items: center; */
     }
-    .justify-div{
+    .justify-div {
         position: relative;
         width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
-    .resume-header img.header-profile-user{
+    .resume-header img.header-profile-user {
         width: auto;
         height: 150px;
     }
-    .resume-summery{
+    .resume-summery {
         margin-top: 20px;
     }
-    .resume-summery h5{
+    .resume-summery h5 {
         margin-bottom: 10px;
         color: #00366d;
         border-bottom: 2px solid #00366d;
     }
-    table{
+    table {
         width: 100%;
         border-collapse: collapse;
     }
@@ -43,8 +42,16 @@
         padding: 8px;
         text-align: left;
     }
-    .justify-div.parciate_div30{
+
+    /* Fix for parciate_div30 */
+    .parciate_div30 {
         width: 30%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .parciate_div30 p {
+        margin: 0;
     }
 </style>
 
