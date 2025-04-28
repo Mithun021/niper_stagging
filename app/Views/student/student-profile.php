@@ -135,6 +135,35 @@
                     <p><b>Author Name : </b></p>
                 </div>
             </div>
+
+            <div class="resume-summery">
+                <h5>Book Chapter Details</h5>
+                <div class="resume-content-box">
+                    <div class="justify-div">
+                        <div>
+                            <h6>This is heading of details content</h6>
+                            <p>Book Title Name</p>
+                        </div>
+                        <h6>Punb Year : 2025</h6>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quasi quaerat sequi ad consectetur! Esse assumenda quo saepe tenetur, similique voluptates maxime facere amet eos ipsa autem adipisci facilis impedit!</p>
+                    <div class="justify-div">
+                        <p>Publisher Name : </p>
+                        <p>Volume Number : </p>
+                        <p>Page Number</p>
+                    </div>
+                    <div class="justify-div">
+                        <p>ISSN no : </p>
+                        <p>ISBN no</p>
+                    </div>
+                    <div class="justify-div">
+                        <p>DOI Details : </p>
+                        <p>Impact Factor : </p>
+                    </div>
+                    <p><b>Author Name : </b></p>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
