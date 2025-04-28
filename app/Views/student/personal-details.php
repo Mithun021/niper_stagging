@@ -216,7 +216,7 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <span>Career Objective(max. 500 words)</span>
-                                <textarea name="career_objective" class="form-control form-control-sm" maxlength="500"></textarea>
+                                <textarea name="career_objective" class="form-control form-control-sm" maxlength="500"><?= $studentData['career_objective'] ?></textarea>
                             </div>
                         </div>
                         <div class="col-lg-6">

@@ -133,6 +133,7 @@ class StudentController extends BaseController
                 'state' => $this->request->getPost('state'),
                 'city' => $this->request->getPost('city'),
                 'pincode' => $this->request->getPost('pincode'),
+                'career_objective' => $this->request->getPost('career_objective'),
                 'profile_image' => $new_profile_file ?? '',
                 'signature' => $new_signature_file ?? '',
             ];
