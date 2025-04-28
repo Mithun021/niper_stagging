@@ -26,7 +26,16 @@
     .resume-summery h5{
         margin-bottom: 10px;
         color: #00366d;
-        border-bottom: 1px solid #00366d;
+        border-bottom: 2px solid #00366d;
+    }
+    table{
+        width: 100%;
+        border-collapse: collapse;
+    }
+    table, th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
     }
 </style>
 
@@ -51,6 +60,20 @@
             <div class="resume-summery">
                 <h5>Career Objective</h5>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque fugiat odit eligendi, blanditiis eveniet iste quisquam nostrum ad quidem omnis ex pariatur numquam quae hic porro repellendus odio perferendis vitae!</p>
+            </div>
+            <div class="resume-summery">
+                <h5>Academic Details</h5>
+                <table>
+                    <tr>
+                        <td>Degree Type</td>
+                        <td>Board/Institute Name</td>
+                        <td>Subjects Studied</td>
+                        <td>Marks Type</td>
+                        <td>Marks Obtained</td>
+                        <td>Result Declaration Date</td>
+                        <td>Date of Degree</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
