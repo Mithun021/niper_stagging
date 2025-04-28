@@ -39,7 +39,7 @@
         padding: 8px;
         text-align: left;
     }
-    .justify-div .parciate_div30{
+    .justify-div.parciate_div30{
         width: 30%;
     }
 </style>
