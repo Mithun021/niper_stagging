@@ -18,8 +18,7 @@
     }
     .resume-header img.header-profile-user{
         width: auto;
-        height: 200px;
-        border-radius: 50%;
+        height: 160px;
     }
 </style>
 
