@@ -22,6 +22,9 @@
         justify-content: space-between;
         align-items: center;
     }
+    .justify-div p{
+        width: 30%;
+    }
 
     .resume-header img.header-profile-user {
         width: auto;
