@@ -7,6 +7,7 @@ use App\Models\Employee_model;
 use App\Models\Program_department_mapping_model;
 use App\Models\State_city_model;
 use App\Models\Student_academic_details_model;
+use App\Models\Student_achievement_model;
 use App\Models\Student_book_chapter_model;
 use App\Models\Student_bookchapter_author_model;
 use App\Models\Student_copyright_author_model;
@@ -544,11 +545,38 @@ class StudentController extends BaseController
 
     public function achievement_details()
     {
+        $sessionData = session()->get('loggedStudentData');
+        if ($sessionData) {
+            $loggedstudentId = $sessionData['loggedstudentId'];
+        }
+        $student_achievement_model = new Student_achievement_model();
         $data = ['title' =>'Achievements Details'];
         if ($this->request->is('get')) {
-        return view('student/achievement-details',$data);
+            $data['student_acchievement'] = $student_achievement_model->getByStudent($loggedstudentId);
+            return view('student/achievement-details',$data);
         }else  if ($this->request->is('post')) {
-            
+            $upload_file = $this->request->getFile('file_upload');
+            if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
+                $upload_file_new_name = 'student' . $upload_file->getRandomName();
+                $upload_file->move(ROOTPATH . 'public/admin/uploads/achievements', $upload_file_new_name);
+            } else {
+                $upload_file_new_name = "";
+            }
+            $data = [
+                'student_id' => $loggedstudentId,
+                'title' => $this->request->getVar('achievement_title'),
+                'description' => $this->request->getVar('description'),
+                'award_level' => $this->request->getVar('award_level'),
+                'award_date' => $this->request->getVar('award_date'),
+                'agency_name' => $this->request->getVar('awarded_agency'),
+                'upload_file' => $upload_file_new_name,
+            ];
+            $result = $student_achievement_model->add($data);
+            if ($result === true) {
+                return redirect()->to('student/achievement-details')->with('status', '<div class="alert alert-success" role="alert">Achievement details added successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
         }
     }
 

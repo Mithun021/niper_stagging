@@ -5,7 +5,7 @@
     {
         protected $table         = 'student_achievements';
         protected $primaryKey    = 'id';
-        protected $allowedFields = ['title','description', 'upload_file', 'student_name', 'department_id', 'course_id', 'supervisor_id', 'award_date', 'agency_name', 'upload_by'];
+        protected $allowedFields = ['student_id','title','description', 'upload_file','award_level', 'student_name', 'department_id', 'course_id', 'supervisor_id', 'award_date', 'agency_name', 'upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
@@ -25,6 +25,9 @@
                 $result = $this->orderBy('id','asc')->findAll();
             }
             return $result;
+        }
+        public function getByStudent($id){
+            return $this->where('student_id',$id)->findAll();
         }
     }
 ?>
