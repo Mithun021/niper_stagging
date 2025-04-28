@@ -14,7 +14,7 @@
                         <?= session()->getFlashdata('status') ?>
                     <?php endif; ?>
                     <div class="form-group">
-                        <label for="skills" class="form-label">Skills</label>
+                        <span for="skills" class="form-span">Skills</span>
                         <input type="text" class="form-control" id="skills" name="skills" placeholder="Enter your skills">
                     </div>
                     <div class="form-group">
@@ -36,7 +36,7 @@
                         <?= session()->getFlashdata('status') ?>
                     <?php endif; ?>
                     <div class="form-group">
-                        <label for="skills" class="form-label">Area Interest</label>
+                        <span for="skills" class="form-span">Area Interest</span>
                         <input type="text" class="form-control" id="area_interest" name="area_interest" placeholder="Enter your insterest">
                     </div>
                     <div class="form-group">
@@ -58,7 +58,7 @@
                         <?= session()->getFlashdata('status') ?>
                     <?php endif; ?>
                     <div class="form-group">
-                        <label for="skills" class="form-label">Language</label>
+                        <span for="skills" class="form-span">Language</span>
                         <input type="text" class="form-control" id="language" name="language" placeholder="Englis,Hindi...">
                     </div>
                     <div class="form-group">
@@ -80,7 +80,7 @@
                         <?= session()->getFlashdata('status') ?>
                     <?php endif; ?>
                     <div class="form-group">
-                        <label for="skills" class="form-label">Hobbies</label>
+                        <span for="skills" class="form-span">Hobbies</span>
                         <input type="text" class="form-control" id="hobbies" name="hobbies" placeholder="Cricket, Football...">
                     </div>
                     <div class="form-group">
