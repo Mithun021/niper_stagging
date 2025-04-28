@@ -9,7 +9,7 @@
                 <h4 class="card-title m-0">Add Skills</h4>
             </div>
             <form action="<?= base_url() ?>student/student-skills" method="post" enctype="multipart/form-data">
-                <div class="card-body">
+                <div class="card-body p-1">
                     <?php if (session()->getFlashdata('status')): ?>
                         <?= session()->getFlashdata('status') ?>
                     <?php endif; ?>
@@ -31,7 +31,7 @@
                 <h4 class="card-title m-0">Area of Interest</h4>
             </div>
             <form action="<?= base_url() ?>student/student-area-interest" method="post" enctype="multipart/form-data">
-                <div class="card-body">
+                <div class="card-body p-1">
                     <?php if (session()->getFlashdata('status')): ?>
                         <?= session()->getFlashdata('status') ?>
                     <?php endif; ?>
@@ -53,7 +53,7 @@
                 <h4 class="card-title m-0">Language</h4>
             </div>
             <form action="<?= base_url() ?>student/student-language" method="post" enctype="multipart/form-data">
-                <div class="card-body">
+                <div class="card-body p-1">
                     <?php if (session()->getFlashdata('status')): ?>
                         <?= session()->getFlashdata('status') ?>
                     <?php endif; ?>
@@ -75,7 +75,7 @@
                 <h4 class="card-title m-0">Hobbies</h4>
             </div>
             <form action="<?= base_url() ?>student/student-hobbies" method="post" enctype="multipart/form-data">
-                <div class="card-body">
+                <div class="card-body p-1">
                     <?php if (session()->getFlashdata('status')): ?>
                         <?= session()->getFlashdata('status') ?>
                     <?php endif; ?>

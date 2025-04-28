@@ -22,6 +22,7 @@ use App\Models\Student_profile_achievement_model;
 use App\Models\Student_prog_dept_mapping_model;
 use App\Models\Student_publication_author_model;
 use App\Models\Student_publication_model;
+use App\Models\Student_skills_model;
 
 class StudentController extends BaseController
 {
@@ -44,6 +45,24 @@ class StudentController extends BaseController
     {
         $data = ['title' =>'Student Resume Details'];
         return view('student/resume-details',$data);
+    }
+
+    public function student_skills(){
+        $sessionData = session()->get('loggedStudentData');
+        if ($sessionData) {
+            $loggedstudentId = $sessionData['loggedstudentId'];
+        }
+        $student_skills_model = new Student_skills_model();
+        $data = [
+            'student_id' => $loggedstudentId,
+            'skills' => $this->request->getPost('skills'),
+        ];
+        $result = $student_skills_model->add($data);
+        if ($result === true) {
+            return redirect()->to('student/resume-details')->with('status', '<div class="alert alert-success" role="alert">Skills details added successfully.</div>');
+        } else {
+            return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+        }
     }
 
     public function personal_details()

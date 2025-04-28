@@ -267,6 +267,10 @@ $routes->group('student',['filter'=>'studentLogin'], static function($routes){
 
     $routes->get('student-profile', 'student\StudentController::student_profile');
     $routes->get('resume-details', 'student\StudentController::resume_details');
+    $routes->post('student-skills', 'student\AuthController::student_skills');
+    $routes->post('student-area-interest', 'student\AuthController::student_area_interest');
+    $routes->post('student-language', 'student\AuthController::student_language');
+    $routes->post('student-hobbies', 'student\AuthController::student_hobbies');
     $routes->match(['get','post'],'personal-details', 'student\StudentController::personal_details');
     $routes->match(['get','post'],'academic-details', 'student\StudentController::academic_details');
     $routes->get('delete-academic-details/(:num)', 'student\StudentController::delete_academic_details/$1');
