@@ -27,7 +27,7 @@
         width: 30%;
         text-align: left;
     }
-    .justify-50 p {
+    .justify-div50 p {
         width: 50%;
         text-align: left;
     }
