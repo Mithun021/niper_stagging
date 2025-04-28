@@ -34,7 +34,7 @@
 
     .resume-header img.header-profile-user {
         width: auto;
-        height: 150px;
+        height: 130px;
     }
 
     .resume-summery {
