@@ -273,8 +273,8 @@
                 <h5>Personal Details</h5>
                 <div class="resume-content-box">
                     <div class="justify-div50">
-                        <p><b>Skills : </b></p>
-                        <p><b>Area of Interest : </b></p>
+                        <p>Skills :</p>
+                        <p>Area of Interest :</p>
                     </div>
                 </div>
             </div>
