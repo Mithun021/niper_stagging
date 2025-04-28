@@ -273,9 +273,42 @@
                 <h5>Personal Details</h5>
                 <div class="resume-content-box">
                     <div class="justify-div50">
-                        <p>Skills :</p>
-                        <p>Area of Interest :</p>
+                        <p>Father's Name :</p>
+                        <p>Mother's Name :</p>
                     </div>
+                    <div class="justify-div50">
+                        <p>Date of Birth :</p>
+                        <p>Blood Group :</p>
+                    </div>
+                    <div class="justify-div50">
+                        <p>Offical Email ID :</p>
+                        <p>Gender :</p>
+                    </div>
+                    <div class="justify-div50">
+                        <p>Permanent Address :</p>
+                        <p>Correspondence Address :</p>
+                    </div>
+                    <div class="justify-div50">
+                        <p>Category :</p>
+                        <p>Religion :</p>
+                    </div>
+                    <div class="justify-div50">
+                        <p>Department :</p>
+                        <p>Course :</p>
+                    </div>
+                    <div class="justify-div50">
+                        <p>Semester :</p>
+                        <p>Batch :</p>
+                    </div>
+                    <div class="justify-div50">
+                        <p>State :</p>
+                        <p>City :</p>
+                    </div>
+                    <div class="justify-div50">
+                        <p>Pincode :</p>
+                    </div>
+
+                    <p>Signature:</p>
                 </div>
             </div>
 
