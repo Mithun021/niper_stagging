@@ -271,6 +271,12 @@ $routes->group('student',['filter'=>'studentLogin'], static function($routes){
     $routes->post('student-area-interest', 'student\StudentController::student_area_interest');
     $routes->post('student-language', 'student\StudentController::student_language');
     $routes->post('student-hobbies', 'student\StudentController::student_hobbies');
+
+    $routes->get('delete-skills/(:num)', 'student\StudentController::delete_skills/$1');
+    $routes->get('delete-area-interest/(:num)', 'student\StudentController::delete_area_interest/$1');
+    $routes->get('delete-language/(:num)', 'student\StudentController::delete_language/$1');
+    $routes->get('delete-hobbies/(:num)', 'student\StudentController::delete_hobbies/$1');
+
     $routes->match(['get','post'],'personal-details', 'student\StudentController::personal_details');
     $routes->match(['get','post'],'academic-details', 'student\StudentController::academic_details');
     $routes->get('delete-academic-details/(:num)', 'student\StudentController::delete_academic_details/$1');

@@ -136,6 +136,68 @@ class StudentController extends BaseController
         }
     }
 
+
+    public function delete_skills($id){
+        $student_skills_model = new Student_skills_model();
+        $studentData = $student_skills_model->get($id);
+        if ($studentData) {
+            $result = $student_skills_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('student/resume-details')->with('status', '<div class="alert alert-success" role="alert">Skills details deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
+        } else {
+            return redirect()->to('student/resume-details')->with('status', '<div class="alert alert-danger" role="alert">Skills details not found.</div>');
+        }
+    }
+
+    public function delete_area_interest($id){
+        $student_area_interest_model = new Student_area_interest_model();
+        $studentData = $student_area_interest_model->get($id);
+        if ($studentData) {
+            $result = $student_area_interest_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('student/resume-details')->with('status', '<div class="alert alert-success" role="alert">Area Interest details deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
+        } else {
+            return redirect()->to('student/resume-details')->with('status', '<div class="alert alert-danger" role="alert">Area Interest details not found.</div>');
+        }
+    }
+
+    public function delete_language($id){
+        $student_language_model = new Student_language_model();
+        $studentData = $student_language_model->get($id);
+        if ($studentData) {
+            $result = $student_language_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('student/resume-details')->with('status', '<div class="alert alert-success" role="alert">Language details deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
+        } else {
+            return redirect()->to('student/resume-details')->with('status', '<div class="alert alert-danger" role="alert">Language details not found.</div>');
+        }
+    }
+
+    public function delete_hobbies($id){
+        $student_hobbies_model = new Student_hobbies_model();
+        $studentData = $student_hobbies_model->get($id);
+        if ($studentData) {
+            $result = $student_hobbies_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('student/resume-details')->with('status', '<div class="alert alert-success" role="alert">Hobbies details deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
+        } else {
+            return redirect()->to('student/resume-details')->with('status', '<div class="alert alert-danger" role="alert">Hobbies details not found.</div>');
+        }
+    }
+
+
     public function personal_details()
     {
         $employee_model = new Employee_model();
