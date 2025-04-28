@@ -106,14 +106,14 @@ $student_copyright_author_model = new Student_copyright_author_model();
                     <table class="table table-bordered" id="datatable-buttons">
                         <thead class="bg-light">
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Copyright Title</th>
-                                <th scope="col">Author Name</th>
-                                <th scope="col">Copyright Number</th>
-                                <th scope="col">Copyright Status</th>
-                                <th scope="col">Copyright Filing Date</th>
-                                <th scope="col">Copyright Grant Date</th>
-                                <th scope="col">File Upload</th>
+                                <td scope="col">#</td>
+                                <td scope="col">Copyright Title</td>
+                                <td scope="col">Author Name</td>
+                                <td scope="col">Copyright Number</td>
+                                <td scope="col">Copyright Status</td>
+                                <td scope="col">Copyright Filing Date</td>
+                                <td scope="col">Copyright Grant Date</td>
+                                <td scope="col">File Upload</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
