@@ -75,6 +75,17 @@
                     </tr>
                 </table>
             </div>
+            <div class="resume-summery">
+                <h5>PHD Details</h5>
+                <div class="justify-div">
+                    <h6>This is heading of details content</h6>
+                    <h6>Reg. Date : 25-Apr-2025</h6>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quasi quaerat sequi ad consectetur! Esse assumenda quo saepe tenetur, similique voluptates maxime facere amet eos ipsa autem adipisci facilis impedit!</p>
+                <p>Supervisor Name : </p>
+                <p>Status : </p>
+                <!-- SUbmit and Award date embed -->
+            </div>
         </div>
     </div>
 </div>
