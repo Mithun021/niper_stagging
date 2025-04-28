@@ -8,7 +8,7 @@
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title m-0"><?= $title ?></h4>
             </div>
-            <form action="<?= base_url() ?>student/experience-details" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url() ?>student/conference-workshop-details" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                     <?php if (session()->getFlashdata('status')): ?>
                         <?= session()->getFlashdata('status') ?>
@@ -69,18 +69,27 @@
                     <table class="table table-bordered" id="datatable-buttons">
                     <thead>
                             <tr>
-                                <td>Sl No</td>
-                                <td>Designation</td>
-                                <td>Name of Organization</td>
-                                <td>Organization Type</td>
-                                <td>Date of Joining</td>
-                                <td>Date of Relieving</td>
+                                <td>Conference/ Workshop Title</td>
+                                <td>Description</td>
+                                <td>Date of Conference/workshop</td>
+                                <td>Duration of Conference/ Workshop</td>
+                                <td>Paper details</td>
                                 <td>File Upload</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            
+                        <?php foreach ($student_data as $value): ?>
+                            <tr>
+                                <td><?= $value['conference_title'] ?></td>
+                                <td><?= $value['description'] ?></td>
+                                <td><?= date('d-m-Y', strtotime($copyright['conference_date'])) ?></td>
+                                <td><?= $value['conference_duration'] ?></td>
+                                <td><?= $value['paper_datils'] ?></td>
+                                <td><a href="<?= base_url() ?>public/admin/uploads/students/<?= $value['file_upload'] ?>" target="_blank">View File</a></td>
+                                <td><a href="<?= base_url() ?>student/delete-conference-workshop-details/<?= $value['id'] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                            </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>

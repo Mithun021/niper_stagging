@@ -10,6 +10,7 @@ use App\Models\Student_academic_details_model;
 use App\Models\Student_achievement_model;
 use App\Models\Student_book_chapter_model;
 use App\Models\Student_bookchapter_author_model;
+use App\Models\Student_conference_workshop_model;
 use App\Models\Student_copyright_author_model;
 use App\Models\Student_copyright_model;
 use App\Models\Student_experience_model;
@@ -483,18 +484,33 @@ class StudentController extends BaseController
         if ($sessionData) {
             $loggedstudentId = $sessionData['loggedstudentId'];
         }
-        $student_experience_model = new Student_experience_model();
+        $student_conference_workshop_model = new Student_conference_workshop_model();
         $data = ['title' =>'Conference/Workshop Details'];
         if ($this->request->is('get')) {
-            $data['student_experience'] = $student_experience_model->getByStudent($loggedstudentId);
+            $data['student_data'] = $student_conference_workshop_model->getByStudent($loggedstudentId);
             return view('student/conference-workshop-details',$data);
         }else  if ($this->request->is('post')) {
             $upload_file = $this->request->getFile('file_upload');
             if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
-                $upload_file_new_name = 'experience' . $upload_file->getRandomName();
+                $upload_file_new_name = 'conference' . $upload_file->getRandomName();
                 $upload_file->move(ROOTPATH . 'public/admin/uploads/students', $upload_file_new_name);
             } else {
                 $upload_file_new_name = "";
+            }
+            $data = [
+                'student_id' => $loggedstudentId,
+                'conference_title' => $this->request->getVar('conference_title'),
+                'description' => $this->request->getVar('description'),
+                'conference_date' => $this->request->getVar('conference_date'),
+                'conference_duration' => $this->request->getVar('conference_duration'),
+                'paper_datils' => $this->request->getVar('paper_datils'),
+                'file_upload' => $upload_file_new_name,
+            ];
+            $result = $student_conference_workshop_model->add($data);
+            if ($result === true) {
+                return redirect()->to('student/conference-workshop-details')->with('status', '<div class="alert alert-success" role="alert">Workshop/Conference details added successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
             }
         }
     }
