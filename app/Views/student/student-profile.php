@@ -255,6 +255,16 @@
                 </table>
             </div>
 
+            <div class="resume-summery">
+                <h5>Additional Details</h5>
+                <div class="resume-content-box">
+                    <p><b>Skills : </b></p>
+                    <p><b>Area of Interest : </b></p>
+                    <p><b>Language : </b></p>
+                    <p><b>Hobbies : </b></p>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
