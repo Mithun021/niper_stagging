@@ -1,6 +1,16 @@
 <?= $this->extend("student/stdlayouts/master") ?>
 <?= $this->section("student-content"); ?>
 
+<style>
+    .skills-list{
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
+
 <!-- start page title -->
 <div class="row">
     <div class="col-lg-12">
@@ -24,6 +34,14 @@
                     </div>
                 </div>
             </form>
+
+            <div class="resumt-list">
+                <div class="skills-list">
+                    <p>Example</p>
+                    <a href="#">X</a>
+                </div>
+            </div>
+
         </div>
     </div>
 

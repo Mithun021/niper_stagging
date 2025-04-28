@@ -46,7 +46,21 @@ class StudentController extends BaseController
     }
     public function resume_details()
     {
-        $data = ['title' =>'Student Resume Details'];
+        $student_skills_model = new Student_skills_model();
+        $student_hobbies_model = new Student_hobbies_model();
+        $student_area_interest_model = new Student_area_interest_model();
+        $student_language_model = new Student_language_model();
+        $sessionData = session()->get('loggedStudentData');
+        if ($sessionData) {
+            $loggedstudentId = $sessionData['loggedstudentId'];
+        }
+        $data = [
+            'title' =>'Student Resume Details',
+            'studentSkills' => $student_skills_model->getByStudent($loggedstudentId),
+            'studentHobbies' => $student_hobbies_model->getByStudent($loggedstudentId),
+            'studentAreaInterest' => $student_area_interest_model->getByStudent($loggedstudentId),
+            'studentLanguage' => $student_language_model->getByStudent($loggedstudentId),
+        ];
         return view('student/resume-details',$data);
     }
 
