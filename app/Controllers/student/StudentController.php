@@ -581,6 +581,24 @@ class StudentController extends BaseController
         }
     }
 
+    public function delete_achievement_details($id){
+        $student_achievement_model = new Student_profile_achievement_model();
+        $studentData = $student_achievement_model->get($id);
+        if ($studentData) {
+            if (file_exists("public/admin/uploads/students/" . $studentData['file_upload'])) {
+                unlink("public/admin/uploads/students/" . $studentData['file_upload']);
+            }
+            $result = $student_achievement_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('student/achievement-details')->with('status', '<div class="alert alert-success" role="alert">Achievement details deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
+        } else {
+            return redirect()->to('student/achievement-details')->with('status', '<div class="alert alert-danger" role="alert">Achievement details not found.</div>');
+        }
+    }
+
     public function experience_details()
     {
         $data = ['title' =>'Experience Details'];

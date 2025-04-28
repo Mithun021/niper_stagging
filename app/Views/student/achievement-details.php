@@ -73,14 +73,14 @@
                     <table class="table table-bordered" id="datatable-buttons">
                         <thead>
                             <tr>
-                                <th>Sl No</th>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Awarded Agency</th>
-                                <th>Award Level</th>
-                                <th>Award Date</th>
-                                <th>File Upload</th>
-                                <th>Action</th>
+                                <td>Sl No</td>
+                                <td>Title</td>
+                                <td>Description</td>
+                                <td>Awarded Agency</td>
+                                <td>Award Level</td>
+                                <td>Award Date</td>
+                                <td>File Upload</td>
+                                <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
