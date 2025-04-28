@@ -246,7 +246,6 @@
                 <h5>Experience Details</h5>
                 <table>
                     <tr>
-                        <td>Sl No</td>
                         <td>Designation</td>
                         <td>Name of Organization</td>
                         <td>Organization Type</td>
