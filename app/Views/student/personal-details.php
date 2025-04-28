@@ -213,10 +213,10 @@
                                 <input type="text" class="form-control form-control-sm" name="pincode" value="<?= $studentData['pincode'] ?>">
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-12">
                             <div class="form-group">
-                                <span>Career Objective</span>
-                                <textarea name="career_objective" class="form-control form-control-sm"></textarea>
+                                <span>Career Objective(max. 500 words)</span>
+                                <textarea name="career_objective" class="form-control form-control-sm" maxlength="500"></textarea>
                             </div>
                         </div>
                         <div class="col-lg-6">
