@@ -99,6 +99,7 @@
                     <h6>Reg. Date : 25-Apr-2025</h6>
                 </div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quasi quaerat sequi ad consectetur! Esse assumenda quo saepe tenetur, similique voluptates maxime facere amet eos ipsa autem adipisci facilis impedit!</p>
+                <br>
                 <p>Supervisor Name : </p>
                 <p>Status : </p>
                 <!-- SUbmit and Award date embed -->
