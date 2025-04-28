@@ -1,68 +1,69 @@
 <?= $this->extend("student/stdlayouts/master") ?>
-<?=  $this->section("student-content"); ?>
+<?= $this->section("student-content"); ?>
 
 <style>
-    #student-profile {
-        position: relative;
-        width: 100%;
-    }
-    p, h3, h4, h5, h6 {
+    p,
+    h3,
+    h4,
+    h5,
+    h6 {
         margin: 0px;
         padding: 0px;
     }
+
     .flex-div {
         display: flex;
         justify-content: flex-start;
+        /* align-items: center; */
     }
+
     .justify-div {
-        position: relative;
-        width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
+
     .resume-header img.header-profile-user {
         width: auto;
         height: 150px;
     }
+
     .resume-summery {
         margin-top: 20px;
     }
+
     .resume-summery h5 {
         margin-bottom: 10px;
         color: #00366d;
         border-bottom: 2px solid #00366d;
     }
+
     table {
         width: 100%;
         border-collapse: collapse;
     }
-    table, th, td {
+
+    table,
+    th,
+    td {
         border: 1px solid black;
         padding: 8px;
         text-align: left;
     }
-
-    /* Fix for parciate_div30 */
-    .parciate_div30 {
-        width: 30%;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
-    .parciate_div30 p {
-        margin: 0;
+    #width-full{
+        width: 100%;
+        background-color: red;
     }
 </style>
 
 <!-- start page title -->
 <div class="row">
     <div class="col-lg-12">
-        <div class="card card-body p-1" id="student-profile">
+        <div class="card card-body p-1">
             <div class="resume-header flex-div">
                 <div class="student-image">
                     <img class="header-profile-user" src="<?= base_url() ?>public/assets/image/avatar.png"
-                alt="Header Avatar">
+                        alt="Header Avatar">
                 </div>
                 <div class="student-personal-details">
                     <h4>MITHUN KUMAR</h4>
@@ -111,19 +112,21 @@
                     <h6>Punb Year : 2025</h6>
                 </div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quasi quaerat sequi ad consectetur! Esse assumenda quo saepe tenetur, similique voluptates maxime facere amet eos ipsa autem adipisci facilis impedit!</p>
-                <div class="justify-div parciate_div30">
-                    <p>Journal Name : </p>
-                    <p>Volume Number : </p>
-                    <p>Page Number</p>
-                </div>
-                <div class="justify-div parciate_div30">
-                    <p>Publication Type : </p>
-                    <p>ISSN no : </p>
-                    <p>ISBN no</p>
-                </div>
-                <div class="justify-div parciate_div30">
-                    <p>DOI Details : </p>
-                    <p>Impact Factor : </p>
+                <div id="width-full">
+                    <div class="justify-div parciate_div30">
+                        <p>Journal Name : </p>
+                        <p>Volume Number : </p>
+                        <p>Page Number</p>
+                    </div>
+                    <div class="justify-div parciate_div30">
+                        <p>Publication Type : </p>
+                        <p>ISSN no : </p>
+                        <p>ISBN no</p>
+                    </div>
+                    <div class="justify-div parciate_div30">
+                        <p>DOI Details : </p>
+                        <p>Impact Factor : </p>
+                    </div>
                 </div>
                 <p><b>Author Name : </b></p>
             </div>
