@@ -17,7 +17,7 @@
         /* align-items: center; */
     }
 
-    .justify-div {
+    .justify-div,.justify-div50 {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -25,6 +25,10 @@
 
     .justify-div p {
         width: 30%;
+        text-align: left;
+    }
+    .justify-50 p {
+        width: 50%;
         text-align: left;
     }
 
@@ -262,6 +266,16 @@
                     <p><b>Area of Interest : </b></p>
                     <p><b>Language : </b></p>
                     <p><b>Hobbies : </b></p>
+                </div>
+            </div>
+
+            <div class="resume-summery">
+                <h5>Personal Details</h5>
+                <div class="resume-content-box">
+                    <div class="justify-div50">
+                        <p><b>Skills : </b></p>
+                        <p><b>Area of Interest : </b></p>
+                    </div>
                 </div>
             </div>
 
