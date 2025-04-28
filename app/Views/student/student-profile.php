@@ -208,6 +208,23 @@
                 </div>
             </div>
 
+            <div class="resume-summery">
+                <h5>Copyright Details</h5>
+                <div class="resume-content-box">
+                    <h6>This is heading of details content</h6>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quasi quaerat sequi ad consectetur! Esse assumenda quo saepe tenetur, similique voluptates maxime facere amet eos ipsa autem adipisci facilis impedit!</p>
+                    <div class="justify-div">
+                        <p>Copyright Number : </p>
+                        <p>Copyright Status : </p>
+                    </div>
+                    <div class="justify-div">
+                        <p>Copyright Filing Date: </p>
+                        <p>Copyright Grant Date:</p> <!-- Show only when status granted -->
+                    </div>
+                    <p><b>Author Name : </b></p>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
