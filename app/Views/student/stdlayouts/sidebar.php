@@ -18,6 +18,7 @@
                 <li><a href="<?= base_url() ?>student/publication-details">Publication Details</a></li>
                 <li><a href="<?= base_url() ?>student/book-chapter-details">Book Chapter Details</a></li>
                 <li><a href="<?= base_url() ?>student/patent-details">Patent Details</a></li>
+                <li><a href="<?= base_url() ?>student/conference-workshop-details">Conference/Workshop Details</a></li>
                 <li><a href="<?= base_url() ?>student/copyright-details">Copyright Details</a></li>
                 <li><a href="<?= base_url() ?>student/achievement-details">Achievements Details</a></li>
                 <li><a href="<?= base_url() ?>student/experience-details">Experience Details</a></li>

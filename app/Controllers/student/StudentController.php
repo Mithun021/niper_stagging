@@ -477,6 +477,28 @@ class StudentController extends BaseController
         }
     }
 
+    public function conference_workshop_details()
+    {
+        $sessionData = session()->get('loggedStudentData');
+        if ($sessionData) {
+            $loggedstudentId = $sessionData['loggedstudentId'];
+        }
+        $student_experience_model = new Student_experience_model();
+        $data = ['title' =>'Conference/Workshop Details'];
+        if ($this->request->is('get')) {
+            $data['student_experience'] = $student_experience_model->getByStudent($loggedstudentId);
+            return view('student/conference-workshop-details',$data);
+        }else  if ($this->request->is('post')) {
+            $upload_file = $this->request->getFile('file_upload');
+            if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
+                $upload_file_new_name = 'experience' . $upload_file->getRandomName();
+                $upload_file->move(ROOTPATH . 'public/admin/uploads/students', $upload_file_new_name);
+            } else {
+                $upload_file_new_name = "";
+            }
+        }
+    }
+
     public function copyright_details()
     {
         $sessionData = session()->get('loggedStudentData');
