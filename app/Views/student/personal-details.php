@@ -213,6 +213,12 @@
                                 <input type="text" class="form-control form-control-sm" name="pincode" value="<?= $studentData['pincode'] ?>">
                             </div>
                         </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <span>Career Objective</span>
+                                <textarea name="career_objective" class="form-control form-control-sm"></textarea>
+                            </div>
+                        </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span>Upload Profile Image <span class="text-danger">*</span></span>
