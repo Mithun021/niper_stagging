@@ -191,6 +191,23 @@
                 </div>
             </div>
 
+            <div class="resume-summery">
+                <h5>Conference/Workshop Details</h5>
+                <div class="resume-content-box">
+                    <div class="justify-div">
+                        <div>
+                            <h6>This is heading of details content</h6>
+                        </div>
+                        <h6>Date : 25-Apr-2025</h6>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quasi quaerat sequi ad consectetur! Esse assumenda quo saepe tenetur, similique voluptates maxime facere amet eos ipsa autem adipisci facilis impedit!</p>
+                    <div class="justify-div">
+                        <p>Duration of Conference/ Workshop : </p>
+                        <p>Paper details : </p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
