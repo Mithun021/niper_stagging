@@ -36,7 +36,7 @@
                         <div class="w-100 d-block bg-white shadow-lg rounded my-5">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="p-5">
+                                    <div class="p-2">
                                         <h1 class="h5 mb-1">Reset Password</h1>
                                         <p class="text-muted mb-4">Enter your email address and we'll send you an email with instructions to reset your password.</p>
                                         <form>
