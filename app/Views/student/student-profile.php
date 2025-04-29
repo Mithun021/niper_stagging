@@ -95,7 +95,7 @@ $student_publication_author_model = new Student_publication_author_model();
         padding-right: 30px;
         font-weight: 500;
         margin-bottom: 15px;
-
+        color: #cf1c7e;
     }
     .normal-flex h6{
         width: 300px;
