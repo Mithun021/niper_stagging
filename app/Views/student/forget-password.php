@@ -31,7 +31,7 @@
 <div>
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-5">
+                <div class="col-md-5 col-12">
                     <div class="d-flex align-items-center min-vh-100">
                         <div class="w-100 d-block bg-white shadow-lg rounded my-5">
                             <div class="row">
