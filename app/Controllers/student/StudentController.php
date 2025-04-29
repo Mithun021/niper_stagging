@@ -37,10 +37,16 @@ class StudentController extends BaseController
 
     public function student_profile()
     {
-        
+        $student_model = new Student_model();
+
+        $sessionData = session()->get('loggedStudentData');
+        if ($sessionData) {
+            $loggedstudentId = $sessionData['loggedstudentId'];
+        }
         $data = ['title' =>'Student Profile'];
         if ($this->request->is('get')) {
-        return view('student/student-profile',$data);
+            $data['studentData'] = $student_model->get($loggedstudentId);
+            return view('student/student-profile',$data);
         }else  if ($this->request->is('post')) {
             
         }

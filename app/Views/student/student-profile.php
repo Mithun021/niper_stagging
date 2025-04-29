@@ -76,8 +76,12 @@
         <div class="card card-body p-1">
             <div class="resume-header flex-div">
                 <div class="student-image">
-                    <img class="header-profile-user" src="<?= base_url() ?>public/assets/image/avatar.png"
+                    <?php if (!empty($studentData['profile_image']) && file_exists('public/admin/uploads/students/' . $studentData['profile_image'])): ?>
+                        <img src="<?= base_url() ?>public/admin/uploads/students/<?= $studentData['profile_image'] ?>" alt="" class="header-profile-user">
+                    <?php else: ?>
+                        <img class="header-profile-user" src="<?= base_url() ?>public/assets/image/avatar.png"
                         alt="Header Avatar">
+                    <?php endif; ?>
                 </div>
                 <div class="student-personal-details">
                     <h4>MITHUN KUMAR</h4>
