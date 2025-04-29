@@ -37,6 +37,9 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="p-5">
+                                        <?php if (session()->getFlashdata('status')): ?>
+                                            <?= session()->getFlashdata('status') ?>
+                                        <?php endif; ?>
                                         <div class="text-center mb-5">
                                             <a href="<?= base_url() ?>" class="text-dark font-size-22 font-family-secondary">
                                             <img src="<?= base_url() ?>public/assets/image/logo.jpg" alt="" height="90">
