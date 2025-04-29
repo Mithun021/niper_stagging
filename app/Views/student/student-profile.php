@@ -96,6 +96,9 @@ $student_publication_author_model = new Student_publication_author_model();
         font-weight: 500;
 
     }
+    .normal-flex h6{
+        width: 300px;
+    }
 </style>
 
 <!-- start page title -->
