@@ -62,6 +62,11 @@
         padding: 8px;
         text-align: left;
     }
+    th{
+        font-size: 12px;
+        font-weight: 600;
+        color: #000;
+    }
     .resume-content-box{
         margin-bottom: 10px;
     }
