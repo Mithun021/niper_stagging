@@ -9,6 +9,9 @@ $student_publication_author_model = new Student_publication_author_model();
 
 use App\Models\Student_bookchapter_author_model;
 $student_bookchapter_author_model = new Student_bookchapter_author_model();
+
+use App\Models\Student_patent_author_model;
+$student_patent_author_model = new Student_patent_author_model();
 ?>
 
 <style>
@@ -270,31 +273,35 @@ $student_bookchapter_author_model = new Student_bookchapter_author_model();
             </div>
             <?php } ?>
 
+            <?php if ($patentstudentData): ?>
             <div class="resume-summery">
                 <h5>Patent Details</h5>
+            <?php foreach ($patentstudentData as $row): ?>
                 <div class="resume-content-box">
                     <div class="justify-div">
                         <div>
-                            <h6>This is heading of details content</h6>
+                            <h6><?= $row['patent_title'] ?></h6>
                         </div>
-                        <h6>Filing Year : 2025</h6>
+                        <h6>Filing Year : <?= date('d-m-Y', strtotime($row['patent_filing_date'])) ?></h6>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quasi quaerat sequi ad consectetur! Esse assumenda quo saepe tenetur, similique voluptates maxime facere amet eos ipsa autem adipisci facilis impedit!</p>
+                    <div><?= $row['description'] ?></div>
                     <div class="justify-div">
-                        <p>Patent Number : </p>
-                        <p>Patent Status : </p>
+                        <p>Patent Number : <?= $row['patent_number'] ?></p>
+                        <p>Patent Status : <?= $row['patent_status'] ?></p>
                     </div>
-                    <div class="justify-div">
-                        <p>Patent Filing Date : </p>
+                    <div class="justify-div">>
                         <p>Patent Grant Date</p> <!-- Show only when status granted -->
+                        <p>Patent Level : <?= $row['patent_level'] ?></p>
+                        <p>Fund Generated : <?= $row['fund_generated'] ?></p>
                     </div>
                     <div class="justify-div">
-                        <p>Patent Level : </p>
-                        <p>Fund Generated : </p>
+                        
                     </div>
                     <p><b>Author Name : </b></p>
                 </div>
+            <?php endforeach; ?>
             </div>
+            <?php endif; ?>
 
             <div class="resume-summery">
                 <h5>Conference/Workshop Details</h5>
