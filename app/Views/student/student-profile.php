@@ -175,7 +175,7 @@ $student_publication_author_model = new Student_publication_author_model();
                 <h5>Publication Details</h5>
             <?php foreach ($pubstudentData as $pub): ?>
                 <div class="resume-content-box">
-                    <div class="justify-div">
+                    <div class="justify-div50">
                         <div>
                             <h6><?= $pub['publication_title'] ?></h6>
                         </div>
