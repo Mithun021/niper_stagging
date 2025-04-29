@@ -77,5 +77,32 @@ use App\Models\Student_model;
             return $this->response->setJSON($answers);
         }
 
+        public function testmail(){
+            $email = \Config\Services::email();
+    
+            // Set SMTP configuration (if not configured globally)
+            $email->setFrom('noreply@hptuexam.com', 'Vocman Inida');
+            $email->setTo('mithunkr79038@gmail.com');
+            $email->setSubject('Test Emai');
+    
+            // HTML message with embedded image
+            $email->setMessage('
+                <html>
+                <body>
+                    <h1>Welcome to NIPER</h1>
+                    <p>Kese ho dosto:</p>
+                    <p>Thank you for choosing us!</p>
+                </body>
+                </html>
+            ');
+    
+            // Send the email
+            if ($email->send()) {
+                echo "Email with logo successfully sent!";
+            } else {
+                echo "Failed to send email. Debug: " . $email->printDebugger(['headers']);
+            }
+        }
+
     }
 ?>

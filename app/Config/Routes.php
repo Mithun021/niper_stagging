@@ -16,6 +16,8 @@ $routes->post('getCourseByDepartment', 'UniversalController::getCourseByDepartme
 $routes->post('getFacilitySection', 'UniversalController::getFacilitySection');
 $routes->post('get-answer-options', 'UniversalController::get_answer_options');
 $routes->post('findcity', 'UniversalController::findcity');
+$routes->post('testmail', 'UniversalController::testmail');
+
 
 $routes->match(['get','post'],'admin/login', 'AdminControllers::adminLogin');
 $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
