@@ -292,7 +292,7 @@
                     </div>
                     <div class="justify-div50">
                         <p>Offical Email ID : <?= $studentData['official_mail'] ?></p>
-                        <p>Gender :</p>
+                        <p>Gender : <?= $studentData['gender'] ?></p>
                     </div>
                     <div class="justify-div50">
                         <p>Permanent Address : <?= $studentData['permanent_address'] ?></p>
@@ -303,12 +303,12 @@
                         <p>Religion : <?= $studentData['relegion'] ?> <?php echo $studentData['other_relegion'] ?></p>
                     </div>
                     <div class="justify-div50">
-                        <p>Department :</p>
-                        <p>Course :</p>
+                        <p>Department : <?= $studentDataCourses['department_name'] ?></p>
+                        <p>Course : <?= $studentDataCourses['program_name'] ?></p>
                     </div>
                     <div class="justify-div50">
-                        <p>Semester :</p>
-                        <p>Batch :</p>
+                        <p>Semester : <?= $studentDataCourses['semester'] ?></p>
+                        <p>Batch : <?= $batchName['batch_start']." - ".$batchName['batch_end'] ?></p>
                     </div>
                     <div class="justify-div50">
                         <p>State : <?= $studentData['state'] ?></p>

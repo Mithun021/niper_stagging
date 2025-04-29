@@ -37,7 +37,9 @@ class StudentController extends BaseController
 
     public function student_profile()
     {
+        $student_prog_dept_mapping_model = new Student_prog_dept_mapping_model();
         $student_model = new Student_model();
+        $program_department_mapping_model = new Program_department_mapping_model();
 
         $sessionData = session()->get('loggedStudentData');
         if ($sessionData) {
@@ -46,6 +48,15 @@ class StudentController extends BaseController
         $data = ['title' =>'Student Profile'];
         if ($this->request->is('get')) {
             $data['studentData'] = $student_model->get($loggedstudentId);
+            $data['studentDataCourses'] = $student_prog_dept_mapping_model->getStudentProgramDeptData($loggedstudentId);
+            if ($data['studentDataCourses']) {
+                $data['batchName'] = $program_department_mapping_model->getBatchName(
+                    $data['studentDataCourses']['program_id'],
+                    $data['studentDataCourses']['department_id']
+                );
+            } else {
+                $data['batchName'] = null;
+            }
             return view('student/student-profile',$data);
         }else  if ($this->request->is('post')) {
             
