@@ -482,11 +482,10 @@ $student_copyright_author_model = new Student_copyright_author_model();
                 </div>
             </div>
 
+        </div>
 
-            <div class="print-button">
-                <button type="button" class="btn btn-primary" onclick="PrintMe('print_profile')">Print</button>
-            </div>
-
+        <div class="print-button">
+            <button type="button" class="btn btn-primary" onclick="PrintMe('print_profile')">Print</button>
         </div>
     </div>
 </div>
