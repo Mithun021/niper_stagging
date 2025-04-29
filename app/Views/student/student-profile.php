@@ -84,7 +84,7 @@
                     <?php endif; ?>
                 </div>
                 <div class="student-personal-details">
-                    <h4>MITHUN KUMAR</h4>
+                    <h4><?= $studentData['first_name']. " " . $studentData['middle_name']. " " . $studentData['last_name'] ?></h4>
                     <p>Email :</p>
                     <p>Phone :</p>
                     <p>Father's Name :</p>
