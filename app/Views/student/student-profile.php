@@ -117,7 +117,7 @@ $student_copyright_author_model = new Student_copyright_author_model();
 <!-- start page title -->
 <div class="row">
     <div class="col-lg-12">
-        <div class="card card-body p-1">
+        <div class="card card-body p-1" id="print_profile">
             <div class="resume-header flex-div">
                 <div class="student-image">
                     <?php if (!empty($studentData['profile_image']) && file_exists('public/admin/uploads/students/' . $studentData['profile_image'])): ?>
@@ -482,8 +482,39 @@ $student_copyright_author_model = new Student_copyright_author_model();
                 </div>
             </div>
 
+
+            <div class="print-button">
+                <button type="button" class="btn btn-primary" onclick="PrintMe('print_profile')">Print</button>
+            </div>
+
         </div>
     </div>
 </div>
+
+<script language="javascript">
+function PrintMe(DivID) {
+var disp_setting="toolbar=yes,location=no,";
+disp_setting+="directories=yes,menubar=yes,";
+disp_setting+="scrollbars=yes,width=auto, height=600, left=100, top=25";
+   var content_vlue = document.getElementById(DivID).innerHTML;
+   var docprint=window.open("","",disp_setting);
+   docprint.document.open();
+   docprint.document.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"');
+   docprint.document.write('"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
+   docprint.document.write('<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">');
+   docprint.document.write('<head><title>Internal Marks</title>');
+   docprint.document.write('<style type="text/css">body{ margin:0px;');
+   docprint.document.write('font-family:verdana,Arial;color:#000;');
+   docprint.document.write('font-family:Verdana, Geneva, sans-serif; font-size:12px;}');
+   docprint.document.write('p, h3, h4, h5, h6 { margin: 0px; padding: 0px; } .flex-div { display: flex; justify-content: flex-start; /* align-items: center; */ } .justify-div,.justify-div50 { display: flex; justify-content: space-between; align-items: center; } .justify-div p { width: 30%; text-align: left; } .justify-div50 p { width: 50%; text-align: left; } .justify-div h6{ color: #cf1c7e; } .resume-header img.header-profile-user { width: auto; height: 130px; } .student-personal-details{ margin-left: 10px; } .resume-summery { margin-top: 20px; } .resume-summery h5 { margin-bottom: 10px; color: #00366d; border-bottom: 2px solid #00366d; } table { width: 100%; border-collapse: collapse; } table, th, td { border: 1px solid black; padding: 8px; text-align: left; } th{ font-size: 12px; font-weight: 500; color: #000; } .resume-content-box{ margin-bottom: 10px; } .signature{ margin-top: 60px; } .content-box{ margin-bottom: 20px; } .normal-flex{ display: flex; justify-content: space-between; align-items: center; } .normal-flex div{ padding-right: 30px; font-weight: 500; margin-bottom: 15px; color: #cf1c7e; } .normal-flex h6{ width: 300px; text-align: right; color: #cf1c7e; }');
+   docprint.document.write('a{color:#000;text-decoration:none;} </style>');
+   docprint.document.write('</head><body onLoad="self.print()">');
+   docprint.document.write(content_vlue);
+   docprint.document.write('</body></html>');
+   docprint.document.close();
+   docprint.focus();
+ 
+}
+</script>
 
 <?= $this->endSection() ?>
