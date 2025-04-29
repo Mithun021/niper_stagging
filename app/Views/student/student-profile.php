@@ -283,24 +283,24 @@
                 <h5>Personal Details</h5>
                 <div class="resume-content-box">
                     <div class="justify-div50">
-                        <p>Father's Name :</p>
-                        <p>Mother's Name :</p>
+                        <p>Father's Name : <?= $studentData['father_name'] ?></p>
+                        <p>Mother's Name : <?= $studentData['mother_name'] ?></p>
                     </div>
                     <div class="justify-div50">
-                        <p>Date of Birth :</p>
-                        <p>Blood Group :</p>
+                        <p>Date of Birth : <?= $studentData['date_of_birth'] ?></p>
+                        <p>Blood Group : <?= $studentData['blood_group'] ?></p>
                     </div>
                     <div class="justify-div50">
-                        <p>Offical Email ID :</p>
+                        <p>Offical Email ID : <?= $studentData['official_mail'] ?></p>
                         <p>Gender :</p>
                     </div>
                     <div class="justify-div50">
-                        <p>Permanent Address :</p>
-                        <p>Correspondence Address :</p>
+                        <p>Permanent Address : <?= $studentData['permanent_address'] ?></p>
+                        <p>Correspondence Address : <?= $studentData['correspondence_address'] ?></p>
                     </div>
                     <div class="justify-div50">
-                        <p>Category :</p>
-                        <p>Religion :</p>
+                        <p>Category : <?= $studentData['category'] ?></p>
+                        <p>Religion : <?= $studentData['relegion'] ?> <?php echo $studentData['other_relegion'] ?></p>
                     </div>
                     <div class="justify-div50">
                         <p>Department :</p>
@@ -311,16 +311,18 @@
                         <p>Batch :</p>
                     </div>
                     <div class="justify-div50">
-                        <p>State :</p>
-                        <p>City :</p>
+                        <p>State : <?= $studentData['state'] ?></p>
+                        <p>City : <?= $studentData['city'] ?></p>
                     </div>
                     <div class="justify-div50">
-                        <p>Pincode :</p>
+                        <p>Pincode : <?= $studentData['pincode'] ?></p>
                     </div>
 
                     <div class="signature">
                         <p>Signature:</p>
-
+                        <?php if (!empty($studentData['signature']) && file_exists('public/admin/uploads/students/' . $studentData['signature'])){ ?>
+                           <img src="<?= base_url() ?>public/admin/uploads/students/<?= $studentData['signature'] ?>" alt="" height="40px">
+                        <?php } ?>
                     </div>
                 </div>
             </div>
