@@ -290,7 +290,9 @@ $student_patent_author_model = new Student_patent_author_model();
                         <p>Patent Status : <?= $row['patent_status'] ?></p>
                     </div>
                     <div class="justify-div">
-                        <p>Patent Grant Date : <?= $phd['patent_grant_date'] ?></p>
+                        <?php if(!empty($row['patent_grant_date']) && $row['patent_grant_date'] != '0000-00-00') {
+                            echo '<p>Patent Grant Date : '.$row['patent_grant_date'].'</p>';
+                        } ?>
                         <p>Patent Level : <?= $row['patent_level'] ?></p>
                         <p>Fund Generated : <?= $row['fund_generated'] ?></p>
                     </div>
