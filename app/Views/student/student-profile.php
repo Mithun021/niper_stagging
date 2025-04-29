@@ -37,6 +37,9 @@ $employee_model = new Employee_model();
         width: 50%;
         text-align: left;
     }
+    .justify-div h6{
+        color: #cf1c7e;
+    }
 
     .resume-header img.header-profile-user {
         width: auto;
