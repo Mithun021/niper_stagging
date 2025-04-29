@@ -38,11 +38,11 @@
                                 <div class="col-lg-12">
                                     <div class="p-4">
                                         <h1 class="h5 mb-1">Reset Password</h1>
-                                        <p class="text-muted mb-4">Enter your email address and we'll send you an email with instructions to reset your password.</p>
+                                        <p class="text-muted mb-4">Enter your enrollment no or email address and we'll send you an email with instructions to reset your password.</p>
                                         <form method="post" action="<?= base_url() ?>forget-password">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail">Email Address</label>
-                                                <input type="email" class="form-control form-control-user" name="student_email" placeholder="Email Address" required minlength="3">
+                                                <input type="text" class="form-control form-control-user" name="student_id" placeholder="Email Address" required minlength="3">
                                             </div>
                                             <button type="submit" class="btn btn-success btn-block waves-effect waves-light"> Forget Password </button>
                                             

@@ -39,12 +39,21 @@ class AuthController extends BaseController
     }
 
     public function forget_password(){
+        $student_model = new Student_model();
         $data = ['title' => 'Forget Password'];
         if ($this->request->is('get')) {
             return view('student/forget-password', $data);
         } else if ($this->request->is('post')) {
-
+            $student_id = $this->request->getPost('student_id');
+            $student = $student_model->where('personal_mail', $student_id)->orWhere('enrollment_no',$student_id)->first();
+            if ($student) {
+                $email = $student['personal_mail'];
+                helper('text');
+               echo $token = random_string('alnum', 64);
+                $expiry = date("Y-m-d H:i:s", strtotime('+10 minutes'));
+            }
         }
+        return redirect()->back()->with('error', 'Email not found');
         
     }
     public function reset_password(){
