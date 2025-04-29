@@ -243,7 +243,7 @@ $student_bookchapter_author_model = new Student_bookchapter_author_model();
                         </div>
                         <h6>Pub. Year : <?= $pub['publication_year'] ?></h6>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quasi quaerat sequi ad consectetur! Esse assumenda quo saepe tenetur, similique voluptates maxime facere amet eos ipsa autem adipisci facilis impedit!</p>
+                    <div><?= $pub['publication_description'] ?></div>
                     <div class="justify-div">
                         <p>Publisher Name : <?= $pub['publisher_name'] ?></p>
                         <p>Volume Number : <?= $pub['volume_number'] ?></p>
