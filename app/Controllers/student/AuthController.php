@@ -105,7 +105,20 @@ class AuthController extends BaseController
         if ($this->request->is('get')) {
             return view('student/reset-password', $data);
         }else if ($this->request->is('post')) {
+            $password = $this->request->getPost('new_password');
+            $user = $student_model->where('reset_token', $id)->first();
 
+            if ($user && strtotime($user['reset_token_expiry']) > time()) {
+                $student_model->update($user['id'], [
+                    'password' => password_hash($password, PASSWORD_DEFAULT),
+                    'reset_token' => null,
+                    'reset_token_expiry' => null
+                ]);
+
+                return redirect()->to('login')->with('message', 'Password updated successfully.');
+            }
+
+            return redirect()->to('forgot-password')->with('error', 'Token expired or invalid.');
         }
     }
 
