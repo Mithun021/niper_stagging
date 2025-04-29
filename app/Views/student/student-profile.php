@@ -64,7 +64,7 @@
     }
     th{
         font-size: 12px;
-        font-weight: 600;
+        font-weight: 500;
         color: #000;
     }
     .resume-content-box{
