@@ -66,7 +66,7 @@ class AuthController extends BaseController
                 ]);
 
                 // Send Email
-                $reset_link = base_url("student/reset-password/$token");
+                $reset_link = base_url("reset-password/$token");
 
                 $email_service = \Config\Services::email();
                 $email_service->setTo($email);
