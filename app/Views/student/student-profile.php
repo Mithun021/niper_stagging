@@ -79,6 +79,9 @@ $employee_model = new Employee_model();
     .signature{
         margin-top: 60px;
     }
+    .content-box{
+        margin-bottom: 20px;
+    }
 </style>
 
 <!-- start page title -->
@@ -141,6 +144,7 @@ $employee_model = new Employee_model();
             <div class="resume-summery">
                 <h5>PHD Details</h5>
             <?php foreach ($phdstudentData as $phd): ?>
+                <div class="content-box">
                 <div class="justify-div">
                     <h6><?= $phd['phd_title'] ?></h6>
                     <h6>Reg. Date : <?= $phd['registration_date'] ?></h6>
@@ -157,6 +161,7 @@ $employee_model = new Employee_model();
                     echo '<p>Award Date : '.$phd['award_date'].'</p>';
                 } ?>
                 <!-- SUbmit and Award date embed -->
+                </div>
             <?php endforeach; ?>
             </div>
             <?php } ?>
