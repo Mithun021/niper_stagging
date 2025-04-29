@@ -41,21 +41,43 @@ class AuthController extends BaseController
     public function forget_password(){
         $student_model = new Student_model();
         $data = ['title' => 'Forget Password'];
+
         if ($this->request->is('get')) {
             return view('student/forget-password', $data);
-        } else if ($this->request->is('post')) {
+        } 
+        
+        if ($this->request->is('post')) {
             $student_id = $this->request->getPost('student_id');
-            $student = $student_model->where('personal_mail', $student_id)->orWhere('enrollment_no',$student_id)->first();
+            $student = $student_model->where('personal_mail', $student_id)
+                                    ->orWhere('enrollment_no', $student_id)
+                                    ->first();
+
             if ($student) {
                 $email = $student['personal_mail'];
                 helper('text');
-               echo $token = random_string('alnum', 64);
+                $token = random_string('alnum', 64);
                 $expiry = date("Y-m-d H:i:s", strtotime('+10 minutes'));
+
+                // $student_model->update($student['id'], [
+                //     'reset_token' => $token,
+                //     'reset_token_expiry' => $expiry
+                // ]);
+
+                // $reset_link = base_url("student/reset-password/$token");
+
+                return redirect()->back()->with('status', 
+                    '<div class="alert alert-success" role="alert">Password reset link sent to your email.</div>');
             }
+
+            return redirect()->back()->with('status', 
+                '<div class="alert alert-danger" role="alert">Email or Enrollment Number not found.</div>');
         }
-        return redirect()->back()->with('status', '<div class="alert alert-danger" role="alert">Email not found</div>');
-        
+
+        // In case of unexpected method
+        return redirect()->back()->with('status', 
+            '<div class="alert alert-danger" role="alert">Invalid request.</div>');
     }
+
     public function reset_password(){
         $data = ['title' => 'Reset Password'];
         if ($this->request->is('get')) {

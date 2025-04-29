@@ -44,8 +44,8 @@
                                         <p class="text-muted mb-4">Enter your enrollment no or email address and we'll send you an email with instructions to reset your password.</p>
                                         <form method="post" action="<?= base_url() ?>forget-password">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail">Email Address</label>
-                                                <input type="text" class="form-control form-control-user" name="student_id" placeholder="Email Address" required minlength="3">
+                                                <label for="exampleInputEmail">Email / Enrollment no</label>
+                                                <input type="text" class="form-control form-control-user" name="student_id" placeholder="Email / Enrollment no" required minlength="3">
                                             </div>
                                             <button type="submit" class="btn btn-success btn-block waves-effect waves-light"> Forget Password </button>
                                             
