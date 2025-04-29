@@ -8,7 +8,7 @@ class PlacementController extends BaseController
     {
         $data = ['title' => 'Company Details'];
         if($this->request->is('get')) {
-            return view('admin/placement/company-details',$data);
+            return view('admin/placement/placement-company-details',$data);
         } else if($this->request->is('post')){
             
         }
@@ -28,7 +28,7 @@ class PlacementController extends BaseController
     {
         $data = ['title' => 'Job Details'];
         if($this->request->is('get')) {
-            return view('admin/placement/job-details',$data);
+            return view('admin/placement/placement-job-details',$data);
         } else if($this->request->is('post')){
             
         }

@@ -140,9 +140,9 @@
             <a href="javascript: void(0);" class="has-arrow waves-effect"><i
                     class="mdi mdi-table-merge-cells"></i><span>Placement</span></a>
             <ul class="sub-menu" aria-expanded="false">
-                <li><a href="<?= base_url() ?>admin/company-details">Company Details</a></li>
+                <li><a href="<?= base_url() ?>admin/placement-company-details">Company Details</a></li>
                 <li><a href="<?= base_url() ?>admin/company-contact-person">Company Contact Person</a></li>
-                <li><a href="<?= base_url() ?>admin/job-details">Job Details</a></li>
+                <li><a href="<?= base_url() ?>admin/placement-job-details">Job Details</a></li>
                 <li><a href="<?= base_url() ?>admin/result-details">Result Details</a></li>
                 <li><a href="<?= base_url() ?>admin/job-student-mapping">Job student Mapping</a></li>
                 <li><a href="<?= base_url() ?>admin/job-result-stage-mapping">Job Result Stage Mapping</a></li>

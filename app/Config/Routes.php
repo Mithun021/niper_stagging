@@ -213,9 +213,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->post('upload_student_csv', 'StudentController::upload_student_csv');
 
     // Placement Routes ----------------------
-    $routes->match(['get', 'post'], 'company-details', 'PlacementController::company_details');
+    $routes->match(['get', 'post'], 'placement-company-details', 'PlacementController::company_details');
     $routes->match(['get', 'post'], 'company-contact-person', 'PlacementController::company_contact_person');
-    $routes->match(['get', 'post'], 'job-details', 'PlacementController::job_details');
+    $routes->match(['get', 'post'], 'placement-job-details', 'PlacementController::job_details');
     $routes->match(['get', 'post'], 'result-details', 'PlacementController::result_details');
     $routes->match(['get', 'post'], 'job-student-mapping', 'PlacementController::job_student_mapping');
     $routes->match(['get', 'post'], 'job-result-stage-mapping', 'PlacementController::job_result_stage_mapping');
