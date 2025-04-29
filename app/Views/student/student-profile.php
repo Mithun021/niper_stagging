@@ -358,22 +358,26 @@ $student_copyright_author_model = new Student_copyright_author_model();
             </div>
             <?php endif; ?>
 
+            <?php if ($student_acchievement): ?>
             <div class="resume-summery">
                 <h5>Achievements Details</h5>
+                <?php foreach ($student_acchievement as $achievement): ?>
                 <div class="resume-content-box">
                     <div class="justify-div">
                         <div>
-                            <h6>This is heading of details content</h6>
+                            <h6><?= $achievement['achievement_title'] ?></h6>
                         </div>
-                        <h6>Date : 25-Apr-2025</h6>
+                        <h6>Date : <?= date('d-m-Y', strtotime($achievement['award_date'])) ?></h6>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quasi quaerat sequi ad consectetur! Esse assumenda quo saepe tenetur, similique voluptates maxime facere amet eos ipsa autem adipisci facilis impedit!</p>
+                    <div><?= $achievement['description'] ?></div>
                     <div class="justify-div">
-                        <p>Awarded Agency : </p>
-                        <p>Award Level : </p>
+                        <p>Awarded Agency : <?= $achievement['awarded_agency'] ?></p>
+                        <p>Award Level : <?= $achievement['award_level'] ?></p>
                     </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
+            <?php endif; ?>
 
             <div class="resume-summery">
                 <h5>Experience Details</h5>
