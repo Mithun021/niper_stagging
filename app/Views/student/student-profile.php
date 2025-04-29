@@ -93,6 +93,7 @@ $student_publication_author_model = new Student_publication_author_model();
     }
     .normal-flex div{
         padding-right: 30px;
+        font-weight: 500;
 
     }
 </style>
