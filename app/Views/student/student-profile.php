@@ -1,5 +1,11 @@
 <?= $this->extend("student/stdlayouts/master") ?>
 <?= $this->section("student-content"); ?>
+<?php
+
+use App\Models\Employee_model;
+
+$employee_model = new Employee_model();
+?>
 
 <style>
     p,
@@ -129,18 +135,26 @@
                 </table>
             </div>
             <?php } ?>
+
+            <?php if ($phdstudentData){ ?>
+
             <div class="resume-summery">
                 <h5>PHD Details</h5>
+            <?php foreach ($studentData as $phd): ?>
                 <div class="justify-div">
-                    <h6>This is heading of details content</h6>
-                    <h6>Reg. Date : 25-Apr-2025</h6>
+                    <h6><?= $phd['phd_title'] ?></h6>
+                    <h6>Reg. Date : <?= $phd['registration_date'] ?></h6>
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quasi quaerat sequi ad consectetur! Esse assumenda quo saepe tenetur, similique voluptates maxime facere amet eos ipsa autem adipisci facilis impedit!</p>
+                <div><?= $phd['description'] ?></div>
                 <br>
-                <p>Supervisor Name : </p>
-                <p>Status : </p>
+                <p>Supervisor Name : <?php $emp = $employee_model->get($phd['supervisor_name']); if($emp) { echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></p>
+                <p>Status : <?= $phd['current_status'] ?></p>
+                <?php if($phd['submission_date']){ echo '<p> Submission Date : '.$phd['submission_date'].'</p>'; } ?>
+                <?php if($phd['award_date']){ echo '<p>Award Date : '.$phd['award_date'].'</p>'; } ?>
                 <!-- SUbmit and Award date embed -->
+            <?php endforeach; ?>
             </div>
+            <?php } ?>
 
             <div class="resume-summery">
                 <h5>Publication Details</h5>
