@@ -149,8 +149,13 @@ $employee_model = new Employee_model();
                 <br>
                 <p>Supervisor Name : <?php $emp = $employee_model->get($phd['supervisor_name']); if($emp) { echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></p>
                 <p>Status : <?= $phd['current_status'] ?></p>
-                <?php if($phd['submission_date']){ echo '<p> Submission Date : '.$phd['submission_date'].'</p>'; } ?>
-                <?php if($phd['award_date']){ echo '<p>Award Date : '.$phd['award_date'].'</p>'; } ?>
+                <?php if(!empty($phd['submission_date']) && $phd['submission_date'] != '0000-00-00') {
+                    echo '<p>Submission Date : '.$phd['submission_date'].'</p>';
+                } ?>
+
+                <?php if(!empty($phd['award_date']) && $phd['award_date'] != '0000-00-00') {
+                    echo '<p>Award Date : '.$phd['award_date'].'</p>';
+                } ?>
                 <!-- SUbmit and Award date embed -->
             <?php endforeach; ?>
             </div>
