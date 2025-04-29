@@ -303,12 +303,12 @@
                         <p>Religion : <?= $studentData['relegion'] ?> <?php echo $studentData['other_relegion'] ?></p>
                     </div>
                     <div class="justify-div50">
-                        <p>Department : <?= $studentDataCourses['department_name'] ?></p>
-                        <p>Course : <?= $studentDataCourses['program_name'] ?></p>
+                        <p>Department : <?= $studentDataCourses['department_name'] ?? '' ?></p>
+                        <p>Course : <?= $studentDataCourses['program_name'] ?? '' ?></p>
                     </div>
                     <div class="justify-div50">
-                        <p>Semester : <?= $studentDataCourses['semester'] ?></p>
-                        <p>Batch : <?= $batchName['batch_start']." - ".$batchName['batch_end'] ?></p>
+                        <p>Semester : <?= $studentDataCourses['semester'] ?? '' ?></p>
+                        <p>Batch : <?= ($batchName['batch_start'] ?? '') . " - " . ($batchName['batch_end'] ?? '') ?></p>
                     </div>
                     <div class="justify-div50">
                         <p>State : <?= $studentData['state'] ?></p>
