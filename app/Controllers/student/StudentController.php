@@ -37,11 +37,6 @@ class StudentController extends BaseController
 
     public function student_profile()
     {
-        $student_skills_model = new Student_skills_model();
-        $student_hobbies_model = new Student_hobbies_model();
-        $student_area_interest_model = new Student_area_interest_model();
-        $student_language_model = new Student_language_model();
-        $student_prog_dept_mapping_model = new Student_prog_dept_mapping_model();
         $student_model = new Student_model();
         $program_department_mapping_model = new Program_department_mapping_model();
         $student_academic_details_model = new Student_academic_details_model();
@@ -53,6 +48,11 @@ class StudentController extends BaseController
         $student_copyright_model = new Student_copyright_model();
         $student_achievement_model = new Student_profile_achievement_model();
         $student_experience_model = new Student_experience_model();
+        $student_skills_model = new Student_skills_model();
+        $student_hobbies_model = new Student_hobbies_model();
+        $student_area_interest_model = new Student_area_interest_model();
+        $student_language_model = new Student_language_model();
+        $student_prog_dept_mapping_model = new Student_prog_dept_mapping_model();
 
         $sessionData = session()->get('loggedStudentData');
         if ($sessionData) {

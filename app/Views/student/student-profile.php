@@ -128,7 +128,7 @@ $student_copyright_author_model = new Student_copyright_author_model();
                     <?php endif; ?>
                 </div>
                 <div class="student-personal-details">
-                    
+                    <h4><?= $studentData['first_name']. " " . $studentData['middle_name']. " " . $studentData['last_name'] ?></h4>
                     <p>Email : <?= $studentData['personal_mail'] ?></p>
                     <p>Phone : <?= $studentData['phone_no'] ?></p>
                     <p>Father's Name : <?= $studentData['father_name'] ?></p>
