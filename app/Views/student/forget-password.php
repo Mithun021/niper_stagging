@@ -31,7 +31,7 @@
 <div>
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-5 col-12">
+                <div class="col-md-6 col-12">
                     <div class="d-flex align-items-center min-vh-100">
                         <div class="w-100 d-block bg-white shadow-lg rounded my-5">
                             <div class="row">
@@ -39,7 +39,7 @@
                                     <div class="p-4">
                                         <h1 class="h5 mb-1">Reset Password</h1>
                                         <p class="text-muted mb-4">Enter your email address and we'll send you an email with instructions to reset your password.</p>
-                                        <form>
+                                        <form method="post" action="<?= base_url() ?>forget-password">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail">Email Address</label>
                                                 <input type="email" class="form-control form-control-user" name="student_email" placeholder="Email Address" required minlength="3">
