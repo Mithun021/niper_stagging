@@ -195,22 +195,22 @@ $student_publication_author_model = new Student_publication_author_model();
                         <div>
                             <?= $pub['publication_title'] ?>
                         </div>
-                        <h6>Pub Year : 2025</h6>
+                        <h6>Pub. Year : <?= $pub['publication_year'] ?></h6>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quasi quaerat sequi ad consectetur! Esse assumenda quo saepe tenetur, similique voluptates maxime facere amet eos ipsa autem adipisci facilis impedit!</p>
+                    <div><?= $pub['description'] ?></div>
                     <div class="justify-div">
-                        <p>Journal Name : </p>
-                        <p>Volume Number : </p>
-                        <p>Page Number</p>
-                    </div>
-                    <div class="justify-div">
-                        <p>Publication Type : </p>
-                        <p>ISSN no : </p>
-                        <p>ISBN no</p>
+                        <p>Journal Name : <?= $pub['journal_name'] ?></p>
+                        <p>Volume Number : <?= $pub['volume_number'] ?></p>
+                        <p>Page Number : <?= $pub['page_number'] ?></p>
                     </div>
                     <div class="justify-div">
-                        <p>DOI Details : </p>
-                        <p>Impact Factor : </p>
+                        <p>Publication Type : <?= $pub['publication_type'] ?></p>
+                        <p>ISSN no : <?= $pub['issn_no'] ?></p>
+                        <p>ISBN no : <?= $pub['isbn_no'] ?></p>
+                    </div>
+                    <div class="justify-div">
+                        <p>DOI Details : <?= $pub['doi'] ?></p>
+                        <p>Impact Factor : <?= $pub['impact_factor'] ?></p>
                     </div>
                     <p><b>Author Name : </b>
                     <?php $authors = $student_publication_author_model->getByPublication($pub['id']); ?>
