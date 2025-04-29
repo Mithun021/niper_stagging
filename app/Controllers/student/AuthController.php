@@ -122,7 +122,7 @@ class AuthController extends BaseController
                 // Send confirmation email
                 $email_service = \Config\Services::email();
                 $email_service->setTo($user['personal_mail']);
-                $email_service->setFrom('noreply@hptuexam.com', 'NIPER Portal');
+                $email_service->setFrom('noreply@hptuexam.com', 'NIPER Raebareli');
                 $email_service->setSubject('Password Changed Successfully');
                 $email_service->setMessage("
                     <p>Dear {$user['first_name']},</p>
