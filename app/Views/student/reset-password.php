@@ -40,7 +40,7 @@
                                         <?php if (session()->getFlashdata('status')): ?>
                                             <?= session()->getFlashdata('status') ?>
                                         <?php endif; ?> 
-                                        <h1 class="h5 mb-1">Create New Password</h1>
+                                        <h1 class="h5 mb-1 text-center">Create New Password</h1>
                                         <form method="post" action="<?= base_url() ?>reset-password/<?= $token ?>">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail">New Password</label>
