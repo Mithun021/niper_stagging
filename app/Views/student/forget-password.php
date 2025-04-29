@@ -30,12 +30,12 @@
  
 <div>
         <div class="container">
-            <div class="row">
-                <div class="col-12">
+            <div class="row justify-content-center">
+                <div class="col-6">
                     <div class="d-flex align-items-center min-vh-100">
                         <div class="w-100 d-block bg-white shadow-lg rounded my-5">
                             <div class="row">
-                                <div class="col-lg-7">
+                                <div class="col-lg-12">
                                     <div class="p-5">
                                         <div class="text-center mb-5">
                                             <a href="index.html" class="text-dark font-size-22 font-family-secondary">
