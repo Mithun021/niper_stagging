@@ -55,9 +55,9 @@
                                         </form>
 
                                         <div class="row mt-4">
-                                            <!-- <div class="col-12 text-center">
-                                                <p class="text-muted mb-2"><a href="pages-recoverpw.html" class="text-muted font-weight-medium ml-1">Forgot your password?</a></p>
-                                            </div> end col -->
+                                            <div class="col-12 text-center">
+                                                <p class="text-muted mb-2"><a href="<?= base_url() ?>forget-password" class="text-muted font-weight-medium ml-1">Forgot your password?</a></p>
+                                            </div>
                                         </div>
                                         <!-- end row -->
                                     </div> <!-- end .padding-5 -->
