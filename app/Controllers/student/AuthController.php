@@ -100,7 +100,8 @@ class AuthController extends BaseController
 
 
     public function reset_password($id){
-        $data = ['title' => 'Reset Password'];
+        $student_model = new Student_model();
+        $data = ['title' => 'Reset Password','token' => $id];
         if ($this->request->is('get')) {
             return view('student/reset-password', $data);
         }else if ($this->request->is('post')) {

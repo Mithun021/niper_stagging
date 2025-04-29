@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title> Student Login</title>
+    <title> Student Forget Password</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="NIPER" name="description" />
     <meta content="Dcode MAterials" name="author" />
@@ -40,7 +40,7 @@
                                         <?php if (session()->getFlashdata('status')): ?>
                                             <?= session()->getFlashdata('status') ?>
                                         <?php endif; ?> 
-                                        <h1 class="h5 mb-1">Reset Password</h1>
+                                        <h1 class="h5 mb-1">Forget Password</h1>
                                         <p class="text-muted mb-4">Enter your enrollment no or email address and we'll send you an email with instructions to reset your password.</p>
                                         <form method="post" action="<?= base_url() ?>forget-password">
                                             <div class="form-group">

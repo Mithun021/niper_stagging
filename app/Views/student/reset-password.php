@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title> Student Login</title>
+    <title> Update Password</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="NIPER" name="description" />
     <meta content="Dcode MAterials" name="author" />
@@ -30,35 +30,25 @@
  
 <div>
         <div class="container">
-            <div class="row">
-                <div class="col-12">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-12">
                     <div class="d-flex align-items-center min-vh-100">
                         <div class="w-100 d-block bg-white shadow-lg rounded my-5">
                             <div class="row">
-                                <div class="col-lg-7">
-                                    <div class="p-5">
-                                        <div class="text-center mb-5">
-                                            <a href="index.html" class="text-dark font-size-22 font-family-secondary">
-                                                <i class="mdi mdi-alpha-x-circle"></i> <b>XELORO</b>
-                                            </a>
-                                        </div>
-                                        <h1 class="h5 mb-1">Reset Password</h1>
-                                        <p class="text-muted mb-4">Enter your email address and we'll send you an email with instructions to reset your password.</p>
-                                        <form>
+                                <div class="col-lg-12">
+                                    <div class="p-4">
+                                        <?php if (session()->getFlashdata('status')): ?>
+                                            <?= session()->getFlashdata('status') ?>
+                                        <?php endif; ?> 
+                                        <h1 class="h5 mb-1">Create New Password</h1>
+                                        <form method="post" action="<?= base_url() ?>reset-password/<?= $token ?>">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail">Email Address</label>
-                                                <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
+                                                <label for="exampleInputEmail">New Password</label>
+                                                <input type="text" class="form-control form-control-user" name="new_password" placeholder="******" required minlength="3">
                                             </div>
-                                            <a href="" class="btn btn-success btn-block waves-effect waves-light"> Log In </a>
+                                            <button type="submit" class="btn btn-success btn-block waves-effect waves-light"> Update Password </button>
                                             
                                         </form>
-
-                                        <div class="row mt-5">
-                                            <div class="col-12 text-center">
-                                                <p class="text-muted">Already have account?  <a href="pages-login.html" class="text-muted font-weight-medium ml-1"><b>Sign In</b></a></p>
-                                                <p class="text-muted mb-0">Don't have an account? <a href="pages-register.html" class="text-muted font-weight-medium ml-1"><b>Sign Up</b></a></p>
-                                            </div> <!-- end col -->
-                                        </div>
                                         <!-- end row -->
                                     </div> <!-- end .padding-5 -->
                                 </div> <!-- end col -->
