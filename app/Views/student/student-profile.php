@@ -302,22 +302,26 @@ $student_patent_author_model = new Student_patent_author_model();
             </div>
             <?php endif; ?>
 
+            <?php if ($confstudent_data): ?>
             <div class="resume-summery">
                 <h5>Conference/Workshop Details</h5>
+                <?php foreach ($confstudent_data as $value): ?>
                 <div class="resume-content-box">
                     <div class="justify-div">
                         <div>
-                            <h6>This is heading of details content</h6>
+                            <h6><?= $value['conference_title'] ?></h6>
                         </div>
-                        <h6>Date : 25-Apr-2025</h6>
+                        <h6>Date : <?= date('d-m-Y', strtotime($value['conference_date'])) ?></h6>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quasi quaerat sequi ad consectetur! Esse assumenda quo saepe tenetur, similique voluptates maxime facere amet eos ipsa autem adipisci facilis impedit!</p>
+                    <div><?= $value['description'] ?></div>
                     <div class="justify-div">
-                        <p>Duration of Conference/ Workshop : </p>
-                        <p>Paper details : </p>
+                        <p>Duration of Conference/ Workshop : <?= $value['conference_duration'] ?></p>
+                        <p>Paper details : <?= $value['paper_datils'] ?></p>
                     </div>
                 </div>
+                <?php endforeach; ?>
             </div>
+            <?php endif; ?>
 
             <div class="resume-summery">
                 <h5>Copyright Details</h5>
