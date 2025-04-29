@@ -327,10 +327,10 @@ $student_copyright_author_model = new Student_copyright_author_model();
             </div>
             <?php endif; ?>
 
-            <?php if ($confstudent_data): ?>
+            <?php if ($copystudentData): ?>
             <div class="resume-summery">
                 <h5>Copyright Details</h5>
-                <?php foreach ($studentData as $key => $copyright): ?>
+                <?php foreach ($copystudentData as $key => $copyright): ?>
                 <div class="resume-content-box">
                     <h6><?= $copyright['copyright_title'] ?></h6>
                     <div><?= $copyright['description'] ?></div>
