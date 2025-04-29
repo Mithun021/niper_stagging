@@ -149,7 +149,7 @@
                 <li><a href="<?= base_url() ?>admin/student-result-mapping">Student Result Mapping </a></li>
                 <li><a href="<?= base_url() ?>admin/page-notification-details">Page Notification Details</a></li>
                 <li><a href="<?= base_url() ?>admin/page-section-details">Page Section Details</a></li>
-                <li><a href="<?= base_url() ?>admin/page-gallery">Page Gallery</a></li>
+                <li><a href="<?= base_url() ?>admin/placement-page-gallery">Page Gallery</a></li>
             </ul>
         </li>
 

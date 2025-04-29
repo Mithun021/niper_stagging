@@ -98,7 +98,7 @@ class PlacementController extends BaseController
     {
         $data = ['title' => 'Page Gallery'];
         if($this->request->is('get')) {
-            return view('admin/placement/Page Gallery',$data);
+            return view('admin/placement/placement-page-gallery',$data);
         } else if($this->request->is('post')){
             
         }

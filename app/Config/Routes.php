@@ -222,7 +222,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get', 'post'], 'student-result-mapping', 'PlacementController::student_result_mapping');
     $routes->match(['get', 'post'], 'page-notification-details', 'PlacementController::page_notification_details');
     $routes->match(['get', 'post'], 'page-section-details', 'PlacementController::page_section_details');
-    $routes->match(['get', 'post'], 'page-gallery', 'PlacementController::page_gallery');
+    $routes->match(['get', 'post'], 'placement-page-gallery', 'PlacementController::page_gallery');
 
     $routes->match(['get', 'post'], 'convocation', 'ConvocationControllers::convocation');
 
