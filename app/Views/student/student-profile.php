@@ -101,13 +101,13 @@
                 <h5>Academic Details</h5>
                 <table>
                     <tr>
-                        <td>Degree Type</td>
-                        <td>Board/Institute Name</td>
-                        <td>Subjects Studied</td>
-                        <td>Marks Type</td>
-                        <td>Marks Obtained</td>
-                        <td>Result Declaration Date</td>
-                        <td>Date of Degree</td>
+                        <th>Degree Type</th>
+                        <th>Board/Institute Name</th>
+                        <th>Subjects Studied</th>
+                        <th>Marks Type</th>
+                        <th>Marks Obtained</th>
+                        <th>Result Declaration Date</th>
+                        <th>Date of Degree</th>
                     </tr>
                 <?php foreach ($studentAcademicDetails as $detail): ?>
                     <tr>
