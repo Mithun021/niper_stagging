@@ -42,9 +42,9 @@
                                         <form>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail">Email Address</label>
-                                                <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
+                                                <input type="email" class="form-control form-control-user" name="student_email" placeholder="Email Address" required minlength="3">
                                             </div>
-                                            <a href="" class="btn btn-success btn-block waves-effect waves-light"> Log In </a>
+                                            <button type="submit" class="btn btn-success btn-block waves-effect waves-light"> Forget Password </button>
                                             
                                         </form>
 
