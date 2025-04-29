@@ -115,10 +115,10 @@ class AuthController extends BaseController
                     'reset_token_expiry' => null
                 ]);
 
-                return redirect()->to('stdlogin')->with('message', 'Password updated successfully.');
+                return redirect()->to('stdlogin')->with('status', '<div class="alert alert-success" role="alert">Password updated successfully.</div>');
             }
 
-            return redirect()->to('forgot-password')->with('error', 'Token expired or invalid.');
+            return redirect()->to('forgot-password')->with('status', '<div class="alert alert-danger" role="alert">Token expired or invalid.</div>');
         }
     }
 
