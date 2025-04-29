@@ -296,9 +296,6 @@ $student_patent_author_model = new Student_patent_author_model();
                         <p>Patent Level : <?= $row['patent_level'] ?></p>
                         <p>Fund Generated : <?= $row['fund_generated'] ?></p>
                     </div>
-                    <div class="justify-div">
-                        
-                    </div>
                     <p><b>Author Name : </b></p>
                 </div>
             <?php endforeach; ?>
