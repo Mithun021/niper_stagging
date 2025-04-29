@@ -53,7 +53,7 @@ class AuthController extends BaseController
                 $expiry = date("Y-m-d H:i:s", strtotime('+10 minutes'));
             }
         }
-        return redirect()->back()->with('error', 'Email not found');
+        return redirect()->back()->with('status', '<div class="alert alert-danger" role="alert">Email not found</div>');
         
     }
     public function reset_password(){

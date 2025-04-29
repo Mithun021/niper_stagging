@@ -37,6 +37,9 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="p-4">
+                                        <?php if (session()->getFlashdata('status')): ?>
+                                            <?= session()->getFlashdata('status') ?>
+                                        <?php endif; ?> 
                                         <h1 class="h5 mb-1">Reset Password</h1>
                                         <p class="text-muted mb-4">Enter your enrollment no or email address and we'll send you an email with instructions to reset your password.</p>
                                         <form method="post" action="<?= base_url() ?>forget-password">
