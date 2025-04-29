@@ -403,36 +403,7 @@ $student_copyright_author_model = new Student_copyright_author_model();
             </div>
             <?php endif; ?>
 
-            <div class="resume-summery">
-                <h5>Additional Details</h5>
-                <div class="resume-content-box">
-                <?php if (isset($studentSkills)) { ?> <p><b>Skills : </b>
-                    <?php foreach ($studentSkills as $skill){ ?>
-                        <?= $skill['skills']."," ?>
-                    <?php } ?>
-                </p>
-                <?php } ?>
-                <?php if (isset($studentAreaInterest)) { ?> <p><b>Area of Interest : </b>
-                    <?php foreach ($studentAreaInterest as $skill){ ?>
-                        <?= $skill['area_interest']."," ?>
-                    <?php } ?>
-                </p>
-                <?php } ?>
-                <?php if (isset($studentLanguage)) { ?> <p><b>Language : </b>
-                    <?php foreach ($studentLanguage as $skill){ ?>
-                        <?= $skill['language']."," ?>
-                    <?php } ?>
-                </p>
-                <?php } ?>
-                <?php if (isset($studentHobbies)) { ?> <p><b>Hobbies : </b>
-                    <?php foreach ($studentHobbies as $skill){ ?>
-                        <?= $skill['hobbies']."," ?>
-                    <?php } ?>
-                </p>
-                <?php } ?>
-                    
-                </div>
-            </div>
+            
 
             <div class="resume-summery">
                 <h5>Personal Details</h5>

@@ -37,6 +37,7 @@ class StudentController extends BaseController
 
     public function student_profile()
     {
+        $student_prog_dept_mapping_model = new Student_prog_dept_mapping_model();
         $student_model = new Student_model();
         $program_department_mapping_model = new Program_department_mapping_model();
         $student_academic_details_model = new Student_academic_details_model();
@@ -48,11 +49,6 @@ class StudentController extends BaseController
         $student_copyright_model = new Student_copyright_model();
         $student_achievement_model = new Student_profile_achievement_model();
         $student_experience_model = new Student_experience_model();
-        $student_skills_model = new Student_skills_model();
-        $student_hobbies_model = new Student_hobbies_model();
-        $student_area_interest_model = new Student_area_interest_model();
-        $student_language_model = new Student_language_model();
-        $student_prog_dept_mapping_model = new Student_prog_dept_mapping_model();
 
         $sessionData = session()->get('loggedStudentData');
         if ($sessionData) {
@@ -79,12 +75,6 @@ class StudentController extends BaseController
             $data['copystudentData'] = $student_copyright_model->getByStudent($loggedstudentId);
             $data['student_acchievement'] = $student_achievement_model->getByStudent($loggedstudentId);
             $data['student_experience'] = $student_experience_model->getByStudent($loggedstudentId);
-            $data = [
-            'studentSkills' => $student_skills_model->getByStudent($loggedstudentId),
-            'studentHobbies' => $student_hobbies_model->getByStudent($loggedstudentId),
-            'studentAreaInterest' => $student_area_interest_model->getByStudent($loggedstudentId),
-            'studentLanguage' => $student_language_model->getByStudent($loggedstudentId),
-        ];
 
             return view('student/student-profile',$data);
         }else  if ($this->request->is('post')) {
