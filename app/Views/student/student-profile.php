@@ -384,11 +384,11 @@ $student_copyright_author_model = new Student_copyright_author_model();
                 <h5>Experience Details</h5>
                 <table>
                     <tr>
-                        <td>Designation</td>
-                        <td>Name of Organization</td>
-                        <td>Organization Type</td>
-                        <td>Date of Joining</td>
-                        <td>Date of Relieving</td>
+                        <th>Designation</th>
+                        <th>Name of Organization</th>
+                        <th>Organization Type</th>
+                        <th>Date of Joining</th>
+                        <th>Date of Relieving</th>
                     </tr>
                     <?php foreach ($student_experience as $experience): ?>
                         <tr>
