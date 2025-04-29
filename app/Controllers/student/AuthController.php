@@ -38,14 +38,15 @@ class AuthController extends BaseController
         
     }
 
-    public function forget_password(){
+    public function forget_password()
+    {
         $student_model = new Student_model();
         $data = ['title' => 'Forget Password'];
 
         if ($this->request->is('get')) {
             return view('student/forget-password', $data);
-        } 
-        
+        }
+
         if ($this->request->is('post')) {
             $student_id = $this->request->getPost('student_id');
             $student = $student_model->where('personal_mail', $student_id)
@@ -58,25 +59,45 @@ class AuthController extends BaseController
                 $token = random_string('alnum', 64);
                 $expiry = date("Y-m-d H:i:s", strtotime('+10 minutes'));
 
-                // $student_model->update($student['id'], [
-                //     'reset_token' => $token,
-                //     'reset_token_expiry' => $expiry
-                // ]);
+                // Save token and expiry to DB
+                $student_model->update($student['id'], [
+                    'reset_token' => $token,
+                    'reset_token_expiry' => $expiry
+                ]);
 
-                // $reset_link = base_url("student/reset-password/$token");
+                // Send Email
+                $reset_link = base_url("student/reset-password/$token");
 
-                return redirect()->back()->with('status', 
-                    '<div class="alert alert-success" role="alert">Password reset link sent to your email.</div>');
+                $email_service = \Config\Services::email();
+                $email_service->setTo($email);
+                $email_service->setFrom('noreply@hptuexam.com', 'NIPER Raebareli');
+                $email_service->setSubject('Password Reset Request');
+                $email_service->setMessage("
+                    <p>Dear {$student['first_name']},</p>
+                    <p>You requested a password reset. Click the link below to reset your password. This link will expire in 10 minutes.</p>
+                    <p><a href='{$reset_link}'>{$reset_link}</a></p>
+                    <p>If you did not request this, please ignore this email.</p>
+                    <br>
+                    <p>Regards,<br>NIPER Team</p>
+                ");
+
+                if ($email_service->send()) {
+                    return redirect()->back()->with('status',
+                        '<div class="alert alert-success" role="alert">Reset link sent successfully to your email.</div>');
+                } else {
+                    return redirect()->back()->with('status',
+                        '<div class="alert alert-danger" role="alert">Failed to send email. Please try again later.</div>');
+                }
             }
 
-            return redirect()->back()->with('status', 
+            return redirect()->back()->with('status',
                 '<div class="alert alert-danger" role="alert">Email or Enrollment Number not found.</div>');
         }
 
-        // In case of unexpected method
-        return redirect()->back()->with('status', 
+        return redirect()->back()->with('status',
             '<div class="alert alert-danger" role="alert">Invalid request.</div>');
     }
+
 
     public function reset_password(){
         $data = ['title' => 'Reset Password'];
