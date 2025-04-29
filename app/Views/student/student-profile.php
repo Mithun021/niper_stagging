@@ -91,6 +91,10 @@ $student_publication_author_model = new Student_publication_author_model();
         justify-content: space-between;
         align-items: center;
     }
+    .normal-flex div{
+        padding-right: 30px;
+
+    }
 </style>
 
 <!-- start page title -->
@@ -182,7 +186,7 @@ $student_publication_author_model = new Student_publication_author_model();
                 <div class="resume-content-box">
                     <div class="normal-flex">
                         <div>
-                            <h6><?= $pub['publication_title'] ?></h6>
+                            <?= $pub['publication_title'] ?>
                         </div>
                         <h6>Pub Year : 2025</h6>
                     </div>
