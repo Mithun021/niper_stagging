@@ -379,6 +379,7 @@ $student_copyright_author_model = new Student_copyright_author_model();
             </div>
             <?php endif; ?>
 
+            <?php if ($student_experience): ?>
             <div class="resume-summery">
                 <h5>Experience Details</h5>
                 <table>
@@ -389,8 +390,18 @@ $student_copyright_author_model = new Student_copyright_author_model();
                         <td>Date of Joining</td>
                         <td>Date of Relieving</td>
                     </tr>
+                    <?php foreach ($student_experience as $experience): ?>
+                        <tr>
+                            <td><?= $experience['designation'] ?></td>
+                            <td><?= $experience['organization_name'] ?></td>
+                            <td><?= $experience['organization_type'] ?></td>
+                            <td><?= date('d-m-Y', strtotime($experience['joining_date'])) ?></td>
+                            <td><?= date('d-m-Y', strtotime($experience['releiving_date'])) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </table>
             </div>
+            <?php endif; ?>
 
             <div class="resume-summery">
                 <h5>Additional Details</h5>

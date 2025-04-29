@@ -48,6 +48,7 @@ class StudentController extends BaseController
         $student_conference_workshop_model = new Student_conference_workshop_model();
         $student_copyright_model = new Student_copyright_model();
         $student_achievement_model = new Student_profile_achievement_model();
+        $student_experience_model = new Student_experience_model();
 
         $sessionData = session()->get('loggedStudentData');
         if ($sessionData) {
@@ -73,7 +74,7 @@ class StudentController extends BaseController
             $data['confstudent_data'] = $student_conference_workshop_model->getByStudent($loggedstudentId);
             $data['copystudentData'] = $student_copyright_model->getByStudent($loggedstudentId);
             $data['student_acchievement'] = $student_achievement_model->getByStudent($loggedstudentId);
-            
+            $data['student_experience'] = $student_experience_model->getByStudent($loggedstudentId);
 
             return view('student/student-profile',$data);
         }else  if ($this->request->is('post')) {
