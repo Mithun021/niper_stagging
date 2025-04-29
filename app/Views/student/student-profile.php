@@ -89,7 +89,7 @@
                     <p>Phone : <?= $studentData['phone_no'] ?></p>
                     <p>Father's Name : <?= $studentData['father_name'] ?></p>
                     <p>Address : <?= $studentData['permanent_address'] ?></p>
-                    <p>LinkedIn : <?= $studentData['linkedin_id'] ?></p>
+                    <p>LinkedIn : <a href="<?= $studentData['linkedin_id'] ?>" target="_blank" rel="noopener noreferrer"><?= $studentData['linkedin_id'] ?></a></p>
                 </div>
             </div>
             <div class="resume-summery">
