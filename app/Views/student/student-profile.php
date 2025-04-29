@@ -197,7 +197,7 @@ $student_publication_author_model = new Student_publication_author_model();
                         </div>
                         <h6>Pub. Year : <?= $pub['publication_year'] ?></h6>
                     </div>
-                    <div><?= $pub['description'] ?></div>
+                    <div><?= $pub['publication_description'] ?></div>
                     <div class="justify-div">
                         <p>Journal Name : <?= $pub['journal_name'] ?></p>
                         <p>Volume Number : <?= $pub['volume_number'] ?></p>
