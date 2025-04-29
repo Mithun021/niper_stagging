@@ -170,10 +170,10 @@ $student_publication_author_model = new Student_publication_author_model();
             </div>
             <?php } ?>
 
-            <?php if ($phdstudentData){ ?>
+            <?php if ($pubstudentData){ ?>
             <div class="resume-summery">
                 <h5>Publication Details</h5>
-            <?php foreach ($phdstudentData as $pub): ?>
+            <?php foreach ($pubstudentData as $pub): ?>
                 <div class="resume-content-box">
                     <div class="justify-div">
                         <div>
