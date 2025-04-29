@@ -46,6 +46,7 @@ class StudentController extends BaseController
         $student_book_chapter_model = new Student_book_chapter_model();
         $student_patent_model = new Student_patent_model();
         $student_conference_workshop_model = new Student_conference_workshop_model();
+        $student_copyright_model = new Student_copyright_model();
 
         $sessionData = session()->get('loggedStudentData');
         if ($sessionData) {
@@ -69,6 +70,7 @@ class StudentController extends BaseController
             $data['bookstudentData'] = $student_book_chapter_model->getByStudent($loggedstudentId);
             $data['patentstudentData'] = $student_patent_model->getByStudent($loggedstudentId);
             $data['confstudent_data'] = $student_conference_workshop_model->getByStudent($loggedstudentId);
+            $data['copystudentData'] = $student_copyright_model->getByStudent($loggedstudentId);
             
 
             return view('student/student-profile',$data);

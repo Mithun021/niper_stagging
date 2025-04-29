@@ -12,6 +12,10 @@ $student_bookchapter_author_model = new Student_bookchapter_author_model();
 
 use App\Models\Student_patent_author_model;
 $student_patent_author_model = new Student_patent_author_model();
+
+use App\Models\Student_copyright_author_model;
+$student_copyright_author_model = new Student_copyright_author_model();
+
 ?>
 
 <style>
@@ -323,22 +327,36 @@ $student_patent_author_model = new Student_patent_author_model();
             </div>
             <?php endif; ?>
 
+            <?php if ($confstudent_data): ?>
             <div class="resume-summery">
                 <h5>Copyright Details</h5>
+                <?php foreach ($studentData as $key => $copyright): ?>
                 <div class="resume-content-box">
-                    <h6>This is heading of details content</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quasi quaerat sequi ad consectetur! Esse assumenda quo saepe tenetur, similique voluptates maxime facere amet eos ipsa autem adipisci facilis impedit!</p>
+                    <h6><?= $copyright['copyright_title'] ?></h6>
+                    <div><?= $copyright['description'] ?></div>
                     <div class="justify-div">
-                        <p>Copyright Number : </p>
-                        <p>Copyright Status : </p>
+                        <p>Copyright Number : <?= $copyright['copyright_number'] ?></p>
+                        <p>Copyright Status : <?= $copyright['copyright_status'] ?></p>
                     </div>
                     <div class="justify-div">
-                        <p>Copyright Filing Date: </p>
-                        <p>Copyright Grant Date:</p> <!-- Show only when status granted -->
+                        <p>Copyright Filing Date : <?= date('d-m-Y', strtotime($copyright['copyright_filing_date'])) ?></p>
+                        <?php if(!empty($copyright['copyright_grant_date']) && $copyright['copyright_grant_date'] != '0000-00-00') {
+                            echo '<p>Copyright Grant Date : '.$copyright['copyright_grant_date'].'</p>';
+                        } ?>
+                        
                     </div>
-                    <p><b>Author Name : </b></p>
+                    <p><b>Author Name : </b>
+                    <?php $authors = $student_copyright_author_model->getByPaCopyright($copyright['id']); ?>
+                    <?php if ($authors): ?>
+                        <?php foreach ($authors as $author): ?>
+                            <?= $author['author_name']."," ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                    </p>
                 </div>
+                <?php endforeach; ?>
             </div>
+            <?php endif; ?>
 
             <div class="resume-summery">
                 <h5>Achievements Details</h5>
