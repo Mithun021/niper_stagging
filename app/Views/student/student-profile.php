@@ -100,6 +100,7 @@ $student_publication_author_model = new Student_publication_author_model();
     .normal-flex h6{
         width: 300px;
         text-align: right;
+        color: #cf1c7e;
     }
 </style>
 
