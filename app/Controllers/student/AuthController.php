@@ -101,26 +101,52 @@ class AuthController extends BaseController
 
     public function reset_password($id){
         $student_model = new Student_model();
-        $data = ['title' => 'Reset Password','token' => $id];
+        $data = ['title' => 'Reset Password', 'token' => $id];
+
         if ($this->request->is('get')) {
             return view('student/reset-password', $data);
-        }else if ($this->request->is('post')) {
+        }
+
+        if ($this->request->is('post')) {
             $password = $this->request->getPost('new_password');
             $user = $student_model->where('reset_token', $id)->first();
 
             if ($user && strtotime($user['reset_token_expiry']) > time()) {
+                // Update password
                 $student_model->update($user['id'], [
                     'password' => password_hash($password, PASSWORD_DEFAULT),
                     'reset_token' => null,
                     'reset_token_expiry' => null
                 ]);
 
-                return redirect()->to('stdlogin')->with('status', '<div class="alert alert-success" role="alert">Password updated successfully.</div>');
+                // Send confirmation email
+                $email_service = \Config\Services::email();
+                $email_service->setTo($user['personal_mail']);
+                $email_service->setFrom('noreply@hptuexam.com', 'NIPER Portal');
+                $email_service->setSubject('Password Changed Successfully');
+                $email_service->setMessage("
+                    <p>Dear {$user['first_name']},</p>
+                    <p>Your password has been successfully changed.</p>
+                    <p>If you did not perform this action, please contact support immediately.</p>
+                    <br>
+                    <p>Regards,<br>NIPER Team</p>
+                ");
+
+                // Attempt to send email
+                if ($email_service->send()) {
+                    return redirect()->to('stdlogin')->with('status', 
+                        '<div class="alert alert-success" role="alert">Password updated and confirmation email sent.</div>');
+                } else {
+                    return redirect()->to('stdlogin')->with('status', 
+                        '<div class="alert alert-warning" role="alert">Password updated, but failed to send confirmation email.</div>');
+                }
             }
 
-            return redirect()->to('forgot-password')->with('status', '<div class="alert alert-danger" role="alert">Token expired or invalid.</div>');
+            return redirect()->to('forgot-password')->with('status', 
+                '<div class="alert alert-danger" role="alert">Token expired or invalid.</div>');
         }
     }
+
 
     public function logout(){
         $session = session();
