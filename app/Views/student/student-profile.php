@@ -86,6 +86,11 @@ $student_publication_author_model = new Student_publication_author_model();
     .content-box{
         margin-bottom: 20px;
     }
+    .normal-flex{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 </style>
 
 <!-- start page title -->
@@ -175,7 +180,7 @@ $student_publication_author_model = new Student_publication_author_model();
                 <h5>Publication Details</h5>
             <?php foreach ($pubstudentData as $pub): ?>
                 <div class="resume-content-box">
-                    <div class="justify-div50">
+                    <div class="normal-flex">
                         <div>
                             <h6><?= $pub['publication_title'] ?></h6>
                         </div>
