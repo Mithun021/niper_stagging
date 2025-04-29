@@ -40,11 +40,20 @@ class AuthController extends BaseController
 
     public function forget_password(){
         $data = ['title' => 'Forget Password'];
-        return view('student/forget-password', $data);
+        if ($this->request->is('get')) {
+            return view('student/forget-password', $data);
+        } else if ($this->request->is('post')) {
+
+        }
+        
     }
     public function reset_password(){
         $data = ['title' => 'Reset Password'];
-        return view('student/reset-password', $data);
+        if ($this->request->is('get')) {
+            return view('student/reset-password', $data);
+        }else if ($this->request->is('post')) {
+
+        }
     }
 
     public function logout(){
