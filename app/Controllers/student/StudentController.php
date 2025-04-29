@@ -42,6 +42,7 @@ class StudentController extends BaseController
         $program_department_mapping_model = new Program_department_mapping_model();
         $student_academic_details_model = new Student_academic_details_model();
         $student_phd_details_model = new Student_phd_details_model();
+        $student_publication_model = new Student_publication_model();
 
         $sessionData = session()->get('loggedStudentData');
         if ($sessionData) {
@@ -61,7 +62,8 @@ class StudentController extends BaseController
             }
             $data['studentAcademicDetails'] = $student_academic_details_model->getByStudent($loggedstudentId);
             $data['phdstudentData'] = $student_phd_details_model->getByStudent($loggedstudentId);
-            
+            $data['pubstudentData'] = $student_publication_model->getByStudent($loggedstudentId);
+
             return view('student/student-profile',$data);
         }else  if ($this->request->is('post')) {
             

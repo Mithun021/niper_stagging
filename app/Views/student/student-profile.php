@@ -1,10 +1,11 @@
 <?= $this->extend("student/stdlayouts/master") ?>
 <?= $this->section("student-content"); ?>
 <?php
-
 use App\Models\Employee_model;
-
 $employee_model = new Employee_model();
+
+use App\Models\Student_publication_author_model;
+$student_publication_author_model = new Student_publication_author_model();
 ?>
 
 <style>
@@ -169,12 +170,14 @@ $employee_model = new Employee_model();
             </div>
             <?php } ?>
 
+            <?php if ($phdstudentData){ ?>
             <div class="resume-summery">
                 <h5>Publication Details</h5>
+            <?php foreach ($phdstudentData as $pub): ?>
                 <div class="resume-content-box">
                     <div class="justify-div">
                         <div>
-                            <h6>This is heading of details content</h6>
+                            <h6><?= $pub['publication_title'] ?></h6>
                         </div>
                         <h6>Pub Year : 2025</h6>
                     </div>
@@ -193,9 +196,21 @@ $employee_model = new Employee_model();
                         <p>DOI Details : </p>
                         <p>Impact Factor : </p>
                     </div>
-                    <p><b>Author Name : </b></p>
+                    <p><b>Author Name : </b>
+                    <?php $authors = $student_publication_author_model->getByPublication($pub['id']); ?>
+                    <?php if ($authors): ?>
+                        <?php foreach ($authors as $author): ?>
+                            <?= $author['author_name']."," ?>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        No Author Found
+                    <?php endif; ?>
+                    </p>
                 </div>
+            <?php endforeach; ?>
             </div>
+
+            <?php } ?>
 
             <div class="resume-summery">
                 <h5>Book Chapter Details</h5>
