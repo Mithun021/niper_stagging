@@ -85,16 +85,16 @@
                 </div>
                 <div class="student-personal-details">
                     <h4><?= $studentData['first_name']. " " . $studentData['middle_name']. " " . $studentData['last_name'] ?></h4>
-                    <p>Email :</p>
-                    <p>Phone :</p>
-                    <p>Father's Name :</p>
-                    <p>Address :</p>
-                    <p>LinkedIn :</p>
+                    <p>Email : <?= $studentData['personal_mail'] ?></p>
+                    <p>Phone : <?= $studentData['phone_no'] ?></p>
+                    <p>Father's Name : <?= $studentData['father_name'] ?></p>
+                    <p>Address : <?= $studentData['permanent_address'] ?></p>
+                    <p>LinkedIn : <?= $studentData['linkedin_id'] ?></p>
                 </div>
             </div>
             <div class="resume-summery">
                 <h5>Career Objective</h5>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque fugiat odit eligendi, blanditiis eveniet iste quisquam nostrum ad quidem omnis ex pariatur numquam quae hic porro repellendus odio perferendis vitae!</p>
+                <p><?= $studentData['career_objective'] ?></p>
             </div>
             <div class="resume-summery">
                 <h5>Academic Details</h5>
