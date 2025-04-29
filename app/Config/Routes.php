@@ -264,7 +264,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
 
 $routes->match(['get','post'],'stdlogin/', 'student\AuthController::login');
 $routes->match(['get','post'],'forget-password', 'student\AuthController::forget_password');
-$routes->match(['get','post'],'reset-password', 'student\AuthController::reset_password');
+$routes->match(['get','post'],'reset-password/(:any)', 'student\AuthController::reset_password/$1');
 $routes->group('student',['filter'=>'studentLogin'], static function($routes){
     $routes->get('/', 'student\StudentController::index');
     $routes->get('logout', 'student\AuthController::logout');
