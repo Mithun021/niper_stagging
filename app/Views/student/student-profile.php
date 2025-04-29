@@ -153,7 +153,7 @@ $employee_model = new Employee_model();
                     <h6>Reg. Date : <?= $phd['registration_date'] ?></h6>
                 </div>
                 <div><?= $phd['description'] ?></div>
-                <br>
+                <!-- <br> -->
                 <p>Supervisor Name : <?php $emp = $employee_model->get($phd['supervisor_name']); if($emp) { echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></p>
                 <p>Status : <?= $phd['current_status'] ?></p>
                 <?php if(!empty($phd['submission_date']) && $phd['submission_date'] != '0000-00-00') {
