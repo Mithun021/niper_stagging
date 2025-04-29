@@ -96,6 +96,7 @@
                 <h5>Career Objective</h5>
                 <p><?= $studentData['career_objective'] ?></p>
             </div>
+            <?php if ($studentAcademicDetails){ ?>
             <div class="resume-summery">
                 <h5>Academic Details</h5>
                 <table>
@@ -108,8 +109,21 @@
                         <td>Result Declaration Date</td>
                         <td>Date of Degree</td>
                     </tr>
+                <?php foreach ($studentAcademicDetails as $detail): ?>
+                    <tr>
+                        <td><?= $detail['degree_type'] ?></td>
+                        <td><?= $detail['board_institute_name'] ?></td>
+                        <td><?= $detail['subject_studied'] ?></td>
+                        <td><?= $detail['marks_type'] ?></td>
+                        <td><?= $detail['marks_obtained'] ?></td>
+                        <td><?= date('M-Y', strtotime($detail['result_declaration_date'])) ?></td>
+                        <td><?= date('M-Y', strtotime($detail['degree_date'])) ?></td>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
                 </table>
             </div>
+            <?php } ?>
             <div class="resume-summery">
                 <h5>PHD Details</h5>
                 <div class="justify-div">
