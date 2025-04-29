@@ -494,7 +494,7 @@ $student_copyright_author_model = new Student_copyright_author_model();
 function PrintMe(DivID) {
 var disp_setting="toolbar=yes,location=no,";
 disp_setting+="directories=yes,menubar=yes,";
-disp_setting+="scrollbars=yes,width=auto, height=600, left=100, top=25";
+disp_setting+="scrollbars=yes,width=550, height=600, left=100, top=25";
    var content_vlue = document.getElementById(DivID).innerHTML;
    var docprint=window.open("","",disp_setting);
    docprint.document.open();
