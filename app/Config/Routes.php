@@ -226,7 +226,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
 
     // Alumini Model
     $routes->match(['get', 'post'],'alumini-page-notification', 'AluminiController::alumini_page_notification');
-    $routes->get('delete-alumini-page-notification/(:num)', 'student\StudentController::delete_alumini_page_notification/$1');
+    $routes->get('delete-alumini-page-notification/(:num)', 'AluminiController::delete_alumini_page_notification/$1');
     $routes->match(['get', 'post'],'alumini-page-section', 'AluminiController::alumini_page_section');
     $routes->match(['get', 'post'],'alumini-page-gallery', 'AluminiController::alumini_page_gallery');
     $routes->match(['get', 'post'],'alumini-page-video', 'AluminiController::alumini_page_video');
