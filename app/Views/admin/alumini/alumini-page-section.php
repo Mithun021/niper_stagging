@@ -73,9 +73,9 @@ $alumini_page_section_images_model = new Alumini_page_section_images_model();
                                     <?php
                                         $section_images = $alumini_page_section_images_model->getBysection($value['id']);
                                         if ($section_images) {
-                                            foreach ($section_images as $key => $value) {
-                                                if (file_exists("public/admin/uploads/alumini/" . $value['file_upload'])) {
-                                                    echo '<img src="' . base_url() . '/public/admin/uploads/alumini/' . $value['file_upload'] . '" width="50" height="50">';
+                                            foreach ($section_images as $key => $image) {
+                                                if (file_exists("public/admin/uploads/alumini/" . $image['file_upload'])) {
+                                                    echo '<img src="' . base_url() . '/public/admin/uploads/alumini/' . $image['file_upload'] . '" width="50" height="50">';
                                                 } else {
                                                     echo '<img src="' . base_url() . '/public/admin/uploads/no-image.png" width="50" height="50">';
                                                 }
