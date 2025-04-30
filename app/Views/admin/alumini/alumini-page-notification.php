@@ -9,7 +9,7 @@
 </style>
 <!-- start page title -->
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 p-1">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
@@ -41,7 +41,7 @@
             </form>
         </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 p-1">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0"><?= $title ?> List</h4>
