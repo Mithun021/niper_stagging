@@ -75,7 +75,7 @@
                                     </td>
                                     <td><?= $value['title'] ?></td>
                                     <td><?= $value['description'] ?></td>
-                                    <td><?= $value['pgallery_dateriority'] ?></td>
+                                    <td><?= $value['gallery_date'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         if ($emp) {
                                             echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name'];
