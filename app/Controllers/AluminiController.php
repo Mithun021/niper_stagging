@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Alumini_page_gallery_model;
 use App\Models\Alumini_page_notification_model;
 use App\Models\Alumini_page_section_images_model;
 use App\Models\Alumini_page_section_model;
@@ -137,11 +138,40 @@ class AluminiController extends BaseController
 
     public function alumini_page_gallery()
     {
+        $alumini_page_gallery_model = new Alumini_page_gallery_model();
         $data = ['title' => 'Page Image Gallery'];
         if($this->request->is('get')) {
+            $data['gallery'] = $alumini_page_gallery_model->get();
             return view('admin/alumini/alumini-page-gallery',$data);
         } else if($this->request->is('post')){
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $gallery_file = $this->request->getFiles();
+            if ($gallery_file) {
+                foreach ($gallery_file['file_upload'] as $file) {
+                    if ($file->isValid() && !$file->hasMoved()) {
+                        $newName = "gallery".$file->getRandomName();
+                        $file->move(ROOTPATH . 'public/admin/uploads/alumini', $newName);
             
+                        $data = [
+                            'title' => $this->request->getPost('title'),
+                            'description' => $this->request->getPost('description'),
+                            'gallery_date' => $this->request->getPost('gallery_date'),
+                            'file_upload' => $newName,
+                            'upload_by' => $loggeduserId,
+                        ];
+            
+                        $result = $alumini_page_gallery_model->save($data);
+                    }
+                }
+            }
+            if ($result === true) {
+                return redirect()->to('admin/alumini-page-gallery')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/alumini-page-gallery')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
         }
     }
     public function alumini_page_video()
