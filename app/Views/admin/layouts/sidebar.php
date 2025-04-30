@@ -154,6 +154,19 @@
         </li>
 
         <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect"><i
+                    class="mdi mdi-table-merge-cells"></i><span>Alumini</span></a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="<?= base_url() ?>admin/alumini-page-notification" class="waves-effect"><span>Page Notification</span></a></li>
+                <li><a href="<?= base_url() ?>admin/alumini-page-section" class="waves-effect"><span>Page Section</span></a></li>
+                <li><a href="<?= base_url() ?>admin/alumini-page-gallery" class="waves-effect"><span>Page Image Gallery</span></a></li>
+                <li><a href="<?= base_url() ?>admin/alumini-page-video" class="waves-effect"><span>Page Video Gallery</span></a></li>
+                <li><a href="<?= base_url() ?>admin/alumini-education-detail" class="waves-effect"><span>Alumni Education Details</span></a></li>
+                <li><a href="<?= base_url() ?>admin/alumini-job-details" class="waves-effect"><span>Alumni Job Details</span></a></li>
+            </ul>
+        </li>
+
+        <li>
             <a href="<?= base_url() ?>admin/convocation" class="waves-effect"><i class="mdi mdi-table-merge-cells"></i><span>Convocation Details</span></a>
         </li>
 
