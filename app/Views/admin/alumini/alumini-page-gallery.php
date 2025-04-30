@@ -68,7 +68,7 @@
                                     <td><?= ++$key ?></td>
                                     <td>
                                         <?php if (!empty($value['file_upload']) && file_exists('public/admin/uploads/alumini/' . $value['file_upload'])): ?>
-                                            <a href="<?= base_url() ?>public/admin/uploads/alumini/<?= $value['file_upload'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                            <a href="<?= base_url() ?>public/admin/uploads/alumini/<?= $value['file_upload'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin//uploads/alumini/<?= $value['file_upload'] ?>" alt="" height="30px"></a>
                                         <?php else: ?>
                                             <img src="<?= base_url() ?>public/admin/uploads/alumini/invalid_image.png" alt="" height="40px">
                                         <?php endif; ?>
