@@ -83,7 +83,7 @@ $employee_model = new Employee_model();
                                     <td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                             <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
-                                            <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                            <a href="<?= base_url() ?>admin/delete-alumini-page-notification" class="btn btn-danger waves-effect waves-light" onclick="return confirm('Are uou sure..!')"><i class="far fa-trash-alt"></i></a>
                                         </div>
                                     </td>
                                 </tr>
