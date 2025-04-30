@@ -196,7 +196,7 @@ class AluminiController extends BaseController
 
     public function alumini_page_video()
     {
-        $data = ['title' => '>Page Video Gallery'];
+        $data = ['title' => 'Page Video Gallery'];
         if($this->request->is('get')) {
             return view('admin/alumini/alumini-page-video',$data);
         } else if($this->request->is('post')){
