@@ -8,7 +8,9 @@ $employee_model = new Employee_model();
 $alumini_page_section_images_model = new Alumini_page_section_images_model();
 ?>
 <style>
-    
+    img.section-image {
+        margin-bottom: 5px;
+    }
 </style>
 <!-- start page title -->
 <div class="row">
@@ -75,7 +77,7 @@ $alumini_page_section_images_model = new Alumini_page_section_images_model();
                                         if ($section_images) {
                                             foreach ($section_images as $key => $image) {
                                                 if (file_exists("public/admin/uploads/alumini/" . $image['file_upload'])) {
-                                                    echo '<img src="' . base_url() . '/public/admin/uploads/alumini/' . $image['file_upload'] . '" width="50" height="50">';
+                                                    echo '<img src="' . base_url() . '/public/admin/uploads/alumini/' . $image['file_upload'] . '" width="30" height="30" class="section-image">';
                                                 } else {
                                                     echo '<img src="' . base_url() . '/public/admin/uploads/no-image.png" width="50" height="50">';
                                                 }
