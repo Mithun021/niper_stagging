@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group">
                         <span for="title">Section image (Multiple image option )</span>
-                        <input type="file" class="form-control form-control-sm" name="file_upload" accept=".jpg,.png,.jpeg" required>
+                        <input type="file" class="form-control form-control-sm" name="file_upload[]" accept=".jpg,.png,.jpeg" multiple required>
                     </div>
                 </div>
                 <div class="card-footer p-2">

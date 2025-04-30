@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\Alumini_page_notification_model;
+use App\Models\Alumini_page_section_images_model;
+use App\Models\Alumini_page_section_model;
 
 class AluminiController extends BaseController
 {
@@ -61,11 +63,49 @@ class AluminiController extends BaseController
 
     public function alumini_page_section()
     {
+        $alumini_page_section_model = new Alumini_page_section_model();
+        $alumini_page_section_images_model = new Alumini_page_section_images_model();
         $data = ['title' => 'Page Section Details'];
         if($this->request->is('get')) {
+            $data['section'] = $alumini_page_section_model->get();
             return view('admin/alumini/alumini-page-section',$data);
         } else if($this->request->is('post')){
-            
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $gallery_file = $this->request->getFiles();
+            $data = [
+                'title' => $this->request->getPost('title'),
+                'description' => $this->request->getPost('description'),
+                'priority' => $this->request->getPost('priority'),
+                'upload_by' => $loggeduserId
+            ];
+            $result = $alumini_page_section_model->add($data);
+            if ($result === true) {
+                $insertId = $alumini_page_section_model->insertID();
+
+                if ($gallery_file) {
+                    foreach ($gallery_file['file_upload'] as $file) {
+                        if ($file->isValid() && !$file->hasMoved()) {
+                            $newName = "pagesec".$file->getRandomName();
+                            $file->move(ROOTPATH . 'public/admin/uploads/alumini', $newName);
+                
+                            $data = [
+                                'alumini_page_section_id' => $insertId,
+                                'file_upload' => $newName,
+                            ];
+                
+                            $result = $alumini_page_section_images_model->save($data);
+                        }
+                    }
+                }
+
+
+                return redirect()->to('admin/alumini-page-section')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/alumini-page-section')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
         }
     }
 
