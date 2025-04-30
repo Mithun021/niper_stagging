@@ -21,7 +21,7 @@
                 } ?>
                 <div class="form-group">
                     <span for="title">Title</span>
-                    <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" required>
+                    <input type="text" class="form-control form-control-sm" name="title" id="title" placeholder="Enter Title" required>
                 </div>
                 <div class="form-group">
                     <span for="title">Description</span>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group">
                     <span for="title">File Upload</span>
-                    <input type="file" class="form-control" name="file_upload" accept=".pdf" required>
+                    <input type="file" class="form-control form-control-sm" name="file_upload" accept=".pdf" required>
                 </div>
                 <div class="form-group">
                     <span for="title"><input type="checkbox" name="marquee-status"> Marquee Status</span>
