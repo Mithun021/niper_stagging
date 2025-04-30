@@ -224,6 +224,15 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get', 'post'], 'page-section-details', 'PlacementController::page_section_details');
     $routes->match(['get', 'post'], 'placement-page-gallery', 'PlacementController::page_gallery');
 
+    // Alumini Model
+    $routes->post('alumini-page-notification', 'AluminiController::alumini_page_notification');
+    $routes->post('alumini-page-section', 'AluminiController::alumini_page_section');
+    $routes->post('alumini-page-gallery', 'AluminiController::alumini_page_gallery');
+    $routes->post('alumini-page-video', 'AluminiController::alumini_page_video');
+    $routes->post('alumini-education-detail', 'AluminiController::alumini_education_detail');
+    $routes->post('alumini-job-details', 'AluminiController::alumini_job_details');
+    // $routes->post('export_student', 'AluminiController::export_student');
+
     $routes->match(['get', 'post'], 'convocation', 'ConvocationControllers::convocation');
 
     $routes->match(['get', 'post'], 'result', 'ResultGradeControllers::result');
