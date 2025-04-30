@@ -28,11 +28,11 @@
                     <textarea name="description" id="editor"></textarea>
                 </div>
                 <div class="form-group">
-                    <span for="title">File Upload</span>
+                    <span for="title">File Upload(.pdf)</span>
                     <input type="file" class="form-control form-control-sm" name="file_upload" accept=".pdf" required>
                 </div>
                 <div class="form-group">
-                    <span for="title"><input type="checkbox" name="marquee-status"> Marquee Status</span>
+                    <span for="title"><input type="checkbox" name="marquee"> Marquee Status</span>
                 </div>
             </div>
             <div class="card-footer">

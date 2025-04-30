@@ -2,15 +2,41 @@
 
 namespace App\Controllers;
 
+use App\Models\Alumini_page_notification_model;
+
 class AluminiController extends BaseController
 {
-    public function alumini_page_notification()
-    {
+    public function alumini_page_notification(){
+        $alumini_page_notification_model = new Alumini_page_notification_model();
         $data = ['title' => 'Page Notification Details'];
         if($this->request->is('get')) {
+            $data['notification'] = $alumini_page_notification_model->get();
             return view('admin/alumini/alumini-page-notification',$data);
         } else if($this->request->is('post')){
-            
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $file = $this->request->getFile('file_upload');
+            if ($file->isValid() && ! $file->hasMoved()) {
+                $fileNewName = "notify".$file->getRandomName();
+                $file->move(ROOTPATH . 'public/admin/uploads/alumini', $fileNewName);    
+            }else{
+                $fileNewName = "";
+            }
+            $data = [
+                'title' => $this->request->getPost('title'),
+                'description' => $this->request->getPost('description'),
+                'marquee' => $this->request->getPost('marquee'),
+                'file_upload' => $fileNewName,
+                'upload_by' => $loggeduserId
+            ];
+            $result = $alumini_page_notification_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/alumini-page-notification')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/alumini-page-notification')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
         }
     }
     public function alumini_page_section()
