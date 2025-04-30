@@ -10,6 +10,7 @@ $alumini_page_section_images_model = new Alumini_page_section_images_model();
 <style>
     img.section-image {
         margin-bottom: 5px;
+        margin-right: 5px;
     }
 </style>
 <!-- start page title -->
