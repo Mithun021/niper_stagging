@@ -109,6 +109,32 @@ class AluminiController extends BaseController
         }
     }
 
+    public function delete_alumini_page_section($id){
+        $alumini_page_section_model = new Alumini_page_section_model();
+        $alumini_page_section_images_model = new Alumini_page_section_images_model();
+        $aluminiData = $alumini_page_section_model->get($id);
+        if ($aluminiData) {
+            $section_images = $alumini_page_section_images_model->getBysection($id);
+            if ($section_images) {
+                foreach ($section_images as $key => $image) {
+                    if (file_exists("public/admin/uploads/alumini/" . $image['file_upload'])) {
+                        unlink("public/admin/uploads/alumini/" . $image['file_upload']);
+                    }
+                    $alumini_page_section_images_model->delete($id);
+                }
+            }
+            $result = $alumini_page_section_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/alumini-page-section')->with('status', '<div class="alert alert-success" role="alert">Data deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
+        } else {
+            return redirect()->to('admin/alumini-page-section')->with('status', '<div class="alert alert-danger" role="alert">Data not found.</div>');
+        }
+        
+    }
+
     public function alumini_page_gallery()
     {
         $data = ['title' => 'Page Image Gallery'];
