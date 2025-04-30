@@ -120,7 +120,7 @@ class AluminiController extends BaseController
                     if (file_exists("public/admin/uploads/alumini/" . $image['file_upload'])) {
                         unlink("public/admin/uploads/alumini/" . $image['file_upload']);
                     }
-                    $alumini_page_section_images_model->delete($id);
+                    $alumini_page_section_images_model->where('alumini_page_section_id',$id)->delete();
                 }
             }
             $result = $alumini_page_section_model->delete($id);
