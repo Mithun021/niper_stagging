@@ -32,7 +32,7 @@
                     <input type="file" class="form-control form-control-sm" name="file_upload" accept=".pdf" required>
                 </div>
                 <div class="form-group">
-                    <span for="title"><input type="checkbox" name="marquee"> Marquee Status</span>
+                    <span for="title"><input type="checkbox" name="marquee" value="1"> Marquee Status</span>
                 </div>
             </div>
             <div class="card-footer">

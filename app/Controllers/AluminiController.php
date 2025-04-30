@@ -27,7 +27,7 @@ class AluminiController extends BaseController
             $data = [
                 'title' => $this->request->getPost('title'),
                 'description' => $this->request->getPost('description'),
-                'marquee' => $this->request->getPost('marquee'),
+                'marquee' => $this->request->getPost('marquee') ?? 0,
                 'file_upload' => $fileNewName,
                 'upload_by' => $loggeduserId
             ];
