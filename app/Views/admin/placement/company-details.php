@@ -24,7 +24,7 @@ $employee_model = new Employee_model();
                     <div class="row">
                         <div class="form-group col-md-6">
                             <span for="title">Company Name</span>
-                            <input type="text" class="form-control form-control-sm" name="copanty_name" id="copanty_name" placeholder="Enter Company Name" required>
+                            <input type="text" class="form-control form-control-sm" name="company_name" id="company_name" placeholder="Enter Company Name" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="title">Company Logo (jpeg, png, 500kb)</span>
