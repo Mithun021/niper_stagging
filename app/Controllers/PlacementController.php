@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Company_contact_person_model;
 use App\Models\Placement_company_detail_model;
+use App\Models\Placement_job_details_model;
 
 class PlacementController extends BaseController
 {
@@ -128,10 +129,38 @@ class PlacementController extends BaseController
 
     public function job_details()
     {
+        $placement_company_detail_model = new Placement_company_detail_model();
+        $placement_job_details_model = new Placement_job_details_model();
         $data = ['title' => 'Job Details'];
         if ($this->request->is('get')) {
+            $data['company_details'] = $placement_company_detail_model->get();
+            $data['job_details'] = $placement_job_details_model->get();
             return view('admin/placement/job-details', $data);
         } else if ($this->request->is('post')) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId'];
+            }
+            $data = [
+                'company_name' => $this->request->getPost('company_name'),
+                'contact_name' => $this->request->getPost('contact_name'),
+                'contact_designation' => $this->request->getPost('contact_designation'),
+                'linkedin' => $this->request->getPost('linkedin'),
+                'facebook' => $this->request->getPost('facebook'),
+                'instagram' => $this->request->getPost('instagram'),
+                'twitter' => $this->request->getPost('twitter'),
+                'email_1' => $this->request->getPost('email_1'),
+                'email_2' => $this->request->getPost('email_2'),
+                'helpline_number1' => $this->request->getPost('helpline_number1'),
+                'helpline_number2' => $this->request->getPost('helpline_number2'),
+                'upload_by' => $loggeduserId
+            ];
+            $result = $placement_job_details_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/placement-job-details')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/placement-job-details')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
         }
     }
 
