@@ -11,6 +11,7 @@ class PlacementController extends BaseController
         $placement_company_detail_model = new Placement_company_detail_model();
         $data = ['title' => 'Company Details'];
         if ($this->request->is('get')) {
+            $data['company_details'] = $placement_company_detail_model->get();
             return view('admin/placement/company-details', $data);
         } else if ($this->request->is('post')) {
             $sessionData = session()->get('loggedUserData');
