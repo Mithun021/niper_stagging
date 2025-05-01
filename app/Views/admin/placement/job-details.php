@@ -37,7 +37,7 @@
                             <span for="title">Job Description</span>
                             <textarea name="job_description" id="editor" class="form-control form-control-sm"></textarea>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <span for="title">Number of positions</span>
                             <input type="text" name="no_of_position" class="form-control form-control-sm" required>
                         </div>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <span for="title">Hiring Date and time</span>
-                            <input type="datetime" name="hiring_date_time" class="form-control form-control-sm" required>
+                            <input type="datetime-local" name="hiring_date_time" class="form-control form-control-sm" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="title">Venue</span>

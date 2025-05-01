@@ -143,16 +143,14 @@ class PlacementController extends BaseController
             }
             $data = [
                 'company_name' => $this->request->getPost('company_name'),
-                'contact_name' => $this->request->getPost('contact_name'),
-                'contact_designation' => $this->request->getPost('contact_designation'),
-                'linkedin' => $this->request->getPost('linkedin'),
-                'facebook' => $this->request->getPost('facebook'),
-                'instagram' => $this->request->getPost('instagram'),
-                'twitter' => $this->request->getPost('twitter'),
-                'email_1' => $this->request->getPost('email_1'),
-                'email_2' => $this->request->getPost('email_2'),
-                'helpline_number1' => $this->request->getPost('helpline_number1'),
-                'helpline_number2' => $this->request->getPost('helpline_number2'),
+                'job_title' => $this->request->getPost('job_title'),
+                'job_description' => $this->request->getPost('job_description'),
+                'no_of_position' => $this->request->getPost('no_of_position'),
+                'minimum_salary' => $this->request->getPost('minimum_salary'),
+                'maximun_salary' => $this->request->getPost('maximun_salary'),
+                'hiring_date_time' => $this->request->getPost('hiring_date_time'),
+                'venue' => $this->request->getPost('venue'),
+                'meeting_link' => $this->request->getPost('meeting_link'),
                 'upload_by' => $loggeduserId
             ];
             $result = $placement_job_details_model->add($data);
