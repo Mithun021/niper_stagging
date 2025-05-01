@@ -120,7 +120,7 @@ $employee_model = new Employee_model();
                                         <?php endif; ?>
 
                                         <?php if (!empty($value['company_photo']) && file_exists('public/admin/uploads/placement/' . $value['company_photo'])): ?>
-                                            <a href="<?= base_url() ?>public/admin/uploads/placement/<?= $value['company_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/placement/<?= $value['company_logo'] ?>" alt="" height="30px"></a>
+                                            <a href="<?= base_url() ?>public/admin/uploads/placement/<?= $value['company_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/placement/<?= $value['company_photo'] ?>" alt="" height="30px"></a>
                                         <?php else: ?>
                                             <img src="<?= base_url() ?>public/admin/uploads/placement/invalid_image.png" alt="" height="40px">
                                         <?php endif; ?>
