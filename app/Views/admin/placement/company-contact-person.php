@@ -123,7 +123,7 @@ $placement_company_detail_model = new Placement_company_detail_model();
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                             <!-- <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a> -->
                                             <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
-                                            <a href="<?= base_url() ?>admin/delete-placement-company-details/<?= $value['id'] ?>" class="btn btn-danger waves-effect waves-light" onclick="return confirm('Are you sure..!')"><i class="far fa-trash-alt"></i></a>
+                                            <a href="<?= base_url() ?>admin/delete-company-contact-person/<?= $value['id'] ?>" class="btn btn-danger waves-effect waves-light" onclick="return confirm('Are you sure..!')"><i class="far fa-trash-alt"></i></a>
                                         </div>
                                     </td>
                                 </tr>

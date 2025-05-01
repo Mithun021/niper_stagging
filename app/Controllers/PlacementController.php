@@ -116,6 +116,16 @@ class PlacementController extends BaseController
         }
     }
 
+    public function delete_company_contact_person($id){
+        $company_contact_person_model = new Company_contact_person_model();
+        $result = $company_contact_person_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/company-contact-person')->with('status', '<div class="alert alert-success" role="alert">Data deleted successfully.</div>');
+        } else {
+            return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+        }
+    }
+
     public function job_details()
     {
         $data = ['title' => 'Job Details'];
