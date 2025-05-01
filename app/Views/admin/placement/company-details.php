@@ -46,15 +46,15 @@ $employee_model = new Employee_model();
                             <span for="title">Linkedin</span>
                             <input type="url" name="linkedin" class="form-control form-control-sm" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <span for="title">Facebook</span>
                             <input type="url" name="facebook" class="form-control form-control-sm" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <span for="title">Instagram</span>
                             <input type="url" name="instagram" class="form-control form-control-sm" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <span for="title">Twitter</span>
                             <input type="url" name="twitter" class="form-control form-control-sm" required>
                         </div>
