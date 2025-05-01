@@ -24,7 +24,7 @@
                             <span for="title">Company Name</span>
                             <select class="form-control form-control-sm" name="company_name" required>
                                 <option value="">--Select--</option>
-                            <?php foreach ($variable as $key => $value) { ?>
+                            <?php foreach ($company_details as $key => $value) { ?>
                                 <option value="<?= $value['id'] ?>"><?= $value['company_name'] ?></option>
                             <?php } ?>
                             </select>
