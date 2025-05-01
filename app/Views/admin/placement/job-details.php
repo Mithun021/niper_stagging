@@ -29,7 +29,7 @@
                             <?php } ?>
                             </select>
                         </div>
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
                             <span for="title">Job Title</span>
                             <input type="text" class="form-control form-control-sm" name="job_title" id="job_title" placeholder="Enter Company Name" required>
                         </div>
