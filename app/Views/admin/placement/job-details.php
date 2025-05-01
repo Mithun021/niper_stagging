@@ -35,11 +35,11 @@
                         </div>
                         <div class="form-group col-md-12">
                             <span for="title">Job Description</span>
-                            <textarea name="description" id="editor" class="form-control form-control-sm"></textarea>
+                            <textarea name="job_description" id="editor" class="form-control form-control-sm"></textarea>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="title">Number of positions</span>
-                            <input type="url" name="no_of_position" class="form-control form-control-sm" required>
+                            <input type="text" name="no_of_position" class="form-control form-control-sm" required>
                         </div>
                         <div class="form-group col-md-4">
                             <span for="title">Minimum Salary</span>
@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <span for="title">Maximum Salary</span>
-                            <input type="number" name="maximum_salary" class="form-control form-control-sm" required>
+                            <input type="number" name="maximun_salary" class="form-control form-control-sm" required>
                         </div>
                         <div class="form-group col-md-4">
                             <span for="title">Hiring Date and time</span>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <span for="title">Meeting link</span>
-                            <input type="url" name="meetinf_link" class="form-control form-control-sm" required>
+                            <input type="url" name="meeting_link" class="form-control form-control-sm" required>
                         </div>
                         
                     </div>
