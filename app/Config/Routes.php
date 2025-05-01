@@ -214,7 +214,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
 
     // Placement Routes ----------------------
     $routes->match(['get', 'post'], 'placement-company-details', 'PlacementController::company_details');
-    $routes->get('delete-placement-company-details/(:num)', 'CourseController::delete_placement_company_details/$1');
+    $routes->get('delete-placement-company-details/(:num)', 'PlacementController::delete_placement_company_details/$1');
     $routes->match(['get', 'post'], 'company-contact-person', 'PlacementController::company_contact_person');
     $routes->match(['get', 'post'], 'placement-job-details', 'PlacementController::job_details');
     $routes->match(['get', 'post'], 'result-details', 'PlacementController::result_details');
