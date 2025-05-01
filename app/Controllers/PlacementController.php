@@ -57,6 +57,27 @@ class PlacementController extends BaseController
         }
     }
 
+    public function delete_placement_company_details($id){
+        $placement_company_detail_model = new Placement_company_detail_model();
+        $placementData = $placement_company_detail_model->get($id);
+        if ($placementData) {
+            if (file_exists("public/admin/uploads/placement/" . $placementData['company_logo'])) {
+                unlink("public/admin/uploads/placement/" . $placementData['company_logo']);
+            }
+            if (file_exists("public/admin/uploads/placement/" . $placementData['company_photo'])) {
+                unlink("public/admin/uploads/placement/" . $placementData['company_photo']);
+            }
+            $result = $placement_company_detail_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/placement-company-details')->with('status', '<div class="alert alert-success" role="alert">Data deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
+        } else {
+            return redirect()->to('admin/placement-company-details')->with('status', '<div class="alert alert-danger" role="alert">Data not found.</div>');
+        }
+    }
+
     public function company_contact_person()
     {
         $data = ['title' => 'Company Contact Person'];
