@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Company_contact_person_model;
 use App\Models\Placement_company_detail_model;
 
 class PlacementController extends BaseController
@@ -80,10 +81,37 @@ class PlacementController extends BaseController
 
     public function company_contact_person()
     {
+        $placement_company_detail_model = new Placement_company_detail_model();
+        $company_contact_person_model = new Company_contact_person_model();
         $data = ['title' => 'Company Contact Person'];
         if ($this->request->is('get')) {
+            $data['company_details'] = $placement_company_detail_model->get();
             return view('admin/placement/company-contact-person', $data);
         } else if ($this->request->is('post')) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId'];
+            }
+            $data = [
+                'company_name' => $this->request->getPost('company_name'),
+                'contact_name' => $this->request->getPost('contact_name'),
+                'contact_designation' => $this->request->getPost('contact_designation'),
+                'linkedin' => $this->request->getPost('linkedin'),
+                'facebook' => $this->request->getPost('facebook'),
+                'instagram' => $this->request->getPost('instagram'),
+                'twitter' => $this->request->getPost('twitter'),
+                'email_1' => $this->request->getPost('email_1'),
+                'email_2' => $this->request->getPost('email_2'),
+                'helpline_number1' => $this->request->getPost('helpline_number1'),
+                'helpline_number2' => $this->request->getPost('helpline_number2'),
+                'upload_by' => $loggeduserId
+            ];
+            $result = $company_contact_person_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/company-contact-person')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/company-contact-person')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
         }
     }
 
