@@ -1,8 +1,10 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?=  $this->section("body-content"); ?>
 <?php
-    use App\Models\Employee_model;
-    $employee_model = new Employee_model();
+use App\Models\Employee_model;
+use App\Models\Placement_company_detail_model;
+$employee_model = new Employee_model();
+$placement_company_detail_model = new Placement_company_detail_model();
 ?>
 <style>
     
@@ -77,5 +79,61 @@
             </form>
         </div>
     </div>
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title m-0"><?= $title; ?> List</h4>
+            </div>
+            <div class="card-body p-2">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover" id="basic-datatable">
+                        <thead>
+                            <tr>
+                                <td>SN</td>
+                                <td>Company Name</td>
+                                <td>Company Profile</td>
+                                <td>Website link</td>
+                                <td>Linkedin</td>
+                                <td>Facebook</td>
+                                <td>Instagram</td>
+                                <td>Twitter</td>
+                                <td>Email</td>
+                                <td>Helpline Number</td>
+                                <td>Upload by</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($company_contact_person as $key => $value) { ?>
+                                <tr>
+                                    <td><?= ++$key ?></td>
+                                    <td><?= $placement_company_detail_model->get($value['company_name'])['company_name'] ?? '' ?></td>
+                                    <td><?= $value['contact_name'] ?></td>
+                                    <td><?= $value['contact_designation'] ?></td>
+                                    <td><?= $value['linkedin'] ?></td>
+                                    <td><?= $value['facebook'] ?></td>
+                                    <td><?= $value['instagram'] ?></td>
+                                    <td><?= $value['twitter'] ?></td>
+                                    <td><?= $value['email_1'] ?> <br> <?= $value['email_2'] ?></td>
+                                    <td><?= $value['helpline_number1'] ?> <br> <?= $value['helpline_number2'] ?></td>
+                                    <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                            <!-- <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a> -->
+                                            <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                            <a href="<?= base_url() ?>admin/delete-placement-company-details/<?= $value['id'] ?>" class="btn btn-danger waves-effect waves-light" onclick="return confirm('Are you sure..!')"><i class="far fa-trash-alt"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 <?= $this->endSection() ?>
