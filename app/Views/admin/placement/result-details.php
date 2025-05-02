@@ -1,11 +1,10 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?=  $this->section("body-content"); ?>
 <?php
-    use App\Models\Employee_model;
-use App\Models\Placement_job_result_model;
-
-    $employee_model = new Employee_model();
-    $placement_job_result_model = new Placement_job_result_model();
+use App\Models\Employee_model;
+use App\Models\Placement_job_details_model;
+$employee_model = new Employee_model();
+$placement_job_result_model = new Placement_job_details_model();
 ?>
 <style>
     
