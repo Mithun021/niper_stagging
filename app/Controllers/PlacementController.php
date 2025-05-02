@@ -7,6 +7,7 @@ use App\Models\Job_result_stage_mapping_model;
 use App\Models\Placement_company_detail_model;
 use App\Models\Placement_job_details_model;
 use App\Models\Placement_job_result_model;
+use App\Models\Placement_page_gallery_model;
 use App\Models\Placement_page_notification_details_model;
 use App\Models\Placement_page_section_gallery_model;
 use App\Models\Placement_page_section_model;
@@ -458,10 +459,40 @@ class PlacementController extends BaseController
 
     public function page_gallery()
     {
+        $placement_page_gallery_model = new Placement_page_gallery_model();
         $data = ['title' => 'Page Gallery'];
         if ($this->request->is('get')) {
+            $data['gallery'] = $placement_page_gallery_model->get();
             return view('admin/placement/page-gallery', $data);
         } else if ($this->request->is('post')) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $gallery_file = $this->request->getFiles();
+            if ($gallery_file) {
+                foreach ($gallery_file['file_upload'] as $file) {
+                    if ($file->isValid() && !$file->hasMoved()) {
+                        $newName = "gallery".$file->getRandomName();
+                        $file->move(ROOTPATH . 'public/admin/uploads/placement', $newName);
+            
+                        $data = [
+                            'title' => $this->request->getPost('title'),
+                            'description' => $this->request->getPost('description'),
+                            'gallery_date' => $this->request->getPost('gallery_date'),
+                            'file_upload' => $newName,
+                            'upload_by' => $loggeduserId,
+                        ];
+            
+                        $result = $placement_page_gallery_model->save($data);
+                    }
+                }
+            }
+            if ($result === true) {
+                return redirect()->to('admin/placement-page-gallery')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/placement-page-gallery')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
         }
     }
 }
