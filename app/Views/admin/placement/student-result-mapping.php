@@ -21,7 +21,7 @@ $job_result_stage_mapping_model = new Job_result_stage_mapping_model();
             <div class="card-header">
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
             </div>
-            <form action="<?= base_url() ?>admin/job-result-stage-mapping" method="post" enctype="multipart/form-data" id="alumini-page-notification-form">
+            <form action="<?= base_url() ?>admin/student-result-mapping" method="post" enctype="multipart/form-data" id="alumini-page-notification-form">
                 <div class="card-body p-1">
                     <?php if (session()->getFlashdata('status')) {
                         echo session()->getFlashdata('status');
