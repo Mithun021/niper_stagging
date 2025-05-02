@@ -7,6 +7,7 @@ use App\Models\Job_result_stage_mapping_model;
 use App\Models\Placement_company_detail_model;
 use App\Models\Placement_job_details_model;
 use App\Models\Placement_job_result_model;
+use App\Models\Placement_page_notification_details_model;
 use App\Models\Placement_student_result_mapping_model;
 use App\Models\Student_model;
 
@@ -327,10 +328,37 @@ class PlacementController extends BaseController
 
     public function page_notification_details()
     {
+        $placement_page_notification_details_model = new Placement_page_notification_details_model();
         $data = ['title' => 'Page Notification Details'];
         if ($this->request->is('get')) {
+            $data['page_notification_details'] = $placement_page_notification_details_model->get();
             return view('admin/placement/page-notification-details', $data);
         } else if ($this->request->is('post')) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $file = $this->request->getFile('file_upload');
+            if ($file->isValid() && ! $file->hasMoved()) {
+                $fileNewName = "notify".$file->getRandomName();
+                $file->move(ROOTPATH . 'public/admin/uploads/placement', $fileNewName);    
+            }else{
+                $fileNewName = "";
+            }
+            $data = [
+                'title' => $this->request->getPost('title'),
+                'description' => $this->request->getPost('description'),
+                'marquee' => $this->request->getPost('marquee') ?? 0,
+                'notification_date' => $this->request->getPost('notification_date'),
+                'file_upload' => $fileNewName,
+                'upload_by' => $loggeduserId
+            ];
+            $result = $placement_page_notification_details_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/placement-page-notification-details')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/placement-page-notification-details')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
         }
     }
 

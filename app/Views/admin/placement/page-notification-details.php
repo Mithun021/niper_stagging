@@ -16,7 +16,7 @@ $employee_model = new Employee_model();
             <div class="card-header">
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
             </div>
-            <form action="<?= base_url() ?>admin/alumini-page-notification" method="post" enctype="multipart/form-data" id="alumini-page-notification-form">
+            <form action="<?= base_url() ?>admin/placement-page-notification-details" method="post" enctype="multipart/form-data" id="alumini-page-notification-form">
                 <div class="card-body p-1">
                     <?php if (session()->getFlashdata('status')) {
                         echo session()->getFlashdata('status');
@@ -32,6 +32,10 @@ $employee_model = new Employee_model();
                     <div class="form-group">
                         <span for="title">File Upload(.pdf)</span>
                         <input type="file" class="form-control form-control-sm" name="file_upload" accept=".pdf" required>
+                    </div>
+                    <div class="form-group">
+                        <span for="title">Notification Date</span>
+                        <input type="date" class="form-control form-control-sm" name="notification_date" id="title" placeholder="Enter Title" required>
                     </div>
                     <div class="form-group">
                         <span for="title"><input type="checkbox" name="marquee" value="1"> Marquee Status</span>
@@ -57,24 +61,26 @@ $employee_model = new Employee_model();
                                 <td>File</td>
                                 <td>Title</td>
                                 <td>Description</td>
+                                <td>Notification Date</td>
                                 <td>Marquee</td>
                                 <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($notification as $key => $value) { ?>
+                            <?php foreach ($page_notification_details as $key => $value) { ?>
                                 <tr>
                                     <td><?= ++$key ?></td>
                                     <td>
-                                        <?php if (!empty($value['file_upload']) && file_exists('public/admin/uploads/alumini/' . $value['file_upload'])): ?>
-                                            <a href="<?= base_url() ?>public/admin/uploads/alumini/<?= $value['file_upload'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                        <?php if (!empty($value['file_upload']) && file_exists('public/admin/uploads/placement/' . $value['file_upload'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/placement/<?= $value['file_upload'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
                                         <?php else: ?>
-                                            <img src="<?= base_url() ?>public/admin/uploads/alumini/invalid_image.png" alt="" height="40px">
+                                            <img src="<?= base_url() ?>public/admin/uploads/placement/invalid_image.png" alt="" height="40px">
                                         <?php endif; ?>
                                     </td>
                                     <td><?= $value['title'] ?></td>
                                     <td><?= $value['description'] ?></td>
+                                    <td><?= date("d-m-Y", strtotime($value['notification_date'])) ?></td>
                                     <td><?= ($value['marquee'] == "0") ? "<span class='badge badge-danger badge-pill'>No</span>" : (($value['marquee'] == "1") ? "<span class='badge badge-success badge-pill'>Yes</span>" : "") ?></td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         if ($emp) {
