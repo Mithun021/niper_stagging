@@ -38,6 +38,10 @@ $placement_job_result_model = new Placement_job_details_model();
                     <div class="form-group">
                         <span for="title">Student ID</span>
                         <select class="form-control form-control-sm" name="student_id" id="" required>
+                            <option value="">--Select--</option>
+                        <?php foreach ($student_details as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                        <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">

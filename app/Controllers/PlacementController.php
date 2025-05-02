@@ -7,6 +7,7 @@ use App\Models\Job_result_stage_mapping_model;
 use App\Models\Placement_company_detail_model;
 use App\Models\Placement_job_details_model;
 use App\Models\Placement_job_result_model;
+use App\Models\Student_model;
 
 class PlacementController extends BaseController
 {
@@ -282,12 +283,14 @@ class PlacementController extends BaseController
     public function student_result_mapping()
     {
         $placement_job_details_model = new Placement_job_details_model();
+        $student_model = new Student_model();
         $data = ['title' => 'Student Result Mapping'];
         if ($this->request->is('get')) {
             $data['job_details'] = $placement_job_details_model->get();
+            $data['student_details'] = $student_model->get();
             return view('admin/placement/student-result-mapping', $data);
         } else if ($this->request->is('post')) {
-            
+
         }
     }
 
