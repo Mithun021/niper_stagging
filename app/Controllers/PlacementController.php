@@ -8,6 +8,8 @@ use App\Models\Placement_company_detail_model;
 use App\Models\Placement_job_details_model;
 use App\Models\Placement_job_result_model;
 use App\Models\Placement_page_notification_details_model;
+use App\Models\Placement_page_section_gallery_model;
+use App\Models\Placement_page_section_model;
 use App\Models\Placement_student_result_mapping_model;
 use App\Models\Student_model;
 
@@ -382,10 +384,49 @@ class PlacementController extends BaseController
 
     public function page_section_details()
     {
+        $placement_page_section_model = new Placement_page_section_model();
+        $placement_page_section_gallery_model = new Placement_page_section_gallery_model();
         $data = ['title' => 'Page Section Details'];
         if ($this->request->is('get')) {
+            $data['section'] = $placement_page_section_model->get();
             return view('admin/placement/page-section-details', $data);
         } else if ($this->request->is('post')) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $gallery_file = $this->request->getFiles();
+            $data = [
+                'title' => $this->request->getPost('title'),
+                'description' => $this->request->getPost('description'),
+                'priority' => $this->request->getPost('priority'),
+                'upload_by' => $loggeduserId
+            ];
+            $result = $placement_page_section_model->add($data);
+            if ($result === true) {
+                $insertId = $placement_page_section_model->insertID();
+
+                if ($gallery_file) {
+                    foreach ($gallery_file['file_upload'] as $file) {
+                        if ($file->isValid() && !$file->hasMoved()) {
+                            $newName = "pagesec".$file->getRandomName();
+                            $file->move(ROOTPATH . 'public/admin/uploads/placement', $newName);
+                
+                            $data = [
+                                'placement_page_section_id' => $insertId,
+                                'gallery_file' => $newName,
+                            ];
+                
+                            $result = $placement_page_section_gallery_model->save($data);
+                        }
+                    }
+                }
+
+
+                return redirect()->to('admin/placement-page-section-details')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/placement-page-section-details')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
         }
     }
 
