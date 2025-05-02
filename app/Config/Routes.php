@@ -232,6 +232,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get', 'post'], 'placement-page-section-details', 'PlacementController::page_section_details');
     $routes->get('delete-placement-page-section/(:num)', 'PlacementController::delete_placement_page_section/$1');
     $routes->match(['get', 'post'], 'placement-page-gallery', 'PlacementController::page_gallery');
+    $routes->get('delete-placement-page-gallery/(:num)', 'placementController::delete_placement_page_gallery/$1');
 
     // Alumini Model
     $routes->match(['get', 'post'],'alumini-page-notification', 'AluminiController::alumini_page_notification');

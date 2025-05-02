@@ -495,4 +495,22 @@ class PlacementController extends BaseController
             }
         }
     }
+
+    public function delete_placement_page_gallery($id){
+        $placement_page_gallery_model = new Placement_page_gallery_model();
+        $placementData = $placement_page_gallery_model->get($id);
+        if ($placementData) {
+            if (file_exists("public/admin/uploads/placement/" . $placementData['file_upload'])) {
+                unlink("public/admin/uploads/placement/" . $placementData['file_upload']);
+            }
+            $result = $placement_page_gallery_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/placement-page-gallery')->with('status', '<div class="alert alert-success" role="alert">Data deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
+        } else {
+            return redirect()->to('admin/placement-page-gallery')->with('status', '<div class="alert alert-danger" role="alert">Data not found.</div>');
+        }
+    }
 }
