@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Company_contact_person_model;
 use App\Models\Placement_company_detail_model;
 use App\Models\Placement_job_details_model;
+use App\Models\Placement_job_result_model;
 
 class PlacementController extends BaseController
 {
@@ -175,11 +176,38 @@ class PlacementController extends BaseController
     public function result_details()
     {
         $placement_job_details_model = new Placement_job_details_model();
+        $placement_job_result_model = new Placement_job_result_model();
         $data = ['title' => 'Result Details'];
         if ($this->request->is('get')) {
             $data['job_details'] = $placement_job_details_model->get();
+            $data['result_details'] = $placement_job_result_model->get();
             return view('admin/placement/result-details', $data);
         } else if ($this->request->is('post')) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId'];
+            }
+            $file = $this->request->getFile('result_file');
+            if ($file->isValid() && ! $file->hasMoved()) {
+                $fileNewName = "logo" . $file->getRandomName();
+                $file->move(ROOTPATH . 'public/admin/uploads/placement', $fileNewName);
+            } else {
+                $fileNewName = "";
+            }
+            $data = [
+                'job_id' => $this->request->getPost('job_id'),
+                'result_title' => $this->request->getPost('result_title'),
+                'result_description' => $this->request->getPost('result_description'),
+                'result_file' => $fileNewName,
+                'notification_date' => $this->request->getPost('notification_date'),
+                'upload_by' => $loggeduserId
+            ];
+            $result = $placement_job_result_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/result-details')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/result-details')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
         }
     }
 

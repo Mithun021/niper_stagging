@@ -38,8 +38,8 @@
                             <textarea name="result_description" id="editor" class="form-control form-control-sm"></textarea>
                         </div>
                         <div class="form-group col-md-6">
-                            <span for="title">Result File</span>
-                            <input type="file" name="result_file" class="form-control form-control-sm" required>
+                            <span for="title">Result File(.pdf)</span>
+                            <input type="file" name="result_file" class="form-control form-control-sm" accept=".pdf" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="title">Result Notification Date</span>
