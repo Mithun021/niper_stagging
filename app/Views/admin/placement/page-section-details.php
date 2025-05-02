@@ -77,8 +77,8 @@ $placement_page_section_images_model = new Placement_page_section_gallery_model(
                                         $section_images = $placement_page_section_images_model->getBysection($value['id']);
                                         if ($section_images) {
                                             foreach ($section_images as $key => $image) {
-                                                if (file_exists("public/admin/uploads/placement/" . $image['file_upload'])) {
-                                                    echo '<img src="' . base_url() . '/public/admin/uploads/placement/' . $image['file_upload'] . '" width="30" height="30" class="section-image">';
+                                                if (file_exists("public/admin/uploads/placement/" . $image['gallery_file'])) {
+                                                    echo '<img src="' . base_url() . '/public/admin/uploads/placement/' . $image['gallery_file'] . '" width="30" height="30" class="section-image">';
                                                 } else {
                                                     echo '<img src="' . base_url() . '/public/admin/uploads/no-image.png" width="50" height="50">';
                                                 }
