@@ -162,6 +162,16 @@ class PlacementController extends BaseController
         }
     }
 
+    public function delete_placement_job_details($id){
+        $placement_job_details_model = new Placement_job_details_model();
+        $result = $placement_job_details_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/placement-job-details')->with('status', '<div class="alert alert-success" role="alert">Data deleted successfully.</div>');
+        } else {
+            return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+        }
+    }
+
     public function result_details()
     {
         $data = ['title' => 'Result Details'];
