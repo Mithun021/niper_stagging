@@ -147,8 +147,8 @@
                 <li><a href="<?= base_url() ?>admin/job-student-mapping">Job student Mapping</a></li>
                 <li><a href="<?= base_url() ?>admin/job-result-stage-mapping">Job Result Stage Mapping</a></li>
                 <li><a href="<?= base_url() ?>admin/student-result-mapping">Student Result Mapping </a></li>
-                <li><a href="<?= base_url() ?>admin/page-notification-details">Page Notification Details</a></li>
-                <li><a href="<?= base_url() ?>admin/page-section-details">Page Section Details</a></li>
+                <li><a href="<?= base_url() ?>admin/placement-page-notification-details">Page Notification Details</a></li>
+                <li><a href="<?= base_url() ?>admin/placement-page-section-details">Page Section Details</a></li>
                 <li><a href="<?= base_url() ?>admin/placement-page-gallery">Page Gallery</a></li>
             </ul>
         </li>

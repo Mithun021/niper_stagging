@@ -227,8 +227,8 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete-job-result-stage-mapping/(:num)', 'PlacementController::delete_job_result_stage_mapping/$1');
     $routes->match(['get', 'post'], 'student-result-mapping', 'PlacementController::student_result_mapping');
     $routes->get('delete-student-result-mapping/(:num)', 'PlacementController::delete_student_result_mapping/$1');
-    $routes->match(['get', 'post'], 'page-notification-details', 'PlacementController::page_notification_details');
-    $routes->match(['get', 'post'], 'page-section-details', 'PlacementController::page_section_details');
+    $routes->match(['get', 'post'], 'placement-page-notification-details', 'PlacementController::page_notification_details');
+    $routes->match(['get', 'post'], 'placement-page-section-details', 'PlacementController::page_section_details');
     $routes->match(['get', 'post'], 'placement-page-gallery', 'PlacementController::page_gallery');
 
     // Alumini Model
