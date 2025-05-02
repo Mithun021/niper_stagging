@@ -430,7 +430,7 @@ class PlacementController extends BaseController
         }
     }
 
-    public function delete_alumini_page_section($id){
+    public function delete_placement_page_section($id){
         $placement_page_section_model = new Placement_page_section_model();
         $placement_page_section_gallery_model = new Placement_page_section_gallery_model();
         $aluminiData = $placement_page_section_model->get($id);
