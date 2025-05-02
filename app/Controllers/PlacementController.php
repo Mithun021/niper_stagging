@@ -189,7 +189,7 @@ class PlacementController extends BaseController
             }
             $file = $this->request->getFile('result_file');
             if ($file->isValid() && ! $file->hasMoved()) {
-                $fileNewName = "logo" . $file->getRandomName();
+                $fileNewName = "result" . $file->getRandomName();
                 $file->move(ROOTPATH . 'public/admin/uploads/placement', $fileNewName);
             } else {
                 $fileNewName = "";
@@ -208,6 +208,24 @@ class PlacementController extends BaseController
             } else {
                 return redirect()->to('admin/result-details')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
             }
+        }
+    }
+
+    public function delete_result_details($id){
+        $placement_job_result_model = new Placement_job_result_model();
+        $placementData = $placement_job_result_model->get($id);
+        if ($placementData) {
+            if (file_exists("public/admin/uploads/placement/" . $placementData['result_file'])) {
+                unlink("public/admin/uploads/placement/" . $placementData['result_file']);
+            }
+            $result = $placement_job_result_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/result-details')->with('status', '<div class="alert alert-success" role="alert">Data deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
+        } else {
+            return redirect()->to('admin/result-details')->with('status', '<div class="alert alert-danger" role="alert">Data not found.</div>');
         }
     }
 
