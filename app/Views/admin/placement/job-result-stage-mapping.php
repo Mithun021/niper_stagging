@@ -21,6 +21,23 @@ $employee_model = new Employee_model();
                     <?php if (session()->getFlashdata('status')) {
                         echo session()->getFlashdata('status');
                     } ?>
+                    <div class="form-group">
+                        <span for="title">Job id</span>
+                        <select class="form-control form-control-sm" name="job_id" required>
+                            <option value="">--Select--</option>
+                        <?php foreach ($job_details as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['job_title'] ?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span for="title">Result Title</span>
+                        <input type="text" class="form-control form-control-sm" name="result_title" id="job_title" placeholder="Enter Company Name" required>
+                    </div>
+                    <div class="form-group">
+                        <span for="title">Result Description</span>
+                        <textarea name="result_description" id="editor" class="form-control form-control-sm"></textarea>
+                    </div>
                 </div>
             </form>
         </div>

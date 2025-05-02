@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Company_contact_person_model;
+use App\Models\Job_result_stage_mapping_model;
 use App\Models\Placement_company_detail_model;
 use App\Models\Placement_job_details_model;
 use App\Models\Placement_job_result_model;
@@ -229,10 +230,11 @@ class PlacementController extends BaseController
         }
     }
 
-    public function job_student_mapping()
-    {
+    public function job_student_mapping(){
+        $placement_job_details_model = new Placement_job_details_model();
         $data = ['title' => 'Job Student Mapping'];
         if ($this->request->is('get')) {
+            $data['job_details'] = $placement_job_details_model->get();
             return view('admin/placement/job-student-mapping', $data);
         } else if ($this->request->is('post')) {
         }
@@ -240,10 +242,30 @@ class PlacementController extends BaseController
 
     public function job_result_stage_mapping()
     {
+        $placement_job_details_model = new Placement_job_details_model();
+        $job_result_stage_mapping_model = new Job_result_stage_mapping_model();
         $data = ['title' => 'Job Result Stage Mapping'];
         if ($this->request->is('get')) {
+            $data['job_details'] = $placement_job_details_model->get();
+            $data['job_result_stage_mapping'] = $job_result_stage_mapping_model->get();
             return view('admin/placement/job-result-stage-mapping', $data);
         } else if ($this->request->is('post')) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId'];
+            }
+            $data = [
+                'job_id' => $this->request->getPost('job_id'),
+                'result_title' => $this->request->getPost('result_title'),
+                'result_description' => $this->request->getPost('result_description'),
+                'upload_by' => $loggeduserId
+            ];
+            $result = $job_result_stage_mapping_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/job-result-stage-mapping')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/job-result-stage-mapping')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
         }
     }
 

@@ -1,11 +1,11 @@
 <?php
     namespace App\Models;
     use CodeIgniter\Model;
-    class Placement_job_result_model extends Model
+    class Job_result_stage_mapping_model extends Model
     {
-        protected $table         = 'placement_job_result';
+        protected $table         = 'job_result_stage_mapping';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['job_id','result_title','result_description','result_file','notification_date','upload_by'];
+        protected $allowedFields = ['job_id','result_title','result_description','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
