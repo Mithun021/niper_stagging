@@ -1,8 +1,10 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?=  $this->section("body-content"); ?>
 <?php
-    use App\Models\Employee_model;
-    $employee_model = new Employee_model();
+use App\Models\Employee_model;
+use App\Models\Placement_company_detail_model;
+$employee_model = new Employee_model();
+$placement_company_detail_model = new Placement_company_detail_model();
 ?>
 <style>
     
@@ -70,5 +72,61 @@
             </form>
         </div>
     </div>
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title m-0"><?= $title; ?> List</h4>
+            </div>
+            <div class="card-body p-2">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover" id="basic-datatable">
+                        <thead>
+                            <tr>
+                                <td>SN</td>
+                                <td>Company Name</td>
+                                <td>Job Title</td>
+                                <td>Job Description</td>
+                                <td>Number of positions</td>
+                                <td>Minimum Salary</td>
+                                <td>Maximum Salary</td>
+                                <td>Hiring Date and time</td>
+                                <td>Venue</td>
+                                <td>Meeting link</td>
+                                <td>Upload by</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($job_details as $key => $value) { ?>
+                                <tr>
+                                    <td><?= ++$key ?></td>
+                                    <td><?= $placement_company_detail_model->get($value['company_name'])['company_name'] ?? '' ?></td>
+                                    <td><?= $value['job_title'] ?></td>
+                                    <td><?= $value['job_description'] ?></td>
+                                    <td><?= $value['no_of_position'] ?></td>
+                                    <td><?= $value['minimum_salary'] ?></td>
+                                    <td><?= $value['maximun_salary'] ?></td>
+                                    <td><?= $value['hiring_date_time'] ?></td>
+                                    <td><?= $value['venue'] ?></td>
+                                    <td><?= $value['meeting_link'] ?></td>
+                                    <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                            <!-- <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a> -->
+                                            <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                            <a href="<?= base_url() ?>admin/delete-company-contact-person/<?= $value['id'] ?>" class="btn btn-danger waves-effect waves-light" onclick="return confirm('Are you sure..!')"><i class="far fa-trash-alt"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 <?= $this->endSection() ?>
