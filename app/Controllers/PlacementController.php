@@ -281,10 +281,13 @@ class PlacementController extends BaseController
 
     public function student_result_mapping()
     {
+        $placement_job_details_model = new Placement_job_details_model();
         $data = ['title' => 'Student Result Mapping'];
         if ($this->request->is('get')) {
+            $data['job_details'] = $placement_job_details_model->get();
             return view('admin/placement/student-result-mapping', $data);
         } else if ($this->request->is('post')) {
+            
         }
     }
 
