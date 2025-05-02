@@ -362,7 +362,7 @@ class PlacementController extends BaseController
         }
     }
 
-    public function delete_page_notification_details($id){
+    public function delete_placement_page_notification_details($id){
         $placement_page_notification_details_model = new Placement_page_notification_details_model();
         $placementData = $placement_page_notification_details_model->get($id);
         if ($placementData) {
