@@ -23,7 +23,7 @@ $placement_job_result_model = new Placement_job_details_model();
                     } ?>
                     <div class="form-group">
                         <span for="title">Job id</span>
-                        <select class="form-control form-control-sm" name="job_id" required>
+                        <select class="form-control form-control-sm" name="job_id" id="job_id" required>
                             <option value="">--Select--</option>
                         <?php foreach ($job_details as $key => $value) { ?>
                             <option value="<?= $value['id'] ?>"><?= $value['job_title'] ?></option>
@@ -32,12 +32,12 @@ $placement_job_result_model = new Placement_job_details_model();
                     </div>
                     <div class="form-group">
                         <span for="title">Job Stage</span>
-                        <select class="form-control form-control-sm" name="result_title" id="" required>
+                        <select class="form-control form-control-sm" name="job_stage" id="job_stage" required>
                         </select>
                     </div>
                     <div class="form-group">
                         <span for="title">Student ID</span>
-                        <select class="form-control form-control-sm" name="result_title" id="" required>
+                        <select class="form-control form-control-sm" name="student_id" id="" required>
                         </select>
                     </div>
                     <div class="form-group">
@@ -52,4 +52,36 @@ $placement_job_result_model = new Placement_job_details_model();
         </div>
     </div>
 </div>
+
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#job_id').on('change', function() {
+            var job_id = $(this).val();
+            if (job_id) {
+                $.ajax({
+                    url: '<?= base_url() ?>get-job-restult-stage/' + job_id,
+                    type: "GET",
+                    dataType: "json",
+                    beforeSend: function() {
+                        $('#job_stage').html('<option value="">Select Stage</option>');
+                    },
+                    success: function(data) {
+                        $('#job_stage').empty();
+                        if (response.length > 0) {
+                            $.each(response, function(index, stage) {
+                                $('#job_stage').append('<option value="' + stage.id + '">' + stage.sub_category_name + '</option>');
+                            });
+                        } else {
+                            $('#job_stage').html('<option value="">No stage available</option>');
+                        }
+                    }
+                });
+            } else {
+                $('#job_stage"]').empty();
+            }
+        });
+    });
+</script>
 <?= $this->endSection() ?>

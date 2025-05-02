@@ -16,6 +16,7 @@ $routes->post('getCourseByDepartment', 'UniversalController::getCourseByDepartme
 $routes->post('getFacilitySection', 'UniversalController::getFacilitySection');
 $routes->post('get-answer-options', 'UniversalController::get_answer_options');
 $routes->post('findcity', 'UniversalController::findcity');
+$routes->get('get-job-restult-stage/(:num)', 'UniversalController::get_job_restult_stage/$1');
 $routes->get('testmail', 'UniversalController::testmail');
 
 
