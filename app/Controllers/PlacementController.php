@@ -269,6 +269,16 @@ class PlacementController extends BaseController
         }
     }
 
+    public function delete_job_result_stage_mapping($id){
+        $job_result_stage_mapping_model = new Job_result_stage_mapping_model();
+        $result = $job_result_stage_mapping_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/job-result-stage-mapping')->with('status', '<div class="alert alert-success" role="alert">Data deleted successfully.</div>');
+        } else {
+            return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+        }
+    }
+
     public function student_result_mapping()
     {
         $data = ['title' => 'Student Result Mapping'];
@@ -277,6 +287,8 @@ class PlacementController extends BaseController
         } else if ($this->request->is('post')) {
         }
     }
+
+   
 
     public function page_notification_details()
     {

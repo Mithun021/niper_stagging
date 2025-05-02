@@ -223,6 +223,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete-result-details/(:num)', 'PlacementController::delete_result_details/$1');
     $routes->match(['get', 'post'], 'job-student-mapping', 'PlacementController::job_student_mapping');
     $routes->match(['get', 'post'], 'job-result-stage-mapping', 'PlacementController::job_result_stage_mapping');
+    $routes->get('delete-job-result-stage-mapping/(:num)', 'PlacementController::delete_job_result_stage_mapping/$1');
     $routes->match(['get', 'post'], 'student-result-mapping', 'PlacementController::student_result_mapping');
     $routes->match(['get', 'post'], 'page-notification-details', 'PlacementController::page_notification_details');
     $routes->match(['get', 'post'], 'page-section-details', 'PlacementController::page_section_details');
