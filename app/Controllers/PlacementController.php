@@ -174,8 +174,10 @@ class PlacementController extends BaseController
 
     public function result_details()
     {
+        $placement_job_details_model = new Placement_job_details_model();
         $data = ['title' => 'Result Details'];
         if ($this->request->is('get')) {
+            $data['job_details'] = $placement_job_details_model->get();
             return view('admin/placement/result-details', $data);
         } else if ($this->request->is('post')) {
         }

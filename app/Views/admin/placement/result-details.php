@@ -14,13 +14,44 @@
             <div class="card-header">
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
             </div>
-            <div class="card-body">
-                <?php
-                    if(session()->getFlashdata('status')){
+            <form action="<?= base_url() ?>admin/result-details" method="post" enctype="multipart/form-data" id="alumini-page-notification-form">
+                <div class="card-body p-1">
+                    <?php if (session()->getFlashdata('status')) {
                         echo session()->getFlashdata('status');
-                    }
-                ?>
-            </div>
+                    } ?>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <span for="title">Job id</span>
+                            <select class="form-control form-control-sm" name="job_id" required>
+                                <option value="">--Select--</option>
+                            <?php foreach ($job_details as $key => $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['job_title'] ?></option>
+                            <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span for="title">Result Title</span>
+                            <input type="text" class="form-control form-control-sm" name="result_title" id="job_title" placeholder="Enter Company Name" required>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <span for="title">Result Description</span>
+                            <textarea name="result_description" id="editor" class="form-control form-control-sm"></textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span for="title">Result File</span>
+                            <input type="file" name="result_file" class="form-control form-control-sm" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span for="title">Result Notification Date</span>
+                            <input type="date" name="notification_date" class="form-control form-control-sm" required>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="card-footer p-2">
+                    <input type="submit" class="btn btn-primary" value="Submit" id="submit">
+                </div>
+            </form>
         </div>
     </div>
 </div>
