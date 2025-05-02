@@ -67,7 +67,7 @@ $placement_job_result_model = new Placement_job_details_model();
                     beforeSend: function() {
                         $('#job_stage').html('<option value="">Select Stage</option>');
                     },
-                    success: function(data) {
+                    success: function(response) {
                         $('#job_stage').empty();
                         if (response.length > 0) {
                             $.each(response, function(index, stage) {
