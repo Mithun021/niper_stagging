@@ -362,6 +362,24 @@ class PlacementController extends BaseController
         }
     }
 
+    public function delete_page_notification_details($id){
+        $placement_page_notification_details_model = new Placement_page_notification_details_model();
+        $placementData = $placement_page_notification_details_model->get($id);
+        if ($placementData) {
+            if (file_exists("public/admin/uploads/placement/" . $placementData['file_upload'])) {
+                unlink("public/admin/uploads/placement/" . $placementData['file_upload']);
+            }
+            $result = $placement_page_notification_details_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/placement-page-notification-details')->with('status', '<div class="alert alert-success" role="alert">Data deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
+        } else {
+            return redirect()->to('admin/placement-page-notification-details')->with('status', '<div class="alert alert-danger" role="alert">Data not found.</div>');
+        }
+    }
+
     public function page_section_details()
     {
         $data = ['title' => 'Page Section Details'];
