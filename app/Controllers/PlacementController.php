@@ -313,6 +313,16 @@ class PlacementController extends BaseController
         }
     }
 
+    public function delete_student_result_mapping($id){
+        $placement_student_result_mapping_model = new Placement_student_result_mapping_model();
+        $result = $placement_student_result_mapping_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/student-result-mapping')->with('status', '<div class="alert alert-success" role="alert">Data deleted successfully.</div>');
+        } else {
+            return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+        }
+    }
+
    
 
     public function page_notification_details()
