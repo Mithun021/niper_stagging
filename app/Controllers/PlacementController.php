@@ -430,6 +430,32 @@ class PlacementController extends BaseController
         }
     }
 
+    public function delete_alumini_page_section($id){
+        $placement_page_section_model = new Placement_page_section_model();
+        $placement_page_section_gallery_model = new Placement_page_section_gallery_model();
+        $aluminiData = $placement_page_section_model->get($id);
+        if ($aluminiData) {
+            $section_images = $placement_page_section_gallery_model->getBysection($id);
+            if ($section_images) {
+                foreach ($section_images as $key => $image) {
+                    if (file_exists("public/admin/uploads/placement/" . $image['gallery_file'])) {
+                        unlink("public/admin/uploads/placement/" . $image['gallery_file']);
+                    }
+                    $placement_page_section_gallery_model->where('placement_page_section_id',$id)->delete();
+                }
+            }
+            $result = $placement_page_section_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/placement-page-section-details')->with('status', '<div class="alert alert-success" role="alert">Data deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
+        } else {
+            return redirect()->to('admin/placement-page-section-details')->with('status', '<div class="alert alert-danger" role="alert">Data not found.</div>');
+        }
+        
+    }
+
     public function page_gallery()
     {
         $data = ['title' => 'Page Gallery'];

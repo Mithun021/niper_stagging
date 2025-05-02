@@ -96,7 +96,7 @@ $placement_page_section_images_model = new Placement_page_section_gallery_model(
                                     <td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                             <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
-                                            <a href="<?= base_url() ?>admin/delete-alumini-page-section/<?= $value['id'] ?>" class="btn btn-danger waves-effect waves-light" onclick="return confirm('Are uou sure..!')"><i class="far fa-trash-alt"></i></a>
+                                            <a href="<?= base_url() ?>admin/delete-placement-page-section/<?= $value['id'] ?>" class="btn btn-danger waves-effect waves-light" onclick="return confirm('Are uou sure..!')"><i class="far fa-trash-alt"></i></a>
                                         </div>
                                     </td>
                                 </tr>
