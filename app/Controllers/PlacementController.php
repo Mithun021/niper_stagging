@@ -7,6 +7,7 @@ use App\Models\Job_result_stage_mapping_model;
 use App\Models\Placement_company_detail_model;
 use App\Models\Placement_job_details_model;
 use App\Models\Placement_job_result_model;
+use App\Models\Placement_student_result_mapping_model;
 use App\Models\Student_model;
 
 class PlacementController extends BaseController
@@ -283,14 +284,32 @@ class PlacementController extends BaseController
     public function student_result_mapping()
     {
         $placement_job_details_model = new Placement_job_details_model();
+        $placement_student_result_mapping_model = new Placement_student_result_mapping_model();
         $student_model = new Student_model();
         $data = ['title' => 'Student Result Mapping'];
         if ($this->request->is('get')) {
             $data['job_details'] = $placement_job_details_model->get();
             $data['student_details'] = $student_model->get();
+            $data['job_result_stage_mapping'] = $placement_student_result_mapping_model->get();
             return view('admin/placement/student-result-mapping', $data);
         } else if ($this->request->is('post')) {
-
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId'];
+            }
+            $data = [
+                'job_id' => $this->request->getPost('job_id'),
+                'job_stage' => $this->request->getPost('job_stage'),
+                'student_id' => $this->request->getPost('student_id'),
+                'result' => $this->request->getPost('result'),
+                'upload_by' => $loggeduserId
+            ];
+            $result = $placement_student_result_mapping_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/job-result-stage-mapping')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/job-result-stage-mapping')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
         }
     }
 

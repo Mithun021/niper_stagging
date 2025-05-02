@@ -2,9 +2,14 @@
 <?=  $this->section("body-content"); ?>
 <?php
 use App\Models\Employee_model;
+use App\Models\Job_result_stage_mapping_model;
 use App\Models\Placement_job_details_model;
+use App\Models\Student_model;
+
 $employee_model = new Employee_model();
 $placement_job_result_model = new Placement_job_details_model();
+$student_model = new Student_model();
+$job_result_stage_mapping_model = new Job_result_stage_mapping_model();
 ?>
 <style>
     
@@ -40,7 +45,7 @@ $placement_job_result_model = new Placement_job_details_model();
                         <select class="form-control form-control-sm my-select" name="student_id" id="" required>
                             <option value="">--Select--</option>
                         <?php foreach ($student_details as $key => $value) { ?>
-                            <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                            <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name']." (".$value['enrollment_no'].")" ?></option>
                         <?php } ?>
                         </select>
                     </div>
@@ -55,6 +60,53 @@ $placement_job_result_model = new Placement_job_details_model();
             </form>
         </div>
     </div>
+
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title m-0"><?= $title ?> List</h4>
+            </div>
+            <div class="card-body p-1">
+            <div class="table-responsive">
+                    <table class="table table-striped table-hover" id="basic-datatable">
+                        <thead>
+                            <tr>
+                                <td>SN</td>
+                                <td>Job id</td>
+                                <td>Job Stage</td>
+                                <td>Student ID</td>
+                                <td>Result</td>
+                                <td>Upload by</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($job_result_stage_mapping as $key => $value) { ?>
+                                <tr>
+                                    <td><?= ++$key ?></td>
+                                    <td><?= $placement_job_result_model->get($value['job_id'])['job_title'] ?? '' ?></td>
+                                    <td><?= $job_result_stage_mapping_model->get($value['job_stage'])['result_title'] ?? '' ?></td>
+                                    <td><?php $student = $student_model->get($value['student_id']); if($student){ echo $student['first_name']." ".$student['middle_name']." ".$student['last_name']." (".$student['enrollment_no'].")"; } ?></td>
+                                    <td><?= $value['result'] ?></td>
+                                    <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                            <!-- <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a> -->
+                                            <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                            <a href="<?= base_url() ?>admin/delete-job-result-stage-mapping/<?= $value['id'] ?>" class="btn btn-danger waves-effect waves-light" onclick="return confirm('Are you sure..!')"><i class="far fa-trash-alt"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
