@@ -306,9 +306,9 @@ class PlacementController extends BaseController
             ];
             $result = $placement_student_result_mapping_model->add($data);
             if ($result === true) {
-                return redirect()->to('admin/job-result-stage-mapping')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                return redirect()->to('admin/student-result-mapping')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
-                return redirect()->to('admin/job-result-stage-mapping')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+                return redirect()->to('admin/student-result-mapping')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
             }
         }
     }
