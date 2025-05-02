@@ -66,6 +66,7 @@ $placement_job_result_model = new Placement_job_details_model();
                         <tbody>
                             <?php foreach ($job_result_stage_mapping as $key => $value) { ?>
                                 <tr>
+                                    <td><?= ++$key ?></td>
                                     <td><?= $placement_job_result_model->get($value['job_id'])['job_title'] ?? '' ?></td>
                                     <td><?= $value['result_title'] ?></td>
                                     <td><?= $value['result_description'] ?></td>
