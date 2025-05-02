@@ -71,7 +71,7 @@ $placement_job_result_model = new Placement_job_details_model();
                         $('#job_stage').empty();
                         if (response.length > 0) {
                             $.each(response, function(index, stage) {
-                                $('#job_stage').append('<option value="' + stage.id + '">' + stage.sub_category_name + '</option>');
+                                $('#job_stage').append('<option value="' + stage.id + '">' + stage.result_title + '</option>');
                             });
                         } else {
                             $('#job_stage').html('<option value="">No stage available</option>');
