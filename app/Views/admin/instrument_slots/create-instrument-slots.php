@@ -40,10 +40,9 @@ $employee_model = new Employee_model();
             </div>
             <form id="eventForm">
                 <div class="modal-body">
-                    <input type="text" id="event_date" class="form-control" name="date" readonly>
+                    <input type="hidden" id="event_date" class="form-control" name="date" readonly>
                     <div class="form-group">
-                        <span for="event_day" class="form-label">Day</span>
-                        <input type="text" class="form-control" name="day" id="event_day" readonly>
+                        <input type="hidden" class="form-control" name="day" id="event_day" readonly>
                     </div>
                     <div class="form-group">
                         <span for="department" class="form-label">Department</span>
