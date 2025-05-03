@@ -41,12 +41,12 @@ $employee_model = new Employee_model();
             <form id="eventForm">
                 <div class="modal-body">
                     <input type="text" id="event_date" class="form-control" name="date" readonly>
-                    <div class="mb-3">
-                        <label for="event_day" class="form-label">Day</label>
+                    <div class="form-group">
+                        <span for="event_day" class="form-label">Day</span>
                         <input type="text" class="form-control" name="day" id="event_day" readonly>
                     </div>
-                    <div class="mb-3">
-                        <label for="department" class="form-label">Department</label>
+                    <div class="form-group">
+                        <span for="department" class="form-label">Department</span>
                         <select class="form-control" name="department" required>
                             <option value="">--Select--</option>
                             <?php foreach ($department as $dept) { ?>
@@ -54,8 +54,8 @@ $employee_model = new Employee_model();
                             <?php } ?>
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <label for="instrument" class="form-label">Instrument Name</label>
+                    <div class="form-group">
+                        <span for="instrument" class="form-label">Instrument Name</span>
                         <select class="form-control" name="instrument" required>
                             <option value="">--Select--</option>
                         </select>
