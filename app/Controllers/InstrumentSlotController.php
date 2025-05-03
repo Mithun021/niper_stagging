@@ -76,6 +76,17 @@ class InstrumentSlotController extends BaseController
         return $this->response->setJSON($events);
     }
 
+    public function delete_instrument_slots($id)
+    {
+        $model = new Instrument_slots_master_model();
+        $result = $model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/alumini-page-video')->with('status', '<div class="alert alert-success" role="alert">Data deleted successfully.</div>');
+        } else {
+            return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+        }
+    }
+
     public function instrument_booking_report()
     {
         $data = ['title' => 'Instrument Slots Booking'];
