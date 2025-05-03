@@ -37,6 +37,50 @@ $instruments_model = new Instruments_model();
             </div>
         </div>
     </div>
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title m-0"><?= $title; ?> List</h4>
+            </div>
+            <div class="card-body p-2">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover" id="basic-datatable">
+                        <thead>
+                            <tr>
+                                <td>SN</td>
+                                <td>Date / Day</td>
+                                <td>Department</td>
+                                <td>Instrument</td>
+                                <td>User Type</td>
+                                <td>Booking Time</td>
+                                <td>Slots Number</td>
+                                <td>Upload by</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $i = 1; foreach ($instrument as $slot): ?>
+                                <tr>
+                                    <td><?= $i++ ?></td>
+                                    <td><?= date('d-m-Y', strtotime($slot['booking_slot_date'])) ?> / <?= $slot['booking_slot_day'] ?></td>
+                                    <td><?= $department_model->get($slot['department_id'])['name'] ?></td>
+                                    <td><?= $instruments_model->get($slot['instrument_id'])['title'] ?></td>
+                                    <td><?= $slot['user_type'] ?></td>
+                                    <td><?= date('h:i A', strtotime($slot['booking_start_time'])) ?> - <?= date('h:i A', strtotime($slot['booking_end_time'])) ?></td>
+                                    <td><?= $slot['number_of_slots'] ?></td>
+                                    <td><?php $emp = $employee_model->get($slot['upload_by']); if($emp){
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
+                                    <td><a href="<?= base_url('admin/delete-instrument-slots/' . $slot['id']) ?>" class="btn btn-danger btn-sm">Delete</a></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- Modal -->
@@ -99,49 +143,6 @@ $instruments_model = new Instruments_model();
                     <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
-        </div>
-    </div>
-
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title m-0"><?= $title; ?> List</h4>
-            </div>
-            <div class="card-body p-2">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover" id="basic-datatable">
-                        <thead>
-                            <tr>
-                                <td>SN</td>
-                                <td>Date / Day</td>
-                                <td>Department</td>
-                                <td>Instrument</td>
-                                <td>User Type</td>
-                                <td>Booking Time</td>
-                                <td>Slots Number</td>
-                                <td>Upload by</td>
-                                <td>Action</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $i = 1; foreach ($instrument as $slot): ?>
-                                <tr>
-                                    <td><?= $i++ ?></td>
-                                    <td><?= date('d-m-Y', strtotime($slot['booking_slot_date'])) ?> / <?= $slot['booking_slot_day'] ?></td>
-                                    <td><?= $department_model->get($slot['department_id'])['name'] ?></td>
-                                    <td><?= $instruments_model->get($slot['instrument_id'])['title'] ?></td>
-                                    <td><?= $slot['user_type'] ?></td>
-                                    <td><?= date('h:i A', strtotime($slot['booking_start_time'])) ?> - <?= date('h:i A', strtotime($slot['booking_end_time'])) ?></td>
-                                    <td><?= $slot['number_of_slots'] ?></td>
-                                    <td><?php $emp = $employee_model->get($slot['upload_by']); if($emp){
-                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
-                                    <td><a href="<?= base_url('admin/delete-instrument-slots/' . $slot['id']) ?>" class="btn btn-danger btn-sm">Delete</a></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
     </div>
 
