@@ -60,6 +60,19 @@ $employee_model = new Employee_model();
                             <option value="">--Select--</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <span for="">Booking Start Time</span>
+                        <div class="input-group">
+                            <input type="text" class="form-control form-control-sm" name="booking_start_time" placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                            <input type="text" class="form-control form-control-sm" name="booking_end_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <span for="">Booking End Time</span>
+                        <div class="input-group">
+                            <input type="text" class="form-control form-control-sm" name="booking_end_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                        </div>
+                    </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
