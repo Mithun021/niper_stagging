@@ -29,7 +29,7 @@ $instruments_model = new Instruments_model();
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title m-0">Add <?= $title ?></h4>
+                <h4 class="card-title m-0">Add to <?= $title ?></h4>
             </div>
             <div class="card-body p-1">
                 <?php if (session()->getFlashdata('status')) echo session()->getFlashdata('status'); ?>
