@@ -16,6 +16,7 @@ class InstrumentSlotController extends BaseController
 
         if ($this->request->is('get')) {
             $data['department'] = $department_model->activeData();
+            $data['instrument'] = $instrument_slots_master_model->get();
             return view('admin/instrument_slots/create-instrument-slots', $data);
         } elseif ($this->request->is('post')) {
             $sessionData = session()->get('loggedUserData');
