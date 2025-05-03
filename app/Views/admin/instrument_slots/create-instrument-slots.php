@@ -10,6 +10,7 @@
         font-size: 9px;
         text-wrap: break-word;
         white-space: normal;
+        color: #000;
     }
 </style>
 
