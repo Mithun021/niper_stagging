@@ -63,9 +63,9 @@ class InstrumentSlotController extends BaseController
             $endTime = date('g:i A', strtotime($slot['booking_end_time']));
 
             $events[] = [
-                'title' => $slot['user_type'] . '<br>' .
-                        $startTime . ' - ' . $endTime . '<br>' .
-                        'Dept: ' . $department_model->get($slot['department_id'])['name'] . '<br>' .
+                'title' => $slot['user_type'] . ' | ' .
+                        $startTime . ' - ' . $endTime . ' | ' .
+                        'Dept: ' . $department_model->get($slot['department_id'])['name'] . ' | ' .
                         'Instrument: ' . $instruments_model->get($slot['instrument_id'])['title'],
                 'start' => $slot['booking_slot_date'],
                 'allDay' => true
