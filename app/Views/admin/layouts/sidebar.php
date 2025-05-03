@@ -214,12 +214,12 @@
             <a href="javascript: void(0);" class="has-arrow waves-effect"><i
                     class="mdi mdi-share-variant"></i><span>Instrument Slot Book</span></a>
             <ul class="sub-menu" aria-expanded="true">
-                <li><a href="javascript: void(0);" class="has-arrow">Patent</a>
+                <li><a href="javascript: void(0);" class="has-arrow">Create Slot</a>
                     <ul class="sub-menu" aria-expanded="true">
-                        <li><a href="<?= base_url() ?>admin/create-instrument-slots">Crate Slots</a></li>
-                        <li><a href="<?= base_url() ?>admin/instrument-booking-report">Booking Report</a></li>
+                        <li><a href="<?= base_url() ?>admin/create-instrument-slots">Instrument Slots</a></li>
                     </ul>
                 </li>
+                <li><a href="<?= base_url() ?>admin/instrument-booking-report">Booking Report</a></li>
             </ul>
         </li>
 
