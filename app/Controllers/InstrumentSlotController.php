@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Department_model;
 use App\Models\Instrument_slots_master_model;
+use App\Models\Instruments_model;
 
 class InstrumentSlotController extends BaseController
 {
@@ -50,6 +51,8 @@ class InstrumentSlotController extends BaseController
     public function fetch_instrument_slots()
     {
         $model = new Instrument_slots_master_model();
+        $department_model = new Department_model();
+        $instruments_model = new Instruments_model();
         $slots = $model->findAll(); // Replace with your custom joined data if needed
 
         $events = [];
@@ -57,6 +60,8 @@ class InstrumentSlotController extends BaseController
             $events[] = [
                 'title' => $slot['user_type'] . ' [' . $slot['booking_start_time'] . ' - ' . $slot['booking_end_time'] . ']',
                 'start' => $slot['booking_slot_date'],
+                'department' => $department_model->get($slot['department_id'])['name'],
+                'instrument' => $instruments_model->get($slot['instrument_id'])['title'],
                 'allDay' => true
             ];
         }

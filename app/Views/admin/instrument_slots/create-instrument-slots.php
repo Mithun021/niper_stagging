@@ -148,7 +148,12 @@ $(document).ready(function () {
             success: function (res) {
                 $('#eventModal').modal('hide');
                 calendar.addEvent({
-                    title: $('[name="user_type"]').val() + ' [' + $('[name="booking_start_time"]').val() + ' - ' + $('[name="booking_end_time"]').val() + ']',
+                    title:
+                        $('[name="user_type"]').val() + '<br>' +
+                        formatAMPM($('[name="booking_start_time"]').val()) + ' - ' +
+                        formatAMPM($('[name="booking_end_time"]').val()) + '<br>' +
+                        'Dept: ' + $("#department_id option:selected").text() + '<br>' +
+                        'Instrument: ' + $("#instrument_id option:selected").text(),
                     start: $('#event_date').val(),
                     allDay: true
                 });
