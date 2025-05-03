@@ -39,7 +39,11 @@ $employee_model = new Employee_model();
                 </button>
             </div>
             <div class="modal-body">
-                <input type="text" id="event_date" name="date">
+                <input type="text" id="event_date" class="form-control" name="date">
+                <div class="mb-3">
+                    <label for="event_day" class="form-label">Day</label>
+                    <input type="text" class="form-control" name="day" id="event_day" readonly>
+                </div>
                 <div class="mb-3">
                     <label for="instrument" class="form-label">Instrument Name</label>
                     <input type="text" class="form-control" name="instrument" required>
@@ -62,17 +66,26 @@ $employee_model = new Employee_model();
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        let calendarEl = document.getElementById('calendar');
+        var calendarEl = document.getElementById('calendar');
 
-        let calendar = new FullCalendar.Calendar(calendarEl, {
+        var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             initialDate: new Date(),
             selectable: true,
-            events: '/calendar/fetch-events', // Controller route for fetching events
+            events: '/calendar/fetch-events',
 
             dateClick: function(info) {
-                $('#event_date').val(info.dateStr);
-                $('#eventModal').modal('show');
+                const dateStr = info.dateStr;
+                const dayName = new Date(dateStr).toLocaleDateString('en-US', {
+                    weekday: 'long'
+                });
+
+                $('#event_date').val(dateStr);
+                $('#event_day').val(dayName);
+
+                $('#modalTitle').text(`Add Event - ${dayName}, ${dateStr}`);
+                const modal = new bootstrap.Modal(document.getElementById('eventModal'));
+                modal.show();
             }
         });
 
