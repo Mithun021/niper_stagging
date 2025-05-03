@@ -39,25 +39,32 @@ $employee_model = new Employee_model();
                 </button>
             </div>
             <form id="eventForm">
-            <div class="modal-body">
-                <input type="text" id="event_date" class="form-control" name="date">
-                <div class="mb-3">
-                    <label for="event_day" class="form-label">Day</label>
-                    <input type="text" class="form-control" name="day" id="event_day" readonly>
+                <div class="modal-body">
+                    <input type="text" id="event_date" class="form-control" name="date" readonly>
+                    <div class="mb-3">
+                        <label for="event_day" class="form-label">Day</label>
+                        <input type="text" class="form-control" name="day" id="event_day" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="department" class="form-label">Department</label>
+                        <select class="form-control" name="department" required>
+                            <option value="">--Select--</option>
+                            <?php foreach ($department as $dept) { ?>
+                                <option value="<?= $dept['id'] ?>"><?= $dept['name'] ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="instrument" class="form-label">Instrument Name</label>
+                        <select class="form-control" name="instrument" required>
+                            <option value="">--Select--</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="instrument" class="form-label">Instrument Name</label>
-                    <input type="text" class="form-control" name="instrument" required>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
                 </div>
-                <div class="mb-3">
-                    <label for="department" class="form-label">Department</label>
-                    <input type="text" class="form-control" name="department" required>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
-            </div>
             </form>
         </div>
     </div>
