@@ -22,7 +22,7 @@
             if($id != null){
                 $result = $this->where('id',$id)->first();
             }else{
-                $result = $this->orderBy('title','asc')->findAll();
+                $result = $this->orderBy('booking_slot_date','asc')->findAll();
             }
             return $result;
         }
