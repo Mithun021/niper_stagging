@@ -133,7 +133,7 @@ $instruments_model = new Instruments_model();
                                     <td><?= $slot['user_type'] ?></td>
                                     <td><?= date('h:i A', strtotime($slot['booking_start_time'])) ?> - <?= date('h:i A', strtotime($slot['booking_end_time'])) ?></td>
                                     <td><?= $slot['number_of_slots'] ?></td>
-                                    <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){
+                                    <td><?php $emp = $employee_model->get($slot['upload_by']); if($emp){
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; }  ?></td>
                                     <td><a href="<?= base_url('admin/delete-instrument-slots/' . $slot['id']) ?>" class="btn btn-danger btn-sm">Delete</a></td>
                                 </tr>
