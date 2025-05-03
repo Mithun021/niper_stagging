@@ -28,34 +28,53 @@ $employee_model = new Employee_model();
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="eventModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form id="eventForm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Event</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="event_date" name="date">
+                    <div class="mb-3">
+                        <label for="instrument" class="form-label">Instrument Name</label>
+                        <input type="text" class="form-control" name="instrument" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="department" class="form-label">Department</label>
+                        <input type="text" class="form-control" name="department" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save Event</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var calendarEl = document.getElementById('calendar');
+    document.addEventListener('DOMContentLoaded', function() {
+        let calendarEl = document.getElementById('calendar');
 
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',      // 📆 Default month view
-        initialDate: new Date(),          // 📍 Default to today
-        selectable: true,                 // ✅ Allow date selection
-        editable: true,                   // 📝 Allow drag/drop or edit (optional)
-        headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay'
-        },
-        dateClick: function (info) {
-          const title = prompt('Enter event title:');
-          if (title) {
-            calendar.addEvent({
-              title: title,
-              start: info.dateStr,
-              allDay: true
-            });
-          }
-        }
-      });
+        let calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            initialDate: new Date(),
+            selectable: true,
+            events: '/calendar/fetch-events', // Controller route for fetching events
 
-      calendar.render();
+            dateClick: function(info) {
+                $('#event_date').val(info.dateStr);
+                $('#eventModal').modal('show');
+            }
+        });
+
+        calendar.render();
     });
-  </script>
+</script>
 
 <?= $this->endSection() ?>
