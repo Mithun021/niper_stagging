@@ -87,95 +87,74 @@
 <!-- Scripts -->
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#department_id').change(function() {
-            var department_id = $(this).val();
-            $.ajax({
-                url: '<?= base_url('fetch-instrument-by-department') ?>',
-                type: 'POST',
-                data: {
-                    department_id: department_id
-                },
-                dataType: 'json',
-                beforeSend: function() {
-                    $('#instrument_id').empty();
-                    $('#instrument_id').append('<option value="">--Please Wait--</option>');
-                },
-                success: function(data) {
-                    $('#instrument_id').empty();
-                    $('#instrument_id').append('<option value="">--Select--</option>');
-                    $.each(data, function(index, instrument) {
-                        $('#instrument_id').append('<option value="' + instrument.id + '">' + instrument.title + '</option>');
-                    });
-                }
-            });
-        });
-    });
-
-    // Format time to 12-hour format (e.g., 9:00AM)
-    function formatAMPM(timeStr) {
-        const [hourStr, minute] = timeStr.split(':');
-        let hour = parseInt(hourStr);
-        const ampm = hour >= 12 ? 'PM' : 'AM';
-        hour = hour % 12 || 12;
-        return hour + ':' + minute + ampm;
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            initialDate: new Date(),
-            selectable: true,
-            eventDisplay: 'block',
-            events: '<?= base_url() ?>admin/fetch-instrument-slots',
-
-            dateClick: function(info) {
-                const dateStr = info.dateStr;
-                const dayName = new Date(dateStr).toLocaleDateString('en-US', {
-                    weekday: 'long'
+$(document).ready(function () {
+    // Load instruments on department change
+    $('#department_id').change(function () {
+        var department_id = $(this).val();
+        $.ajax({
+            url: '<?= base_url('fetch-instrument-by-department') ?>',
+            type: 'POST',
+            data: { department_id: department_id },
+            dataType: 'json',
+            beforeSend: function () {
+                $('#instrument_id').html('<option value="">--Please Wait--</option>');
+            },
+            success: function (data) {
+                $('#instrument_id').html('<option value="">--Select--</option>');
+                $.each(data, function (index, instrument) {
+                    $('#instrument_id').append('<option value="' + instrument.id + '">' + instrument.title + '</option>');
                 });
-
-                $('#event_date').val(dateStr);
-                $('#booking_slot_day').val(dayName);
-
-                $('#modalTitle').text(`Add Event - ${dayName}, ${dateStr}`);
-                const modal = new bootstrap.Modal(document.getElementById('eventModal'));
-                modal.show();
             }
         });
+    });
 
-        calendar.render();
+    // Initialize calendar
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        selectable: true,
+        events: '<?= base_url('admin/fetch-instrument-slots') ?>',
 
-        // AJAX form submission
-        $('#eventForm').on('submit', function(e) {
-            e.preventDefault();
+        dateClick: function (info) {
+            var dateStr = info.dateStr;
+            var dayName = new Date(dateStr).toLocaleDateString('en-US', { weekday: 'long' });
 
-            $.ajax({
-                url: '<?= base_url() ?>admin/create-instrument-slots',
-                method: 'POST',
-                data: $(this).serialize(),
-                success: function(response) {
-                    $('#eventModal').modal('hide');
+            $('#event_date').val(dateStr);
+            $('#booking_slot_day').val(dayName);
 
-                    // Add event visually without page reload
-                    calendar.addEvent({
-                        title: $('[name="user_type"]').val() + '\n' +
-                               formatAMPM($('[name="booking_start_time"]').val()) + ' - ' +
-                               formatAMPM($('[name="booking_end_time"]').val()),
-                        start: $('#event_date').val(),
-                        allDay: true
-                    });
+            $('#eventModal').modal('show'); // Correct for Bootstrap 4
+        }
+    });
 
-                    calendar.refetchEvents();
-                },
-                error: function() {
+    calendar.render();
+
+    // Form submission
+    $('#eventForm').submit(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: '<?= base_url('admin/create-instrument-slots') ?>',
+            method: 'POST',
+            data: $(this).serialize(),
+            success: function (res) {
+                $('#eventModal').modal('hide');
+                calendar.addEvent({
+                    title: $('[name="user_type"]').val() + ' [' + $('[name="booking_start_time"]').val() + ' - ' + $('[name="booking_end_time"]').val() + ']',
+                    start: $('#event_date').val(),
+                    allDay: true
+                });
+                alert("Slot booked successfully!");
+            },
+            error: function (xhr) {
+                if (xhr.status === 422) {
+                    alert("Validation error: Please fill all required fields.");
+                } else {
                     alert("Failed to save event.");
                 }
-            });
+            }
         });
     });
+});
 </script>
 
 <?= $this->endSection() ?>
