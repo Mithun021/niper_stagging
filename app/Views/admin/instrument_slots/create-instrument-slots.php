@@ -61,22 +61,30 @@ $employee_model = new Employee_model();
                         </select>
                     </div>
                     <div class="form-group">
-                        <span for="">Booking Start Time</span>
+                        <span for="" class="form-label">User Type</span>
+                        <select class="form-control" name="user_type" required>
+                            <option value="">--Select--</option>
+                            <option value="External Student / Faculty">External Student / Faculty</option>
+                            <option value="Internal">Internal</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span for="">Booking Time</span>
                         <div class="input-group">
-                            <input type="text" class="form-control form-control-sm" name="booking_start_time" placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')">
-                            <input type="text" class="form-control form-control-sm" name="booking_end_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                            <input type="text" class="form-control form-control-sm" name="booking_start_time" placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')" required>
+                            <input type="text" class="form-control form-control-sm" name="booking_end_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')" required>
                         </div>
                     </div>
-                    <!-- <div class="form-group">
-                        <span for="">Booking End Time</span>
-                        <div class="input-group">
-                            <input type="text" class="form-control form-control-sm" name="booking_end_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
-                        </div>
-                    </div> -->
+
+                    <div class="form-group">
+                        <span>Number of Slots</span>
+                        <input type="number" class="form-control form-control-sm" name="number_of_slots" required>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                    <button type="submit" class="btn btn-primary waves-effect waves-light">Save changes</button>
                 </div>
             </form>
         </div>
