@@ -5,6 +5,14 @@
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
+<style>
+    .fc-h-event .fc-event-title{
+        font-size: 9px;
+        text-wrap: break-word;
+        white-space: normal;
+    }
+</style>
+
 <!-- Page Title -->
 <div class="row">
     <div class="col-md-12">
