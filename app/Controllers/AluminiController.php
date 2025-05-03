@@ -6,6 +6,7 @@ use App\Models\Alumini_page_gallery_model;
 use App\Models\Alumini_page_notification_model;
 use App\Models\Alumini_page_section_images_model;
 use App\Models\Alumini_page_section_model;
+use App\Models\Alumini_page_video_model;
 
 class AluminiController extends BaseController
 {
@@ -196,11 +197,37 @@ class AluminiController extends BaseController
 
     public function alumini_page_video()
     {
+        $alumini_page_video_model = new Alumini_page_video_model();
         $data = ['title' => 'Page Video Gallery'];
         if($this->request->is('get')) {
+            $data['video'] = $alumini_page_video_model->get();
             return view('admin/alumini/alumini-page-video',$data);
         } else if($this->request->is('post')){
-            
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $file = $this->request->getFile('file_upload');
+            if ($file->isValid() && ! $file->hasMoved()) {
+                $fileNewName = "video".$file->getRandomName();
+                $file->move(ROOTPATH . 'public/admin/uploads/alumini', $fileNewName);    
+            }else{
+                $fileNewName = "";
+            }
+            $data = [
+                'title' => $this->request->getPost('title'),
+                'description' => $this->request->getPost('description'),
+                'video_date' => $this->request->getPost('video_date'),
+                'video_link' => $this->request->getPost('video_link'),
+                'file_upload' => $fileNewName,
+                'upload_by' => $loggeduserId
+            ];
+            $result = $alumini_page_video_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/alumini-page-video')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/alumini-page-video')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
         }
     }
     public function alumini_education_detail()
