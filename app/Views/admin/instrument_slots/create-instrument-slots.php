@@ -150,10 +150,10 @@ $(document).ready(function () {
 
                 calendar.addEvent({
                     title:
-                        $('[name="user_type"]').val() + '<br>' +
+                        $('[name="user_type"]').val() + ' | ' +
                         formatAMPM($('[name="booking_start_time"]').val()) + ' - ' +
-                        formatAMPM($('[name="booking_end_time"]').val()) + '<br>' +
-                        'Dept: ' + $("#department_id option:selected").text() + '<br>' +
+                        formatAMPM($('[name="booking_end_time"]').val()) + ' | ' +
+                        'Dept: ' + $("#department_id option:selected").text() + ' | ' +
                         'Instrument: ' + $("#instrument_id option:selected").text(),
                     start: $('#event_date').val(),
                     allDay: true
