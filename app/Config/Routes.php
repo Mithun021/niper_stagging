@@ -247,6 +247,10 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get', 'post'],'alumini-job-details', 'AluminiController::alumini_job_details');
     // $routes->match(['get', 'post'],'export_student', 'AluminiController::export_student');
 
+    // Instrument Slotes ----------------------
+    $routes->match(['get', 'post'], 'create-instrument-slots', 'InstrumentSlotController::create_instrument_slots');
+    $routes->match(['get', 'post'], 'instrument-booking-report', 'InstrumentSlotController::instrument_booking_report');
+
     $routes->match(['get', 'post'], 'convocation', 'ConvocationControllers::convocation');
 
     $routes->match(['get', 'post'], 'result', 'ResultGradeControllers::result');
