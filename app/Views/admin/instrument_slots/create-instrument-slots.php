@@ -54,7 +54,7 @@ $instruments_model = new Instruments_model();
                                 <td>Instrument</td>
                                 <td>User Type</td>
                                 <td>Booking Time</td>
-                                <td>Slots Number</td>
+                                <td>No of Slots</td>
                                 <td>Upload by</td>
                                 <td>Action</td>
                             </tr>
