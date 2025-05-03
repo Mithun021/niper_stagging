@@ -90,8 +90,8 @@ $employee_model = new Employee_model();
                 success: function(data) {
                     $('#instrument_id').empty();
                     $('#instrument_id').append('<option value="">--Select--</option>');
-                    $.each(instruments, function(data, instrument) {
-                        $('#instrument_id').append('<option value="' + instrument.id + '">' + instrument.name + '</option>');
+                    $.each(data, function(index, instrument) {
+                        $('#instrument_id').append('<option value="' + instrument.id + '">' + instrument.title + '</option>');
                     });
                     
                 }
