@@ -3,27 +3,73 @@
 namespace App\Controllers;
 
 use App\Models\Department_model;
+use App\Models\Instrument_slots_master_model;
 
 class InstrumentSlotController extends BaseController
 {
     public function create_instrument_slots()
     {
         $department_model = new Department_model();
+        $instrument_slots_master_model = new Instrument_slots_master_model();
         $data = ['title' => 'Instrument Slots'];
-        if($this->request->is('get')) {
+
+        if ($this->request->is('get')) {
             $data['department'] = $department_model->activeData();
-            return view('admin/instrument_slots/create-instrument-slots',$data);
-        } else if($this->request->is('post')){
-            
+            return view('admin/instrument_slots/create-instrument-slots', $data);
+        } elseif ($this->request->is('post')) {
+            $sessionData = session()->get('loggedUserData');
+            $loggeduserId = $sessionData['loggeduserId'] ?? null;
+
+            $postData = $this->request->getPost();
+
+            if (!$postData['booking_slot_date'] || !$postData['department_id'] || !$postData['instrument_id']) {
+                return $this->response->setStatusCode(422)->setJSON(['status' => 'validation_error']);
+            }
+
+            $dataToInsert = [
+                'booking_slot_date' => $postData['booking_slot_date'],
+                'booking_slot_day' => $postData['booking_slot_day'],
+                'department_id' => $postData['department_id'],
+                'instrument_id' => $postData['instrument_id'],
+                'user_type' => $postData['user_type'],
+                'booking_start_time' => $postData['booking_start_time'],
+                'booking_end_time' => $postData['booking_end_time'],
+                'number_of_slots' => $postData['number_of_slots'],
+                'upload_by' => $loggeduserId
+            ];
+
+            $result = $instrument_slots_master_model->add($dataToInsert);
+
+            if ($result === true) {
+                return $this->response->setJSON(['status' => 'success']);
+            }
+            return $this->response->setStatusCode(500)->setJSON(['status' => 'error']);
         }
     }
+
+    public function fetch_instrument_slots()
+    {
+        $model = new Instrument_slots_master_model();
+        $slots = $model->findAll(); // Replace with your custom joined data if needed
+
+        $events = [];
+        foreach ($slots as $slot) {
+            $events[] = [
+                'title' => $slot['user_type'] . ' [' . $slot['booking_start_time'] . ' - ' . $slot['booking_end_time'] . ']',
+                'start' => $slot['booking_slot_date'],
+                'allDay' => true
+            ];
+        }
+
+        return $this->response->setJSON($events);
+    }
+
     public function instrument_booking_report()
     {
         $data = ['title' => 'Instrument Slots Booking'];
-        if($this->request->is('get')) {
-            return view('admin/instrument_slots/instrument-booking-report',$data);
-        } else if($this->request->is('post')){
-            
+        if ($this->request->is('get')) {
+            return view('admin/instrument_slots/instrument-booking-report', $data);
+        } else if ($this->request->is('post')) {
         }
     }
 }
