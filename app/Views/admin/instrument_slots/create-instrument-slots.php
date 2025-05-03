@@ -113,7 +113,7 @@ $(document).ready(function () {
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         selectable: true,
-        events: '<?= base_url('fetch-instrument-slots') ?>',
+        events: '<?= base_url('admin/fetch-instrument-slots') ?>',
 
         dateClick: function (info) {
             var dateStr = info.dateStr;
@@ -133,7 +133,7 @@ $(document).ready(function () {
         e.preventDefault();
 
         $.ajax({
-            url: '<?= base_url('create-instrument-slots') ?>',
+            url: '<?= base_url('admin/create-instrument-slots') ?>',
             method: 'POST',
             data: $(this).serialize(),
             success: function (res) {
