@@ -26,5 +26,10 @@
             }
             return $result;
         }
+
+        public function getInstrumentByDepartment($id){
+            return $this->where('department_id',$id)->findAll();
+        }
+
     }
 ?>

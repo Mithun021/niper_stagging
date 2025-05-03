@@ -47,7 +47,7 @@ $employee_model = new Employee_model();
                     </div>
                     <div class="form-group">
                         <span for="department" class="form-label">Department</span>
-                        <select class="form-control" name="department" required>
+                        <select class="form-control" name="department" id="department_id" required>
                             <option value="">--Select--</option>
                             <?php foreach ($department as $dept) { ?>
                                 <option value="<?= $dept['id'] ?>"><?= $dept['name'] ?></option>
@@ -56,7 +56,7 @@ $employee_model = new Employee_model();
                     </div>
                     <div class="form-group">
                         <span for="instrument" class="form-label">Instrument Name</span>
-                        <select class="form-control" name="instrument" required>
+                        <select class="form-control" name="instrument" id="instrument_id" required>
                             <option value="">--Select--</option>
                         </select>
                     </div>
@@ -74,6 +74,31 @@ $employee_model = new Employee_model();
 
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
+
+    $(document).ready(function() {
+        $('#department_id').change(function() {
+            var department_id = $(this).val();
+            $.ajax({
+                url: '<?= base_url('fetch-instrument-by-department') ?>',
+                type: 'POST',
+                data: { department_id: department_id },
+                dataType: 'json',
+                beforeSend: function() {
+                    $('#instrument_id').empty();
+                    $('#instrument_id').append('<option value="">--Please Wait--</option>');
+                },
+                success: function(data) {
+                    $('#instrument_id').empty();
+                    $('#instrument_id').append('<option value="">--Select--</option>');
+                    $.each(instruments, function(data, instrument) {
+                        $('#instrument_id').append('<option value="' + instrument.id + '">' + instrument.name + '</option>');
+                    });
+                    
+                }
+            });
+        });
+    });
+
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
 

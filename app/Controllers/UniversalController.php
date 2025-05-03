@@ -9,6 +9,7 @@ use App\Models\Employee_model;
 use App\Models\Event_fee_category_model;
 use App\Models\Event_fee_subcategory_model;
 use App\Models\Facility_section_model;
+use App\Models\Instruments_model;
 use App\Models\Job_result_stage_mapping_model;
 use App\Models\Mapping_question_model;
 use App\Models\Menu_heading_model;
@@ -82,6 +83,13 @@ use App\Models\Student_model;
             $job_result_stage_mapping_model = new Job_result_stage_mapping_model();
             $stages = $job_result_stage_mapping_model->getByJobid($job_id);
             return $this->response->setJSON($stages);
+        }
+
+        public function fetch_instrument_by_department(){
+            $department_id = $this->request->getPost('department_id');
+            $instrument_model = new Instruments_model();
+            $instruments = $instrument_model->getInstrumentByDepartment($department_id);
+            return $this->response->setJSON($instruments);
         }
 
         public function testmail(){
