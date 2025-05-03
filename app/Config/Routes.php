@@ -242,6 +242,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get', 'post'],'alumini-page-gallery', 'AluminiController::alumini_page_gallery');
     $routes->get('delete-alumini-page-gallery/(:num)', 'AluminiController::delete_alumini_page_gallery/$1');
     $routes->match(['get', 'post'],'alumini-page-video', 'AluminiController::alumini_page_video');
+    $routes->get('delete-alumini-page-video/(:num)', 'AluminiController::delete_alumini_page_video/$1');
     $routes->match(['get', 'post'],'alumini-education-detail', 'AluminiController::alumini_education_detail');
     $routes->match(['get', 'post'],'alumini-job-details', 'AluminiController::alumini_job_details');
     // $routes->match(['get', 'post'],'export_student', 'AluminiController::export_student');

@@ -230,6 +230,26 @@ class AluminiController extends BaseController
             }
         }
     }
+
+    public function delete_alumini_page_video($id){
+        $alumini_page_video_model = new Alumini_page_video_model();
+        $aluminiData = $alumini_page_video_model->get($id);
+        if ($aluminiData) {
+            if (file_exists("public/admin/uploads/alumini/" . $aluminiData['file_upload'])) {
+                unlink("public/admin/uploads/alumini/" . $aluminiData['file_upload']);
+            }
+            $result = $alumini_page_video_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/alumini-page-video')->with('status', '<div class="alert alert-success" role="alert">Data deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+            }
+        } else {
+            return redirect()->to('admin/alumini-page-video')->with('status', '<div class="alert alert-danger" role="alert">Data not found.</div>');
+        }
+        
+    }
+
     public function alumini_education_detail()
     {
         $data = ['title' => 'Alumni Education Details'];
