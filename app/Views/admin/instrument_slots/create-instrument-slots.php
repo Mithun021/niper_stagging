@@ -28,33 +28,36 @@ $employee_model = new Employee_model();
     </div>
 </div>
 
-<!-- Modal -->
+
 <div class="modal fade" id="eventModal" tabindex="-1">
-    <div class="modal-dialog">
-        <form id="eventForm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add Event</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="event_date" name="date">
+                <div class="mb-3">
+                    <label for="instrument" class="form-label">Instrument Name</label>
+                    <input type="text" class="form-control" name="instrument" required>
                 </div>
-                <div class="modal-body">
-                    <input type="hidden" id="event_date" name="date">
-                    <div class="mb-3">
-                        <label for="instrument" class="form-label">Instrument Name</label>
-                        <input type="text" class="form-control" name="instrument" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="department" class="form-label">Department</label>
-                        <input type="text" class="form-control" name="department" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Save Event</button>
+                <div class="mb-3">
+                    <label for="department" class="form-label">Department</label>
+                    <input type="text" class="form-control" name="department" required>
                 </div>
             </div>
-        </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+            </div>
+        </div>
     </div>
 </div>
+
+
 
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
