@@ -38,6 +38,7 @@ $employee_model = new Employee_model();
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <form id="eventForm">
             <div class="modal-body">
                 <input type="text" id="event_date" class="form-control" name="date">
                 <div class="mb-3">
@@ -57,6 +58,7 @@ $employee_model = new Employee_model();
                 <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
