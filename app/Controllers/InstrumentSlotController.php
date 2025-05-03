@@ -53,15 +53,21 @@ class InstrumentSlotController extends BaseController
         $model = new Instrument_slots_master_model();
         $department_model = new Department_model();
         $instruments_model = new Instruments_model();
-        $slots = $model->findAll(); // Replace with your custom joined data if needed
+
+        $slots = $model->findAll();
 
         $events = [];
         foreach ($slots as $slot) {
+            // Format time to AM/PM
+            $startTime = date('g:i A', strtotime($slot['booking_start_time']));
+            $endTime = date('g:i A', strtotime($slot['booking_end_time']));
+
             $events[] = [
-                'title' => $slot['user_type'] . ' [' . $slot['booking_start_time'] . ' - ' . $slot['booking_end_time'] . ']',
+                'title' => $slot['user_type'] . '<br>' .
+                        $startTime . ' - ' . $endTime . '<br>' .
+                        'Dept: ' . $department_model->get($slot['department_id'])['name'] . '<br>' .
+                        'Instrument: ' . $instruments_model->get($slot['instrument_id'])['title'],
                 'start' => $slot['booking_slot_date'],
-                'department' => $department_model->get($slot['department_id'])['name'],
-                'instrument' => $instruments_model->get($slot['instrument_id'])['title'],
                 'allDay' => true
             ];
         }

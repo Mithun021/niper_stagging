@@ -97,7 +97,7 @@
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
 $(document).ready(function () {
-    // Load instruments on department change
+    // Load instruments based on department
     $('#department_id').change(function () {
         var department_id = $(this).val();
         $.ajax({
@@ -122,8 +122,8 @@ $(document).ready(function () {
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         selectable: true,
+        eventDisplay: 'html', // Allow HTML in title
         events: '<?= base_url('admin/fetch-instrument-slots') ?>',
-
         dateClick: function (info) {
             var dateStr = info.dateStr;
             var dayName = new Date(dateStr).toLocaleDateString('en-US', { weekday: 'long' });
@@ -131,13 +131,13 @@ $(document).ready(function () {
             $('#event_date').val(dateStr);
             $('#booking_slot_day').val(dayName);
 
-            $('#eventModal').modal('show'); // Correct for Bootstrap 4
+            $('#eventModal').modal('show');
         }
     });
 
     calendar.render();
 
-    // Form submission
+    // Form submit
     $('#eventForm').submit(function (e) {
         e.preventDefault();
 
@@ -147,6 +147,7 @@ $(document).ready(function () {
             data: $(this).serialize(),
             success: function (res) {
                 $('#eventModal').modal('hide');
+
                 calendar.addEvent({
                     title:
                         $('[name="user_type"]').val() + '<br>' +
@@ -157,6 +158,7 @@ $(document).ready(function () {
                     start: $('#event_date').val(),
                     allDay: true
                 });
+
                 alert("Slot booked successfully!");
             },
             error: function (xhr) {
@@ -168,6 +170,16 @@ $(document).ready(function () {
             }
         });
     });
+
+    // Time formatting to AM/PM
+    function formatAMPM(timeStr) {
+        if (!timeStr) return '';
+        const [hourStr, minute] = timeStr.split(':');
+        let hour = parseInt(hourStr);
+        const ampm = hour >= 12 ? 'PM' : 'AM';
+        hour = hour % 12 || 12;
+        return hour + ':' + minute + ' ' + ampm;
+    }
 });
 </script>
 
