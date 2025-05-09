@@ -376,7 +376,7 @@ use App\Models\Student_model;
             if ($delete) {
                 return redirect()->to('admin/edit-employee-experience/'.$id)->with('msg','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
             } else {
-                return redirect()->to('admin/edit-employee-experience/'.$id)->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                return redirect()->to('admin/edit-employee-experience/'.$id)->with('msg','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
             }
 
         }
