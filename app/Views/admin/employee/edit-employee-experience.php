@@ -54,8 +54,8 @@ $employee_model = new Employee_model();
                                 </div>
                                 <div class="col-lg-4 form-group">
                                     <span for="enddate">End Date:</span>
-                                    <input type="date" name="enddate" id="enddate" class="form-control form-control-sm">
-                                  	<span for="enddate"><input type="checkbox" name="stillwork[]" id="stillwork" value="1" <?php if($employee_exp_detail['stillwork'] == 1){ echo "checked"; } ?>> Still Work (check if you are still working):</span>
+                                    <input type="date" name="enddate" id="enddate" class="form-control form-control-sm" value="<?= $employee_exp_detail['end_date'] ?>">
+                                  	<span for="enddate"><input type="checkbox" name="stillwork" id="stillwork" value="1" <?php if($employee_exp_detail['stillwork'] == 1){ echo "checked"; } ?>> Still Work (check if you are still working):</span>
                                 </div>
                                 <div class="col-lg-12 form-group">
                                     <span for="expdesc">Experience Designation:</span>
