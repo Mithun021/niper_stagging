@@ -26,6 +26,7 @@ $employee_model = new Employee_model();
                         <?= session()->getFlashdata('msg') ?>
                     <?php endif; ?>
 
+                    <?= $employee_exp_detail ?>
                     <!-- Form Start -->
 
                     <div class="card card-body mb-1">
@@ -35,7 +36,7 @@ $employee_model = new Employee_model();
                                 <select name="Empid" id="Empid" class="form-control form-control-sm" required>
                                     <option value="">Select Employee</option>
                                     <?php foreach ($employee as $value) { ?>
-                                        <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
+                                        <option value="<?= $value['id'] ?>" <?php if($value['id'] == $employee_exp_detail['emplyee_id']){ echo "selected"; } ?>><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
