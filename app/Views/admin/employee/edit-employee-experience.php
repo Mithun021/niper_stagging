@@ -46,20 +46,20 @@ $employee_model = new Employee_model();
                             <div class="row">
                                 <div class="col-lg-4 form-group">
                                     <span for="orgname">Organization Name:<span class="text-danger">*</span></span>
-                                    <input type="text" name="orgname" id="orgname" class="form-control form-control-sm" value="<?= $employee_exp_detail['emplyee_id'] ?>" required>
+                                    <input type="text" name="orgname" id="orgname" class="form-control form-control-sm" value="<?= $employee_exp_detail['organization_name'] ?>" required>
                                 </div>
                                 <div class="col-lg-4 form-group">
                                     <span for="startdate">Start Date:<span class="text-danger">*</span></span>
-                                    <input type="date" name="startdate" id="startdate" class="form-control form-control-sm" value="<?= $employee_exp_detail['emplyee_id'] ?>" required>
+                                    <input type="date" name="startdate" id="startdate" class="form-control form-control-sm" value="<?= $employee_exp_detail['start_date'] ?>" required>
                                 </div>
                                 <div class="col-lg-4 form-group">
                                     <span for="enddate">End Date:</span>
                                     <input type="date" name="enddate" id="enddate" class="form-control form-control-sm">
-                                  	<span for="enddate"><input type="checkbox" name="stillwork[]" id="stillwork" value="1"> Still Work (check if you are still working):</span>
+                                  	<span for="enddate"><input type="checkbox" name="stillwork[]" id="stillwork" value="1" <?php if($employee_exp_detail['stillwork'] == 1){ echo "checked"; } ?>> Still Work (check if you are still working):</span>
                                 </div>
                                 <div class="col-lg-12 form-group">
                                     <span for="expdesc">Experience Designation:</span>
-                                    <input type="text" name="expdesc" class="form-control form-control-sm" value="<?= $employee_exp_detail['emplyee_id'] ?>">
+                                    <input type="text" name="expdesc" class="form-control form-control-sm" value="<?= $employee_exp_detail['exp_description'] ?>">
                                     <!-- <textarea name="expdesc[]" class="form-control form-control-sm clone_editor" rows="4"></textarea> -->
                                 </div>
                                 <div class="col-lg-6 form-group">
@@ -80,7 +80,7 @@ $employee_model = new Employee_model();
 
                                     <div id="work_details" style="display: none;">
                                         <span>Description of Works</span>
-                                        <input type="text" name="work_description" id="work_description" class="form-control form-control-sm" value="<?= $employee_exp_detail['emplyee_id'] ?>">
+                                        <input type="text" name="work_description" id="work_description" class="form-control form-control-sm" value="<?= $employee_exp_detail['work_description'] ?>">
                                     </div>
                                 </div>
 
