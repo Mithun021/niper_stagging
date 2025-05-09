@@ -370,6 +370,17 @@ use App\Models\Student_model;
             }
         }
 
+        public function delete_employee_experience($id){
+            $employee_experience_model = new Employee_experience_model();
+            $delete = $employee_experience_model->delete($id);
+            if ($delete) {
+                return redirect()->to('admin/edit-employee-experience/'.$id)->with('msg','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-employee-experience/'.$id)->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+
+        }
+
         public function employee_projects(){
             $employee_model = new Employee_model();
             $employee_projects_model = new Employee_projects_model();
