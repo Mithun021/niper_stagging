@@ -26,7 +26,7 @@ $employee_model = new Employee_model();
                         <?= session()->getFlashdata('msg') ?>
                     <?php endif; ?>
 
-                    <?php print_r($employee_exp_detail) ?>
+                    <?php print_r($employee_exp_detail); ?>
                     <!-- Form Start -->
 
                     <div class="card card-body mb-1">
