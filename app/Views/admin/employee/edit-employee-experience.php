@@ -18,11 +18,7 @@ $employee_model = new Employee_model();
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h4 class="card-title m-0">Add <?= $title; ?></h4>
-                <div>
-                    <button type="button" class="btn btn-sm btn-danger" id="export_sample_btn">Export Sample</button>
-                    <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>
-                </div>
+                <h4 class="card-title m-0">Edit <?= $title; ?></h4>
             </div>
             <form action="<?= base_url() ?>admin/employee-experience" method="post">
                 <div class="card-body">
@@ -97,7 +93,6 @@ $employee_model = new Employee_model();
 
                 </div>
                 <div class="card-footer d-flex justify-content-between">
-                    <button type="button" id="add-clone" class="btn btn-success">Add Clone</button>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
@@ -154,63 +149,6 @@ $employee_model = new Employee_model();
     </div>
 </div>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="export_emp_sample_modal">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Export Employee Data</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="<?= base_url() ?>admin/export_emp_experience_sample" method="post">
-                <div class="modal-body">
-                    <div class="alert alert-danger">
-                        <p class="m-0">Note : After exporting the CSV, do not delete the top headings from the Excel sheet.</p>
-                    </div>
-                    <div class="card card-body">
-                        <h5 class="m-0 p-2 border-bottom border-danger mb-3">Employee Details</h5>
-                        <?php foreach ($employee as $value) { ?>
-                            <span><input type="checkbox" name="emp_id[]" value="<?= $value['id'] ?>"> <?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></span> <br>
-                        <?php } ?>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Download CSV</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" tabindex="-1" role="dialog" id="upload_emp_exp_modal">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Upload Employee Experience Data</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="<?= base_url() ?>admin/upload_emp_experience_csv" method="post" enctype="multipart/form-data">
-                <div class="modal-body">
-                    <div class="alert alert-danger">
-                        <p class="m-0">1. Ensure that the employee is available before uploading the CSV file. Please verify employee details beforehand.</p>
-                        <p class="m-0">2. The employee's mobile number and official email ID must be available.</p>
-                        <p class="m-0">3. Before uploading the CSV, cross-check the employee's official email address and mobile number.</p>
-                        <p class="m-0">4.Please upload only CSV files.</p>
-                    </div>
-                    <input type="file" class="dropify" name="csv_file" data-height="300" />
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Upload</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 <!-- jQuery Script -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -229,36 +167,7 @@ $employee_model = new Employee_model();
             }
         }
 
-        // Add Clone Button Click
-        $("#add-clone").click(function(e) {
-            e.preventDefault();
-
-            // Clone the employee data card
-            var cloneCatrow = $('#clone_employee_data').first().clone();
-            cloneCatrow.appendTo('#clone_content');
-
-            // Reset all input fields and uncheck checkboxes
-            $(cloneCatrow).find('input, textarea, select').val('');
-            $(cloneCatrow).find('input[type="checkbox"]').prop('checked', false);
-
-            // Ensure that the work description section is hidden initially
-            $(cloneCatrow).find('#work_details').hide();
-
-            // Bind event listener to new clone
-            $(cloneCatrow).find('#natureofwork').on('change', function() {
-                toggleWorkDescription(this);
-            });
-        });
-
-        // Remove Clone Button Click
-        $('#clone_content').on('click', '#remove-clone', function() {
-            $(this).closest('.card-body').remove();
-        });
-
-        // Nature of Work Change Event
-        $('#clone_content').on('change', '#natureofwork', function() {
-            toggleWorkDescription(this);
-        });
+        
 
         // Synchronize form data before submission
         $('form').on('submit', function() {
