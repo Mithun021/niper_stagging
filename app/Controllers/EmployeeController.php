@@ -330,13 +330,14 @@ use App\Models\Student_model;
             $employee_model = new Employee_model();
             $employee_experience_model = new Employee_experience_model();
             $data = ['title' => 'Employee Experience','employee_exp_id' => $id];
-            $data['employee_exp_detail'] = $employee_experience_model->get($id);
-            print_r($data['employee_exp_detail']); die;
+            
+            // print_r($data['employee_exp_detail']); die;
             if ($this->request->is("get")) {
                 $data['organisation_type'] = $organisation_type_model->get();
                 $data['nature_of_work'] = $nature_of_work_model->get();
                 $data['employee'] = $employee_model->get();
                 $data['employee_exp'] = $employee_experience_model->get();
+                $data['employee_exp_detail'] = $employee_experience_model->get($id);
                 return view('admin/employee/edit-employee-experience',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
