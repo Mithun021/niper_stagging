@@ -374,9 +374,9 @@ use App\Models\Student_model;
             $employee_experience_model = new Employee_experience_model();
             $delete = $employee_experience_model->delete($id);
             if ($delete) {
-                return redirect()->to('admin/edit-employee-experience/'.$id)->with('msg','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                return redirect()->to('admin/employee-experience/')->with('msg','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
             } else {
-                return redirect()->to('admin/edit-employee-experience/'.$id)->with('msg','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+                return redirect()->to('admin/employee-experience/')->with('msg','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
             }
 
         }
