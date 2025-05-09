@@ -25,8 +25,6 @@ $employee_model = new Employee_model();
                     <?php if (session()->getFlashdata('msg')): ?>
                         <?= session()->getFlashdata('msg') ?>
                     <?php endif; ?>
-
-                    <?php print_r($employee_exp_detail); ?>
                     <!-- Form Start -->
 
                     <div class="card card-body mb-1">
@@ -68,7 +66,7 @@ $employee_model = new Employee_model();
                                     <span for="orgtype">Organization Type:<span class="text-danger">*</span></span>
                                     <select name="orgtype[]" id="orgtype" class="form-control form-control-sm" required>
                                     <?php foreach($organisation_type as $value){ ?>
-                                        <option value="<?= $value['name'] ?>"><?= $value['name'] ?></option>
+                                        <option value="<?= $value['name'] ?>" <?php if($value['name'] == $employee_exp_detail['org_type']){ echo "selected"; } ?>><?= $value['name'] ?></option>
                                     <?php } ?>    
                                     </select>
                                 </div>
@@ -76,7 +74,7 @@ $employee_model = new Employee_model();
                                     <span for="natureofwork">Nature of Work:<span class="text-danger">*</span></span>
                                     <select name="natureofwork[]" id="natureofwork" class="form-control form-control-sm">
                                     <?php foreach($nature_of_work as $value){ ?>
-                                        <option value="<?= $value['name'] ?>"><?= $value['name'] ?></option>
+                                        <option value="<?= $value['name'] ?>" <?php if($value['name'] == $employee_exp_detail['work_nature']){ echo "selected"; } ?>><?= $value['name'] ?></option>
                                     <?php } ?> 
                                     </select>
 
