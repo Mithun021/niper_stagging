@@ -150,37 +150,26 @@ $employee_model = new Employee_model();
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 <!-- jQuery Script -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
-    $(document).ready(function() {
-        // Function to toggle work description field
-        function toggleWorkDescription(selectElement) {
-            var selectedValue = $(selectElement).val();
-            var workDetails = $(selectElement).closest('.row').find('#work_details');
+document.addEventListener("DOMContentLoaded", function() {
+    const natureSelect = document.getElementById('natureofwork');
+    const workDetails = document.getElementById('work_details');
 
-            if (selectedValue !== "Teaching") {
-                workDetails.show();
-            } else {
-                workDetails.hide();
-                workDetails.find('input').val(''); // Clear input field when hidden
-            }
+    function toggleWorkDetails() {
+        if (natureSelect.value === 'Teaching') {
+            workDetails.style.display = 'none';
+        } else {
+            workDetails.style.display = 'block';
         }
+    }
 
-        
+    // Run once on page load to set the initial state
+    toggleWorkDetails();
 
-        // Synchronize form data before submission
-        $('form').on('submit', function() {
-            $('input[type="checkbox"]').each(function() {
-                if (!$(this).prop('checked')) {
-                    $(this).val('0'); // Set unchecked checkboxes' value to '0'
-                }
-            });
-        });
-
-        // Initial call for default selection
-        $('#natureofwork').each(function() {
-            toggleWorkDescription(this);
-        });
-    });
+    // Add event listener to handle selection change
+    natureSelect.addEventListener('change', toggleWorkDetails);
+});
 </script>
 
 
