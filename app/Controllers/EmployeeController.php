@@ -344,27 +344,23 @@ use App\Models\Student_model;
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
-                $orgname = $this->request->getPost('orgname');
-                $stillwork = $this->request->getPost('stillwork');
-                
-                foreach ($orgname as $key => $value) {
-                    $isStillWorking = isset($stillwork[$key]) ? 1 : 0; 
-                    $data = [
-                        'emplyee_id' => $this->request->getPost('Empid'),
-                        'organization_name' => $value,
-                        'start_date' => $this->request->getPost('startdate')[$key],
-                        'end_date' => $this->request->getPost('enddate')[$key],
-                        'stillwork' => $isStillWorking ? 1 : 0,
-                        'exp_description' => $this->request->getVar('expdesc')[$key],
-                        'org_type' => $this->request->getPost('orgtype')[$key],
-                        'work_nature' => $this->request->getPost('natureofwork')[$key],
-                        'work_description' => $this->request->getPost('work_description')[$key] ?? '',
-                        'upload_by' =>  $loggeduserId,
-                    ];
+
+                $data = [
+                    'emplyee_id' => $this->request->getPost('Empid'),
+                    'organization_name' => $this->request->getPost('orgname'),
+                    'start_date' => $this->request->getPost('startdate'),
+                    'end_date' => $this->request->getPost('enddate'),
+                    'stillwork' => $this->request->getPost('stillwork') ?? 0,
+                    'exp_description' => $this->request->getVar('expdesc'),
+                    'org_type' => $this->request->getPost('orgtype'),
+                    'work_nature' => $this->request->getPost('natureofwork'),
+                    'work_description' => $this->request->getPost('work_description') ?? '',
+                    'upload_by' =>  $loggeduserId,
+                ];
     
                     // echo "<pre>";print_r($data);
-                    $result = $employee_experience_model->add($data,$id);
-                }
+                $result = $employee_experience_model->add($data,$id);
+            
                 // die;
                 if ($result === true) {
                     return redirect()->to('admin/edit-employee-experience/'.$id)->with('msg','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
