@@ -323,6 +323,55 @@ use App\Models\Student_model;
             }
         }
 
+
+        public function edit_employee_experience($id){
+            $organisation_type_model = new Organisation_type_model();
+            $nature_of_work_model = new Nature_of_work_model();
+            $employee_model = new Employee_model();
+            $employee_experience_model = new Employee_experience_model();
+            $data = ['title' => 'Employee Experience','employee_exp_id' => $id];
+            $data['employee_exp_detail'] = $employee_experience_model->get($id);
+            if ($this->request->is("get")) {
+                $data['organisation_type'] = $organisation_type_model->get();
+                $data['nature_of_work'] = $nature_of_work_model->get();
+                $data['employee'] = $employee_model->get();
+                $data['employee_exp'] = $employee_experience_model->get();
+                return view('admin/employee/edit-employee-experience',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $orgname = $this->request->getPost('orgname');
+                $stillwork = $this->request->getPost('stillwork');
+                
+                foreach ($orgname as $key => $value) {
+                    $isStillWorking = isset($stillwork[$key]) ? 1 : 0; 
+                    $data = [
+                        'emplyee_id' => $this->request->getPost('Empid'),
+                        'organization_name' => $value,
+                        'start_date' => $this->request->getPost('startdate')[$key],
+                        'end_date' => $this->request->getPost('enddate')[$key],
+                        'stillwork' => $isStillWorking ? 1 : 0,
+                        'exp_description' => $this->request->getVar('expdesc')[$key],
+                        'org_type' => $this->request->getPost('orgtype')[$key],
+                        'work_nature' => $this->request->getPost('natureofwork')[$key],
+                        'work_description' => $this->request->getPost('work_description')[$key] ?? '',
+                        'upload_by' =>  $loggeduserId,
+                    ];
+    
+                    // echo "<pre>";print_r($data);
+                    $result = $employee_experience_model->add($data,$id);
+                }
+                // die;
+                if ($result === true) {
+                    return redirect()->to('admin/edit-employee-experience/'.$id)->with('msg','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-employee-experience/'.$id)->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
         public function employee_projects(){
             $employee_model = new Employee_model();
             $employee_projects_model = new Employee_projects_model();

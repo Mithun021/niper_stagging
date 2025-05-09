@@ -103,6 +103,10 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
 
     // $routes->match(['get','post'],'employee-department', 'AdminControllers::employee_department');
     $routes->match(['get','post'],'employee-experience', 'EmployeeController::employee_experience');
+    $routes->match(['get','post'],'edit-employee-experience/(:num)', 'EmployeeController::edit_employee_experience/$1');
+    $routes->match(['get','post'],'delete-employee-experience/(:num)', 'EmployeeController::delete_employee_experience/$1');
+
+
     $routes->match(['get','post'],'employee-projects', 'EmployeeController::employee_projects');
     $routes->match(['get','post'],'employee-publication', 'EmployeeController::employee_publication');
     $routes->match(['get','post'],'employee-awards', 'EmployeeController::employee_awards');
