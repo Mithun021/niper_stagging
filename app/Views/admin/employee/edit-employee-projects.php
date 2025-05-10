@@ -20,7 +20,7 @@ $employee_model = new Employee_model();
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title m-0">Add <?= $title; ?></h4>
             </div>
-            <form action="<?= base_url() ?>admin/edit-employee-projects" method="post">
+            <form action="<?= base_url() ?>admin/edit-employee-projects/<?= $emp_project_id ?>" method="post">
                 <div class="card-body">
                     <?php if (session()->getFlashdata('msg')): ?>
                         <?= session()->getFlashdata('msg') ?>
