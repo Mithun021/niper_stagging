@@ -55,57 +55,57 @@ $employee_model = new Employee_model();
                                 <div class="col-lg-4 form-group">
                                     <span for="projectstartdatetime">Project Start Date:<span class="text-danger">*</span></span>
                                     <div class="input-group">
-                                        <input type="text" class="form-control form-control-sm" name="project_start_date" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                        <input type="text" class="form-control form-control-sm" name="project_start_date" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?= $employee_projects_detail['start_date'] ?>">
                                         <!-- <input type="text" class="form-control form-control-sm" name="project_start_time"  placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')"> -->
                                     </div>
                                 </div>
                                 <div class="col-lg-4 form-group">
                                     <span for="projectenddatetime">Project End Date:<span class="text-danger">*</span></span>
                                     <div class="input-group">
-                                        <input type="text" class="form-control form-control-sm" name="project_end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                        <input type="text" class="form-control form-control-sm" name="project_end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?= $employee_projects_detail['end_date'] ?>">
                                         <!-- <input type="text" class="form-control form-control-sm" name="project_end_time"  placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')"> -->
                                     </div>
                                 </div>
                                 <div class="col-lg-4 form-group">
                                     <span for="projectenddatetime">Sanctioned Year:</span>
-                                    <input type="number" class="form-control form-control-sm" name="sanctioned_year" placeholder="Sanctioned  Year">
+                                    <input type="number" class="form-control form-control-sm" name="sanctioned_year" placeholder="Sanctioned  Year" value="<?= $employee_projects_detail['sanctioned_year'] ?>">
                                 </div>
                                 <div class="col-lg-4 form-group">
                                     <span for="projectstatus">Project Status:<span class="text-danger">*</span></span>
                                     <select name="projectstatus" id="projectstatus" class="form-control form-control-sm" required>
-                                        <option value="Not Started">Not Started</option>
-                                        <option value="In Progress">In Progress</option>
-                                        <option value="Completed">Completed</option>
+                                        <option value="Not Started" <?php if($employee_projects_detail['project_status'] == "Not Started"){ echo "selected"; } ?>>Not Started</option>
+                                        <option value="In Progress" <?php if($employee_projects_detail['project_status'] == "In Progress"){ echo "selected"; } ?>>In Progress</option>
+                                        <option value="Completed" <?php if($employee_projects_detail['project_status'] == "Completed"){ echo "selected"; } ?>>Completed</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-4 form-group">
                                     <span for="projectsponseredby">Sponsored By:<span class="text-danger">*</span></span>
-                                    <input type="text" name="projectsponseredby" id="projectsponseredby" class="form-control form-control-sm">
+                                    <input type="text" name="projectsponseredby" id="projectsponseredby" class="form-control form-control-sm" value="<?= $employee_projects_detail['sponsored_by'] ?>">
                                 </div>
                                 <div class="col-lg-4 form-group">
                                     <span for="projectvalue">Project Value (in INR):<span class="text-danger">*</span></span>
-                                    <input type="number" name="projectvalue" id="projectvalue" class="form-control form-control-sm" step="0.01">
+                                    <input type="number" name="projectvalue" id="projectvalue" class="form-control form-control-sm" step="0.01" value="<?= $employee_projects_detail['project_value'] ?>">
                                 </div>
                                 <div class="col-lg-6 form-group">
                                     <span for="projectvalue">Role</span>
                                     <select name="role" id="role" class="form-control form-control-sm">
                                         <option value="">--Select--</option>
-                                        <option value="PI">PI</option>
-                                        <option value="Co-PI">Co-PI</option>
+                                        <option value="PI" <?php if($employee_projects_detail['role'] == "PI"){ echo "selected"; } ?>>PI</option>
+                                        <option value="Co-PI" <?php if($employee_projects_detail['role'] == "Co-PI"){ echo "selected"; } ?>>Co-PI</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-6 form-group">
                                     <span for="funding_source">Funding Source </span>
-                                    <select name="funding_source" class="form-control form-control-sm">
+                                    <select name="funding_source" id="funding_source" class="form-control form-control-sm">
                                         <option value="">--Select--</option>
-                                        <option value="Government">Government</option>
-                                        <option value="Private">Private</option>
-                                        <option value="Industry">Industry</option>
-                                        <option value="Others">Others</option>
+                                        <option value="Government" <?php if($employee_projects_detail['funding_source'] == "Government"){ echo "selected"; } ?>>Government</option>
+                                        <option value="Private" <?php if($employee_projects_detail['funding_source'] == "Private"){ echo "selected"; } ?>>Private</option>
+                                        <option value="Industry" <?php if($employee_projects_detail['funding_source'] == "Industry"){ echo "selected"; } ?>>Industry</option>
+                                        <option value="Others" <?php if($employee_projects_detail['funding_source'] == "Others"){ echo "selected"; } ?>>Others</option>
                                     </select>
                                     <div class="other_funding_source_container" style="display: none;">
                                         <span>Other Funding Source</span>
-                                        <input type="text" class="form-control form-control-sm" name="other_funding_source">
+                                        <input type="text" class="form-control form-control-sm" name="other_funding_source" value="<?= $employee_projects_detail['other_funding_source'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -181,6 +181,25 @@ $employee_model = new Employee_model();
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 <!-- jQuery Script -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const fundingSelect = document.getElementById('funding_source');
+        const otherContainer = document.querySelector('.other_funding_source_container');
 
+        function toggleOtherContainer() {
+            if (fundingSelect.value === 'Others') {
+                otherContainer.style.display = 'block';
+            } else {
+                otherContainer.style.display = 'none';
+            }
+        }
+
+        // Run on page load in case "Others" is already selected (for edit form)
+        toggleOtherContainer();
+
+        // Attach change event
+        fundingSelect.addEventListener('change', toggleOtherContainer);
+    });
+</script>
 
 <?= $this->endSection() ?>
