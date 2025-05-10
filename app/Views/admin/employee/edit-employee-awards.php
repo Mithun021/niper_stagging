@@ -23,7 +23,6 @@ $employee_model = new Employee_model();
             </div>
             <form action="<?= base_url() ?>admin/edit-employee-awards/<?= $emp_awards_id ?>" method="post" enctype="multipart/form-data">
                 <div class="card-body">
-                    <?php print_r($awards_detail); ?>
                     <?php if (session()->getFlashdata('msg')): ?>
                         <?= session()->getFlashdata('msg') ?>
                     <?php endif; ?>
@@ -47,33 +46,33 @@ $employee_model = new Employee_model();
                                     <!-- Award Title -->
                                     <div class="form-group">
                                         <span for="Awardtitle">Name of Awarding:</span>
-                                        <input type="text" name="Awardtitle" id="" class="form-control form-control-sm">
+                                        <input type="text" name="Awardtitle" id="" class="form-control form-control-sm" value="<?= $awards_detail['name_of_awarding'] ?>">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <span for="">Reason of Awarding<span class="text-danger">*</span></span>
                                     <select class="form-control form-control-sm" name="award_reason" required>
                                         <option value="">--Select--</option>
-                                        <option value="Academic">Academic</option>
-                                        <option value="Research">Research</option>
+                                        <option value="Academic" <?php if($awards_detail['award_reason'] == "Academic"){ echo "selected"; } ?>>Academic</option>
+                                        <option value="Research" <?php if($awards_detail['award_reason'] == "Research"){ echo "selected"; } ?>>Research</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <span for="">Date of Awarding<span class="text-danger">*</span></span>
-                                    <input type="date" name="date_of_awarding" id="" class="form-control form-control-sm">
+                                    <input type="date" name="date_of_awarding" id="" class="form-control form-control-sm" value="<?= $awards_detail['date_of_awarding'] ?>">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <span for="">Body name of Awarding<span class="text-danger">*</span></span>
-                                    <input type="text" name="body_name_of_awarding" id="" class="form-control form-control-sm">
+                                    <input type="text" name="body_name_of_awarding" id="" class="form-control form-control-sm" value="<?= $awards_detail['body_name_of_awarding'] ?>">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <span for="">Level<span class="text-danger">*</span></span>
                                     <select class="form-control form-control-sm" name="level" required>
                                         <option value="">--Select--</option>
-                                        <option value="National">National</option>
-                                        <option value="International">International</option>
-                                        <option value="University">University</option>
-                                        <option value="Industry">Industry</option>
+                                        <option value="National" <?php if($awards_detail['level'] == "National"){ echo "selected"; } ?>>National</option>
+                                        <option value="International" <?php if($awards_detail['level'] == "International"){ echo "selected"; } ?>>International</option>
+                                        <option value="University" <?php if($awards_detail['level'] == "University"){ echo "selected"; } ?>>University</option>
+                                        <option value="Industry" <?php if($awards_detail['level'] == "Industry"){ echo "selected"; } ?>>Industry</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-6">
@@ -81,6 +80,11 @@ $employee_model = new Employee_model();
                                     <div class="form-group">
                                         <span for="Awardphotoupload">Document Upload(.pdf,.jpg,.jpeg,.png):</span>
                                         <input type="file" name="Awardphotoupload" id="Awardphotoupload" class="form-control form-control-sm" accept=".pdf,.jpg,.jpeg,.png">
+                                        <?php if (!empty($awards_detail['document_file']) && file_exists('public/admin/uploads/employee/' . $awards_detail['document_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $awards_detail['document_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="30px">
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
