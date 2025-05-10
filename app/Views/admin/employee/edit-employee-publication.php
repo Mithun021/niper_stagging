@@ -151,8 +151,8 @@
                             <span for="Pubtype">Reffered:</span>
                             <select name="reffered" id="reffered" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
-                                <option value="yes"<?php if($employee_projects_detail['reffered'] == "yes"){ echo "selected"; } ?>>Yes</option>
-                                <option value="no"<?php if($employee_projects_detail['reffered'] == "no"){ echo "selected"; } ?>>No</option>
+                                <option value="yes" <?php if($publication_detail['reffered'] == "yes"){ echo "selected"; } ?>>Yes</option>
+                                <option value="no" <?php if($publication_detail['reffered'] == "no"){ echo "selected"; } ?>>No</option>
                             </select>
                         </div>
                     </div>
@@ -186,9 +186,9 @@
                             <span for="Pubtype">Publication Type:</span>
                             <select name="Pubtype" id="Pubtype" class="form-control form-control-sm" required>
                                 <option value="">Select Type</option>
-                                <option value="Research Article" <?php if($employee_projects_detail['publication_type'] == "Research Article"){ echo "selected"; } ?>>Research Article</option>
-                                <option value="Review Article" <?php if($employee_projects_detail['publication_type'] == "Review Article"){ echo "selected"; } ?>>Review Article</option>
-                                <option value="Book Chapter" <?php if($employee_projects_detail['publication_type'] == "Book Chapter"){ echo "selected"; } ?>>Book Chapter</option>
+                                <option value="Research Article" <?php if($publication_detail['publication_type'] == "Research Article"){ echo "selected"; } ?>>Research Article</option>
+                                <option value="Review Article" <?php if($publication_detail['publication_type'] == "Review Article"){ echo "selected"; } ?>>Review Article</option>
+                                <option value="Book Chapter" <?php if($publication_detail['publication_type'] == "Book Chapter"){ echo "selected"; } ?>>Book Chapter</option>
                             </select>
                         </div>
                     </div>
@@ -198,10 +198,10 @@
                             <span for="Pubstatus">Publication Status:</span>
                             <select name="Pubstatus" id="Pubstatus" class="form-control form-control-sm" required>
                                 <option value="">Select Status</option>
-                                <option value="Values" <?php if($employee_projects_detail['status'] == "Values"){ echo "selected"; } ?>>Values</option>
-                                <option value="Accepted" <?php if($employee_projects_detail['status'] == "Accepted"){ echo "selected"; } ?>>Accepted</option>
-                                <option value="Web-Link" <?php if($employee_projects_detail['status'] == "Web-Link"){ echo "selected"; } ?>>Web-Link</option>
-                                <option value="In-Press" <?php if($employee_projects_detail['status'] == "In-Press"){ echo "selected"; } ?>>In-Press</option>
+                                <option value="Values" <?php if($publication_detail['status'] == "Values"){ echo "selected"; } ?>>Values</option>
+                                <option value="Accepted" <?php if($publication_detail['status'] == "Accepted"){ echo "selected"; } ?>>Accepted</option>
+                                <option value="Web-Link" <?php if($publication_detail['status'] == "Web-Link"){ echo "selected"; } ?>>Web-Link</option>
+                                <option value="In-Press" <?php if($publication_detail['status'] == "In-Press"){ echo "selected"; } ?>>In-Press</option>
                             </select>
                         </div>
                     </div>
@@ -212,9 +212,9 @@
                             <span for="Pubstatus">Role in Publication:</span>
                             <select name="publication_role" id="" class="form-control form-control-sm" required>
                                 <option value="">--Select--</option>
-                                <option value="First/Principal/Corresponding" <?php if($employee_projects_detail['publication_role'] == "First/Principal/Corresponding"){ echo "selected"; } ?>>First/Principal/Corresponding</option>
-                                <option value="Author" <?php if($employee_projects_detail['publication_role'] == "Author"){ echo "selected"; } ?>>Author</option>
-                                <option value="Co-Author" <?php if($employee_projects_detail['publication_role'] == "Co-Author"){ echo "selected"; } ?>>Co-Author</option>
+                                <option value="First/Principal/Corresponding" <?php if($publication_detail['publication_role'] == "First/Principal/Corresponding"){ echo "selected"; } ?>>First/Principal/Corresponding</option>
+                                <option value="Author" <?php if($publication_detail['publication_role'] == "Author"){ echo "selected"; } ?>>Author</option>
+                                <option value="Co-Author" <?php if($publication_detail['publication_role'] == "Co-Author"){ echo "selected"; } ?>>Co-Author</option>
                             </select>
                         </div>
                     </div>
