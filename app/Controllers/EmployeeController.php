@@ -553,13 +553,12 @@ use App\Models\Student_model;
         public function edit_employee_publication($id){
             $employee_model = new Employee_model();
             $employee_publication_model = new Employee_publication_model();
-            $employee_publication_author_model = new Employee_publication_author_model();
             $data = ['title' => 'Employee Publication','emp_publication_id' => $id];
             if ($this->request->is("get")) {
                 $data['employee'] = $employee_model->get();
                 $data['publication'] = $employee_publication_model->get();
                 $data['publication_detail'] = $employee_publication_model->get($id);
-                return view('admin/employee/employee-publication',$data);
+                return view('admin/employee/edit-employee-publication',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
                 if ($sessionData) {
@@ -605,17 +604,9 @@ use App\Models\Student_model;
                 // echo "<pre>";print_r($data);
                 $result = $employee_publication_model->add($data);
                 if ($result === true) {
-                    $insertId = $employee_publication_model->getInsertID();
-                    foreach ($author_name as $value) {
-                        $data2 = [
-                            'author_name' => $value,
-                            'emp_publication_id' => $insertId,
-                        ];
-                        $employee_publication_author_model->add($data2);
-                    }
-                    return redirect()->to('admin/employee-publication')->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                    return redirect()->to('admin/edit-employee-publication/'.$id)->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
-                    return redirect()->to('admin/employee-publication')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                    return redirect()->to('admin/edit-employee-publication/'.$id)->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
         }
