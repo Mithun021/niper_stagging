@@ -71,6 +71,8 @@
                         
                                 </thead>
                                 <tbody >
+                                <?php if($publication_author_detail){ foreach ($publication_author_detail as $key => $author) { ?>
+                                 
                                     <tr>
                                         <td>
                                             <input type="text" class="form-control" name="author_name" placeholder="Enter Author Name">
@@ -79,6 +81,7 @@
                                             <button type="button" class="btn btn-sm btn-danger" id="removePubServicerow">-</button>
                                         </td>
                                     </tr>
+                                <?php } } ?>
                                 </tbody>
                             </table>
                         </div>

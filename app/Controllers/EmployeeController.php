@@ -553,11 +553,13 @@ use App\Models\Student_model;
         public function edit_employee_publication($id){
             $employee_model = new Employee_model();
             $employee_publication_model = new Employee_publication_model();
+            $employee_publication_author_model = new Employee_publication_author_model();
             $data = ['title' => 'Employee Publication','emp_publication_id' => $id];
             if ($this->request->is("get")) {
                 $data['employee'] = $employee_model->get();
                 $data['publication'] = $employee_publication_model->get();
                 $data['publication_detail'] = $employee_publication_model->get($id);
+                $data['publication_author_detail'] = $employee_publication_author_model->getByPublication($id);
                 return view('admin/employee/edit-employee-publication',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');
@@ -623,6 +625,19 @@ use App\Models\Student_model;
                     return redirect()->to('admin/edit-employee-publication/'.$id)->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
+        }
+
+        public function delete_employee_publication($id){
+            $employee_publication_model = new Employee_publication_model();
+            $employee_publication_author_model = new Employee_publication_author_model();
+            $delete = $employee_publication_model->delete($id);
+            if ($delete) {
+                $employee_publication_author_model->where('emp_publication_id',$id)->delete();
+                return redirect()->to('admin/employee-projects/')->with('msg','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+            } else {
+                return redirect()->to('admin/employee-projects/')->with('msg','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+            }
+
         }
 
         public function employee_awards(){

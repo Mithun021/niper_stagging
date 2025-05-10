@@ -26,6 +26,10 @@
             return $result;
         }
 
+        public function getByPublication($id){
+            return $this->where('emp_publication_id',$id)->findAll();
+        }
+
         
         
     }
