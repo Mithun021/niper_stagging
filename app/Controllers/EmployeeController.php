@@ -711,6 +711,52 @@ use App\Models\Student_model;
             }
         }
 
+        public function edit_employee_awards($id){
+            $employee_model = new Employee_model();
+            $employee_awards_model = new Employee_awards_model();
+            $data = ['title' => 'Employee Awards','emp_awards_id' => $id];
+            if ($this->request->is("get")) {
+                $data['employee'] = $employee_model->get();
+                $data['awards'] = $employee_awards_model->get();
+                $data['awards_detail'] = $employee_awards_model->get($id);
+                return view('admin/employee/edit-employee-awards',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $awards_photo = $this->request->getFileMultiple('Awardphotoupload');
+                $awards_titles = $this->request->getPost('Awardtitle');
+                foreach ($awards_titles as $key => $title) {    
+                    $photo = $awards_photo[$key];
+                    $photoName = "";
+                    if ($photo->isValid() && !$photo->hasMoved()) {
+                        $photoName = "awards".$photo->getRandomName();
+                        $photo->move(ROOTPATH . 'public/admin/uploads/employee', $photoName);
+                    }
+                    $data = [
+                        'employee_id' => $this->request->getPost('Empid'),
+                        'name_of_awarding' => $title,
+                        'document_file' => $photoName,
+                        'award_reason' => $this->request->getPost('award_reason')[$key],
+                        'date_of_awarding' => $this->request->getPost('date_of_awarding')[$key],
+                        'body_name_of_awarding' => $this->request->getPost('body_name_of_awarding')[$key],
+                        'level' => $this->request->getPost('level')[$key],
+                        'upload_by' =>  $loggeduserId,
+                    ]; 
+
+                    // echo "<pre>";print_r($data);
+                    $result = $employee_awards_model->add($data);
+                }
+                if ($result === true) {
+                    return redirect()->to('admin/edit-employee-awards/'.$id)->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-employee-awards/'.$id)->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+
+            }
+        }
+
         public function employee_patent(){
             $employee_model = new Employee_model();
             $employee_patent_model = new Employee_patent_model();

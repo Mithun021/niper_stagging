@@ -117,6 +117,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->post('addnewpubauthor', 'EmployeeController::addnewpubauthor');
 
     $routes->match(['get','post'],'employee-awards', 'EmployeeController::employee_awards');
+    $routes->match(['get','post'],'edit-employee-awards/(:num)', 'EmployeeController::edit_employee_awards/$1');
+    $routes->get('delete-employee-awards/(:num)', 'EmployeeController::delete_employee_awards/$1');
+
     $routes->match(['get','post'],'employee-charge', 'EmployeeController::employee_charge');
     $routes->get('get-employee-designations/(:num)', 'EmployeeController::getEmployeeDesignations/$1');
     $routes->match(['get','post'],'organisation-type', 'EmployeeController::organisation_type');
