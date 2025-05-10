@@ -426,6 +426,51 @@ use App\Models\Student_model;
             }
         }
 
+        public function edit_employee_projects($id){
+            $employee_model = new Employee_model();
+            $employee_projects_model = new Employee_projects_model();
+            $data = ['title' => 'Employee Projects','emp_project_id' => $id];
+            if ($this->request->is("get")) {
+                $data['employee'] = $employee_model->get();
+                $data['employee_projects'] = $employee_projects_model->get();
+                return view('admin/employee/edit-employee-projects',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $project_start_date = $this->request->getPost('project_start_date');
+                foreach ($project_start_date as $key => $value) {
+                    $data = [
+                        'emplyee_id' => $this->request->getPost('Empid'),
+                        'project_title' => $this->request->getPost('projecttitle')[$key],
+                        // 'project_description' => $this->request->getPost('projectdesc')[$key],
+                        'start_date' => $value,
+                        // 'start_time' => $this->request->getPost('project_start_time')[$key],
+                        'end_date' => $this->request->getPost('project_end_date')[$key],
+                        // 'end_time' => $this->request->getPost('project_end_time')[$key],
+                        'sanctioned_year' => $this->request->getPost('sanctioned_year')[$key],
+                        'project_status' => $this->request->getPost('projectstatus')[$key],
+                        'sponsored_by' => $this->request->getPost('projectsponseredby')[$key],
+                        'project_value' => $this->request->getPost('projectvalue')[$key],
+                        'role' => $this->request->getPost('role')[$key],
+                        'funding_source' => $this->request->getPost('funding_source')[$key],
+                        'other_funding_source' => $this->request->getPost('other_funding_source')[$key] ?? '',
+                        'upload_by' =>  $loggeduserId,
+                    ];
+
+                    // echo "<pre>";print_r($data);
+                    $result = $employee_projects_model->add($data);
+                }
+                // die;
+                if ($result === true) {
+                    return redirect()->to('admin/edit-employee-projects/'.$id)->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-employee-projects/'.$id)->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
         public function employee_publication(){
             $employee_model = new Employee_model();
             $employee_publication_model = new Employee_publication_model();
