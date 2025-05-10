@@ -37,7 +37,7 @@
                         <!-- Publication Title -->
                         <div class="form-group">
                             <span for="Pubtitle">Publication Title:</span>
-                            <textarea name="Pubtitle" id="editor2" class="form-control form-control-sm" ></textarea>
+                            <textarea name="Pubtitle" id="editor2" class="form-control form-control-sm"><?= $publication_detail['title'] ?></textarea>
                         </div>
                     </div>
                     <!-- <div class="col-lg-12">
@@ -49,7 +49,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span for="Pubkeyword">Keywords:</span>
-                            <input type="text" name="Pubkeyword" id="Pubkeyword" class="form-control form-control-sm" placeholder="e.g., machine learning, AI">
+                            <input type="text" name="Pubkeyword" id="Pubkeyword" class="form-control form-control-sm" placeholder="e.g., machine learning, AI" value="<?= $publication_detail['keywords'] ?>">
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -57,6 +57,7 @@
                         <div class="form-group">
                             <span for="Pubphotoupload">Photo Upload:</span>
                             <input type="file" name="Pubphotoupload" id="Pubphotoupload" class="form-control form-control-sm">
+                            <a href="<?= base_url() ?>public/admin/uploads/publication/<?= $publication_detail['publication_photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" height="30px"></a>
                         </div>
                     </div>
                     <div class="col-lg-12">
@@ -85,63 +86,63 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span for="DoIdetails">Published Name</span>
-                            <input type="text" name="published_name" id="published_name" class="form-control form-control-sm">
+                            <input type="text" name="published_name" id="published_name" class="form-control form-control-sm" value="<?= $publication_detail['published_name'] ?>">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span for="DoIdetails">Volume Number</span>
-                            <input type="text" name="volume_number" id="volume_number" class="form-control form-control-sm">
+                            <input type="text" name="volume_number" id="volume_number" class="form-control form-control-sm" value="<?= $publication_detail['volume_number'] ?>">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span for="DoIdetails">Publish Date Online</span>
-                            <input type="date" name="publish_date_online" id="publish_date_online" class="form-control form-control-sm">
+                            <input type="date" name="publish_date_online" id="publish_date_online" class="form-control form-control-sm" value="<?= $publication_detail['publish_date_online'] ?>">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span for="DoIdetails">Publish Date Print</span>
-                            <input type="date" name="publish_date_print" id="publish_date_print" class="form-control form-control-sm">
+                            <input type="date" name="publish_date_print" id="publish_date_print" class="form-control form-control-sm" value="<?= $publication_detail['publish_date_print'] ?>">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span for="DoIdetails">Date of Acceptance </span>
-                            <input type="date" name="date_of_acceptance" id="date_of_acceptance" class="form-control form-control-sm">
+                            <input type="date" name="date_of_acceptance" id="date_of_acceptance" class="form-control form-control-sm" value="<?= $publication_detail['date_of_acceptance'] ?>">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span for="DoIdetails">Date of Communication </span>
-                            <input type="date" name="date_of_communication" id="date_of_communication" class="form-control form-control-sm">
+                            <input type="date" name="date_of_communication" id="date_of_communication" class="form-control form-control-sm" value="<?= $publication_detail['date_of_communication'] ?>">
                         </div>
                     </div>
                     <div class="col-lg-6">
                          <!-- DOI Details -->
                         <div class="form-group">
                             <span for="DoIdetails">DOI Details:</span>
-                            <input type="text" name="DoIdetails" id="DoIdetails" class="form-control form-control-sm">
+                            <input type="text" name="DoIdetails" id="DoIdetails" class="form-control form-control-sm" value="<?= $publication_detail['doi_details'] ?>">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <!-- Publication Year -->
                         <div class="form-group">
                             <span for="Pubyear">Publication Year:</span>
-                            <input type="number" name="Pubyear" id="Pubyear" class="form-control form-control-sm" min="1900" max="<?= date("Y") ?>" required >
+                            <input type="number" name="Pubyear" id="Pubyear" class="form-control form-control-sm" min="1900" max="<?= date("Y") ?>"  value="<?= $publication_detail['publication_year'] ?>" required >
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span for="Pubyear">Journal Name:</span>
-                            <input type="text" name="journal_name" id="journal_name" class="form-control form-control-sm" >
+                            <input type="text" name="journal_name" id="journal_name" class="form-control form-control-sm"  value="<?= $publication_detail['journal_name'] ?>">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span for="Pubyear">Page no:</span>
-                            <input type="text" name="page_no" id="page_no" class="form-control form-control-sm" >
+                            <input type="text" name="page_no" id="page_no" class="form-control form-control-sm" value="<?= $publication_detail['page_no'] ?>" >
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -150,33 +151,33 @@
                             <span for="Pubtype">Reffered:</span>
                             <select name="reffered" id="reffered" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes"<?php if($employee_projects_detail['reffered'] == "yes"){ echo "selected"; } ?>>Yes</option>
+                                <option value="no"<?php if($employee_projects_detail['reffered'] == "no"){ echo "selected"; } ?>>No</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span for="Pubyear">ISSN no:</span>
-                            <input type="text" name="issn_no" id="issn_no" class="form-control form-control-sm" >
+                            <input type="text" name="issn_no" id="issn_no" class="form-control form-control-sm"  value="<?= $publication_detail['issn_no'] ?>">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span for="Pubyear">ISBN no:</span>
-                            <input type="text" name="isbn_no" id="isbn_no" class="form-control form-control-sm" >
+                            <input type="text" name="isbn_no" id="isbn_no" class="form-control form-control-sm"  value="<?= $publication_detail['isbn_no'] ?>">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <span for="Pubyear">Impact Factor Return List:</span>
-                            <input type="text" name="impact_factor" id="impact_factor" class="form-control form-control-sm" >
+                            <input type="text" name="impact_factor" id="impact_factor" class="form-control form-control-sm" value="<?= $publication_detail['impact_factor'] ?>" >
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="form-group">
                             <span for="Pubyear">Web Link:</span>
-                            <input type="url" name="web_link" id="web_link" class="form-control form-control-sm" >
+                            <input type="url" name="web_link" id="web_link" class="form-control form-control-sm" value="<?= $publication_detail['web_link'] ?>" >
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -185,9 +186,9 @@
                             <span for="Pubtype">Publication Type:</span>
                             <select name="Pubtype" id="Pubtype" class="form-control form-control-sm" required>
                                 <option value="">Select Type</option>
-                                <option value="Research Article">Research Article</option>
-                                <option value="Review Article">Review Article</option>
-                                <option value="Book Chapter">Book Chapter</option>
+                                <option value="Research Article" <?php if($employee_projects_detail['publication_type'] == "Research Article"){ echo "selected"; } ?>>Research Article</option>
+                                <option value="Review Article" <?php if($employee_projects_detail['publication_type'] == "Review Article"){ echo "selected"; } ?>>Review Article</option>
+                                <option value="Book Chapter" <?php if($employee_projects_detail['publication_type'] == "Book Chapter"){ echo "selected"; } ?>>Book Chapter</option>
                             </select>
                         </div>
                     </div>
@@ -197,12 +198,10 @@
                             <span for="Pubstatus">Publication Status:</span>
                             <select name="Pubstatus" id="Pubstatus" class="form-control form-control-sm" required>
                                 <option value="">Select Status</option>
-                                <!-- <option value="0">In Proceeding</option>
-                                <option value="1">Published</option> -->
-                                <option value="Values">Values</option>
-                                <option value="Accepted">Accepted</option>
-                                <option value="Web-Link">Web-Link</option>
-                                <option value="In-Press">In-Press</option>
+                                <option value="Values" <?php if($employee_projects_detail['status'] == "Values"){ echo "selected"; } ?>>Values</option>
+                                <option value="Accepted" <?php if($employee_projects_detail['status'] == "Accepted"){ echo "selected"; } ?>>Accepted</option>
+                                <option value="Web-Link" <?php if($employee_projects_detail['status'] == "Web-Link"){ echo "selected"; } ?>>Web-Link</option>
+                                <option value="In-Press" <?php if($employee_projects_detail['status'] == "In-Press"){ echo "selected"; } ?>>In-Press</option>
                             </select>
                         </div>
                     </div>
@@ -213,9 +212,9 @@
                             <span for="Pubstatus">Role in Publication:</span>
                             <select name="publication_role" id="" class="form-control form-control-sm" required>
                                 <option value="">--Select--</option>
-                                <option value="First/Principal/Corresponding">First/Principal/Corresponding</option>
-                                <option value="Author">Author</option>
-                                <option value="Co-Author">Co-Author</option>
+                                <option value="First/Principal/Corresponding" <?php if($employee_projects_detail['publication_role'] == "First/Principal/Corresponding"){ echo "selected"; } ?>>First/Principal/Corresponding</option>
+                                <option value="Author" <?php if($employee_projects_detail['publication_role'] == "Author"){ echo "selected"; } ?>>Author</option>
+                                <option value="Co-Author" <?php if($employee_projects_detail['publication_role'] == "Co-Author"){ echo "selected"; } ?>>Co-Author</option>
                             </select>
                         </div>
                     </div>

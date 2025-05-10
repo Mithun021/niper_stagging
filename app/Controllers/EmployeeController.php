@@ -572,12 +572,12 @@ use App\Models\Student_model;
                  $publicationimageName = "";
                 }
 
-                $author_name = $this->request->getPost('author_name');
+                // $author_name = $this->request->getPost('author_name');
 
                 $data = [
                     'emplyee_id' => implode(",",$this->request->getPost('Empid')),
                     'title' => $this->request->getPost('Pubtitle'),
-                    'description' => $this->request->getPost('description'),
+                    // 'description' => $this->request->getPost('description'),
                     'keywords' => $this->request->getPost('Pubkeyword'),
                     'publication_photo' => $publicationimageName,
                     'published_name' => $this->request->getPost('published_name'),
