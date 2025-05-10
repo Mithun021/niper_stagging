@@ -20,12 +20,8 @@ $employee_model = new Employee_model();
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
-                <div>
-                    <button type="button" class="btn btn-sm btn-danger" id="export_sample_btn">Export Emp. Sample</button>
-                    <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>
-                </div>
             </div>
-            <form action="<?= base_url() ?>admin/employee-awards" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url() ?>admin/edit-employee-awards/<?= $emp_awards_id ?>" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                     <?php if (session()->getFlashdata('msg')): ?>
                         <?= session()->getFlashdata('msg') ?>
@@ -38,7 +34,7 @@ $employee_model = new Employee_model();
                             <select name="Empid" id="Empid" class="form-control form-control-sm" required>
                                 <option value="">Select Employee</option>
                                 <?php foreach ($employee as $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?php if($value['id'] == $awards_detail['emplyee_id']){ echo "selected"; } ?>><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -50,12 +46,12 @@ $employee_model = new Employee_model();
                                     <!-- Award Title -->
                                     <div class="form-group">
                                         <span for="Awardtitle">Name of Awarding:</span>
-                                        <input type="text" name="Awardtitle[]" id="" class="form-control form-control-sm">
+                                        <input type="text" name="Awardtitle" id="" class="form-control form-control-sm" value="<?= $awards_detail['name_of_awarding'] ?>">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <span for="">Reason of Awarding<span class="text-danger">*</span></span>
-                                    <select class="form-control form-control-sm" name="award_reason[]" required>
+                                    <select class="form-control form-control-sm" name="award_reason" required>
                                         <option value="">--Select--</option>
                                         <option value="Academic">Academic</option>
                                         <option value="Research">Research</option>
@@ -63,15 +59,15 @@ $employee_model = new Employee_model();
                                 </div>
                                 <div class="form-group col-md-6">
                                     <span for="">Date of Awarding<span class="text-danger">*</span></span>
-                                    <input type="date" name="date_of_awarding[]" id="" class="form-control form-control-sm">
+                                    <input type="date" name="date_of_awarding" id="" class="form-control form-control-sm">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <span for="">Body name of Awarding<span class="text-danger">*</span></span>
-                                    <input type="text" name="body_name_of_awarding[]" id="" class="form-control form-control-sm">
+                                    <input type="text" name="body_name_of_awarding" id="" class="form-control form-control-sm">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <span for="">Level<span class="text-danger">*</span></span>
-                                    <select class="form-control form-control-sm" name="level[]" required>
+                                    <select class="form-control form-control-sm" name="level" required>
                                         <option value="">--Select--</option>
                                         <option value="National">National</option>
                                         <option value="International">International</option>
@@ -83,18 +79,14 @@ $employee_model = new Employee_model();
                                     <!-- Award Photo Upload -->
                                     <div class="form-group">
                                         <span for="Awardphotoupload">Document Upload(.pdf,.jpg,.jpeg,.png):</span>
-                                        <input type="file" name="Awardphotoupload[]" id="Awardphotoupload" class="form-control form-control-sm" accept=".pdf,.jpg,.jpeg,.png">
+                                        <input type="file" name="Awardphotoupload" id="Awardphotoupload" class="form-control form-control-sm" accept=".pdf,.jpg,.jpeg,.png">
                                     </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <button type="button" id="remove-clone" class="btn btn-danger" style="width: 120px;">Remove Clone</button>
                                 </div>
                             </div>
                         </div>
 
                     </div>
                     <div class="card-footer d-flex justify-content-between">
-                        <button type="button" id="add-clone" class="btn btn-success">Add Clone</button>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
             </form>
@@ -161,126 +153,8 @@ $employee_model = new Employee_model();
     </div>
 </div>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="export_emp_sample_modal">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Export Employee Data</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="<?= base_url() ?>admin/export_emp_award_sample" method="post">
-                <div class="modal-body">
-                    <div class="alert alert-danger">
-                        <p class="m-0">Note : After exporting the CSV, do not delete the top headings from the Excel sheet.</p>
-                    </div>
-                    <?php foreach ($employee as $value) { ?>
-                        <span><input type="checkbox" name="emp_id[]" value="<?= $value['id'] ?>"> <?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></span> <br>
-                    <?php } ?>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Download CSV</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" tabindex="-1" role="dialog" id="upload_emp_exp_modal">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Upload Employee Awards Data</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="<?= base_url() ?>admin/upload_emp_award_csv" method="post" enctype="multipart/form-data">
-                <div class="modal-body">
-                    <div class="alert alert-danger">
-                        <p class="m-0">1. Ensure that the employee is available before uploading the CSV file. Please verify employee details beforehand.</p>
-                        <p class="m-0">2. The employee's mobile number and official email ID must be available.</p>
-                        <p class="m-0">3. Before uploading the CSV, cross-check the employee's official email address and mobile number.</p>
-                        <p class="m-0">4.Please upload only CSV files.</p>
-                    </div>
-                    <input type="file" name="csv_file" class="dropify" data-height="300" />
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Upload</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 <!-- jQuery Script -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        // Add Clone Button Click
-        $("#add-clone").click(function(e) {
-            e.preventDefault();
-
-            // Clone the employee data card
-            var cloneCatrow = $('#clone_employee_data').first().clone();
-
-            // Reset the cloned fields
-            cloneCatrow.find('input, textarea, select').val('');
-            cloneCatrow.find('.ck-editor').remove(); // Remove existing CKEditor container if any
-
-            // Append the cloned element to the clone content container
-            cloneCatrow.appendTo('#clone_content');
-
-            // Reinitialize CKEditor for cloned textarea
-            cloneCatrow.find('.clone_editor').removeAttr('data-ckeditor-initialized'); // Reset the initialized flag
-            initializeEditors(); // Reinitialize editors
-        });
-
-        // Remove Clone Button Click
-        $('#clone_content').on('click', '#remove-clone', function() {
-            $(this).closest('#clone_employee_data').remove();
-        });
-
-        // Modal Trigger (Optional Example for Context)
-        $('#upload_emp_exp_btn').on('click', function(e) {
-            e.preventDefault();
-            $('#upload_emp_exp_modal').modal('show');
-        });
-
-        $('#export_sample_btn').on('click', function(e) {
-            e.preventDefault();
-            $('#export_emp_sample_modal').modal('show');
-        });
-
-        // Sync CKEditor Data Before Form Submission
-        $('form').on('submit', function() {
-            $('.clone_editor').each(function() {
-                if (this.editorInstance) {
-                    this.value = this.editorInstance.getData(); // Sync CKEditor content to textarea
-                }
-            });
-        });
-    });
-
-    // CKEditor Initialization
-    function initializeEditors() {
-        document.querySelectorAll(".clone_editor").forEach((textarea) => {
-            if (!textarea.dataset.ckeditorInitialized) {
-                ClassicEditor.create(textarea)
-                    .then(editor => {
-                        textarea.editorInstance = editor; // Save the CKEditor instance for later use
-                    })
-                    .catch(error => console.error(error));
-                textarea.dataset.ckeditorInitialized = true; // Mark as initialized
-            }
-        });
-    }
-
-    // Initialize editors for existing elements on page load
-    initializeEditors();
-</script>
 
 <?= $this->endSection() ?>
