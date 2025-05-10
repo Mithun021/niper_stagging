@@ -459,7 +459,7 @@ use App\Models\Student_model;
                 ];
 
                 // echo "<pre>";print_r($data);
-                $result = $employee_projects_model->add($data);
+                $result = $employee_projects_model->add($data,$id);
                 
                 // die;
                 if ($result === true) {
