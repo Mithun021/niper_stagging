@@ -470,6 +470,17 @@ use App\Models\Student_model;
             }
         }
 
+        public function delete_employee_projects($id){
+            $employee_projects_model = new Employee_projects_model();
+            $delete = $employee_projects_model->delete($id);
+            if ($delete) {
+                return redirect()->to('admin/employee-projects/')->with('msg','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+            } else {
+                return redirect()->to('admin/employee-projects/')->with('msg','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+            }
+
+        }
+
         public function employee_publication(){
             $employee_model = new Employee_model();
             $employee_publication_model = new Employee_publication_model();
