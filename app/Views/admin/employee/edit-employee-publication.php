@@ -28,7 +28,7 @@
                             <select name="Empid[]" id="Empid" class="form-control form-control-sm my-select" multiple required >
                                 <option value="">Select Employee</option>
                             <?php foreach($employee as $value){ ?>
-                                <option value="<?= $value['id'] ?>" <?php if($value['id'] == $publication_detail['emplyee_id']){ echo "selected"; } ?>><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                                <option value="<?= $value['id'] ?>" <?php if (in_array($value['id'], explode(",", $publication_detail['emplyee_id']))) { echo "selected"; } ?>><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
                             <?php } ?>
                             </select>
                         </div>
