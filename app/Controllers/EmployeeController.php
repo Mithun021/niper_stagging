@@ -550,6 +550,76 @@ use App\Models\Student_model;
             }
         }
 
+        public function edit_employee_publication($id){
+            $employee_model = new Employee_model();
+            $employee_publication_model = new Employee_publication_model();
+            $employee_publication_author_model = new Employee_publication_author_model();
+            $data = ['title' => 'Employee Publication','emp_publication_id' => $id];
+            if ($this->request->is("get")) {
+                $data['employee'] = $employee_model->get();
+                $data['publication'] = $employee_publication_model->get();
+                $data['publication_detail'] = $employee_publication_model->get($id);
+                return view('admin/employee/employee-publication',$data);
+            }else if ($this->request->is("post")) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $publication_photo = $this->request->getFile('Pubphotoupload');
+                if ($publication_photo->isValid() && ! $publication_photo->hasMoved()) {
+                    $publicationimageName = $publication_photo->getRandomName();
+                    $publication_photo->move(ROOTPATH . 'public/admin/uploads/publication', $publicationimageName);    
+                }else{
+                 $publicationimageName = "";
+                }
+
+                $author_name = $this->request->getPost('author_name');
+
+                $data = [
+                    'emplyee_id' => implode(",",$this->request->getPost('Empid')),
+                    'title' => $this->request->getPost('Pubtitle'),
+                    'description' => $this->request->getPost('description'),
+                    'keywords' => $this->request->getPost('Pubkeyword'),
+                    'publication_photo' => $publicationimageName,
+                    'published_name' => $this->request->getPost('published_name'),
+                    'volume_number' => $this->request->getPost('volume_number'),
+                    'publish_date_online' => $this->request->getPost('publish_date_online'),
+                    'publish_date_print' => $this->request->getPost('publish_date_print'),
+                    'date_of_acceptance' => $this->request->getPost('date_of_acceptance'),
+                    'date_of_communication' => $this->request->getPost('date_of_communication'),
+                    'doi_details' => $this->request->getPost('DoIdetails'),
+                    'publication_year' => $this->request->getPost('Pubyear'),
+                    'journal_name' => $this->request->getPost('journal_name'),
+                    'page_no' => $this->request->getPost('page_no'),
+                    'reffered' => $this->request->getPost('reffered'),
+                    'issn_no' => $this->request->getPost('issn_no'),
+                    'isbn_no' => $this->request->getPost('isbn_no'),
+                    'impact_factor' => $this->request->getPost('impact_factor'),
+                    'web_link' => $this->request->getPost('web_link'),
+                    'publication_type' => $this->request->getPost('Pubtype'),
+                    'status' => $this->request->getPost('Pubstatus'),
+                    'publication_role' => $this->request->getPost('publication_role'),
+                    'upload_by' =>  $loggeduserId,
+                ]; 
+
+                // echo "<pre>";print_r($data);
+                $result = $employee_publication_model->add($data);
+                if ($result === true) {
+                    $insertId = $employee_publication_model->getInsertID();
+                    foreach ($author_name as $value) {
+                        $data2 = [
+                            'author_name' => $value,
+                            'emp_publication_id' => $insertId,
+                        ];
+                        $employee_publication_author_model->add($data2);
+                    }
+                    return redirect()->to('admin/employee-publication')->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/employee-publication')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
         public function employee_awards(){
             $employee_model = new Employee_model();
             $employee_awards_model = new Employee_awards_model();

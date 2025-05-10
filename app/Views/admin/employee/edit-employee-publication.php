@@ -12,10 +12,6 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title m-0">Add Publication Details</h4>
-                <div>
-                    <button type="button" class="btn btn-sm btn-danger" id="export_sample_btn">Export Sample</button>
-                    <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>
-                </div>
             </div>
             <div class="card-body">
             <?php if (session()->getFlashdata('msg')): ?>
@@ -23,7 +19,7 @@
             <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/employee-publication" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/edit-employee-publication/<?= $emp_publication_id ?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-lg-12">
                         <!-- Employee ID -->
@@ -32,7 +28,7 @@
                             <select name="Empid[]" id="Empid" class="form-control form-control-sm my-select" multiple required >
                                 <option value="">Select Employee</option>
                             <?php foreach($employee as $value){ ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                                <option value="<?= $value['id'] ?>" <?php if($value['id'] == $publication_detail['emplyee_id']){ echo "selected"; } ?>><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
                             <?php } ?>
                             </select>
                         </div>
@@ -65,21 +61,21 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="addServicetable"> 
+                            <table class="table table-bordered"> 
                                 <thead class="bg-light">
                                     <tr>
                                         <td scope="col">Author Details</td>
-                                        <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewservicerow">+</button></td>
+                                        <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewpubauthor">+</button></td>
                                     </tr>
                         
                                 </thead>
-                                <tbody id="stockTbody">
-                                    <tr id="stockTrow">
+                                <tbody >
+                                    <tr>
                                         <td>
-                                            <input type="text" class="form-control" id="author_name" name="author_name[]" placeholder="Enter Author Name">
+                                            <input type="text" class="form-control" name="author_name" placeholder="Enter Author Name">
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
+                                            <button type="button" class="btn btn-sm btn-danger" id="removePubServicerow">-</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -308,75 +304,39 @@
     </div>
 </div>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="export_emp_sample_modal">
+<div class="modal fade" tabindex="-1" role="dialog" id="pub_author_name">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Export Employee Data</h5>
+        <h5 class="modal-title">Add New Author</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url() ?>admin/export_emp_publication_sample" method="post">
+      <form action="<?= base_url() ?>admin/addnewpubauthor" method="post">
       <div class="modal-body">
-      <div class="alert alert-danger"><p class="m-0">Note : After exporting the CSV, do not delete the top headings from the Excel sheet.</p></div>
-        <?php foreach($employee as $value){ ?>
-            <span><input type="checkbox" name="emp_id[]" value="<?= $value['id'] ?>"> <?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></span> <br>
-        <?php } ?>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Download CSV</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-
-<div class="modal fade" tabindex="-1" role="dialog" id="upload_emp_exp_modal">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Upload Employee Experience Data</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form action="<?= base_url() ?>admin/upload_emp_publication_csv" method="post" enctype="multipart/form-data">
-      <div class="modal-body">
-        <div class="alert alert-danger">
-            <p class="m-0">1. Ensure that the employee is available before uploading the CSV file. Please verify employee details beforehand.</p>
-            <p class="m-0">2. The employee's mobile number and official email ID must be available.</p>
-            <p class="m-0">3. Before uploading the CSV, cross-check the employee's official email address and mobile number.</p>
-            <p class="m-0">4.Please upload only CSV files.</p>
-            <p class="m-0">5.In the Author Name and Publication Keywords section, write the name with commas separating each part. For Example</p>
-            <p class="m-0">Keywords : keywords1, keywords2, keywords3.....</p>
-            <p class="m-0">Author Name : Name1, Name2, Name3 .....</p>
+        <div class="form-group">
+            <span>Author Name</span>
+            <input type="text" class="form-control form-control-sm" name="newPubAuthor">
         </div>
-        <input type="file" name="csv_file" class="dropify" data-height="300" />
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Upload</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
       </form>
     </div>
   </div>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('#upload_emp_exp_btn').on('click',function (e) { 
+        $('#addnewpubauthor').on('click',function (e) { 
             e.preventDefault();
-            $('#upload_emp_exp_modal').modal('show');
+            $('#pub_author_name').modal('show');
         });
-
-        $('#export_sample_btn').on('click',function (e) { 
-            e.preventDefault();
-            $('#export_emp_sample_modal').modal('show');
-        })
     });
 </script>
 
