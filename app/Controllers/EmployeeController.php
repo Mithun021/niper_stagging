@@ -640,6 +640,17 @@ use App\Models\Student_model;
 
         }
 
+        public function deletPubAuthor($id){
+            $employee_publication_author_model = new Employee_publication_author_model();
+            $delete = $employee_publication_author_model->delete($id);
+            if ($delete) {
+                echo true;
+            } else {
+                echo "Failed to delete";
+            }
+
+        }
+
         public function employee_awards(){
             $employee_model = new Employee_model();
             $employee_awards_model = new Employee_awards_model();

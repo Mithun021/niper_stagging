@@ -78,7 +78,7 @@
                                             <input type="text" class="form-control" name="author_name" placeholder="Enter Author Name" value="<?= $author['author_name'] ?>">
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-sm btn-danger" id="removePubServicerow">-</button>
+                                            <button type="button" class="btn btn-sm btn-danger" onclick="deletePubAuthor(<?= $emp_publication_id ?>)">-</button>
                                         </td>
                                     </tr>
                                 <?php } } ?>
@@ -340,6 +340,23 @@
             $('#pub_author_name').modal('show');
         });
     });
+
+    function deletePubAuthor(id){
+        if(confirm('Are you sure...!')){
+            $.ajax({
+                type: "POST",
+                url: "<?= base_url() ?>admin/deletPubAuthor/" + id,
+                success : function (param) { 
+                    if (param == true) {
+                        alert('Author Successful Delete');
+                        window.location.reload();
+                    }else{
+                        alert(param);
+                    }
+                }
+            });
+        }
+    }
 </script>
 
 <?= $this->endSection() ?>
