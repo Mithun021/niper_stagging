@@ -75,7 +75,7 @@
                                  
                                     <tr>
                                         <td>
-                                            <input type="text" class="form-control" name="author_name" placeholder="Enter Author Name" value="<?= $author['author_name'] ?>">
+                                            <input type="text" class="form-control" name="author_name" placeholder="Enter Author Name" value="<?= $author['author_name'] ?>" readonly>
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-sm btn-danger" onclick="deletePubAuthor(<?= $author['id'] ?>)">-</button>
