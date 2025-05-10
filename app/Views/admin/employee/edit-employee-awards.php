@@ -23,6 +23,7 @@ $employee_model = new Employee_model();
             </div>
             <form action="<?= base_url() ?>admin/edit-employee-awards/<?= $emp_awards_id ?>" method="post" enctype="multipart/form-data">
                 <div class="card-body">
+                    <?php print_r($awards_detail); ?>
                     <?php if (session()->getFlashdata('msg')): ?>
                         <?= session()->getFlashdata('msg') ?>
                     <?php endif; ?>
