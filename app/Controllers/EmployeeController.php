@@ -565,11 +565,25 @@ use App\Models\Student_model;
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
                 $publication_photo = $this->request->getFile('Pubphotoupload');
-                if ($publication_photo->isValid() && ! $publication_photo->hasMoved()) {
-                    $publicationimageName = $publication_photo->getRandomName();
-                    $publication_photo->move(ROOTPATH . 'public/admin/uploads/publication', $publicationimageName);    
-                }else{
-                 $publicationimageName = "";
+                $publication_detail = $employee_publication_model->get($id);
+                $old_publication_photo = $publication_detail['publication_photo'];
+                if (empty($old_publication_photo)) {
+                    if ($publication_photo->isValid() && !$publication_photo->hasMoved()) {
+                        $publication_photo_name = "publication" . $publication_photo->getRandomName();
+                        $publication_photo->move(ROOTPATH . 'public/admin/uploads/publication/', $publication_photo_name);
+                    } else {
+                        $publication_photo_name = null;
+                    }
+                } else {
+                    if ($publication_photo->isValid() && !$publication_photo->hasMoved()) {
+                        if (file_exists("public/admin/uploads/publication/" . $old_publication_photo)) {
+                            unlink("public/admin/uploads/publication/" . $old_publication_photo);
+                        }
+                        $publication_photo_name = "publication" . $publication_photo->getRandomName();
+                        $publication_photo->move(ROOTPATH . 'public/admin/uploads/publication/', $publication_photo_name);
+                    } else {
+                        $publication_photo_name = $old_publication_photo;
+                    }
                 }
 
                 // $author_name = $this->request->getPost('author_name');
@@ -579,7 +593,7 @@ use App\Models\Student_model;
                     'title' => $this->request->getPost('Pubtitle'),
                     // 'description' => $this->request->getPost('description'),
                     'keywords' => $this->request->getPost('Pubkeyword'),
-                    'publication_photo' => $publicationimageName,
+                    'publication_photo' => $publication_photo_name,
                     'published_name' => $this->request->getPost('published_name'),
                     'volume_number' => $this->request->getPost('volume_number'),
                     'publish_date_online' => $this->request->getPost('publish_date_online'),
@@ -602,7 +616,7 @@ use App\Models\Student_model;
                 ]; 
 
                 // echo "<pre>";print_r($data);
-                $result = $employee_publication_model->add($data);
+                $result = $employee_publication_model->add($data,$id);
                 if ($result === true) {
                     return redirect()->to('admin/edit-employee-publication/'.$id)->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
