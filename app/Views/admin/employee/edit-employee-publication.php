@@ -66,7 +66,7 @@
                                 <thead class="bg-light">
                                     <tr>
                                         <td scope="col">Author Details</td>
-                                        <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewpubauthor">+</button></td>
+                                        <td scope="col"><button type="button" class="btn btn-sm btn-primary" onclick="addnewpubauthor(<?= $emp_publication_id ?>)">+</button></td>
                                     </tr>
                         
                                 </thead>
@@ -318,6 +318,7 @@
       <form action="<?= base_url() ?>admin/addnewpubauthor" method="post">
       <div class="modal-body">
         <div class="form-group">
+            <input type="text" name="pub_id" id="pub_id" class="form-control form-control-sm" readonly>
             <span>Author Name</span>
             <input type="text" class="form-control form-control-sm" name="newPubAuthor">
         </div>
@@ -335,11 +336,13 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('#addnewpubauthor').on('click',function (e) { 
-            e.preventDefault();
-            $('#pub_author_name').modal('show');
-        });
+        
     });
+
+    function addnewpubauthor(pub_id) { 
+        $('#pub_id').val(pub_id);
+        $('#pub_author_name').modal('show');
+    }
 
     function deletePubAuthor(id){
         if(confirm('Are you sure...!')){
