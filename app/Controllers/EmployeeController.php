@@ -627,6 +627,21 @@ use App\Models\Student_model;
             }
         }
 
+        public function addnewpubauthor(){
+            $employee_publication_author_model = new Employee_publication_author_model();
+            $pub_id = $this->request->getPost('pub_id');
+             $data2 = [
+                'author_name' => $this->request->getPost('newPubAuthor'),
+                'emp_publication_id' => $pub_id,
+            ];
+            $result = $employee_publication_author_model->add($data2);
+            if ($result === true) {
+                return redirect()->to('admin/edit-employee-publication/'.$pub_id)->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-employee-publication/'.$pub_id)->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+
         public function delete_employee_publication($id){
             $employee_publication_model = new Employee_publication_model();
             $employee_publication_author_model = new Employee_publication_author_model();
