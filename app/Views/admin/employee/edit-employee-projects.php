@@ -46,7 +46,7 @@ $employee_model = new Employee_model();
                             <div class="row">
                                 <div class="col-lg-12 form-group">
                                     <span for="projecttitle">Project Title:<span class="text-danger">*</span></span>
-                                    <textarea type="text" name="projecttitle" id="" class="form-control form-control-sm clone_editor"><?= $employee_projects_detail['project_title'] ?></textarea>
+                                    <textarea type="text" name="projecttitle" id="editor" class="form-control form-control-sm clone_editor"><?= $employee_projects_detail['project_title'] ?></textarea>
                                 </div>
                                 <!-- <div class="col-lg-12">
                             <span for="projectdesc">Project Description:</span>
