@@ -725,29 +725,42 @@ use App\Models\Student_model;
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
-                $awards_photo = $this->request->getFileMultiple('Awardphotoupload');
-                $awards_titles = $this->request->getPost('Awardtitle');
-                foreach ($awards_titles as $key => $title) {    
-                    $photo = $awards_photo[$key];
-                    $photoName = "";
-                    if ($photo->isValid() && !$photo->hasMoved()) {
-                        $photoName = "awards".$photo->getRandomName();
-                        $photo->move(ROOTPATH . 'public/admin/uploads/employee', $photoName);
+                $awards_photo = $this->request->getFile('Awardphotoupload');
+                $awards_detail = $employee_awards_model->get($id);
+                $old_awards_photo = $awards_detail['document_file'];
+                if (empty($old_awards_photo)) {
+                    if ($awards_photo->isValid() && !$awards_photo->hasMoved()) {
+                        $awards_photo_name = "award" . $awards_photo->getRandomName();
+                        $awards_photo->move(ROOTPATH . 'public/admin/uploads/employee/', $awards_photo_name);
+                    } else {
+                        $awards_photo_name = null;
                     }
-                    $data = [
-                        'employee_id' => $this->request->getPost('Empid'),
-                        'name_of_awarding' => $title,
-                        'document_file' => $photoName,
-                        'award_reason' => $this->request->getPost('award_reason')[$key],
-                        'date_of_awarding' => $this->request->getPost('date_of_awarding')[$key],
-                        'body_name_of_awarding' => $this->request->getPost('body_name_of_awarding')[$key],
-                        'level' => $this->request->getPost('level')[$key],
-                        'upload_by' =>  $loggeduserId,
-                    ]; 
-
-                    // echo "<pre>";print_r($data);
-                    $result = $employee_awards_model->add($data);
+                } else {
+                    if ($awards_photo->isValid() && !$awards_photo->hasMoved()) {
+                        if (file_exists("public/admin/uploads/employee/" . $old_awards_photo)) {
+                            unlink("public/admin/uploads/employee/" . $old_awards_photo);
+                        }
+                        $awards_photo_name = "award" . $awards_photo->getRandomName();
+                        $awards_photo->move(ROOTPATH . 'public/admin/uploads/employee/', $awards_photo_name);
+                    } else {
+                        $awards_photo_name = $old_awards_photo;
+                    }
                 }
+                
+                $data = [
+                    'employee_id' => $this->request->getPost('Empid'),
+                    'name_of_awarding' => $this->request->getPost('Awardtitle'),
+                    'document_file' => $awards_photo_name,
+                    'award_reason' => $this->request->getPost('award_reason'),
+                    'date_of_awarding' => $this->request->getPost('date_of_awarding'),
+                    'body_name_of_awarding' => $this->request->getPost('body_name_of_awarding'),
+                    'level' => $this->request->getPost('level'),
+                    'upload_by' =>  $loggeduserId,
+                ]; 
+
+                // echo "<pre>";print_r($data);
+                $result = $employee_awards_model->add($data,$id);
+                
                 if ($result === true) {
                     return redirect()->to('admin/edit-employee-awards/'.$id)->with('msg','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
