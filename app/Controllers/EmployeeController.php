@@ -433,6 +433,7 @@ use App\Models\Student_model;
             if ($this->request->is("get")) {
                 $data['employee'] = $employee_model->get();
                 $data['employee_projects'] = $employee_projects_model->get();
+                $data['employee_projects_detail'] = $employee_projects_model->get($id);
                 return view('admin/employee/edit-employee-projects',$data);
             }else if ($this->request->is("post")) {
                 $sessionData = session()->get('loggedUserData');

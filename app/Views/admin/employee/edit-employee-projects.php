@@ -35,7 +35,7 @@ $employee_model = new Employee_model();
                                 <select name="Empid" id="Empid" class="form-control form-control-sm" required>
                                     <option value="">Select Employee</option>
                                     <?php foreach ($employee as $value) { ?>
-                                        <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
+                                        <option value="<?= $value['id'] ?>" <?php if($value['id'] == $employee_projects_detail['emplyee_id']){ echo "selected"; } ?>><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -46,7 +46,7 @@ $employee_model = new Employee_model();
                             <div class="row">
                                 <div class="col-lg-12 form-group">
                                     <span for="projecttitle">Project Title:<span class="text-danger">*</span></span>
-                                    <textarea type="text" name="projecttitle" id="" class="form-control form-control-sm clone_editor"></textarea>
+                                    <textarea type="text" name="projecttitle" id="" class="form-control form-control-sm clone_editor"><?= $employee_projects_detail['project_title'] ?></textarea>
                                 </div>
                                 <!-- <div class="col-lg-12">
                             <span for="projectdesc">Project Description:</span>
