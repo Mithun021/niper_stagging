@@ -343,7 +343,7 @@
 
     function deletePubAuthor(id){
         if(confirm('Are you sure...!')){
-            alert(id); return false;
+            // alert(id); return false;
             $.ajax({
                 type: "GET",
                 url: "<?= base_url() ?>admin/deletPubAuthor/" + id,
