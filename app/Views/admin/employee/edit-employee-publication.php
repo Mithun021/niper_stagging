@@ -75,7 +75,7 @@
                                  
                                     <tr>
                                         <td>
-                                            <input type="text" class="form-control" name="author_name" placeholder="Enter Author Name">
+                                            <input type="text" class="form-control" name="author_name" placeholder="Enter Author Name" value="<?= $author['author_name'] ?>">
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-sm btn-danger" id="removePubServicerow">-</button>
