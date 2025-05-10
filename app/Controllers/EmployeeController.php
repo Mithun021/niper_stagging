@@ -648,9 +648,9 @@ use App\Models\Student_model;
             $delete = $employee_publication_model->delete($id);
             if ($delete) {
                 $employee_publication_author_model->where('emp_publication_id',$id)->delete();
-                return redirect()->to('admin/employee-projects/')->with('msg','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                return redirect()->to('admin/employee-publication/')->with('msg','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
             } else {
-                return redirect()->to('admin/employee-projects/')->with('msg','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+                return redirect()->to('admin/employee-publication/')->with('msg','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
             }
 
         }
