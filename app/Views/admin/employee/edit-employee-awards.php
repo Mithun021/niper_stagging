@@ -19,7 +19,7 @@ $employee_model = new Employee_model();
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h4 class="card-title m-0">Add <?= $title ?></h4>
+                <h4 class="card-title m-0">Edit <?= $title ?></h4>
             </div>
             <form action="<?= base_url() ?>admin/edit-employee-awards/<?= $emp_awards_id ?>" method="post" enctype="multipart/form-data">
                 <div class="card-body">
@@ -34,7 +34,7 @@ $employee_model = new Employee_model();
                             <select name="Empid" id="Empid" class="form-control form-control-sm" required>
                                 <option value="">Select Employee</option>
                                 <?php foreach ($employee as $value) { ?>
-                                    <option value="<?= $value['id'] ?>" <?php if($value['id'] == $awards_detail['emplyee_id']){ echo "selected"; } ?>><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
+                                    <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -46,7 +46,7 @@ $employee_model = new Employee_model();
                                     <!-- Award Title -->
                                     <div class="form-group">
                                         <span for="Awardtitle">Name of Awarding:</span>
-                                        <input type="text" name="Awardtitle" id="" class="form-control form-control-sm" value="<?= $awards_detail['name_of_awarding'] ?>">
+                                        <input type="text" name="Awardtitle" id="" class="form-control form-control-sm">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
