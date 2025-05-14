@@ -25,7 +25,7 @@ $employee_model = new Employee_model();
                     <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>
                 </div> -->
             </div>
-            <form action="<?= base_url() ?>admin/employee-patent" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url() ?>admin/edit-employee-patent/<?= $patent_id ?>" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                     <?php if (session()->getFlashdata('msg')): ?>
                         <?= session()->getFlashdata('msg') ?>
@@ -50,12 +50,12 @@ $employee_model = new Employee_model();
                                     <!-- Award Title -->
                                     <div class="form-group">
                                         <span for="Awardtitle">Patent Title:</span>
-                                        <input type="text" name="patent_title[]" id="" class="form-control form-control-sm">
+                                        <input type="text" name="patent_title" id="" class="form-control form-control-sm">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <span for="">Level<span class="text-danger">*</span></span>
-                                    <select class="form-control form-control-sm" name="level[]" required>
+                                    <select class="form-control form-control-sm" name="level" required>
                                         <option value="">--Select--</option>
                                         <option value="National">National</option>
                                         <option value="International">International</option>
@@ -64,41 +64,37 @@ $employee_model = new Employee_model();
                                 
                                 <div class="form-group col-md-6">
                                     <span for="">Patent Number<span class="text-danger">*</span></span>
-                                    <input type="text" name="patent_number[]" id="" class="form-control form-control-sm">
+                                    <input type="text" name="patent_number" id="" class="form-control form-control-sm">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <span for="">Date of Awarding<span class="text-danger">*</span></span>
-                                    <input type="date" name="date_of_awarding[]" id="" class="form-control form-control-sm">
+                                    <input type="date" name="date_of_awarding" id="" class="form-control form-control-sm">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <span for="">Fund Generated(INR)<span class="text-danger">*</span></span>
-                                    <input type="number" name="fund_generate[]" id="" class="form-control form-control-sm">
+                                    <input type="number" name="fund_generate" id="" class="form-control form-control-sm">
                                 </div>
                                 
                                 <div class="col-lg-6">
                                     <!-- Award Photo Upload -->
                                     <div class="form-group">
                                         <span for="Awardphotoupload">Document Upload(.pdf):</span>
-                                        <input type="file" name="patent_document[]" id="Awardphotoupload" class="form-control form-control-sm" accept=".pdf">
+                                        <input type="file" name="patent_document" id="Awardphotoupload" class="form-control form-control-sm" accept=".pdf">
                                     </div>
                                 </div>
                               <div class="col-lg-6 form-group">
                                   <span>Patent Status <span class="text-danger">*</span></span>
-                                  <select class="form-control form-control-sm" name="patent_status[]" required>
+                                  <select class="form-control form-control-sm" name="patent_status" required>
                                       <option value="In Process">In Process</option>
                                       <option value="Applied" >Applied</option>
                                       <option value="Granted" >Granted</option>
                                   </select>
                               </div>
-                                <div class="col-lg-12">
-                                    <button type="button" id="remove-clone" class="btn btn-danger" style="width: 120px;">Remove Clone</button>
-                                </div>
                             </div>
                         </div>
 
                     </div>
                     <div class="card-footer d-flex justify-content-between">
-                        <button type="button" id="add-clone" class="btn btn-success">Add Clone</button>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
             </form>

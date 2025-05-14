@@ -126,7 +126,11 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'work-nature', 'EmployeeController::work_nature');
     $routes->match(['get','post'],'employee-nature', 'EmployeeController::employee_nature');
     $routes->match(['get','post'],'book-chapter', 'EmployeeController::book_chapter');
+    
     $routes->match(['get','post'],'employee-patent', 'EmployeeController::employee_patent');
+    $routes->match(['get','post'],'edit-employee-patent/(:num)', 'EmployeeController::edit_employee_patent/$1');
+    $routes->get('delete-employee-patent/(:num)', 'EmployeeController::delete_employee_patent/$1');
+
     $routes->match(['get','post'],'employee-academic-details', 'EmployeeController::employee_academic_details');
     $routes->match(['get','post'],'emp-other-academic-details', 'EmployeeController::employee_other_academic_details');
     $routes->match(['get','post'],'phd-detail', 'EmployeeController::phd_detail');
