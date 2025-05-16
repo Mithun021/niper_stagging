@@ -131,6 +131,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete-work-nature/(:num)', 'EmployeeController::delete_work_nature/$1');
 
     $routes->match(['get','post'],'employee-nature', 'EmployeeController::employee_nature');
+    $routes->match(['get','post'],'edit-employee-nature/(:num)', 'EmployeeController::edit_employee_nature/$1');
+    $routes->get('delete-employee-nature/(:num)', 'EmployeeController::delete_employee_nature/$1');
+
     $routes->match(['get','post'],'book-chapter', 'EmployeeController::book_chapter');
     
     $routes->match(['get','post'],'employee-patent', 'EmployeeController::employee_patent');

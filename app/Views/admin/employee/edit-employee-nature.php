@@ -20,10 +20,10 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/employee-nature') ?>">
+                <form method="post" action="<?= base_url('admin/edit-employee-nature/'.$emp_nature_id) ?>">
                     <div class="form-group">
                         <span for="">Employee Nature<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="emp_nature" required>
+                        <input type="text" class="form-control form-control-sm" name="emp_nature" value="<?= $employee_nature_detail['name'] ?>" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>

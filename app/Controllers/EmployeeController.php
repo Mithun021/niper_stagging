@@ -1461,6 +1461,31 @@ use App\Models\Student_model;
             }
         }
 
+        public function edit_employee_nature($id){
+            $employee_nature_model = new Employee_nature_model();
+            $data = ['title' => 'Nature of Work','emp_nature_id' => $id];
+            if ($this->request->is('get')) {
+                $data['employee_nature'] = $employee_nature_model->get();
+                $data['employee_nature_detail'] = $employee_nature_model->get($id);
+                return view('admin/employee/edit-employee-nature',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $data = [
+                    'name' => $this->request->getPost('emp_nature'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $employee_nature_model->add($data,$id);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-employee-nature/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-employee-nature/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
         public function book_chapter(){
             $employee_model = new Employee_model();
             $books_chapter_model = new Books_chapter_model();
