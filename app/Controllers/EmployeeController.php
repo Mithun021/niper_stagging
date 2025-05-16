@@ -1502,9 +1502,50 @@ use App\Models\Student_model;
                 ];
                 $result = $employee_academic_details_model->add($data);
                 if ($result === true) {
-                    return redirect()->to('admin/employee-academic-details')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                    return redirect()->to('admin/employee-academic-details')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
                     return redirect()->to('admin/employee-academic-details')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
+        public function edit_employee_academic_details($id){
+            $employee_model = new Employee_model();
+            $country_model = new Country_model();
+            $employee_academic_details_model = new Employee_academic_details_model();
+            $data = ['title' => 'Employee Acadmic Details'];
+            if ($this->request->is('get')) {
+                $data['country'] = $country_model->getCountry();
+                $data['employee'] = $employee_model->get();
+                $data['employee_academic_details'] = $employee_academic_details_model->get();
+                $data['academic_details'] = $employee_academic_details_model->get($id);
+                return view('admin/employee/edit-employee-academic-details',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $document = $this->request->getFile('document_file');
+                
+                $data = [
+                    'employee_id' => $this->request->getPost('employee_id'),
+                    'degree_type' => $this->request->getPost('degree_type'),
+                    'degree_name' => $this->request->getPost('degree_name'),
+                    'subject_studied' => $this->request->getPost('subject_studied'),
+                    // 'marking_scheme' => $this->request->getPost('marking_scheme'),
+                    // 'obtained_result' => $this->request->getPost('obtained_result'),
+                    'passing_year' => $this->request->getPost('passing_year'),
+                    'university' => $this->request->getPost('university'),
+                    'university_country' => $this->request->getPost('university_country'),
+                    'university_state' => $this->request->getPost('university_state'),
+                    // 'document_file' => $documentNewName,
+                    'upload_by' => $loggeduserId,
+                ];
+                $result = $employee_academic_details_model->add($data,$id);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-employee-academic-details/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-employee-academic-details/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
         }

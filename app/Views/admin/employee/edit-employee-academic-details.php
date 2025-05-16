@@ -29,7 +29,7 @@ $employee_model = new Employee_model();
                             <select class="form-control form-control-sm" name="employee_id" required>
                                 <option value="">--Select--</option>
                                 <?php foreach ($employee as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?php if($value['id'] == $academic_details['employee_id']){ echo "selected"; } ?>><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
