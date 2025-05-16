@@ -1580,9 +1580,9 @@ use App\Models\Student_model;
             }
             $result = $employee_academic_details_model->delete($id);
             if ($result === true) {
-                return redirect()->to('admin/-employee-academic-details')->with('msg','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+                return redirect()->to('admin/employee-academic-details')->with('msg','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
             } else {
-                return redirect()->to('admin/-employee-academic-details')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                return redirect()->to('admin/employee-academic-details')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
         }
 
