@@ -50,29 +50,29 @@ $employee_model = new Employee_model();
                                     <!-- Award Title -->
                                     <div class="form-group">
                                         <span for="Awardtitle">Patent Title:</span>
-                                        <input type="text" name="patent_title" id="" class="form-control form-control-sm">
+                                        <input type="text" name="patent_title" id="" class="form-control form-control-sm" value="<?= $patent_detail['patent_title'] ?>">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <span for="">Level<span class="text-danger">*</span></span>
                                     <select class="form-control form-control-sm" name="level" required>
                                         <option value="">--Select--</option>
-                                        <option value="National">National</option>
-                                        <option value="International">International</option>
+                                        <option value="National" <?php if($patent_detail['patent_level'] == "Not Started"){ echo "selected"; } ?>>National</option>
+                                        <option value="International" <?php if($patent_detail['patent_level'] == "Not Started"){ echo "selected"; } ?>>International</option>
                                     </select>
                                 </div>
                                 
                                 <div class="form-group col-md-6">
                                     <span for="">Patent Number<span class="text-danger">*</span></span>
-                                    <input type="text" name="patent_number" id="" class="form-control form-control-sm">
+                                    <input type="text" name="patent_number" id="" class="form-control form-control-sm" value="<?= $patent_detail['patent_number'] ?>">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <span for="">Date of Awarding<span class="text-danger">*</span></span>
-                                    <input type="date" name="date_of_awarding" id="" class="form-control form-control-sm">
+                                    <input type="date" name="date_of_awarding" id="" class="form-control form-control-sm" value="<?= $patent_detail['awards_date'] ?>">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <span for="">Fund Generated(INR)<span class="text-danger">*</span></span>
-                                    <input type="number" name="fund_generate" id="" class="form-control form-control-sm">
+                                    <input type="number" name="fund_generate" id="" class="form-control form-control-sm" value="<?= $patent_detail['fund_generated'] ?>"> 
                                 </div>
                                 
                                 <div class="col-lg-6">
@@ -80,14 +80,19 @@ $employee_model = new Employee_model();
                                     <div class="form-group">
                                         <span for="Awardphotoupload">Document Upload(.pdf):</span>
                                         <input type="file" name="patent_document" id="Awardphotoupload" class="form-control form-control-sm" accept=".pdf">
+                                         <?php if (!empty($patent_detail['document_file']) && file_exists('public/admin/uploads/employee/' . $patent_detail['document_file'])): ?>
+                                            <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $patent_detail['document_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
+                                        <?php else: ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="30px">
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                               <div class="col-lg-6 form-group">
                                   <span>Patent Status <span class="text-danger">*</span></span>
                                   <select class="form-control form-control-sm" name="patent_status" required>
-                                      <option value="In Process">In Process</option>
-                                      <option value="Applied" >Applied</option>
-                                      <option value="Granted" >Granted</option>
+                                      <option value="In Process" <?php if($patent_detail['patent_status'] == "Not Started"){ echo "selected"; } ?>>In Process</option>
+                                      <option value="Applied"  <?php if($patent_detail['patent_status'] == "Not Started"){ echo "selected"; } ?>>Applied</option>
+                                      <option value="Granted"  <?php if($patent_detail['patent_status'] == "Not Started"){ echo "selected"; } ?>>Granted</option>
                                   </select>
                               </div>
                             </div>
