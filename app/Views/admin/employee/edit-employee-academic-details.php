@@ -76,7 +76,7 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">University (State/UT)</span>
-                            <input type="text" name="university_state_name" id="" class="form-control form-control-sm" value="<?= $academic_details['university_state'] ?>">
+                            <input type="text" name="university_state_name" id="university_state_name" class="form-control form-control-sm" value="<?= $academic_details['university_state'] ?>">
                             <select name="university_state" id="university_state" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
                             </select>
@@ -170,6 +170,7 @@ $employee_model = new Employee_model();
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 
 <script>
+    var selectedState = "<?= $academic_details['university_state'] ?>";
     $('#university_country').on('change', function () { 
         var country_name = $(this).val();
         $.ajax({
@@ -184,7 +185,8 @@ $employee_model = new Employee_model();
 
                 if (response.length > 0) {
                     $.each(response, function(index, state) {
-                        stateDropdown.append('<option value="' + state.state + '">' + state.state + '</option>');
+                        var isSelected = (state.state === selectedState) ? 'selected' : '';
+                        stateDropdown.append('<option value="' + state.state + '" ' + isSelected + '>' + state.state + '</option>');
                     });
                 } else {
                     stateDropdown.append('<option value="">No states available</option>');
@@ -196,6 +198,14 @@ $employee_model = new Employee_model();
         });
     });
 
+    // Trigger the change event if country is pre-selected on page load
+    $(document).ready(function () {
+        var selectedCountry = "<?= $academic_details['university_country'] ?>";
+        if (selectedCountry) {
+            $('#university_country').val(selectedCountry).trigger('change');
+        }
+    });
 </script>
+
 
 <?= $this->endSection() ?>
