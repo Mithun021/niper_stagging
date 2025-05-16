@@ -170,13 +170,13 @@ $employee_model = new Employee_model();
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 
 <script>
+    var selectedCountry = "<?= $academic_details['university_country'] ?>";
     var selectedState = "<?= $academic_details['university_state'] ?>";
-    $('#university_country').on('change', function () { 
-        var country_name = $(this).val();
+    function loadStates(countryName, selectedState = '') {
         $.ajax({
             type: "post",
             url: "<?= base_url('getStates'); ?>",
-            data: { country_name: country_name },
+            data: { country_name: countryName },
             dataType: "json",
             success: function (response) {
                 var stateDropdown = $('#university_state');
@@ -196,13 +196,19 @@ $employee_model = new Employee_model();
                 console.error("Error: " + error);
             }
         });
+    }
+
+    // On country change
+    $('#university_country').on('change', function () {
+        var countryName = $(this).val();
+        loadStates(countryName);
     });
 
-    // Trigger the change event if country is pre-selected on page load
+    // On page load: if selectedCountry exists, trigger state loading
     $(document).ready(function () {
-        var selectedCountry = "<?= $academic_details['university_country'] ?>";
         if (selectedCountry) {
-            $('#university_country').val(selectedCountry).trigger('change');
+            $('#university_country').val(selectedCountry);
+            loadStates(selectedCountry, selectedState);
         }
     });
 </script>
