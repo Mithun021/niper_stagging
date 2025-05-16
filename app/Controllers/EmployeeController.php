@@ -1513,7 +1513,7 @@ use App\Models\Student_model;
             $employee_model = new Employee_model();
             $country_model = new Country_model();
             $employee_academic_details_model = new Employee_academic_details_model();
-            $data = ['title' => 'Employee Acadmic Details'];
+            $data = ['title' => 'Employee Acadmic Details','academic_id' => $id];
             if ($this->request->is('get')) {
                 $data['country'] = $country_model->getCountry();
                 $data['employee'] = $employee_model->get();
