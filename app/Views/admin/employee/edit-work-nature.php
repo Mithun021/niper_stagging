@@ -20,10 +20,10 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/work-nature') ?>">
+                <form method="post" action="<?= base_url('admin/edit-work-nature/'.$work_nature_id) ?>">
                     <div class="form-group">
                         <span for="">Nature of work<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="work_nature" required>
+                        <input type="text" class="form-control form-control-sm" name="work_nature" value="<?= $work_nature_detail['name'] ?>" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>

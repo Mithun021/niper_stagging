@@ -1402,6 +1402,41 @@ use App\Models\Student_model;
             }
         }
 
+        public function edit_work_nature($id){
+            $nature_of_work_model = new Nature_of_work_model();
+            $data = ['title' => 'Nature of Work','work_nature_id' => $id];
+            if ($this->request->is('get')) {
+                $data['work_nature'] = $nature_of_work_model->get();
+                $data['work_nature_detail'] = $nature_of_work_model->get($id);
+                return view('admin/employee/edit-work-nature',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $data = [
+                    'name' => $this->request->getPost('work_nature'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $nature_of_work_model->add($data,$id);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-work-nature/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-work-nature/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
+        public function delete_work_nature($id){
+            $nature_of_work_model = new Nature_of_work_model();
+            $result = $nature_of_work_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/work-nature')->with('msg','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/work-nature')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+
         public function employee_nature(){
             $employee_nature_model = new Employee_nature_model();
             $data = ['title' => 'Nature of Work'];
