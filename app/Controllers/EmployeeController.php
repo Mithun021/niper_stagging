@@ -1486,6 +1486,16 @@ use App\Models\Student_model;
             }
         }
 
+        public function delete_employee_nature($id){
+            $employee_nature_model = new Employee_nature_model();
+            $result = $employee_nature_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/employee-nature')->with('msg','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/employee-nature')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+
         public function book_chapter(){
             $employee_model = new Employee_model();
             $books_chapter_model = new Books_chapter_model();
