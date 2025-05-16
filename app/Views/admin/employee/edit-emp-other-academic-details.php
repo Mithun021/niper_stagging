@@ -21,6 +21,7 @@ $employee_model = new Employee_model();
                 if (session()->getFlashdata('status')) {
                     echo session()->getFlashdata('status');
                 }
+                print_r($employee_other_academic);
                 ?>
                 <form method="post" action="<?= base_url('admin/edit-emp-other-academic-details/'.$other_acadmic_id) ?>" enctype="multipart/form-data">
                     <div class="row">
