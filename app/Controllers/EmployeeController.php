@@ -1570,6 +1570,22 @@ use App\Models\Student_model;
             }
         }
 
+        public function delete_employee_academic_details($id){
+             $employee_academic_details_model = new Employee_academic_details_model();
+            $patent_detail = $employee_academic_details_model->get($id);
+            $old_document_photo = $patent_detail['document_file'];
+            $file_path = "public/admin/uploads/employee/" . $old_document_photo;
+            if (!empty($old_document_photo) && file_exists($file_path) && is_file($file_path)) {
+                unlink($file_path);
+            }
+            $result = $employee_academic_details_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/-employee-academic-details')->with('msg','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/-employee-academic-details')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+
         public function employee_other_academic_details(){
             $employee_model = new Employee_model();
             $employee_academic_details_model = new Emp_other_academic_detail_model();
