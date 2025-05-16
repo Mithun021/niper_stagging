@@ -76,7 +76,6 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">University (State/UT)</span>
-                            <input type="text" name="university_state_name" id="university_state_name" class="form-control form-control-sm" value="<?= $academic_details['university_state'] ?>">
                             <select name="university_state" id="university_state" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
                             </select>
