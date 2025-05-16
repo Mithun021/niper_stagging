@@ -1648,6 +1648,16 @@ use App\Models\Student_model;
             }
         }
 
+        public function delete_emp_other_academic_details($id){
+            $employee_academic_details_model = new Emp_other_academic_detail_model();
+            $result = $employee_academic_details_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/emp-other-academic-details')->with('msg','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/emp-other-academic-details')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+
 
         public function phd_detail(){
             $country_model = new Country_model();
