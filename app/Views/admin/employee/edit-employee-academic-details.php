@@ -14,7 +14,7 @@ $employee_model = new Employee_model();
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title m-0"><?= $title ?> </h4>
+                <h4 class="card-title m-0">Edit <?= $title ?> </h4>
             </div>
             <div class="card-body">
                 <?php
@@ -37,17 +37,17 @@ $employee_model = new Employee_model();
                             <span for="">Type of the Degree<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="degree_type" required>
                                 <option value="">--Select--</option>
-                                <option value="UG">UG</option>
-                                <option value="PG">PG</option>
+                                <option value="UG" <?php if($academic_details['degree_type'] == "UG"){ echo "selected"; } ?>>UG</option>
+                                <option value="PG" <?php if($academic_details['degree_type'] == "PG"){ echo "selected"; } ?>>PG</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Name of the Degree<span class="text-danger">*</span></span>
-                            <input type="text" name="degree_name" id="" class="form-control form-control-sm" required>
+                            <input type="text" name="degree_name" id="" class="form-control form-control-sm" value="<?= $academic_details['degree_name'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Subject Studied<span class="text-danger">*</span></span>
-                            <input type="text" name="subject_studied" id="" class="form-control form-control-sm" required>
+                            <input type="text" name="subject_studied" id="" class="form-control form-control-sm" value="<?= $academic_details['subject_studied'] ?>" required>
                         </div>
                         <!-- <div class="form-group col-md-6">
                             <span for="">Marking Scheme(%/CGPA)<span class="text-danger">*</span></span>
@@ -59,23 +59,24 @@ $employee_model = new Employee_model();
                         </div> -->
                         <div class="form-group col-md-6">
                             <span for="">Year of Passing</span>
-                            <input type="number" name="passing_year" id="" class="form-control form-control-sm" maxlength="4">
+                            <input type="number" name="passing_year" id="" class="form-control form-control-sm" maxlength="4" value="<?= $academic_details['passing_year'] ?>">
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">University</span>
-                            <input type="text" name="university" id="" class="form-control form-control-sm">
+                            <input type="text" name="university" id="" class="form-control form-control-sm" value="<?= $academic_details['university'] ?>">
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">University (Country)</span>
                             <select name="university_country" id="university_country" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
                             <?php foreach ($country as $key => $value) { ?>
-                                <option value="<?= $value['country'] ?>"><?= $value['country'] ?></option>
+                                <option value="<?= $value['country'] ?>" <?php if($academic_details['university_country'] == $value['country']){ echo "selected"; } ?>><?= $value['country'] ?></option>
                             <?php } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">University (State/UT)</span>
+                            <input type="text" name="university_state_name" id="" class="form-control form-control-sm" value="<?= $academic_details['university_state'] ?>">
                             <select name="university_state" id="university_state" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
                             </select>
@@ -84,6 +85,11 @@ $employee_model = new Employee_model();
                         <div class="form-group col-md-4">
                             <span for="">Document Upload(.pdf,.jpg,.jpeg,.png)</span>
                             <input type="file" name="document_file" id="" class="form-control form-control-sm" accept=".pdf,.jpg,.jpeg,.png">
+                            <?php if (!empty($academic_details['document_file']) && file_exists('public/admin/uploads/employee/' . $academic_details['document_file'])): ?>
+                                <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $academic_details['document_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
+                            <?php else: ?>
+                                <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="30px">
+                            <?php endif; ?>
                         </div>
                         <div class="form-group col-md-12">
                             <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
