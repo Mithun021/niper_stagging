@@ -1525,7 +1525,27 @@ use App\Models\Student_model;
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
-                $document = $this->request->getFile('document_file');
+                $document_photo = $this->request->getFile('document_file');
+                $academic_details = $employee_academic_details_model->get($id);
+                $old_document_photo = $academic_details['document_file'];
+                if (empty($old_document_photo)) {
+                    if ($document_photo->isValid() && !$document_photo->hasMoved()) {
+                        $document_photo_name = "acadmic" . $document_photo->getRandomName();
+                        $document_photo->move(ROOTPATH . 'public/admin/uploads/employee/', $document_photo_name);
+                    } else {
+                        $document_photo_name = null;
+                    }
+                } else {
+                    if ($document_photo->isValid() && !$document_photo->hasMoved()) {
+                        if (file_exists("public/admin/uploads/employee/" . $old_document_photo)) {
+                            unlink("public/admin/uploads/employee/" . $old_document_photo);
+                        }
+                        $document_photo_name = "acadmic" . $document_photo->getRandomName();
+                        $document_photo->move(ROOTPATH . 'public/admin/uploads/employee/', $document_photo_name);
+                    } else {
+                        $document_photo_name = $old_document_photo;
+                    }
+                }
                 
                 $data = [
                     'employee_id' => $this->request->getPost('employee_id'),
@@ -1538,7 +1558,7 @@ use App\Models\Student_model;
                     'university' => $this->request->getPost('university'),
                     'university_country' => $this->request->getPost('university_country'),
                     'university_state' => $this->request->getPost('university_state'),
-                    // 'document_file' => $documentNewName,
+                    'document_file' => $document_photo_name,
                     'upload_by' => $loggeduserId,
                 ];
                 $result = $employee_academic_details_model->add($data,$id);
