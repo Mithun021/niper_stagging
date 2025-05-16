@@ -844,7 +844,7 @@ use App\Models\Student_model;
                 $old_document_photo = $patent_detail['document_file'];
                 if (empty($old_document_photo)) {
                     if ($document_photo->isValid() && !$document_photo->hasMoved()) {
-                        $document_photo_name = "award" . $document_photo->getRandomName();
+                        $document_photo_name = "patent" . $document_photo->getRandomName();
                         $document_photo->move(ROOTPATH . 'public/admin/uploads/employee/', $document_photo_name);
                     } else {
                         $document_photo_name = null;
@@ -854,7 +854,7 @@ use App\Models\Student_model;
                         if (file_exists("public/admin/uploads/employee/" . $old_document_photo)) {
                             unlink("public/admin/uploads/employee/" . $old_document_photo);
                         }
-                        $document_photo_name = "award" . $document_photo->getRandomName();
+                        $document_photo_name = "patent" . $document_photo->getRandomName();
                         $document_photo->move(ROOTPATH . 'public/admin/uploads/employee/', $document_photo_name);
                     } else {
                         $document_photo_name = $old_document_photo;
@@ -884,6 +884,24 @@ use App\Models\Student_model;
                 }
             }
         }
+
+        public function delete_employee_patent($id){
+            $employee_patent_model = new Employee_patent_model();
+            $patent_detail = $employee_patent_model->get($id);
+            $old_document_photo = $patent_detail['document_file'];
+            $file_path = "public/admin/uploads/employee/" . $old_document_photo;
+            if (!empty($old_document_photo) && file_exists($file_path) && is_file($file_path)) {
+                unlink($file_path);
+            }
+            $result = $employee_patent_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/employee-patent')->with('msg','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/employee-patent')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+
+
 
         public function employee_charge(){
             $employee_model = new Employee_model();
