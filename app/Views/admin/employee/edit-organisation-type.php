@@ -20,10 +20,10 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/organisation-type') ?>">
+                <form method="post" action="<?= base_url('admin/edit-organisation-type/'.$organisation_id) ?>">
                     <div class="form-group">
                         <span for="">Organization Name<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="organisation_name" required>
+                        <input type="text" class="form-control form-control-sm" name="organisation_name" value="<?= $organisation_detail['name'] ?>" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>

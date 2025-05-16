@@ -1343,6 +1343,31 @@ use App\Models\Student_model;
             }
         }
 
+        public function edit_organisation_type($id){
+            $organisation_type_model = new Organisation_type_model();
+            $data = ['title' => 'Organization Type','organisation_id' => $id];
+            if ($this->request->is('get')) {
+                $data['organisation_type'] = $organisation_type_model->get();
+                $data['organisation_detail'] = $organisation_type_model->get($id);
+                return view('admin/employee/edit-organisation-type',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $data = [
+                    'name' => $this->request->getPost('organisation_name'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $organisation_type_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-organisation-type/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-organisation-type/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
         public function work_nature(){
             $nature_of_work_model = new Nature_of_work_model();
             $data = ['title' => 'Nature of Work'];
