@@ -1625,7 +1625,7 @@ use App\Models\Student_model;
                 $data['employee'] = $employee_model->get();
                 $data['employee_academic_details'] = $employee_academic_details_model->get();
                 $data['employee_other_academic'] = $employee_academic_details_model->get($id);
-                return view('admin/employee/emp-other-academic-details',$data);
+                return view('admin/employee/edit-emp-other-academic-details',$data);
             }else if ($this->request->is('post')) {
                 $sessionData = session()->get('loggedUserData');
                 if ($sessionData) {
