@@ -1609,9 +1609,41 @@ use App\Models\Student_model;
                 ];
                 $result = $employee_academic_details_model->add($data);
                 if ($result === true) {
-                    return redirect()->to('admin/emp-other-academic-details')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                    return redirect()->to('admin/emp-other-academic-details')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
                     return redirect()->to('admin/emp-other-academic-details')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+            
+        }
+
+        public function edit_emp_other_academic_details($id){
+            $employee_model = new Employee_model();
+            $employee_academic_details_model = new Emp_other_academic_detail_model();
+            $data = ['title' => 'Employee Other Acadmic Details','other_acadmic_id' => $id];
+            if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
+                $data['employee_academic_details'] = $employee_academic_details_model->get();
+                $data['employee_other_academic'] = $employee_academic_details_model->get($id);
+                return view('admin/employee/emp-other-academic-details',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $data = [
+                    'employee_id' => $this->request->getPost('employee_id'),
+                    'examination_type' => $this->request->getPost('examination_type'),
+                    'passing_year' => $this->request->getPost('passing_year'),
+                    'conduct_by' => $this->request->getPost('conduct_by'),
+                    'roll_no' => $this->request->getPost('roll_no'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $employee_academic_details_model->add($data,$id);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-emp-other-academic-details/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-emp-other-academic-details/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
             

@@ -135,8 +135,10 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'edit-employee-academic-details/(:num)', 'EmployeeController::edit_employee_academic_details/$1');
     $routes->get('delete-employee-academic-details/(:num)', 'EmployeeController::delete_employee_academic_details/$1');
 
-
     $routes->match(['get','post'],'emp-other-academic-details', 'EmployeeController::employee_other_academic_details');
+    $routes->match(['get','post'],'edit-emp-other-academic-details/(:num)', 'EmployeeController::edit_emp_other_academic_details/$1');
+    $routes->get('delete-emp-other-academic-details/(:num)', 'EmployeeController::delete_emp_other_academic_details/$1');
+
     $routes->match(['get','post'],'phd-detail', 'EmployeeController::phd_detail');
     $routes->match(['get','post'],'mphil-ug-pg-detail', 'EmployeeController::mphil_ug_pg_detail');
     $routes->match(['get','post'],'ongoing-phd', 'EmployeeController::ongoing_phd');
