@@ -1368,6 +1368,16 @@ use App\Models\Student_model;
             }
         }
 
+        public function delete_organisation_type($id){
+            $organisation_type_model = new Organisation_type_model();
+            $result = $organisation_type_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/organisation-type')->with('msg','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/organisation-type')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+
         public function work_nature(){
             $nature_of_work_model = new Nature_of_work_model();
             $data = ['title' => 'Nature of Work'];
