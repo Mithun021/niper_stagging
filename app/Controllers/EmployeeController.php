@@ -1359,7 +1359,7 @@ use App\Models\Student_model;
                     'name' => $this->request->getPost('organisation_name'),
                     'upload_by' => $loggeduserId
                 ];
-                $result = $organisation_type_model->add($data);
+                $result = $organisation_type_model->add($data,$id);
                 if ($result === true) {
                     return redirect()->to('admin/edit-organisation-type/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
