@@ -1646,7 +1646,6 @@ use App\Models\Student_model;
                     return redirect()->to('admin/edit-emp-other-academic-details/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
-            
         }
 
 

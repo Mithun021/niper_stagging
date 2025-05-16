@@ -35,19 +35,19 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Examination Type<span class="text-danger">*</span></span>
-                            <input type="text" name="examination_type" id="" class="form-control form-control-sm" required>
+                            <input type="text" name="examination_type" id="" class="form-control form-control-sm" value="<?= $employee_other_academic['examination_type'] ?>" required>
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Year of Passing</span>
-                            <input type="number" name="passing_year" id="" class="form-control form-control-sm" maxlength="4">
+                            <input type="number" name="passing_year" id="" class="form-control form-control-sm" maxlength="4" value="<?= $employee_other_academic['passing_year'] ?>">
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Conducted By</span>
-                            <input type="text" name="conduct_by" id="" class="form-control form-control-sm">
+                            <input type="text" name="conduct_by" id="" class="form-control form-control-sm" value="<?= $employee_other_academic['conduct_by'] ?>">
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Roll No</span>
-                            <input type="text" name="roll_no" id="" class="form-control form-control-sm">
+                            <input type="text" name="roll_no" id="" class="form-control form-control-sm" value="<?= $employee_other_academic['roll_no'] ?>">
                         </div>
                         <div class="form-group col-md-12">
                             <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
