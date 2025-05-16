@@ -57,8 +57,8 @@ $employee_model = new Employee_model();
                                     <span for="">Level<span class="text-danger">*</span></span>
                                     <select class="form-control form-control-sm" name="level" required>
                                         <option value="">--Select--</option>
-                                        <option value="National" <?php if($patent_detail['patent_level'] == "Not Started"){ echo "selected"; } ?>>National</option>
-                                        <option value="International" <?php if($patent_detail['patent_level'] == "Not Started"){ echo "selected"; } ?>>International</option>
+                                        <option value="National" <?php if($patent_detail['patent_level'] == "National"){ echo "selected"; } ?>>National</option>
+                                        <option value="International" <?php if($patent_detail['patent_level'] == "International"){ echo "selected"; } ?>>International</option>
                                     </select>
                                 </div>
                                 
@@ -90,9 +90,9 @@ $employee_model = new Employee_model();
                               <div class="col-lg-6 form-group">
                                   <span>Patent Status <span class="text-danger">*</span></span>
                                   <select class="form-control form-control-sm" name="patent_status" required>
-                                      <option value="In Process" <?php if($patent_detail['patent_status'] == "Not Started"){ echo "selected"; } ?>>In Process</option>
-                                      <option value="Applied"  <?php if($patent_detail['patent_status'] == "Not Started"){ echo "selected"; } ?>>Applied</option>
-                                      <option value="Granted"  <?php if($patent_detail['patent_status'] == "Not Started"){ echo "selected"; } ?>>Granted</option>
+                                      <option value="In Process" <?php if($patent_detail['patent_status'] == "In Process"){ echo "selected"; } ?>>In Process</option>
+                                      <option value="Applied"  <?php if($patent_detail['patent_status'] == "Applied"){ echo "selected"; } ?>>Applied</option>
+                                      <option value="Granted"  <?php if($patent_detail['patent_status'] == "Granted"){ echo "selected"; } ?>>Granted</option>
                                   </select>
                               </div>
                             </div>
