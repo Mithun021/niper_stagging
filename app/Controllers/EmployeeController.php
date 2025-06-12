@@ -1805,9 +1805,58 @@ use App\Models\Student_model;
                 ];
                 $result = $phd_detail_model->add($data);
                 if ($result === true) {
-                    return redirect()->to('admin/phd-detail')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                    return redirect()->to('admin/phd-detail')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
                     return redirect()->to('admin/phd-detail')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+
+            }
+        }
+
+        public function edit_phd_detail($id){
+            $country_model = new Country_model();
+            $employee_model = new Employee_model();
+            $department_model = new Department_model();
+           $phd_detail_model =  new Phd_detail_model();
+            $data = ['title' => 'PHD Details', 'phd_id' => $id];
+            if ($this->request->is('get')) {
+                $data['country'] = $country_model->getCountry();
+                $data['employee'] = $employee_model->get();
+                $data['department'] = $department_model->get();
+                $data['phd_detail'] = $phd_detail_model->get();
+                return view('admin/employee/edit-phd-detail',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                // $document = $this->request->getFile('document_file');
+                // if ($document->isValid() && ! $document->hasMoved()) {
+                //     $documentNewName = "phd_detail".rand(0,9999).$document->getRandomName();
+                //     $document->move(ROOTPATH . 'public/admin/uploads/employee', $documentNewName);    
+                // }else{
+                //  $documentNewName = "";
+                // }
+
+                $data = [
+                    'employee_id' => $this->request->getPost('employee_id'),
+                    'degree_type' => $this->request->getPost('degree_type') ?? '',
+                    'subject_studied' => $this->request->getPost('subject_studied') ?? '',
+                    'phd_thesis' => $this->request->getPost('phd_thesis'),
+                    'degree_status' => $this->request->getPost('degree_status'),
+                    'registration_date' => $this->request->getPost('registration_date'),
+                    'submission_date' => $this->request->getPost('submission_date'),
+                    'award_date' => $this->request->getPost('award_date'),
+                    'university' => $this->request->getPost('university'),
+                    'university_country' => $this->request->getPost('university_country'),
+                    'university_state' => $this->request->getPost('university_state'),
+                    'upload_by' => $loggeduserId,
+                ];
+                $result = $phd_detail_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-phd-detail/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-phd-detail/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
 
             }
