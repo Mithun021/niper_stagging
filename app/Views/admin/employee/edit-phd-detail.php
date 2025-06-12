@@ -45,7 +45,7 @@ $department_model = new Department_model();
                         </div> -->
                         <div class="form-group col-md-6">
                             <span for="">Title of the Ph.D thesis</span>
-                            <input type="text" name="phd_thesis" id="" class="form-control form-control-sm">
+                            <input type="text" name="phd_thesis" id="" class="form-control form-control-sm" value="<?= $phd_detail_data['phd_thesis'] ?>">
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Degree Status</span>
