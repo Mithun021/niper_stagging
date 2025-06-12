@@ -24,7 +24,7 @@ $department_model = new Department_model();
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url('admin/edit-phd-detail'.$phd_id) ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url('admin/edit-phd-detail/'.$phd_id) ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <span for="">Employee Id<span class="text-danger">*</span></span>
