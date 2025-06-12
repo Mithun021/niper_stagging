@@ -2178,8 +2178,6 @@ use App\Models\Student_model;
                 $data['department'] = $department_model->get();
                 $data['course_tought'] = $course_tought_model->get();
                 $data['course_tought_data'] = $course_tought_model->get($id);
-                $data['course_details'] = $assign_course_model->get(3);
-                // print_r($data['course_details']); die;
                 return view('admin/employee/edit-course-tought',$data);
             }else if ($this->request->is('post')) {
                 $sessionData = session()->get('loggedUserData');
@@ -2200,6 +2198,16 @@ use App\Models\Student_model;
                 } else {
                     return redirect()->to('admin/edit-course-tought/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
+            }
+        }
+
+        public function delete_course_tought($id){
+            $course_tought_model = new Course_tought_model();
+            $result = $course_tought_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/course-tought')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/course-tought')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
         }
 
