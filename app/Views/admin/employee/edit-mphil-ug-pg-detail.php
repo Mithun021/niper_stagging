@@ -24,14 +24,14 @@ $student_model = new Student_model();
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url('admin/mphil-ug-pg-detail') ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url('admin/edit-mphil-ug-pg-detail/'.$mphil_ug_pg_id) ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <span for="">Employee Id<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm my-select" name="employee_id" required>
                                 <option value="">--Select--</option>
                                 <?php foreach ($employee as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?php if($value['id'] == $mphil_ug_pg_data['employee_id']){ echo "selected"; } ?>><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -44,7 +44,7 @@ $student_model = new Student_model();
                             <select name="student_name" id="" class="form-control form-control-sm my-select" required>
                                 <option value="">--Select--</option>
                             <?php foreach ($student as $key => $value) { ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['first_name'] ?> <?= $value['middle_name'] ?> <?= $value['last_name'] ?> - <?= $value['enrollment_no'] ?></option>
+                                <option value="<?= $value['id'] ?>" <?php if($value['id'] == $mphil_ug_pg_data['student_name']){ echo "selected"; } ?>><?= $value['first_name'] ?> <?= $value['middle_name'] ?> <?= $value['last_name'] ?> - <?= $value['enrollment_no'] ?></option>
                             <?php } ?>
                             </select>
                         </div>

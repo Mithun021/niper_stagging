@@ -1863,6 +1863,16 @@ use App\Models\Student_model;
             }
         }
 
+        public function delete_phd_detail($id){
+            $phd_detail_model = new Phd_detail_model();
+            $result = $phd_detail_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/phd-detail')->with('msg','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/phd-detail')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+
         public function mphil_ug_pg_detail(){
             $student_model = new Student_model();
             $employee_model = new Employee_model();
@@ -1907,6 +1917,55 @@ use App\Models\Student_model;
                     return redirect()->to('admin/mphil-ug-pg-detail')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
                 } else {
                     return redirect()->to('admin/mphil-ug-pg-detail')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
+        public function edit_mphil_ug_pg_detail($id){
+            $student_model = new Student_model();
+            $employee_model = new Employee_model();
+            $mphil_ug_pg_model = new Mphil_ug_pg_model();
+            $data = ['title' => 'MPhil/PG/UG Ongoing Details', 'mphil_ug_pg_id' => $id];
+            if ($this->request->is('get')) {
+                $data['student'] = $student_model->get();
+                $data['employee'] = $employee_model->get();
+                $data['mphil_ug_pg'] = $mphil_ug_pg_model->get();
+                $data['mphil_ug_pg_data'] = $mphil_ug_pg_model->get($id);
+                return view('admin/employee/edit-mphil-ug-pg-detail',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $document = $this->request->getFile('documemt_file');
+                if ($document->isValid() && ! $document->hasMoved()) {
+                    $documentNewName = "ugpg".rand(0,9999).$document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/employee', $documentNewName);    
+                }else{
+                 $documentNewName = "";
+                }
+                $data = [
+                    'employee_id' => $this->request->getPost('employee_id'),
+                    // 'student_title' => $this->request->getPost('student_title'),
+                    'student_name' => $this->request->getPost('student_name'),
+                    // 'student_category' => $this->request->getPost('student_category'),
+                    'synopsis_name' => $this->request->getPost('synopsis_name'),
+                    // 'roll_no' => $this->request->getPost('roll_no'),
+                    // 'semester' => $this->request->getPost('semester'),
+                    'remarks' => $this->request->getPost('remarks'),
+                    'university_name' => $this->request->getPost('university_name'),
+                    'registration_date' => $this->request->getPost('registration_date'),
+                    'status' => $this->request->getPost('status'),
+                    'submission_date' => $this->request->getPost('submission_date') ?? '',
+                    'award_date' => $this->request->getPost('award_date') ?? '',
+                    'documemt_file' => $documentNewName,
+                    'upload_by' => $loggeduserId,
+                ];
+                $result = $mphil_ug_pg_model->add($data, $id);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-mphil-ug-pg-detail/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-mphil-ug-pg-detail/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
         }
