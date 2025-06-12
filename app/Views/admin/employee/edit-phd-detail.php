@@ -73,14 +73,14 @@ $department_model = new Department_model();
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">University</span>
-                            <input type="text" name="university" id="" class="form-control form-control-sm">
+                            <input type="text" name="university" id="" class="form-control form-control-sm" value="<?= $phd_detail_data['university'] ?>">
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">University (Country)</span>
                             <select name="university_country" id="university_country" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
                             <?php foreach ($country as $key => $value) { ?>
-                                <option value="<?= $value['country'] ?>"><?= $value['country'] ?></option>
+                                <option value="<?= $value['country'] ?>" <?php if($value['country'] == $phd_detail_data['university_country']){ echo "selected"; } ?>><?= $value['country'] ?></option>
                             <?php } ?>
                             </select>
                         </div>
