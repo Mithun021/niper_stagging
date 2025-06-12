@@ -2166,6 +2166,39 @@ use App\Models\Student_model;
             }
         }
 
+        public function edit_course_tought($id){
+            $employee_model = new Employee_model();
+            $department_model = new Department_model();
+            $course_tought_model = new Course_tought_model();
+            $data = ['title' => 'Employee Course Tought', 'course_tought_id' => $id];
+            if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
+                $data['department'] = $department_model->get();
+                $data['course_tought'] = $course_tought_model->get();
+                $data['course_tought_data'] = $course_tought_model->get($id);
+                return view('admin/employee/edit-course-tought',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                // $course_names = $this->request->getPost('course_name');
+                $data = [
+                    'employee_id' => $this->request->getPost('Empid'),
+                    'course_name' => implode(',', $this->request->getPost('course_name')),
+                    'department_id' => $this->request->getPost('department_id'),
+                    'upload_by' => $loggeduserId,
+                ];
+                // print_r($data); die;
+                $result = $course_tought_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-course-tought/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-course-tought/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
         public function emp_fellowship(){
             $employee_model = new Employee_model();
             $employee_fellowship_model = new Employee_fellowship_model();

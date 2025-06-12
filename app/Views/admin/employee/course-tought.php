@@ -34,7 +34,7 @@ $department_model = new Department_model();
                             <select name="Empid" id="Empid" class="form-control form-control-sm my-select" required>
                                 <option value="">Select Employee</option>
                                 <?php foreach ($employee as $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?php if($value['id'] == $course_tought_data['employee_id']){ echo "selected"; } ?>><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -95,9 +95,8 @@ $department_model = new Department_model();
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                                        <a href="#" class="btn btn-dark waves-effect waves-light"><i class="far fa-eye"></i></a>
-                                        <a href="#" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
-                                        <a href="#" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
+                                        <a href="<?= base_url() ?>admin/edit-course-tought/<?= $value['id'] ?>" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
+                                        <a href="<?= base_url() ?>admin/delete-course-tought/<?= $value['id'] ?>" class="btn btn-danger waves-effect waves-light"><i class="far fa-trash-alt"></i></a>
                                     </div>
                                 </td>
                             </tr>
