@@ -2118,6 +2118,22 @@ use App\Models\Student_model;
             }
         }
 
+        public function delete_ongoing_phd($id){
+            $ongoing_phd_model = new Ongoing_phd_model();
+            $ongoing_php_data = $ongoing_phd_model->get($id);
+            $old_document_file = $ongoing_php_data['document_file'];
+            $file_path = "public/admin/uploads/employee/" . $old_document_file;
+            if (!empty($old_document_file) && file_exists($file_path) && is_file($file_path)) {
+                unlink($file_path);
+            }
+            $result = $ongoing_phd_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/ongoing-phd')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/ongoing-phd')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+
         public function course_tought(){
             $employee_model = new Employee_model();
             $department_model = new Department_model();
