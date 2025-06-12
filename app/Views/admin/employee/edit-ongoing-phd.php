@@ -28,7 +28,7 @@ $department_model = new Department_model();
                     <div class="row">
                         <div class="form-group col-md-6">
                             <span for="">Employee Id<span class="text-danger">*</span></span>
-                            <select class="form-control form-control-sm" name="employee_id" required>
+                            <select class="form-control form-control-sm my-select" name="employee_id" required>
                                 <option value="">--Select--</option>
                                 <?php foreach ($employee as $key => $value) { ?>
                                     <option value="<?= $value['id'] ?>" <?php if($value['id'] == $ongoing_php_data['employee_id']){ echo "selected"; } ?>><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
