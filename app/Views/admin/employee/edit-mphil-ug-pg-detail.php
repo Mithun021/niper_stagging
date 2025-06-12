@@ -200,22 +200,27 @@ $student_model = new Student_model();
 <script>
 function toggleRegDateField() {
     const status = document.getElementById('status').value;
-    const submissionDate = document.querySelector('.submission_date');
-    const awardDate = document.querySelector('.award_date');
+    const submissionDateDiv = document.querySelector('.submission_date');
+    const awardDateDiv = document.querySelector('.award_date');
+    const submissionInput = submissionDateDiv.querySelector('input[name="submission_date"]');
+    const awardInput = awardDateDiv.querySelector('input[name="award_date"]');
 
     if (status === 'Submitted') {
-        submissionDate.style.display = 'block';
-        awardDate.style.display = 'none';
+        submissionDateDiv.style.display = 'block';
+        awardDateDiv.style.display = 'none';
+        awardInput.value = ''; // Clear award date
     } else if (status === 'Awarded') {
-        submissionDate.style.display = 'block';
-        awardDate.style.display = 'block';
+        submissionDateDiv.style.display = 'block';
+        awardDateDiv.style.display = 'block';
     } else {
-        submissionDate.style.display = 'none';
-        awardDate.style.display = 'none';
+        submissionDateDiv.style.display = 'none';
+        awardDateDiv.style.display = 'none';
+        submissionInput.value = ''; // Clear submission date
+        awardInput.value = '';      // Clear award date
     }
 }
 
-// Optional: Run on page load to handle form repopulation scenarios
+// Run on page load
 document.addEventListener('DOMContentLoaded', toggleRegDateField);
 </script>
 
