@@ -168,10 +168,9 @@ $department_model = new Department_model();
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 
 <script>
-    document.getElementById('degree_status').addEventListener('change', function() {
-        const degreeStatus = this.value;
+    function toggleDateFields() {
+        const degreeStatus = document.getElementById('degree_status').value;
 
-        // Get all date input fields
         const registrationGroup = document.getElementById('registration_date_group');
         const submissionGroup = document.getElementById('submission_date_group');
         const awardGroup = document.getElementById('award_date_group');
@@ -180,7 +179,7 @@ $department_model = new Department_model();
         const submissionInput = document.getElementById('submission_date');
         const awardInput = document.getElementById('award_date');
 
-        // Hide all groups and clear values by default
+        // Hide and clear all by default
         registrationGroup.style.display = 'none';
         registrationInput.value = '';
 
@@ -190,7 +189,7 @@ $department_model = new Department_model();
         awardGroup.style.display = 'none';
         awardInput.value = '';
 
-        // Show relevant fields based on selected degree status
+        // Conditional display and preserve values
         if (degreeStatus === 'Onging') {
             registrationGroup.style.display = 'block';
         } else if (degreeStatus === 'Submitted') {
@@ -201,12 +200,13 @@ $department_model = new Department_model();
             submissionGroup.style.display = 'block';
             awardGroup.style.display = 'block';
         }
-    });
+    }
 
-    // Trigger change event on page load if value is preselected
-    window.addEventListener('DOMContentLoaded', function () {
-        document.getElementById('degree_status').dispatchEvent(new Event('change'));
-    });
+    // Handle change event
+    document.getElementById('degree_status').addEventListener('change', toggleDateFields);
+
+    // Trigger on page load
+    window.addEventListener('DOMContentLoaded', toggleDateFields);
 </script>
 
 
