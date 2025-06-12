@@ -2179,6 +2179,7 @@ use App\Models\Student_model;
                 $data['course_tought'] = $course_tought_model->get();
                 $data['course_tought_data'] = $course_tought_model->get($id);
                 $data['course_details'] = $assign_course_model->get($data['course_tought_data']['department_id']);
+                print_r($data['course_details']); die;
                 return view('admin/employee/edit-course-tought',$data);
             }else if ($this->request->is('post')) {
                 $sessionData = session()->get('loggedUserData');
