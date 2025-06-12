@@ -41,11 +41,11 @@ $department_model = new Department_model();
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Subject Title of the Thesis</span>
-                            <input type="text" name="subject_thesis" id="" class="form-control form-control-sm">
+                            <input type="text" name="subject_thesis" id="" class="form-control form-control-sm" value="<?= $ongoing_php_data['subject_thesis'] ?>">
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Name of the University</span>
-                            <input type="text" name="university_name" id="" class="form-control form-control-sm">
+                            <input type="text" name="university_name" id="" class="form-control form-control-sm" value="<?= $ongoing_php_data['university_name'] ?>">
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Department</span>
@@ -58,41 +58,46 @@ $department_model = new Department_model();
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">University (Country)</span>
-                            <input type="text" name="university_country" id="" class="form-control form-control-sm">
+                            <input type="text" name="university_country" id="" class="form-control form-control-sm" value="<?= $ongoing_php_data['university_country'] ?>">
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Role</span>
                             <select name="role" id="" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
-                                <option value="Supervisor">Supervisor</option>
-                                <option value="Co-superviser">Co-superviser</option>
+                                <option value="Supervisor" <?php if($phd_detail_data['role'] == "Supervisor"){ echo "selected"; } ?>>Supervisor</option>
+                                <option value="Co-superviser" <?php if($phd_detail_data['role'] == "Co-superviser"){ echo "selected"; } ?>>Co-superviser</option>
                             </select>
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Registration Date</span>
-                            <input type="date" name="registration_date" id="" class="form-control form-control-sm">
+                            <input type="date" name="registration_date" id="" class="form-control form-control-sm" value="<?= $ongoing_php_data['registration_date'] ?>">
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Document Upload (jpg,jpeg,pdf,png)</span>
                             <input type="file" name="document_file" id="" class="form-control form-control-sm" accept=".png,.jpg,.jpeg">
+                            <?php if (!empty($ongoing_php_data['document_file']) && file_exists('public/admin/uploads/employee/' . $ongoing_php_data['document_file'])): ?>
+                                <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $ongoing_php_data['document_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
+                            <?php else: ?>
+                                <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="30px">
+                            <?php endif; ?>
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Status </span>
                             <select name="status" id="status" class="form-control form-control-sm" onchange="toggleRegDateField()">
                                 <option value="">--Select--</option>
-                                <option value="Ongoing">Ongoing</option>
-                                <option value="Submitted">Submitted</option>
-                                <option value="Awarded">Awarded</option>
+                                <option value="Ongoing" <?php if($phd_detail_data['status'] == "Ongoing"){ echo "selected"; } ?>>Ongoing</option>
+                                <option value="Submitted" <?php if($phd_detail_data['status'] == "Submitted"){ echo "selected"; } ?>>Submitted</option>
+                                <option value="Awarded" <?php if($phd_detail_data['status'] == "Awarded"){ echo "selected"; } ?>>Awarded</option>
                             </select>
                         </div>
                         <div class="form-group submission_date col-md-4" style="display : none;">
                             <span for="">Submission Date</span>
-                            <input type="date" name="submission_date" id="" class="form-control form-control-sm">
+                            <input type="date" name="submission_date" id="" class="form-control form-control-sm" value="<?= $ongoing_php_data['submission_date'] ?>">
                         </div>
                         
                         <div class="form-group col-md-4 award_date" style="display : none;">
                             <span for="">Award Date</span>
-                            <input type="date" name="award_date" id="" class="form-control form-control-sm">
+                            <input type="date" name="award_date" id="" class="form-control form-control-sm" value="<?= $ongoing_php_data['award_date'] ?>">
                         </div>
                         <div class="form-group col-md-12">
                             <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
