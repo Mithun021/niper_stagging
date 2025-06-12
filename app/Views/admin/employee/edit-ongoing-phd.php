@@ -37,7 +37,7 @@ $department_model = new Department_model();
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Name of the Student<span class="text-danger">*</span></span>
-                            <input type="text" name="student_name" id="" class="form-control form-control-sm" required>
+                            <input type="text" name="student_name" id="" class="form-control form-control-sm" value="<?= $ongoing_php_data['student_name'] ?>" required>
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Subject Title of the Thesis</span>
