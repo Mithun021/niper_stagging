@@ -59,17 +59,17 @@ $department_model = new Department_model();
 
                         <div class="form-group col-md-4" id="registration_date_group" style="display: none;">
                             <span for="">Registration Date</span>
-                            <input type="date" name="registration_date" id="registration_date" class="form-control form-control-sm">
+                            <input type="date" name="registration_date" id="registration_date" class="form-control form-control-sm"  value="<?= $phd_detail_data['registration_date'] ?>">
                         </div>
 
                         <div class="form-group col-md-4" id="submission_date_group" style="display: none;">
                             <span for="">Submission Date</span>
-                            <input type="date" name="submission_date" id="submission_date" class="form-control form-control-sm">
+                            <input type="date" name="submission_date" id="submission_date" class="form-control form-control-sm" value="<?= $phd_detail_data['submission_date'] ?>">
                         </div>
 
                         <div class="form-group col-md-4" id="award_date_group" style="display: none;">
                             <span for="">Award Date</span>
-                            <input type="date" name="award_date" id="award_date" class="form-control form-control-sm">
+                            <input type="date" name="award_date" id="award_date" class="form-control form-control-sm" value="<?= $phd_detail_data['award_date'] ?>">
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">University</span>
