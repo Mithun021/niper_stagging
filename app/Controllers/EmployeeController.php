@@ -1853,7 +1853,7 @@ use App\Models\Student_model;
                     'university_state' => $this->request->getPost('university_state'),
                     'upload_by' => $loggeduserId,
                 ];
-                $result = $phd_detail_model->add($data);
+                $result = $phd_detail_model->add($data, $id);
                 if ($result === true) {
                     return redirect()->to('admin/edit-phd-detail/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
                 } else {

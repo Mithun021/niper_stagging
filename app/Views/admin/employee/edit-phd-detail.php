@@ -163,6 +163,10 @@ $department_model = new Department_model();
     </div>
 </div>
 
+
+<!-- jQuery  -->
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+
 <script>
     // Function to handle degree status change
     document.getElementById('degree_status').addEventListener('change', function() {
@@ -192,16 +196,14 @@ $department_model = new Department_model();
 </script>
 
 
-<!-- jQuery  -->
-<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
-
 <script>
-    $('#university_country').on('change', function () { 
-        var country_name = $(this).val();
+    var selectedCountry = "<?= $phd_detail_data['university_country'] ?>";
+    var selectedState = "<?= $phd_detail_data['university_state'] ?>";
+    function loadStates(countryName, selectedState = '') {
         $.ajax({
             type: "post",
             url: "<?= base_url('getStates'); ?>",
-            data: { country_name: country_name },
+            data: { country_name: countryName },
             dataType: "json",
             success: function (response) {
                 var stateDropdown = $('#university_state');
@@ -210,7 +212,8 @@ $department_model = new Department_model();
 
                 if (response.length > 0) {
                     $.each(response, function(index, state) {
-                        stateDropdown.append('<option value="' + state.state + '">' + state.state + '</option>');
+                        var isSelected = (state.state === selectedState) ? 'selected' : '';
+                        stateDropdown.append('<option value="' + state.state + '" ' + isSelected + '>' + state.state + '</option>');
                     });
                 } else {
                     stateDropdown.append('<option value="">No states available</option>');
@@ -220,6 +223,20 @@ $department_model = new Department_model();
                 console.error("Error: " + error);
             }
         });
+    }
+
+    // On country change
+    $('#university_country').on('change', function () {
+        var countryName = $(this).val();
+        loadStates(countryName);
+    });
+
+    // On page load: if selectedCountry exists, trigger state loading
+    $(document).ready(function () {
+        if (selectedCountry) {
+            $('#university_country').val(selectedCountry);
+            loadStates(selectedCountry, selectedState);
+        }
     });
 
 </script>
