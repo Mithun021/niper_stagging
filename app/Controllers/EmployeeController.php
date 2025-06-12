@@ -2190,9 +2190,9 @@ use App\Models\Student_model;
                     'upload_by' => $loggeduserId,
                 ];
                 // print_r($data); die;
-                $result = $course_tought_model->add($data);
+                $result = $course_tought_model->add($data,$id);
                 if ($result === true) {
-                    return redirect()->to('admin/edit-course-tought/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                    return redirect()->to('admin/edit-course-tought/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
                 } else {
                     return redirect()->to('admin/edit-course-tought/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
