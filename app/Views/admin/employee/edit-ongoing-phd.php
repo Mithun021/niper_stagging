@@ -64,8 +64,8 @@ $department_model = new Department_model();
                             <span for="">Role</span>
                             <select name="role" id="" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
-                                <option value="Supervisor" <?php if($phd_detail_data['role'] == "Supervisor"){ echo "selected"; } ?>>Supervisor</option>
-                                <option value="Co-superviser" <?php if($phd_detail_data['role'] == "Co-superviser"){ echo "selected"; } ?>>Co-superviser</option>
+                                <option value="Supervisor" <?php if($ongoing_php_data['role'] == "Supervisor"){ echo "selected"; } ?>>Supervisor</option>
+                                <option value="Co-superviser" <?php if($ongoing_php_data['role'] == "Co-superviser"){ echo "selected"; } ?>>Co-superviser</option>
                             </select>
                         </div>
                         <div class="form-group col-md-4">
@@ -85,9 +85,9 @@ $department_model = new Department_model();
                             <span for="">Status </span>
                             <select name="status" id="status" class="form-control form-control-sm" onchange="toggleRegDateField()">
                                 <option value="">--Select--</option>
-                                <option value="Ongoing" <?php if($phd_detail_data['status'] == "Ongoing"){ echo "selected"; } ?>>Ongoing</option>
-                                <option value="Submitted" <?php if($phd_detail_data['status'] == "Submitted"){ echo "selected"; } ?>>Submitted</option>
-                                <option value="Awarded" <?php if($phd_detail_data['status'] == "Awarded"){ echo "selected"; } ?>>Awarded</option>
+                                <option value="Ongoing" <?php if($ongoing_php_data['status'] == "Ongoing"){ echo "selected"; } ?>>Ongoing</option>
+                                <option value="Submitted" <?php if($ongoing_php_data['status'] == "Submitted"){ echo "selected"; } ?>>Submitted</option>
+                                <option value="Awarded" <?php if($ongoing_php_data['status'] == "Awarded"){ echo "selected"; } ?>>Awarded</option>
                             </select>
                         </div>
                         <div class="form-group submission_date col-md-4" style="display : none;">
