@@ -2037,8 +2037,6 @@ use App\Models\Student_model;
                     'university_country' => $this->request->getPost('university_country'),
                     'role' => $this->request->getPost('role'),
                     'registration_date' => $this->request->getPost('registration_date'),
-                    'registration_date' => $this->request->getPost('registration_date'),
-                    'registration_date' => $this->request->getPost('registration_date'),
                     'status' => $this->request->getPost('status'),
                     'submission_date' => $this->request->getPost('submission_date') ?? '',
                     'award_date' => $this->request->getPost('award_date') ?? '',
@@ -2050,6 +2048,56 @@ use App\Models\Student_model;
                     return redirect()->to('admin/ongoing-phd')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
                 } else {
                     return redirect()->to('admin/ongoing-phd')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
+        public function edit_ongoing_phd($id){
+            $department_model = new Department_model();
+            $ongoing_phd_model = new Ongoing_phd_model();
+            $employee_model = new Employee_model();
+            $employee_academic_details_model = new Emp_other_academic_detail_model();
+            $data = ['title' => 'Ongoing PHD Details','ongoing_phd_id' => $id];
+            if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
+                $data['department'] = $department_model->get();
+                $data['ongoing_php'] = $ongoing_phd_model->get();
+                $data['ongoing_php_data'] = $ongoing_phd_model->get($id);
+                $data['employee_academic_details'] = $employee_academic_details_model->get();
+                return view('admin/employee/edit-ongoing-phd',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $document = $this->request->getFile('document_file');
+                if ($document->isValid() && ! $document->hasMoved()) {
+                    $documentNewName = "ongoing_phd".rand(0,9999).$document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/employee', $documentNewName);    
+                }else{
+                 $documentNewName = "";
+                }
+
+                $data = [
+                    'employee_id' => $this->request->getPost('employee_id'),
+                    'student_name' => $this->request->getPost('student_name'),
+                    'subject_thesis' => $this->request->getPost('subject_thesis'),
+                    'university_name' => $this->request->getPost('university_name'),
+                    'department' => $this->request->getPost('department'),
+                    'university_country' => $this->request->getPost('university_country'),
+                    'role' => $this->request->getPost('role'),
+                    'registration_date' => $this->request->getPost('registration_date'),
+                    'status' => $this->request->getPost('status'),
+                    'submission_date' => $this->request->getPost('submission_date') ?? '',
+                    'award_date' => $this->request->getPost('award_date') ?? '',
+                    'document_file' => $documentNewName,
+                    'upload_by' => $loggeduserId,
+                ];
+                $result = $ongoing_phd_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-ongoing-phd/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-ongoing-phd/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
         }
