@@ -49,6 +49,9 @@ $department_model = new Department_model();
                         <div class="col-lg-12 form-group">
                             <label for="course_name">Course Name<span class="text-danger">*</span></label>
                             <select class="form-control form-control-sm my-select2" name="course_name[]" id="course_name" multiple required></select>
+                            <?php foreach ($course_details as $value) { ?>
+                                <option value="<?= $value['course_id'] ?>"><?= $value['course_name']."-".$value['course_code']; ?></option>
+                            <?php } ?>
                         </div>
                         <div class="col-lg-12 form-group">
                             <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>

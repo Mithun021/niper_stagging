@@ -1,6 +1,7 @@
 <?php
     namespace App\Controllers;
 
+use App\Models\Assign_course_model;
 use App\Models\Books_chapter_author;
 use App\Models\Books_chapter_coauthor;
 use App\Models\Books_chapter_model;
@@ -2170,12 +2171,14 @@ use App\Models\Student_model;
             $employee_model = new Employee_model();
             $department_model = new Department_model();
             $course_tought_model = new Course_tought_model();
+            $assign_course_model = new Assign_course_model();
             $data = ['title' => 'Employee Course Tought', 'course_tought_id' => $id];
             if ($this->request->is('get')) {
                 $data['employee'] = $employee_model->get();
                 $data['department'] = $department_model->get();
                 $data['course_tought'] = $course_tought_model->get();
                 $data['course_tought_data'] = $course_tought_model->get($id);
+                $data['course_details'] = $assign_course_model->get($data['course_tought_data']['department_id']);
                 return view('admin/employee/edit-course-tought',$data);
             }else if ($this->request->is('post')) {
                 $sessionData = session()->get('loggedUserData');
