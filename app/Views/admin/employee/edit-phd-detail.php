@@ -24,14 +24,14 @@ $department_model = new Department_model();
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url('admin/phd-detail') ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url('admin/edit-phd-detail'.$phd_id) ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <span for="">Employee Id<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="employee_id" required>
                                 <option value="">--Select--</option>
                                 <?php foreach ($employee as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?php if($value['id'] == $phd_detail_data['employee_id']){ echo "selected"; } ?>><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>

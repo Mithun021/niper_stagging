@@ -1824,6 +1824,7 @@ use App\Models\Student_model;
                 $data['employee'] = $employee_model->get();
                 $data['department'] = $department_model->get();
                 $data['phd_detail'] = $phd_detail_model->get();
+                $data['phd_detail_data'] = $phd_detail_model->get($id);
                 return view('admin/employee/edit-phd-detail',$data);
             }else if ($this->request->is('post')) {
                 $sessionData = session()->get('loggedUserData');
