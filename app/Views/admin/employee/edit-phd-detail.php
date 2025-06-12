@@ -168,32 +168,47 @@ $department_model = new Department_model();
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 
 <script>
-    // Function to handle degree status change
     document.getElementById('degree_status').addEventListener('change', function() {
         const degreeStatus = this.value;
-        console.log(degreeStatus);
 
-        // Show/hide date fields based on the selected degree status
+        // Get all date input fields
+        const registrationGroup = document.getElementById('registration_date_group');
+        const submissionGroup = document.getElementById('submission_date_group');
+        const awardGroup = document.getElementById('award_date_group');
+
+        const registrationInput = document.getElementById('registration_date');
+        const submissionInput = document.getElementById('submission_date');
+        const awardInput = document.getElementById('award_date');
+
+        // Hide all groups and clear values by default
+        registrationGroup.style.display = 'none';
+        registrationInput.value = '';
+
+        submissionGroup.style.display = 'none';
+        submissionInput.value = '';
+
+        awardGroup.style.display = 'none';
+        awardInput.value = '';
+
+        // Show relevant fields based on selected degree status
         if (degreeStatus === 'Onging') {
-            document.getElementById('registration_date_group').style.display = 'block';
-            document.getElementById('submission_date_group').style.display = 'none';
-            document.getElementById('award_date_group').style.display = 'none';
+            registrationGroup.style.display = 'block';
         } else if (degreeStatus === 'Submitted') {
-            document.getElementById('registration_date_group').style.display = 'block';
-            document.getElementById('submission_date_group').style.display = 'block';
-            document.getElementById('award_date_group').style.display = 'none';
+            registrationGroup.style.display = 'block';
+            submissionGroup.style.display = 'block';
         } else if (degreeStatus === 'Awarded') {
-            document.getElementById('registration_date_group').style.display = 'block';
-            document.getElementById('submission_date_group').style.display = 'block';
-            document.getElementById('award_date_group').style.display = 'block';
-        } else {
-            // If no selection or invalid, hide all date fields
-            document.getElementById('registration_date_group').style.display = 'none';
-            document.getElementById('submission_date_group').style.display = 'none';
-            document.getElementById('award_date_group').style.display = 'none';
+            registrationGroup.style.display = 'block';
+            submissionGroup.style.display = 'block';
+            awardGroup.style.display = 'block';
         }
     });
+
+    // Trigger change event on page load if value is preselected
+    window.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('degree_status').dispatchEvent(new Event('change'));
+    });
 </script>
+
 
 
 <script>
