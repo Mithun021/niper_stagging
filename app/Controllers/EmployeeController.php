@@ -1986,6 +1986,23 @@ use App\Models\Student_model;
             }
         }
 
+        public function delete_mphil_ug_pg_detail($id){
+            $mphil_ug_pg_model = new Mphil_ug_pg_model();
+            $mphil_ug_pg_data = $mphil_ug_pg_model->get($id);
+            $old_document_file = $mphil_ug_pg_data['documemt_file'];
+            $file_path = "public/admin/uploads/employee/" . $old_document_file;
+            if (!empty($old_document_file) && file_exists($file_path) && is_file($file_path)) {
+                unlink($file_path);
+            }
+            $result = $mphil_ug_pg_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/mphil-ug-pg-detail')->with('msg','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/mphil-ug-pg-detail')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+
+
         public function ongoing_phd(){
             $department_model = new Department_model();
             $ongoing_phd_model = new Ongoing_phd_model();
