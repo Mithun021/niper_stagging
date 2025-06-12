@@ -51,7 +51,7 @@ $department_model = new Department_model();
                             <span for="">Degree Status</span>
                             <select name="degree_status" id="degree_status" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
-                                <option value="Onging" <?php if($phd_detail_data['degree_status'] == "Onging"){ echo "selected"; } ?>>Ongoing</option>
+                                <option value="Ongoing" <?php if($phd_detail_data['degree_status'] == "Ongoing"){ echo "selected"; } ?>>Ongoing</option>
                                 <option value="Awarded" <?php if($phd_detail_data['degree_status'] == "Awarded"){ echo "selected"; } ?>>Awarded</option>
                                 <option value="Submitted" <?php if($phd_detail_data['degree_status'] == "Submitted"){ echo "selected"; } ?>>Submitted</option>
                             </select>

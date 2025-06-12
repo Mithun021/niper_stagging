@@ -107,7 +107,7 @@ $student_model = new Student_model();
                             <span for="">Status </span>
                             <select name="status" id="status" class="form-control form-control-sm" onchange="toggleRegDateField()">
                                 <option value="">--Select--</option>
-                                <option value="Ongoing" <?php if($mphil_ug_pg_data['status'] == "Onging"){ echo "selected"; } ?>>Ongoing</option>
+                                <option value="Ongoing" <?php if($mphil_ug_pg_data['status'] == "Ongoing"){ echo "selected"; } ?>>Ongoing</option>
                                 <option value="Submitted" <?php if($mphil_ug_pg_data['status'] == "Submitted"){ echo "selected"; } ?>>Submitted</option>
                                 <option value="Awarded" <?php if($mphil_ug_pg_data['status'] == "Awarded"){ echo "selected"; } ?>>Awarded</option>
                             </select>
