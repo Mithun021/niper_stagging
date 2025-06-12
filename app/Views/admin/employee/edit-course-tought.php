@@ -8,6 +8,11 @@ $employee_model = new Employee_model();
 $courses_model = new Courses_model();
 $department_model = new Department_model();
 ?>
+<?php
+$selected_department_id = $course_tought_data['department_id'] ?? '';
+$selected_course_ids = explode(',', $course_tought_data['course_name'] ?? '');
+?>
+
 <style>
     #addServicetable #coAuthorTbody #coAuthorRow:first-child td:last-child button {
         display: none;
@@ -47,7 +52,6 @@ $department_model = new Department_model();
                             </select>
                         </div>
                         <div class="col-lg-12 form-group">
-                            <?php $selected_courses = explode(',', $course_tought_data['course_name']); ?>
                             <label for="course_name">Course Name<span class="text-danger">*</span></label>
                             <select class="form-control form-control-sm my-select2" name="course_name[]" id="course_name" multiple required></select>
                             
@@ -135,22 +139,28 @@ $department_model = new Department_model();
     //     });
     // });
 
+  
     $(document).ready(function () {
-        // Initialize Select2
         $('.my-select2').select2({
             placeholder: "Select Course",
             allowClear: true
         });
 
-        var selectedDepartment = '<?= $course_tought_data['department_id'] ?? '' ?>';
-        var selectedCourses = <?= json_encode(explode(',', $course_tought_data['course_name'] ?? '')) ?>;
+        var selectedDepartment = "<?= $selected_department_id ?>";
+        var selectedCourses = <?= json_encode($selected_course_ids) ?>;
 
-        if (selectedDepartment) {
-            $('#department_id').val(selectedDepartment).trigger('change');
+        if (selectedDepartment !== "") {
+            // Trigger course load manually on page load
+            loadCourses(selectedDepartment, selectedCourses);
         }
 
-        $('#department_id').change(function () {
-            var department_id = $(this).val();
+        $('#department_id').on('change', function () {
+            let deptId = $(this).val();
+            $('#course_name').html(''); // Clear course dropdown
+            loadCourses(deptId, []);
+        });
+
+        function loadCourses(department_id, selectedCourses = []) {
             if (department_id) {
                 $.ajax({
                     url: '<?= base_url('getCourseByDepartment') ?>',
@@ -159,17 +169,23 @@ $department_model = new Department_model();
                     dataType: 'json',
                     success: function (response) {
                         $('#course_name').empty();
-                        $.each(response, function (key, value) {
-                            var selected = (selectedCourses.includes(value.course_id.toString())) ? 'selected' : '';
-                            $('#course_name').append('<option value="' + value.course_id + '" ' + selected + '>' + value.course_name + ' - ' + value.course_code + '</option>');
-                        });
-                        $('#course_name').trigger('change'); // Re-initialize select2 with selected values
+
+                        if (response.length > 0) {
+                            $.each(response, function (index, value) {
+                                let isSelected = selectedCourses.includes(value.course_id.toString()) ? 'selected' : '';
+                                $('#course_name').append(
+                                    `<option value="${value.course_id}" ${isSelected}>${value.course_name} - ${value.course_code}</option>`
+                                );
+                            });
+                            $('#course_name').trigger('change'); // refresh Select2
+                        }
+                    },
+                    error: function () {
+                        alert("Failed to load courses. Try again.");
                     }
                 });
-            } else {
-                $('#course_name').empty();
             }
-        });
+        }
     });
 </script>
 
