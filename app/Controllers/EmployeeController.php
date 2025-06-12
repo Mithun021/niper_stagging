@@ -1943,7 +1943,7 @@ use App\Models\Student_model;
 
                 if (empty($old_document_file)) {
                     if ($document->isValid() && !$document->hasMoved()) {
-                        $document_name = "membersFile" . $document->getRandomName();
+                        $document_name = "ugpg" . $document->getRandomName();
                         $document->move(ROOTPATH . 'public/admin/uploads/employee/', $document_name);
                     } else {
                         $document_name = null;
@@ -1953,7 +1953,7 @@ use App\Models\Student_model;
                         if (file_exists("public/admin/uploads/employee/" . $old_document_file)) {
                             unlink("public/admin/uploads/employee/" . $old_document_file);
                         }
-                        $document_name = "membersFile" . $document->getRandomName();
+                        $document_name = "ugpg" . $document->getRandomName();
                         $document->move(ROOTPATH . 'public/admin/uploads/employee/', $document_name);
                     } else {
                         $document_name = $old_document_file;
@@ -2045,7 +2045,7 @@ use App\Models\Student_model;
                 ];
                 $result = $ongoing_phd_model->add($data);
                 if ($result === true) {
-                    return redirect()->to('admin/ongoing-phd')->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                    return redirect()->to('admin/ongoing-phd')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
                     return redirect()->to('admin/ongoing-phd')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
@@ -2070,13 +2070,29 @@ use App\Models\Student_model;
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
+                $ongoing_php_data = $ongoing_phd_model->get($id);
                 $document = $this->request->getFile('document_file');
-                if ($document->isValid() && ! $document->hasMoved()) {
-                    $documentNewName = "ongoing_phd".rand(0,9999).$document->getRandomName();
-                    $document->move(ROOTPATH . 'public/admin/uploads/employee', $documentNewName);    
-                }else{
-                 $documentNewName = "";
+                $old_document_file = $ongoing_php_data['documemt_file'];
+
+                if (empty($old_document_file)) {
+                    if ($document->isValid() && !$document->hasMoved()) {
+                        $document_name = "ongoing_phd" . $document->getRandomName();
+                        $document->move(ROOTPATH . 'public/admin/uploads/employee/', $document_name);
+                    } else {
+                        $document_name = null;
+                    }
+                } else {
+                    if ($document->isValid() && !$document->hasMoved()) {
+                        if (file_exists("public/admin/uploads/employee/" . $old_document_file)) {
+                            unlink("public/admin/uploads/employee/" . $old_document_file);
+                        }
+                        $document_name = "ongoing_phd" . $document->getRandomName();
+                        $document->move(ROOTPATH . 'public/admin/uploads/employee/', $document_name);
+                    } else {
+                        $document_name = $old_document_file;
+                    }
                 }
+                
 
                 $data = [
                     'employee_id' => $this->request->getPost('employee_id'),
@@ -2090,10 +2106,10 @@ use App\Models\Student_model;
                     'status' => $this->request->getPost('status'),
                     'submission_date' => $this->request->getPost('submission_date') ?? '',
                     'award_date' => $this->request->getPost('award_date') ?? '',
-                    'document_file' => $documentNewName,
+                    'document_file' => $document_name,
                     'upload_by' => $loggeduserId,
                 ];
-                $result = $ongoing_phd_model->add($data);
+                $result = $ongoing_phd_model->add($data, $id);
                 if ($result === true) {
                     return redirect()->to('admin/edit-ongoing-phd/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
                 } else {
