@@ -2072,7 +2072,7 @@ use App\Models\Student_model;
                 }
                 $ongoing_php_data = $ongoing_phd_model->get($id);
                 $document = $this->request->getFile('document_file');
-                $old_document_file = $ongoing_php_data['documemt_file'];
+                $old_document_file = $ongoing_php_data['document_file'];
 
                 if (empty($old_document_file)) {
                     if ($document->isValid() && !$document->hasMoved()) {
