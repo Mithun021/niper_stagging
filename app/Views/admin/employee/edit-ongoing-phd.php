@@ -158,7 +158,7 @@ $department_model = new Department_model();
                                     <td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                             <a href="<?= base_url() ?>admin/edit-ongoing-phd/<?= $value['id'] ?>" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
-                                            <a href="<?= base_url() ?>admin/deleteongoing-phd/<?= $value['id'] ?>" class="btn btn-danger waves-effect waves-light" onclick="return confirm('Are you sure...!')"><i class="far fa-trash-alt"></i></a>
+                                            <a href="<?= base_url() ?>admin/delete-ongoing-phd/<?= $value['id'] ?>" class="btn btn-danger waves-effect waves-light" onclick="return confirm('Are you sure...!')"><i class="far fa-trash-alt"></i></a>
                                         </div>
                                     </td>
                                 </tr>
