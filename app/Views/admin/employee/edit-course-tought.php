@@ -47,11 +47,10 @@ $department_model = new Department_model();
                             </select>
                         </div>
                         <div class="col-lg-12 form-group">
+                            <?php $selected_courses = explode(',', $course_tought_data['course_name']); ?>
                             <label for="course_name">Course Name<span class="text-danger">*</span></label>
                             <select class="form-control form-control-sm my-select2" name="course_name[]" id="course_name" multiple required></select>
-                            <?php foreach ($course_details as $value) { ?>
-                                <option value="<?= $value['course_id'] ?>"><?= $value['course_name']."-".$value['course_code']; ?></option>
-                            <?php } ?>
+                            
                         </div>
                         <div class="col-lg-12 form-group">
                             <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
@@ -136,26 +135,35 @@ $department_model = new Department_model();
     //     });
     // });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Initialize Select2
         $('.my-select2').select2({
             placeholder: "Select Course",
             allowClear: true
         });
 
-        $('#department_id').change(function() {
+        var selectedDepartment = '<?= $course_tought_data['department_id'] ?? '' ?>';
+        var selectedCourses = <?= json_encode(explode(',', $course_tought_data['course_name'] ?? '')) ?>;
+
+        if (selectedDepartment) {
+            $('#department_id').val(selectedDepartment).trigger('change');
+        }
+
+        $('#department_id').change(function () {
             var department_id = $(this).val();
-            if(department_id) {
+            if (department_id) {
                 $.ajax({
                     url: '<?= base_url('getCourseByDepartment') ?>',
                     type: 'POST',
                     data: { department_id: department_id },
                     dataType: 'json',
-                    success: function(response) {
+                    success: function (response) {
                         $('#course_name').empty();
-                        $.each(response, function(key, value) {
-                            $('#course_name').append('<option value="' + value.course_id + '">' + value.course_name + ' - ' + value.course_code + '</option>');
+                        $.each(response, function (key, value) {
+                            var selected = (selectedCourses.includes(value.course_id.toString())) ? 'selected' : '';
+                            $('#course_name').append('<option value="' + value.course_id + '" ' + selected + '>' + value.course_name + ' - ' + value.course_code + '</option>');
                         });
+                        $('#course_name').trigger('change'); // Re-initialize select2 with selected values
                     }
                 });
             } else {
@@ -163,8 +171,7 @@ $department_model = new Department_model();
             }
         });
     });
-
-
 </script>
+
 
 <?= $this->endSection() ?>
