@@ -60,7 +60,7 @@ $student_model = new Student_model();
                         </div> -->
                         <div class="form-group col-md-4">
                             <span for="">Name of the Synopsis</span>
-                            <input type="text" name="synopsis_name" id="" class="form-control form-control-sm">
+                            <input type="text" name="synopsis_name" id="" class="form-control form-control-sm" value="<?= $mphil_ug_pg_data['synopsis_name'] ?>">
                         </div>
                         <!-- <div class="form-group col-md-4">
                             <span for="">Roll No</span>
@@ -84,37 +84,43 @@ $student_model = new Student_model();
                         </div> -->
                         <div class="form-group col-md-4">
                             <span for="">Remarks</span>
-                            <input type="text" name="remarks" id="" class="form-control form-control-sm">
+                            <input type="text" name="remarks" id="" class="form-control form-control-sm" value="<?= $mphil_ug_pg_data['remarks'] ?>">
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Name of the University</span>
-                            <input type="text" name="university_name" id="" class="form-control form-control-sm">
+                            <input type="text" name="university_name" id="" class="form-control form-control-sm" value="<?= $mphil_ug_pg_data['university_name'] ?>">
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Registration Date</span>
-                            <input type="date" name="registration_date" id="" class="form-control form-control-sm">
+                            <input type="date" name="registration_date" id="" class="form-control form-control-sm" value="<?= $mphil_ug_pg_data['registration_date'] ?>">
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Document File(.jpg,.png,.jpeg,.pdf)</span>
                             <input type="file" name="documemt_file" id="" class="form-control form-control-sm" accept=".jpg,.png,.jpeg,.pdf">
+                            <?php if (!empty($mphil_ug_pg_data['documemt_file']) && file_exists('public/admin/uploads/employee/' . $mphil_ug_pg_data['documemt_file'])): ?>
+                                <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $mphil_ug_pg_data['documemt_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
+                            <?php else: ?>
+                                <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="30px">
+                            <?php endif; ?>
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Status </span>
                             <select name="status" id="status" class="form-control form-control-sm" onchange="toggleRegDateField()">
                                 <option value="">--Select--</option>
-                                <option value="Ongoing">Ongoing</option>
-                                <option value="Submitted">Submitted</option>
-                                <option value="Awarded">Awarded</option>
+                                <option value="Ongoing" <?php if($mphil_ug_pg_data['status'] == "Onging"){ echo "selected"; } ?>>Ongoing</option>
+                                <option value="Submitted" <?php if($mphil_ug_pg_data['status'] == "Submitted"){ echo "selected"; } ?>>Submitted</option>
+                                <option value="Awarded" <?php if($mphil_ug_pg_data['status'] == "Awarded"){ echo "selected"; } ?>>Awarded</option>
                             </select>
                         </div>
                         <div class="form-group submission_date col-md-4" style="display : none;">
                             <span for="">Submission Date</span>
-                            <input type="date" name="submission_date" id="" class="form-control form-control-sm">
+                            <input type="date" name="submission_date" id="" class="form-control form-control-sm" value="<?= $mphil_ug_pg_data['submission_date'] ?>">
+
                         </div>
 
                         <div class="form-group award_date col-md-4" style="display : none;">
                             <span for="">Award Date</span>
-                            <input type="date" name="award_date" id="" class="form-control form-control-sm">
+                            <input type="date" name="award_date" id="" class="form-control form-control-sm" value="<?= $mphil_ug_pg_data['award_date'] ?>">
                         </div>
 
                         <div class="form-group col-md-12">
