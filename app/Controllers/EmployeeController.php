@@ -1996,9 +1996,9 @@ use App\Models\Student_model;
             }
             $result = $mphil_ug_pg_model->delete($id);
             if ($result === true) {
-                return redirect()->to('admin/mphil-ug-pg-detail')->with('msg','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+                return redirect()->to('admin/mphil-ug-pg-detail')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
             } else {
-                return redirect()->to('admin/mphil-ug-pg-detail')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                return redirect()->to('admin/mphil-ug-pg-detail')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
         }
 
