@@ -179,23 +179,28 @@ $department_model = new Department_model();
         var submissionInput = submissionDateField.querySelector('input[name="submission_date"]');
         var awardInput = awardDateField.querySelector('input[name="award_date"]');
 
-        // Hide both fields and clear values by default
+        // Hide both and clear values
         submissionDateField.style.display = "none";
-        submissionInput.value = "";
-
         awardDateField.style.display = "none";
-        awardInput.value = "";
 
-        // Show the relevant field based on the selected status
+        // Show based on status and keep existing value
         if (status === "Submitted") {
             submissionDateField.style.display = "block";
-        } else if (status === "Awarded") {
+        } else {
+            submissionInput.value = "";
+        }
+
+        if (status === "Awarded") {
             awardDateField.style.display = "block";
+        } else {
+            awardInput.value = "";
         }
     }
 
-    // Run once on page load in case of pre-selected status
-    document.addEventListener("DOMContentLoaded", toggleRegDateField);
+    // Call after the page is loaded
+    document.addEventListener("DOMContentLoaded", function () {
+        toggleRegDateField();
+    });
 </script>
 
 
