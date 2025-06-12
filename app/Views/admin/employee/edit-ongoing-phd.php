@@ -49,10 +49,10 @@ $department_model = new Department_model();
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Department</span>
-                            <select name="department" id="" class="form-control form-control-sm">
+                            <select name="department" id="" class="form-control form-control-sm my-select">
                                 <option value="">--Select--</option>
                                 <?php foreach ($department as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?php if($value['id'] == $ongoing_php_data['department']){ echo "selected"; } ?>><?= $value['name'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
