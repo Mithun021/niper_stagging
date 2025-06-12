@@ -179,35 +179,54 @@ $department_model = new Department_model();
         const submissionInput = document.getElementById('submission_date');
         const awardInput = document.getElementById('award_date');
 
-        // Hide and clear all by default
+        // Default: hide all groups
         registrationGroup.style.display = 'none';
-        registrationInput.value = '';
-
         submissionGroup.style.display = 'none';
-        submissionInput.value = '';
-
         awardGroup.style.display = 'none';
-        awardInput.value = '';
 
-        // Conditional display and preserve values
+        // Clear only if not shown below
+        let showRegistration = false;
+        let showSubmission = false;
+        let showAward = false;
+
         if (degreeStatus === 'Onging') {
-            registrationGroup.style.display = 'block';
+            showRegistration = true;
         } else if (degreeStatus === 'Submitted') {
-            registrationGroup.style.display = 'block';
-            submissionGroup.style.display = 'block';
+            showRegistration = true;
+            showSubmission = true;
         } else if (degreeStatus === 'Awarded') {
+            showRegistration = true;
+            showSubmission = true;
+            showAward = true;
+        }
+
+        // Show and retain values
+        if (showRegistration) {
             registrationGroup.style.display = 'block';
+        } else {
+            registrationInput.value = '';
+        }
+
+        if (showSubmission) {
             submissionGroup.style.display = 'block';
+        } else {
+            submissionInput.value = '';
+        }
+
+        if (showAward) {
             awardGroup.style.display = 'block';
+        } else {
+            awardInput.value = '';
         }
     }
 
-    // Handle change event
+    // Bind on change
     document.getElementById('degree_status').addEventListener('change', toggleDateFields);
 
-    // Trigger on page load
+    // Call on page load
     window.addEventListener('DOMContentLoaded', toggleDateFields);
 </script>
+
 
 
 
