@@ -58,17 +58,17 @@ $books_chapter_author = new Books_chapter_author();
                             <select class="form-control form-control-sm my-select" name="member_since">
                                 <option value="">--Select--</option>
                             <?php for ($i=1998; $i <= date('Y'); $i++) { ?>
-                                <option value="<?= $i ?>"><?= $i ?></option>
+                                <option value="<?= $i ?>" <?php if($employee_fellowship_data['member_since'] == $i){ echo "selected"; } ?>><?= $i ?></option>
                             <?php } ?>
                             </select>
-                            <span><input type="checkbox" name="current_member" id="current_member" value="1"> Current Member</span>
+                            <span><input type="checkbox" name="current_member" id="current_member" value="1" <?php if($employee_fellowship_data['current_member'] == 1){ echo "checked"; } ?>> Current Member</span>
                         </div>
                         <div class="col-lg-4 form-group membership-end">
                             <span for="">Membership End</span>
                             <select class="form-control form-control-sm my-select" name="membership_end">
                                 <option value="">--Select--</option>
                             <?php for ($i=1998; $i <= date('Y'); $i++) { ?>
-                                <option value="<?= $i ?>"><?= $i ?></option>
+                                <option value="<?= $i ?>" <?php if($employee_fellowship_data['membership_end'] == $i){ echo "selected"; } ?>><?= $i ?></option>
                             <?php } ?>
                             </select>
                         </div>
