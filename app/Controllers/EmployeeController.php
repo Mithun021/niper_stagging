@@ -2269,12 +2269,27 @@ use App\Models\Student_model;
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
 
+                $employee_fellowship_data = $employee_fellowship_model->get($id);
                 $document = $this->request->getFile('upload_file');
-                if ($document->isValid() && ! $document->hasMoved()) {
-                    $documentNewName = "fellowship".rand(0,9999).$document->getRandomName();
-                    $document->move(ROOTPATH . 'public/admin/uploads/employee', $documentNewName);    
-                }else{
-                 $documentNewName = "";
+                $old_document_file = $employee_fellowship_data['upload_file'];
+
+                if (empty($old_document_file)) {
+                    if ($document->isValid() && !$document->hasMoved()) {
+                        $document_name = "fellowship" . $document->getRandomName();
+                        $document->move(ROOTPATH . 'public/admin/uploads/employee/', $document_name);
+                    } else {
+                        $document_name = null;
+                    }
+                } else {
+                    if ($document->isValid() && !$document->hasMoved()) {
+                        if (file_exists("public/admin/uploads/employee/" . $old_document_file)) {
+                            unlink("public/admin/uploads/employee/" . $old_document_file);
+                        }
+                        $document_name = "fellowship" . $document->getRandomName();
+                        $document->move(ROOTPATH . 'public/admin/uploads/employee/', $document_name);
+                    } else {
+                        $document_name = $old_document_file;
+                    }
                 }
 
                 $data = [
@@ -2286,10 +2301,10 @@ use App\Models\Student_model;
                     'member_since' => $this->request->getPost('member_since'),
                     'membership_end' => $this->request->getPost('membership_end'),
                     'current_member' => $this->request->getPost('current_member') ?? 0,
-                    'upload_file' => $documentNewName,
+                    'upload_file' => $document_name,
                     'upload_by' => $loggeduserId,
                 ];
-                $result = $employee_fellowship_model->add($data);
+                $result = $employee_fellowship_model->add($data, $id);
                 if ($result === true) {
                     return redirect()->to('admin/edit-emp-fellowship/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
                 } else {
