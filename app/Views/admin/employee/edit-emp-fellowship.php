@@ -25,7 +25,7 @@ $books_chapter_author = new Books_chapter_author();
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url('admin/emp-fellowship') ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url('admin/edit-emp-fellowship/'.$emp_fellowship_id) ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-lg-6 form-group">
                             <span for="Empid">Employee:</span>
