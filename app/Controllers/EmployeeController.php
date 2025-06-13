@@ -2313,6 +2313,21 @@ use App\Models\Student_model;
             }
         }
 
+        public function delete_emp_fellowship($id){
+            $employee_fellowship_model = new Employee_fellowship_model();
+            $employee_fellowship_data = $employee_fellowship_model->get($id);
+            $old_document_file = $employee_fellowship_data['upload_file'];
+            $file_path = "public/admin/uploads/employee/" . $old_document_file;
+            if (!empty($old_document_file) && file_exists($file_path) && is_file($file_path)) {
+                unlink($file_path);
+            }
+            $result = $employee_fellowship_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/emp-fellowship')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/emp-fellowship')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
 
         public function employee_seed_money(){
             $employee_model = new Employee_model();
