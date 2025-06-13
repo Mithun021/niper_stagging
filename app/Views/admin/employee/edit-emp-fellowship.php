@@ -47,11 +47,11 @@ $books_chapter_author = new Books_chapter_author();
                         </div>
                         <div class="col-lg-4 form-group">
                             <span for="">Organization<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="organization" value="<?= $employee_fellowship_data['membership_title'] ?>" required>
+                            <input type="text" class="form-control form-control-sm" name="organization" value="<?= $employee_fellowship_data['organization'] ?>" required>
                         </div>
                         <div class="col-lg-4 form-group">
                             <span for="">Member Reg. no<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="member_reg_no" value="<?= $employee_fellowship_data['membership_title'] ?>" required>
+                            <input type="text" class="form-control form-control-sm" name="member_reg_no" value="<?= $employee_fellowship_data['member_reg_no'] ?>" required>
                         </div>
                         <div class="col-lg-4 form-group">
                             <span for="">Member Since</span>
