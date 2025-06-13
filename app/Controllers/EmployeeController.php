@@ -2542,6 +2542,38 @@ use App\Models\Student_model;
             }
         }
 
+        public function edit_employee_mou($id){
+            $employee_model = new Employee_model();
+            $employee_mou_model = new Employee_mou_model();
+            $data = ['title' => 'Employee MoUs', 'employee_mou_id' => $id];
+            if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
+                $data['employee_mou'] = $employee_mou_model->get();
+                $data['employee_mou_data'] = $employee_mou_model->get($id);
+                return view('admin/employee/edit-employee-mou',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $data = [
+                    'employee_id' => $this->request->getPost('employee_id'),
+                    'mou_title' => $this->request->getPost('mou_title'),
+                    'institution_name' => $this->request->getPost('institution_name'),
+                    'entring_mou_year' => $this->request->getPost('entring_mou_year'),
+                    'duration' => $this->request->getPost('duration'),
+                    'status' => $this->request->getPost('status'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $employee_mou_model->add($data, $id);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-employee-mou/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-employee-mou/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
         public function employee_seminar_conference(){
             $employee_model = new Employee_model();
             $employee_seminar_conference_model = new Employee_seminar_conference_model();

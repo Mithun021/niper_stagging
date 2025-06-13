@@ -21,43 +21,43 @@ $employee_model = new Employee_model();
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/employee-mou" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/edit-employee-mou/<?= $employee_mou_id ?>" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <span for="Empid">Employee:</span>
                             <select name="employee_id" id="employee_id" class="form-control form-control-sm my-select" required >
                                 <option value="">Select Employee</option>
                             <?php foreach($employee as $value){ ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                                <option value="<?= $value['id'] ?>" <?php if($value['id'] == $employee_mou_data['employee_id']){ echo "selected"; } ?>><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
                             <?php } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-12">
                             <span>Title of MoU</span>
-                            <input type="text" class="form-control form-control-sm" name="mou_title" required>
+                            <input type="text" class="form-control form-control-sm" name="mou_title" value="<?= $employee_mou_data['mou_title'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Name of Institution</span>
-                            <input type="text" class="form-control form-control-sm my-select" name="institution_name" required>
+                            <input type="text" class="form-control form-control-sm my-select" name="institution_name" value="<?= $employee_mou_data['institution_name'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Year of Entering MoU</span>
                             <select name="entring_mou_year" class="form-control form-control-sm" required>
                                 <option value="">--Select--</option>
                                 <?php for ($i = 2000; $i <= date('Y'); $i++) { ?>
-                                    <option value="<?= $i ?>"><?= $i ?></option>
+                                    <option value="<?= $i ?>" <?php if($employee_mou_data['entring_mou_year'] == $i){ echo "selected"; } ?>><?= $i ?></option>
                                 <?php } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Duration</span>
-                            <input type="text" class="form-control form-control-sm my-select" name="duration" required>
+                            <input type="text" class="form-control form-control-sm my-select" name="duration" value="<?= $employee_mou_data['duration'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Status </span>
                             <select class="form-control form-control-sm" name="status" required>
-                                <option value="0">Expired</option>
-                                <option value="1">Active</option>
+                                <option value="0" <?php if($employee_mou_data['status'] == 0){ echo "selected"; } ?>>Expired</option>
+                                <option value="1" <?php if($employee_mou_data['status'] == 1){ echo "selected"; } ?>>Active</option>
                             </select>
                         </div>
                         <div class="form-group col-md-12">

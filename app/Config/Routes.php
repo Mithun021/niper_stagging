@@ -177,6 +177,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete-employee-collaboration/(:num)', 'EmployeeController::delete_employee_collaboration/$1');
 
     $routes->match(['get','post'],'employee-mou', 'EmployeeController::employee_mou');
+    $routes->match(['get','post'],'edit-employee-mou/(:num)', 'EmployeeController::edit_employee_mou/$1');
+    $routes->get('delete-employee-mou/(:num)', 'EmployeeController::delete_employee_mou/$1');
+
     $routes->match(['get','post'],'employee-seminar-conference', 'EmployeeController::employee_seminar_conference');
     $routes->match(['get','post'],'employee-talk-poster', 'EmployeeController::employee_talk_poster');
 
