@@ -2454,13 +2454,27 @@ use App\Models\Student_model;
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
-                
+                $employee_collaboration_data = $employee_collaboration_model->get($id);
                 $document = $this->request->getFile('file_upload');
-                if ($document->isValid() && ! $document->hasMoved()) {
-                    $documentNewName = "coll".rand(0,9999).$document->getRandomName();
-                    $document->move(ROOTPATH . 'public/admin/uploads/employee', $documentNewName);    
-                }else{
-                 $documentNewName = "";
+                $old_document_file = $employee_collaboration_data['file_upload'];
+
+                if (empty($old_document_file)) {
+                    if ($document->isValid() && !$document->hasMoved()) {
+                        $document_name = "coll" . $document->getRandomName();
+                        $document->move(ROOTPATH . 'public/admin/uploads/employee/', $document_name);
+                    } else {
+                        $document_name = null;
+                    }
+                } else {
+                    if ($document->isValid() && !$document->hasMoved()) {
+                        if (file_exists("public/admin/uploads/employee/" . $old_document_file)) {
+                            unlink("public/admin/uploads/employee/" . $old_document_file);
+                        }
+                        $document_name = "coll" . $document->getRandomName();
+                        $document->move(ROOTPATH . 'public/admin/uploads/employee/', $document_name);
+                    } else {
+                        $document_name = $old_document_file;
+                    }
                 }
                 $data = [
                     'employee_id' => $this->request->getPost('employee_id'),
@@ -2469,7 +2483,7 @@ use App\Models\Student_model;
                     'collaboration_year' => $this->request->getPost('collaboration_year'),
                     'duartion_in_month' => $this->request->getPost('duartion_in_month'),
                     'name_of_activity' => $this->request->getPost('name_of_activity'),
-                    'file_upload' => $documentNewName,
+                    'file_upload' => $document_name,
                     'upload_by' => $loggeduserId
                 ];
                 $result = $employee_collaboration_model->add($data, $id);
