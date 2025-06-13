@@ -2390,6 +2390,16 @@ use App\Models\Student_model;
             }
         }
 
+        public function delete_employee_seed_money($id){
+            $employee_seed_money_model = new Employee_seed_money_model();
+            $result = $employee_seed_money_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/employee-seed-money')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/employee-seed-money')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+
         public function employee_collaboration(){
             $employee_model = new Employee_model();
             $employee_collaboration_model = new Employee_collaboration_model();
