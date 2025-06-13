@@ -50,7 +50,7 @@ $books_chapter_author = new Books_chapter_author();
                                     <thead class="bg-light">
                                         <tr>
                                             <td scope="col">Author Details</td>
-                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" onclick="openAuthormodal(<?= $book_chapter_id ?>)">+</button></td>
+                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" onclick="openAuthormodal()">+</button></td>
                                         </tr>
 
                                     </thead>
@@ -76,7 +76,7 @@ $books_chapter_author = new Books_chapter_author();
                                     <thead class="bg-light">
                                         <tr>
                                             <td scope="col" width="80%">Co-Author Details</td>
-                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" onclick="openCoauthormodal(<?= $book_chapter_id ?>)">+</button></td>
+                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" onclick="openCoauthormodal()">+</button></td>
                                         </tr>
 
                                     </thead>
@@ -254,11 +254,14 @@ $books_chapter_author = new Books_chapter_author();
                 </button>
             </div>
             <div class="modal-body">
-                Woohoo, you're reading this text in a modal!
+                <div class="form-group">
+                    <span>Author Name</span>
+                    <input type="text" class="form-control form-control-sm" name="author_name" id="author_name" placeholder="Enter Author Name">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                <button type="button" id="saveBookChapterAuthor" class="btn btn-primary waves-effect waves-light">Save changes</button>
             </div>
         </div>
     </div>
@@ -275,11 +278,14 @@ $books_chapter_author = new Books_chapter_author();
                 </button>
             </div>
             <div class="modal-body">
-                Woohoo, you're reading this text in a modal!
+                <div class="form-group">
+                    <span>Co-Author Name</span>
+                    <input type="text" class="form-control form-control-sm" name="coauthor_name" id="coauthor_name" placeholder="Enter Co-Author Name">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                <button type="button" id="saveBookChapterCoauthor" class="btn btn-primary waves-effect waves-light">Save changes</button>
             </div>
         </div>
     </div>
@@ -287,14 +293,53 @@ $books_chapter_author = new Books_chapter_author();
 
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
-    function openAuthormodal(book_chapter_id){
+    function openAuthormodal(){
         $('#authorModal').modal('show');
     }
-    function openCoauthormodal(book_chapter_id){
+    function openCoauthormodal(){
         $('#coauthorModal').modal('show');
     }
     $(document).ready(function() {
-       
+        $('#saveBookChapterAuthor').click(function() {
+            var author_name = $('#author_name').val();
+            if (author_name == '') {
+                alert('Please enter author name');
+                return false;
+            }
+            $.ajax({
+                url: '<?= base_url('admin/add-book-chapter-author') ?>',
+                type: 'POST',
+                data: { author_name: author_name, book_chapter_id: <?= $book_chapter_id ?> },
+                success: function(response) {
+                    $('#authorModal').modal('hide');
+                    location.reload();
+                },
+                error: function() {
+                    alert('Error adding author');
+                }
+            });
+        });
+
+
+        $('#saveBookChapterCoauthor').click(function() {
+            var coauthor_name = $('#coauthor_name').val();
+            if (coauthor_name == '') {
+                alert('Please enter co-author name');
+                return false;
+            }
+            $.ajax({
+                url: '<?= base_url('admin/add-book-chapter-coauthor') ?>',
+                type: 'POST',
+                data: { coauthor_name: coauthor_name, book_chapter_id: <?= $book_chapter_id ?> },
+                success: function(response) {
+                    $('#coauthorModal').modal('hide');
+                    location.reload();
+                },
+                error: function() {
+                    alert('Error adding co-author');
+                }
+            });
+        });
 
     });
 </script>
