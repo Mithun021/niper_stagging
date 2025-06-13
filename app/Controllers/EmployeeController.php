@@ -1656,6 +1656,18 @@ use App\Models\Student_model;
             $books_chapter_coauthor->add($data);
         }
 
+        public function delete_book_chapter_author($id){
+            $books_chapter_author = new Books_chapter_author();
+            $books_chapter_author->delete($id);
+        }
+
+        public function delete_book_chapter_coauthor($id){
+            $books_chapter_coauthor = new Books_chapter_coauthor();
+            $books_chapter_coauthor->delete($id);
+        }
+
+       
+
         public function employee_academic_details(){
             $employee_model = new Employee_model();
             $country_model = new Country_model();

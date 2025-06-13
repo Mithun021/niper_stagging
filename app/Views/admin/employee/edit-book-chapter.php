@@ -61,7 +61,7 @@ $books_chapter_author = new Books_chapter_author();
                                                 <h6><?= $authors['author_name'] ?></h6>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
+                                                <button type="button" class="btn btn-sm btn-danger" onclick="deleteAuthorName(<?= $authors['id'] ?>)">-</button>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -85,7 +85,7 @@ $books_chapter_author = new Books_chapter_author();
                                         <tr>
                                             <td width="80%"><h6><?= $coauthors['coauthor_name'] ?></h6></td>
                                             <td>
-                                                <button type="button" class="btn btn-sm btn-danger" id="removeCoAuthorrow">-</button>
+                                                <button type="button" class="btn btn-sm btn-danger" onclick="deleteCoauthorName(<?= $coauthors['id'] ?>)">-</button>
                                             </td>
                                         </tr>
                                     <?php } ?>   
@@ -299,6 +299,38 @@ $books_chapter_author = new Books_chapter_author();
     function openCoauthormodal(){
         $('#coauthorModal').modal('show');
     }
+
+
+    function deleteAuthorName(id) {
+        if (confirm('Are you sure you want to delete this author?')) {
+            $.ajax({
+                url: '<?= base_url('admin/delete-book-chapter-author') ?>/' + id,
+                type: 'GET',
+                success: function(response) {
+                    location.reload();
+                },
+                error: function() {
+                    alert('Error deleting author');
+                }
+            });
+        }
+    }
+
+    function deleteCoauthorName(id) {
+        if (confirm('Are you sure you want to delete this co-author?')) {
+            $.ajax({
+                url: '<?= base_url('admin/delete-book-chapter-coauthor') ?>/' + id,
+                type: 'GET',
+                success: function(response) {
+                    location.reload();
+                },
+                error: function() {
+                    alert('Error deleting co-author');
+                }
+            });
+        }
+    }
+
     $(document).ready(function() {
         $('#saveBookChapterAuthor').click(function() {
             var author_name = $('#author_name').val();
