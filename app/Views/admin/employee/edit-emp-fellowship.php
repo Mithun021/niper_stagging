@@ -43,15 +43,15 @@ $books_chapter_author = new Books_chapter_author();
 
                         <div class="col-lg-12 form-group">
                             <span for="">Description<span class="text-danger">*</span></span>
-                            <textarea class="form-control form-control-sm" name="description" id="editor" ></textarea>
+                            <textarea class="form-control form-control-sm" name="description" id="editor" ><?= $employee_fellowship_data['description'] ?></textarea>
                         </div>
                         <div class="col-lg-4 form-group">
                             <span for="">Organization<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="organization" required>
+                            <input type="text" class="form-control form-control-sm" name="organization" value="<?= $employee_fellowship_data['membership_title'] ?>" required>
                         </div>
                         <div class="col-lg-4 form-group">
                             <span for="">Member Reg. no<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="member_reg_no" required>
+                            <input type="text" class="form-control form-control-sm" name="member_reg_no" value="<?= $employee_fellowship_data['membership_title'] ?>" required>
                         </div>
                         <div class="col-lg-4 form-group">
                             <span for="">Member Since</span>
@@ -75,6 +75,11 @@ $books_chapter_author = new Books_chapter_author();
                         <div class="col-lg-4 form-group">
                             <span for="">Upload File(.pdf)</span>
                             <input type="file" class="form-control form-control-sm" name="upload_file" accept=".pdf">
+                            <?php if (!empty($employee_fellowship_data['upload_file']) && file_exists('public/admin/uploads/employee/' . $employee_fellowship_data['upload_file'])): ?>
+                                <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $employee_fellowship_data['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                            <?php else: ?>
+                                <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="40px">
+                            <?php endif; ?>
                         </div>
                         
                         <div class="col-lg-12 form-group">
