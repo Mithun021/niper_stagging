@@ -2574,6 +2574,16 @@ use App\Models\Student_model;
             }
         }
 
+        public function delete_employee_mou($id){
+            $employee_mou_model = new Employee_mou_model();
+            $result = $employee_mou_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/employee-mou')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/employee-mou')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+
         public function employee_seminar_conference(){
             $employee_model = new Employee_model();
             $employee_seminar_conference_model = new Employee_seminar_conference_model();
@@ -2610,6 +2620,47 @@ use App\Models\Student_model;
                     return redirect()->to('admin/employee-seminar-conference')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
                     return redirect()->to('admin/employee-seminar-conference')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
+        public function edit_employee_seminar_conference($id){
+            $employee_model = new Employee_model();
+            $employee_seminar_conference_model = new Employee_seminar_conference_model();
+            $data = ['title' => 'Employee Seminar Conference', 'employee_seminar_conference_id' => $id];
+            if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
+                $data['employee_seminar_conference'] = $employee_seminar_conference_model->get();
+                $data['employee_seminar_conference_data'] = $employee_seminar_conference_model->get($id);
+                return view('admin/employee/edit-employee-seminar-conference',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+
+                $data = [
+                    'employee_id' => $this->request->getPost('employee_id'),
+                    'type_of_activity' => $this->request->getPost('type_of_activity'),
+                    'other_activity' => $this->request->getPost('other_activity'),
+                    'seminar_name' => $this->request->getPost('seminar_name'),
+                    'from_date' => $this->request->getPost('from_date'),
+                    'to_date' => $this->request->getPost('to_date'),
+                    'role' => $this->request->getPost('role'),
+                    'designation' => $this->request->getPost('designation'),
+                    'level' => $this->request->getPost('level'),
+                    'start_date' => $this->request->getPost('start_date'),
+                    'end_date' => $this->request->getPost('end_date'),
+                    'no_of_participant' => $this->request->getPost('no_of_participant'),
+                    'funding_agency_name' => $this->request->getPost('funding_agency_name'),
+                    'fund_amount' => $this->request->getPost('fund_amount'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $employee_seminar_conference_model->add($data, $id);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-employee-seminar-conference/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-employee-seminar-conference/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
         }

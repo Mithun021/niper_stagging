@@ -18,14 +18,14 @@ $employee_model = new Employee_model();
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/employee-seminar-conference" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/edit-employee-seminar-conference/<?= $employee_seminar_conference_id ?>" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <span for="Empid">Employee:</span>
                             <select name="employee_id" id="employee_id" class="form-control form-control-sm my-select" required >
                                 <option value="">Select Employee</option>
                             <?php foreach($employee as $value){ ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                                <option value="<?= $value['id'] ?>" <?php if($value['id'] == $employee_seminar_conference_data['employee_id']){ echo "selected"; } ?>><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
                             <?php } ?>
                             </select>
                         </div>
@@ -33,73 +33,73 @@ $employee_model = new Employee_model();
                             <span>Type of Activity</span>
                             <select class="form-control form-control-sm" name="type_of_activity" required>
                                 <option value="">--Select--</option>
-                                <option value="Seminar">Seminar</option>
-                                <option value="Conference">Conference</option>
-                                <option value="Exhibition">Exhibition</option>
-                                <option value="Workshop">Workshop</option>
-                                <option value="Webinar">Webinar</option>
-                                <option value="Symposium">Symposium</option>
-                                <option value="Other">Other</option>
+                                <option value="Seminar" <?php if($employee_seminar_conference_data['type_of_activity'] == "Seminar"){ echo "selected"; } ?>>Seminar</option>
+                                <option value="Conference" <?php if($employee_seminar_conference_data['type_of_activity'] == "Conference"){ echo "selected"; } ?>>Conference</option>
+                                <option value="Exhibition" <?php if($employee_seminar_conference_data['type_of_activity'] == "Exhibition"){ echo "selected"; } ?>>Exhibition</option>
+                                <option value="Workshop" <?php if($employee_seminar_conference_data['type_of_activity'] == "Workshop"){ echo "selected"; } ?>>Workshop</option>
+                                <option value="Webinar" <?php if($employee_seminar_conference_data['type_of_activity'] == "Webinar"){ echo "selected"; } ?>>Webinar</option>
+                                <option value="Symposium" <?php if($employee_seminar_conference_data['type_of_activity'] == "Symposium"){ echo "selected"; } ?>>Symposium</option>
+                                <option value="Other" <?php if($employee_seminar_conference_data['type_of_activity'] == "Other"){ echo "selected"; } ?>>Other</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6 other_activity" style="display: none;">
                             <span>Other Activity</span>
-                            <input type="text" class="form-control form-control-sm" name="other_activity">
+                            <input type="text" class="form-control form-control-sm" name="other_activity" value="<?= $employee_seminar_conference_data['other_activity'] ?>">
                         </div>
                         <div class="form-group col-md-6">
                             <span>Name </span>
-                            <input type="text" class="form-control form-control-sm" name="seminar_name" required>
+                            <input type="text" class="form-control form-control-sm" name="seminar_name" value="<?= $employee_seminar_conference_data['seminar_name'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span>From Date</span>
-                            <input type="date" class="form-control form-control-sm" name="from_date" required>
+                            <input type="date" class="form-control form-control-sm" name="from_date" value="<?= $employee_seminar_conference_data['from_date'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span>To Date</span>
-                            <input type="date" class="form-control form-control-sm" name="to_date" required>
+                            <input type="date" class="form-control form-control-sm" name="to_date" value="<?= $employee_seminar_conference_data['to_date'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Role</span>
                             <select class="form-control form-control-sm" name="role" required>
                                 <option value="">--Select--</option>
-                                <option value="Attended">Attended</option>
-                                <option value="Organized">Organized</option>
-                                <option value="Presented">Presented</option>
+                                <option value="Attended" <?php if($employee_seminar_conference_data['role'] == "Seminar"){ echo "selected"; } ?>>Attended</option>
+                                <option value="Organized" <?php if($employee_seminar_conference_data['role'] == "Seminar"){ echo "selected"; } ?>>Organized</option>
+                                <option value="Presented" <?php if($employee_seminar_conference_data['role'] == "Seminar"){ echo "selected"; } ?>>Presented</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Designation</span>
-                            <input type="text" class="form-control form-control-sm" name="designation" required>
+                            <input type="text" class="form-control form-control-sm" name="designation" value="<?= $employee_seminar_conference_data['designation'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Level</span>
                             <select class="form-control form-control-sm" name="level" required>
                                 <option value="">--Select--</option>
-                                <option value="Internation">Internation</option>
-                                <option value="National">National</option>
-                                <option value="Internation within Country">Internation within Country</option>
-                                <option value="University/Institute">University/Institute</option>
+                                <option value="Internation" <?php if($employee_seminar_conference_data['level'] == "Internation"){ echo "selected"; } ?>>Internation</option>
+                                <option value="National" <?php if($employee_seminar_conference_data['level'] == "National"){ echo "selected"; } ?>>National</option>
+                                <option value="Internation within Country" <?php if($employee_seminar_conference_data['level'] == "Internation within Country"){ echo "selected"; } ?>>Internation within Country</option>
+                                <option value="University/Institute" <?php if($employee_seminar_conference_data['level'] == "University/Institute"){ echo "selected"; } ?>>University/Institute</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Start Date</span>
-                            <input type="date" class="form-control form-control-sm" name="start_date" required>
+                            <input type="date" class="form-control form-control-sm" name="start_date" value="<?= $employee_seminar_conference_data['start_date'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span>End Date</span>
-                            <input type="date" class="form-control form-control-sm" name="end_date" required>
+                            <input type="date" class="form-control form-control-sm" name="end_date" value="<?= $employee_seminar_conference_data['end_date'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span>No of Participants</span>
-                            <input type="number" class="form-control form-control-sm" name="no_of_participant" >
+                            <input type="number" class="form-control form-control-sm" name="no_of_participant"  value="<?= $employee_seminar_conference_data['no_of_participant'] ?>">
                         </div>
                         <div class="form-group col-md-6">
                             <span>Funding Agency Name</span>
-                            <input type="text" class="form-control form-control-sm" name="funding_agency_name" >
+                            <input type="text" class="form-control form-control-sm" name="funding_agency_name" value="<?= $employee_seminar_conference_data['funding_agency_name'] ?>" >
                         </div>
                         <div class="form-group col-md-6">
                             <span>Fund Amount</span>
-                            <input type="number" class="form-control form-control-sm" name="fund_amount" step="1" min="1" >
+                            <input type="number" class="form-control form-control-sm" name="fund_amount" step="1" min="1" value="<?= $employee_seminar_conference_data['fund_amount'] ?>" >
                         </div>  
                         <div class="form-group col-md-12">
                             <button type="submit" class="btn btn-primary mt-4">Submit</button>
