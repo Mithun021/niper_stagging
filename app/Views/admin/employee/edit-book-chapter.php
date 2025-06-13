@@ -75,7 +75,7 @@ $books_chapter_author = new Books_chapter_author();
                                 <table class="table table-bordered" id="addServicetable">
                                     <thead class="bg-light">
                                         <tr>
-                                            <td scope="col">Co-Author Details</td>
+                                            <td scope="col" width="80%">Co-Author Details</td>
                                             <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewCoAuthor">+</button></td>
                                         </tr>
 
@@ -83,7 +83,7 @@ $books_chapter_author = new Books_chapter_author();
                                     <tbody>
                                     <?php foreach($books_chapter_coauthors as $coauthors){ ?>
                                         <tr>
-                                            <td><?= $coauthors['coauthor_name'] ?></td>
+                                            <td width="80%"><?= $coauthors['coauthor_name'] ?></td>
                                             <td>
                                                 <button type="button" class="btn btn-sm btn-danger" id="removeCoAuthorrow">-</button>
                                             </td>
