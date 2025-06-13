@@ -1679,9 +1679,9 @@ use App\Models\Student_model;
             if ($result === true) {
                 $books_chapter_author->where('books_chapter_id', $id)->delete();
                 $books_chapter_coauthor->where('books_chapter_id', $id)->delete();
-                return redirect()->to('admin/book-chapter')->with('msg','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+                return redirect()->to('admin/book-chapter')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
             } else {
-                return redirect()->to('admin/book-chapter')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                return redirect()->to('admin/book-chapter')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
         }
        
