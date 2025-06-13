@@ -2495,6 +2495,22 @@ use App\Models\Student_model;
             }
         }
 
+        public function delete_employee_collaboration($id){
+            $employee_collaboration_model = new Employee_collaboration_model();
+            $employee_collaboration_data = $employee_collaboration_model->get($id);
+            $old_document_file = $employee_collaboration_data['file_upload'];
+            $file_path = "public/admin/uploads/employee/" . $old_document_file;
+            if (!empty($old_document_file) && file_exists($file_path) && is_file($file_path)) {
+                unlink($file_path);
+            }
+            $result = $employee_collaboration_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/employee-collaboration')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/employee-collaboration')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+
         public function employee_mou(){
             $employee_model = new Employee_model();
             $employee_mou_model = new Employee_mou_model();
