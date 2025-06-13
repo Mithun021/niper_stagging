@@ -58,7 +58,7 @@ $books_chapter_author = new Books_chapter_author();
                                     <?php foreach($books_chapter_authors as $authors){ ?>
                                         <tr>
                                             <td>
-                                                <h4><?= $authors['author_name'] ?></h4>
+                                                <h5><?= $authors['author_name'] ?></h5>
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
@@ -83,7 +83,7 @@ $books_chapter_author = new Books_chapter_author();
                                     <tbody>
                                     <?php foreach($books_chapter_coauthors as $coauthors){ ?>
                                         <tr>
-                                            <td width="80%"><h4><?= $coauthors['coauthor_name'] ?></h4></td>
+                                            <td width="80%"><h5><?= $coauthors['coauthor_name'] ?></h5></td>
                                             <td>
                                                 <button type="button" class="btn btn-sm btn-danger" id="removeCoAuthorrow">-</button>
                                             </td>
