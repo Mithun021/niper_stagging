@@ -1591,17 +1591,17 @@ use App\Models\Student_model;
                 if (empty($old_document_file)) {
                     if ($document->isValid() && !$document->hasMoved()) {
                         $document_name = "books" . $document->getRandomName();
-                        $document->move(ROOTPATH . 'public/admin/uploads/employee/', $document_name);
+                        $document->move(ROOTPATH . 'public/admin/uploads/books/', $document_name);
                     } else {
                         $document_name = null;
                     }
                 } else {
                     if ($document->isValid() && !$document->hasMoved()) {
-                        if (file_exists("public/admin/uploads/employee/" . $old_document_file)) {
-                            unlink("public/admin/uploads/employee/" . $old_document_file);
+                        if (file_exists("public/admin/uploads/books/" . $old_document_file)) {
+                            unlink("public/admin/uploads/books/" . $old_document_file);
                         }
                         $document_name = "books" . $document->getRandomName();
-                        $document->move(ROOTPATH . 'public/admin/uploads/employee/', $document_name);
+                        $document->move(ROOTPATH . 'public/admin/uploads/books/', $document_name);
                     } else {
                         $document_name = $old_document_file;
                     }
