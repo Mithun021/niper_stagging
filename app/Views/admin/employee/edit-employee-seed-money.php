@@ -21,38 +21,38 @@ $employee_model = new Employee_model();
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/employee-seed-money" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/edit-employee-seed-money/<?= $employee_seed_money_id ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="Empid">Employee:</span>
                         <select name="employee_id" id="employee_id" class="form-control form-control-sm my-select" required >
                             <option value="">Select Employee</option>
                         <?php foreach($employee as $value){ ?>
-                            <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                            <option value="<?= $value['id'] ?>" <?php if($value['id'] == $employee_seed_money_data['employee_id']){ echo "selected"; } ?>><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
                         <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <span>Amount of Seed Money Received</span>
-                        <input type="number" class="form-control form-control-sm" name="received_money" required>
+                        <input type="number" class="form-control form-control-sm" name="received_money" value="<?= $employee_seed_money_data['received_money'] ?>" required>
                     </div>
                     <div class="form-group">
                         <span>Year</span>
                         <select name="years" class="form-control form-control-sm" required>
                             <option value="">--Select--</option>
                             <?php for ($i = 2000; $i <= date('Y'); $i++) { ?>
-                                <option value="<?= $i ?>"><?= $i ?></option>
+                                <option value="<?= $i ?>" <?php if($employee_seed_money_data['years'] == $i){ echo "selected"; } ?>><?= $i ?></option>
                             <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <span>Duration of Grant</span>
-                        <input type="text" class="form-control form-control-sm my-select" name="grant_duration" required>
+                        <input type="text" class="form-control form-control-sm my-select" name="grant_duration" value="<?= $employee_seed_money_data['grant_duration'] ?>" required>
                     </div>
                     <div class="form-group">
                         <span>Status </span>
                         <select class="form-control form-control-sm" name="status" required>
-                            <option value="0">Ongoing</option>
-                            <option value="1">Complete</option>
+                            <option value="0" <?php if($employee_seed_money_data['years'] == 0){ echo "selected"; } ?>>Ongoing</option>
+                            <option value="1" <?php if($employee_seed_money_data['years'] == 1){ echo "selected"; } ?>>Complete</option>
                         </select>
                     </div>
                     <div class="form-group">

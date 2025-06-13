@@ -2359,6 +2359,37 @@ use App\Models\Student_model;
             }
         }
 
+        public function edit_employee_seed_money($id){
+            $employee_model = new Employee_model();
+            $employee_seed_money_model = new Employee_seed_money_model();
+            $data = ['title' => 'Employee Seed Money', 'employee_seed_money_id' => $id];
+            if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
+                $data['employee_seed_money'] = $employee_seed_money_model->get();
+                $data['employee_seed_money_data'] = $employee_seed_money_model->get($id);
+                return view('admin/employee/edit-employee-seed-money',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $data = [
+                    'employee_id' => $this->request->getPost('employee_id'),
+                    'received_money' => $this->request->getPost('received_money'),
+                    'years' => $this->request->getPost('years'),
+                    'grant_duration' => $this->request->getPost('grant_duration'),
+                    'status' => $this->request->getPost('status'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $employee_seed_money_model->add($data, $id);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-employee-seed-money/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-employee-seed-money/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
         public function employee_collaboration(){
             $employee_model = new Employee_model();
             $employee_collaboration_model = new Employee_collaboration_model();
