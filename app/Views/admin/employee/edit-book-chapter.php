@@ -55,7 +55,8 @@ $books_chapter_author = new Books_chapter_author();
 
                                     </thead>
                                     <tbody id="stockTbody">
-                                        <tr id="stockTrow">
+                                    <?php foreach($books_chapter_authors as $authors){ ?>
+                                        <tr>
                                             <td>
                                                 <input type="text" class="form-control" id="author_name" name="author_name[]" placeholder="Enter Author Name">
                                             </td>
@@ -63,6 +64,7 @@ $books_chapter_author = new Books_chapter_author();
                                                 <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
                                             </td>
                                         </tr>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -78,8 +80,9 @@ $books_chapter_author = new Books_chapter_author();
                                         </tr>
 
                                     </thead>
-                                    <tbody id="coAuthorTbody">
-                                        <tr id="coAuthorRow">
+                                    <tbody>
+                                    <?php foreach($books_chapter_coauthors as $authors){ ?>
+                                        <tr>
                                             <td>
                                                 <input type="text" class="form-control" id="co_author_name" name="co_author_name[]" placeholder="Enter Co-Author Name">
                                             </td>
@@ -87,6 +90,7 @@ $books_chapter_author = new Books_chapter_author();
                                                 <button type="button" class="btn btn-sm btn-danger" id="removeCoAuthorrow">-</button>
                                             </td>
                                         </tr>
+                                    <?php } ?>   
                                     </tbody>
                                 </table>
                             </div>

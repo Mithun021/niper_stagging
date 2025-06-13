@@ -26,6 +26,9 @@
             }
             return $result;
         }
+        public function get_all_by_books_chapter_id($id){
+            return $this->where('books_chapter_id',$id)->findAll();
+        }
         
     }
 ?>

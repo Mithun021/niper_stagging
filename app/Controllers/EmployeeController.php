@@ -1578,6 +1578,8 @@ use App\Models\Student_model;
                 $data['employee'] = $employee_model->get();
                 $data['books_chapter'] = $books_chapter_model->get();
                 $data['books_chapter_data'] = $books_chapter_model->get($id);
+                $data['books_chapter_authors'] = $books_chapter_author->get_all_by_books_chapter_id($id);
+                $data['books_chapter_coauthors'] = $books_chapter_coauthor->get_all_by_books_chapter_id($id);
                 return view('admin/employee/edit-book-chapter',$data);
             }else if ($this->request->is('post')) {
                 $sessionData = session()->get('loggedUserData');
