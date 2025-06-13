@@ -2665,6 +2665,16 @@ use App\Models\Student_model;
             }
         }
 
+        public function delete_employee_seminar_conference($id){
+            $employee_seminar_conference_model = new Employee_seminar_conference_model();
+            $result = $employee_seminar_conference_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/employee-seminar-conference')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/employee-seminar-conference')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+
         public function employee_talk_poster(){
             $employee_model = new Employee_model();
             $employee_talk_poster_model = new Employee_talk_poster_model();
@@ -2695,6 +2705,50 @@ use App\Models\Student_model;
                 } else {
                     return redirect()->to('admin/employee-talk-poster')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
+            }
+        }
+
+        public function edit_employee_talk_poster($id){
+            $employee_model = new Employee_model();
+            $employee_talk_poster_model = new Employee_talk_poster_model();
+            $data = ['title' => 'Employee Talk/Poster Presented', 'employee_talk_poster_id' => $id];
+            if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
+                $data['employee_talk_poster'] = $employee_talk_poster_model->get();
+                $data['employee_talk_poster_data'] = $employee_talk_poster_model->get($id);
+                return view('admin/employee/edit-employee-talk-poster',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $data = [
+                    'employee_id' => $this->request->getPost('employee_id'),
+                    'event_name' => $this->request->getPost('event_name'),
+                    'location' => $this->request->getPost('location'),
+                    'organizing_institute_name' => $this->request->getPost('organizing_institute_name'),
+                    'role' => $this->request->getPost('role'),
+                    'other_role' => $this->request->getPost('other_role') ??'',
+                    'start_date' => $this->request->getPost('start_date'),
+                    'end_date' => $this->request->getPost('end_date'),
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $employee_talk_poster_model->add($data, $id);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-employee-talk-poster/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/edit-employee-talk-poster/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
+        public function delete_employee_talk_poster($id){
+            $employee_talk_poster_model = new Employee_talk_poster_model();
+            $result = $employee_talk_poster_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/employee-talk-poster')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/employee-talk-poster')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
         }
 

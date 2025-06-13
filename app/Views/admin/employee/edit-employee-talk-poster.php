@@ -18,60 +18,60 @@ $employee_model = new Employee_model();
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/employee-talk-poster" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/edit-employee-talk-poster/<?= $employee_talk_poster_id ?>" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <span for="Empid">Employee:</span>
                             <select name="employee_id" id="employee_id" class="form-control form-control-sm my-select" required >
                                 <option value="">Select Employee</option>
                             <?php foreach($employee as $value){ ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                                <option value="<?= $value['id'] ?>" <?php if($value['id'] == $employee_talk_poster_data['employee_id']){ echo "selected"; } ?>><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
                             <?php } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Name of Event</span>
-                            <input type="text" class="form-control form-control-sm" name="event_name" required>
+                            <input type="text" class="form-control form-control-sm" name="event_name" value="<?= $employee_talk_poster_data['event_name'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Location</span>
                             <select class="form-control form-control-sm" name="location" required>
                                 <option value="">--Select--</option>
-                                <option value="Internation">Internation</option>
-                                <option value="National">National</option>
-                                <option value="Internation within Country">Internation within Country</option>
-                                <option value="University/Institute">University/Institute</option>
+                                <option value="Internation" <?php if($employee_talk_poster_data['location'] == "Internation"){ echo "selected"; } ?>>Internation</option>
+                                <option value="National" <?php if($employee_talk_poster_data['location'] == "National"){ echo "selected"; } ?>>National</option>
+                                <option value="Internation within Country" <?php if($employee_talk_poster_data['location'] == "Internation within Country"){ echo "selected"; } ?>>Internation within Country</option>
+                                <option value="University/Institute" <?php if($employee_talk_poster_data['location'] == "University/Institute"){ echo "selected"; } ?>>University/Institute</option>
                             </select>
                         </div>
                         
                         <div class="form-group col-md-6">
                             <span>Organizing Institute Name</span>
-                            <input type="text" class="form-control form-control-sm" name="organizing_institute_name" required>
+                            <input type="text" class="form-control form-control-sm" name="organizing_institute_name" value="<?= $employee_talk_poster_data['organizing_institute_name'] ?>" required>
                         </div>
 
                         <div class="form-group col-md-6">
                             <span>Role</span>
                             <select class="form-control form-control-sm" name="role" required>
                                 <option value="">--Select--</option>
-                                <option value="Keynote Speaker">Keynote Speaker</option>
-                                <option value="Expert Talk">Expert Talk</option>
-                                <option value="Others">Others</option>
+                                <option value="Keynote Speaker" <?php if($employee_talk_poster_data['role'] == "Keynote Speaker"){ echo "selected"; } ?>>Keynote Speaker</option>
+                                <option value="Expert Talk" <?php if($employee_talk_poster_data['role'] == "Expert Talk"){ echo "selected"; } ?>>Expert Talk</option>
+                                <option value="Others" <?php if($employee_talk_poster_data['role'] == "Others"){ echo "selected"; } ?>>Others</option>
                             </select>
                         </div>
                         
                         <div class="form-group col-md-6 other_role" style="display: none;">
                             <span>Role Input field for Other type</span>
-                            <input type="text" class="form-control form-control-sm" name="other_role" required>
+                            <input type="text" class="form-control form-control-sm" name="other_role" value="<?= $employee_talk_poster_data['other_role'] ?>" required>
                         </div>
                        
                         <div class="form-group col-md-6">
                             <span>Start Date</span>
-                            <input type="date" class="form-control form-control-sm" name="start_date" required>
+                            <input type="date" class="form-control form-control-sm" name="start_date" value="<?= $employee_talk_poster_data['start_date'] ?>" required>
                         </div>
 
                         <div class="form-group col-md-6">
                             <span>End Date</span>
-                            <input type="date" class="form-control form-control-sm" name="end_date" required>
+                            <input type="date" class="form-control form-control-sm" name="end_date" value="<?= $employee_talk_poster_data['end_date'] ?>" required>
                         </div>
                         
                         <div class="form-group col-md-12">
@@ -150,12 +150,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Initial state
-    toggleOtherRole();
-
-    // Event listener
+    toggleOtherRole(); // Set initial state
     roleSelect.addEventListener('change', toggleOtherRole);
 });
+
 </script>
 
 
