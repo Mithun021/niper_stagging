@@ -185,13 +185,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Initial state
-    toggleOtherActivity();
+    // Call it after short timeout to ensure DOM is updated with PHP preselected values
+    setTimeout(toggleOtherActivity, 50);
 
-    // Listen for changes
     activitySelect.addEventListener('change', toggleOtherActivity);
 });
 </script>
+
 
 
 <?= $this->endSection() ?>
