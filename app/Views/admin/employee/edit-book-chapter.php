@@ -83,7 +83,7 @@ $books_chapter_author = new Books_chapter_author();
                                     <tbody>
                                     <?php foreach($books_chapter_coauthors as $coauthors){ ?>
                                         <tr>
-                                            <td><?= $authors['coauthor_name'] ?></td>
+                                            <td><?= $coauthors['coauthor_name'] ?></td>
                                             <td>
                                                 <button type="button" class="btn btn-sm btn-danger" id="removeCoAuthorrow">-</button>
                                             </td>
