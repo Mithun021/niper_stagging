@@ -1666,6 +1666,24 @@ use App\Models\Student_model;
             $books_chapter_coauthor->delete($id);
         }
 
+        public function delete_book_chapter($id){
+            $books_chapter_model = new Books_chapter_model();
+            $books_chapter_author = new Books_chapter_author();
+            $books_chapter_coauthor = new Books_chapter_coauthor();
+            $books_chapter_data = $books_chapter_model->get($id);
+            $old_document_file = $books_chapter_data['upload_file'];
+            if (file_exists("public/admin/uploads/books/" . $old_document_file)) {
+                unlink("public/admin/uploads/books/" . $old_document_file);
+            }
+            $result = $books_chapter_model->delete($id);
+            if ($result === true) {
+                $books_chapter_author->where('books_chapter_id', $id)->delete();
+                $books_chapter_coauthor->where('books_chapter_id', $id)->delete();
+                return redirect()->to('admin/book-chapter')->with('msg','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/book-chapter')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
        
 
         public function employee_academic_details(){
