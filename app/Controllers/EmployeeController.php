@@ -1568,6 +1568,74 @@ use App\Models\Student_model;
             }
         }
 
+        public function edit_book_chapter($id){
+            $employee_model = new Employee_model();
+            $books_chapter_model = new Books_chapter_model();
+            $books_chapter_author = new Books_chapter_author();
+            $books_chapter_coauthor = new Books_chapter_coauthor();
+            $data = ['title' => 'Book Chapter','book_chapter_id' => $id];
+            if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
+                $data['books_chapter'] = $books_chapter_model->get();
+                $data['books_chapter_data'] = $books_chapter_model->get($id);
+                return view('admin/employee/edit-book-chapter',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $books_chapter_data = $books_chapter_model->get($id);
+                $document = $this->request->getFile('upload_file');
+                $old_document_file = $books_chapter_data['upload_file'];
+
+                if (empty($old_document_file)) {
+                    if ($document->isValid() && !$document->hasMoved()) {
+                        $document_name = "books" . $document->getRandomName();
+                        $document->move(ROOTPATH . 'public/admin/uploads/employee/', $document_name);
+                    } else {
+                        $document_name = null;
+                    }
+                } else {
+                    if ($document->isValid() && !$document->hasMoved()) {
+                        if (file_exists("public/admin/uploads/employee/" . $old_document_file)) {
+                            unlink("public/admin/uploads/employee/" . $old_document_file);
+                        }
+                        $document_name = "books" . $document->getRandomName();
+                        $document->move(ROOTPATH . 'public/admin/uploads/employee/', $document_name);
+                    } else {
+                        $document_name = $old_document_file;
+                    }
+                }
+
+                $data = [
+                    'emplyee_id' => $this->request->getPost('Empid'),
+                    'book_chapter' => $this->request->getPost('book_chapter'),
+                    'title' => $this->request->getPost('title'),
+                    'publisher' => $this->request->getPost('publisher'),
+                    'level' => $this->request->getPost('level'),
+                    'total_pages' => $this->request->getPost('total_pages'),
+                    'publich_date_online' => $this->request->getPost('publich_date_online'),
+                    'publich_date_print' => $this->request->getPost('publich_date_print'),
+                    'acceptance_date' => $this->request->getPost('acceptance_date'),
+                    'communication_date' => $this->request->getPost('communication_date'),
+                    'isbn' => $this->request->getPost('isbn'),
+                    'issn_no' => $this->request->getPost('issn_no'),
+                    'doi' => $this->request->getPost('doi'),
+                    'web_link' => $this->request->getPost('web_link'),
+                    'upload_file' => $document_name,
+                    'upload_by' => $loggeduserId,
+                ];
+
+                
+                $result = $books_chapter_model->add($data, $id);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-book-chapter/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+                }else {
+                    return redirect()->to('admin/edit-book-chapter/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }  
+            }
+        }
+
         
 
         public function employee_academic_details(){

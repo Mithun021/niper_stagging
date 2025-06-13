@@ -8,9 +8,7 @@ $employee_model = new Employee_model();
 $books_chapter_author = new Books_chapter_author();
 ?>
 <style>
-    #addServicetable #coAuthorTbody #coAuthorRow:first-child td:last-child button {
-        display: none;
-    }
+    
 </style>
 <!-- start page title -->
 <div class="row">
@@ -25,25 +23,25 @@ $books_chapter_author = new Books_chapter_author();
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url('admin/book-chapter') ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url('admin/edit-book-chapter/'.$book_chapter_id) ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-lg-4 form-group">
                             <span for="Empid">Employee:</span>
                             <select name="Empid" id="Empid" class="form-control form-control-sm" required>
                                 <option value="">Select Employee</option>
                                 <?php foreach ($employee as $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?php if($value['id'] == $books_chapter_data['emplyee_id']){ echo "selected"; } ?>><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
                         <div class="col-lg-4 form-group">
                             <span for="">Book Chapter Paper<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="book_chapter" required>
+                            <input type="text" class="form-control form-control-sm" name="book_chapter" value="<?= $books_chapter_data['book_chapter'] ?>" required>
                         </div>
 
                         <div class="col-lg-4 form-group">
                             <span for="">Title<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="title" required>
+                            <input type="text" class="form-control form-control-sm" name="title" value="<?= $books_chapter_data['title'] ?>" required>
                         </div>
 
                         <div class="col-lg-12">
@@ -96,36 +94,36 @@ $books_chapter_author = new Books_chapter_author();
 
                         <div class="col-lg-4 form-group">
                             <span for="">Publisher<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="publisher" required>
+                            <input type="text" class="form-control form-control-sm" name="publisher" value="<?= $books_chapter_data['publisher'] ?>" required>
                         </div>
                         <div class="col-lg-4 form-group">
                             <span for="">Level</span>
                             <select class="form-control form-control-sm" name="level">
                                     <option value="">--Select--</option>
-                                    <option value="National">National</option>
-                                    <option value="International">International</option>
+                                    <option value="National" <?php if($books_chapter_data['level'] == "National"){ echo "selected"; } ?>>National</option>
+                                    <option value="International" <?php if($books_chapter_data['level'] == "International"){ echo "selected"; } ?>>International</option>
                             </select>
                         </div>
                         <div class="col-lg-4 form-group">
                             <span for="">Total no. of pages/Page Range</span>
-                            <input type="number" class="form-control form-control-sm" name="total_pages">
+                            <input type="number" class="form-control form-control-sm" name="total_pages" value="<?= $books_chapter_data['total_pages'] ?>">
                         </div>
                         <div class="col-lg-4 form-group">
                             <span for="">Published Date Online<</span>
-                            <input type="date" class="form-control form-control-sm" name="publich_date_online">
+                            <input type="date" class="form-control form-control-sm" name="publich_date_online" value="<?= $books_chapter_data['publich_date_online'] ?>">
                         </div>
                         <div class="col-lg-4 form-group">
                             <span for="">Published Date Print</span>
-                            <input type="date" class="form-control form-control-sm" name="publich_date_print">
+                            <input type="date" class="form-control form-control-sm" name="publich_date_print" value="<?= $books_chapter_data['publich_date_print'] ?>">
                         </div>
                         <div class="col-lg-4 form-group">
                             <span for="">Date Of Acceptance</span>
-                            <input type="date" class="form-control form-control-sm" name="acceptance_date">
+                            <input type="date" class="form-control form-control-sm" name="acceptance_date" value="<?= $books_chapter_data['acceptance_date'] ?>">
                         </div>
 
                         <div class="col-lg-4 form-group">
                             <span for="">Date of Communication</span>
-                            <input type="date" class="form-control form-control-sm" name="communication_date">
+                            <input type="date" class="form-control form-control-sm" name="communication_date" value="<?= $books_chapter_data['communication_date'] ?>">
                         </div>
 
                         <!-- <div class="col-lg-4 form-group">
@@ -140,27 +138,32 @@ $books_chapter_author = new Books_chapter_author();
 
                         <div class="col-lg-4 form-group">
                             <span for="">ISBN</span>
-                            <input type="text" class="form-control form-control-sm" name="isbn">
+                            <input type="text" class="form-control form-control-sm" name="isbn" value="<?= $books_chapter_data['isbn'] ?>">
                         </div>
 
                         <div class="col-lg-4 form-group">
                             <span for="">ISSN No.</span>
-                            <input type="text" class="form-control form-control-sm" name="issn_no">
+                            <input type="text" class="form-control form-control-sm" name="issn_no" value="<?= $books_chapter_data['issn_no'] ?>">
                         </div>
 
                         <div class="col-lg-4 form-group">
                             <span for="">Digital Object Identify</span>
-                            <input type="text" class="form-control form-control-sm" name="doi">
+                            <input type="text" class="form-control form-control-sm" name="doi" value="<?= $books_chapter_data['doi'] ?>">
                         </div>
 
                         <div class="col-lg-4 form-group">
                             <span for="">Web Link</span>
-                            <input type="url" class="form-control form-control-sm" name="web_link">
+                            <input type="url" class="form-control form-control-sm" name="web_link" value="<?= $books_chapter_data['web_link'] ?>">
                         </div>
 
                         <div class="col-lg-4 form-group">
                             <span for="">Upload File(.pdf)</span>
                             <input type="file" class="form-control form-control-sm" name="upload_file" accept=".pdf">
+                            <?php if (!empty($books_chapter_data['upload_file']) && file_exists('public/admin/uploads/books/' . $books_chapter_data['upload_file'])): ?>
+                                <a href="<?= base_url() ?>public/admin/uploads/books/<?= $books_chapter_data['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                            <?php else: ?>
+                                <img src="<?= base_url() ?>public/admin/uploads/books/invalid_image.png" alt="" height="40px">
+                            <?php endif; ?>
                         </div>
                         <div class="col-lg-12 form-group">
                             <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
@@ -241,21 +244,7 @@ $books_chapter_author = new Books_chapter_author();
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
-        var cloneLimit = 10;
-        var currentClones = 0;
-        $("#addnewCoAuthor").click(function(e) {
-            e.preventDefault();
-            if (currentClones < cloneLimit) {
-                currentClones++;
-                var cloneCatrow = $('#coAuthorRow').clone().appendTo('#coAuthorTbody');
-                $(cloneCatrow).find('input').val('');
-            }
-
-        });
-
-        $('#coAuthorTbody').on('click', '#removeCoAuthorrow', function() {
-            $(this).closest('tr').remove();
-        });
+       
 
     });
 </script>
