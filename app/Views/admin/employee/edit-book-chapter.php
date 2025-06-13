@@ -50,7 +50,7 @@ $books_chapter_author = new Books_chapter_author();
                                     <thead class="bg-light">
                                         <tr>
                                             <td scope="col">Author Details</td>
-                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewservicerow">+</button></td>
+                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" onclick="openAuthormodal(<?= $book_chapter_id ?>)">+</button></td>
                                         </tr>
 
                                     </thead>
@@ -76,7 +76,7 @@ $books_chapter_author = new Books_chapter_author();
                                     <thead class="bg-light">
                                         <tr>
                                             <td scope="col" width="80%">Co-Author Details</td>
-                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewCoAuthor">+</button></td>
+                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" onclick="openCoauthormodal(<?= $book_chapter_id ?>)">+</button></td>
                                         </tr>
 
                                     </thead>
@@ -243,8 +243,56 @@ $books_chapter_author = new Books_chapter_author();
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="authorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Author</h5>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Woohoo, you're reading this text in a modal!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="coauthorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Co-Author</h5>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Woohoo, you're reading this text in a modal!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
+    function openAuthormodal(book_chapter_id){
+        $('#authorModal').modal('show');
+    }
+    function openCoauthormodal(book_chapter_id){
+        $('#coauthorModal').modal('show');
+    }
     $(document).ready(function() {
        
 
