@@ -2440,6 +2440,47 @@ use App\Models\Student_model;
             }
         }
 
+        public function edit_employee_collaboration($id){
+            $employee_model = new Employee_model();
+            $employee_collaboration_model = new Employee_collaboration_model();
+            $data = ['title' => 'Employee Collaboration','employee_collaboration_id' => $id];
+            if ($this->request->is('get')) {
+                $data['employee'] = $employee_model->get();
+                $data['employee_collaboration'] = $employee_collaboration_model->get();
+                $data['employee_collaboration_data'] = $employee_collaboration_model->get($id);
+                return view('admin/employee/employee-collaboration',$data);
+            }else if ($this->request->is('post')) {
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                
+                $document = $this->request->getFile('file_upload');
+                if ($document->isValid() && ! $document->hasMoved()) {
+                    $documentNewName = "coll".rand(0,9999).$document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/employee', $documentNewName);    
+                }else{
+                 $documentNewName = "";
+                }
+                $data = [
+                    'employee_id' => $this->request->getPost('employee_id'),
+                    'title' => $this->request->getPost('title'),
+                    'collaborative_agency' => $this->request->getPost('collaborative_agency'),
+                    'collaboration_year' => $this->request->getPost('collaboration_year'),
+                    'duartion_in_month' => $this->request->getPost('duartion_in_month'),
+                    'name_of_activity' => $this->request->getPost('name_of_activity'),
+                    'file_upload' => $documentNewName,
+                    'upload_by' => $loggeduserId
+                ];
+                $result = $employee_collaboration_model->add($data);
+                if ($result === true) {
+                    return redirect()->to('admin/employee-collaboration')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                } else {
+                    return redirect()->to('admin/employee-collaboration')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                }
+            }
+        }
+
         public function employee_mou(){
             $employee_model = new Employee_model();
             $employee_mou_model = new Employee_mou_model();

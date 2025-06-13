@@ -21,45 +21,50 @@ $employee_model = new Employee_model();
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/employee-collaboration" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/edit-employee-collaboration/<?= $employee_collaboration_id ?>" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <span for="Empid">Employee:</span>
                             <select name="employee_id" id="employee_id" class="form-control form-control-sm my-select" required >
                                 <option value="">Select Employee</option>
                             <?php foreach($employee as $value){ ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
+                                <option value="<?= $value['id'] ?>" <?php if($value['id'] == $employee_collaboration_data['employee_id']){ echo "selected"; } ?>><?= $value['first_name']." ".$value['middle_name']." ".$value['last_name'] ?></option>
                             <?php } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Title of collaboration</span>
-                            <input type="text" class="form-control form-control-sm" name="title" required>
+                            <input type="text" class="form-control form-control-sm" name="title" value="<?= $employee_collaboration_data['title'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Name of Collaborative Agency</span>
-                            <input type="text" class="form-control form-control-sm my-select" name="collaborative_agency" required>
+                            <input type="text" class="form-control form-control-sm my-select" name="collaborative_agency"  value="<?= $employee_collaboration_data['collaborative_agency'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Year of Collaboration</span>
                             <select name="collaboration_year" class="form-control form-control-sm" required>
                                 <option value="">--Select--</option>
                                 <?php for ($i = 2000; $i <= date('Y'); $i++) { ?>
-                                    <option value="<?= $i ?>"><?= $i ?></option>
+                                    <option value="<?= $i ?>" <?php if($employee_collaboration_data['collaboration_year'] == $i){ echo "selected"; } ?>><?= $i ?></option>
                                 <?php } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Duration in months</span>
-                            <input type="text" class="form-control form-control-sm my-select" name="duartion_in_month" required>
+                            <input type="text" class="form-control form-control-sm my-select" name="duartion_in_month" value="<?= $employee_collaboration_data['duartion_in_month'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Name of Activity</span>
-                            <input type="text" class="form-control form-control-sm my-select" name="name_of_activity" required>
+                            <input type="text" class="form-control form-control-sm my-select" name="name_of_activity" value="<?= $employee_collaboration_data['name_of_activity'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span>File upload (pdf)</span>
                             <input type="file" class="form-control form-control-sm my-select" name="file_upload" accept=".pdf">
+                            <?php if (!empty($employee_collaboration_data['file_upload']) && file_exists('public/admin/uploads/employee/' . $employee_collaboration_data['file_upload'])): ?>
+                                <a href="<?= base_url() ?>public/admin/uploads/employee/<?= $employee_collaboration_data['file_upload'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                            <?php else: ?>
+                                <img src="<?= base_url() ?>public/admin/uploads/employee/invalid_image.png" alt="" height="30px">
+                            <?php endif; ?>
                         </div>
                         
                         <div class="form-group col-md-12">
