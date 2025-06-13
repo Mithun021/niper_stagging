@@ -2448,7 +2448,7 @@ use App\Models\Student_model;
                 $data['employee'] = $employee_model->get();
                 $data['employee_collaboration'] = $employee_collaboration_model->get();
                 $data['employee_collaboration_data'] = $employee_collaboration_model->get($id);
-                return view('admin/employee/employee-collaboration',$data);
+                return view('admin/employee/edit-employee-collaboration',$data);
             }else if ($this->request->is('post')) {
                 $sessionData = session()->get('loggedUserData');
                 if ($sessionData) {
@@ -2472,11 +2472,11 @@ use App\Models\Student_model;
                     'file_upload' => $documentNewName,
                     'upload_by' => $loggeduserId
                 ];
-                $result = $employee_collaboration_model->add($data);
+                $result = $employee_collaboration_model->add($data, $id);
                 if ($result === true) {
-                    return redirect()->to('admin/employee-collaboration')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                    return redirect()->to('admin/edit-employee-collaboration/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
                 } else {
-                    return redirect()->to('admin/employee-collaboration')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                    return redirect()->to('admin/edit-employee-collaboration/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
                 }
             }
         }
