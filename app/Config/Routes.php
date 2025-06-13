@@ -137,6 +137,8 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'book-chapter', 'EmployeeController::book_chapter');
     $routes->match(['get','post'],'edit-book-chapter/(:num)', 'EmployeeController::edit_book_chapter/$1');
     $routes->get('delete-book-chapter/(:num)', 'EmployeeController::delete_book_chapter/$1');
+    $routes->post('add-book-chapter-author', 'EmployeeController::add_book_chapter_author');
+    $routes->post('add-book-chapter-coauthor', 'EmployeeController::add_book_chapter_coauthor');
     
     $routes->match(['get','post'],'employee-patent', 'EmployeeController::employee_patent');
     $routes->match(['get','post'],'edit-employee-patent/(:num)', 'EmployeeController::edit_employee_patent/$1');

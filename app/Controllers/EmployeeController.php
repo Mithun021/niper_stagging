@@ -1638,7 +1638,23 @@ use App\Models\Student_model;
             }
         }
 
-        
+        public function add_book_chapter_author(){
+            $books_chapter_author = new Books_chapter_author();
+            $data = [
+                'books_chapter_id' => $this->request->getPost('book_chapter_id'),
+                'author_name' => $this->request->getPost('author_name'),
+            ];
+            $books_chapter_author->add($data);
+        }
+
+        public function add_book_chapter_coauthor(){
+            $books_chapter_coauthor = new Books_chapter_coauthor();
+            $data = [
+                'books_chapter_id' => $this->request->getPost('book_chapter_id'),
+                'coauthor_name' => $this->request->getPost('coauthor_name'),
+            ];
+            $books_chapter_coauthor->add($data);
+        }
 
         public function employee_academic_details(){
             $employee_model = new Employee_model();
