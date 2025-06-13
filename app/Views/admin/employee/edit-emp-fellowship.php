@@ -32,13 +32,13 @@ $books_chapter_author = new Books_chapter_author();
                             <select name="employee_id" id="Empid" class="form-control form-control-sm my-select" required>
                                 <option value="">Select Employee</option>
                                 <?php foreach ($employee as $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?php if($value['id'] == $employee_fellowship_data['employee_id']){ echo "selected"; } ?>><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
                         <div class="col-lg-6 form-group">
                             <span for="">Membership Title<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="membership_title" required>
+                            <input type="text" class="form-control form-control-sm" name="membership_title" value="<?= $employee_fellowship_data['membership_title'] ?>" required>
                         </div>
 
                         <div class="col-lg-12 form-group">
