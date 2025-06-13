@@ -188,7 +188,7 @@ $books_chapter_author = new Books_chapter_author();
                                 <td>File</td>
                                 <td>Book Title</td>
                                 <td>Book Chapter</td>
-                                <td>Month Year</td>
+                                <td>Published Date</td>
                                 <td>Employee</td>
                                 <td>Author</td>
                                 <td>ISBN/ISSN no</td>
@@ -210,7 +210,7 @@ $books_chapter_author = new Books_chapter_author();
                                     </td>
                                     <td><?= $value['title'] ?></td>
                                     <td><?= $value['book_chapter'] ?></td>
-                                    <td><?= $value['month'] ?></td>
+                                    <td><?= $value['publich_date_online'] ?></td>
                                     <td><?php $emp = $employee_model->get($value['emplyee_id']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
                                     <td>
