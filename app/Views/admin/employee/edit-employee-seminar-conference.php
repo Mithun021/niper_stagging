@@ -62,9 +62,9 @@ $employee_model = new Employee_model();
                             <span>Role</span>
                             <select class="form-control form-control-sm" name="role" required>
                                 <option value="">--Select--</option>
-                                <option value="Attended" <?php if($employee_seminar_conference_data['role'] == "Seminar"){ echo "selected"; } ?>>Attended</option>
-                                <option value="Organized" <?php if($employee_seminar_conference_data['role'] == "Seminar"){ echo "selected"; } ?>>Organized</option>
-                                <option value="Presented" <?php if($employee_seminar_conference_data['role'] == "Seminar"){ echo "selected"; } ?>>Presented</option>
+                                <option value="Attended" <?php if($employee_seminar_conference_data['role'] == "Attended"){ echo "selected"; } ?>>Attended</option>
+                                <option value="Organized" <?php if($employee_seminar_conference_data['role'] == "Organized"){ echo "selected"; } ?>>Organized</option>
+                                <option value="Presented" <?php if($employee_seminar_conference_data['role'] == "Presented"){ echo "selected"; } ?>>Presented</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
