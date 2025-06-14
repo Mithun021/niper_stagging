@@ -95,8 +95,8 @@ $employee_model = new Employee_model();
                                         <?php endif; ?>
 
                                     </td>
-                                    <td><?php $emp = $employee_model->get($value['upload_by']);
-                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
+                                    <td><?php $emp = $employee_model->get($value['upload_by']); if($emp){
+                                        echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']; } ?></td>
                                     <td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                             <a href="<?= base_url() ?>admin/edit-academic-details/<?= $value['id'] ?>" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pen"></i></a>
