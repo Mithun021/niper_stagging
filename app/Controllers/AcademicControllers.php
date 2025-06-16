@@ -381,6 +381,7 @@ class AcademicControllers extends BaseController
             $data['research_publication_type'] = $research_publication_type_model->get();
             $data['research_publication'] = $research_publication_model->get();
             $data['research_publication_data'] = $research_publication_model->get($id);
+            $data['research_publication_gallery'] = $research_publication_gallery_model->getByResearch($id);
             return view('admin/academics/edit-research-publication', $data);
         } else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');

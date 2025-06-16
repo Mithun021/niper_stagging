@@ -13,7 +13,23 @@ $research_publication_type_model = new Research_publication_type_model();
 $department_model = new Department_model();
 ?>
 <style>
+    .collab_gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px; /* space between images */
+        margin-top: 10px;
+    }
 
+    .gallery_image {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background: #f9f9f9;
+    }
 </style>
 <!-- start page title -->
 <div class="row">
@@ -51,6 +67,16 @@ $department_model = new Department_model();
                             <div class="form-group">
                                 <span for="">Upload Gallery(JPG,PNG)</span>
                                 <input type="file" class="form-control form-control-sm" name="gallery_file[]" accept=".jpg, .png" multiple >
+                                <div class="collab_gallery">
+                                <?php foreach ($research_publication_gallery as $key => $gallery) { ?>
+                                    <div class="gallery_image">
+                                        <?php if (!empty($gallery['files']) && file_exists('public/admin/uploads/research_publication/' . $gallery['files'])): ?>
+                                            <img src="<?= base_url() ?>public/admin/uploads/research_publication/<?= $gallery['files'] ?>" alt="" height="50px">
+                                        <?php endif; ?>
+                                        <button type="button" class="btn btn-sm btn-danger" onclick="deleteResearchGallery(<?= $gallery['id'] ?>)">X</button>
+                                    </div>
+                                <?php } ?>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
