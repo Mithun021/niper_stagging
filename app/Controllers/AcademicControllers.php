@@ -989,4 +989,20 @@ class AcademicControllers extends BaseController
         }
     }
 
+    public function delete_admission_brochure($id){
+        $admission_brochure_model = new Admission_brochure_model();
+        $admission_brochure_data = $admission_brochure_model->get($id);
+        $old_document_file = $admission_brochure_data['upload_file'];
+        $file_path = "public/admin/uploads/brochure/" . $old_document_file;
+        if (!empty($old_document_file) && file_exists($file_path) && is_file($file_path)) {
+            unlink($file_path);
+        }
+        $result = $admission_brochure_model->delete($id);
+        if ($result) {
+            return redirect()->to('admin/admission-brochure')->with('status', '<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/admission-brochure')->with('status', '<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+        }
+    }
+
 }
