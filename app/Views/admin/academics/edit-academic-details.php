@@ -25,24 +25,34 @@ $employee_model = new Employee_model();
                     <!-- Academic Year -->
                     <div class="form-group">
                         <span for="Acdyear">Session Start Year:<span class="text-danger">*</span></span>
-                        <input type="number" name="session_start_year" id="session_start_year" class="form-control form-control-sm" min="2000" required>
+                        <input type="number" name="session_start_year" id="session_start_year" class="form-control form-control-sm" min="2000" value="<?= $academic_details_data['session_start'] ?>" required>
                     </div>
 
                     <div class="form-group">
                         <span for="Acdyear">Session End Year:<span class="text-danger">*</span></span>
-                        <input type="number" name="session_end_year" id="session_end_year" class="form-control form-control-sm" min="2000" required>
+                        <input type="number" name="session_end_year" id="session_end_year" class="form-control form-control-sm" min="2000" value="<?= $academic_details_data['session_end'] ?>" required>
                     </div>
 
                     <!-- Upload Academic Calendar -->
                     <div class="form-group mt-3">
                         <span for="Acdcalenderfileupload">Upload Academic Calendar(.pdf):<span class="text-danger">*</span></span>
                         <input type="file" name="acdcalenderfileupload" id="acdcalenderfileupload" class="form-control" accept=".pdf" required>
+                        <?php if (!empty($academic_details_data['calendar_file']) && file_exists('public/admin/uploads/academic/' . $academic_details_data['calendar_file'])): ?>
+                            <a href="<?= base_url() ?>public/admin/uploads/academic/<?= $academic_details_data['calendar_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                        <?php else: ?>
+                            <img src="<?= base_url() ?>public/admin/uploads/academic/invalid_image.png" alt="" height="40px">
+                        <?php endif; ?>
                     </div>
 
                     <!-- Upload Academic Fees File -->
                     <div class="form-group mt-3">
                         <span for="Acdfeesfileupload">Upload Fees File(.pdf):<span class="text-danger">*</span></span>
                         <input type="file" name="acdfeesfileupload" id="acdfeesfileupload" class="form-control" accept=".pdf" required>
+                        <?php if (!empty($academic_details_data['fees_file']) && file_exists('public/admin/uploads/academic/' . $academic_details_data['fees_file'])): ?>
+                            <a href="<?= base_url() ?>public/admin/uploads/academic/<?= $academic_details_data['fees_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                        <?php else: ?>
+                            <img src="<?= base_url() ?>public/admin/uploads/academic/invalid_image.png" alt="" height="40px">
+                        <?php endif; ?>
                     </div>
 
                     <!-- Upload Academic Calendar -->
