@@ -209,19 +209,33 @@ class AcademicControllers extends BaseController
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId'];
             }
-            $annFile = $this->request->getFile('announcement_file');
-            if ($annFile->isValid() && ! $annFile->hasMoved()) {
-                $annFileImageName = "calendar" . $annFile->getRandomName();
-                $annFile->move(ROOTPATH . 'public/admin/uploads/announcement', $annFileImageName);
+            $announcement_data = $announcement_model->get($id);
+            $document = $this->request->getFile('announcement_file');
+            $old_document_file = $announcement_data['upload_file'];
+            if (empty($old_document_file)) {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    $document_name = "announcement" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/announcement/', $document_name);
+                } else {
+                    $document_name = null;
+                }
             } else {
-                $annFileImageName = "";
+                if ($document->isValid() && !$document->hasMoved()) {
+                    if (file_exists("public/admin/uploads/announcement/" . $old_document_file)) {
+                        unlink("public/admin/uploads/announcement/" . $old_document_file);
+                    }
+                    $document_name = "announcement" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/announcement/', $document_name);
+                } else {
+                    $document_name = $old_document_file;
+                }
             }
 
             $data = [
                 'announcement_date' => $this->request->getPost('annoncement_date'),
                 'announcement_title' => $this->request->getPost('title'),
                 'announcement_desc' => $this->request->getPost('description'),
-                'upload_file' => $annFileImageName,
+                'upload_file' => $document_name,
                 'announcement_status' => $this->request->getPost('status'),
                 'marquee_status' => $this->request->getPost('Marqueestatus'),
                 'upload_by' => $loggeduserId
