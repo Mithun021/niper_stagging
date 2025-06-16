@@ -723,6 +723,15 @@ class AcademicControllers extends BaseController
             }
         }
     }
+    public function delete_classified_mou_value($id){
+        $classified_mou_value_model = new Classified_mou_value_model();
+        $result = $classified_mou_value_model->delete($id);
+        if ($result) {
+            return redirect()->to('admin/classified-mou-value')->with('status', '<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/classified-mou-value')->with('status', '<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+        }
+    }
 
 
     public function admission_brochure()
