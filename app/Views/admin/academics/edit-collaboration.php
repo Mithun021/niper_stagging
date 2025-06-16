@@ -15,13 +15,21 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
     .collab_gallery {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px; /* Optional spacing between images */
+        gap: 10px; /* space between images */
         margin-top: 10px;
     }
 
     .gallery_image {
-        flex: 0 0 auto; /* Prevent shrinking */
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background: #f9f9f9;
     }
+
 </style>
 
 <!-- Page title and form layout -->
