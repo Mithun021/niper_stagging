@@ -84,7 +84,7 @@ $department_model = new Department_model();
                                 <span>Type of publication/Research</span>
                                 <select name="research_type" id="" class="form-control form-control-sm">
                                     <option value="">--Select--</option>
-                                    <?php foreach ($research_publication_type as $key => $value) { ?>
+                                    <?php print_r($research_publication_gallery); foreach ($research_publication_type as $key => $value) { ?>
                                         <option value="<?= $value['id'] ?>" <?php if($research_publication_data['reseach_publication_type_id'] == $value['id']){ echo "selected"; } ?>><?= $value['name'] ?></option>
                                     <?php } ?>
                                 </select>
