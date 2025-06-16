@@ -138,7 +138,7 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
                         <div class="col-md-6" id="renewalDateField" style="display: none;">
                             <div class="form-group">
                                 <span for="RenewalDate">Renewal Date:</span>
-                                <input type="date" name="RenewalDate" id="RenewalDate" class="form-control form-control-sm" value="<?= $collaboration_data['title'] ?>">
+                                <input type="date" name="RenewalDate" id="RenewalDate" class="form-control form-control-sm" value="<?= $collaboration_data['renewal_date'] ?>">
                             </div>
                         </div>
 
