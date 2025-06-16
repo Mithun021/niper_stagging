@@ -136,7 +136,7 @@ class AcademicControllers extends BaseController
         }
     }
 
-    public function delete_member_type_category($id){
+    public function delete_academic_details($id){
         $academic_model = new Academic_model();
         $academic_details_data = $academic_model->get($id);
         $old_document_file = $academic_details_data['calendar_file'];
