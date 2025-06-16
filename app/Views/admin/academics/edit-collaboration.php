@@ -29,33 +29,33 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="Collabtitle">Collaboration Title:<span class="text-danger">*</span></span>
-                                <input type="text" name="Collabtitle" id="Collabtitle" class="form-control form-control-sm" required>
+                                <input type="text" name="Collabtitle" id="Collabtitle" class="form-control form-control-sm" value="<?= $collaboration_data['title'] ?>" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="Collabinstitutename">Institution Name:<span class="text-danger">*</span></span>
-                                <input type="text" name="Collabinstitutename" id="Collabinstitutename" class="form-control form-control-sm" required>
+                                <input type="text" name="Collabinstitutename" id="Collabinstitutename" class="form-control form-control-sm" value="<?= $collaboration_data['title'] ?>" required>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <span for="Mediatitle">Description:</span>
-                                <textarea id="editor" name="description"></textarea>
+                                <textarea id="editor" name="description"><?= $collaboration_data['description'] ?></textarea>
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
                                 <span for="Collaborationdatetime">Collaboration Start Date:<span class="text-danger">*</span></span>
-                                <input type="date" name="Collaborationdate" id="Collaborationdate" class="form-control form-control-sm" required>
+                                <input type="date" name="Collaborationdate" id="Collaborationdate" class="form-control form-control-sm" value="<?= $collaboration_data['collaboration_date'] ?>" required>
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
                                 <span for="Collaborationdatetime">Collaboration End Date:</span>
-                                <input type="date" name="Collaborationenddate" id="Collaborationenddate" class="form-control form-control-sm">
+                                <input type="date" name="Collaborationenddate" id="Collaborationenddate" class="form-control form-control-sm" value="<?= $collaboration_data['collaboration_end_date'] ?>">
                             </div>
                         </div>
 
@@ -68,7 +68,7 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="Collabinstituelink">Institution Link:</span>
-                                <input type="url" name="Collabinstituelink" id="Collabinstituelink" class="form-control form-control-sm">
+                                <input type="url" name="Collabinstituelink" id="Collabinstituelink" class="form-control form-control-sm" value="<?= $collaboration_data['institute_link'] ?>">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -112,7 +112,7 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
                                 <select name="classified_mou" id="classified_mou" class="form-control form-control-sm">
                                     <option value="">--Select--</option>
                                 <?php foreach ($classified_mou as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?php if($collaboration_data['classified_mou'] ==  $value['id']){ echo "selected"; } ?>><?= $value['name'] ?></option>
                                 <?php } ?>
                                 </select>
                             </div>
@@ -127,9 +127,9 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
                             <div class="form-group">
                                 <span for="Collabstatus">Collaboration Status:</span>
                                 <select name="Collabstatus" id="Collabstatus" class="form-control form-control-sm" required>
-                                    <option value="active">Active</option>
-                                    <option value="expired">Expired</option>
-                                    <option value="renewed">Renewed</option>
+                                    <option value="active" <?php if($collaboration_data['status'] == "active"){ echo "selected"; } ?>>Active</option>
+                                    <option value="expired" <?php if($collaboration_data['status'] == "active"){ echo "selected"; } ?>>Expired</option>
+                                    <option value="renewed" <?php if($collaboration_data['status'] == "active"){ echo "selected"; } ?>>Renewed</option>
                                 </select>
                             </div>
                         </div>
@@ -138,7 +138,7 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
                         <div class="col-md-6" id="renewalDateField" style="display: none;">
                             <div class="form-group">
                                 <span for="RenewalDate">Renewal Date:</span>
-                                <input type="date" name="RenewalDate" id="RenewalDate" class="form-control form-control-sm">
+                                <input type="date" name="RenewalDate" id="RenewalDate" class="form-control form-control-sm" value="<?= $collaboration_data['title'] ?>">
                             </div>
                         </div>
 

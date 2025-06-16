@@ -462,6 +462,9 @@ class AcademicControllers extends BaseController
         if ($this->request->is("get")) {
             $data['classified_mou'] = $classified_mou_value_model->get();
             $data['collaboration'] = $collaboration_model->get();
+            $data['collaboration_data'] = $collaboration_model->get($id);
+            $data['collaboration_gallery'] = $collaboration_gallery_model->get_by_colid($id);
+            $data['collaboration_faculty'] = $collaboration_faculties_model->getByColId($id);
             return view('admin/academics/edit-collaboration', $data);
         } else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
@@ -502,17 +505,6 @@ class AcademicControllers extends BaseController
             $result = $collaboration_model->add($data);
             if ($result === true) {
                 $insert_id = $collaboration_model->getInsertID();
-
-                $faculty_coordinator = $this->request->getPost('faculty_coordinator');
-                if (!empty($faculty_coordinator)) {
-                    foreach ($faculty_coordinator as $key => $faculty) {
-                       $data2 = [
-                        'collaboration_id' => $insert_id,
-                        'faculty_name' => $faculty,
-                       ];
-                       $result = $collaboration_faculties_model->add($data2);
-                    }
-                }
 
                 if ($gallery_file) {
                     foreach ($gallery_file['collab_gallery'] as $file) {
