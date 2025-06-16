@@ -85,6 +85,8 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete_member_type_category/(:num)', 'EventsController::delete_member_type_category/$1');
     
     $routes->match(['get','post'],'accouncement', 'AcademicControllers::accouncement');
+    $routes->match(['get','post'],'edit-accouncement/(:num)', 'AcademicControllers::edit_accouncement/$1');
+    $routes->get('delete-accouncement/(:num)', 'AcademicControllers::delete_accouncement/$1');
     $routes->match(['get','post'],'classified-mou-value', 'AcademicControllers::classified_mou_value');
 
     $routes->match(['get','post'],'academic-details', 'AcademicControllers::academic_details');

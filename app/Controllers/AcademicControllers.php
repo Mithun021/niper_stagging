@@ -196,6 +196,46 @@ class AcademicControllers extends BaseController
         }
     }
 
+    public function edit_accouncement($id)
+    {
+        $announcement_model = new Announcement_model();
+        $data = ['title' => 'Accouncement', 'announcement_id' => $id];
+        if ($this->request->is("get")) {
+            $data['announcement'] = $announcement_model->get();
+            $data['announcement_data'] = $announcement_model->get($id);
+            return view('admin/academics/edit-accouncement', $data);
+        } else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId'];
+            }
+            $annFile = $this->request->getFile('announcement_file');
+            if ($annFile->isValid() && ! $annFile->hasMoved()) {
+                $annFileImageName = "calendar" . $annFile->getRandomName();
+                $annFile->move(ROOTPATH . 'public/admin/uploads/announcement', $annFileImageName);
+            } else {
+                $annFileImageName = "";
+            }
+
+            $data = [
+                'announcement_date' => $this->request->getPost('annoncement_date'),
+                'announcement_title' => $this->request->getPost('title'),
+                'announcement_desc' => $this->request->getPost('description'),
+                'upload_file' => $annFileImageName,
+                'announcement_status' => $this->request->getPost('status'),
+                'marquee_status' => $this->request->getPost('Marqueestatus'),
+                'upload_by' => $loggeduserId
+            ];
+
+            $result = $announcement_model->add($data, $id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-accouncement/'.$id)->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-accouncement/'.$id)->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
+        }
+    }
+
     public function rules_regulations()
     {
         $rules_regulations_model = new Rules_regulations_model();

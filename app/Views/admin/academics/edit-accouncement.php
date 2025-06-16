@@ -20,38 +20,43 @@
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/accouncement" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/edit-accouncement/<?= $announcement_id ?>" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Anouncement Date<span class="text-danger">*</span></span>
-                        <input type="date" id="annoncement_date" name="annoncement_date" class="form-control form-control-sm" required>
+                        <input type="date" id="annoncement_date" name="annoncement_date" class="form-control form-control-sm" value="<?= $announcement_data['announcement_date'] ?>" required>
                     </div>
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
-                        <textarea id="editor2" name="title"></textarea>
+                        <textarea id="editor2" name="title"><?= $announcement_data['announcement_title'] ?></textarea>
                     </div>
                     <div class="form-group">
                         <span for="">Upload File(JPG,PNG,PDF)</span>
-                        <input type="file" class="form-control form-control-sm" name="announcement_file" accept=".jpg, .png, .pdf" required>
+                        <input type="file" class="form-control form-control-sm" name="announcement_file" accept=".jpg, .png, .pdf">
+                        <?php if (!empty($announcement_data['upload_file']) && file_exists('public/admin/uploads/announcement/' . $announcement_data['upload_file'])): ?>
+                            <a href="<?= base_url() ?>public/admin/uploads/announcement/<?= $announcement_data['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
+                        <?php else: ?>
+                            <img src="<?= base_url() ?>public/admin/uploads/announcement/invalid_image.png" alt="" height="40px">
+                        <?php endif; ?>
                     </div>
 
                     <div class="form-group">
                         <span for="">Desription</span>
-                        <textarea id="editor" name="description"></textarea>
+                        <textarea id="editor" name="description"><?= $announcement_data['announcement_desc'] ?></textarea>
                     </div>
                     <div class="form-group">
                         <span>Announcement Status</span>
                         <select name="status" id="status" class="form-control form-control-sm">
-                            <option value="1">Publish</option>
-                            <option value="2">Archive</option>
-                            <option value="0">Draft</option>
+                            <option value="1" <?php if($announcement_data['announcement_desc'] == 1){ echo "selected"; } ?>>Publish</option>
+                            <option value="2" <?php if($announcement_data['announcement_desc'] == 2){ echo "selected"; } ?>>Archive</option>
+                            <option value="0" <?php if($announcement_data['announcement_desc'] == 0){ echo "selected"; } ?>>Draft</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <span>Marquee Status</span>
                         <select name="Marqueestatus" id="Marqueestatus" class="form-control form-control-sm">
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
+                            <option value="1" <?php if($announcement_data['announcement_desc'] == 1){ echo "selected"; } ?>>Active</option>
+                            <option value="0" <?php if($announcement_data['announcement_desc'] == 0){ echo "selected"; } ?>>Inactive</option>
                         </select>
                     </div>
 
