@@ -386,7 +386,7 @@ class AcademicControllers extends BaseController
             }
             $institutelogo = $this->request->getFile('institutelogo');
             if ($institutelogo->isValid() && ! $institutelogo->hasMoved()) {
-                $institutelogoNewName = "calendar" . $institutelogo->getRandomName();
+                $institutelogoNewName = "ins_logo" . $institutelogo->getRandomName();
                 $institutelogo->move(ROOTPATH . 'public/admin/uploads/collaboration', $institutelogoNewName);
             } else {
                 $institutelogoNewName = "";
@@ -431,7 +431,7 @@ class AcademicControllers extends BaseController
                     }
                 }
 
-                if ($gallery_file) {
+                if (isset($gallery_file['collab_gallery']) && !empty($gallery_file['collab_gallery'][0]->getName())) {
                     foreach ($gallery_file['collab_gallery'] as $file) {
                         if ($file->isValid() && !$file->hasMoved()) {
                             $newName = "gallery".rand(0,9999).$file->getRandomName();
@@ -472,19 +472,49 @@ class AcademicControllers extends BaseController
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId'];
             }
+            $collaboration_data = $collaboration_model->get($id);
             $institutelogo = $this->request->getFile('institutelogo');
-            if ($institutelogo->isValid() && ! $institutelogo->hasMoved()) {
-                $institutelogoNewName = "calendar" . $institutelogo->getRandomName();
-                $institutelogo->move(ROOTPATH . 'public/admin/uploads/collaboration', $institutelogoNewName);
+            $old_institutelogo = $collaboration_data['institute_logo'];
+
+            if (empty($old_institutelogo)) {
+                if ($institutelogo->isValid() && !$institutelogo->hasMoved()) {
+                    $institutelogo_name = "ins_logo" . $institutelogo->getRandomName();
+                    $institutelogo->move(ROOTPATH . 'public/admin/uploads/collaboration/', $institutelogo_name);
+                } else {
+                    $institutelogo_name = null;
+                }
             } else {
-                $institutelogoNewName = "";
+                if ($institutelogo->isValid() && !$institutelogo->hasMoved()) {
+                    if (file_exists("public/admin/uploads/collaboration/" . $old_institutelogo)) {
+                        unlink("public/admin/uploads/collaboration/" . $old_institutelogo);
+                    }
+                    $institutelogo_name = "ins_logo" . $institutelogo->getRandomName();
+                    $institutelogo->move(ROOTPATH . 'public/admin/uploads/collaboration/', $institutelogo_name);
+                } else {
+                    $institutelogo_name = $old_institutelogo;
+                }
             }
+
+            
             $Collabfile = $this->request->getFile('Collabfile');
-            if ($Collabfile->isValid() && ! $Collabfile->hasMoved()) {
-                $CollabfileNewName = "file" . $Collabfile->getRandomName();
-                $Collabfile->move(ROOTPATH . 'public/admin/uploads/collaboration', $CollabfileNewName);
+            $old_collaboration_file = $collaboration_data['collaboration_file'];
+            if (empty($old_collaboration_file)) {
+                if ($Collabfile->isValid() && !$Collabfile->hasMoved()) {
+                    $Collabfile_name = "file" . $Collabfile->getRandomName();
+                    $Collabfile->move(ROOTPATH . 'public/admin/uploads/collaboration/', $Collabfile_name);
+                } else {
+                    $Collabfile_name = null;
+                }
             } else {
-                $CollabfileNewName = "";
+                if ($Collabfile->isValid() && !$Collabfile->hasMoved()) {
+                    if (file_exists("public/admin/uploads/collaboration/" . $old_collaboration_file)) {
+                        unlink("public/admin/uploads/collaboration/" . $old_collaboration_file);
+                    }
+                    $Collabfile_name = "file" . $Collabfile->getRandomName();
+                    $Collabfile->move(ROOTPATH . 'public/admin/uploads/collaboration/', $Collabfile_name);
+                } else {
+                    $Collabfile_name = $old_collaboration_file;
+                }
             }
             $gallery_file = $this->request->getFiles();
             $data = [
@@ -493,9 +523,9 @@ class AcademicControllers extends BaseController
                 'institute_name' => $this->request->getPost('Collabinstitutename'),
                 'collaboration_date' => $this->request->getPost('Collaborationdate'),
                 'collaboration_end_date' => $this->request->getPost('Collaborationenddate'),
-                'institute_logo' => $institutelogoNewName,
+                'institute_logo' => $institutelogo_name,
                 'institute_link' => $this->request->getPost('Collabinstituelink'),
-                'collaboration_file' => $CollabfileNewName,
+                'collaboration_file' => $Collabfile_name,
                 // 'faculty_coordinator' => $this->request->getPost('faculty_coordinator'),
                 'classified_mou' => $this->request->getPost('classified_mou'),
                 // 'collaboration_tenure_year' => $this->request->getPost('Collabtenure'),
@@ -504,11 +534,11 @@ class AcademicControllers extends BaseController
                 'upload_by' => $loggeduserId
             ];
 
-            $result = $collaboration_model->add($data);
+            $result = $collaboration_model->add($data, $id);
             if ($result === true) {
                 $insert_id = $collaboration_model->getInsertID();
 
-                if ($gallery_file) {
+                if (isset($gallery_file['collab_gallery']) && !empty($gallery_file['collab_gallery'][0]->getName())) {
                     foreach ($gallery_file['collab_gallery'] as $file) {
                         if ($file->isValid() && !$file->hasMoved()) {
                             $newName = "gallery".rand(0,9999).$file->getRandomName();
