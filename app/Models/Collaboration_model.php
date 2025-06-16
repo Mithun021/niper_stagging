@@ -5,7 +5,7 @@
     {
         protected $table         = 'collaboration';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['title','description','institute_name','collaboration_date','collaboration_end_date','institute_logo','institute_link','collaboration_file','classified_mou','faculty_coordinator','collaboration_tenure_year','status','upload_by'];
+        protected $allowedFields = ['title','description','institute_name','collaboration_date','collaboration_end_date','institute_logo','institute_link','collaboration_file','classified_mou','faculty_coordinator','collaboration_tenure_year','status','renewal_date','upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
