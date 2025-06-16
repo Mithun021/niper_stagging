@@ -582,6 +582,21 @@ class AcademicControllers extends BaseController
            echo 'error';
         }
     }
+    public function deleteCollabGallery($id) {
+        $collaboration_gallery_model = new Collaboration_gallery_model();
+        $announcement_data = $collaboration_gallery_model->get($id);
+        $old_document_file = $announcement_data['gallery_file'];
+        $file_path = "public/admin/uploads/collaboration/" . $old_document_file;
+        if (!empty($old_document_file) && file_exists($file_path) && is_file($file_path)) {
+            unlink($file_path);
+        }
+        $result = $collaboration_gallery_model->delete($id);
+        if ($result === true) {
+            echo 'success';
+        } else {
+           echo 'error';
+        }
+    }
     public function research_publication_type(){
         $research_publication_type_model = new Research_publication_type_model();
         $data = ['title' => 'Research Publication Type'];

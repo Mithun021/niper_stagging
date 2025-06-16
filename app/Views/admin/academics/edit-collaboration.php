@@ -310,6 +310,23 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
         }
      }
 
+     function deleteCollabGallery(collab_gallery_id) { 
+        if(confirm('Are you sure...!')){
+            $.ajax({
+                type: "GET",
+                url: "<?= base_url('admin/deleteCollabGallery/') ?>" + collab_gallery_id,
+                success : function(response){
+                    if(response == 'success'){
+                        alert('Collaboration Gallery deleted successfully');
+                        window.location.reload();
+                    }else{
+                        alert('Error deleting collaboration Gallery');
+                    }
+                }
+            });
+        }
+     }d
+
     function toggleRenewalDateField() {
         var collabStatus = document.getElementById('Collabstatus');
         var renewalDateField = document.getElementById('renewalDateField');
