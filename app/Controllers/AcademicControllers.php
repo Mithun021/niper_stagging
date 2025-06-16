@@ -470,6 +470,33 @@ class AcademicControllers extends BaseController
         }
     }
 
+    public function delete_research_publication($id){
+        $research_publication_model = new Research_publication_model();
+        $research_publication_gallery_model = new Research_publication_gallery_model();
+        $research_publication_data = $research_publication_model->get($id);
+        $thumbnail = $research_publication_data['thumbnail'];
+        $thumbnail_path = "public/admin/uploads/research_publication/" . $thumbnail;
+        if (!empty($thumbnail) && file_exists($thumbnail_path) && is_file($thumbnail_path)) {
+            unlink($thumbnail_path);
+        }
+        if($research_publication_model->delete($id)){
+
+            $gallery_data = $research_publication_gallery_model->getByResearch($id);
+            foreach ($gallery_data as $key => $gallery) {
+                $old_document_file = $gallery['files'];
+                $file_path = "public/admin/uploads/research_publication/" . $old_document_file;
+                if (!empty($old_document_file) && file_exists($file_path) && is_file($file_path)) {
+                    unlink($file_path);
+                }
+                $research_publication_gallery_model->delete($gallery['id']);
+            }
+
+            return redirect()->to('admin/research-publication')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        }else{
+            return redirect()->to('admin/research-publication')->with('status','<div class="alert alert-danger" role="alert"> Failed to delete. </div>');
+        }
+    }
+
     public function collaboration()
     {
         $collaboration_faculties_model = new Collaboration_faculties_model();
