@@ -20,7 +20,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/edit-classified-mou-value/') ?>">
+                <form method="post" action="<?= base_url('admin/edit-classified-mou-value/'.$classified_id) ?>">
                     <div class="form-group">
                         <span for="">Classified MoU Value<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="mou_value" value="<?= $classified_mou_data['name'] ?>" required>
