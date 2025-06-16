@@ -21,7 +21,7 @@ $employee_model = new Employee_model();
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/academic-details" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/edit-academic-details/<?= $academic_id ?>" method="post" enctype="multipart/form-data">
                     <!-- Academic Year -->
                     <div class="form-group">
                         <span for="Acdyear">Session Start Year:<span class="text-danger">*</span></span>
@@ -36,7 +36,7 @@ $employee_model = new Employee_model();
                     <!-- Upload Academic Calendar -->
                     <div class="form-group mt-3">
                         <span for="Acdcalenderfileupload">Upload Academic Calendar(.pdf):<span class="text-danger">*</span></span>
-                        <input type="file" name="acdcalenderfileupload" id="acdcalenderfileupload" class="form-control" accept=".pdf" required>
+                        <input type="file" name="acdcalenderfileupload" id="acdcalenderfileupload" class="form-control" accept=".pdf" >
                         <?php if (!empty($academic_details_data['calendar_file']) && file_exists('public/admin/uploads/academic/' . $academic_details_data['calendar_file'])): ?>
                             <a href="<?= base_url() ?>public/admin/uploads/academic/<?= $academic_details_data['calendar_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
                         <?php else: ?>
@@ -47,7 +47,7 @@ $employee_model = new Employee_model();
                     <!-- Upload Academic Fees File -->
                     <div class="form-group mt-3">
                         <span for="Acdfeesfileupload">Upload Fees File(.pdf):<span class="text-danger">*</span></span>
-                        <input type="file" name="acdfeesfileupload" id="acdfeesfileupload" class="form-control" accept=".pdf" required>
+                        <input type="file" name="acdfeesfileupload" id="acdfeesfileupload" class="form-control" accept=".pdf">
                         <?php if (!empty($academic_details_data['fees_file']) && file_exists('public/admin/uploads/academic/' . $academic_details_data['fees_file'])): ?>
                             <a href="<?= base_url() ?>public/admin/uploads/academic/<?= $academic_details_data['fees_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
                         <?php else: ?>
