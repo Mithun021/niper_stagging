@@ -828,6 +828,16 @@ class AcademicControllers extends BaseController
         }
     }
 
+    public function delete_research_publication_type($id){
+        $research_publication_type_model = new Research_publication_type_model();
+        $result = $research_publication_type_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/research-publication-type')->with('status', '<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/research-publication-type')->with('status', '<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+        }
+    }
+
     public function classified_mou_value(){
         $classified_mou_value_model = new Classified_mou_value_model();
         $data = ['title' => 'Classified MoU Value'];
