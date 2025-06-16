@@ -803,6 +803,30 @@ class AcademicControllers extends BaseController
             }
         }
     }
+    public function edit_research_publication_type($id){
+        $research_publication_type_model = new Research_publication_type_model();
+        $data = ['title' => 'Research Publication Type', 'research_type_id' => $id];
+        if ($this->request->is("get")) {
+            $data['research_publication_type'] = $research_publication_type_model->get();
+            $data['research_type_data'] = $research_publication_type_model->get($id);
+            return view('admin/academics/edit-research-publication-type', $data);
+        } else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId'];
+            }
+            $data = [
+                'name' => $this->request->getPost('category_name'),
+                'upload_by' => $loggeduserId
+            ];
+            $result = $research_publication_type_model->add($data, $id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-research-publication-type/'.$id)->with('status', '<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-research-publication-type/'.$id)->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
+        }
+    }
 
     public function classified_mou_value(){
         $classified_mou_value_model = new Classified_mou_value_model();

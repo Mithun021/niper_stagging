@@ -20,10 +20,10 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/research-publication-type') ?>">
+                <form method="post" action="<?= base_url('admin/edit-research-publication-type/'.$research_type_id) ?>">
                     <div class="form-group">
                         <span for="">Category Name<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="category_name" required>
+                        <input type="text" class="form-control form-control-sm" name="category_name" value="<?= $research_type_data['name'] ?>" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>

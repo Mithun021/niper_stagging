@@ -112,6 +112,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('deleteResearchGallery/(:num)', 'AcademicControllers::deleteResearchGallery/$1');
 
     $routes->match(['get','post'],'research-publication-type', 'AcademicControllers::research_publication_type');
+    $routes->match(['get','post'],'edit-research-publication-type/(:num)', 'AcademicControllers::edit_research_publication_type/$1');
+    $routes->get('delete-research-publication-type/(:num)', 'AcademicControllers::delete_research_publication_type/$1');
+
     $routes->match(['get','post'],'faculty-awards', 'AchievementsController::faculty_awards');
     $routes->match(['get','post'],'awards-recognition', 'AchievementsController::awards_recognition');
     $routes->match(['get','post'],'student-achievements', 'AchievementsController::student_achievements');
