@@ -597,6 +597,60 @@ class AcademicControllers extends BaseController
            echo 'error';
         }
     }
+
+    public function delete_collaboration($id){
+        $collaboration_model = new Collaboration_model();
+        $collaboration_faculties_model = new Collaboration_faculties_model();
+        $collaboration_gallery_model = new Collaboration_gallery_model();
+
+        $collaboration_data = $collaboration_model->get($id);
+
+        if (!$collaboration_data) {
+            return redirect()->to('admin/collaboration')->with('status', '<div class="alert alert-danger" role="alert">Record not found</div>');
+        }
+
+        // Delete institute logo
+        $logo_file = $collaboration_data['institute_logo'];
+        $logo_path = "public/admin/uploads/collaboration/" . $logo_file;
+        if (!empty($logo_file) && file_exists($logo_path) && is_file($logo_path)) {
+            unlink($logo_path);
+        }
+
+        // Delete collaboration file
+        $collab_file = $collaboration_data['collaboration_file'];
+        $collab_path = "public/admin/uploads/collaboration/" . $collab_file;
+        if (!empty($collab_file) && file_exists($collab_path) && is_file($collab_path)) {
+            unlink($collab_path);
+        }
+
+        // Delete main collaboration record
+        $result = $collaboration_model->delete($id);
+
+        if ($result === true) {
+
+            // Delete related faculty records
+            $collaboration_faculties_model->where('collaboration_id', $id)->delete();
+
+            // Delete gallery files and records
+            $collaboration_gallery = $collaboration_gallery_model->get_by_colid($id);
+            if (!empty($collaboration_gallery)) {
+                foreach ($collaboration_gallery as $gallery) {
+                    $gallery_file = $gallery['gallery_file'];
+                    $gallery_path = "public/admin/uploads/collaboration/" . $gallery_file;
+                    if (!empty($gallery_file) && file_exists($gallery_path) && is_file($gallery_path)) {
+                        unlink($gallery_path);
+                    }
+                    $collaboration_gallery_model->delete($gallery['id']);
+                }
+            }
+
+            return redirect()->to('admin/collaboration')->with('status', '<div class="alert alert-success" role="alert">Data deleted successfully.</div>');
+        } else {
+            return redirect()->to('admin/collaboration')->with('status', '<div class="alert alert-danger" role="alert">Failed to delete record.</div>');
+        }
+    }
+
+
     public function research_publication_type(){
         $research_publication_type_model = new Research_publication_type_model();
         $data = ['title' => 'Research Publication Type'];
