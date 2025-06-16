@@ -68,14 +68,14 @@ $department_model = new Department_model();
                                 <span for="">Upload Gallery(JPG,PNG)</span>
                                 <input type="file" class="form-control form-control-sm" name="gallery_file[]" accept=".jpg, .png" multiple >
                                 <div class="collab_gallery">
-                                <?php foreach ($research_publication_gallery as $key => $gallery) { if ($gallery['research_publication_id'] == $research_id) { ?>
+                                <?php foreach ($research_publication_gallery as $key => $gallery) {  ?>
                                     <div class="gallery_image">
                                         <?php if (!empty($gallery['files']) && file_exists('public/admin/uploads/research_publication/' . $gallery['files'])): ?>
                                             <img src="<?= base_url() ?>public/admin/uploads/research_publication/<?= $gallery['files'] ?>" alt="" height="50px">
                                         <?php endif; ?>
                                         <button type="button" class="btn btn-sm btn-danger" onclick="deleteResearchGallery(<?= $gallery['id'] ?>)">X</button>
                                     </div>
-                                <?php } } ?>
+                                <?php }  ?>
                                 </div>
                             </div>
                         </div>

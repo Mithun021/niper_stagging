@@ -27,7 +27,7 @@
         }
 
         public function getByResearch($id){
-            $result = $this->orderBy('research_publication_id',$id)->findAll();
+            $result = $this->where('research_publication_id',$id)->findAll();
             return $result;
         }
     }
