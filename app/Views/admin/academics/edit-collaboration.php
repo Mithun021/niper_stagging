@@ -89,23 +89,26 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
                         </div>
                         <div class="col-md-12">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="addServicetable"> 
+                                <table class="table table-bordered"> 
                                     <thead class="bg-light">
                                         <tr>
                                             <td scope="col">Faculty Coordinator</td>
-                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewservicerow">+</button></td>
+                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary">+</button></td>
                                         </tr>
                             
                                     </thead>
-                                    <tbody id="stockTbody">
-                                        <tr id="stockTrow">
+                                    <tbody >
+                                    <?php foreach ($collaboration_faculty as $key => $faculty) { ?>
+                                        <tr >
                                             <td>
-                                            <input type="text" name="faculty_coordinator[]" id="faculty_coordinator" class="form-control form-control-sm">
+                                                <?= $faculty['faculty_name'] ?>
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
                                             </td>
                                         </tr>
+                                    <?php } ?>
+                                        
                                     </tbody>
                                 </table>
                             </div>
