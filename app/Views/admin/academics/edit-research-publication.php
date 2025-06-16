@@ -28,12 +28,12 @@ $department_model = new Department_model();
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/research-publication" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/edit-research-publication/<?= $research_id ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Title<span class="text-danger">*</span></span>
-                                <input type="text" class="form-control form-control-sm" name="title">
+                                <input type="text" class="form-control form-control-sm" name="title" value="<?= $research_publication_data['title'] ?>">
                             </div>
                         </div>
                         <div class="col-md-6">

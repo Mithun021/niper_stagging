@@ -105,7 +105,11 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     // $routes->match(['get','post'],'achievements', 'AdminControllers::achievements');
     $routes->match(['get','post'],'admission-brochure', 'AcademicControllers::admission_brochure');
     $routes->match(['get','post'],'testimonial', 'AdminControllers::testimonial');
+
     $routes->match(['get','post'],'research-publication', 'AcademicControllers::research_publication');
+    $routes->match(['get','post'],'edit-research-publication/(:num)', 'AcademicControllers::edit_research_publication/$1');
+    $routes->get('delete-research-publication/(:num)', 'AcademicControllers::delete_research_publication/$1');
+
     $routes->match(['get','post'],'research-publication-type', 'AcademicControllers::research_publication_type');
     $routes->match(['get','post'],'faculty-awards', 'AchievementsController::faculty_awards');
     $routes->match(['get','post'],'awards-recognition', 'AchievementsController::awards_recognition');

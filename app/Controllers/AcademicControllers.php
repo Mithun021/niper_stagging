@@ -368,6 +368,76 @@ class AcademicControllers extends BaseController
         }
     }
 
+    public function edit_research_publication($id)
+    {
+        $department_model = new Department_model();
+        $research_publication_type_model = new Research_publication_type_model();
+        $research_publication_model = new Research_publication_model();
+        $research_publication_gallery_model = new Research_publication_gallery_model();
+        $data = ['title' => 'Research Publication', 'research_id' => $id];
+        if ($this->request->is("get")) {
+            $data['department'] = $department_model->activeData();
+            // echo "<pre>";print_r($data['department']); die;
+            $data['research_publication_type'] = $research_publication_type_model->get();
+            $data['research_publication'] = $research_publication_model->get();
+            $data['research_publication_data'] = $research_publication_model->get($id);
+            return view('admin/academics/edit-research-publication', $data);
+        } else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData && isset($sessionData['loggeduserId'])) {
+                $loggedUserId = $sessionData['loggeduserId'];
+            } else {
+                return redirect()->to('admin/login')->with('status', '<div class="alert alert-danger" role="alert"> User not logged in </div>');
+            }
+            $research_publication_data = $research_publication_model->get($id);
+
+            $thumbnail = $this->request->getFile('thumbnail');
+            $thumbnailNewName = "";
+
+            if ($thumbnail && $thumbnail->isValid() && !$thumbnail->hasMoved()) {
+                $thumbnailNewName = rand(0, 9999) . $thumbnail->getRandomName();
+                $thumbnail->move(ROOTPATH . 'public/admin/uploads/research_publication', $thumbnailNewName);
+            }
+
+            $data = [
+                'title' => $this->request->getPost('title'),
+                'description' => $this->request->getPost('description'),
+                'thumbnail' => $thumbnailNewName,
+                'reseach_publication_type_id' => $this->request->getPost('research_type'),
+                'impact_factor' => $this->request->getPost('impact_factor'),
+                'faculty_name' => $this->request->getPost('faculty_name'),
+                'patent_no' => $this->request->getPost('patent_no'),
+                'issn_no' => $this->request->getPost('issn_no'),
+                'isbn_no' => $this->request->getPost('isbn_no'),
+                'doi_no' => $this->request->getPost('doi_no'),
+                'department_id' => $this->request->getPost('department'),
+                'upload_by' => $loggedUserId,
+            ];
+            $result = $research_publication_model->add($data);
+
+            if ($result == true) {
+                $insert_id = $research_publication_model->getInsertID();
+                $albumFiles = $this->request->getFiles();
+                if ($albumFiles && isset($albumFiles['gallery_file'])) {
+                    foreach ($albumFiles['gallery_file'] as $file) {
+                        if ($file->isValid() && !$file->hasMoved()) {
+                            $newName = $file->getRandomName();
+                            $file->move(ROOTPATH . 'public/admin/uploads/research_publication', $newName);
+                            $fileData = [
+                                'research_publication_id' => $insert_id,
+                                'files' => $newName,
+                            ];
+                            $research_publication_gallery_model->add($fileData);
+                        }
+                    }
+                }
+                return redirect()->to('admin/edit-research-publication/'.$id)->with('status', '<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-research-publication/'.$id)->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
+        }
+    }
+
     public function collaboration()
     {
         $collaboration_faculties_model = new Collaboration_faculties_model();
