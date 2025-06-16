@@ -87,8 +87,12 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'accouncement', 'AcademicControllers::accouncement');
     $routes->match(['get','post'],'edit-accouncement/(:num)', 'AcademicControllers::edit_accouncement/$1');
     $routes->get('delete-accouncement/(:num)', 'AcademicControllers::delete_accouncement/$1');
-    
+
     $routes->match(['get','post'],'classified-mou-value', 'AcademicControllers::classified_mou_value');
+
+    $routes->match(['get', 'post'], 'collaboration', 'AcademicControllers::collaboration');
+    $routes->match(['get','post'],'edit-collaboration/(:num)', 'AcademicControllers::edit_collaboration/$1');
+    $routes->get('delete-collaboration/(:num)', 'AcademicControllers::delete_collaboration/$1');
 
     $routes->match(['get','post'],'academic-details', 'AcademicControllers::academic_details');
     $routes->match(['get','post'],'edit-academic-details/(:num)', 'AcademicControllers::edit_academic_details/$1');
@@ -268,7 +272,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'update-bog-member-order', 'AdminControllers::update_bog_member_order');
     $routes->match(['get','post'],'leadership-and-media-link', 'AdminControllers::leadership_and_media_link');
 
-    $routes->match(['get', 'post'], 'collaboration', 'AcademicControllers::collaboration');
+    
     $routes->match(['get', 'post'], 'committee-details', 'CommitteeController::committee_details');
     $routes->match(['get', 'post'], 'copyright-details', 'CopyrightController::copyright_details');
     $routes->match(['get', 'post'], 'patent-details', 'PatentController::patent_details');
