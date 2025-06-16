@@ -104,7 +104,7 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
                                                 <?= $faculty['faculty_name'] ?>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-sm btn-danger" onclick="deleteCollabFaculty(<?= $collab_id ?>)">-</button>
+                                                <button type="button" class="btn btn-sm btn-danger" onclick="deleteCollabFaculty(<?= $faculty['id'] ?>)">-</button>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -261,11 +261,11 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
         $('#addFacultyModal').modal('show');
     }
 
-    function deleteCollabFaculty(collab_id) { 
+    function deleteCollabFaculty(collab_faculty_id) { 
         if(confirm('Are you sure...!')){
             $.ajax({
                 type: "GET",
-                url: "<?= base_url('admin/deleteCollabFaculty/') ?>" + collab_id,
+                url: "<?= base_url('admin/deleteCollabFaculty/') ?>" + collab_faculty_id,
                 success : function(response){
                     if(response == 'success'){
                         alert('Collaboration Faculty deleted successfully');
