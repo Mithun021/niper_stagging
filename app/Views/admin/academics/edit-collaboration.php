@@ -11,6 +11,19 @@ $classified_mou_value_model = new Classified_mou_value_model();
 $collaboration_faculties_model = new Collaboration_faculties_model()
 ?>
 
+<style>
+    .collab_gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px; /* Optional spacing between images */
+        margin-top: 10px;
+    }
+
+    .gallery_image {
+        flex: 0 0 auto; /* Prevent shrinking */
+    }
+</style>
+
 <!-- Page title and form layout -->
 <div class="row">
     <div class="col-lg-12">
@@ -118,7 +131,7 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
                                 <span for="Collabfileupload">Collaboration Gallery(JPG,PNG):</span>
                                 <input type="file" name="collab_gallery[]" id="collab_gallery" class="form-control form-control-sm" accept=".jpg,.png,.jpeg" multiple>
                             <div class="collab_gallery">
-                            <?php print_r($collaboration_gallery); foreach ($collaboration_gallery as $key => $gallery) { ?>
+                            <?php foreach ($collaboration_gallery as $key => $gallery) { ?>
                                 <div class="gallery_image">
                                     <?php if (!empty($gallery['gallery_file']) && file_exists('public/admin/uploads/collaboration/' . $gallery['gallery_file'])): ?>
                                         <img src="<?= base_url() ?>public/admin/uploads/collaboration/<?= $gallery['gallery_file'] ?>" alt="" height="30px">
