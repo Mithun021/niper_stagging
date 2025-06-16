@@ -134,8 +134,9 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
                             <?php foreach ($collaboration_gallery as $key => $gallery) { ?>
                                 <div class="gallery_image">
                                     <?php if (!empty($gallery['gallery_file']) && file_exists('public/admin/uploads/collaboration/' . $gallery['gallery_file'])): ?>
-                                        <img src="<?= base_url() ?>public/admin/uploads/collaboration/<?= $gallery['gallery_file'] ?>" alt="" height="30px">
+                                        <img src="<?= base_url() ?>public/admin/uploads/collaboration/<?= $gallery['gallery_file'] ?>" alt="" height="50px">
                                     <?php endif; ?>
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="deleteCollabGallery(<?= $gallery['id'] ?>)">X</button>
                                 </div>
                             <?php } ?>
                             </div>
