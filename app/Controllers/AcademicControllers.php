@@ -935,4 +935,58 @@ class AcademicControllers extends BaseController
         }
     }
 
+    public function edit_admission_brochure($id)
+    {
+        $admission_brochure_model = new Admission_brochure_model();
+        $data = ['title' => 'Admission Brochure','brochure_id' => $id];
+        if ($this->request->is("get")) {
+            $data['admission_brochure'] = $admission_brochure_model->get();
+            $data['admission_brochure_data'] = $admission_brochure_model->get($id);
+            return view('admin/academics/edit-admission-brochure', $data);
+        } else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId'];
+            }
+            $admission_brochure_data = $admission_brochure_model->get($id);
+            $document = $this->request->getFile('upload_file');
+            $old_document_file = $admission_brochure_data['upload_file'];
+
+            if (empty($old_document_file)) {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    $document_name = "brochure" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/brochure/', $document_name);
+                } else {
+                    $document_name = null;
+                }
+            } else {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    if (file_exists("public/admin/uploads/brochure/" . $old_document_file)) {
+                        unlink("public/admin/uploads/brochure/" . $old_document_file);
+                    }
+                    $document_name = "brochure" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/brochure/', $document_name);
+                } else {
+                    $document_name = $old_document_file;
+                }
+            }
+
+            $data = [
+                'title' => $this->request->getPost('title'),
+                'upload_file' => $document_name,
+                'description' => $this->request->getPost('description'),
+                'start_batch' => $this->request->getPost('start_year'),
+                'end_batch' => $this->request->getPost('end_year'),
+                'upload_by' => $loggeduserId,
+            ];
+            $result = $admission_brochure_model->add($data, $id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-admission-brochure/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-admission-brochure/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+
+        }
+    }
+
 }

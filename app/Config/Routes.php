@@ -104,6 +104,10 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete-academic-details/(:num)', 'AcademicControllers::delete_academic_details/$1');
     // $routes->match(['get','post'],'achievements', 'AdminControllers::achievements');
     $routes->match(['get','post'],'admission-brochure', 'AcademicControllers::admission_brochure');
+    $routes->match(['get','post'],'edit-admission-brochure/(:num)', 'AcademicControllers::edit_admission_brochure/$1');
+    $routes->get('delete-admission-brochure/(:num)', 'AcademicControllers::delete_admission_brochure/$1');
+
+
     $routes->match(['get','post'],'testimonial', 'AdminControllers::testimonial');
 
     $routes->match(['get','post'],'research-publication', 'AcademicControllers::research_publication');
