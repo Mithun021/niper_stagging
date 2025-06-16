@@ -536,7 +536,6 @@ class AcademicControllers extends BaseController
 
             $result = $collaboration_model->add($data, $id);
             if ($result === true) {
-                $insert_id = $collaboration_model->getInsertID();
 
                 if (isset($gallery_file['collab_gallery']) && !empty($gallery_file['collab_gallery'][0]->getName())) {
                     foreach ($gallery_file['collab_gallery'] as $file) {
@@ -546,7 +545,7 @@ class AcademicControllers extends BaseController
                 
                             $data = [
                                 'gallery_file' => $newName,
-                                'collaboration_id' => $insert_id,
+                                'collaboration_id' => $id,
                             ];
                 
                             $result = $collaboration_gallery_model->save($data);
