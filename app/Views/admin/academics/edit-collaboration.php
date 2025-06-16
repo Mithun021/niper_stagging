@@ -62,7 +62,7 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="Collabinstitutelogo">Institution Logo(PNG,JPG,JPEG):<span class="text-danger">*</span></span>
-                                <input type="file" name="institutelogo" id="institutelogo" class="form-control form-control-sm" accept=".png,.jpg,.jpeg" required>
+                                <input type="file" name="institutelogo" id="institutelogo" class="form-control form-control-sm" accept=".png,.jpg,.jpeg">
                             </div>
                         </div>
                         <div class="col-md-6">
