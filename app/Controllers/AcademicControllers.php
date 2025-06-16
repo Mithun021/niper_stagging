@@ -439,7 +439,7 @@ class AcademicControllers extends BaseController
                             $newName = $file->getRandomName();
                             $file->move(ROOTPATH . 'public/admin/uploads/research_publication', $newName);
                             $fileData = [
-                                'research_publication_id' => $insert_id,
+                                'research_publication_id' => $id,
                                 'files' => $newName,
                             ];
                             $research_publication_gallery_model->add($fileData);
