@@ -107,7 +107,7 @@ $department_model = new Department_model();
                                 <select class="form-control form-control-sm" name="department">
                                     <option value="">--Select--</option>
                                 <?php foreach ($department as $key => $value) { ?>
-                                    <option value=""><?= $value['name'] ?></option>
+                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
                                 <?php } ?>
                                 </select>
                             </div>

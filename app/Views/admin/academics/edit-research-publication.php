@@ -39,13 +39,18 @@ $department_model = new Department_model();
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Upload Thumbnail(JPG,PNG)</span>
-                                <input type="file" class="form-control form-control-sm" name="thumbnail" accept=".jpg, .png" required>
+                                <input type="file" class="form-control form-control-sm" name="thumbnail" accept=".jpg, .png" >
+                                 <?php if (!empty($research_publication_data['thumbnail']) && file_exists('public/admin/uploads/research_publication/' . $research_publication_data['thumbnail'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/research_publication/<?= $research_publication_data['thumbnail'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/research_publication/<?= $research_publication_data['thumbnail'] ?>" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/research_publication/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Upload Gallery(JPG,PNG)</span>
-                                <input type="file" class="form-control form-control-sm" name="gallery_file[]" accept=".jpg, .png" multiple required>
+                                <input type="file" class="form-control form-control-sm" name="gallery_file[]" accept=".jpg, .png" multiple >
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -54,7 +59,7 @@ $department_model = new Department_model();
                                 <select name="research_type" id="" class="form-control form-control-sm">
                                     <option value="">--Select--</option>
                                     <?php foreach ($research_publication_type as $key => $value) { ?>
-                                        <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                        <option value="<?= $value['id'] ?>" <?php if($research_publication_data['reseach_publication_type_id'] == $value['id']){ echo "selected"; } ?>><?= $value['name'] ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -62,43 +67,43 @@ $department_model = new Department_model();
                         <div class="col-md-12">
                             <div class="form-group">
                                 <span for="">Description</span>
-                                <textarea id="editor" name="description"></textarea>
+                                <textarea id="editor" name="description"><?= $research_publication_data['description'] ?></textarea>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Impact Factor<span class="text-danger">*</span></span>
-                                <input type="text" class="form-control form-control-sm" name="impact_factor">
+                                <input type="text" class="form-control form-control-sm" name="impact_factor" value="<?= $research_publication_data['impact_factor'] ?>">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Faculty Name<span class="text-danger">*</span></span>
-                                <input type="text" class="form-control form-control-sm" name="faculty_name">
+                                <input type="text" class="form-control form-control-sm" name="faculty_name" value="<?= $research_publication_data['faculty_name'] ?>">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Patent No.</span>
-                                <input type="text" class="form-control form-control-sm" name="patent_no">
+                                <input type="text" class="form-control form-control-sm" name="patent_no" value="<?= $research_publication_data['patent_no'] ?>">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">ISSN No</span>
-                                <input type="text" class="form-control form-control-sm" name="issn_no">
+                                <input type="text" class="form-control form-control-sm" name="issn_no" value="<?= $research_publication_data['issn_no'] ?>">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <span for="">ISBN No</span>
-                                <input type="text" class="form-control form-control-sm" name="isbn_no">
+                                <input type="text" class="form-control form-control-sm" name="isbn_no" value="<?= $research_publication_data['isbn_no'] ?>">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <span for="">DOI No</span>
-                                <input type="text" class="form-control form-control-sm" name="doi_no">
+                                <input type="text" class="form-control form-control-sm" name="doi_no" value="<?= $research_publication_data['doi_no'] ?>">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -107,7 +112,7 @@ $department_model = new Department_model();
                                 <select class="form-control form-control-sm" name="department">
                                     <option value="">--Select--</option>
                                 <?php foreach ($department as $key => $value) { ?>
-                                    <option value=""><?= $value['name'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?php if($research_publication_data['department_id'] == $value['id']){ echo "selected"; } ?>><?= $value['name'] ?></option>
                                 <?php } ?>
                                 </select>
                             </div>
