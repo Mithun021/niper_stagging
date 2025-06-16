@@ -24,7 +24,7 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/collaboration" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/edit-collaboration/<?= $collab_id ?>" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">

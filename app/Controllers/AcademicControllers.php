@@ -452,6 +452,90 @@ class AcademicControllers extends BaseController
         }
     }
 
+    public function edit_collaboration($id)
+    {
+        $collaboration_faculties_model = new Collaboration_faculties_model();
+        $collaboration_gallery_model = new Collaboration_gallery_model();
+        $collaboration_model = new Collaboration_model();
+        $classified_mou_value_model = new Classified_mou_value_model();
+        $data = ['title' => 'Collaboration', 'collab_id' => $id];
+        if ($this->request->is("get")) {
+            $data['classified_mou'] = $classified_mou_value_model->get();
+            $data['collaboration'] = $collaboration_model->get();
+            return view('admin/academics/edit-collaboration', $data);
+        } else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId'];
+            }
+            $institutelogo = $this->request->getFile('institutelogo');
+            if ($institutelogo->isValid() && ! $institutelogo->hasMoved()) {
+                $institutelogoNewName = "calendar" . $institutelogo->getRandomName();
+                $institutelogo->move(ROOTPATH . 'public/admin/uploads/collaboration', $institutelogoNewName);
+            } else {
+                $institutelogoNewName = "";
+            }
+            $Collabfile = $this->request->getFile('Collabfile');
+            if ($Collabfile->isValid() && ! $Collabfile->hasMoved()) {
+                $CollabfileNewName = "file" . $Collabfile->getRandomName();
+                $Collabfile->move(ROOTPATH . 'public/admin/uploads/collaboration', $CollabfileNewName);
+            } else {
+                $CollabfileNewName = "";
+            }
+            $gallery_file = $this->request->getFiles();
+            $data = [
+                'title' => $this->request->getPost('Collabtitle'),
+                'description' => $this->request->getPost('description'),
+                'institute_name' => $this->request->getPost('Collabinstitutename'),
+                'collaboration_date' => $this->request->getPost('Collaborationdate'),
+                'collaboration_end_date' => $this->request->getPost('Collaborationenddate'),
+                'institute_logo' => $institutelogoNewName,
+                'institute_link' => $this->request->getPost('Collabinstituelink'),
+                'collaboration_file' => $CollabfileNewName,
+                // 'faculty_coordinator' => $this->request->getPost('faculty_coordinator'),
+                'classified_mou' => $this->request->getPost('classified_mou'),
+                // 'collaboration_tenure_year' => $this->request->getPost('Collabtenure'),
+                'status' => $this->request->getPost('Collabstatus'),
+                'upload_by' => $loggeduserId
+            ];
+
+            $result = $collaboration_model->add($data);
+            if ($result === true) {
+                $insert_id = $collaboration_model->getInsertID();
+
+                $faculty_coordinator = $this->request->getPost('faculty_coordinator');
+                if (!empty($faculty_coordinator)) {
+                    foreach ($faculty_coordinator as $key => $faculty) {
+                       $data2 = [
+                        'collaboration_id' => $insert_id,
+                        'faculty_name' => $faculty,
+                       ];
+                       $result = $collaboration_faculties_model->add($data2);
+                    }
+                }
+
+                if ($gallery_file) {
+                    foreach ($gallery_file['collab_gallery'] as $file) {
+                        if ($file->isValid() && !$file->hasMoved()) {
+                            $newName = "gallery".rand(0,9999).$file->getRandomName();
+                            $file->move(ROOTPATH . 'public/admin/uploads/collaboration', $newName);
+                
+                            $data = [
+                                'gallery_file' => $newName,
+                                'collaboration_id' => $insert_id,
+                            ];
+                
+                            $result = $collaboration_gallery_model->save($data);
+                        }
+                    }
+                }
+                return redirect()->to('admin/edit-collaboration/'.$id)->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-collaboration/'.$id)->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
+        }
+    }
+
     public function research_publication_type(){
         $research_publication_type_model = new Research_publication_type_model();
         $data = ['title' => 'Research Publication Type'];
