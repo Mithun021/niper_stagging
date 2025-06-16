@@ -93,6 +93,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get', 'post'], 'collaboration', 'AcademicControllers::collaboration');
     $routes->match(['get','post'],'edit-collaboration/(:num)', 'AcademicControllers::edit_collaboration/$1');
     $routes->post('add-collab-faculty/(:num)', 'AcademicControllers::add_collab_faculty/$1');
+    $routes->get('deleteCollabFaculty/(:num)', 'AcademicControllers::deleteCollabFaculty/$1');
     $routes->get('delete-collaboration/(:num)', 'AcademicControllers::delete_collaboration/$1');
 
     $routes->match(['get','post'],'academic-details', 'AcademicControllers::academic_details');

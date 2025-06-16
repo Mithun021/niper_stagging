@@ -104,7 +104,7 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
                                                 <?= $faculty['faculty_name'] ?>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
+                                                <button type="button" class="btn btn-sm btn-danger" onclick="deleteCollabFaculty(<?= $collab_id ?>)">-</button>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -260,6 +260,23 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
     function openFacultyModal(){
         $('#addFacultyModal').modal('show');
     }
+
+    function deleteCollabFaculty(collab_id) { 
+        if(confirm('Are you sure...!')){
+            $.ajax({
+                type: "GET",
+                url: "<?= base_url('admin/deleteCollabFaculty/') ?>" + collab_id,
+                success : function(response){
+                    if(response == 'success'){
+                        alert('Collaboration Faculty deleted successfully');
+                        window.location.reload();
+                    }else{
+                        alert('Error deleting collaboration faculty');
+                    }
+                }
+            });
+        }
+     }
 
     function toggleRenewalDateField() {
         var collabStatus = document.getElementById('Collabstatus');

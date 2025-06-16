@@ -574,6 +574,15 @@ class AcademicControllers extends BaseController
         }
     }
 
+    public function deleteCollabFaculty($id) {
+        $collaboration_faculties_model = new Collaboration_faculties_model();
+        $result = $collaboration_faculties_model->delete($id);
+        if ($result === true) {
+            echo 'success';
+        } else {
+           echo 'error';
+        }
+    }
     public function research_publication_type(){
         $research_publication_type_model = new Research_publication_type_model();
         $data = ['title' => 'Research Publication Type'];
