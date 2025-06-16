@@ -93,7 +93,7 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
                                     <thead class="bg-light">
                                         <tr>
                                             <td scope="col">Faculty Coordinator</td>
-                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary">+</button></td>
+                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" onclick="openFacultyModal()">+</button></td>
                                         </tr>
                             
                                     </thead>
@@ -230,7 +230,37 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
     </div>
 </div>
 
+
+<div class="modal fade" id="addFacultyModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add new Faculty</h5>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="<?= base_url() ?>admin/add-collab-faculty/<?= $collab_id ?>" method="post">
+            <div class="modal-body">
+                <span>Faculty Name <span class="text-danger">*</span></span>
+                <input type="text" class="form-control form-control-sm" name="collab_faculty_name" required>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary waves-effect waves-light">Save changes</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
+
+    function openFacultyModal(){
+        $('#addFacultyModal').modal('show');
+    }
+
     function toggleRenewalDateField() {
         var collabStatus = document.getElementById('Collabstatus');
         var renewalDateField = document.getElementById('renewalDateField');

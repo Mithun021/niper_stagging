@@ -560,6 +560,20 @@ class AcademicControllers extends BaseController
         }
     }
 
+    public function add_collab_faculty($id){
+        $collaboration_faculties_model = new Collaboration_faculties_model();
+        $data = [
+            'collaboration_id' => $id,
+            'faculty_name' => $this->request->getPost('collab_faculty_name')
+        ];
+        $result = $collaboration_faculties_model->add($data);
+        if ($result === true) {
+            return redirect()->to('admin/edit-collaboration/'.$id)->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+        }else{
+            return redirect()->to('admin/edit-collaboration/'.$id)->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+        }
+    }
+
     public function research_publication_type(){
         $research_publication_type_model = new Research_publication_type_model();
         $data = ['title' => 'Research Publication Type'];
