@@ -68,7 +68,7 @@ $department_model = new Department_model();
                                 <span for="">Upload Gallery(JPG,PNG)</span>
                                 <input type="file" class="form-control form-control-sm" name="gallery_file[]" accept=".jpg, .png" multiple >
                                 <div class="collab_gallery">
-                                <?php foreach ($research_publication_gallery as $key => $gallery) { ?>
+                                <?php print_r($research_publication_gallery); foreach ($research_publication_gallery as $key => $gallery) { ?>
                                     <div class="gallery_image">
                                         <?php if (!empty($gallery['files']) && file_exists('public/admin/uploads/research_publication/' . $gallery['files'])): ?>
                                             <img src="<?= base_url() ?>public/admin/uploads/research_publication/<?= $gallery['files'] ?>" alt="" height="50px">
@@ -84,7 +84,7 @@ $department_model = new Department_model();
                                 <span>Type of publication/Research</span>
                                 <select name="research_type" id="" class="form-control form-control-sm">
                                     <option value="">--Select--</option>
-                                    <?php print_r($research_publication_gallery); foreach ($research_publication_gallery as $key => $value) { ?>
+                                    <?php foreach ($research_publication_type as $key => $value) { ?>
                                         <option value="<?= $value['id'] ?>" <?php if($research_publication_data['reseach_publication_type_id'] == $value['id']){ echo "selected"; } ?>><?= $value['name'] ?></option>
                                     <?php } ?>
                                 </select>
