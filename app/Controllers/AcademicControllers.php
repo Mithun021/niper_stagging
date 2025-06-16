@@ -391,18 +391,33 @@ class AcademicControllers extends BaseController
             }
             $research_publication_data = $research_publication_model->get($id);
 
-            $thumbnail = $this->request->getFile('thumbnail');
-            $thumbnailNewName = "";
+            $document = $this->request->getFile('thumbnail');
+            $old_thumbnail_file = $research_publication_data['thumbnail'];
 
-            if ($thumbnail && $thumbnail->isValid() && !$thumbnail->hasMoved()) {
-                $thumbnailNewName = rand(0, 9999) . $thumbnail->getRandomName();
-                $thumbnail->move(ROOTPATH . 'public/admin/uploads/research_publication', $thumbnailNewName);
+            if (empty($old_thumbnail_file)) {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    $document_name = "research" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/research_publication/', $document_name);
+                } else {
+                    $document_name = null;
+                }
+            } else {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    if (file_exists("public/admin/uploads/research_publication/" . $old_thumbnail_file)) {
+                        unlink("public/admin/uploads/research_publication/" . $old_thumbnail_file);
+                    }
+                    $document_name = "research" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/research_publication/', $document_name);
+                } else {
+                    $document_name = $old_thumbnail_file;
+                }
             }
+            
 
             $data = [
                 'title' => $this->request->getPost('title'),
                 'description' => $this->request->getPost('description'),
-                'thumbnail' => $thumbnailNewName,
+                'thumbnail' => $document_name,
                 'reseach_publication_type_id' => $this->request->getPost('research_type'),
                 'impact_factor' => $this->request->getPost('impact_factor'),
                 'faculty_name' => $this->request->getPost('faculty_name'),
@@ -413,7 +428,7 @@ class AcademicControllers extends BaseController
                 'department_id' => $this->request->getPost('department'),
                 'upload_by' => $loggedUserId,
             ];
-            $result = $research_publication_model->add($data);
+            $result = $research_publication_model->add($data, $id);
 
             if ($result == true) {
                 $insert_id = $research_publication_model->getInsertID();
