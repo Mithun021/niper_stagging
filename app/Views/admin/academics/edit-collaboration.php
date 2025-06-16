@@ -325,7 +325,7 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
                 }
             });
         }
-     }d
+     }
 
     function toggleRenewalDateField() {
         var collabStatus = document.getElementById('Collabstatus');

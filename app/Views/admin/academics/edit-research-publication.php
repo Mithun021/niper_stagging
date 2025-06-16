@@ -226,4 +226,24 @@ $department_model = new Department_model();
     </div>
 </div>
 
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+<script>
+    function deleteResearchGallery(research_gallery_id) { 
+        if(confirm('Are you sure...!')){
+            $.ajax({
+                type: "GET",
+                url: "<?= base_url('admin/deleteResearchGallery/') ?>" + research_gallery_id,
+                success : function(response){
+                    if(response == 'success'){
+                        alert('Collaboration Gallery deleted successfully');
+                        window.location.reload();
+                    }else{
+                        alert('Error deleting collaboration Gallery');
+                    }
+                }
+            });
+        }
+     }
+</script>
+
 <?= $this->endSection() ?>
