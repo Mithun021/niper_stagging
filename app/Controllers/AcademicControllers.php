@@ -412,6 +412,7 @@ class AcademicControllers extends BaseController
                 'classified_mou' => $this->request->getPost('classified_mou'),
                 // 'collaboration_tenure_year' => $this->request->getPost('Collabtenure'),
                 'status' => $this->request->getPost('Collabstatus'),
+                'renewal_date' => $this->request->getPost('RenewalDate') ?? null,
                 'upload_by' => $loggeduserId
             ];
 
@@ -499,6 +500,7 @@ class AcademicControllers extends BaseController
                 'classified_mou' => $this->request->getPost('classified_mou'),
                 // 'collaboration_tenure_year' => $this->request->getPost('Collabtenure'),
                 'status' => $this->request->getPost('Collabstatus'),
+                'renewal_date' => $this->request->getPost('RenewalDate') ?? null,
                 'upload_by' => $loggeduserId
             ];
 

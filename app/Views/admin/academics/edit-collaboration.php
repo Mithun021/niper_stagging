@@ -218,15 +218,22 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
 </div>
 
 <script>
-    document.getElementById('Collabstatus').addEventListener('change', function() {
+    function toggleRenewalDateField() {
+        var collabStatus = document.getElementById('Collabstatus');
         var renewalDateField = document.getElementById('renewalDateField');
 
-        if (this.value === 'renewed') {
-            renewalDateField.style.display = 'block'; // Show Renewal Date field
+        if (collabStatus.value === 'renewed') {
+            renewalDateField.style.display = 'block'; // Show
         } else {
-            renewalDateField.style.display = 'none'; // Hide Renewal Date field
+            renewalDateField.style.display = 'none'; // Hide
         }
-    });
+    }
+
+    // Call on load
+    window.onload = toggleRenewalDateField;
+
+    // Call on dropdown change
+    document.getElementById('Collabstatus').addEventListener('change', toggleRenewalDateField);
 </script>
 
 <?= $this->endSection() ?>
