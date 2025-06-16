@@ -63,18 +63,28 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
                             <div class="form-group">
                                 <span for="Collabinstitutelogo">Institution Logo(PNG,JPG,JPEG):<span class="text-danger">*</span></span>
                                 <input type="file" name="institutelogo" id="institutelogo" class="form-control form-control-sm" accept=".png,.jpg,.jpeg">
+                                 <?php if (!empty($collaboration_data['institute_logo']) && file_exists('public/admin/uploads/collaboration/' . $collaboration_data['institute_logo'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/collaboration/<?= $collaboration_data['institute_logo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/collaboration/<?= $collaboration_data['institute_logo'] ?>" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/collaboration/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="Collabinstituelink">Institution Link:</span>
-                                <input type="url" name="Collabinstituelink" id="Collabinstituelink" class="form-control form-control-sm" value="<?= $collaboration_data['institute_link'] ?>">
+                                <input type="url" name="Collabinstituelink" id="Collabinstituelink" class="form-control form-control-sm" collaboration_data="<?= $collaboration_data['institute_link'] ?>">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="Collabfileupload">Collaboration File Upload(PDF):</span>
                                 <input type="file" name="Collabfile" id="Collabfile" class="form-control form-control-sm" accept=".pdf">
+                                <?php if (!empty($collaboration_data['collaboration_file']) && file_exists('public/admin/uploads/collaboration/' . $collaboration_data['collaboration_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/collaboration/<?= $collaboration_data['collaboration_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/collaboration/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-md-12">
