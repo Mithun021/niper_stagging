@@ -136,6 +136,27 @@ class AcademicControllers extends BaseController
         }
     }
 
+    public function delete_member_type_category($id){
+        $academic_model = new Academic_model();
+        $academic_details_data = $academic_model->get($id);
+        $old_document_file = $academic_details_data['calendar_file'];
+        $feesFile = $this->request->getFile('acdfeesfileupload');
+        $file_path = "public/admin/uploads/academic/" . $old_document_file;
+        $fees_file_path = "public/admin/uploads/academic/" . $feesFile;
+        if (!empty($old_document_file) && file_exists($file_path) && is_file($file_path)) {
+            unlink($file_path);
+        }
+        if (!empty($feesFile) && file_exists($fees_file_path) && is_file($fees_file_path)) {
+            unlink($fees_file_path);
+        }
+        $result = $academic_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/employee-academic-details')->with('msg','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/employee-academic-details')->with('msg','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+        }
+    }
+
     public function accouncement()
     {
         $announcement_model = new Announcement_model();
