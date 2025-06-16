@@ -128,8 +128,8 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
                                 <span for="Collabstatus">Collaboration Status:</span>
                                 <select name="Collabstatus" id="Collabstatus" class="form-control form-control-sm" required>
                                     <option value="active" <?php if($collaboration_data['status'] == "active"){ echo "selected"; } ?>>Active</option>
-                                    <option value="expired" <?php if($collaboration_data['status'] == "active"){ echo "selected"; } ?>>Expired</option>
-                                    <option value="renewed" <?php if($collaboration_data['status'] == "active"){ echo "selected"; } ?>>Renewed</option>
+                                    <option value="expired" <?php if($collaboration_data['status'] == "expired"){ echo "selected"; } ?>>Expired</option>
+                                    <option value="renewed" <?php if($collaboration_data['status'] == "renewed"){ echo "selected"; } ?>>Renewed</option>
                                 </select>
                             </div>
                         </div>
