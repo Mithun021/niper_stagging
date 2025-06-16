@@ -89,6 +89,8 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete-accouncement/(:num)', 'AcademicControllers::delete_accouncement/$1');
 
     $routes->match(['get','post'],'classified-mou-value', 'AcademicControllers::classified_mou_value');
+    $routes->match(['get','post'],'edit-classified-mou-value/(:num)', 'AcademicControllers::edit_classified_mou_value/$1');
+    $routes->get('delete-classified-mou-value/(:num)', 'AcademicControllers::delete_classified_mou_value/$1');
 
     $routes->match(['get', 'post'], 'collaboration', 'AcademicControllers::collaboration');
     $routes->match(['get','post'],'edit-collaboration/(:num)', 'AcademicControllers::edit_collaboration/$1');

@@ -699,6 +699,31 @@ class AcademicControllers extends BaseController
         }
     }
 
+    public function edit_classified_mou_value($id){
+        $classified_mou_value_model = new Classified_mou_value_model();
+        $data = ['title' => 'Classified MoU Value','classified_id' => $id];
+        if ($this->request->is("get")) {
+            $data['classified_mou_value'] = $classified_mou_value_model->get();
+            $data['classified_mou_data'] = $classified_mou_value_model->get($id);
+            return view('admin/academics/edit-classified-mou-value',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId'];
+            }
+            $data = [
+                'name' => $this->request->getPost('mou_value'),
+                'upload_by' => $loggeduserId
+            ];
+            $result = $classified_mou_value_model->add($data, $id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-classified-mou-value/'.$id)->with('status', '<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-classified-mou-value/'.$id)->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
+        }
+    }
+
 
     public function admission_brochure()
     {
