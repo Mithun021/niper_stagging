@@ -250,6 +250,22 @@ class AcademicControllers extends BaseController
         }
     }
 
+    public function delete_accouncement($id){
+        $announcement_model = new Announcement_model();
+        $announcement_data = $announcement_model->get($id);
+        $old_document_file = $announcement_data['upload_file'];
+        $file_path = "public/admin/uploads/announcement/" . $old_document_file;
+        if (!empty($old_document_file) && file_exists($file_path) && is_file($file_path)) {
+            unlink($file_path);
+        }
+        $result = $announcement_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/accouncement')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/accouncement')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+        }
+    }
+
     public function rules_regulations()
     {
         $rules_regulations_model = new Rules_regulations_model();
