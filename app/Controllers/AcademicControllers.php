@@ -75,35 +75,63 @@ class AcademicControllers extends BaseController
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId'];
             }
+            $academic_details_data = $academic_model->get($id);
             $calendarFile = $this->request->getFile('acdcalenderfileupload');
-            if ($calendarFile->isValid() && ! $calendarFile->hasMoved()) {
-                $calendarFileImageName = "calendar" . $calendarFile->getRandomName();
-                $calendarFile->move(ROOTPATH . 'public/admin/uploads/academic', $calendarFileImageName);
+            $old_document_file = $academic_details_data['calendar_file'];
+            if (empty($old_document_file)) {
+                if ($calendarFile->isValid() && !$calendarFile->hasMoved()) {
+                    $document_name = "calendar" . $calendarFile->getRandomName();
+                    $calendarFile->move(ROOTPATH . 'public/admin/uploads/academic/', $document_name);
+                } else {
+                    $document_name = null;
+                }
             } else {
-                $calendarFileImageName = "";
+                if ($calendarFile->isValid() && !$calendarFile->hasMoved()) {
+                    if (file_exists("public/admin/uploads/academic/" . $old_document_file)) {
+                        unlink("public/admin/uploads/academic/" . $old_document_file);
+                    }
+                    $document_name = "calendar" . $calendarFile->getRandomName();
+                    $calendarFile->move(ROOTPATH . 'public/admin/uploads/academic/', $document_name);
+                } else {
+                    $document_name = $old_document_file;
+                }
             }
 
             $feesFile = $this->request->getFile('acdfeesfileupload');
-            if ($feesFile->isValid() && ! $feesFile->hasMoved()) {
-                $feesFileImageName = "fees" . $feesFile->getRandomName();
-                $feesFile->move(ROOTPATH . 'public/admin/uploads/academic', $feesFileImageName);
+            $old_document_fee_file = $academic_details_data['fees_file'];
+            if (empty($old_document_fee_file)) {
+                if ($feesFile->isValid() && !$feesFile->hasMoved()) {
+                    $document_fee_name = "fees" . $feesFile->getRandomName();
+                    $feesFile->move(ROOTPATH . 'public/admin/uploads/academic/', $document_fee_name);
+                } else {
+                    $document_fee_name = null;
+                }
             } else {
-                $feesFileImageName = "";
+                if ($feesFile->isValid() && !$feesFile->hasMoved()) {
+                    if (file_exists("public/admin/uploads/academic/" . $old_document_fee_file)) {
+                        unlink("public/admin/uploads/academic/" . $old_document_fee_file);
+                    }
+                    $document_fee_name = "fees" . $feesFile->getRandomName();
+                    $feesFile->move(ROOTPATH . 'public/admin/uploads/academic/', $document_fee_name);
+                } else {
+                    $document_fee_name = $old_document_fee_file;
+                }
             }
 
+            
             $data = [
                 'session_start' => $this->request->getPost('session_start_year'),
                 'session_end' => $this->request->getPost('session_end_year'),
-                'calendar_file' => $calendarFileImageName,
-                'fees_file' => $feesFileImageName,
+                'calendar_file' => $document_name,
+                'fees_file' => $document_fee_name,
                 'upload_by' => $loggeduserId
             ];
 
-            $result = $academic_model->add($data);
+            $result = $academic_model->add($data, $id);
             if ($result === true) {
-                return redirect()->to('admin/academic-details')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                return redirect()->to('admin/edit-academic-details/'.$id)->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
-                return redirect()->to('admin/academic-details')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+                return redirect()->to('admin/edit-academic-details/'.$id)->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
             }
         }
     }
