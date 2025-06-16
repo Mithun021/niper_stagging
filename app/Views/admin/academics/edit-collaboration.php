@@ -117,6 +117,16 @@ $collaboration_faculties_model = new Collaboration_faculties_model()
                             <div class="form-group">
                                 <span for="Collabfileupload">Collaboration Gallery(JPG,PNG):</span>
                                 <input type="file" name="collab_gallery[]" id="collab_gallery" class="form-control form-control-sm" accept=".jpg,.png,.jpeg" multiple>
+                            <div class="collab_gallery">
+                            <?php foreach ($collaboration_gallery as $key => $gallery) { ?>
+                                <div class="gallery_image">
+                                    <?php if (!empty($gallery['gallery_file']) && file_exists('public/admin/uploads/collaboration/' . $gallery['gallery_file'])): ?>
+                                        <img src="<?= base_url() ?>public/admin/uploads/collaboration/<?= $gallery['gallery_file'] ?>" alt="" height="30px">
+                                    <?php endif; ?>
+                                </div>
+                            <?php } ?>
+                            </div>
+
                             </div>
                         </div>
                         <div class="col-md-4">
