@@ -84,8 +84,8 @@ $employee_model = new Employee_model();
                             <div class="form-group">
                                 <span>Tendor Status</span>
                                 <select name="tendor_status" id="tendor_status" class="form-control form-control-sm">
-                                    <option value="Close" <?php if($tendors_data['tendor_title'] == "Close"){ echo "selected"; } ?>>Close</option>
-                                    <option value="Open" <?php if($tendors_data['tendor_title'] == "Open"){ echo "selected"; } ?>>Open</option>
+                                    <option value="Close" <?php if($tendors_data['tendor_status'] == "Close"){ echo "selected"; } ?>>Close</option>
+                                    <option value="Open" <?php if($tendors_data['tendor_status'] == "Open"){ echo "selected"; } ?>>Open</option>
                                 </select>
                             </div>
                         </div>
@@ -93,8 +93,8 @@ $employee_model = new Employee_model();
                             <div class="form-group">
                                 <span>Marquee Status</span>
                                 <select name="marquee_status" id="marquee_status" class="form-control form-control-sm">
-                                    <option value="0"  <?php if($tendors_data['tendor_title'] == 0){ echo "selected"; } ?>>Inactive</option>
-                                    <option value="1"  <?php if($tendors_data['tendor_title'] == 1){ echo "selected"; } ?>>Active</option>
+                                    <option value="0"  <?php if($tendors_data['marquee_status'] == 0){ echo "selected"; } ?>>Inactive</option>
+                                    <option value="1"  <?php if($tendors_data['marquee_status'] == 1){ echo "selected"; } ?>>Active</option>
                                 </select>
                             </div>
                         </div>
@@ -102,9 +102,9 @@ $employee_model = new Employee_model();
                             <div class="form-group">
                                 <span>Current Status</span>
                                 <select name="status" id="status" class="form-control form-control-sm">
-                                    <option value="1" <?php if($tendors_data['tendor_title'] == 1){ echo "selected"; } ?>>Publish</option>
-                                    <option value="2" <?php if($tendors_data['tendor_title'] == 2){ echo "selected"; } ?>>Archive</option>
-                                    <option value="0" <?php if($tendors_data['tendor_title'] == 0){ echo "selected"; } ?>>Draft</option>
+                                    <option value="1" <?php if($tendors_data['status'] == 1){ echo "selected"; } ?>>Publish</option>
+                                    <option value="2" <?php if($tendors_data['status'] == 2){ echo "selected"; } ?>>Archive</option>
+                                    <option value="0" <?php if($tendors_data['status'] == 0){ echo "selected"; } ?>>Draft</option>
                                 </select>
                             </div>
                         </div>
