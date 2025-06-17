@@ -51,6 +51,50 @@ class TendorControllers extends BaseController
         }
     }
 
+    public function edit_tendor_details($id){
+        $tendor_model = new Tendor_model();
+        $data = ['title' => 'Tendor Details','tendor_id' => $id];
+        if ($this->request->is("get")) {
+            $data['tendors'] = $tendor_model->get();
+             $data['tendors_data'] = $tendor_model->get($id);
+            return view('admin/tendor/edit-tendor-details',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $tendor_file = $this->request->getFile('file_upload');
+            if ($tendor_file->isValid() && ! $tendor_file->hasMoved()) {
+                $tendor_fileNewName = "tendor".$tendor_file->getRandomName();
+                $tendor_file->move(ROOTPATH . 'public/admin/uploads/tendor', $tendor_fileNewName);    
+            }else{
+                $tendor_fileNewName = "";
+            }
+            $data = [
+                'tendor_title' => $this->request->getPost('tendor_title'),
+                'tendor_description' => $this->request->getPost('tendor_description'),
+                'tendor_ref_no' => $this->request->getPost('tendor_ref_no'),
+                'bidding_date' => $this->request->getPost('bidding_date'),
+                'bidding_time' => $this->request->getPost('bidding_time'),
+                'tendor_start_date' => $this->request->getPost('tendor_start_date'),
+                'tendor_start_time' => $this->request->getPost('tendor_start_time'),
+                'tendor_end_date' => $this->request->getPost('tendor_end_date'),
+                'tendor_end_time' => $this->request->getPost('tendor_end_time'),
+                'upload_file' => $tendor_fileNewName,
+                'tendor_status' => $this->request->getPost('tendor_status'),
+                'marquee_status' => $this->request->getPost('marquee_status'),
+                'status' => $this->request->getPost('status'),
+                'upload_by' => $loggeduserId
+            ];
+            $result = $tendor_model->add($data, $id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-tendor-details/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-tendor-details/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+
     public function tendor_page(){
         $tendor_model = new Tendor_model();
         $tendor_page_model= new Tendor_page_model();

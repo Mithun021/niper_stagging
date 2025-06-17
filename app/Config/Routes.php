@@ -257,7 +257,11 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'program-dept-mapping', 'ProgramController::program_dept_mapping');
     $routes->match(['get','post'],'membership', 'AdminControllers::membership');
     $routes->match(['get','post'],'banner-slider', 'AdminControllers::banner_slider');
+
     $routes->match(['get','post'],'tendor-details', 'TendorControllers::tendor_details');
+    $routes->match(['get','post'],'edit-tendor-details/(:num)', 'TendorControllers::edit_tendor_details/$1');
+    $routes->get('delete-tendor-details/(:num)', 'TendorControllers::delete_tendor_details/$1');
+
     $routes->match(['get','post'],'tendor-page', 'TendorControllers::tendor_page');
     $routes->match(['get','post'],'tendor-corrigendum', 'TendorControllers::tendor_corrigendum');
     $routes->match(['get','post'],'admission', 'AdminControllers::admission');
