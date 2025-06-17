@@ -111,6 +111,22 @@ class TendorControllers extends BaseController
         }
     }
 
+    public function delete_tendor_details($id){
+        $tendor_model = new Tendor_model();
+        $tendors_data = $tendor_model->get($id);
+        $old_document_file = $tendors_data['upload_file'];
+        $file_path = "public/admin/uploads/tendor/" . $old_document_file;
+        if (!empty($old_document_file) && file_exists($file_path) && is_file($file_path)) {
+            unlink($file_path);
+        }
+        $result = $tendor_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/tendor-details')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/tendor-details')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+        }
+    }
+
     public function tendor_page(){
         $tendor_model = new Tendor_model();
         $tendor_page_model= new Tendor_page_model();
