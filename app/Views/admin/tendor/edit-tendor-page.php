@@ -23,7 +23,7 @@ $tendor_model = new Tendor_model();
                     echo session()->getFlashdata('msg');
                 }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/edit-tendor-page" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/edit-tendor-page/<?= $page_id ?>" enctype="multipart/form-data">
                     
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>

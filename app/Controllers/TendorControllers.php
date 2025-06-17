@@ -166,7 +166,7 @@ class TendorControllers extends BaseController
     public function edit_tendor_page($id){
         $tendor_model = new Tendor_model();
         $tendor_page_model= new Tendor_page_model();
-        $data = ['title' => 'Tendor Page'];
+        $data = ['title' => 'Tendor Page', 'page_id' => $id];
         if ($this->request->is("get")) {
             $data['tendors'] = $tendor_model->get();
             $data['tendors_page'] = $tendor_page_model->get();
