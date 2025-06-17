@@ -23,7 +23,7 @@ $tendor_model = new Tendor_model();
                     echo session()->getFlashdata('msg');
                 }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/tendor-corrigendum" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/edit-tendor-corrigendum/<?= $corrigendum_id ?>" enctype="multipart/form-data">
                     
                     <div class="form-group">
                         <span for="">Tendor Id<span class="text-danger">*</span></span>

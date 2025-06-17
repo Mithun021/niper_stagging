@@ -270,4 +270,56 @@ class TendorControllers extends BaseController
         }
     }
 
+    public function edit_tendor_corrigendum($id){
+        $tendor_model = new Tendor_model();
+        $tendor_corrigendum_model = new Tendor_corrigendum_model();
+        $data = ['title' => 'Tendor corrigendum', 'corrigendum_id' => $id];
+        if ($this->request->is("get")) {
+            $data['tendors'] = $tendor_model->get();
+            $data['tendor_corrigendum'] = $tendor_corrigendum_model->get();
+            $data['tendor_corrigendum_data'] = $tendor_corrigendum_model->get($id);
+            return view('admin/tendor/edit-tendor-corrigendum',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $document = $tendor_corrigendum_model->get($id);
+            $tendor_file = $this->request->getFile('file_upload');
+            if (empty($old_document_file)) {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    $document_name = "corrigendum" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/tendor/', $document_name);
+                } else {
+                    $document_name = null;
+                }
+            } else {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    if (file_exists("public/admin/uploads/tendor/" . $old_document_file)) {
+                        unlink("public/admin/uploads/tendor/" . $old_document_file);
+                    }
+                    $document_name = "corrigendum" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/tendor/', $document_name);
+                } else {
+                    $document_name = $old_document_file;
+                }
+            }
+            
+            $data = [
+                'tendor_id' => $this->request->getPost('tendor_id'),
+                'corrigendum_number' => $this->request->getPost('corrigendum_number'),
+                'corrigendum_date' => $this->request->getPost('corrigendum_date'),
+                'file_decription' => $this->request->getPost('file_description'),
+                'upload_file' => $document_name,
+                'upload_by' => $loggeduserId
+            ];
+            $result = $tendor_corrigendum_model->add($data, $id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-tendor-corrigendum/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-tendor-corrigendum/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+
 }
