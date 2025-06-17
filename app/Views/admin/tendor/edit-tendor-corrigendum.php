@@ -19,8 +19,8 @@ $tendor_model = new Tendor_model();
             </div>
             <div class="card-body">
                 <?php
-                if (session()->getFlashdata('msg')) {
-                    echo session()->getFlashdata('msg');
+                if (session()->getFlashdata('status')) {
+                    echo session()->getFlashdata('status');
                 }
                 ?>
                 <form method="post" action="<?= base_url() ?>admin/edit-tendor-corrigendum/<?= $corrigendum_id ?>" enctype="multipart/form-data">
