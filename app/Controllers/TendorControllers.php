@@ -235,7 +235,7 @@ class TendorControllers extends BaseController
     public function tendor_corrigendum(){
         $tendor_model = new Tendor_model();
         $tendor_corrigendum_model = new Tendor_corrigendum_model();
-        $data = ['title' => 'Tendor corrigendum('];
+        $data = ['title' => 'Tendor corrigendum'];
         if ($this->request->is("get")) {
             $data['tendors'] = $tendor_model->get();
             $data['tendor_corrigendum'] = $tendor_corrigendum_model->get();
