@@ -27,11 +27,11 @@ $tendor_model = new Tendor_model();
                     
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
-                        <textarea class="form-control form-control-sm" name="title" id="editor"><? $tendors_page_data['title'] ?></textarea>
+                        <textarea class="form-control form-control-sm" name="title" id="editor"><?= $tendors_page_data['title'] ?></textarea>
                     </div>
                     <div class="form-group">
                         <span for="">Description<span class="text-danger">*</span></span>
-                        <textarea class="form-control form-control-sm" name="description" id="editor2"><? $tendors_page_data['description'] ?></textarea>
+                        <textarea class="form-control form-control-sm" name="description" id="editor2"><?= $tendors_page_data['description'] ?></textarea>
                     </div>
                     <div class="form-group">
                         <span for="">File Upload(.pdf)<span class="text-danger">*</span></span>
@@ -44,7 +44,7 @@ $tendor_model = new Tendor_model();
                     </div>
                     <div class="form-group">
                         <span for="">File Upload Description<span class="text-danger">*</span></span>
-                        <textarea class="form-control form-control-sm" name="file_description" id="editor3"><? $tendors_page_data['file_upload_description'] ?></textarea>
+                        <textarea class="form-control form-control-sm" name="file_description" id="editor3"><?= $tendors_page_data['file_upload_description'] ?></textarea>
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
 
