@@ -44,7 +44,7 @@ $tendor_model = new Tendor_model();
                     </div>
                     <div class="form-group">
                         <span for="">File Upload(.pdf)<span class="text-danger">*</span></span>
-                        <input type="file" name="file_upload" class="form-control form-control-sm" accept=".pdf" required>
+                        <input type="file" name="file_upload" class="form-control form-control-sm" accept=".pdf">
                         <?php if (!empty($tendor_corrigendum_data['upload_file']) && file_exists('public/admin/uploads/tendor/' . $tendor_corrigendum_data['upload_file'])): ?>
                             <a href="<?= base_url() ?>public/admin/uploads/tendor/<?= $tendor_corrigendum_data['upload_file'] ?>" target="_blank" data-toggle="tooltip" data-placement="top" title="<?= strip_tags($tendor_corrigendum_data['file_decription']) ?>"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
                         <?php else: ?>
