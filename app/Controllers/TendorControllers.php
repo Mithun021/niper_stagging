@@ -56,20 +56,36 @@ class TendorControllers extends BaseController
         $data = ['title' => 'Tendor Details','tendor_id' => $id];
         if ($this->request->is("get")) {
             $data['tendors'] = $tendor_model->get();
-             $data['tendors_data'] = $tendor_model->get($id);
+            $data['tendors_data'] = $tendor_model->get($id);
             return view('admin/tendor/edit-tendor-details',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId']; 
             }
-            $tendor_file = $this->request->getFile('file_upload');
-            if ($tendor_file->isValid() && ! $tendor_file->hasMoved()) {
-                $tendor_fileNewName = "tendor".$tendor_file->getRandomName();
-                $tendor_file->move(ROOTPATH . 'public/admin/uploads/tendor', $tendor_fileNewName);    
-            }else{
-                $tendor_fileNewName = "";
+            $tendors_data = $tendor_model->get($id);
+            $document = $this->request->getFile('file_upload');
+            $old_document_file = $tendors_data['upload_file'];
+
+            if (empty($old_document_file)) {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    $document_name = "tendor" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/tendor/', $document_name);
+                } else {
+                    $document_name = null;
+                }
+            } else {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    if (file_exists("public/admin/uploads/tendor/" . $old_document_file)) {
+                        unlink("public/admin/uploads/tendor/" . $old_document_file);
+                    }
+                    $document_name = "tendor" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/tendor/', $document_name);
+                } else {
+                    $document_name = $old_document_file;
+                }
             }
+
             $data = [
                 'tendor_title' => $this->request->getPost('tendor_title'),
                 'tendor_description' => $this->request->getPost('tendor_description'),
@@ -80,7 +96,7 @@ class TendorControllers extends BaseController
                 'tendor_start_time' => $this->request->getPost('tendor_start_time'),
                 'tendor_end_date' => $this->request->getPost('tendor_end_date'),
                 'tendor_end_time' => $this->request->getPost('tendor_end_time'),
-                'upload_file' => $tendor_fileNewName,
+                'upload_file' => $document_name,
                 'tendor_status' => $this->request->getPost('tendor_status'),
                 'marquee_status' => $this->request->getPost('marquee_status'),
                 'status' => $this->request->getPost('status'),
