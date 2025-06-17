@@ -263,6 +263,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete-tendor-details/(:num)', 'TendorControllers::delete_tendor_details/$1');
 
     $routes->match(['get','post'],'tendor-page', 'TendorControllers::tendor_page');
+    $routes->match(['get','post'],'edit-tendor-page/(:num)', 'TendorControllers::edit_tendor_page/$1');
+    $routes->get('delete-tendor-page/(:num)', 'TendorControllers::delete_tendor_page/$1');
+
     $routes->match(['get','post'],'tendor-corrigendum', 'TendorControllers::tendor_corrigendum');
     $routes->match(['get','post'],'admission', 'AdminControllers::admission');
     $routes->match(['get','post'],'act-rules', 'AdminControllers::act_rules');
