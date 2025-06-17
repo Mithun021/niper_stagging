@@ -30,30 +30,30 @@ $tendor_model = new Tendor_model();
                         <select class="form-control form-control-sm" name="tendor_id" id="tendor_id" required>
                             <option value="">--Select--</option>
                         <?php foreach ($tendors as $key => $value) { ?>
-                           <option value="<?= $value['id'] ?>" <?php if($tendor_corrigendum['tendor_id'] == $value['id']){ echo "selected"; } ?>><?= $value['tendor_title'] ?></option>
+                           <option value="<?= $value['id'] ?>" <?php if($tendor_corrigendum_data['tendor_id'] == $value['id']){ echo "selected"; } ?>><?= $value['tendor_title'] ?></option>
                         <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <span for="">Corrigendum Number<span class="text-danger">*</span></span>
-                        <input type="text" name="corrigendum_number" class="form-control form-control-sm" value="<?= $tendor_corrigendum['corrigendum_number'] ?>" required>
+                        <input type="text" name="corrigendum_number" class="form-control form-control-sm" value="<?= $tendor_corrigendum_data['corrigendum_number'] ?>" required>
                     </div>
                     <div class="form-group">
                         <span for="">Corrigendum Date<span class="text-danger">*</span></span>
-                        <input type="date" name="corrigendum_date" class="form-control form-control-sm" value="<?= $tendor_corrigendum['corrigendum_date'] ?>" required>
+                        <input type="date" name="corrigendum_date" class="form-control form-control-sm" value="<?= $tendor_corrigendum_data['corrigendum_date'] ?>" required>
                     </div>
                     <div class="form-group">
                         <span for="">File Upload(.pdf)<span class="text-danger">*</span></span>
                         <input type="file" name="file_upload" class="form-control form-control-sm" accept=".pdf" required>
-                        <?php if (!empty($tendor_corrigendum['upload_file']) && file_exists('public/admin/uploads/tendor/' . $tendor_corrigendum['upload_file'])): ?>
-                            <a href="<?= base_url() ?>public/admin/uploads/tendor/<?= $tendor_corrigendum['upload_file'] ?>" target="_blank" data-toggle="tooltip" data-placement="top" title="<?= strip_tags($tendor_corrigendum['file_decription']) ?>"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                        <?php if (!empty($tendor_corrigendum_data['upload_file']) && file_exists('public/admin/uploads/tendor/' . $tendor_corrigendum_data['upload_file'])): ?>
+                            <a href="<?= base_url() ?>public/admin/uploads/tendor/<?= $tendor_corrigendum_data['upload_file'] ?>" target="_blank" data-toggle="tooltip" data-placement="top" title="<?= strip_tags($tendor_corrigendum_data['file_decription']) ?>"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
                         <?php else: ?>
                             <img src="<?= base_url() ?>public/admin/uploads/tendor/invalid_image.png" alt="" height="40px">
                         <?php endif; ?>
                     </div>
                     <div class="form-group">
                         <span for="">File Upload Description<span class="text-danger">*</span></span>
-                        <textarea class="form-control form-control-sm" name="file_description" id="editor3"><?= $tendor_corrigendum['file_decription'] ?></textarea>
+                        <textarea class="form-control form-control-sm" name="file_description" id="editor3"><?= $tendor_corrigendum_data['file_decription'] ?></textarea>
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
 
