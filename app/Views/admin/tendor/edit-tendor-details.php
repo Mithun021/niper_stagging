@@ -33,21 +33,21 @@ $employee_model = new Employee_model();
                         <div class="col-md-12">
                             <div class="form-group">
                                 <span for="">Desription</span>
-                                <textarea id="editor" name="tendor_description"></textarea>
+                                <textarea id="editor" name="tendor_description"><?= $tendors_data['tendor_description'] ?></textarea>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Tender reference no</span>
-                                <input type="text" class="form-control form-control-sm" name="tendor_ref_no">
+                                <input type="text" class="form-control form-control-sm" name="tendor_ref_no" value="<?= $tendors_data['tendor_ref_no'] ?>">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Bid opening date and time<span class="text-danger">*</span></span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="bidding_date" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')" required>
-                                    <input type="text" class="form-control form-control-sm" name="bidding_time" placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="bidding_date" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?= $tendors_data['bidding_date'] ?>" required>
+                                    <input type="text" class="form-control form-control-sm" name="bidding_time" placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')" value="<?= $tendors_data['bidding_time'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -55,8 +55,8 @@ $employee_model = new Employee_model();
                             <div class="form-group">
                                 <span for="">Tendor Start Date & Time<span class="text-danger">*</span></span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="tendor_start_date" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')" required>
-                                    <input type="text" class="form-control form-control-sm" name="tendor_start_time" placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="tendor_start_date" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?= $tendors_data['tendor_start_date'] ?>" required>
+                                    <input type="text" class="form-control form-control-sm" name="tendor_start_time" placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')" value="<?= $tendors_data['tendor_start_time'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -64,8 +64,8 @@ $employee_model = new Employee_model();
                             <div class="form-group">
                                 <span for="">Tendor End Date & Time<span class="text-danger">*</span></span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="tendor_end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')" required>
-                                    <input type="text" class="form-control form-control-sm" name="tendor_end_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="tendor_end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?= $tendors_data['tendor_end_date'] ?>" required>
+                                    <input type="text" class="form-control form-control-sm" name="tendor_end_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')" value="<?= $tendors_data['tendor_end_time'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -73,14 +73,19 @@ $employee_model = new Employee_model();
                             <div class="form-group">
                                 <span for="">File(.pdf)<span class="text-danger">*</span></span>
                                 <input type="file" class="form-control form-control-sm" name="file_upload" accept=".pdf" required>
+                                <?php if (!empty($tendors_data['upload_file']) && file_exists('public/admin/uploads/tendor/' . $tendors_data['upload_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/tendor/<?= $tendors_data['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/tendor/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <span>Tendor Status</span>
                                 <select name="tendor_status" id="tendor_status" class="form-control form-control-sm">
-                                    <option value="Close" selected>Close</option>
-                                    <option value="Open">Open</option>
+                                    <option value="Close" <?php if($tendors_data['tendor_title'] == "Close"){ echo "selected"; } ?>>Close</option>
+                                    <option value="Open" <?php if($tendors_data['tendor_title'] == "Open"){ echo "selected"; } ?>>Open</option>
                                 </select>
                             </div>
                         </div>
@@ -88,8 +93,8 @@ $employee_model = new Employee_model();
                             <div class="form-group">
                                 <span>Marquee Status</span>
                                 <select name="marquee_status" id="marquee_status" class="form-control form-control-sm">
-                                    <option value="0" selected>Inactive</option>
-                                    <option value="1">Active</option>
+                                    <option value="0"  <?php if($tendors_data['tendor_title'] == 0){ echo "selected"; } ?>>Inactive</option>
+                                    <option value="1"  <?php if($tendors_data['tendor_title'] == 1){ echo "selected"; } ?>>Active</option>
                                 </select>
                             </div>
                         </div>
@@ -97,9 +102,9 @@ $employee_model = new Employee_model();
                             <div class="form-group">
                                 <span>Current Status</span>
                                 <select name="status" id="status" class="form-control form-control-sm">
-                                    <option value="1">Publish</option>
-                                    <option value="2">Archive</option>
-                                    <option value="0">Draft</option>
+                                    <option value="1" <?php if($tendors_data['tendor_title'] == 1){ echo "selected"; } ?>>Publish</option>
+                                    <option value="2" <?php if($tendors_data['tendor_title'] == 2){ echo "selected"; } ?>>Archive</option>
+                                    <option value="0" <?php if($tendors_data['tendor_title'] == 0){ echo "selected"; } ?>>Draft</option>
                                 </select>
                             </div>
                         </div>
