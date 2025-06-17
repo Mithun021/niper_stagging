@@ -5,7 +5,7 @@
     {
         protected $table         = 'tendor_corigendum';
         protected $primaryKey    = 'id';
-        protected $allowedFields = ['tendor_id','upload_file', 'file_decription', 'upload_by'];
+        protected $allowedFields = ['tendor_id','corrigendum_number','corrigendum_date','upload_file', 'file_decription', 'upload_by'];
         protected $createdField  = 'created_at';
 
         public function add($data, $id = null) {
