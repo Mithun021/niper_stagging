@@ -323,4 +323,21 @@ class TendorControllers extends BaseController
         }
     }
 
+    public function delete_tendor_corrigendum($id){
+        $tendor_corrigendum_model = new Tendor_corrigendum_model();
+        $tendor_corrigendum = $tendor_corrigendum_model->get($id);
+        $old_document_file = $tendor_corrigendum['upload_file'];
+        $file_path = "public/admin/uploads/tendor/" . $old_document_file;
+        if (!empty($old_document_file) && file_exists($file_path) && is_file($file_path)) {
+            unlink($file_path);
+        }
+        $result = $tendor_corrigendum_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/tendor-corrigendum')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/tendor-corrigendum')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+        }
+
+    }
+
 }
