@@ -37,7 +37,7 @@ $tendor_model = new Tendor_model();
                         <span for="">File Upload(.pdf)<span class="text-danger">*</span></span>
                         <input type="file" name="file_upload" class="form-control form-control-sm" accept=".pdf">
                         <?php if (!empty($tendors_page_data['file_upload']) && file_exists('public/admin/uploads/tendor/' . $tendors_page_data['file_upload'])): ?>
-                            <a href="<?= base_url() ?>public/admin/uploads/tendor/<?= $tendors_page_data['file_upload'] ?>" target="_blank" data-toggle="tooltip" data-placement="top" title="<?= strip_tags($value['file_upload_description']) ?>"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                            <a href="<?= base_url() ?>public/admin/uploads/tendor/<?= $tendors_page_data['file_upload'] ?>" target="_blank" data-toggle="tooltip" data-placement="top" title="<?= strip_tags($tendors_page_data['file_upload_description']) ?>"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
                         <?php else: ?>
                             <img src="<?= base_url() ?>public/admin/uploads/tendor/invalid_image.png" alt="" height="40px">
                         <?php endif; ?>
