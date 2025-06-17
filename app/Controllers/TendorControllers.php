@@ -284,8 +284,9 @@ class TendorControllers extends BaseController
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId']; 
             }
-            $document = $tendor_corrigendum_model->get($id);
-            $tendor_file = $this->request->getFile('file_upload');
+            $tendor_corrigendum = $tendor_corrigendum_model->get($id);
+            $document = $this->request->getFile('file_upload');
+            $old_document_file = $tendor_corrigendum['upload_file'];
             if (empty($old_document_file)) {
                 if ($document->isValid() && !$document->hasMoved()) {
                     $document_name = "corrigendum" . $document->getRandomName();
