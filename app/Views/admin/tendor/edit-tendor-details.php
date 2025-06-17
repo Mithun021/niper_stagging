@@ -72,7 +72,7 @@ $employee_model = new Employee_model();
                         <div class="col-md-12">
                             <div class="form-group">
                                 <span for="">File(.pdf)<span class="text-danger">*</span></span>
-                                <input type="file" class="form-control form-control-sm" name="file_upload" accept=".pdf" required>
+                                <input type="file" class="form-control form-control-sm" name="file_upload" accept=".pdf">
                                 <?php if (!empty($tendors_data['upload_file']) && file_exists('public/admin/uploads/tendor/' . $tendors_data['upload_file'])): ?>
                                     <a href="<?= base_url() ?>public/admin/uploads/tendor/<?= $tendors_data['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
                                 <?php else: ?>
