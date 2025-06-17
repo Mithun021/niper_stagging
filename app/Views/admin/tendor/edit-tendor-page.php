@@ -23,23 +23,28 @@ $tendor_model = new Tendor_model();
                     echo session()->getFlashdata('msg');
                 }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/tendor-page" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/edit-tendor-page" enctype="multipart/form-data">
                     
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
-                        <textarea class="form-control form-control-sm" name="title" id="editor"></textarea></textarea>
+                        <textarea class="form-control form-control-sm" name="title" id="editor"><? $tendors_page_data['title'] ?></textarea>
                     </div>
                     <div class="form-group">
                         <span for="">Description<span class="text-danger">*</span></span>
-                        <textarea class="form-control form-control-sm" name="description" id="editor2"></textarea></textarea>
+                        <textarea class="form-control form-control-sm" name="description" id="editor2"><? $tendors_page_data['description'] ?></textarea>
                     </div>
                     <div class="form-group">
                         <span for="">File Upload(.pdf)<span class="text-danger">*</span></span>
-                        <input type="file" name="file_upload" class="form-control form-control-sm" accept=".pdf" required>
+                        <input type="file" name="file_upload" class="form-control form-control-sm" accept=".pdf">
+                        <?php if (!empty($tendors_page_data['file_upload']) && file_exists('public/admin/uploads/tendor/' . $tendors_page_data['file_upload'])): ?>
+                            <a href="<?= base_url() ?>public/admin/uploads/tendor/<?= $tendors_page_data['file_upload'] ?>" target="_blank" data-toggle="tooltip" data-placement="top" title="<?= strip_tags($value['file_upload_description']) ?>"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                        <?php else: ?>
+                            <img src="<?= base_url() ?>public/admin/uploads/tendor/invalid_image.png" alt="" height="40px">
+                        <?php endif; ?>
                     </div>
                     <div class="form-group">
                         <span for="">File Upload Description<span class="text-danger">*</span></span>
-                        <textarea class="form-control form-control-sm" name="file_description" id="editor3"></textarea></textarea>
+                        <textarea class="form-control form-control-sm" name="file_description" id="editor3"><? $tendors_page_data['file_upload_description'] ?></textarea>
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
 

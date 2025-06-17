@@ -163,6 +163,59 @@ class TendorControllers extends BaseController
         }
     }
 
+    public function edit_tendor_page($id){
+        $tendor_model = new Tendor_model();
+        $tendor_page_model= new Tendor_page_model();
+        $data = ['title' => 'Tendor Page'];
+        if ($this->request->is("get")) {
+            $data['tendors'] = $tendor_model->get();
+            $data['tendors_page'] = $tendor_page_model->get();
+            $data['tendors_page_data'] = $tendor_page_model->get($id);
+            return view('admin/tendor/edit-tendor-page',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $tendors_page_data = $tendor_page_model->get($id);
+            $document = $this->request->getFile('file_upload');
+            $old_document_file = $tendors_page_data['file_upload'];
+
+            if (empty($old_document_file)) {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    $document_name = "page" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/tendor/', $document_name);
+                } else {
+                    $document_name = null;
+                }
+            } else {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    if (file_exists("public/admin/uploads/tendor/" . $old_document_file)) {
+                        unlink("public/admin/uploads/tendor/" . $old_document_file);
+                    }
+                    $document_name = "page" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/tendor/', $document_name);
+                } else {
+                    $document_name = $old_document_file;
+                }
+            }
+
+            $data = [
+                'title' => $this->request->getPost('title'),
+                'description' => $this->request->getPost('description'),
+                'file_upload_description' => $this->request->getPost('file_description'),
+                'file_upload' => $document_name,
+                'upload_by' => $loggeduserId
+            ];
+            $result = $tendor_page_model->add($data, $id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-tendor-page/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-tendor-page/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+
     public function tendor_corrigendum(){
         $tendor_model = new Tendor_model();
         $tendor_corrigendum_model = new Tendor_corrigendum_model();
