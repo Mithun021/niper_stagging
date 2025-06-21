@@ -206,7 +206,7 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                     <input type="text" class="form-control form-control-sm" name="faculty_name" required>
                 </div>
                 <div class="form-group">
-                    <select class="form-control form-control-sm" name="department[]" required>
+                    <select class="form-control form-control-sm my-select" name="department" required>
                         <option value="">--Select--</option>
                         <?php foreach ($departments as $key => $value) { ?>
                             <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
@@ -214,7 +214,7 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                     </select>
                 </div>
                 <div class="form-group">
-                    <select class="form-control form-control-sm" name="designation[]" required>
+                    <select class="form-control form-control-sm my-select" name="designation" required>
                         <option value="">--Select--</option>
                         <?php foreach ($designations as $key => $value) { ?>
                             <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
