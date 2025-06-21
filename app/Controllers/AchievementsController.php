@@ -109,22 +109,37 @@ class AchievementsController extends BaseController
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId'];
             }
-            $upload_file = $this->request->getFile('upload_file');
-            if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
-                $upload_file_new_name = 'faculty' . $upload_file->getRandomName();
-                $upload_file->move(ROOTPATH . 'public/admin/uploads/achievements', $upload_file_new_name);
+            $faculty_awards_data = $faculty_awards_model->get($id);
+            $document = $this->request->getFile('upload_file');
+            $old_document_file = $faculty_awards_data['thumbnail'];
+            if (empty($old_document_file)) {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    $document_name = "faculty" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/achievements/', $document_name);
+                } else {
+                    $document_name = null;
+                }
             } else {
-                $upload_file_new_name = "";
+                if ($document->isValid() && !$document->hasMoved()) {
+                    if (file_exists("public/admin/uploads/achievements/" . $old_document_file)) {
+                        unlink("public/admin/uploads/achievements/" . $old_document_file);
+                    }
+                    $document_name = "faculty" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/achievements/', $document_name);
+                } else {
+                    $document_name = $old_document_file;
+                }
             }
+
             $data = [
                 'title' => $this->request->getVar('title'),
                 'description' => $this->request->getVar('description'),
-                'thumbnail' => $upload_file_new_name,
+                'thumbnail' => $document_name,
                 'award_date' => $this->request->getVar('awards_date'),
                 'agency_name' => $this->request->getVar('agency_name'),
                 'upload_by' => $loggeduserId,
             ];
-            $result = $faculty_awards_model->add($data);
+            $result = $faculty_awards_model->add($data, $id);
             if ($result) {
 
                 $file_gallery = $this->request->getFiles();
