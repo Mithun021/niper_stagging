@@ -30,15 +30,20 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/faculty-awards" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/edit-faculty-awards/<?= $awards_id ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-4">
                             <span for="">Title<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="title">
+                            <input type="text" class="form-control form-control-sm" name="title" value="<?= $faculty_awards_data['title'] ?>">
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Upload Thumbnail(JPG,PNG)</span>
                             <input type="file" class="form-control form-control-sm" name="upload_file" accept=".jpg, .png, .jpeg" required>
+                            <?php if (!empty($faculty_awards_data['thumbnail']) && file_exists('public/admin/uploads/achievements/' . $faculty_awards_data['thumbnail'])): ?>
+                                <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $faculty_awards_data['thumbnail'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/achievements/<?= $faculty_awards_data['thumbnail'] ?>" alt="" height="30px"></a>
+                            <?php else: ?>
+                                <img src="<?= base_url() ?>public/admin/uploads/achievements/invalid_image.png" alt="" height="40px">
+                            <?php endif; ?>
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Upload Gallery(JPG,PNG)</span>
@@ -46,7 +51,7 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                         </div>
                         <div class="form-group col-md-12">
                             <span for="">Description</span>
-                            <textarea id="editor" name="description"></textarea>
+                            <textarea id="editor" name="description"><?= $faculty_awards_data['description'] ?></textarea>
                         </div>
 
                         <div class="form-group col-md-12">
@@ -62,31 +67,9 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control form-control-sm" name="faculty_name[]" required>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group">
-                                                    <select class="form-control form-control-sm" name="department[]" required>
-                                                        <option value="">--Select--</option>
-                                                        <?php foreach ($departments as $key => $value) { ?>
-                                                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group">
-                                                    <select class="form-control form-control-sm" name="designation[]" required>
-                                                        <option value="">--Select--</option>
-                                                        <?php foreach ($designations as $key => $value) { ?>
-                                                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </div>
-                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                             <td><button type="button" class="btn btn-sm btn-danger" id="removenewMemberRow">-</button></td>
                                         </tr>
                                     </tbody>
@@ -96,11 +79,11 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
 
                         <div class="form-group col-md-6">
                             <span for="">Awards Date<span class="text-danger">*</span></span>
-                            <input type="date" class="form-control form-control-sm" name="awards_date" required>
+                            <input type="date" class="form-control form-control-sm" name="awards_date" value="<?= $faculty_awards_data['award_date'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Awarding Agency Name</span>
-                            <input type="text" class="form-control form-control-sm" name="agency_name">
+                            <input type="text" class="form-control form-control-sm" name="agency_name" value="<?= $faculty_awards_data['agency_name'] ?>">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
