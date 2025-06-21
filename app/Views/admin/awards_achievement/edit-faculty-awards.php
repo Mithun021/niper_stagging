@@ -66,12 +66,14 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php foreach ($faculty_awards_mapped as $key => $faculty) { ?>
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><?= $faculty['faculty_name'] ?></td>
+                                            <td><?= $department_model->get($faculty['department_id'])['name'] ?? '' ?></td>
+                                            <td><?= $designation_model->get($faculty['designation_id'])['name'] ?? '' ?></td>
                                             <td><button type="button" class="btn btn-sm btn-danger" id="removenewMemberRow">-</button></td>
                                         </tr>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
