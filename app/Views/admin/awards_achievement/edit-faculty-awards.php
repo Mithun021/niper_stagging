@@ -51,9 +51,7 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
 
                             <?php foreach ($faculty_awards_gallery as $key => $gallery) { ?>
                                 <?php if (!empty($gallery['gallery_file']) && file_exists('public/admin/uploads/achievements/' . $gallery['gallery_file'])): ?>
-                                    <div>
                                     <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $gallery['gallery_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/achievements/<?= $gallery['gallery_file'] ?>" alt="" height="30px"></a>
-                                    </div>
                                     <span class="fas fa-trash-alt"></span>    
                                 <?php else: ?>
                                     <img src="<?= base_url() ?>public/admin/uploads/achievements/invalid_image.png" alt="" height="40px">
