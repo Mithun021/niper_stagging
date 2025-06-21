@@ -74,7 +74,7 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                                             <td>Faculty Name</td>
                                             <td>Department</td>
                                             <td>Designation</td>
-                                            <td><button type="button" class="btn btn-sm btn-primary" id="addnewMemberRow">+</button></td>
+                                            <td><button type="button" class="btn btn-sm btn-primary" onclick="openFacultyModal()">+</button></td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -191,8 +191,53 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
     </div>
 </div>
 
+<div class="modal fade" id="addFacultyModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Faculty</h5>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="" method="post">
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-sm" name="faculty_name" required>
+                </div>
+                <div class="form-group">
+                    <select class="form-control form-control-sm" name="department[]" required>
+                        <option value="">--Select--</option>
+                        <?php foreach ($departments as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control form-control-sm" name="designation[]" required>
+                        <option value="">--Select--</option>
+                        <?php foreach ($designations as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary waves-effect waves-light">Save changes</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
+
+    function openFacultyModal() {
+        $('#addFacultyModal').modal('show');
+    }
+
     $(document).ready(function() {
         
 
