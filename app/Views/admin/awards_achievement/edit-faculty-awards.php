@@ -15,9 +15,7 @@ $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
 $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
 ?>
 <style>
-    #addServicetable #memberTbody #memberTrow:first-child td:last-child button {
-        display: none;
-    }
+    
 </style>
 <!-- start page title -->
 <div class="row">
@@ -62,8 +60,8 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                                             <td><button type="button" class="btn btn-sm btn-primary" id="addnewMemberRow">+</button></td>
                                         </tr>
                                     </thead>
-                                    <tbody id="memberTbody">
-                                        <tr id="memberTrow">
+                                    <tbody>
+                                        <tr>
                                             <td>
                                                 <div class="form-group">
                                                     <input type="text" class="form-control form-control-sm" name="faculty_name[]" required>
@@ -199,22 +197,7 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
-        // Create Service Clone for add and remove rows also calculate price
-        var cloneLimit = 10;
-        var currentClones = 0;
-        $("#addnewMemberRow").click(function(e) {
-            e.preventDefault();
-            if (currentClones < cloneLimit) {
-                currentClones++;
-                var cloneCatrow = $('#memberTrow').clone().appendTo('#memberTbody');
-                $(cloneCatrow).find('input').val('');
-            }
-
-        });
-
-        $('#memberTbody').on('click', '#removenewMemberRow', function() {
-            $(this).closest('tr').remove();
-        });
+        
 
     });
 </script>
