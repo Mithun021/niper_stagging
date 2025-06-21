@@ -15,21 +15,7 @@ $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
 $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
 ?>
 <style>
-    .gallery-item {
-        display: inline-flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 10px;
-        position: relative;
-    }
-
-    .delete-icon {
-        color: red;
-        cursor: pointer;
-        margin-bottom: 5px;
-        font-size: 16px;
-    }
-
+    
 </style>
 <!-- start page title -->
 <div class="row">
@@ -64,16 +50,14 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                             <input type="file" class="form-control form-control-sm" name="file_gallery[]" accept=".jpg, .png, .jpeg" multiple>
 
                             <?php foreach ($faculty_awards_gallery as $key => $gallery) { ?>
-                                <div class="gallery-item">
-                                    <?php if (!empty($gallery['gallery_file']) && file_exists('public/admin/uploads/achievements/' . $gallery['gallery_file'])): ?>
-                                        <span class="fas fa-trash-alt delete-icon"></span>
-                                        <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $gallery['gallery_file'] ?>" target="_blank">
-                                            <img src="<?= base_url() ?>public/admin/uploads/achievements/<?= $gallery['gallery_file'] ?>" alt="" height="30px">
-                                        </a>
-                                    <?php else: ?>
-                                        <img src="<?= base_url() ?>public/admin/uploads/achievements/invalid_image.png" alt="" height="40px">
-                                    <?php endif; ?>
-                                </div>
+                                <?php if (!empty($gallery['gallery_file']) && file_exists('public/admin/uploads/achievements/' . $gallery['gallery_file'])): ?>
+                                    <div>
+                                    <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $gallery['gallery_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/achievements/<?= $gallery['gallery_file'] ?>" alt="" height="30px"></a>
+                                    </div>
+                                    <span class="fas fa-trash-alt"></span>    
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/achievements/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
                             <?php } ?>
 
                         </div>
