@@ -102,6 +102,7 @@ class AchievementsController extends BaseController
             $data['faculty_awards'] = $faculty_awards_model->get();
             $data['faculty_awards_data'] = $faculty_awards_model->get($id);
             $data['faculty_awards_mapped'] = $faculty_awards_mapping_model->get_by_faculty_award_id($id);
+             $data['faculty_awards_gallery'] = $faculty_awards_gallery_model->get_by_faculty_award_id($id);
             return view('admin/awards_achievement/edit-faculty-awards', $data);
         } else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');

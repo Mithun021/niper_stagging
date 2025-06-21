@@ -38,7 +38,7 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Upload Thumbnail(JPG,PNG)</span>
-                            <input type="file" class="form-control form-control-sm" name="upload_file" accept=".jpg, .png, .jpeg" required>
+                            <input type="file" class="form-control form-control-sm" name="upload_file" accept=".jpg, .png, .jpeg">
                             <?php if (!empty($faculty_awards_data['thumbnail']) && file_exists('public/admin/uploads/achievements/' . $faculty_awards_data['thumbnail'])): ?>
                                 <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $faculty_awards_data['thumbnail'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/achievements/<?= $faculty_awards_data['thumbnail'] ?>" alt="" height="30px"></a>
                             <?php else: ?>
@@ -47,7 +47,16 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                         </div>
                         <div class="form-group col-md-4">
                             <span for="">Upload Gallery(JPG,PNG)</span>
-                            <input type="file" class="form-control form-control-sm" name="file_gallery[]" accept=".jpg, .png, .jpeg" multiple required>
+                            <input type="file" class="form-control form-control-sm" name="file_gallery[]" accept=".jpg, .png, .jpeg" multiple>
+
+                            <?php foreach ($faculty_awards_gallery as $key => $gallery) { ?>
+                                <?php if (!empty($gallery['gallery_file']) && file_exists('public/admin/uploads/achievements/' . $gallery['gallery_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $gallery['gallery_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/achievements/<?= $gallery['gallery_file'] ?>" alt="" height="30px"></a>    
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/achievements/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
+                            <?php } ?>
+
                         </div>
                         <div class="form-group col-md-12">
                             <span for="">Description</span>
