@@ -20,19 +20,24 @@ $employee_model = new Employee_model();
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url('admin/edit-awards-recognition/') ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url('admin/edit-awards-recognition/'.$awards_id) ?>" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="title">
+                        <input type="text" class="form-control form-control-sm" name="title" value="<?= $awards_recognition_data['title'] ?>">
                     </div>
                     <div class="form-group">
                         <span for="">Upload File(JPG,PNG,PDF)</span>
                         <input type="file" class="form-control form-control-sm" name="upload_file" accept=".jpg, .png, .pdf" required>
+                        <?php if (!empty($awards_recognition_data['upload_file']) && file_exists('public/admin/uploads/achievements/' . $awards_recognition_data['upload_file'])): ?>
+                            <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $awards_recognition_data['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
+                        <?php else: ?>
+                            <img src="<?= base_url() ?>public/admin/uploads/achievements/invalid_image.png" alt="" height="40px">
+                        <?php endif; ?>
                     </div>
 
                     <div class="form-group">
                         <span for="">Desription</span>
-                        <textarea id="editor" name="description"></textarea>
+                        <textarea id="editor" name="description"><?= $awards_recognition_data['description'] ?></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>

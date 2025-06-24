@@ -282,6 +282,7 @@ class AchievementsController extends BaseController
         $data = ['title' => 'Awards & Recognition', 'awards_id' => $id];
         if ($this->request->is("get")) {
             $data['awards_recognition'] = $awards_recognition_model->get();
+            $data['awards_recognition_data'] = $awards_recognition_model->get($id);
             return view('admin/awards_achievement/edit-awards-recognition', $data);
         } else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
