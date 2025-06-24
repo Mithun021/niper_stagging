@@ -451,7 +451,7 @@ class AchievementsController extends BaseController
                 'upload_file' => $document_name,
                 'upload_by' => $loggeduserId,
             ];
-            $result = $student_achievement_model->add($data);
+            $result = $student_achievement_model->add($data, $id);
             if ($result) {
                 return redirect()->to('admin/edit-student-achievements/'.$id)->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
