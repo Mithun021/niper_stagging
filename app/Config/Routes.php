@@ -127,6 +127,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete-awarded-gallery/(:num)', 'AchievementsController::delete_awarded_gallery/$1');
 
     $routes->match(['get','post'],'awards-recognition', 'AchievementsController::awards_recognition');
+    $routes->match(['get','post'],'edit-awards-recognition/(:num)', 'AchievementsController::edit_awards_recognition/$1');
+    $routes->get('delete-awards-recognition/(:num)', 'AchievementsController::delete_awards_recognition/$1');
+
     $routes->match(['get','post'],'student-achievements', 'AchievementsController::student_achievements');
 
     $routes->match(['get','post'],'employee', 'EmployeeController::employee');

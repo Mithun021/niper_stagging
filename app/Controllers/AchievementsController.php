@@ -276,6 +276,40 @@ class AchievementsController extends BaseController
         }
     }
 
+    public function edit_awards_recognition($id)
+    {
+        $awards_recognition_model = new Awards_recognition_model();
+        $data = ['title' => 'Awards & Recognition', 'awards_id' => $id];
+        if ($this->request->is("get")) {
+            $data['awards_recognition'] = $awards_recognition_model->get();
+            return view('admin/awards_achievement/edit-awards-recognition', $data);
+        } else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId'];
+            }
+            $upload_file = $this->request->getFile('upload_file');
+            if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
+                $upload_file_new_name = 'awards' . $upload_file->getRandomName();
+                $upload_file->move(ROOTPATH . 'public/admin/uploads/achievements', $upload_file_new_name);
+            } else {
+                $upload_file_new_name = "";
+            }
+            $data = [
+                'title' => $this->request->getVar('title'),
+                'description' => $this->request->getVar('description'),
+                'upload_file' => $upload_file_new_name,
+                'upload_by' => $loggeduserId,
+            ];
+            $result = $awards_recognition_model->add($data, $id);
+            if ($result) {
+                return redirect()->to('admin/edit-awards-recognition/'.$id)->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-awards-recognition/'.$id)->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
+        }
+    }
+
     public function student_achievements()
     {
         $student_achievement_mapping_model = new Student_achievement_mapping_model();
