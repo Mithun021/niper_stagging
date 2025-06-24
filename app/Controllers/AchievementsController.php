@@ -459,4 +459,22 @@ class AchievementsController extends BaseController
             }
         }
     }
+
+    public function add_new_achieved_student($id)
+    {
+        $student_achievement_mapping_model = new Student_achievement_mapping_model();
+        $data = [
+            'student_achievement_mapping_id' => $id,
+            'student_name' => $this->request->getVar('student_name'),
+            'department_id' => $this->request->getVar('department'),
+            'course_id' => $this->request->getVar('course'),
+            'supervisor_id' => $this->request->getVar('supervisor'),
+        ];
+        if ($student_achievement_mapping_model->add($data)) {
+            return redirect()->to('admin/edit-student-achievements/'.$id)->with('status', '<div class="alert alert-success" role="alert"> Student Added Successfully </div>');
+        } else {
+            return redirect()->to('admin/edit-student-achievements/'.$id)->with('status', '<div class="alert alert-danger" role="alert"> Failed to Add Student </div>');
+        }
+    }
+
 }
