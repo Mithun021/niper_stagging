@@ -31,7 +31,7 @@ $student_achievement_mapping_model = new Student_achievement_mapping_model();
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url('admin/student-achievements') ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url('admin/edit-student-achievements/'.$achievement_id) ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <span for="">Title<span class="text-danger">*</span></span>

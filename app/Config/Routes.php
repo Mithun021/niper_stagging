@@ -131,6 +131,8 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete-awards-recognition/(:num)', 'AchievementsController::delete_awards_recognition/$1');
 
     $routes->match(['get','post'],'student-achievements', 'AchievementsController::student_achievements');
+    $routes->match(['get','post'],'edit-student-achievements/(:num)', 'AchievementsController::edit_student_achievements/$1');
+    $routes->get('delete-student-achievements/(:num)', 'AchievementsController::delete_student_achievements/$1');
 
     $routes->match(['get','post'],'employee', 'EmployeeController::employee');
     $routes->match(['get','post'],'edit-employee/(:num)', 'EmployeeController::edit_employee/$1');

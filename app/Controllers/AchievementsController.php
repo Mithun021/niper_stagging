@@ -398,4 +398,64 @@ class AchievementsController extends BaseController
             }
         }
     }
+
+    public function edit_student_achievements($id)
+    {
+        $student_achievement_mapping_model = new Student_achievement_mapping_model();
+        $employee_model = new Employee_model();
+        $department_model = new Department_model();
+        $courses_model = new Courses_model();
+        $program_model = new Program_model();
+        $student_achievement_model = new Student_achievement_model();
+        $data = ['title' => 'Student Achievements','achievement_id' => $id];
+        if ($this->request->is("get")) {
+            $data['employee'] = $employee_model->get();
+            $data['department'] = $department_model->get();
+            $data['program'] = $program_model->get();
+            $data['student_acchievement'] = $student_achievement_model->get();
+            $data['student_acchievement_data'] = $student_achievement_model->get($id);
+            return view('admin/awards_achievement/edit-student-achievements', $data);
+        } else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId'];
+            }
+            $student_acchievement_data = $student_achievement_model->get($id);
+            $document = $this->request->getFile('upload_file');
+            $old_document_file = $student_acchievement_data['upload_file'];
+            if (empty($old_document_file)) {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    $document_name = "student" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/achievements/', $document_name);
+                } else {
+                    $document_name = null;
+                }
+            } else {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    if (file_exists("public/admin/uploads/achievements/" . $old_document_file)) {
+                        unlink("public/admin/uploads/achievements/" . $old_document_file);
+                    }
+                    $document_name = "student" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/achievements/', $document_name);
+                } else {
+                    $document_name = $old_document_file;
+                }
+            }
+
+            $data = [
+                'title' => $this->request->getVar('title'),
+                'description' => $this->request->getVar('description'),
+                'award_date' => $this->request->getVar('awards_date'),
+                'agency_name' => $this->request->getVar('agency_name'),
+                'upload_file' => $document_name,
+                'upload_by' => $loggeduserId,
+            ];
+            $result = $student_achievement_model->add($data);
+            if ($result) {
+                return redirect()->to('admin/edit-student-achievements/'.$id)->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-student-achievements/'.$id)->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
+        }
+    }
 }
