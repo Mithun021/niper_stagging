@@ -414,6 +414,7 @@ class AchievementsController extends BaseController
             $data['program'] = $program_model->get();
             $data['student_acchievement'] = $student_achievement_model->get();
             $data['student_acchievement_data'] = $student_achievement_model->get($id);
+            $data['student_acchievement_mapping'] = $student_achievement_mapping_model->get_by_student_achiv_id($id);
             return view('admin/awards_achievement/edit-student-achievements', $data);
         } else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');

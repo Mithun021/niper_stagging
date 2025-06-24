@@ -14,9 +14,7 @@ $employee_model = new Employee_model();
 $student_achievement_mapping_model = new Student_achievement_mapping_model();
 ?>
 <style>
-    #addServicetable #memberTbody #memberTrow:first-child td:last-child button {
-        display: none;
-    }
+    
 </style>
 <!-- start page title -->
 <div class="row">
@@ -35,7 +33,7 @@ $student_achievement_mapping_model = new Student_achievement_mapping_model();
                     <div class="row">
                         <div class="form-group col-md-6">
                             <span for="">Title<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="title">
+                            <input type="text" class="form-control form-control-sm" name="title" value="<?= $student_acchievement['title'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Upload File(JPG,PNG)</span>
@@ -44,7 +42,7 @@ $student_achievement_mapping_model = new Student_achievement_mapping_model();
 
                         <div class="form-group col-md-12">
                             <span for="">Desription</span>
-                            <textarea id="editor" name="description"></textarea>
+                            <textarea id="editor" name="description"><?= $student_acchievement['description'] ?></textarea>
                         </div>
 
                         <div class="form-group col-md-12">
@@ -59,45 +57,19 @@ $student_achievement_mapping_model = new Student_achievement_mapping_model();
                                             <td><button type="button" class="btn btn-sm btn-primary" id="addnewMemberRow">+</button></td>
                                         </tr>
                                     </thead>
-                                    <tbody id="memberTbody">
-                                        <tr id="memberTrow">
-                                            <td>
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control form-control-sm" name="student_name[]" required>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group">
-                                                    <select class="form-control form-control-sm" name="department[]" required>
-                                                        <option value="">--Select--</option>
-                                                        <?php foreach ($department as $key => $value) { ?>
-                                                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group">
-                                                    <select class="form-control form-control-sm" name="course[]" required>
-                                                        <option value="">--Select--</option>
-                                                        <?php foreach ($program as $key => $value) { ?>
-                                                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group">
-                                                    <select class="form-control form-control-sm" name="supervisor[]" required>
-                                                        <option value="">--Select--</option>
-                                                        <?php foreach ($employee as $key => $value) { ?>
-                                                            <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>.
-                                                        <?php } ?>
-                                                    </select>
-                                                </div>
-                                            </td>
+                                    <tbody>
+                                    <?php if (!empty($student_achievement_mapping)) { ?>
+                                        <?php foreach ($student_achievement_mapping as $key => $value) { ?>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                             <td><button type="button" class="btn btn-sm btn-danger" id="removenewMemberRow">-</button></td>
                                         </tr>
+                                        <?php } ?>
+                                    <?php } ?>
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -107,11 +79,11 @@ $student_achievement_mapping_model = new Student_achievement_mapping_model();
 
                         <div class="form-group col-md-6">
                             <span for="">Awards Date</span>
-                            <input type="date" class="form-control form-control-sm" name="awards_date">
+                            <input type="date" class="form-control form-control-sm" name="awards_date" value="<?= $student_acchievement['award_date'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Awarding Agency Name</span>
-                            <input type="text" class="form-control form-control-sm" name="agency_name">
+                            <input type="text" class="form-control form-control-sm" name="agency_name" value="<?= $student_acchievement['agency_name'] ?>" required>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
@@ -201,22 +173,6 @@ $student_achievement_mapping_model = new Student_achievement_mapping_model();
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
-        // Create Service Clone for add and remove rows also calculate price
-        var cloneLimit = 10;
-        var currentClones = 0;
-        $("#addnewMemberRow").click(function(e) {
-            e.preventDefault();
-            if (currentClones < cloneLimit) {
-                currentClones++;
-                var cloneCatrow = $('#memberTrow').clone().appendTo('#memberTbody');
-                $(cloneCatrow).find('input').val('');
-            }
-
-        });
-
-        $('#memberTbody').on('click', '#removenewMemberRow', function() {
-            $(this).closest('tr').remove();
-        });
 
     });
 </script>
