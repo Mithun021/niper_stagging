@@ -60,7 +60,7 @@ $courses_model = new Courses_model();
                                             <td>Department</td>
                                             <td>Course Details</td>
                                             <td>Superviser</td>
-                                            <td><button type="button" class="btn btn-sm btn-primary" id="addnewMemberRow">+</button></td>
+                                            <td><button type="button" class="btn btn-sm btn-primary" onclick="openStudentModal()">+</button></td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -176,8 +176,64 @@ $courses_model = new Courses_model();
     </div>
 </div>
 
+
+<div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <h5 class="modal-title" id="exampleModalLabel">Add Faculty</h5> -->
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="<?= base_url() ?>admin/add-new-achievement-student/<?= $awards_id ?>" method="post">
+            <div class="modal-body">
+                <div class="form-group">
+                    <span>Student Name</span>
+                    <input type="text" class="form-control form-control-sm" name="student_name" required>
+                </div>
+                <div class="form-group">
+                    <span>Department</span>
+                    <select class="form-control form-control-sm" name="department" required>
+                        <option value="">--Select--</option>
+                        <?php foreach ($department as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <span>Course</span>
+                    <select class="form-control form-control-sm" name="course" required>
+                        <option value="">--Select--</option>
+                        <?php foreach ($program as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <span>supervisor</span>
+                    <select class="form-control form-control-sm" name="supervisor" required>
+                        <option value="">--Select--</option>
+                        <?php foreach ($employee as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>.
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary waves-effect waves-light">Save changes</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
+    function openStudentModal() {
+        $('#addStudentModal').modal('show');
+    }
     $(document).ready(function() {
 
     });
