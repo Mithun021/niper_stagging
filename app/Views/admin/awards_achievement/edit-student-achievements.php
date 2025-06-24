@@ -1,7 +1,7 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
 <?php
-
+use App\Models\Designation_model;
 use App\Models\Courses_model;
 use App\Models\Department_model;
 use App\Models\Employee_model;
@@ -12,6 +12,7 @@ $department_model = new Department_model();
 $program_model = new Program_model();
 $employee_model = new Employee_model();
 $student_achievement_mapping_model = new Student_achievement_mapping_model();
+$designation_model = new Designation_model();
 ?>
 <style>
     
