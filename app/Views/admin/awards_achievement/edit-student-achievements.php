@@ -33,16 +33,21 @@ $student_achievement_mapping_model = new Student_achievement_mapping_model();
                     <div class="row">
                         <div class="form-group col-md-6">
                             <span for="">Title<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="title" value="<?= $student_acchievement['title'] ?>" required>
+                            <input type="text" class="form-control form-control-sm" name="title" value="<?= $student_acchievement_data['title'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Upload File(JPG,PNG)</span>
                             <input type="file" class="form-control form-control-sm" name="upload_file" accept=".jpg, .png" required>
+                            <?php if (!empty($student_acchievement_data['upload_file']) && file_exists('public/admin/uploads/achievements/' . $student_acchievement_data['upload_file'])): ?>
+                                <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $student_acchievement_data['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/achievements/<?= $student_acchievement_data['upload_file'] ?>" alt="" height="30px"></a>
+                            <?php else: ?>
+                                <img src="<?= base_url() ?>public/admin/uploads/achievements/invalid_image.png" alt="" height="40px">
+                            <?php endif; ?>
                         </div>
 
                         <div class="form-group col-md-12">
                             <span for="">Desription</span>
-                            <textarea id="editor" name="description"><?= $student_acchievement['description'] ?></textarea>
+                            <textarea id="editor" name="description"><?= $student_acchievement_data['description'] ?></textarea>
                         </div>
 
                         <div class="form-group col-md-12">
@@ -79,11 +84,11 @@ $student_achievement_mapping_model = new Student_achievement_mapping_model();
 
                         <div class="form-group col-md-6">
                             <span for="">Awards Date</span>
-                            <input type="date" class="form-control form-control-sm" name="awards_date" value="<?= $student_acchievement['award_date'] ?>" required>
+                            <input type="date" class="form-control form-control-sm" name="awards_date" value="<?= $student_acchievement_data['award_date'] ?>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <span for="">Awarding Agency Name</span>
-                            <input type="text" class="form-control form-control-sm" name="agency_name" value="<?= $student_acchievement['agency_name'] ?>" required>
+                            <input type="text" class="form-control form-control-sm" name="agency_name" value="<?= $student_acchievement_data['agency_name'] ?>" required>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
