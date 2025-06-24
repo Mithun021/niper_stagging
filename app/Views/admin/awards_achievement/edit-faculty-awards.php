@@ -244,8 +244,9 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
     function deleteAwardedFaculty(id) {
         if (confirm('Are you sure you want to delete this faculty from the award?')) {
             $.ajax({
-                url: '<?= base_url() ?>admin/delete-awarded-faculty/' + id,
+                url: '<?= base_url('admin/delete-awarded-faculty/') ?>' + id,
                 type: 'GET',
+                dataType: 'json',
                 success: function(response) {
                     if (response.status === 'success') {
                         location.reload();
@@ -253,12 +254,14 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                         alert('Error: ' + response.message);
                     }
                 },
-                error: function() {
-                    alert('An error occurred while deleting the faculty.');
+                error: function(xhr, status, error) {
+                    alert('An error occurred while deleting the faculty. Please try again.');
+                    console.error(xhr.responseText);
                 }
             });
         }
     }
+
 
     $(document).ready(function() {
         
