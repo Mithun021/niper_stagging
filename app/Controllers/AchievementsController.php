@@ -165,6 +165,21 @@ class AchievementsController extends BaseController
         }
     }
 
+    public function add_new_awarded_faculty($id){
+        $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
+        $data = [
+            'faculty_award_id' => $id,
+            'faculty_name' => $this->request->getVar('faculty_name'),
+            'department_id' => $this->request->getVar('department'),
+            'designation_id' => $this->request->getVar('designation'),
+        ];
+        if ($faculty_awards_mapping_model->add($data)) {
+            return redirect()->to('admin/edit-faculty-awards/'.$id)->with('status', '<div class="alert alert-success" role="alert"> Faculty Added Successfully </div>');
+        } else {
+            return redirect()->to('admin/edit-faculty-awards/'.$id)->with('status', '<div class="alert alert-danger" role="alert"> Failed to Add Faculty </div>');
+        }
+    }
+
     public function awards_recognition()
     {
         $awards_recognition_model = new Awards_recognition_model();

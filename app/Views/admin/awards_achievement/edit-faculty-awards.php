@@ -200,12 +200,14 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" method="post">
+            <form action="<?= base_url() ?>admin/add-new-awarded-faculty/<?= $awards_id ?>" method="post">
             <div class="modal-body">
                 <div class="form-group">
+                    <span>Faculty Name</span>
                     <input type="text" class="form-control form-control-sm" name="faculty_name" required>
                 </div>
                 <div class="form-group">
+                    <span>Department</span>
                     <select class="form-control form-control-sm my-select" name="department" required>
                         <option value="">--Select--</option>
                         <?php foreach ($departments as $key => $value) { ?>
@@ -214,6 +216,7 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                     </select>
                 </div>
                 <div class="form-group">
+                    <span>Designation</span>
                     <select class="form-control form-control-sm my-select" name="designation" required>
                         <option value="">--Select--</option>
                         <?php foreach ($designations as $key => $value) { ?>
