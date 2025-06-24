@@ -249,6 +249,7 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                 dataType: 'json',
                 success: function(response) {
                     if (response.status === 'success') {
+                        alert('Faculty deleted successfully.');
                         location.reload();
                     } else {
                         alert('Error: ' + response.message);
