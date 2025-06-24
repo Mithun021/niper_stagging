@@ -326,6 +326,23 @@ class AchievementsController extends BaseController
         }
     }
 
+    public function delete_awards_recognition($id)
+    {
+        $awards_recognition_model = new Awards_recognition_model();
+        $awards_recognition_data = $awards_recognition_model->get($id);
+        if ($awards_recognition_data) {
+            if (file_exists("public/admin/uploads/achievements/" . $awards_recognition_data['upload_file'])) {
+                unlink("public/admin/uploads/achievements/" . $awards_recognition_data['upload_file']);
+            }
+        }
+        $result = $awards_recognition_model->delete($id);
+        if ($result) {
+            return redirect()->to('admin/awards-recognition')->with('status', '<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/awards-recognition')->with('status', '<div class="alert alert-danger" role="alert"> Data Delete Failed </div>');
+        }
+    }
+
     public function student_achievements()
     {
         $student_achievement_mapping_model = new Student_achievement_mapping_model();
