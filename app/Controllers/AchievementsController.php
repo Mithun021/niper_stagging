@@ -477,7 +477,7 @@ class AchievementsController extends BaseController
         }
     }
 
-    public function delete_achievement_student($id)
+    public function delete_achieved_student($id)
     {
         $student_achievement_mapping_model = new Student_achievement_mapping_model();
 
