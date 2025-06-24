@@ -240,7 +240,7 @@ $courses_model = new Courses_model();
                 url: '<?= base_url('admin/delete-achieved-student/') ?>' + id,
                 type: 'GET',
                 success: function(response) {
-                    if (response.success) {
+                    if (response.status === 'success') {
                         alert('Student achievement deleted successfully.');
                         location.reload();
                     } else {
