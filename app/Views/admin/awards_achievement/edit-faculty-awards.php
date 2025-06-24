@@ -83,7 +83,7 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                                             <td><?= $faculty['faculty_name'] ?></td>
                                             <td><?= $department_model->get($faculty['department_id'])['name'] ?? '' ?></td>
                                             <td><?= $designation_model->get($faculty['designation_id'])['name'] ?? '' ?></td>
-                                            <td><button type="button" class="btn btn-sm btn-danger" id="removenewMemberRow">-</button></td>
+                                            <td><button type="button" class="btn btn-sm btn-danger" onclick="deleteAwardedFaculty('<?= $faculty['id'] ?>')">-</button></td>
                                         </tr>
                                     <?php } ?>
                                     </tbody>
@@ -239,6 +239,25 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
 
     function openFacultyModal() {
         $('#addFacultyModal').modal('show');
+    }
+
+    function deleteAwardedFaculty(id) {
+        if (confirm('Are you sure you want to delete this faculty from the award?')) {
+            $.ajax({
+                url: '<?= base_url() ?>admin/delete-awarded-faculty/' + id,
+                type: 'GET',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        location.reload();
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                },
+                error: function() {
+                    alert('An error occurred while deleting the faculty.');
+                }
+            });
+        }
     }
 
     $(document).ready(function() {

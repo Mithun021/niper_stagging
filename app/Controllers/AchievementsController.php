@@ -180,6 +180,16 @@ class AchievementsController extends BaseController
         }
     }
 
+    public function delete_awarded_faculty($id){
+        $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
+        $result = $faculty_awards_mapping_model->delete($id);
+        if ($result) {
+            echo json_encode(['status'=> 'success']);
+        } else {
+            echo json_encode(['status'=> 'error', 'message' => 'Failed to delete faculty award mapping.']);
+        }
+    }
+
     public function awards_recognition()
     {
         $awards_recognition_model = new Awards_recognition_model();

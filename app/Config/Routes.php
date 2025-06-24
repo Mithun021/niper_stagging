@@ -123,6 +123,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'edit-faculty-awards/(:num)', 'AchievementsController::edit_faculty_awards/$1');
     $routes->get('delete-faculty-awards/(:num)', 'AchievementsController::delete_faculty_awards/$1');
     $routes->post('add-new-awarded-faculty/(:num)', 'AchievementsController::add_new_awarded_faculty/$1');
+    $routes->get('delete-awarded-faculty/(:num)', 'AchievementsController::delete_awarded_faculty/$1');
 
     $routes->match(['get','post'],'awards-recognition', 'AchievementsController::awards_recognition');
     $routes->match(['get','post'],'student-achievements', 'AchievementsController::student_achievements');
