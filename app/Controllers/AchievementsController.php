@@ -493,4 +493,28 @@ class AchievementsController extends BaseController
         }
     }
 
+    public function delete_student_achievements($id){
+        $student_achievement_model = new Student_achievement_model();
+        $student_achievement_mapping_model = new Student_achievement_mapping_model();
+
+        $student_achievement = $student_achievement_model->get($id);
+        if ($student_achievement) {
+            if (file_exists("public/admin/uploads/achievements/" . $student_achievement['upload_file'])) {
+                unlink("public/admin/uploads/achievements/" . $student_achievement['upload_file']);
+            }
+        }
+
+        // Delete associated mappings
+        $student_achievement_mapping_model->where('student_achievement_mapping_id', $id)->delete();
+
+        // Finally, delete the student achievement
+        $result = $student_achievement_model->delete($id);
+
+        if ($result) {
+            return redirect()->to('admin/student-achievements')->with('status', '<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/student-achievements')->with('status', '<div class="alert alert-danger" role="alert"> Data Delete Failed </div>');
+        }
+    }
+
 }
