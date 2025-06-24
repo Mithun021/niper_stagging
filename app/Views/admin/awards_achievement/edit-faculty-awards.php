@@ -52,8 +52,8 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                             <?php foreach ($faculty_awards_gallery as $key => $gallery) { ?>
                                 <?php if (!empty($gallery['gallery_file']) && file_exists('public/admin/uploads/achievements/' . $gallery['gallery_file'])): ?>
                                     <span class="border">
-                                    <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $gallery['gallery_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/achievements/<?= $gallery['gallery_file'] ?>" alt="" height="30px"></a>
-                                    <span class="fas fa-trash-alt"></span>  
+                                        <a href="<?= base_url() ?>public/admin/uploads/achievements/<?= $gallery['gallery_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/achievements/<?= $gallery['gallery_file'] ?>" alt="" height="30px"></a>
+                                        <span class="fas fa-trash-alt" onclick="deleteAwardedGallery('<?= $gallery['id'] ?>')"></span>  
                                     </span>  
                                 <?php else: ?>
                                     <img src="<?= base_url() ?>public/admin/uploads/achievements/invalid_image.png" alt="" height="40px">
@@ -257,6 +257,28 @@ $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
                 },
                 error: function(xhr, status, error) {
                     alert('An error occurred while deleting the faculty. Please try again.');
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+    }
+
+    function deleteAwardedGallery(id) {
+        if (confirm('Are you sure you want to delete this gallery?')) {
+            $.ajax({
+                url: '<?= base_url('admin/delete-awarded-gallery/') ?>' + id,
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        alert('Gallery deleted successfully.');
+                        location.reload();
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert('An error occurred while deleting the gallery. Please try again.');
                     console.error(xhr.responseText);
                 }
             });

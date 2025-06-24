@@ -195,6 +195,25 @@ class AchievementsController extends BaseController
         }
     }
 
+    public function delete_awarded_gallery($id){
+        $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
+        $gallery_data = $faculty_awards_gallery_model->get($id);
+        if ($gallery_data) {
+            if (file_exists("public/admin/uploads/achievements/" . $gallery_data['gallery_file'])) {
+                unlink("public/admin/uploads/achievements/" . $gallery_data['gallery_file']);
+            }
+        }
+        $result = $faculty_awards_gallery_model->delete($id);
+        if ($result) {
+            return $this->response->setJSON(['status' => 'success']);
+        } else {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Failed to delete faculty award gallery.'
+            ]);
+        }
+    }
+
 
     public function awards_recognition()
     {
