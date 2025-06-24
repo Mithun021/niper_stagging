@@ -238,7 +238,7 @@ $courses_model = new Courses_model();
         if (confirm('Are you sure you want to delete this student achievement?')) {
             $.ajax({
                 url: '<?= base_url('admin/delete-achieved-student/') ?>' + id,
-                type: 'POST',
+                type: 'GET',
                 success: function(response) {
                     if (response.success) {
                         alert('Student achievement deleted successfully.');
@@ -253,7 +253,7 @@ $courses_model = new Courses_model();
             });
         }
     }
-    
+
     $(document).ready(function() {
 
     });
