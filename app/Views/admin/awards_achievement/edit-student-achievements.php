@@ -63,8 +63,8 @@ $student_achievement_mapping_model = new Student_achievement_mapping_model();
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php if (!empty($student_achievement_mapping)) { ?>
-                                        <?php foreach ($student_achievement_mapping as $key => $value) { ?>
+                                    <?php if (!empty($student_acchievement_mapping)) { ?>
+                                        <?php foreach ($student_acchievement_mapping as $key => $value) { ?>
                                         <tr>
                                             <td></td>
                                             <td></td>
