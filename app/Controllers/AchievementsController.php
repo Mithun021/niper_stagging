@@ -214,6 +214,33 @@ class AchievementsController extends BaseController
         }
     }
 
+    public function delete_faculty_awards($id){
+        $faculty_awards_model = new Faculty_awards_model();
+        $faculty_awards_mapping_model = new Faculty_awards_mapping_model();
+        $faculty_awards_gallery_model = new Faculty_awards_gallery_model();
+
+        // Delete associated gallery files
+        $gallery_files = $faculty_awards_gallery_model->get_by_faculty_award_id($id);
+        foreach ($gallery_files as $file) {
+            if (file_exists("public/admin/uploads/achievements/" . $file['gallery_file'])) {
+                unlink("public/admin/uploads/achievements/" . $file['gallery_file']);
+            }
+        }
+        $faculty_awards_gallery_model->where('faculty_award_id', $id)->delete();
+
+        // Delete associated mappings
+        $faculty_awards_mapping_model->where('faculty_award_id', $id)->delete();
+
+        // Finally, delete the faculty award
+        $result = $faculty_awards_model->delete($id);
+
+        if ($result) {
+            return redirect()->to('admin/faculty-awards')->with('status', '<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/faculty-awards')->with('status', '<div class="alert alert-danger" role="alert"> Data Delete Failed </div>');
+        }
+    }
+
 
     public function awards_recognition()
     {
