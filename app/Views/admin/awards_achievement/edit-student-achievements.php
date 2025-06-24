@@ -64,12 +64,12 @@ $student_achievement_mapping_model = new Student_achievement_mapping_model();
                                     </thead>
                                     <tbody>
                                     <?php if (!empty($student_acchievement_mapping)) { ?>
-                                        <?php foreach ($student_acchievement_mapping as $key => $value) { ?>
+                                        <?php foreach ($student_acchievement_mapping as $key => $achievements) { ?>
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><?= $achievements['student_name'] ?></td>
+                                            <td><?= $department_model->get($achievements['department_id'])['name'] ?? '' ?></td>
+                                            <td><?= $designation_model->get($achievements['designation_id'])['name'] ?? '' ?></td>
+                                            <td><?php $supervisor = $employee_model->get($achievements['supervisor_id']); if($supervisor){ echo $supervisor['first_name'] . " " . $supervisor['middle_name'] . " " . $supervisor['last_name']; } ?></td>
                                             <td><button type="button" class="btn btn-sm btn-danger" id="removenewMemberRow">-</button></td>
                                         </tr>
                                         <?php } ?>
