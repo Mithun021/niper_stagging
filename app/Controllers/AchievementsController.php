@@ -477,4 +477,20 @@ class AchievementsController extends BaseController
         }
     }
 
+    public function delete_achievement_student($id)
+    {
+        $student_achievement_mapping_model = new Student_achievement_mapping_model();
+
+        $result = $student_achievement_mapping_model->delete($id);
+
+        if ($result) {
+            return $this->response->setJSON(['status' => 'success']);
+        } else {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Failed to delete student achievement mapping.'
+            ]);
+        }
+    }
+
 }
