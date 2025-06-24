@@ -186,7 +186,7 @@ $courses_model = new Courses_model();
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url() ?>admin/add-new-achievement-student/<?= $awards_id ?>" method="post">
+            <form action="<?= base_url() ?>admin/add-new-achievement-student/<?= $achievement_id ?>" method="post">
             <div class="modal-body">
                 <div class="form-group">
                     <span>Student Name</span>
