@@ -289,17 +289,32 @@ class AchievementsController extends BaseController
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId'];
             }
-            $upload_file = $this->request->getFile('upload_file');
-            if ($upload_file->isValid() && ! $upload_file->hasMoved()) {
-                $upload_file_new_name = 'awards' . $upload_file->getRandomName();
-                $upload_file->move(ROOTPATH . 'public/admin/uploads/achievements', $upload_file_new_name);
+            $awards_recognition_data = $awards_recognition_model->get($id);
+            $document = $this->request->getFile('upload_file');
+            $old_document_file = $awards_recognition_data['upload_file'];
+            if (empty($old_document_file)) {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    $document_name = "awards" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/achievements/', $document_name);
+                } else {
+                    $document_name = null;
+                }
             } else {
-                $upload_file_new_name = "";
+                if ($document->isValid() && !$document->hasMoved()) {
+                    if (file_exists("public/admin/uploads/achievements/" . $old_document_file)) {
+                        unlink("public/admin/uploads/achievements/" . $old_document_file);
+                    }
+                    $document_name = "awards" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/achievements/', $document_name);
+                } else {
+                    $document_name = $old_document_file;
+                }
             }
+
             $data = [
                 'title' => $this->request->getVar('title'),
                 'description' => $this->request->getVar('description'),
-                'upload_file' => $upload_file_new_name,
+                'upload_file' => $document_name,
                 'upload_by' => $loggeduserId,
             ];
             $result = $awards_recognition_model->add($data, $id);
