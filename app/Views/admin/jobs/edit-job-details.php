@@ -25,7 +25,7 @@
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/job-details" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/edit-job-details" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">

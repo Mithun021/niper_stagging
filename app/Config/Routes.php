@@ -299,6 +299,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'achievements', 'AdminControllers::achievements');
 
     $routes->match(['get','post'],'job-details', 'JobControllers::job_details');
+    $routes->match(['get','post'],'edit-job-details/(:num)', 'JobControllers::edit_job_details/$1');
+    $routes->get('delete-tjob-details/(:num)', 'JobControllers::delete_job_details/$1');
+
     $routes->match(['get','post'],'job-extension', 'JobControllers::job_extension');
     $routes->match(['get','post'],'job-web-link', 'JobControllers::job_web_link');
     $routes->match(['get','post'],'job-video', 'JobControllers::job_video');
