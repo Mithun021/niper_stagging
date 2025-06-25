@@ -31,24 +31,29 @@ $employee_model = new Employee_model();
                             <select class="form-control form-control-sm" name="job_id" required>
                                 <option value="">--Select--</option>
                                 <?php foreach ($job_details as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?php if($job_extension_data['job_id'] == $value['id']){ echo "selected"; } ?>><?= $value['title'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
                         <div class="form-group col-lg-6">
                             <span for="">Extension notice title<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="ext_notice_title">
+                            <input type="text" class="form-control form-control-sm" name="ext_notice_title" value="<?= $job_extension_data['ext_notice_title'] ?>" required>
                         </div>
                         <div class="form-group col-lg-6">
                             <span for="">Extension notice file upload(JPG,PNG,PDF)<span class="text-danger">*</span></span>
-                            <input type="file" class="form-control form-control-sm" name="ext_notice_file" accept=".jpg, .png, .pdf" required>
+                            <input type="file" class="form-control form-control-sm" name="ext_notice_file" accept=".jpg, .png, .pdf">
+                             <?php if (!empty($job_extension_data['ext_notice_file']) && file_exists('public/admin/uploads/jobs/' . $job_extension_data['ext_notice_file'])): ?>
+                                <a href="<?= base_url() ?>public/admin/uploads/jobs/<?= $job_extension_data['ext_notice_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
+                            <?php else: ?>
+                                <img src="<?= base_url() ?>public/admin/uploads/jobs/invalid_image.png" alt="" height="30px">
+                            <?php endif; ?>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Revised application last datetime<span class="text-danger">*</span></span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="revised_app_last_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                    <input type="text" class="form-control form-control-sm" name="revised_app_last_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="revised_app_last_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?= $job_extension_data['revised_app_last_date'] ?>">
+                                    <input type="text" class="form-control form-control-sm" name="revised_app_last_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')" value="<?= $job_extension_data['revised_app_last_time'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -56,8 +61,8 @@ $employee_model = new Employee_model();
                             <div class="form-group">
                                 <span for="">Revised hardcopy last datetime<span class="text-danger">*</span></span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="revised_copy_last_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                    <input type="text" class="form-control form-control-sm" name="revised_copy_last_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="revised_copy_last_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?= $job_extension_data['revised_copy_last_date'] ?>">
+                                    <input type="text" class="form-control form-control-sm" name="revised_copy_last_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')" value="<?= $job_extension_data['revised_copy_last_time'] ?>">
                                 </div>
                             </div>
                         </div>
