@@ -30,13 +30,13 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <span for="">Adv Title<span class="text-danger">*</span></span>
-                                <input type="text" class="form-control form-control-sm" name="job_title" required>
+                                <input type="text" class="form-control form-control-sm" name="job_title" value="<?= $job_data['title'] ?>" required>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <span for="">Adv Desription</span>
-                                <textarea id="editor" name="description"></textarea>
+                                <textarea id="editor" name="description"><?= $job_data['description'] ?></textarea>
                             </div>
                         </div>
                         <div class="col-md-6">
