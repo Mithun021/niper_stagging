@@ -350,12 +350,27 @@ class JobControllers extends BaseController
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId']; 
             }
-            $ext_notice_file = $this->request->getFile('ext_notice_file');
-            if ($ext_notice_file->isValid() && ! $ext_notice_file->hasMoved()) {
-                $ext_notice_fileImageName = "ext".$ext_notice_file->getRandomName();
-                $ext_notice_file->move(ROOTPATH . 'public/admin/uploads/jobs', $ext_notice_fileImageName);    
-            }else{
-                $ext_notice_fileImageName = "";
+            $job_extension_data = $job_extension_model->get($id);
+            $document = $this->request->getFile('ext_notice_file');
+            $old_document_file = $job_extension_data['ext_notice_file'];
+
+            if (empty($old_document_file)) {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    $document_name = "ext" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/jobs/', $document_name);
+                } else {
+                    $document_name = null;
+                }
+            } else {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    if (file_exists("public/admin/uploads/jobs/" . $old_document_file)) {
+                        unlink("public/admin/uploads/jobs/" . $old_document_file);
+                    }
+                    $document_name = "ext" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/jobs/', $document_name);
+                } else {
+                    $document_name = $old_document_file;
+                }
             }
 
             $data = [
@@ -365,7 +380,7 @@ class JobControllers extends BaseController
                 'revised_app_last_time' => $this->request->getPost('revised_app_last_time'),
                 'revised_copy_last_date' => $this->request->getPost('revised_copy_last_date'),
                 'revised_copy_last_time' => $this->request->getPost('revised_copy_last_time'),
-                'ext_notice_file' => $ext_notice_fileImageName,
+                'ext_notice_file' => $document_name,
                 'upload_by' => $loggeduserId
             ];
 
