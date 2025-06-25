@@ -520,7 +520,7 @@ class JobControllers extends BaseController
             $data['job_details'] = $job_detail_model->get();
             $data['job_video'] = $job_videolink_model->get();
             $data['job_video_data'] = $job_videolink_model->get($id);
-            return view('admin/jobs/job-video',$data);
+            return view('admin/jobs/edit-job-video',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
             if ($sessionData) {
