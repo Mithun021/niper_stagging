@@ -307,6 +307,8 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete-job-extension/(:num)', 'JobControllers::delete_job_extension/$1');
 
     $routes->match(['get','post'],'job-web-link', 'JobControllers::job_web_link');
+    $routes->match(['get','post'],'edit-job-web-link/(:num)', 'JobControllers::edit_job_web_link/$1');
+    $routes->get('delete-job-web-link/(:num)', 'JobControllers::delete_job_web_link/$1');
     $routes->match(['get','post'],'job-video', 'JobControllers::job_video');
     $routes->match(['get','post'],'job-result', 'JobControllers::job_result');
     $routes->match(['get','post'],'job-category', 'JobControllers::job_category');

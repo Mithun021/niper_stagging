@@ -439,6 +439,35 @@ class JobControllers extends BaseController
         }
     }
 
+    public function edit_job_web_link($id){
+        $job_weblink_model = new Job_weblink_model();
+        $job_detail_model = new Job_detail_model();
+        $data = ['title' => 'Job Web Link', 'job_id' => $id];
+        if ($this->request->is("get")) {
+            $data['job_details'] = $job_detail_model->get();
+            $data['job_weblink'] = $job_weblink_model->get();
+            $data['job_weblink_data'] = $job_weblink_model->get();
+            return view('admin/jobs/edit-job-web-link',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $data = [
+                'job_id' => $this->request->getPost('job_id'),   
+                'link_description' => $this->request->getPost('link_description'),
+                'job_url' => $this->request->getPost('job_link'),
+                'upload_by' => $loggeduserId,             
+            ];
+            $result = $job_weblink_model->add($data, $id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-job-web-link/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-job-web-link/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+
     public function job_video(){
         $job_videolink_model = new Job_videolink_model();
         $job_detail_model = new Job_detail_model();
