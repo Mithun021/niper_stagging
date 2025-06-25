@@ -209,6 +209,27 @@ class JobControllers extends BaseController
         }
     }
 
+    public function delete_job_details($id){
+        $job_detail_model = new Job_detail_model();
+        $job_data = $job_detail_model->get($id);
+        if ($job_data) {
+            if (file_exists("public/admin/uploads/jobs/" . $job_data['adv_file'])) {
+                unlink("public/admin/uploads/jobs/" . $job_data['adv_file']);
+            }
+            if (file_exists("public/admin/uploads/jobs/" . $job_data['syllabus_file'])) {
+                unlink("public/admin/uploads/jobs/" . $job_data['syllabus_file']);
+            }
+            $result = $job_detail_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/job-details')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/job-details')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        } else {
+            return redirect()->to('admin/job-details')->with('status','<div class="alert alert-danger" role="alert"> Job not found </div>');
+        }
+    }
+
     public function job_result(){
         $job_detail_model = new Job_detail_model();
         $job_result_model = new Job_result_model();
