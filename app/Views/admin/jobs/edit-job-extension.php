@@ -24,7 +24,7 @@ $employee_model = new Employee_model();
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/job-extension" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/edit-job-extension/<?= $job_id ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-lg-6">
                             <span for="">Job id<span class="text-danger">*</span></span>

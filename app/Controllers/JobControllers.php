@@ -336,6 +336,48 @@ class JobControllers extends BaseController
         }
     }
 
+    public function edit_job_extension($id){
+        $job_detail_model = new Job_detail_model();
+        $job_extension_model = new Job_extension_model();
+        $data = ['title' => 'Job Extension','job_id' => $id];
+        if ($this->request->is("get")) {
+            $data['job_details'] = $job_detail_model->get();
+            $data['job_extension'] = $job_extension_model->get();
+            $data['job_extension_data'] = $job_extension_model->get($id);
+            return view('admin/jobs/edit-job-extension',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $ext_notice_file = $this->request->getFile('ext_notice_file');
+            if ($ext_notice_file->isValid() && ! $ext_notice_file->hasMoved()) {
+                $ext_notice_fileImageName = "ext".$ext_notice_file->getRandomName();
+                $ext_notice_file->move(ROOTPATH . 'public/admin/uploads/jobs', $ext_notice_fileImageName);    
+            }else{
+                $ext_notice_fileImageName = "";
+            }
+
+            $data = [
+                'job_id' => $this->request->getPost('job_id'),
+                'ext_notice_title' => $this->request->getPost('ext_notice_title'),
+                'revised_app_last_date' => $this->request->getPost('revised_app_last_date'),
+                'revised_app_last_time' => $this->request->getPost('revised_app_last_time'),
+                'revised_copy_last_date' => $this->request->getPost('revised_copy_last_date'),
+                'revised_copy_last_time' => $this->request->getPost('revised_copy_last_time'),
+                'ext_notice_file' => $ext_notice_fileImageName,
+                'upload_by' => $loggeduserId
+            ];
+
+            $result = $job_extension_model->add($data, $id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-job-extension/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-job-extension/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+
     public function job_web_link(){
         $job_weblink_model = new Job_weblink_model();
         $job_detail_model = new Job_detail_model();

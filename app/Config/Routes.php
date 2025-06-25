@@ -303,6 +303,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete-tjob-details/(:num)', 'JobControllers::delete_job_details/$1');
 
     $routes->match(['get','post'],'job-extension', 'JobControllers::job_extension');
+    $routes->match(['get','post'],'edit-job-extension/(:num)', 'JobControllers::edit_job_extension/$1');
+    $routes->get('delete-tjob-extension/(:num)', 'JobControllers::delete_job_extension/$1');
+
     $routes->match(['get','post'],'job-web-link', 'JobControllers::job_web_link');
     $routes->match(['get','post'],'job-video', 'JobControllers::job_video');
     $routes->match(['get','post'],'job-result', 'JobControllers::job_result');
