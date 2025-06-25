@@ -468,6 +468,21 @@ class JobControllers extends BaseController
         }
     }
 
+    public function delete_job_web_link($id){
+        $job_weblink_model = new Job_weblink_model();
+        $job_data = $job_weblink_model->get($id);
+        if ($job_data) {
+            $result = $job_weblink_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/job-web-link')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/job-web-link')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        } else {
+            return redirect()->to('admin/job-web-link')->with('status','<div class="alert alert-danger" role="alert"> Job not found </div>');
+        }
+    }
+
     public function job_video(){
         $job_videolink_model = new Job_videolink_model();
         $job_detail_model = new Job_detail_model();
