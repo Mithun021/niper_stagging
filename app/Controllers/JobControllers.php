@@ -512,4 +512,49 @@ class JobControllers extends BaseController
         }
     }
 
+    public function edit_job_video($id){
+        $job_videolink_model = new Job_videolink_model();
+        $job_detail_model = new Job_detail_model();
+        $data = ['title' => 'Job Video', 'job_id' => $id];
+        if ($this->request->is("get")) {
+            $data['job_details'] = $job_detail_model->get();
+            $data['job_video'] = $job_videolink_model->get();
+            $data['job_video_data'] = $job_videolink_model->get($id);
+            return view('admin/jobs/job-video',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $data = [
+                'job_id' => $this->request->getPost('job_id'),   
+                'video_title' => $this->request->getPost('video_title'),
+                'video_description' => $this->request->getPost('video_description'),
+                'video_link' => $this->request->getPost('video_link'),
+                'upload_by' => $loggeduserId,             
+            ];
+            $result = $job_videolink_model->add($data, $id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-job-video/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-job-video/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+
+    public function delete_job_video($id){
+        $job_videolink_model = new Job_videolink_model();
+        $job_data = $job_videolink_model->get($id);
+        if ($job_data) {
+            $result = $job_videolink_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/job-video')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/job-video')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        } else {
+            return redirect()->to('admin/job-video')->with('status','<div class="alert alert-danger" role="alert"> Job not found </div>');
+        }
+    } 
+
 }

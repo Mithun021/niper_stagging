@@ -22,27 +22,27 @@ $employee_model = new Employee_model();
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/job-video') ?>">
+                <form method="post" action="<?= base_url('admin/edit-job-video/'.$job_id) ?>">
                     <div class="form-group">
                         <span for="">Job id<span class="text-danger">*</span></span>
                         <select class="form-control form-control-sm" name="job_id" required>
                             <option value="">--Select--</option>
                         <?php foreach ($job_details as $key => $value) { ?>
-                            <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                            <option value="<?= $value['id'] ?>" <?php if($job_video_data['job_id'] == $value['id']){ echo "selected"; } ?>><?= $value['title'] ?></option>
                         <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <span for="">Video Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="video_title" required>
+                        <input type="text" class="form-control form-control-sm" name="video_title" value="<?= $job_video_data['video_title'] ?>" required>
                     </div>
                     <div class="form-group">
                         <span for="">Video Description</span>
-                        <input type="text" class="form-control form-control-sm" name="video_description">
+                        <input type="text" class="form-control form-control-sm" name="video_description" value="<?= $job_video_data['video_description'] ?>">
                     </div>
                     <div class="form-group">
                         <span for="">Video URL Link<span class="text-danger">*</span></span>
-                        <input type="url" class="form-control form-control-sm" name="video_link" required>
+                        <input type="url" class="form-control form-control-sm" name="video_link" value="<?= $job_video_data['video_link'] ?>" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
