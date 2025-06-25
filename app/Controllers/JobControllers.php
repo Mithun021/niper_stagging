@@ -132,21 +132,49 @@ class JobControllers extends BaseController
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId']; 
             }
-
+            $job_data = $job_detail_model->get($id);
             $adv_file = $this->request->getFile('adv_file');
-            if ($adv_file->isValid() && ! $adv_file->hasMoved()) {
-                $adv_fileImageName = "adv".$adv_file->getRandomName();
-                $adv_file->move(ROOTPATH . 'public/admin/uploads/jobs', $adv_fileImageName);    
-            }else{
-                $adv_fileImageName = "";
+            $old_adv_file = $job_data['adv_file'];
+
+            if (empty($old_adv_file)) {
+                if ($adv_file->isValid() && !$adv_file->hasMoved()) {
+                    $adv_file_name = "adv" . $adv_file->getRandomName();
+                    $adv_file->move(ROOTPATH . 'public/admin/uploads/jobs/', $adv_file_name);
+                } else {
+                    $adv_file_name = null;
+                }
+            } else {
+                if ($adv_file->isValid() && !$adv_file->hasMoved()) {
+                    if (file_exists("public/admin/uploads/jobs/" . $old_adv_file)) {
+                        unlink("public/admin/uploads/jobs/" . $old_adv_file);
+                    }
+                    $adv_file_name = "adv" . $adv_file->getRandomName();
+                    $adv_file->move(ROOTPATH . 'public/admin/uploads/jobs/', $adv_file_name);
+                } else {
+                    $adv_file_name = $old_adv_file;
+                }
             }
 
             $syllabus_file = $this->request->getFile('syllabus_file');
-            if ($syllabus_file->isValid() && ! $syllabus_file->hasMoved()) {
-                $syllabus_fileImageName = "syllabus".$syllabus_file->getRandomName();
-                $syllabus_file->move(ROOTPATH . 'public/admin/uploads/jobs', $syllabus_fileImageName);    
-            }else{
-                $syllabus_fileImageName = "";
+            $old_syllabus_file = $job_data['syllabus_file'];
+
+            if (empty($old_syllabus_file)) {
+                if ($syllabus_file->isValid() && !$syllabus_file->hasMoved()) {
+                    $syllabus_file_name = "syllabus" . $syllabus_file->getRandomName();
+                    $syllabus_file->move(ROOTPATH . 'public/admin/uploads/jobs/', $syllabus_file_name);
+                } else {
+                    $syllabus_file_name = null;
+                }
+            } else {
+                if ($syllabus_file->isValid() && !$syllabus_file->hasMoved()) {
+                    if (file_exists("public/admin/uploads/jobs/" . $old_syllabus_file)) {
+                        unlink("public/admin/uploads/jobs/" . $old_syllabus_file);
+                    }
+                    $syllabus_file_name = "syllabus" . $syllabus_file->getRandomName();
+                    $syllabus_file->move(ROOTPATH . 'public/admin/uploads/jobs/', $syllabus_file_name);
+                } else {
+                    $syllabus_file_name = $old_syllabus_file;
+                }
             }
 
             $data =[
@@ -167,12 +195,12 @@ class JobControllers extends BaseController
                 // 'revised_copy_last_date' => $this->request->getPost('revised_copy_last_date'),
                 // 'revised_copy_last_time' => $this->request->getPost('revised_copy_last_time'),
                 'payment_link' => $this->request->getPost('payment_link'),
-                'adv_file' => $adv_fileImageName,
-                'syllabus_file' => $syllabus_fileImageName,
+                'adv_file' => $adv_file_name,
+                'syllabus_file' => $syllabus_file_name,
                 'status' => $this->request->getPost('status'),
                 'upload_by' => $loggeduserId
             ];
-            $result = $job_detail_model->add($data);
+            $result = $job_detail_model->add($data, $id);
             if ($result === true) {
                 return redirect()->to('admin/edit-job-details/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
