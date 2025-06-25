@@ -16,10 +16,10 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/result-category">
+                <form method="post" action="<?= base_url() ?>admin/edit-result-category/<?= $result_id ?>">
                     <div class="form-group">
                         <span for="">Category Name<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="category_name" required>
+                        <input type="text" class="form-control form-control-sm" name="category_name" value="<?= $result_category_data['name'] ?>" required>
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
                     
