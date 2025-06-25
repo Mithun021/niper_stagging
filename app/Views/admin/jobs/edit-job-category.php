@@ -16,10 +16,10 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/job-category">
+                <form method="post" action="<?= base_url() ?>admin/edit-job-category/<?= $job_id ?>">
                     <div class="form-group">
                         <span for="">Category Name<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="category_name" required>
+                        <input type="text" class="form-control form-control-sm" name="category_name" value="<?= $job_category_data['name'] ?>" required>
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
                     

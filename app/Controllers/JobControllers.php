@@ -33,6 +33,36 @@ class JobControllers extends BaseController
         }
     }
 
+    public function edit_job_category($id){
+        $job_category_model = new Job_category_model();
+        $data = ['title' => 'Job Category', 'job_id' => $id];
+        if ($this->request->is("get")) {
+            $data['job_category'] = $job_category_model->get();
+            $data['job_category_data'] = $job_category_model->get($id);
+            return view('admin/jobs/edit-job-category',$data);
+        }else if ($this->request->is("post")) {
+            $data =[
+                'name' => $this->request->getPost('category_name'),
+            ];
+            $result = $job_category_model->add($data, $id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-job-category/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-job-category/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+
+    public function delete_job_category($id){
+        $job_category_model = new Job_category_model();
+        $result = $job_category_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/job-category')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/job-category')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+        }
+    }
+
     public function result_category(){
         $result_category_model = new Result_category_model();
         $data = ['title' => 'Result Category'];
