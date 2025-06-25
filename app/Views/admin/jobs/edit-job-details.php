@@ -25,7 +25,7 @@
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form method="post" action="<?= base_url() ?>admin/edit-job-details" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/edit-job-details/<?= $job_id ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -42,13 +42,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Adv reference no<span class="text-danger">*</span></span>
-                                <input type="text" class="form-control form-control-sm" name="reference_no" required>
+                                <input type="text" class="form-control form-control-sm" name="reference_no" value="<?= $job_data['adv_reference_no'] ?>" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Adv Apply Link<span class="text-danger">*</span></span>
-                                <input type="url" class="form-control form-control-sm" name="apply_link" required>
+                                <input type="url" class="form-control form-control-sm" name="apply_link" value="<?= $job_data['adv_apply_link'] ?>" required>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -57,7 +57,7 @@
                                 <select name="adv_type" id="adv_type" class="form-control form-control-sm" required>
                                     <option value="" selected>Select Anyone</option>
                                     <?php foreach ($job_category as $key => $value) { ?>
-                                        <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                        <option value="<?= $value['id'] ?>" <?php if($job_data['job_type_id'] == $value['id']){ echo "selected"; } ?> ><?= $value['name'] ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -77,8 +77,8 @@
                             <div class="form-group">
                                 <span for="">Application Start Date & Time<span class="text-danger">*</span></span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="application_start_date" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                    <input type="text" class="form-control form-control-sm" name="application_start_time" placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="application_start_date" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?= $job_data['application_start_date'] ?>">
+                                    <input type="text" class="form-control form-control-sm" name="application_start_time" placeholder="Start Time" onfocus="(this.type='time')" onblur="(this.type='text')" value="<?= $job_data['application_start_time'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -86,8 +86,8 @@
                             <div class="form-group">
                                 <span for="">Application End Date & Time<span class="text-danger">*</span></span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="application_end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                    <input type="text" class="form-control form-control-sm" name="application_end_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="application_end_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?= $job_data['application_end_date'] ?>">
+                                    <input type="text" class="form-control form-control-sm" name="application_end_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')" value="<?= $job_data['application_end_time'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -95,8 +95,8 @@
                             <div class="form-group">
                                 <span for="">Hardcopy Last Date & Time<span class="text-danger">*</span></span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" name="hardcopy_last_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                                    <input type="text" class="form-control form-control-sm" name="hardcopy_last_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                    <input type="text" class="form-control form-control-sm" name="hardcopy_last_date" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?= $job_data['hardcopy_last_date'] ?>">
+                                    <input type="text" class="form-control form-control-sm" name="hardcopy_last_time" placeholder="End Time" onfocus="(this.type='time')" onblur="(this.type='text')" value="<?= $job_data['hardcopy_last_time'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -122,27 +122,37 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Payment Link<span class="text-danger">*</span></span>
-                                <input type="url" class="form-control form-control-sm" name="payment_link" required>
+                                <input type="url" class="form-control form-control-sm" name="payment_link" value="<?= $job_data['payment_link'] ?>" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Adv file upload(JPG,PNG,PDF)<span class="text-danger">*</span></span>
-                                <input type="file" class="form-control form-control-sm" name="adv_file" accept=".jpg, .png, .pdf" required>
+                                <input type="file" class="form-control form-control-sm" name="adv_file" accept=".jpg, .png, .pdf" >
+                                 <?php if (!empty($job_data['adv_file']) && file_exists('public/admin/uploads/jobs/' . $job_data['adv_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/jobs/<?= $job_data['adv_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/jobs/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Syllabus file upload(JPG,PNG,PDF)<span class="text-danger">*</span></span>
-                                <input type="file" class="form-control form-control-sm" name="syllabus_file" accept=".jpg, .png, .pdf" required>
+                                <input type="file" class="form-control form-control-sm" name="syllabus_file" accept=".jpg, .png, .pdf" >
+                                <?php if (!empty($job_data['syllabus_file']) && file_exists('public/admin/uploads/jobs/' . $job_data['syllabus_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/jobs/<?= $job_data['syllabus_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/jobs/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span>Job Status<span class="text-danger">*</span></span>
                                 <select name="status" id="status" class="form-control form-control-sm">
-                                    <option value="0" selected>Draft</option>
-                                    <option value="1">Active</option>
+                                    <option value="0" <?php if($job_data['status'] == 0){ echo "selected"; } ?>>Draft</option>
+                                    <option value="1" <?php if($job_data['status'] == 1){ echo "selected"; } ?>>Active</option>
                                 </select>
                             </div>
                         </div>
