@@ -446,7 +446,7 @@ class JobControllers extends BaseController
         if ($this->request->is("get")) {
             $data['job_details'] = $job_detail_model->get();
             $data['job_weblink'] = $job_weblink_model->get();
-            $data['job_weblink_data'] = $job_weblink_model->get();
+            $data['job_weblink_data'] = $job_weblink_model->get($id);
             return view('admin/jobs/edit-job-web-link',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
