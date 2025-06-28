@@ -22,7 +22,7 @@ $employee_model = new Employee_model();
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/committee-details" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/edit-committee-details/<?= $comm_id ?>" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
