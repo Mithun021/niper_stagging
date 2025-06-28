@@ -457,6 +457,30 @@ class JobControllers extends BaseController
         }
     }
 
+    public function delete_job_result($id){
+        $job_result_model = new Job_result_model();
+        $job_result_postdata_model = new Job_result_postdata_model();
+        $job_data = $job_result_model->get($id);
+        if ($job_data) {
+            $jobpost_data = $job_result_postdata_model->get($id);
+            if (file_exists("public/admin/uploads/jobs/" . $job_data['file_upload'])) {
+                unlink("public/admin/uploads/jobs/" . $job_data['file_upload']);
+            }
+            $result = $job_result_model->delete($id);
+                if ($result === true) {
+                    if (file_exists("public/admin/uploads/jobs/" . $jobpost_data['upload_file'])) {
+                    unlink("public/admin/uploads/jobs/" . $jobpost_data['upload_file']);
+                }
+                $result = $job_result_postdata_model->delete($id);
+               return redirect()->to('admin/edit-job-extension/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-job-extension/'.$id)->with('status','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+            }
+        } else {
+            return redirect()->to('admin/edit-job-extension/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data not found </div>');
+        }
+    }
+
     public function job_extension(){
         $job_detail_model = new Job_detail_model();
         $job_extension_model = new Job_extension_model();

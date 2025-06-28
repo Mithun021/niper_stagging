@@ -259,7 +259,7 @@ $result_category_model = new Result_category_model();
                         alert('Data Delete Successful');
                         window.location.reload();
                     } else {
-                        alert('Failed to delete');
+                        alert(response);
                     }
                 }
             });
