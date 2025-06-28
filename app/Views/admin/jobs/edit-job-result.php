@@ -93,7 +93,7 @@ $result_category_model = new Result_category_model();
                                             <td scope="col">Post Name</td>
                                             <td scope="col">Description</td>
                                             <td scope="col">Upload File</td>
-                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary">+</button></td>
+                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" onclick="openjobresultpostModal()">+</button></td>
                                         </tr>
 
                                     </thead>
@@ -194,4 +194,33 @@ $result_category_model = new Result_category_model();
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="jobresultpostModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Woohoo, you're reading this text in a modal!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+<script>
+    function openjobresultpostModal(){
+        $('#jobresultpostModal').modal('show');
+    }
+</script>
+
 <?= $this->endSection() ?>
