@@ -439,6 +439,24 @@ class JobControllers extends BaseController
         }
     }
 
+    public function deleteJobPost($id){
+        $job_result_postdata_model = new Job_result_postdata_model();
+        $job_data = $job_result_postdata_model->get($id);
+        if ($job_data) {
+            if (file_exists("public/admin/uploads/jobs/" . $job_data['upload_file'])) {
+                unlink("public/admin/uploads/jobs/" . $job_data['upload_file']);
+            }
+            $result = $job_result_postdata_model->delete($id);
+            if ($result === true) {
+                echo true;
+            } else {
+                echo "Failed to Delete";
+            }
+        } else {
+            echo "Data not found";
+        }
+    }
+
     public function job_extension(){
         $job_detail_model = new Job_detail_model();
         $job_extension_model = new Job_extension_model();

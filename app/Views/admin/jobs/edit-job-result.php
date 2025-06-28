@@ -111,7 +111,7 @@ $result_category_model = new Result_category_model();
                                                 <?php endif; ?>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-sm btn-danger">-</button>
+                                                <button type="button" class="btn btn-sm btn-danger" onclick="deleteJobPost(<?= $data['id'] ?>)">-</button>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -237,6 +237,20 @@ $result_category_model = new Result_category_model();
 <script>
     function openjobresultpostModal(){
         $('#jobresultpostModal').modal('show');
+    }
+    function deleteJobPost(id){
+        $.ajax({
+            type: "get",
+            url: "<?= base_url() ?>admin/deleteJobPost/" + id,
+            success: function (response) {
+                if (response == true) {
+                    alert('Data Delete Successful');
+                    window.location.reload();
+                }else{
+                    alert('Failed to delete');
+                }
+            }
+        });
     }
 </script>
 
