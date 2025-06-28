@@ -472,12 +472,12 @@ class JobControllers extends BaseController
                     unlink("public/admin/uploads/jobs/" . $jobpost_data['upload_file']);
                 }
                 $result = $job_result_postdata_model->delete($id);
-               return redirect()->to('admin/edit-job-extension/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+               return redirect()->to('admin/job-result')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
-                return redirect()->to('admin/edit-job-extension/'.$id)->with('status','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+                return redirect()->to('admin/job-result')->with('status','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
             }
         } else {
-            return redirect()->to('admin/edit-job-extension/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data not found </div>');
+            return redirect()->to('admin/job-result')->with('status','<div class="alert alert-success" role="alert"> Data not found </div>');
         }
     }
 
