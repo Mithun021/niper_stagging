@@ -33,7 +33,9 @@ $result_category_model = new Result_category_model();
                                 <select name="advid" id="advid" class="form-control form-control-sm">
                                     <option value="">Select Advertisement</option>
                                     <?php foreach ($job_details as $key => $value) { ?>
-                                        <option value="<?= $value['id'] ?>" <?php if($job_result_data['jobs_id'] == $value['id']){ echo "selected"; } ?> ><?= $value['title'] ?></option>
+                                        <option value="<?= $value['id'] ?>" <?php if ($job_result_data['jobs_id'] == $value['id']) {
+                                                                                echo "selected";
+                                                                            } ?>><?= $value['title'] ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -76,9 +78,11 @@ $result_category_model = new Result_category_model();
                                 <span for="resulttype">Result Type:</span>
                                 <select name="resulttype" id="resulttype" class="form-control form-control-sm" required>
                                     <option value="">--Select--</option>
-                                <?php foreach ($result_category as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"  <?php if($job_result_data['result_type'] == $value['id']){ echo "selected"; } ?>><?= $value['name'] ?></option>
-                                <?php } ?>
+                                    <?php foreach ($result_category as $key => $value) { ?>
+                                        <option value="<?= $value['id'] ?>" <?php if ($job_result_data['result_type'] == $value['id']) {
+                                                                                echo "selected";
+                                                                            } ?>><?= $value['name'] ?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
                         </div>
@@ -98,23 +102,23 @@ $result_category_model = new Result_category_model();
 
                                     </thead>
                                     <tbody id="stockTbody">
-                                    <?php foreach ($job_result_postdata as $key => $data) { ?>
-                                        <tr id="stockTrow">
-                                            <td><?= $data['postcode'] ?></td>
-                                            <td><?= $data['postname'] ?></td>
-                                            <td><?= $data['description'] ?></td>
-                                            <td>
-                                                <?php if (!empty($data['upload_file']) && file_exists('public/admin/uploads/jobs/' . $data['upload_file'])): ?>
-                                                    <a href="<?= base_url() ?>public/admin/uploads/jobs/<?= $data['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
-                                                <?php else: ?>
-                                                    <img src="<?= base_url() ?>public/admin/uploads/jobs/invalid_image.png" alt="" height="40px">
-                                                <?php endif; ?>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-sm btn-danger" onclick="deleteJobPost(<?= $data['id'] ?>)">-</button>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
+                                        <?php foreach ($job_result_postdata as $key => $data) { ?>
+                                            <tr id="stockTrow">
+                                                <td><?= $data['postcode'] ?></td>
+                                                <td><?= $data['postname'] ?></td>
+                                                <td><?= $data['description'] ?></td>
+                                                <td>
+                                                    <?php if (!empty($data['upload_file']) && file_exists('public/admin/uploads/jobs/' . $data['upload_file'])): ?>
+                                                        <a href="<?= base_url() ?>public/admin/uploads/jobs/<?= $data['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                                    <?php else: ?>
+                                                        <img src="<?= base_url() ?>public/admin/uploads/jobs/invalid_image.png" alt="" height="40px">
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-danger" onclick="deleteJobPost(<?= $data['id'] ?>)">-</button>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -123,9 +127,15 @@ $result_category_model = new Result_category_model();
                             <div class="form-group">
                                 <span for="result_status">Result Status:</span>
                                 <select name="result_status" id="result_status" class="form-control form-control-sm" required>
-                                    <option value="1" <?php if($job_result_data['status'] == 1){ echo "selected"; } ?>>Publish</option>
-                                    <option value="0" <?php if($job_result_data['status'] == 0){ echo "selected"; } ?>>Draft</option>
-                                    <option value="2" <?php if($job_result_data['status'] == 2){ echo "selected"; } ?>>Archive</option>
+                                    <option value="1" <?php if ($job_result_data['status'] == 1) {
+                                                            echo "selected";
+                                                        } ?>>Publish</option>
+                                    <option value="0" <?php if ($job_result_data['status'] == 0) {
+                                                            echo "selected";
+                                                        } ?>>Draft</option>
+                                    <option value="2" <?php if ($job_result_data['status'] == 2) {
+                                                            echo "selected";
+                                                        } ?>>Archive</option>
                                 </select>
                             </div>
                         </div>
@@ -206,28 +216,28 @@ $result_category_model = new Result_category_model();
                 </button>
             </div>
             <form action="<?= base_url() ?>admin/job_result_post/<?= $job_id ?>" method="post" enctype="multipart/form-data">
-            <div class="modal-body">
-                <div class="form-group">
-                    <span>Post Code</span>
-                    <input type="text" class="form-control" id="postcode" name="postcode" placeholder="Post Code">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <span>Post Code</span>
+                        <input type="text" class="form-control" id="postcode" name="postcode" placeholder="Post Code">
+                    </div>
+                    <div class="form-group">
+                        <span>Post Name</span>
+                        <input type="text" class="form-control" id="postname" name="postname" placeholder="Post Name">
+                    </div>
+                    <div class="form-group">
+                        <span>Description</span>
+                        <input type="text" class="form-control" id="description" name="description" placeholder="Description">
+                    </div>
+                    <div class="form-group">
+                        <span>Upload File</span>
+                        <input type="file" class="form-control" id="upload_file" name="upload_file" accept=".pdf">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <span>Post Name</span>
-                    <input type="text" class="form-control" id="postname" name="postname" placeholder="Post Name">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary waves-effect waves-light">Save changes</button>
                 </div>
-                <div class="form-group">
-                    <span>Description</span>
-                    <input type="text" class="form-control" id="description" name="description" placeholder="Description">
-                </div>
-                <div class="form-group">
-                    <span>Upload File</span>
-                    <input type="file" class="form-control" id="upload_file" name="upload_file" accept=".pdf">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary waves-effect waves-light">Save changes</button>
-            </div>
             </form>
         </div>
     </div>
@@ -235,22 +245,25 @@ $result_category_model = new Result_category_model();
 
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
-    function openjobresultpostModal(){
+    function openjobresultpostModal() {
         $('#jobresultpostModal').modal('show');
     }
-    function deleteJobPost(id){
-        $.ajax({
-            type: "get",
-            url: "<?= base_url() ?>admin/deleteJobPost/" + id,
-            success: function (response) {
-                if (response == true) {
-                    alert('Data Delete Successful');
-                    window.location.reload();
-                }else{
-                    alert('Failed to delete');
+
+    function deleteJobPost(id) {
+        if (confirm('Are you sure...!')) {
+            $.ajax({
+                type: "get",
+                url: "<?= base_url() ?>admin/deleteJobPost/" + id,
+                success: function(response) {
+                    if (response == true) {
+                        alert('Data Delete Successful');
+                        window.location.reload();
+                    } else {
+                        alert('Failed to delete');
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 </script>
 
