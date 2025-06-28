@@ -98,15 +98,17 @@ $result_category_model = new Result_category_model();
 
                                     </thead>
                                     <tbody id="stockTbody">
+                                    <?php foreach ($job_result_postdata as $key => $data) { ?>
                                         <tr id="stockTrow">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><?= $data['postcode'] ?></td>
+                                            <td><?= $data['postname'] ?></td>
+                                            <td><?= $data['description'] ?></td>
+                                            <td><?= $data['upload_file'] ?></td>
                                             <td>
                                                 <button type="button" class="btn btn-sm btn-danger">-</button>
                                             </td>
                                         </tr>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
                             </div>

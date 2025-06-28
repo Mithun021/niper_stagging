@@ -26,5 +26,9 @@
             }
             return $result;
         }
+
+        public function getByresultid($id = null){
+            return $this->where('job_result_id',$id)->findAll();
+        }
     }
 ?>
