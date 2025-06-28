@@ -25,7 +25,7 @@ $result_category_model = new Result_category_model();
                     echo session()->getFlashdata('status');
                 }
                 ?>
-                <form action="<?= base_url() ?>admin/job-result" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/edit-job-result/<?= $job_id ?>" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -33,7 +33,7 @@ $result_category_model = new Result_category_model();
                                 <select name="advid" id="advid" class="form-control form-control-sm">
                                     <option value="">Select Advertisement</option>
                                     <?php foreach ($job_details as $key => $value) { ?>
-                                        <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                                        <option value="<?= $value['id'] ?>" <?php if($job_result_data['jobs_id'] == $value['id']){ echo "selected"; } ?> ><?= $value['title'] ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -41,7 +41,7 @@ $result_category_model = new Result_category_model();
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="resultitle">Result Title:</span>
-                                <input type="text" name="resultitle" id="resultitle" class="form-control form-control-sm">
+                                <input type="text" name="resultitle" id="resultitle" class="form-control form-control-sm" value="<?= $job_result_data['result_title'] ?? '' ?>" required>
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@ $result_category_model = new Result_category_model();
                         <div class="col-md-12">
                             <div class="form-group">
                                 <span>Result Description:</span>
-                                <textarea name="resultdesc" id="editor" class="form-control form-control-sm"></textarea>
+                                <textarea name="resultdesc" id="editor" class="form-control form-control-sm"><?= $job_result_data['result_description'] ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -58,6 +58,11 @@ $result_category_model = new Result_category_model();
                             <div class="form-group">
                                 <span for="resultfile">Result File Upload:</span>
                                 <input type="file" name="resultfile" id="resultfile" class="form-control form-control-sm">
+                                <?php if (!empty($job_result_data['file_upload']) && file_exists('public/admin/uploads/jobs/' . $job_result_data['file_upload'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/jobs/<?= $job_result_data['file_upload'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/jobs/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
                             </div>
                         </div>
                         <!-- <div class="col-md-4">
@@ -72,7 +77,7 @@ $result_category_model = new Result_category_model();
                                 <select name="resulttype" id="resulttype" class="form-control form-control-sm" required>
                                     <option value="">--Select--</option>
                                 <?php foreach ($result_category as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                    <option value="<?= $value['id'] ?>"  <?php if($job_result_data['result_type'] == $value['id']){ echo "selected"; } ?>><?= $value['name'] ?></option>
                                 <?php } ?>
                                 </select>
                             </div>
@@ -110,9 +115,9 @@ $result_category_model = new Result_category_model();
                             <div class="form-group">
                                 <span for="result_status">Result Status:</span>
                                 <select name="result_status" id="result_status" class="form-control form-control-sm" required>
-                                    <option value="1">Publish</option>
-                                    <option value="0">Draft</option>
-                                    <option value="2">Archive</option>
+                                    <option value="1" <?php if($job_result_data['status'] == 1){ echo "selected"; } ?>>Publish</option>
+                                    <option value="0" <?php if($job_result_data['status'] == 0){ echo "selected"; } ?>>Draft</option>
+                                    <option value="2" <?php if($job_result_data['status'] == 2){ echo "selected"; } ?>>Archive</option>
                                 </select>
                             </div>
                         </div>
