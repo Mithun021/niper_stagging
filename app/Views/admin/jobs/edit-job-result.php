@@ -105,7 +105,7 @@ $result_category_model = new Result_category_model();
                                             <td><?= $data['description'] ?></td>
                                             <td>
                                                 <?php if (!empty($data['upload_file']) && file_exists('public/admin/uploads/jobs/' . $data['upload_file'])): ?>
-                                                    <a href="<?= base_url() ?>public/admin/uploads/jobs/<?= $data['upload_file'] ?>" target="_blank"><img src="?= base_url() ?>public/admin/uploads/jobs/<?= $data['upload_file'] ?>" alt="" height="30px"></a>
+                                                    <a href="<?= base_url() ?>public/admin/uploads/jobs/<?= $data['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png<?= $data['upload_file'] ?>" alt="" height="30px"></a>
                                                 <?php else: ?>
                                                     <img src="<?= base_url() ?>public/admin/uploads/jobs/invalid_image.png" alt="" height="40px">
                                                 <?php endif; ?>
@@ -200,18 +200,36 @@ $result_category_model = new Result_category_model();
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
                 <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <form action="" method="post" enctype="multipart/form-data">
             <div class="modal-body">
-                Woohoo, you're reading this text in a modal!
+                <input type="text" class="form-control form-control-sm" aria-colcount="job_result_id" value="<?= $job_id ?>">
+                <div class="form-group">
+                    <span>Post Code</span>
+                    <input type="text" class="form-control" id="postcode" name="postcode" placeholder="Post Code">
+                </div>
+                <div class="form-group">
+                    <span>Post Name</span>
+                    <input type="text" class="form-control" id="postname" name="postname" placeholder="Post Name">
+                </div>
+                <div class="form-group">
+                    <span>Description</span>
+                    <input type="text" class="form-control" id="description" name="description" placeholder="Description">
+                </div>
+                <div class="form-group">
+                    <span>Upload File</span>
+                    <input type="file" class="form-control" id="upload_file" name="upload_file" accept=".pdf">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                <button type="submit" class="btn btn-primary waves-effect waves-light">Save changes</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
