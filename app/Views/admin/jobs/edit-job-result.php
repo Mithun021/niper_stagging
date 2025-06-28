@@ -81,33 +81,25 @@ $result_category_model = new Result_category_model();
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="addServicetable">
+                                <table class="table table-bordered">
                                     <thead class="bg-light">
                                         <tr>
                                             <td scope="col">Post Code</td>
                                             <td scope="col">Post Name</td>
                                             <td scope="col">Description</td>
                                             <td scope="col">Upload File</td>
-                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewservicerow">+</button></td>
+                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary">+</button></td>
                                         </tr>
 
                                     </thead>
                                     <tbody id="stockTbody">
                                         <tr id="stockTrow">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                             <td>
-                                                <input type="text" class="form-control" id="postcode" name="postcode[]" placeholder="Post Code">
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control" id="postname" name="postname[]" placeholder="Post Name">
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control" id="description" name="description[]" placeholder="Description">
-                                            </td>
-                                            <td>
-                                                <input type="file" class="form-control" id="upload_file" name="upload_file[]" accept=".pdf">
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
+                                                <button type="button" class="btn btn-sm btn-danger">-</button>
                                             </td>
                                         </tr>
                                     </tbody>

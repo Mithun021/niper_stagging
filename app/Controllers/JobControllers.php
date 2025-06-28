@@ -359,13 +359,13 @@ class JobControllers extends BaseController
         $job_detail_model = new Job_detail_model();
         $job_result_model = new Job_result_model();
         $result_category_model = new Result_category_model();
-        $data = ['title' => 'Job Result'];
+        $data = ['title' => 'Job Result', 'job_id' => $id];
         if ($this->request->is("get")) {
             $data['job_details'] = $job_detail_model->get();
             $data['job_result'] = $job_result_model->get();
             $data['result_category'] = $result_category_model->get();
             $data['job_result_data'] = $job_result_model->get($id);
-            return view('admin/jobs/job-result',$data);
+            return view('admin/jobs/edit-job-result',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
             if ($sessionData) {
