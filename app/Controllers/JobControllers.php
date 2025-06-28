@@ -355,6 +355,50 @@ class JobControllers extends BaseController
         }
     }
 
+    public function edit_job_result($id){
+        $job_detail_model = new Job_detail_model();
+        $job_result_model = new Job_result_model();
+        $result_category_model = new Result_category_model();
+        $data = ['title' => 'Job Result'];
+        if ($this->request->is("get")) {
+            $data['job_details'] = $job_detail_model->get();
+            $data['job_result'] = $job_result_model->get();
+            $data['result_category'] = $result_category_model->get();
+            $data['job_result_data'] = $job_result_model->get($id);
+            return view('admin/jobs/job-result',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $job_result_data = $job_result_model->get($id);
+            $resultfile = $this->request->getFile('resultfile');
+            if ($resultfile->isValid() && ! $resultfile->hasMoved()) {
+                $resultfileImageName = "result".$resultfile->getRandomName();
+                $resultfile->move(ROOTPATH . 'public/admin/uploads/jobs', $resultfileImageName);    
+            }else{
+                $resultfileImageName = "";
+            }
+
+            $data = [
+                'jobs_id' => $this->request->getPost('advid'),
+                'result_title' => $this->request->getPost('resultitle'),
+                'result_description' => $this->request->getPost('resultdesc'),
+                'file_upload' => $resultfileImageName,
+                'result_type' => $this->request->getPost('resulttype'),
+                // 'corrigendum' => $this->request->getPost('corrigendum'),
+                'status' => $this->request->getPost('result_status'),
+                'upload_by' => $loggeduserId
+            ];
+            $result = $job_result_model->add($data, $id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-job-result/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-job-result/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+
     public function job_extension(){
         $job_detail_model = new Job_detail_model();
         $job_extension_model = new Job_extension_model();
