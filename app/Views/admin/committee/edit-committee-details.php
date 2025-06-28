@@ -27,7 +27,7 @@ $employee_model = new Employee_model();
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span for="Committeetitle">Committee Title:</span>
-                                <input type="text" name="Committeetitle" id="Committeetitle" class="form-control form-control-sm" required>
+                                <input type="text" name="Committeetitle" id="Committeetitle" class="form-control form-control-sm" value="<?= $committee_data['title'] ?>" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -36,7 +36,7 @@ $employee_model = new Employee_model();
                                 <select name="subcommitteeid" id="subcommitteeid" class="form-control form-control-sm">
                                     <option value="">--Select Committee--</option>
                                     <?php foreach ($committee as $key => $value) { ?>
-                                        <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                                        <option value="<?= $value['id'] ?>" <?php if($committee_data['sub_committee'] == $value['id']){ echo "selected"; } ?>><?= $value['title'] ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -44,34 +44,39 @@ $employee_model = new Employee_model();
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <span for="Committeedesc">Committee Description:</span>
-                                <textarea id="editor" name="description"></textarea>
+                                <textarea id="editor" name="description"><?= $committee_data['description'] ?></textarea>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span for="Committeefileupload">File Upload(pdf):</span>
                                 <input type="file" name="Committeefileupload" id="Committeefileupload" class="form-control form-control-sm" accept=".pdf">
+                                <?php if (!empty($committee_data['upload_file']) && file_exists('public/admin/uploads/committee/' . $committee_data['upload_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/committee/<?= $committee_data['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/committee/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span for="Committeestatus">Status:</span>
                                 <select class="form-control form-control-sm" name="committee_status" required>
-                                    <option value="0">Draft</option>
-                                    <option value="1">Active</option>
+                                    <option value="0" <?php if($committee_data['status'] == 0){ echo "selected"; } ?>>Draft</option>
+                                    <option value="1" <?php if($committee_data['status'] == 1){ echo "selected"; } ?>>Active</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span>Start Date</span>
-                                <input type="date" name="comm_start_date" id="comm_start_date" class="form-control form-control-sm" required>
+                                <input type="date" name="comm_start_date" id="comm_start_date" class="form-control form-control-sm" value="<?= $committee_data['start_date'] ?>" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <span>End Date</span>
-                                <input type="date" name="comm_end_date" id="comm_end_date" class="form-control form-control-sm" required>
+                                <input type="date" name="comm_end_date" id="comm_end_date" class="form-control form-control-sm" value="<?= $committee_data['end_date'] ?>" required>
                             </div>
                         </div>
                     </div>
