@@ -97,4 +97,19 @@ class CommitteeController extends BaseController
             }
         }
     }
+
+    public function delete_committee_details($id){
+        $committee_model = new Committee_model();
+        $committee_data = $committee_model->get($id);
+        if (!empty($committee_data['upload_file']) && file_exists('public/admin/uploads/committee/' . $committee_data['upload_file'])) {
+            unlink('public/admin/uploads/committee/' . $committee_data['upload_file']);
+        }
+        $result = $committee_model->delete($id);
+        if ($result) {
+            return redirect()->to('admin/committee-details')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/committee-details')->with('status','<div class="alert alert-danger" role="alert"> Data Delete Failed </div>');
+        }
+    }
+
 }
