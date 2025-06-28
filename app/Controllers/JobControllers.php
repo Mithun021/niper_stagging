@@ -372,19 +372,33 @@ class JobControllers extends BaseController
                 $loggeduserId = $sessionData['loggeduserId']; 
             }
             $job_result_data = $job_result_model->get($id);
-            $resultfile = $this->request->getFile('resultfile');
-            if ($resultfile->isValid() && ! $resultfile->hasMoved()) {
-                $resultfileImageName = "result".$resultfile->getRandomName();
-                $resultfile->move(ROOTPATH . 'public/admin/uploads/jobs', $resultfileImageName);    
-            }else{
-                $resultfileImageName = "";
+            $document = $this->request->getFile('resultfile');
+            $old_document_file = $job_result_data['file_upload'];
+
+            if (empty($old_document_file)) {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    $document_name = "result" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/jobs/', $document_name);
+                } else {
+                    $document_name = null;
+                }
+            } else {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    if (file_exists("public/admin/uploads/jobs/" . $old_document_file)) {
+                        unlink("public/admin/uploads/jobs/" . $old_document_file);
+                    }
+                    $document_name = "result" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/jobs/', $document_name);
+                } else {
+                    $document_name = $old_document_file;
+                }
             }
 
             $data = [
                 'jobs_id' => $this->request->getPost('advid'),
                 'result_title' => $this->request->getPost('resultitle'),
                 'result_description' => $this->request->getPost('resultdesc'),
-                'file_upload' => $resultfileImageName,
+                'file_upload' => $document_name,
                 'result_type' => $this->request->getPost('resulttype'),
                 // 'corrigendum' => $this->request->getPost('corrigendum'),
                 'status' => $this->request->getPost('result_status'),
