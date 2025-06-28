@@ -205,9 +205,8 @@ $result_category_model = new Result_category_model();
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url() ?>admin/job_result_post/<?= $job_id ?>" method="post" enctype="multipart/form-data">
             <div class="modal-body">
-                <input type="text" class="form-control form-control-sm" aria-colcount="job_result_id" value="<?= $job_id ?>">
                 <div class="form-group">
                     <span>Post Code</span>
                     <input type="text" class="form-control" id="postcode" name="postcode" placeholder="Post Code">

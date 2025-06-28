@@ -415,6 +415,30 @@ class JobControllers extends BaseController
         }
     }
 
+    public function job_result_post($id){
+        $job_result_postdata_model = new Job_result_postdata_model();
+        $resultfile = $this->request->getFile('upload_file');
+        if ($resultfile->isValid() && ! $resultfile->hasMoved()) {
+            $resultfileImageName = "post".$resultfile->getRandomName();
+            $resultfile->move(ROOTPATH . 'public/admin/uploads/jobs', $resultfileImageName);    
+        }else{
+            $resultfileImageName = "";
+        }
+         $postdata = [
+            'job_result_id' => $id,
+            'postcode' => $this->request->getPost('postcode'),
+            'postname' => $this->request->getPost('postname'),
+            'description' => $this->request->getPost('description'),
+            'upload_file' => $resultfileImageName,
+        ];
+        $result = $job_result_postdata_model->add($postdata);
+        if ($result === true) {
+            return redirect()->to('admin/edit-job-result/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+        } else {
+            return redirect()->to('admin/edit-job-result/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+        }
+    }
+
     public function job_extension(){
         $job_detail_model = new Job_detail_model();
         $job_extension_model = new Job_extension_model();

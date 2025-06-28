@@ -316,6 +316,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
 
     $routes->match(['get','post'],'job-result', 'JobControllers::job_result');
     $routes->match(['get','post'],'edit-job-result/(:num)', 'JobControllers::edit_job_result/$1');
+    $routes->match(['get','post'],'job_result_post/(:num)', 'JobControllers::job_result_post/$1');
     $routes->get('delete-job-result/(:num)', 'JobControllers::delete_job_result/$1');
 
     $routes->match(['get','post'],'job-category', 'JobControllers::job_category');
