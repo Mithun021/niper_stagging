@@ -143,4 +143,14 @@ class CopyrightController extends BaseController
         }
     }
 
+    public function delete_copyright_details($id){
+        $copyright_model = new Copyright_model();
+        $result = $copyright_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/copyright-details')->with('status','<div class="alert alert-danger" role="alert"> Data delete successful </div>');
+        } else {
+            return redirect()->to('admin/copyright-details')->with('status','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+        }
+    }
+
 }
