@@ -340,6 +340,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete-committee-details/(:num)', 'CommitteeController::delete_committee_details/$1');
 
     $routes->match(['get', 'post'], 'copyright-details', 'CopyrightController::copyright_details');
+    $routes->match(['get','post'],'edit-copyright-details/(:num)', 'CopyrightController::edit_copyright_details/$1');
+    $routes->get('delete-copyright-details/(:num)', 'CopyrightController::delete_copyright_details/$1');
+
     $routes->match(['get', 'post'], 'patent-details', 'PatentController::patent_details');
     $routes->match(['get', 'post'], 'patent-web-page', 'PatentController::patent_web_page');
     $routes->match(['get', 'post'], 'patent-type', 'PatentController::patent_type');

@@ -58,4 +58,63 @@ class CopyrightController extends BaseController
             }
         }
     }
+
+    public function edit_copyright_details($id){
+        $copyright_author_model = new Copyright_author_model();
+        $copyright_model = new Copyright_model();
+        $employee_model = new Employee_model();
+        $data = ['title' => 'Copyright Details', 'copyrightid' => $id];
+        if ($this->request->is("get")) {
+            $data['employees'] = $employee_model->get();
+            $data['copyright'] = $copyright_model->get();
+            $data['copyright_data'] = $copyright_model->get($id);
+            return view('admin/copyrights/edit-copyright-details',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $copyright_data = $copyright_model->get($id);
+            $document = $this->request->getFile('Copyright_file');
+            $old_document_file = $copyright_data['upload_file'];
+
+            if (empty($old_document_file)) {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    $document_name = $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/copyright/', $document_name);
+                } else {
+                    $document_name = null;
+                }
+            } else {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    if (file_exists("public/admin/uploads/copyright/" . $old_document_file)) {
+                        unlink("public/admin/uploads/copyright/" . $old_document_file);
+                    }
+                    $document_name = $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/copyright/', $document_name);
+                } else {
+                    $document_name = $old_document_file;
+                }
+            }
+            $data =[
+                'copyright_title' => $this->request->getPost('Copyright_title'),
+                'copyright_number' => $this->request->getPost('Copyright_number'),
+                'copyright_description' => $this->request->getPost('description'),
+                'submission_date' => $this->request->getPost('submission_date'),
+                'grant_date' => $this->request->getPost('grant_date'),
+                'upload_file' => $document_name,
+                'employee_id' => implode(",",  $this->request->getPost('emp_id')), //$this->request->getPost('emp_id'),
+                'current_status' => $this->request->getPost('current_status'),
+                'status' => $this->request->getPost('Copyright_status'),
+                'upload_by' => $loggeduserId
+            ];
+            $result = $copyright_model->add($data, $id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-copyright-details/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-copyright-details/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+
 }
