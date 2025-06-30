@@ -79,14 +79,19 @@ $copyright_author_model = new Copyright_author_model();
                         </div>
                         <div class="col-lg-6 form-group">
                             <span>Upload File (PDF, JPG, PNG)</span>
-                            <input type="file" class="form-control form-control-sm" name="Copyright_file" accept=".pdf,.jpg,.png" required>
+                            <input type="file" class="form-control form-control-sm" name="Copyright_file" accept=".pdf,.jpg,.png">
+                            <?php if (!empty($copyright_data['upload_file']) && file_exists('public/admin/uploads/copyright/' . $copyright_data['upload_file'])): ?>
+                                <a href="<?= base_url() ?>public/admin/uploads/copyright/<?= $copyright_data['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
+                            <?php else: ?>
+                                <img src="<?= base_url() ?>public/admin/uploads/copyright/invalid_image.png" alt="" height="40px">
+                            <?php endif; ?>
                         </div>
                         <div class="col-lg-6 form-group">
                             <span>Employee ID <span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm my-select" name="emp_id[]" multiple required>
                                 <option value="">--Select--</option>
                                 <?php foreach ($employees as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?php if (in_array($value['id'], explode(",", $copyright_data['emplyee_id']))) { echo "selected"; } ?>><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
