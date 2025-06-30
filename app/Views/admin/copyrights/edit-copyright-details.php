@@ -106,10 +106,10 @@ $copyright_author_model = new Copyright_author_model();
 
                                     </thead>
                                     <tbody>
-                                    <?php foreach ($copyright_author as $key => $value) { ?>
+                                    <?php foreach ($copyright_author as $key => $author) { ?>
                                         <tr>
                                             <td>
-                                                
+                                                <?= $author['author_name'] ?>
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-sm btn-danger">-</button>
