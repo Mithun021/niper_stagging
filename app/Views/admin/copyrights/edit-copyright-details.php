@@ -97,23 +97,25 @@ $copyright_author_model = new Copyright_author_model();
                         </div>
                         <div class="col-lg-12 form-group">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="addServicetable">
+                                <table class="table table-bordered">
                                     <thead class="bg-light">
                                         <tr>
                                             <td scope="col">Author Details</td>
-                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewservicerow">+</button></td>
+                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary">+</button></td>
                                         </tr>
 
                                     </thead>
-                                    <tbody id="stockTbody">
-                                        <tr id="stockTrow">
+                                    <tbody>
+                                    <?php foreach ($copyright_author as $key => $value) { ?>
+                                        <tr>
                                             <td>
-                                                <input type="text" class="form-control" id="author_name" name="author_name[]" placeholder="Enter Author Name">
+                                                
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
+                                                <button type="button" class="btn btn-sm btn-danger">-</button>
                                             </td>
                                         </tr>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
                             </div>

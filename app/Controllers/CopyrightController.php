@@ -68,6 +68,7 @@ class CopyrightController extends BaseController
             $data['employees'] = $employee_model->get();
             $data['copyright'] = $copyright_model->get();
             $data['copyright_data'] = $copyright_model->get($id);
+            $data['copyright_author'] = $copyright_author_model->getByCopyright($id);
             return view('admin/copyrights/edit-copyright-details',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
