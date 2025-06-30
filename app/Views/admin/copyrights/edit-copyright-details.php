@@ -218,18 +218,20 @@ $copyright_author_model = new Copyright_author_model();
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Author</h5>
                 <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <form action="<?= base_url() ?>admin/add-copyright-author/<?= $copyrightid ?>" method="post">
             <div class="modal-body">
-                Woohoo, you're reading this text in a modal!
+                <input type="text" class="form-control" id="author_name" name="author_name" placeholder="Enter Author Name">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                <button type="submit" class="btn btn-primary waves-effect waves-light">Save changes</button>
             </div>
+            </form>
         </div>
     </div>
 </div>

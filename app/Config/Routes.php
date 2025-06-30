@@ -341,6 +341,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
 
     $routes->match(['get', 'post'], 'copyright-details', 'CopyrightController::copyright_details');
     $routes->match(['get','post'],'edit-copyright-details/(:num)', 'CopyrightController::edit_copyright_details/$1');
+    $routes->post('add-copyright-author/(:num)', 'CopyrightController::add_copyright_author/$1');
     $routes->get('delete-copyright-details/(:num)', 'CopyrightController::delete_copyright_details/$1');
 
     $routes->match(['get', 'post'], 'patent-details', 'PatentController::patent_details');

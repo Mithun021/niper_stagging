@@ -118,4 +118,19 @@ class CopyrightController extends BaseController
         }
     }
 
+
+    public function add_copyright_author($id){
+        $copyright_author_model = new Copyright_author_model();
+        $data = [
+            'copyright_id' => $id,
+            'author_name' => $this->request->getPost('author_name'),
+        ];
+        $result = $copyright_author_model->add($data);
+        if ($result === true) {
+            return redirect()->to('admin/edit-copyright-details/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+        } else {
+            return redirect()->to('admin/edit-copyright-details/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+        }
+    }
+
 }
