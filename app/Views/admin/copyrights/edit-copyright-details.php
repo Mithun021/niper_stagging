@@ -21,19 +21,19 @@ $copyright_author_model = new Copyright_author_model();
                 <?php if (session()->getFlashdata('status')): ?>
                     <?= session()->getFlashdata('status'); ?>
                 <?php endif; ?>
-                <form method="post" action="<?= base_url() ?>admin/copyright-details" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/edit-copyright-details/<?= $copyrightid ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <span>Copyright Title <span class="text-danger">*</span></span>
-                            <textarea class="form-control form-control-sm" name="Copyright_title" id="editor2"></textarea>
+                            <textarea class="form-control form-control-sm" name="Copyright_title" id="editor2"><?= $copyright_data['copyright_title'] ?></textarea>
                         </div>
                         <div class="col-lg-12 form-group">
                             <span>Copyright Description</span>
-                            <textarea id="editor" name="description"></textarea>
+                            <textarea id="editor" name="description"><?= $copyright_data['copyright_description'] ?></textarea>
                         </div>
                         <div class="col-lg-6 form-group">
                             <span>Copyright Dairy No <span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="Copyright_number" placeholder="Enter Copyright number" required>
+                            <input type="text" class="form-control form-control-sm" name="Copyright_number" placeholder="Enter Copyright number" value="<?= $copyright_data['copyright_number'] ?>" required>
                         </div>
                         <!-- <div class="col-md-6">
                         <div class="form-group">
@@ -58,14 +58,14 @@ $copyright_author_model = new Copyright_author_model();
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">Submission Date</span>
-                                <input type="date" name="submission_date" id="" class="form-control form-control-sm">
+                                <input type="date" name="submission_date" id="" class="form-control form-control-sm" value="<?= $copyright_data['submission_date'] ?>">
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <span for="">field Grant Date </span>
-                                <input type="date" name="grant_date" id="" class="form-control form-control-sm">
+                                <input type="date" name="grant_date" id="" class="form-control form-control-sm" value="<?= $copyright_data['grant_date'] ?>">
                             </div>
                         </div>
 
@@ -73,8 +73,8 @@ $copyright_author_model = new Copyright_author_model();
                             <span>Current Status <span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="current_status" required>
                                 <option value="Granted">Granted</option>
-                                <option value="In Process">In Process</option>
-                                <option value="Submitted">Submitted</option>
+                                <option value="In Process" <?php if($copyright_data['current_status'] == "In Process"){ echo "selected"; } ?>>In Process</option>
+                                <option value="Submitted" <?php if($copyright_data['current_status'] == "Submitted"){ echo "selected"; } ?>>Submitted</option>
                             </select>
                         </div>
                         <div class="col-lg-6 form-group">
@@ -116,8 +116,8 @@ $copyright_author_model = new Copyright_author_model();
                         <div class="col-lg-6 form-group">
                             <span>Copyright Status <span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="Copyright_status" required>
-                                <option value="0">Draft</option>
-                                <option value="1" selected>Active</option>
+                                <option value="0" <?php if($copyright_data['status'] == 0){ echo "selected"; } ?>>Draft</option>
+                                <option value="1" <?php if($copyright_data['status'] == 1){ echo "selected"; } ?> selected>Active</option>
                             </select>
                         </div>
                         <div class="col-lg-12 form-group">
