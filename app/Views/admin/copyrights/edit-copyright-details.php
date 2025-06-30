@@ -112,7 +112,7 @@ $copyright_author_model = new Copyright_author_model();
                                                 <?= $author['author_name'] ?>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-sm btn-danger">-</button>
+                                                <button type="button" class="btn btn-sm btn-danger" onclick="deleteCopyrightAuthor(<?= $author['id'] ?>)">-</button>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -240,6 +240,25 @@ $copyright_author_model = new Copyright_author_model();
 <script>
     function openauthorModal(){
         $('#authorModal').modal('show');
+    }
+    function deleteCopyrightAuthor(id) {
+        if (confirm("Are you sure you want to delete this author?")) {
+            $.ajax({
+                url: "<?= base_url() ?>admin/delete-copyright-author/" + id,
+                type: "GET",
+                success: function(response) {
+                    if (response == 'success') {
+                        alert("Author deleted successfully.");
+                        location.reload();
+                    } else {
+                        alert("Failed to delete author.");
+                    }
+                },
+                error: function() {
+                    alert("An error occurred while deleting the author.");
+                }
+            });
+        }
     }
 </script>
 

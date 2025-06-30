@@ -133,4 +133,14 @@ class CopyrightController extends BaseController
         }
     }
 
+    public function delete_copyright_author($id){
+        $copyright_author_model = new Copyright_author_model();
+        $result = $copyright_author_model->delete($id);
+        if ($result) {
+            echo "success";
+        } else {
+            echo "error";
+        }
+    }
+
 }
