@@ -346,6 +346,11 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete-copyright-details/(:num)', 'CopyrightController::delete_copyright_details/$1');
 
     $routes->match(['get', 'post'], 'patent-details', 'PatentController::patent_details');
+    $routes->match(['get','post'],'edit-patent-details/(:num)', 'PatentController::edit_patent_details/$1');
+    $routes->post('add-patent-author/(:num)', 'PatentController::add_patent_author/$1');
+    $routes->get('delete-patent-author/(:num)', 'PatentController::delete_patent_author/$1');
+    $routes->get('delete-patent-details/(:num)', 'PatentController::delete_patent_details/$1');
+
     $routes->match(['get', 'post'], 'patent-web-page', 'PatentController::patent_web_page');
     $routes->match(['get', 'post'], 'patent-type', 'PatentController::patent_type');
     $routes->match(['get', 'post'], 'current-status', 'PatentController::current_status');

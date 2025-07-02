@@ -18,11 +18,11 @@ $employee_model = new Employee_model();
                 <?php if (session()->getFlashdata('status')): ?>
                     <?= session()->getFlashdata('status'); ?>
                 <?php endif; ?>
-                <form method="post" action="<?= base_url() ?>admin/patent-details" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url() ?>admin/edit-patent-details/<?= $patentid ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <span>Patent Title <span class="text-danger">*</span></span>
-                            <textarea class="form-control form-control-sm" name="patent_title" id="editor2"></textarea>
+                            <textarea class="form-control form-control-sm" name="patent_title" id="editor2"><?= $patent_data['patent_title'] ?></textarea>
                         </div>
                         <div class="col-lg-12 form-group">
                             <span>Patent Description</span>
