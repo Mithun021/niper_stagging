@@ -120,6 +120,48 @@ class PatentController extends BaseController
         }
     }
 
+    public function add_copyright_author($id){
+        $patent_author_model = new Patent_author_model();
+        $data = [
+            'copyright_id' => $id,
+            'author_name' => $this->request->getPost('author_name'),
+        ];
+        $result = $patent_author_model->add($data);
+        if ($result === true) {
+            return redirect()->to('admin/edit-patent-details/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+        } else {
+            return redirect()->to('admin/edit-patent-details/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+        }
+    }
+
+    public function delete_copyright_author($id){
+        $patent_author_model = new Patent_author_model();
+        $result = $patent_author_model->delete($id);
+        if ($result) {
+            echo "success";
+        } else {
+            echo "error";
+        }
+    }
+
+    public function delete_patent_details($id){
+        $patent_model = new Patent_model();
+        $patent_author_model = new Patent_author_model();
+        $patent_data = $patent_model->get($id);
+        if ($patent_data['upload_file'] != "") {
+            if (file_exists("public/admin/uploads/patent/" . $patent_data['upload_file'])) {
+                unlink("public/admin/uploads/patent/" . $patent_data['upload_file']);
+            }
+        }
+        $result = $patent_model->delete($id);
+        if ($result) {
+            $patent_author_model->where('patent_id', $id)->delete();
+            return redirect()->to('admin/patent-details')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/patent-details')->with('status','<div class="alert alert-danger" role="alert"> Data Delete Failed </div>');
+        }
+    }
+
     public function patent_web_page(){
         $patent_webpage_file_model = new Patent_webpage_file_model();
         $patent_webpage_model = new Patent_webpage_model();

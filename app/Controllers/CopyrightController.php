@@ -144,12 +144,24 @@ class CopyrightController extends BaseController
     }
 
     public function delete_copyright_details($id){
+        $copyright_author_model = new Copyright_author_model();
         $copyright_model = new Copyright_model();
+        $result = $copyright_model->get($id);
+        if (!$result) {
+            return redirect()->to('admin/copyright-details')->with('status','<div class="alert alert-danger" role="alert"> Data not found </div>');
+        }
+        if (file_exists("public/admin/uploads/copyright/" . $result['upload_file'])) {
+            unlink("public/admin/uploads/copyright/" . $result['upload_file']);
+        }
         $result = $copyright_model->delete($id);
         if ($result === true) {
+            $authors = $copyright_author_model->getByCopyright($id);
+            foreach ($authors as $author) {
+                $copyright_author_model->delete($author['id']);
+            }
             return redirect()->to('admin/copyright-details')->with('status','<div class="alert alert-success" role="alert"> Data delete successful </div>');
         } else {
-            return redirect()->to('admin/copyright-details')->with('status','<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+            return redirect()->to('admin/copyright-details')->with('status','<div class="alert alert-danger" role="alert"> Data delete failed </div>');
         }
     }
 
