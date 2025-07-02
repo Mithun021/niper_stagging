@@ -120,10 +120,10 @@ class PatentController extends BaseController
         }
     }
 
-    public function add_copyright_author($id){
+    public function add_patent_author($id){
         $patent_author_model = new Patent_author_model();
         $data = [
-            'copyright_id' => $id,
+            'patent_id' => $id,
             'author_name' => $this->request->getPost('author_name'),
         ];
         $result = $patent_author_model->add($data);
@@ -134,7 +134,7 @@ class PatentController extends BaseController
         }
     }
 
-    public function delete_copyright_author($id){
+    public function delete_patent_author($id){
         $patent_author_model = new Patent_author_model();
         $result = $patent_author_model->delete($id);
         if ($result) {
