@@ -26,32 +26,32 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="col-lg-12 form-group">
                             <span>Patent Description</span>
-                            <textarea id="editor" name="description"></textarea>
+                            <textarea id="editor" name="description"><?= $patent_data['description'] ?></textarea>
                         </div>
                         <div class="col-lg-4 form-group">
                             <span>IPR No <span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="ipr_number" placeholder="Enter IPR number" required>
+                            <input type="text" class="form-control form-control-sm" name="ipr_number" placeholder="Enter IPR number" value="<?= $patent_data['description'] ?>" required>
                         </div>
                         <div class="col-lg-4 form-group">
                             <span>Patent Type</span>
                             <select class="form-control form-control-sm" name="patent_type" >
                                 <option value="">--Select--</option>
                             <?php foreach ($patent_type as $key => $value) { ?>
-                                <option value="<?= $value['name'] ?>"><?= $value['name'] ?></option>
+                                <option value="<?= $value['name'] ?>" <?php if($patent_data['description'] == $value['name']){ echo "selected"; } ?>><?= $value['name'] ?></option>
                             <?php } ?>
                             </select>
                         </div>
                       	<div class="col-lg-4 form-group">
                             <span>Patent Number</span>
-                            <input type="text" class="form-control form-control-sm" name="patent_number" placeholder="Enter patent number">
+                            <input type="text" class="form-control form-control-sm" name="patent_number" placeholder="Enter patent number" value="<?= $patent_data['description'] ?>">
                         </div>
                         <div class="col-lg-3 form-group">
                             <span>Date of Filing <span class="text-danger">*</span></span>
-                            <input type="date" class="form-control form-control-sm" name="filling_date" required>
+                            <input type="date" class="form-control form-control-sm" name="filling_date" value="<?= $patent_data['filling_date'] ?>" required>
                         </div>
                         <div class="col-lg-3 form-group">
                             <span>Field Grant Date </span>
-                            <input type="date" class="form-control form-control-sm" name="grant_date" required>
+                            <input type="date" class="form-control form-control-sm" name="grant_date" value="<?= $patent_data['grant_date'] ?>" required>
                         </div>
                         <div class="col-lg-6 form-group">
                             <span>Current Status </span>
@@ -59,20 +59,25 @@ $employee_model = new Employee_model();
                             <select class="form-control form-control-sm" name="current_status" >
                                 <option value="">--Select--</option>
                             <?php foreach ($patent_current_status as $key => $value) { ?>
-                                <option value="<?= $value['name'] ?>"><?= $value['name'] ?></option>
+                                <option value="<?= $value['name'] ?>" <?php if($patent_data['current_status'] == $value['name']){ echo "selected"; } ?>><?= $value['name'] ?></option>
                             <?php } ?>
                             </select>
                         </div>
                         <div class="col-lg-6 form-group">
                             <span>Upload File (PDF, JPG, PNG)</span>
                             <input type="file" class="form-control form-control-sm" name="patent_file" accept=".pdf,.jpg,.png">
+                            <?php if (!empty($patent_data['upload_file']) && file_exists('public/admin/uploads/patent/' . $patent_data['upload_file'])): ?>
+                                <a href="<?= base_url() ?>public/admin/uploads/patent/<?= $patent_data['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
+                            <?php else: ?>
+                                <img src="<?= base_url() ?>public/admin/uploads/patent/invalid_image.png" alt="" height="40px">
+                            <?php endif; ?>
                         </div>
                         <div class="col-lg-6 form-group">
                             <span>Employee ID <span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm my-select" name="emp_id[]" multiple required>
                                 <option value="">--Select--</option>
                                 <?php foreach ($employees as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?php if($patent_data['employee_id'] == $value['id']){ echo "selected"; } ?>><?= $value['first_name'] . " " . $value['middle_name'] . " " . $value['last_name'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -102,8 +107,8 @@ $employee_model = new Employee_model();
                         <div class="col-lg-4 form-group">
                             <span>Patent Status <span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="patent_status" required>
-                                <option value="0">Draft</option>
-                                <option value="1" selected>Active</option>
+                                <option value="0" <?php if($patent_data['status'] == 0){ echo "selected"; } ?>>Draft</option>
+                                <option value="1" <?php if($patent_data['status'] == 1){ echo "selected"; } ?>>Active</option>
                             </select>
                         </div>
                         <div class="col-lg-12 form-group">
