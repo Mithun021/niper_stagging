@@ -30,20 +30,20 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="col-lg-4 form-group">
                             <span>IPR No <span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="ipr_number" placeholder="Enter IPR number" value="<?= $patent_data['description'] ?>" required>
+                            <input type="text" class="form-control form-control-sm" name="ipr_number" placeholder="Enter IPR number" value="<?= $patent_data['ipr_number'] ?>" required>
                         </div>
                         <div class="col-lg-4 form-group">
                             <span>Patent Type</span>
                             <select class="form-control form-control-sm" name="patent_type" >
                                 <option value="">--Select--</option>
                             <?php foreach ($patent_type as $key => $value) { ?>
-                                <option value="<?= $value['name'] ?>" <?php if($patent_data['description'] == $value['name']){ echo "selected"; } ?>><?= $value['name'] ?></option>
+                                <option value="<?= $value['name'] ?>" <?php if($patent_data['patent_type'] == $value['name']){ echo "selected"; } ?>><?= $value['name'] ?></option>
                             <?php } ?>
                             </select>
                         </div>
                       	<div class="col-lg-4 form-group">
                             <span>Patent Number</span>
-                            <input type="text" class="form-control form-control-sm" name="patent_number" placeholder="Enter patent number" value="<?= $patent_data['description'] ?>">
+                            <input type="text" class="form-control form-control-sm" name="patent_number" placeholder="Enter patent number" value="<?= $patent_data['patent_no'] ?>">
                         </div>
                         <div class="col-lg-3 form-group">
                             <span>Date of Filing <span class="text-danger">*</span></span>
