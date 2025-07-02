@@ -197,7 +197,7 @@ $employee_model = new Employee_model();
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url() ?>admin/add-copyright-author/<?= $copyrightid ?>" method="post">
+            <form action="<?= base_url() ?>admin/add-patent-author/<?= $patentid ?>" method="post">
             <div class="modal-body">
                 <input type="text" class="form-control" id="author_name" name="author_name" placeholder="Enter Author Name">
             </div>
@@ -215,10 +215,10 @@ $employee_model = new Employee_model();
     function openauthorModal(){
         $('#authorModal').modal('show');
     }
-    function deleteCopyrightAuthor(id) {
+    function deletePatentAuthor(id) {
         if (confirm("Are you sure you want to delete this author?")) {
             $.ajax({
-                url: "<?= base_url() ?>admin/delete-copyright-author/" + id,
+                url: "<?= base_url() ?>admin/delete-patent-author/" + id,
                 type: "GET",
                 success: function(response) {
                     if (response == 'success') {
