@@ -83,23 +83,25 @@ $employee_model = new Employee_model();
                         </div>
                         <div class="col-lg-12 form-group">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="addServicetable">
+                                <table class="table table-bordered">
                                     <thead class="bg-light">
                                         <tr>
                                             <td scope="col">Author Details</td>
-                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewservicerow">+</button></td>
+                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" onclick="openauthorModal()">+</button></td>
                                         </tr>
 
                                     </thead>
-                                    <tbody id="stockTbody">
-                                        <tr id="stockTrow">
+                                    <tbody>
+                                        <?php foreach ($patent_author as $key => $author) { ?>
+                                        <tr>
                                             <td>
-                                                <input type="text" class="form-control" id="author_name" name="author_name[]" placeholder="Enter Author Name">
+                                                <?= $author['author_name'] ?>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
+                                                <button type="button" class="btn btn-sm btn-danger" onclick="deletePatentAuthor(<?= $author['id'] ?>)">-</button>
                                             </td>
                                         </tr>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -185,5 +187,53 @@ $employee_model = new Employee_model();
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="authorModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Author</h5>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="<?= base_url() ?>admin/add-copyright-author/<?= $copyrightid ?>" method="post">
+            <div class="modal-body">
+                <input type="text" class="form-control" id="author_name" name="author_name" placeholder="Enter Author Name">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary waves-effect waves-light">Save changes</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
+<script>
+    function openauthorModal(){
+        $('#authorModal').modal('show');
+    }
+    function deleteCopyrightAuthor(id) {
+        if (confirm("Are you sure you want to delete this author?")) {
+            $.ajax({
+                url: "<?= base_url() ?>admin/delete-copyright-author/" + id,
+                type: "GET",
+                success: function(response) {
+                    if (response == 'success') {
+                        alert("Author deleted successfully.");
+                        location.reload();
+                    } else {
+                        alert("Failed to delete author.");
+                    }
+                },
+                error: function() {
+                    alert("An error occurred while deleting the author.");
+                }
+            });
+        }
+    }
+</script>
 
 <?= $this->endSection(); ?>

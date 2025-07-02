@@ -26,5 +26,8 @@
             }
             return $result;
         }
+        public function getByPatent($id){
+            return $this->where('patent_id',$id)->findAll();
+        }
     }
 ?>

@@ -83,6 +83,7 @@ class PatentController extends BaseController
             $data['patent_type'] = $patent_type_model->get();
             $data['patent_current_status'] = $patent_current_status_model->get();
             $data['patent_data'] = $patent_model->get($id);
+            $data['patent_author'] = $patent_author_model->getByPatent($id);
             return view('admin/patent/edit-patent-details',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
