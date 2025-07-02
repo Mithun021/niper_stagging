@@ -286,4 +286,40 @@ class PatentController extends BaseController
             }
         }
     }
+
+    public function edit_current_status($id){
+        $patent_current_status_model = new Patent_current_status_model();
+        $data = ['title' => 'Current Staus', 'current_status_id' => $id];
+        if ($this->request->is("get")) {
+            $data['current_status'] = $patent_current_status_model->get();
+            $data['current_status_data'] = $patent_current_status_model->get($id);
+            return view('admin/patent/edit-current-status',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $data = [
+                'name' => $this->request->getPost('current_staus'),
+                'upload_by' => $loggeduserId
+            ];
+            $result = $patent_current_status_model->add($data, $id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-current-status/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-current-status/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+
+    public function delete_current_status($id){
+        $patent_current_status_model = new Patent_current_status_model();
+        $result = $patent_current_status_model->delete($id);
+        if ($result) {
+            return redirect()->to('admin/current-status')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/current-status')->with('status','<div class="alert alert-danger" role="alert"> Data Delete Failed </div>');
+        }
+    }
+    
 }

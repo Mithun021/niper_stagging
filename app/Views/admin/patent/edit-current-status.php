@@ -20,10 +20,10 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/current-status') ?>">
+                <form method="post" action="<?= base_url('admin/edit-current-status/'.$current_status_id) ?>">
                     <div class="form-group">
                         <span for="">Current Status<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="current_staus" required>
+                        <input type="text" class="form-control form-control-sm" name="current_staus" value="<?= $current_status_data['name'] ?>" required>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
