@@ -352,8 +352,14 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete-patent-details/(:num)', 'PatentController::delete_patent_details/$1');
 
     $routes->match(['get', 'post'], 'patent-web-page', 'PatentController::patent_web_page');
+
     $routes->match(['get', 'post'], 'patent-type', 'PatentController::patent_type');
+    $routes->match(['get','post'],'edit-patent-type/(:num)', 'PatentController::edit_patent_type/$1');
+    $routes->get('delete-patent-type/(:num)', 'PatentController::delete_patent_type/$1');
+
     $routes->match(['get', 'post'], 'current-status', 'PatentController::current_status');
+    $routes->match(['get','post'],'edit-current-status/(:num)', 'PatentController::edit_current_status/$1');
+    $routes->get('delete-current-status/(:num)', 'PatentController::delete_current_status/$1');
 
     // Admission Rotes ----------------------
     $routes->match(['get', 'post'], 'admission-page', 'AdmissionController::admission_page');

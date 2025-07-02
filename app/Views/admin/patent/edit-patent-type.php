@@ -20,7 +20,7 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/patent-type') ?>">
+                <form method="post" action="<?= base_url('admin/edit-patent-type/'.$patent_type_id) ?>">
                     <div class="form-group">
                         <span for="">Patent Type<span class="text-danger">*</span></span>
                         <input type="text" class="form-control form-control-sm" name="patent_type" required>

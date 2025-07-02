@@ -227,6 +227,42 @@ class PatentController extends BaseController
             }
         }
     }
+
+    public function edit_patent_type($id){
+        $patent_type_model = new Patent_type_model();
+        $data = ['title' => 'Patent Type', 'patent_type_id' => $id];
+        if ($this->request->is("get")) {
+            $data['patent_type'] = $patent_type_model->get();
+            $data['patent_type_data'] = $patent_type_model->get($id);
+            return view('admin/patent/edit-patent-type',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $data = [
+                'name' => $this->request->getPost('patent_type'),
+                'upload_by' => $loggeduserId
+            ];
+            $result = $patent_type_model->add($data,$id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-patent-type/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-patent-type/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+
+    public function delete_patent_type($id){
+        $patent_type_model = new Patent_type_model();
+        $result = $patent_type_model->delete($id);
+        if ($result) {
+            return redirect()->to('admin/patent-type')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/patent-type')->with('status','<div class="alert alert-danger" role="alert"> Data Delete Failed </div>');
+        }
+    }
+
     public function current_status(){
         $patent_current_status_model = new Patent_current_status_model();
         $data = ['title' => 'Current Staus'];
