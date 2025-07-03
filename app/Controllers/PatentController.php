@@ -274,6 +274,7 @@ class PatentController extends BaseController
             }
         }
         $result = $patent_webpage_model->delete($id);
+        
         if ($result) {
             return redirect()->to('admin/patent-web-page')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
         } else {
