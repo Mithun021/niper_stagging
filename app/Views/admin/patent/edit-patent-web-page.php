@@ -23,18 +23,25 @@ use App\Models\Patent_webpage_file_model;
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/patent-web-page') ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url('admin/edit-patent-web-page/'.$patent_webpage_id) ?>" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="title" required>
+                        <input type="text" class="form-control form-control-sm" name="title" value="<?= $patent_webpage_data['title'] ?>" required>
                     </div>
                     <div class="form-group">
                         <span for="">Description<span class="text-danger">*</span></span>
-                        <textarea class="form-control form-control-sm" name="description" id="editor"></textarea>
+                        <textarea class="form-control form-control-sm" name="description" id="editor"><?= $patent_webpage_data['description'] ?></textarea>
                     </div>
                     <div class="form-group">
                         <span for="">Upload Images(.Jpg,.Png,.Jpeg)</span>
                         <input type="file" class="form-control form-control-sm" name="upload_file[]" accept=".Jpg,.Png,.Jpeg" multiple>
+                        <?php foreach ($patent_webpage_file as $key => $value2) { ?>
+                                <?php if (!empty($value2['upload_file']) && file_exists('public/admin/uploads/patent/' . $value2['upload_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/patent/<?= $value2['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/patent/<?= $value2['upload_file'] ?>" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/patent/invalid_image.png" alt="" height="30px">
+                                <?php endif; ?>
+                        <?php } ?>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>

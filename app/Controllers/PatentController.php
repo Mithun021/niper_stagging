@@ -204,6 +204,52 @@ class PatentController extends BaseController
             }
         }
     }
+
+    public function edit_patent_web_page($id){
+        $patent_webpage_file_model = new Patent_webpage_file_model();
+        $patent_webpage_model = new Patent_webpage_model();
+        $data = ['title' => 'Patent Web Page','patent_webpage_id' => $id];
+        if ($this->request->is("get")) {
+            $data['patent_webpage'] = $patent_webpage_model->get();
+            $data['patent_webpage_data'] = $patent_webpage_model->get($id);
+            $data['patent_webpage_file'] = $patent_webpage_file_model->get_by_webpage($id);
+            return view('admin/patent/edit-patent-web-page',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+            $data = [
+                'title' => $this->request->getPost('title'),
+                'description' => $this->request->getPost('description'),
+                'upload_by' => $loggeduserId
+            ];
+            $album_files = $this->request->getFiles();
+            $result = $patent_webpage_model->add($data, $id);
+            if ($result === true) {
+                $insertedId = $patent_webpage_model->getInsertID();
+                if ($album_files && isset($album_files['upload_file'])) {
+                    foreach ($album_files['upload_file'] as $file) {
+                        if ($file->isValid() && !$file->hasMoved()) {
+                            $newName = $insertedId."webpage".$file->getRandomName();
+                            $file->move(ROOTPATH . 'public/admin/uploads/patent', $newName);
+        
+                            $file_data = [
+                                'patent_webpage_id' => $insertedId,
+                                'upload_file' => $newName,
+                            ];
+                            // echo "<pre>"; print_r($file_data);
+                            $patent_webpage_file_model->add($file_data);
+                        }
+                    }
+                }
+                return redirect()->to('admin/edit-patent-web-page/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-patent-web-page/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+
     public function patent_type(){
         $patent_type_model = new Patent_type_model();
         $data = ['title' => 'Patent Type'];
