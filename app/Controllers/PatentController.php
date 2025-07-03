@@ -262,6 +262,25 @@ class PatentController extends BaseController
         echo "success";
     }
 
+    public function delete_patent_web_page($id){
+        $patent_webpage_model = new Patent_webpage_model();
+        $patent_webpage_file_model = new Patent_webpage_file_model();
+        $file_data = $patent_webpage_model->get($id);
+        if ($file_data) {
+            $patent_webpage_file_model->where('patent_webpage_id', $id)->delete();
+            $file_path = ROOTPATH . 'public/admin/uploads/patent/' . $file_data['upload_file'];
+            if (file_exists($file_path)) {
+                unlink($file_path);
+            }
+        }
+        $result = $patent_webpage_model->delete($id);
+        if ($result) {
+            return redirect()->to('admin/patent-web-page')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/patent-web-page')->with('status','<div class="alert alert-danger" role="alert"> Data Delete Failed </div>');
+        }
+    }
+
     public function patent_type(){
         $patent_type_model = new Patent_type_model();
         $data = ['title' => 'Patent Type'];
