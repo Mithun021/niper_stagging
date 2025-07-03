@@ -112,22 +112,26 @@ use App\Models\Patent_webpage_file_model;
 
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
-    function delete_patent_webapge_file(id) { 
-        if (confirm('Are you sure...!')) {
+    function delete_patent_webapge_file(id) {
+        if (confirm('Are you sure you want to delete this file?')) {
             $.ajax({
-                method : "GET"
-                url : "<?= base_url() ?>admin/delete-patent-webpage-file/" + id,
-                success : function(response){
-                    if (response == "success") {
-                        alert('Data Delete Successful');
+                method: "GET",
+                url: "<?= base_url() ?>admin/delete-patent-webpage-file/" + id,
+                success: function (response) {
+                    if (response.trim() === "success") {
+                        alert('File deleted successfully.');
                         window.location.reload();
-                    }else{
-                        alert(response);
+                    } else {
+                        alert('Error: ' + response);
                     }
+                },
+                error: function (xhr, status, error) {
+                    alert('AJAX Error: ' + error);
                 }
-            })
+            });
         }
-     }
+    }
+
 </script>
 
 <?= $this->endSection() ?>
