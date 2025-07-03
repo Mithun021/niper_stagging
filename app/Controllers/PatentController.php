@@ -267,11 +267,16 @@ class PatentController extends BaseController
         $patent_webpage_file_model = new Patent_webpage_file_model();
         $file_data = $patent_webpage_model->get($id);
         if ($file_data) {
-            $file_path = ROOTPATH . 'public/admin/uploads/patent/' . $file_data['upload_file'];
-            if (file_exists($file_path)) {
-                unlink($file_path);
+            $patent_webpage_file = $patent_webpage_file_model->get_by_webpage($id);
+            foreach ($patent_webpage_file as $key => $value) {
+                $file_path = ROOTPATH . 'public/admin/uploads/patent/' . $value['upload_file'];
+                if (file_exists($file_path)) {
+                    unlink($file_path);
+                }
+                 $patent_webpage_file_model->delete($value['id']);
             }
-            $patent_webpage_file_model->where('patent_webpage_id', $id)->delete();
+            
+            // $patent_webpage_file_model->where('patent_webpage_id', $id)->delete();
         }
         $result = $patent_webpage_model->delete($id);
         
