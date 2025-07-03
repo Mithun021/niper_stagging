@@ -43,7 +43,7 @@ use App\Models\Patent_webpage_file_model;
                             <div style="display: inline-block; margin: 10px; text-align: center;">
                                 <?php if (!empty($value2['upload_file']) && file_exists($file_path)): ?>
                                     <a href="<?= $file_url ?>" target="_blank">
-                                        <img src="<?= $file_url ?>" alt="Patent Image" height="60px">
+                                        <img src="<?= $file_url ?>" alt="Patent Image" height="40px">
                                     </a>
                                     <br>
                                     <button class="btn btn-sm btn-danger mt-1">Delete</button>
