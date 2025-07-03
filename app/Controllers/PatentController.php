@@ -227,15 +227,14 @@ class PatentController extends BaseController
             $album_files = $this->request->getFiles();
             $result = $patent_webpage_model->add($data, $id);
             if ($result === true) {
-                $insertedId = $patent_webpage_model->getInsertID();
                 if ($album_files && isset($album_files['upload_file'])) {
                     foreach ($album_files['upload_file'] as $file) {
                         if ($file->isValid() && !$file->hasMoved()) {
-                            $newName = $insertedId."webpage".$file->getRandomName();
+                            $newName = $id."webpage".$file->getRandomName();
                             $file->move(ROOTPATH . 'public/admin/uploads/patent', $newName);
         
                             $file_data = [
-                                'patent_webpage_id' => $insertedId,
+                                'patent_webpage_id' => $id,
                                 'upload_file' => $newName,
                             ];
                             // echo "<pre>"; print_r($file_data);
