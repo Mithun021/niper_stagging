@@ -110,6 +110,7 @@ use App\Models\Patent_webpage_file_model;
     </div>
 </div>
 
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
     function delete_patent_webapge_file(id) { 
         if (confirm('Are you sure...!')) {
