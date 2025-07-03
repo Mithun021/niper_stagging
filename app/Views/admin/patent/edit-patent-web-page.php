@@ -35,13 +35,24 @@ use App\Models\Patent_webpage_file_model;
                     <div class="form-group">
                         <span for="">Upload Images(.Jpg,.Png,.Jpeg)</span>
                         <input type="file" class="form-control form-control-sm" name="upload_file[]" accept=".Jpg,.Png,.Jpeg" multiple>
-                        <?php foreach ($patent_webpage_file as $key => $value2) { ?>
-                                <?php if (!empty($value2['upload_file']) && file_exists('public/admin/uploads/patent/' . $value2['upload_file'])): ?>
-                                    <a href="<?= base_url() ?>public/admin/uploads/patent/<?= $value2['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/patent/<?= $value2['upload_file'] ?>" alt="" height="30px"></a>
+                        <?php foreach ($patent_webpage_file as $key => $value2): ?>
+                            <?php
+                                $file_path = 'public/admin/uploads/patent/' . $value2['upload_file'];
+                                $file_url = base_url($file_path);
+                            ?>
+                            <div style="display: inline-block; margin: 10px; text-align: center;">
+                                <?php if (!empty($value2['upload_file']) && file_exists($file_path)): ?>
+                                    <a href="<?= $file_url ?>" target="_blank">
+                                        <img src="<?= $file_url ?>" alt="Patent Image" height="60px">
+                                    </a>
+                                    <br>
+                                    <button class="btn btn-sm btn-danger mt-1">Delete</button>
                                 <?php else: ?>
-                                    <img src="<?= base_url() ?>public/admin/uploads/patent/invalid_image.png" alt="" height="30px">
+                                    <img src="<?= base_url('public/admin/uploads/patent/invalid_image.png') ?>" alt="Invalid" height="60px">
                                 <?php endif; ?>
-                        <?php } ?>
+                            </div>
+                        <?php endforeach; ?>
+
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
