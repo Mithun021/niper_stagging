@@ -249,6 +249,19 @@ class PatentController extends BaseController
         }
     }
 
+    public function delete_patent_webpage_file($id){
+        $patent_webpage_file_model = new Patent_webpage_file_model();
+        $file_data = $patent_webpage_file_model->get($id);
+        if ($file_data) {
+            $file_path = ROOTPATH . 'public/admin/uploads/patent/' . $file_data['upload_file'];
+            if (file_exists($file_path)) {
+                unlink($file_path);
+            }
+        }
+        $patent_webpage_file_model->where('id', $id)->delete();
+        echo "success";
+    }
+
     public function patent_type(){
         $patent_type_model = new Patent_type_model();
         $data = ['title' => 'Patent Type'];

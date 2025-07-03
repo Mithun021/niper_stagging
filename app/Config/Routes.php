@@ -354,6 +354,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get', 'post'], 'patent-web-page', 'PatentController::patent_web_page');
     $routes->match(['get','post'],'edit-patent-web-page/(:num)', 'PatentController::edit_patent_web_page/$1');
     $routes->get('delete-patent-web-page/(:num)', 'PatentController::delete_patent_web_page/$1');
+    $routes->get('delete-patent-webpage-file/(:num)', 'PatentController::delete_patent_webpage_file/$1');
 
     $routes->match(['get', 'post'], 'patent-type', 'PatentController::patent_type');
     $routes->match(['get','post'],'edit-patent-type/(:num)', 'PatentController::edit_patent_type/$1');

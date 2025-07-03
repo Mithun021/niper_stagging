@@ -46,7 +46,7 @@ use App\Models\Patent_webpage_file_model;
                                         <img src="<?= $file_url ?>" alt="Patent Image" height="40px">
                                     </a>
                                     <br>
-                                    <button class="btn btn-sm btn-danger mt-1">Delete</button>
+                                    <button type="button" class="btn btn-sm btn-danger mt-1" onclick="delete_patent_webapge_file(<?= $value2['id'] ?>)">Delete</button>
                                 <?php else: ?>
                                     <img src="<?= base_url('public/admin/uploads/patent/invalid_image.png') ?>" alt="Invalid" height="60px">
                                 <?php endif; ?>
@@ -109,5 +109,24 @@ use App\Models\Patent_webpage_file_model;
         </div>
     </div>
 </div>
+
+<script>
+    function delete_patent_webapge_file(id) { 
+        if (confirm('Are you sure...!')) {
+            $.ajax({
+                method : "GET"
+                url : "<?= base_url() ?>admin/delete-patent-webpage-file/" + id,
+                success : function(response){
+                    if (response == "success") {
+                        alert('Data Delete Successful');
+                        window.location.reload();
+                    }else{
+                        alert(response);
+                    }
+                }
+            })
+        }
+     }
+</script>
 
 <?= $this->endSection() ?>
