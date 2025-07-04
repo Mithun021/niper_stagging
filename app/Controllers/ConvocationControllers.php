@@ -104,5 +104,35 @@ class ConvocationControllers extends BaseController
 
         }
     }
+    public function add_convocation_session($id){
+        $convocation_session_model = new Convocation_session_model();
+        $data = [
+            'convocation_id' => $id,
+            'session_start' => $this->request->getPost('academic_start_year'),
+            'session_end' => $this->request->getPost('academic_end_year')
+        ];
+        $convocation_session_model->add($data);
+        return redirect()->to('admin/edit-convocation/'.$id)->with('status','<div class="alert alert-success" role="alert"> Session Added Successful </div>');
+    }
+
+    public function delete_convocation($id){
+        $convocation_model = new Convocation_model();
+        $convocation_session_model = new Convocation_session_model();
+        $convocation_data = $convocation_model->get($id);
+        if ($convocation_data) {
+            if (file_exists("public/admin/uploads/convocation/" . $convocation_data['upload_file'])) {
+                unlink("public/admin/uploads/convocation/" . $convocation_data['upload_file']);
+            }
+            $result = $convocation_model->delete($id);
+            if ($result) {
+                $convocation_session_model->where('convocation_id', $id)->delete();
+                return redirect()->to('admin/convocation')->with('status','<div class="alert alert-success" role="alert"> Data Deleted Successful </div>');
+            } else {
+                return redirect()->to('admin/convocation')->with('status','<div class="alert alert-danger" role="alert"> Data Not Deleted </div>');
+            }
+        } else {
+            return redirect()->to('admin/convocation')->with('status','<div class="alert alert-danger" role="alert"> Convocation Not Found </div>');
+        }
+    }
 
 }
