@@ -420,6 +420,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get', 'post'], 'instrument-booking-report', 'InstrumentSlotController::instrument_booking_report');
 
     $routes->match(['get', 'post'], 'convocation', 'ConvocationControllers::convocation');
+    $routes->match(['get','post'],'edit-convocation/(:num)', 'ConvocationControllers::edit_convocation/$1');
+    $routes->get('delete-convocation/(:num)', 'StudentController::delete_convocation/$1');
+    
 
     $routes->match(['get', 'post'], 'result', 'ResultGradeControllers::result');
     $routes->match(['get', 'post'], 'grades', 'ResultGradeControllers::grades');

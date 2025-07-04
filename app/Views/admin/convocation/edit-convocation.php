@@ -10,9 +10,9 @@ $convocation_session_model = new Convocation_session_model();
 ?>
 
 <style>
-    #addConvtable #convTbody #convTrow:first-child td:last-child button {
+    /* #addConvtable #convTbody #convTrow:first-child td:last-child button {
         display: none;
-    }
+    } */
     ul#session_list{
         margin: 0;
         padding: 0;
@@ -41,15 +41,15 @@ $convocation_session_model = new Convocation_session_model();
                     </div>
                     <div class="form-group">
                         <div class="table-responsive">
-                        <table class="table table-striped table-hover" id="addConvtable">
+                        <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
                                     <td colspan="2">Academic Session</td>
                                     <td><button type="button" class="btn btn-sm btn-primary" id="addnewconvrow">+</button></td>
                                 </tr>
                             </thead>
-                            <tbody id="convTbody">
-                                <tr id="convTrow">
+                            <tbody>
+                                <tr>
                                     <td>
                                         <div class="form-group">
                                             <span for="Convnumber">Start Year:<span class="text-danger">*</span></span>
@@ -151,22 +151,7 @@ $convocation_session_model = new Convocation_session_model();
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
-        // Create Service Clone for add and remove rows also calculate price
-        var cloneLimit = 4;
-        var currentClones = 0;
-        $("#addnewconvrow").click(function(e) {
-            e.preventDefault();
-            if (currentClones < cloneLimit) {
-                currentClones++;
-                var cloneCatrow = $('#convTrow').clone().appendTo('#convTbody');
-                $(cloneCatrow).find('input').val('');
-            }
 
-        });
-
-        $('#convTbody').on('click', '#removenewConvrow', function() {
-            $(this).closest('tr').remove();
-        });
     });
 </script>
 
