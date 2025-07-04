@@ -37,7 +37,7 @@ $convocation_session_model = new Convocation_session_model();
                     <!-- Convocation Number -->
                     <div class="form-group">
                         <span for="Convnumber">Convocation Title:<span class="text-danger">*</span></span>
-                        <input type="text" name="conv_title" id="conv_title" class="form-control form-control-sm" required>
+                        <input type="text" name="conv_title" id="conv_title" class="form-control form-control-sm" value="<?= $convocation_data['title'] ?>" required>
                     </div>
                     <div class="form-group">
                         <div class="table-responsive">
@@ -47,23 +47,19 @@ $convocation_session_model = new Convocation_session_model();
                                     <td colspan="2">Academic Session</td>
                                     <td><button type="button" class="btn btn-sm btn-primary" id="addnewconvrow">+</button></td>
                                 </tr>
+                                <tr>
+                                    <td>Start Year</td>
+                                    <td>End Year</td>
+                                </tr>
                             </thead>
                             <tbody>
+                            <?php foreach ($convocation_session as $key => $session) { ?>
                                 <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <span for="Convnumber">Start Year:<span class="text-danger">*</span></span>
-                                            <input type="number" name="academic_start_year[]" id="academic_start_year" class="form-control form-control-sm" required>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <span for="Convnumber">End Year:<span class="text-danger">*</span></span>
-                                            <input type="number" name="academic_end_year[]" id="academic_end_year" class="form-control form-control-sm" required>
-                                        </div>
-                                    </td>
+                                    <td><?= $session['session_start'] ?></td>
+                                    <td><?= $session['session_start'] ?></td>
                                     <td><button type="button" class="btn btn-sm btn-danger" id="removenewConvrow">-</button></td>
                                 </tr>
+                            <?php } ?>
                             </tbody>
                         </table>
                         </div>
@@ -72,7 +68,12 @@ $convocation_session_model = new Convocation_session_model();
                     <!-- Upload Awardee File -->
                     <div class="form-group mt-3">
                         <span for="Awardeefileupload">Upload Awardee File(.pdf):<span class="text-danger">*</span></span>
-                        <input type="file" name="upload_file" id="upload_file" class="form-control form-control-sm" accept=".pdf" required>
+                        <input type="file" name="upload_file" id="upload_file" class="form-control form-control-sm" accept=".pdf">
+                        <?php if (!empty($convocation_data['upload_file']) && file_exists('public/admin/uploads/convocation/' . $convocation_data['upload_file'])): ?>
+                            <a href="<?= base_url() ?>public/admin/uploads/convocation/<?= $convocation_data['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                        <?php else: ?>
+                            <img src="<?= base_url() ?>public/admin/uploads/convocation/invalid_image.png" alt="" height="40px">
+                        <?php endif; ?>
                     </div>
 
                     <!-- Submit Button -->
