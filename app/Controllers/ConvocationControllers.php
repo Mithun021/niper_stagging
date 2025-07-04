@@ -117,6 +117,21 @@ class ConvocationControllers extends BaseController
         return redirect()->to('admin/edit-convocation/'.$id)->with('status','<div class="alert alert-success" role="alert"> Session Added Successful </div>');
     }
 
+    public function delete_convocation_session($id){
+        $convocation_session_model = new Convocation_session_model();
+        $convocation_data = $convocation_session_model->get($id);
+        if ($convocation_data) {
+            $result = $convocation_session_model->delete($id);
+            if ($result) {
+                echo "success";
+            } else {
+                echo "Session Not Deleted";
+            }
+        } else {
+            echo "Session Not Found";
+        }
+    }
+
     public function delete_convocation($id){
         $convocation_model = new Convocation_model();
         $convocation_session_model = new Convocation_session_model();

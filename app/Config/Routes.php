@@ -422,6 +422,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get', 'post'], 'convocation', 'ConvocationControllers::convocation');
     $routes->match(['get','post'],'edit-convocation/(:num)', 'ConvocationControllers::edit_convocation/$1');
     $routes->post('add-convocation-session/(:num)', 'ConvocationControllers::add_convocation_session/$1');
+    $routes->get('delete-convocation-session/(:num)', 'ConvocationControllers::delete_convocation_session/$1');
     $routes->get('delete-convocation/(:num)', 'ConvocationControllers::delete_convocation/$1');
     
 

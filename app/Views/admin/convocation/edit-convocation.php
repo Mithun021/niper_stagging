@@ -58,7 +58,7 @@ $convocation_session_model = new Convocation_session_model();
                                 <tr>
                                     <td><?= $session['session_start'] ?></td>
                                     <td><?= $session['session_start'] ?></td>
-                                    <td><button type="button" class="btn btn-sm btn-danger" id="removenewConvrow">-</button></td>
+                                    <td><button type="button" class="btn btn-sm btn-danger" onclick="removeSession(<?= $session['id'] ?>)">-</button></td>
                                 </tr>
                             <?php } ?>
                             </tbody>
@@ -184,6 +184,26 @@ $convocation_session_model = new Convocation_session_model();
 
     function openSessonModal() {
         $('#sessionModal').modal('show');
+    }
+
+    function removeSession(id) {
+        if (confirm("Are you sure you want to delete this session?")) {
+            $.ajax({
+                url: '<?= base_url() ?>admin/delete-convocation-session/' + id,
+                type: 'GET',
+                success: function(response) {
+                    if (response === "success") {
+                        alert("Session deleted successfully.");
+                        location.reload();
+                    } else {
+                        alert(response); // Show the error message returned from the server
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert("An error occurred while deleting the session.");
+                }
+            });
+        }
     }
 
     $(document).ready(function() {
