@@ -70,11 +70,34 @@ use App\Models\UserModel;
                 if ($sessionData) {
                     $loggeduserId = $sessionData['loggeduserId']; 
                 }
-                $std_profile_image = $this->request->getFile('std_profile_image');
-                if ($std_profile_image->isValid() && ! $std_profile_image->hasMoved()) {
-                    $studentFileName = $std_profile_image->getRandomName();
-                    $std_profile_image->move(ROOTPATH . 'public/admin/uploads/students', $studentFileName);    
+                $students_data = $student_model->get($id);
+                $document = $this->request->getFile('std_profile_image');
+
+                $old_document_file = $students_data['profile_image'];
+
+                if (empty($old_document_file)) {
+                    if ($document->isValid() && !$document->hasMoved()) {
+                        $document_name = $document->getRandomName();
+                        $document->move(ROOTPATH . 'public/admin/uploads/students/', $document_name);
+                    } else {
+                        $document_name = null;
+                    }
+                } else {
+                    if ($document->isValid() && !$document->hasMoved()) {
+                        if (file_exists("public/admin/uploads/students/" . $old_document_file)) {
+                            unlink("public/admin/uploads/students/" . $old_document_file);
+                        }
+                        $document_name = $document->getRandomName();
+                        $document->move(ROOTPATH . 'public/admin/uploads/students/', $document_name);
+                    } else {
+                        $document_name = $old_document_file;
+                    }
                 }
+
+                // if ($std_profile_image->isValid() && ! $std_profile_image->hasMoved()) {
+                //     $studentFileName = $std_profile_image->getRandomName();
+                //     $std_profile_image->move(ROOTPATH . 'public/admin/uploads/students', $studentFileName);    
+                // }
                 $data = [
                     'first_name' => $this->request->getPost('std_first_name'),
                     'middle_name' => $this->request->getPost('std_middle_name'),
@@ -90,7 +113,7 @@ use App\Models\UserModel;
                     'gender' => $this->request->getPost('gender'),
                     'permanent_address' => $this->request->getPost('std_permanent_address'),
                     'correspondence_address' => $this->request->getPost('std_corrospondence_address'),
-                    'profile_image' => $studentFileName ?? '',
+                    'profile_image' => $document_name ?? '',
                     'upload_by' => $loggeduserId ?? ''
                 ];
 
