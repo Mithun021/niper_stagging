@@ -50,6 +50,7 @@ $convocation_session_model = new Convocation_session_model();
                                 <tr>
                                     <td>Start Year</td>
                                     <td>End Year</td>
+                                    <td></td>
                                 </tr>
                             </thead>
                             <tbody>
