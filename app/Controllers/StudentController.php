@@ -127,6 +127,20 @@ use App\Models\UserModel;
             }
         }
 
+        public function delete_students($id){
+            $student_model = new Student_model();
+            $students_data = $student_model->get($id);
+            if (file_exists("public/admin/uploads/students/" . $students_data['profile_image'])) {
+                unlink("public/admin/uploads/students/" . $students_data['profile_image']);
+            }
+            $result = $student_model->delete($id);
+            if ($result) {
+                return redirect()->to('admin/students')->with('status', '<div class="alert alert-success" role="alert">Student deleted successfully.</div>');
+            } else {
+                return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">Failed to delete student.</div>');
+            }
+        }
+
         public function export_student(){
             $student_model = new Student_model();
             // echo "ok";
