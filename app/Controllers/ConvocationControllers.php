@@ -36,13 +36,15 @@ class ConvocationControllers extends BaseController
             $result = $convocation_model->add($data);
             if ($result === true) {
                 $insertedId = $convocation_model->getInsertID();
-                foreach ($academic_start_year as $key => $value) {
-                    $data = [
-                        'convocation_id' => $insertedId,
-                        'session_start' => $value,
-                        'session_end' => $this->request->getPost('academic_end_year')[$key]
-                    ];
-                    $convocation_session_model->add($data);
+                if (!empty($academic_start_year)) {
+                    foreach ($academic_start_year as $key => $value) {
+                        $data = [
+                            'convocation_id' => $insertedId,
+                            'session_start' => $value,
+                            'session_end' => $this->request->getPost('academic_end_year')[$key]
+                        ];
+                        $convocation_session_model->add($data);
+                    }
                 }
                 return redirect()->to('admin/convocation')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
