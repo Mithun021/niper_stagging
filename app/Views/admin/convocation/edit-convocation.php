@@ -45,7 +45,7 @@ $convocation_session_model = new Convocation_session_model();
                             <thead>
                                 <tr>
                                     <td colspan="2">Academic Session</td>
-                                    <td><button type="button" class="btn btn-sm btn-primary" id="addnewconvrow">+</button></td>
+                                    <td><button type="button" class="btn btn-sm btn-primary" onclick="openSessonModal()">+</button></td>
                                 </tr>
                                 <tr>
                                     <td>Start Year</td>
@@ -150,8 +150,42 @@ $convocation_session_model = new Convocation_session_model();
     </div>
 </div>
 
+<div class="modal fade" id="sessionModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Academic Session</h5>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="<?= base_url() ?>admin/add-convocation-session/<?= $convocation_id ?>" method="post">
+            <div class="modal-body">
+                <div class="form-group">
+                    <span for="Convnumber">Start Year:<span class="text-danger">*</span></span>
+                    <input type="number" name="academic_start_year" class="form-control form-control-sm" required>
+                </div>
+                <div class="form-group">
+                    <span for="Convnumber">End Year:<span class="text-danger">*</span></span>
+                    <input type="number" name="academic_end_year" class="form-control form-control-sm" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary waves-effect waves-light">Save changes</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
+
+    function openSessonModal() {
+        $('#sessionModal').modal('show');
+    }
+
     $(document).ready(function() {
 
     });
