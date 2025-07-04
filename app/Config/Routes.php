@@ -372,6 +372,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
 
     // Student Routes /----------------------------
     $routes->match(['get', 'post'], 'students', 'StudentController::students');
+    $routes->match(['get','post'],'edit-students/(:num)', 'StudentController::edit_students/$1');
+    $routes->get('delete-students/(:num)', 'StudentController::delete_students/$1');
+
     $routes->match(['get','post'],'program-dept-std-mapping', 'StudentController::program_dept_std_mapping');
     $routes->post('export_student', 'StudentController::export_student');
     $routes->post('upload_student_csv', 'StudentController::upload_student_csv');

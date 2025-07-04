@@ -12,15 +12,15 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title m-0">Add <?= $title ?></h4>
-                <div class="d-flex">
+                <!-- <div class="d-flex">
                     
                     <form action="<?= base_url() ?>admin/export_student" method="post">
                     <button type="submit" class="btn btn-sm btn-danger" id="export_sample_btn" onclick="return confirm('Are you sure...')">Export Std. Sample</button>
                     </form>
                     <button class="btn btn-sm btn-primary" id="upload_emp_exp_btn">Import</button>
-                </div>
+                </div> -->
             </div>
-            <form action="<?= base_url() ?>admin/students" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url() ?>admin/edit-students/<?= $student_id ?>" method="post" enctype="multipart/form-data">
             <div class="card-body">
                 <?php if (session()->getFlashdata('status')): ?>
                     <?= session()->getFlashdata('status') ?>
@@ -36,7 +36,7 @@
                         <!-- Student Enrollment ID -->
                         <div class="form-group">
                             <span for="Stdenrollid">Student Enrollment ID: <span class="text-danger">*</span></span>
-                            <input type="text" name="Stdenrollid" id="Stdenrollid" class="form-control form-control-sm" required>
+                            <input type="text" name="Stdenrollid" id="Stdenrollid" class="form-control form-control-sm" value="<?= $students_data['enrollment_no'] ?>" required>
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -243,10 +243,10 @@
 
   $(document).ready(function () {
     // Modal Trigger (Optional Example for Context)
-    $('#upload_emp_exp_btn').on('click', function (e) {
-        e.preventDefault();
-        $('#upload_emp_exp_modal').modal('show');
-    });
+    // $('#upload_emp_exp_btn').on('click', function (e) {
+    //     e.preventDefault();
+    //     $('#upload_emp_exp_modal').modal('show');
+    // });
 
   });
 

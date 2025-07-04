@@ -57,6 +57,53 @@ use App\Models\UserModel;
             }
         }
 
+        public function edit_students($id){
+            $student_model = new Student_model();
+            $data = ['title' => 'Students', 'student_id' => $id];
+            if ($this->request->is("get")) {
+                $data['students'] = $student_model->get();
+                $data['students_data'] = $student_model->get($id);
+                return view('admin/student/edit-students',$data);
+            }else if ($this->request->is("post")) {
+                // Prepare data for insertion
+                $sessionData = session()->get('loggedUserData');
+                if ($sessionData) {
+                    $loggeduserId = $sessionData['loggeduserId']; 
+                }
+                $std_profile_image = $this->request->getFile('std_profile_image');
+                if ($std_profile_image->isValid() && ! $std_profile_image->hasMoved()) {
+                    $studentFileName = $std_profile_image->getRandomName();
+                    $std_profile_image->move(ROOTPATH . 'public/admin/uploads/students', $studentFileName);    
+                }
+                $data = [
+                    'first_name' => $this->request->getPost('std_first_name'),
+                    'middle_name' => $this->request->getPost('std_middle_name'),
+                    'last_name' => $this->request->getPost('std_last_name'),
+                    'enrollment_no' => $this->request->getPost('Stdenrollid'),
+                    'father_name' => $this->request->getPost('std_father_name'),
+                    'mother_name' => $this->request->getPost('std_mother_name'),
+                    'date_of_birth' => $this->request->getPost('std_date_of_birth'),
+                    'blood_group' => $this->request->getPost('std_blood_group'),
+                    'personal_mail' => $this->request->getPost('std_personal_mail'),
+                    'official_mail' => $this->request->getPost('std_official_mail'),
+                    'phone_no' => $this->request->getPost('Stdphone'),
+                    'gender' => $this->request->getPost('gender'),
+                    'permanent_address' => $this->request->getPost('std_permanent_address'),
+                    'correspondence_address' => $this->request->getPost('std_corrospondence_address'),
+                    'profile_image' => $studentFileName ?? '',
+                    'upload_by' => $loggeduserId ?? ''
+                ];
+
+                // Save the data
+                $result = $student_model->add($data, $id);
+                if ($result === true) {
+                    return redirect()->to('admin/edit-students/'.$id)->with('status', '<div class="alert alert-success" role="alert">Data Update successfully.</div>');
+                } else {
+                    return redirect()->back()->withInput()->with('status', '<div class="alert alert-danger" role="alert">'.$result.'</div>');
+                }
+            }
+        }
+
         public function export_student(){
             $student_model = new Student_model();
             // echo "ok";
