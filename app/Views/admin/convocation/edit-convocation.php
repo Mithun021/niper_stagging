@@ -32,7 +32,7 @@ $convocation_session_model = new Convocation_session_model();
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/convocation" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/edit-convocation/<?= $convocation_id ?>" method="post" enctype="multipart/form-data">
 
                     <!-- Convocation Number -->
                     <div class="form-group">
