@@ -431,7 +431,11 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get', 'post'], 'result-grades-notice', 'ResultGradeControllers::result_grades_notice');
 
     $routes->match(['get', 'post'], 'currecnt-session', 'AdminControllers::currecnt_session');
+    
     $routes->match(['get', 'post'], 'ranking', 'RankingControllers::ranking');
+    $routes->match(['get','post'],'edit-ranking/(:num)', 'RankingControllers::edit_ranking/$1');
+    $routes->get('delete-ranking/(:num)', 'RankingControllers::delete_ranking/$1');
+
     $routes->match(['get', 'post'], 'annual-report', 'AdminControllers::annual_report');
     $routes->match(['get', 'post'], 'placement-details', 'AdminControllers::placement_details');
     $routes->match(['get', 'post'], 'recuiter-details', 'AdminControllers::recuiter_details');

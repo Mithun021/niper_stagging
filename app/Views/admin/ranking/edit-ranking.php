@@ -21,7 +21,7 @@ $employee_model = new Employee_model();
                 <?php endif; ?>
 
                 <!-- Form Start -->
-                <form action="<?= base_url() ?>admin/ranking" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url() ?>admin/edit-ranking/<?= $ranking_id ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field() ?>
                     <div class="row">
                         <div class="col-lg-6">
