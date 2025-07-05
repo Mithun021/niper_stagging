@@ -208,14 +208,23 @@ $employee_model = new Employee_model();
 </div>
 
 <script>
-    document.getElementById('ranking_type').addEventListener('change', function() {
+   function toggleOtherRankingField() {
+        var rankingType = document.getElementById('ranking_type').value;
         var otherInputField = document.getElementById('other_input_field');
-        if (this.value === 'Any other') {
+        if (rankingType === 'Any other') {
             otherInputField.style.display = 'block';
         } else {
             otherInputField.style.display = 'none';
         }
-    });
+    }
+
+    // Run on page load
+    window.onload = function() {
+        toggleOtherRankingField();
+    };
+
+    // Run on dropdown change
+    document.getElementById('ranking_type').addEventListener('change', toggleOtherRankingField);
 
     document.getElementById('ranking_category').addEventListener('change', function() {
         var otherCatInputField = document.getElementById('other_category_field');
