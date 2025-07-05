@@ -30,9 +30,9 @@ $employee_model = new Employee_model();
                                 <span for="Rankyear">Ranking Type:</span>
                                 <select name="ranking_type" id="ranking_type" class="form-control form-control-sm" required>
                                     <option value="">--Select--</option>
-                                    <option value="NIRF">NIRF</option>
-                                    <option value="ARIIA">ARIIA</option>
-                                    <option value="Any other">Any other</option>
+                                    <option value="NIRF" <?php if($ranking_data['ranking_type'] == "NIRF"){ echo "selected"; } ?>>NIRF</option>
+                                    <option value="ARIIA" <?php if($ranking_data['ranking_type'] == "ARIIA"){ echo "selected"; } ?>>ARIIA</option>
+                                    <option value="Any other" <?php if($ranking_data['ranking_type'] == "Any other"){ echo "selected"; } ?>>Any other</option>
                                 </select>
                             </div>
                         </div>
