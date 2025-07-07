@@ -108,7 +108,7 @@ $employee_model = new Employee_model();
                                 <span for="Datasubmittedpharmacy">File of Data Submitted for Pharmacy:</span>
                                 <input type="file" name="data_submitted_file" id="data_submitted_file" class="form-control-file" accept=".pdf,.jpg,.png,.jpeg">
                                 <?php if (!empty($ranking_data['pharmacy_file']) && file_exists('public/admin/uploads/ranking/' . $ranking_data['pharmacy_file'])): ?>
-                                    <a href="<?= base_url() ?>public/admin/uploads/ranking/<?= $ranking_data['pharmacy_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/images/pdf.png" alt="" height="30px"></a>
+                                    <a href="<?= base_url() ?>public/admin/uploads/ranking/<?= $ranking_data['pharmacy_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
                                 <?php else: ?>
                                     <img src="<?= base_url() ?>public/admin/uploads/ranking/invalid_image.png" alt="" height="40px">
                                 <?php endif; ?>
@@ -128,7 +128,7 @@ $employee_model = new Employee_model();
                                 <span for="Datasubmittedpharmacy">File of Data Submitted Overall:</span>
                                 <input type="file" name="data_submitted_overall_file" id="data_submitted_overall_file" class="form-control-file" accept=".pdf,.jpg,.png,.jpeg">
                                 <?php if (!empty($ranking_data['overall_file']) && file_exists('public/admin/uploads/ranking/' . $ranking_data['overall_file'])): ?>
-                                    <a href="<?= base_url() ?>public/admin/uploads/ranking/<?= $ranking_data['overall_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/images/pdf.png" alt="" height="30px"></a>
+                                    <a href="<?= base_url() ?>public/admin/uploads/ranking/<?= $ranking_data['overall_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/folder.png" alt="" height="30px"></a>
                                 <?php else: ?>
                                     <img src="<?= base_url() ?>public/admin/uploads/ranking/invalid_image.png" alt="" height="40px">
                                 <?php endif; ?>
