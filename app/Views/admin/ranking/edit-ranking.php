@@ -39,20 +39,20 @@ $employee_model = new Employee_model();
                         <div class="col-lg-6" id="other_input_field" style="display: none;">
                             <div class="form-group">
                                 <span for="Rankyear">Please specify other ranking type:</span>
-                                <input type="text" id="other_ranking" name="other_ranking" class="form-control form-control-sm">
+                                <input type="text" id="other_ranking" name="other_ranking" class="form-control form-control-sm" value="<?= $ranking_data['other_ranking'] ?>">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <span for="Mediatitle">Description:</span>
-                                <textarea id="editor" name="description"></textarea>
+                                <textarea id="editor" name="description"><?= $ranking_data['description'] ?></textarea>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <!-- Rank Year -->
                             <div class="form-group">
                                 <span for="Rankyear">Rank Year:</span>
-                                <input type="number" name="ranking_year" id="ranking_year" class="form-control form-control-sm" required>
+                                <input type="number" name="ranking_year" id="ranking_year" class="form-control form-control-sm" value="<?= $ranking_data['ranking_year'] ?>" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -61,23 +61,23 @@ $employee_model = new Employee_model();
                                 <span for="Ranksource">Ranking Category :</span>
                                 <select name="ranking_category" id="ranking_category" class="form-control form-control-sm" required>
                                     <option value="" disabled selected>Select Rank Source</option>
-                                    <option value="Overall">Overall</option>
-                                    <option value="Pharmacy">Pharmacy</option>
-                                    <option value="Any other">Any other</option>
+                                    <option value="Overall" <?php if($ranking_data['ranking_category'] == "Overall"){ echo "selected"; } ?>>Overall</option>
+                                    <option value="Pharmacy" <?php if($ranking_data['ranking_category'] == "Pharmacy"){ echo "selected"; } ?>>Pharmacy</option>
+                                    <option value="Any other" <?php if($ranking_data['ranking_category'] == "Any other"){ echo "selected"; } ?>>Any other</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-6" id="other_category_field" style="display: none;">
                             <div class="form-group">
                                 <span for="Rankyear">Please specify other ranking category:</span>
-                                <input type="text" id="other_ranking_category" name="other_ranking_category" class="form-control form-control-sm">
+                                <input type="text" id="other_ranking_category" name="other_ranking_category" class="form-control form-control-sm" value="<?= $ranking_data['other_ranking_category'] ?>">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <!-- Rank Number -->
                             <div class="form-group">
                                 <span for="Ranknumber">Rank Number:</span>
-                                <input type="number" name="ranking_number" id="ranking_number" class="form-control form-control-sm" required min="1">
+                                <input type="number" name="ranking_number" id="ranking_number" class="form-control form-control-sm" value="<?= $ranking_data['ranking_number'] ?>" required min="1">
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -85,6 +85,11 @@ $employee_model = new Employee_model();
                             <div class="form-group">
                                 <span for="Rankfileupload">Upload Rank File:(.pdf,.jpg,.png,.jpeg)</span>
                                 <input type="file" name="upload_file" id="upload_file" class="form-control-file" accept=".pdf,.jpg,.png,.jpeg" required>
+                                <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/ranking/' . $value['upload_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/ranking/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/ranking/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/ranking/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-lg-3">
@@ -92,8 +97,8 @@ $employee_model = new Employee_model();
                             <div class="form-group">
                                 <span for="Datasubmittedpharmacy">Data Submitted for Pharmacy:</span>
                                 <select name="datasubmittedpharmacy" id="datasubmittedpharmacy" class="form-control form-control-sm" required>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No" selected>No</option>
+                                    <option value="Yes" <?php if($ranking_data['datasubmittedpharmacy'] == "Yes"){ echo "selected"; } ?>>Yes</option>
+                                    <option value="No" <?php if($ranking_data['datasubmittedpharmacy'] == "No"){ echo "selected"; } ?>>No</option>
                                 </select>
                             </div>
                         </div>
@@ -102,14 +107,19 @@ $employee_model = new Employee_model();
                             <div class="form-group">
                                 <span for="Datasubmittedpharmacy">File of Data Submitted for Pharmacy:</span>
                                 <input type="file" name="data_submitted_file" id="data_submitted_file" class="form-control-file" accept=".pdf,.jpg,.png,.jpeg">
+                                <?php if (!empty($value['pharmacy_file']) && file_exists('public/admin/uploads/ranking/' . $value['pharmacy_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/ranking/<?= $value['pharmacy_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/images/pdf.png" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/ranking/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <span for="Datasubmittedoverall">Data Submitted Overall:</span>
                                 <select name="datasubmittedoverall" id="datasubmittedoverall" class="form-control form-control-sm" required>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No" selected>No</option>
+                                    <option value="Yes" <?php if($ranking_data['datasubmittedoverall'] == "Yes"){ echo "selected"; } ?>>Yes</option>
+                                    <option value="No" <?php if($ranking_data['datasubmittedoverall'] == "No"){ echo "selected"; } ?>>No</option>
                                 </select>
                             </div>
                         </div>
@@ -117,6 +127,11 @@ $employee_model = new Employee_model();
                             <div class="form-group">
                                 <span for="Datasubmittedpharmacy">File of Data Submitted Overall:</span>
                                 <input type="file" name="data_submitted_overall_file" id="data_submitted_overall_file" class="form-control-file" accept=".pdf,.jpg,.png,.jpeg">
+                                <?php if (!empty($value['overall_file']) && file_exists('public/admin/uploads/ranking/' . $value['overall_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/ranking/<?= $value['overall_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/images/pdf.png" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/admin/uploads/ranking/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-lg-12">
