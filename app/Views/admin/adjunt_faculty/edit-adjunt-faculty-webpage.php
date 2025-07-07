@@ -21,18 +21,18 @@ $employee_model = new Employee_model();
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/adjunt-faculty-webpage') ?>">
+                <form method="post" action="<?= base_url('admin/edit-adjunt-faculty-webpage/'.$webpage_id) ?>">
                     <div class="form-group">
                         <span for="">Section Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="section_title" required>
+                        <input type="text" class="form-control form-control-sm" name="section_title" value="<?= $adjunt_faculty_webpage_data['section_title'] ?>" required>
                     </div>
                     <div class="form-group">
                         <span for="">Section Description<span class="text-danger">*</span></span>
-                        <textarea class="form-control form-control-sm" name="section_description" id="editor"></textarea>
+                        <textarea class="form-control form-control-sm" name="section_description" id="editor"><?= $adjunt_faculty_webpage_data['section_description'] ?></textarea>
                     </div>
                     <div class="form-group">
                         <span for="">Section Priority<span class="text-danger">*</span></span>
-                        <input type="number" class="form-control form-control-sm" name="section_priority" required>
+                        <input type="number" class="form-control form-control-sm" name="section_priority" value="<?= $adjunt_faculty_webpage_data['section_priority'] ?>" required>
                     </div>
                     
                     <button type="submit" class="btn btn-sm btn-primary" id="submitBtn">Save</button>
