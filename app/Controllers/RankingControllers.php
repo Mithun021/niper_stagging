@@ -169,4 +169,30 @@ class RankingControllers extends BaseController
 
         }
     }
+
+
+    public function delete_ranking($id){
+        $ranking_model = new Ranking_model();
+        $ranking_data = $ranking_model->get($id);
+        if ($ranking_data) {
+            if (!empty($ranking_data['upload_file']) && file_exists('public/admin/uploads/ranking/' . $ranking_data['upload_file'])) {
+                unlink('public/admin/uploads/ranking/' . $ranking_data['upload_file']);
+            }
+            if (!empty($ranking_data['pharmacy_file']) && file_exists('public/admin/uploads/ranking/' . $ranking_data['pharmacy_file'])) {
+                unlink('public/admin/uploads/ranking/' . $ranking_data['pharmacy_file']);
+            }
+            if (!empty($ranking_data['overall_file']) && file_exists('public/admin/uploads/ranking/' . $ranking_data['overall_file'])) {
+                unlink('public/admin/uploads/ranking/' . $ranking_data['overall_file']);
+            }
+            $result = $ranking_model->delete($id);
+            if ($result === true) {
+                return redirect()->to('admin/ranking')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+            } else {
+                return redirect()->to('admin/ranking')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        } else {
+            return redirect()->to('admin/ranking')->with('status','<div class="alert alert-danger" role="alert"> Data Not Found </div>');
+        }
+    }
+
 }
