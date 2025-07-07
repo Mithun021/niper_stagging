@@ -187,22 +187,22 @@ $employee_model = new Employee_model();
                                                                             } ?></td>
                                     <td><?= $value['ranking_number'] ?></td>
                                     <td><?= $value['datasubmittedpharmacy'] ?>
-                                        <?php if($value['datasubmittedpharmacy'] == 'yes'){ ?>
+                                        <?php //if($value['datasubmittedpharmacy'] == 'yes'){ ?>
                                         <?php if (!empty($value['pharmacy_file']) && file_exists('public/admin/uploads/ranking/' . $value['pharmacy_file'])): ?>
                                             <a href="<?= base_url() ?>public/admin/uploads/ranking/<?= $value['pharmacy_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/images/folder.png" alt="" height="30px"></a>
                                         <?php else: ?>
                                             <img src="<?= base_url() ?>public/admin/uploads/ranking/invalid_image.png" alt="" height="40px">
                                         <?php endif; ?>
-                                        <?php } ?>
+                                        <?php //} ?>
                                     </td>
                                     <td><?= $value['datasubmittedoverall'] ?>
-                                        <?php if($value['datasubmittedoverall'] == 'yes'){ ?>
+                                        <?php //if($value['datasubmittedoverall'] == 'yes'){ ?>
                                             <?php if (!empty($value['overall_file']) && file_exists('public/admin/uploads/ranking/' . $value['overall_file'])): ?>
                                             <a href="<?= base_url() ?>public/admin/uploads/ranking/<?= $value['overall_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/images/folder.png" alt="" height="30px"></a>
                                             <?php else: ?>
                                                 <img src="<?= base_url() ?>public/admin/uploads/ranking/invalid_image.png" alt="" height="40px">
                                             <?php endif; ?>
-                                        <?php } ?>
+                                        <?php //} ?>
                                     </td>
                                     <td><?php $emp = $employee_model->get($value['upload_by']);
                                         echo $emp['first_name'] . " " . $emp['middle_name'] . " " . $emp['last_name']  ?></td>
