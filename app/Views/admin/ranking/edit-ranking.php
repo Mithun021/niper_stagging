@@ -85,8 +85,8 @@ $employee_model = new Employee_model();
                             <div class="form-group">
                                 <span for="Rankfileupload">Upload Rank File:(.pdf,.jpg,.png,.jpeg)</span>
                                 <input type="file" name="upload_file" id="upload_file" class="form-control-file" accept=".pdf,.jpg,.png,.jpeg" required>
-                                <?php if (!empty($value['upload_file']) && file_exists('public/admin/uploads/ranking/' . $value['upload_file'])): ?>
-                                    <a href="<?= base_url() ?>public/admin/uploads/ranking/<?= $value['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/ranking/<?= $value['upload_file'] ?>" alt="" height="30px"></a>
+                                <?php if (!empty($ranking_data['upload_file']) && file_exists('public/admin/uploads/ranking/' . $ranking_data['upload_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/ranking/<?= $ranking_data['upload_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/ranking/<?= $ranking_data['upload_file'] ?>" alt="" height="30px"></a>
                                 <?php else: ?>
                                     <img src="<?= base_url() ?>public/admin/uploads/ranking/invalid_image.png" alt="" height="40px">
                                 <?php endif; ?>
@@ -107,8 +107,8 @@ $employee_model = new Employee_model();
                             <div class="form-group">
                                 <span for="Datasubmittedpharmacy">File of Data Submitted for Pharmacy:</span>
                                 <input type="file" name="data_submitted_file" id="data_submitted_file" class="form-control-file" accept=".pdf,.jpg,.png,.jpeg">
-                                <?php if (!empty($value['pharmacy_file']) && file_exists('public/admin/uploads/ranking/' . $value['pharmacy_file'])): ?>
-                                    <a href="<?= base_url() ?>public/admin/uploads/ranking/<?= $value['pharmacy_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/images/pdf.png" alt="" height="30px"></a>
+                                <?php if (!empty($ranking_data['pharmacy_file']) && file_exists('public/admin/uploads/ranking/' . $ranking_data['pharmacy_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/ranking/<?= $ranking_data['pharmacy_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/images/pdf.png" alt="" height="30px"></a>
                                 <?php else: ?>
                                     <img src="<?= base_url() ?>public/admin/uploads/ranking/invalid_image.png" alt="" height="40px">
                                 <?php endif; ?>
@@ -127,8 +127,8 @@ $employee_model = new Employee_model();
                             <div class="form-group">
                                 <span for="Datasubmittedpharmacy">File of Data Submitted Overall:</span>
                                 <input type="file" name="data_submitted_overall_file" id="data_submitted_overall_file" class="form-control-file" accept=".pdf,.jpg,.png,.jpeg">
-                                <?php if (!empty($value['overall_file']) && file_exists('public/admin/uploads/ranking/' . $value['overall_file'])): ?>
-                                    <a href="<?= base_url() ?>public/admin/uploads/ranking/<?= $value['overall_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/images/pdf.png" alt="" height="30px"></a>
+                                <?php if (!empty($ranking_data['overall_file']) && file_exists('public/admin/uploads/ranking/' . $ranking_data['overall_file'])): ?>
+                                    <a href="<?= base_url() ?>public/admin/uploads/ranking/<?= $ranking_data['overall_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/images/pdf.png" alt="" height="30px"></a>
                                 <?php else: ?>
                                     <img src="<?= base_url() ?>public/admin/uploads/ranking/invalid_image.png" alt="" height="40px">
                                 <?php endif; ?>
