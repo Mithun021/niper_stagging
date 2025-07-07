@@ -28,14 +28,14 @@ class RankingControllers extends BaseController
             $data_submitted_file = $this->request->getFile('data_submitted_file');
             if ($data_submitted_file->isValid() && ! $data_submitted_file->hasMoved()) {
                 $data_submitted_fileNewName = "submitted".$data_submitted_file->getRandomName();
-                $data_submitted_file->move(ROOTPATH . 'public/admin/uploads/tendor', $data_submitted_fileNewName);    
+                $data_submitted_file->move(ROOTPATH . 'public/admin/uploads/ranking', $data_submitted_fileNewName);    
             }else{
                 $data_submitted_fileNewName = "";
             }
             $data_submitted_overall_file = $this->request->getFile('data_submitted_overall_file');
             if ($data_submitted_overall_file->isValid() && ! $data_submitted_overall_file->hasMoved()) {
                 $data_submitted_overall_fileNewName = "overall".$data_submitted_overall_file->getRandomName();
-                $data_submitted_overall_file->move(ROOTPATH . 'public/admin/uploads/tendor', $data_submitted_overall_fileNewName);    
+                $data_submitted_overall_file->move(ROOTPATH . 'public/admin/uploads/ranking', $data_submitted_overall_fileNewName);    
             }else{
                 $data_submitted_overall_fileNewName = "";
             }
@@ -90,14 +90,14 @@ class RankingControllers extends BaseController
             $data_submitted_file = $this->request->getFile('data_submitted_file');
             if ($data_submitted_file->isValid() && ! $data_submitted_file->hasMoved()) {
                 $data_submitted_fileNewName = "submitted".$data_submitted_file->getRandomName();
-                $data_submitted_file->move(ROOTPATH . 'public/admin/uploads/tendor', $data_submitted_fileNewName);    
+                $data_submitted_file->move(ROOTPATH . 'public/admin/uploads/ranking', $data_submitted_fileNewName);    
             }else{
                 $data_submitted_fileNewName = "";
             }
             $data_submitted_overall_file = $this->request->getFile('data_submitted_overall_file');
             if ($data_submitted_overall_file->isValid() && ! $data_submitted_overall_file->hasMoved()) {
                 $data_submitted_overall_fileNewName = "overall".$data_submitted_overall_file->getRandomName();
-                $data_submitted_overall_file->move(ROOTPATH . 'public/admin/uploads/tendor', $data_submitted_overall_fileNewName);    
+                $data_submitted_overall_file->move(ROOTPATH . 'public/admin/uploads/ranking', $data_submitted_overall_fileNewName);    
             }else{
                 $data_submitted_overall_fileNewName = "";
             }
