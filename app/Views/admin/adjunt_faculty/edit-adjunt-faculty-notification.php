@@ -25,11 +25,11 @@
                     </div>
                     <div class="form-group">
                         <span for="">Description<span class="text-danger">*</span></span>
-                        <textarea class="form-control form-control-sm" name="notification_description" id="editor"><?= $adjunt_faculty_notification_data['notification_title'] ?></textarea>
+                        <textarea class="form-control form-control-sm" name="notification_description" id="editor"><?= $adjunt_faculty_notification_data['notification_description'] ?></textarea>
                     </div>
                     <div class="form-group">
                         <span for="">Date<span class="text-danger">*</span></span>
-                        <input type="date" class="form-control form-control-sm" name="notification_date" value="<?= $adjunt_faculty_notification_data['notification_title'] ?>" required>
+                        <input type="date" class="form-control form-control-sm" name="notification_date" value="<?= $adjunt_faculty_notification_data['notification_date'] ?>" required>
                     </div>
                     <div class="form-group">
                         <span for="">File Upload (PDF, Mandatory)<span class="text-danger">*</span></span>
