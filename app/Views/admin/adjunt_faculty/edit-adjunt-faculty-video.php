@@ -18,26 +18,27 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/adjunt-faculty-video') ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url('admin/edit-adjunt-faculty-video/'.$video_id) ?>" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="video_title" required>
+                        <input type="text" class="form-control form-control-sm" name="video_title" value="<?= $adjunt_faculty_video_data['video_title'] ?>" required>
                     </div>
                     <div class="form-group">
                         <span for="">Description (Optional)</span>
-                        <textarea class="form-control form-control-sm" name="video_description" id="editor"></textarea>
+                        <textarea class="form-control form-control-sm" name="video_description" id="editor"><?= $adjunt_faculty_video_data['video_description'] ?></textarea>
                     </div>
                     <div class="form-group">
                         <span for="">Video Upload<span class="text-danger">*</span></span>
                         <input type="file" class="form-control form-control-sm" name="video_file" accept="video/*" required>
+                        <a href="<?= base_url() ?>public/admin/uploads/adjunt_faculty/<?= $adjunt_faculty_video_data['video_file'] ?>" target="_blank"><i class="far fa-file-video" aria-hidden="true"></i></a>
                     </div>
                     <div class="form-group">
                         <span for="">Venue (Optional)</span>
-                        <input type="text" class="form-control form-control-sm" name="video_venue">
+                        <input type="text" class="form-control form-control-sm" name="video_venue" value="<?= $adjunt_faculty_video_data['video_venue'] ?>">
                     </div>
                     <div class="form-group">
                         <span for="">Date and Time (Optional)</span>
-                        <input type="datetime-local" class="form-control form-control-sm" name="video_datetime">
+                        <input type="datetime-local" class="form-control form-control-sm" name="video_datetime" value="<?= $adjunt_faculty_video_data['video_datetime'] ?>">
                     </div>
                     
                     <button type="submit" class="btn btn-sm btn-primary">Save</button>

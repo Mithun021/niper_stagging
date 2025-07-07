@@ -313,4 +313,59 @@ class Adjunt_facultyController extends BaseController
             }
         }
     }
+
+
+    public function edit_adjunt_faculty_video($id)
+    {
+        $adjunt_faculty_video_model = new Adjunt_faculty_video_model();
+        $data = ['title' => 'Adjunt Facuty Video', 'video_id' => $id];
+        if ($this->request->is("get")) {
+            $data['adjunt_faculty_video'] = $adjunt_faculty_video_model->get();
+            $data['adjunt_faculty_video_data'] = $adjunt_faculty_video_model->get($id);
+            return view('admin/adjunt_faculty/edit-adjunt-faculty-video',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+
+            $adjunt_faculty_video_data = $adjunt_faculty_video_model->get($id);
+            $document = $this->request->getFile('video_file');
+            $old_document_file = $adjunt_faculty_video_data['video_file'];
+            if (empty($old_document_file)) {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    $document_name = "video" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/adjunt_faculty/', $document_name);
+                } else {
+                    $document_name = null;
+                }
+            } else {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    if (file_exists("public/admin/uploads/adjunt_faculty/" . $old_document_file)) {
+                        unlink("public/admin/uploads/adjunt_faculty/" . $old_document_file);
+                    }
+                    $document_name = "video" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/adjunt_faculty/', $document_name);
+                } else {
+                    $document_name = $old_document_file;
+                }
+            }
+
+            $data = [
+                'video_title' => $this->request->getPost('video_title'),
+                'video_description' => $this->request->getPost('video_description'),
+                'video_file' => $document_name,
+                'video_venue' => $this->request->getPost('video_venue'),
+                'video_datetime' => $this->request->getPost('video_datetime'),
+                'upload_by' => $loggeduserId
+            ];
+            $result = $adjunt_faculty_video_model->add($data, $id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-adjunt-faculty-video/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-adjunt-faculty-video/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+
 }
