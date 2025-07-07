@@ -152,6 +152,16 @@ class Adjunt_facultyController extends BaseController
         }
     }
 
+    public function delete_adjunt_faculty_webpage($id){
+        $adjunt_faculty_webpage_model = new Adjunt_faculty_webpage_model();
+        $result = $adjunt_faculty_webpage_model->delete($id);
+        if ($result) {
+            return redirect()->to('admin/adjunt-faculty-webpage')->with('status', '<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/adjunt-faculty-webpage')->with('status', '<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+        }
+    }
+
     public function adjunt_faculty_notification()
     {
         $adjunt_faculty_notification_model = new Adjunt_faculty_notification_model();
