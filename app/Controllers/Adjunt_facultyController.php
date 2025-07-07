@@ -257,6 +257,25 @@ class Adjunt_facultyController extends BaseController
         }
     }
 
+    public function delete_adjunt_faculty_notification($id){
+        $adjunt_faculty_notification_model = new Adjunt_faculty_notification_model();
+        $notification = $adjunt_faculty_notification_model->get($id);
+
+        if ($notification && !empty($notification['notification_file'])) {
+            $filePath = ROOTPATH . 'public/admin/uploads/adjunt_faculty/' . $notification['notification_file'];
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+        }
+
+        $result = $adjunt_faculty_notification_model->delete($id);
+        if ($result) {
+            return redirect()->to('admin/adjunt-faculty-notification')->with('status', '<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/adjunt-faculty-notification')->with('status', '<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+        }
+    }
+
     public function adjunt_faculty_video()
     {
         $adjunt_faculty_video_model = new Adjunt_faculty_video_model();
