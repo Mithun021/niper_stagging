@@ -241,15 +241,28 @@ $employee_model = new Employee_model();
     // Run on dropdown change
     document.getElementById('ranking_type').addEventListener('change', toggleOtherRankingField);
 
-    document.getElementById('ranking_category').addEventListener('change', function() {
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var rankingCategory = document.getElementById('ranking_category');
         var otherCatInputField = document.getElementById('other_category_field');
-        if (this.value === 'Any other') {
-            otherCatInputField.style.display = 'block';
-        } else {
-            otherCatInputField.style.display = 'none';
+
+        function toggleOtherCategoryField() {
+            if (rankingCategory.value === 'Any other') {
+                otherCatInputField.style.display = 'block';
+            } else {
+                otherCatInputField.style.display = 'none';
+            }
         }
+
+        // Trigger on page load
+        toggleOtherCategoryField();
+
+        // Trigger on change
+        rankingCategory.addEventListener('change', toggleOtherCategoryField);
     });
 
+    
 
     document.addEventListener("DOMContentLoaded", function() {
         // Function to toggle file input visibility
