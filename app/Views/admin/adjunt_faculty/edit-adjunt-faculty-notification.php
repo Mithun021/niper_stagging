@@ -18,25 +18,30 @@
                         echo session()->getFlashdata('status');
                     }
                 ?>
-                <form method="post" action="<?= base_url('admin/adjunt-faculty-notification') ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url('admin/edit-adjunt-faculty-notification/'.$notify_id) ?>" enctype="multipart/form-data">
                     <div class="form-group">
                         <span for="">Title<span class="text-danger">*</span></span>
-                        <input type="text" class="form-control form-control-sm" name="notification_title" required>
+                        <input type="text" class="form-control form-control-sm" name="notification_title" value="<?= $adjunt_faculty_notification_data['notification_title'] ?>" required>
                     </div>
                     <div class="form-group">
                         <span for="">Description<span class="text-danger">*</span></span>
-                        <textarea class="form-control form-control-sm" name="notification_description" id="editor"></textarea>
+                        <textarea class="form-control form-control-sm" name="notification_description" id="editor"><?= $adjunt_faculty_notification_data['notification_title'] ?></textarea>
                     </div>
                     <div class="form-group">
                         <span for="">Date<span class="text-danger">*</span></span>
-                        <input type="date" class="form-control form-control-sm" name="notification_date" required>
+                        <input type="date" class="form-control form-control-sm" name="notification_date" value="<?= $adjunt_faculty_notification_data['notification_title'] ?>" required>
                     </div>
                     <div class="form-group">
                         <span for="">File Upload (PDF, Mandatory)<span class="text-danger">*</span></span>
-                        <input type="file" class="form-control form-control-sm" name="notification_file" accept="application/pdf" required>
+                        <input type="file" class="form-control form-control-sm" name="notification_file" accept="application/pdf">
+                        <?php if (!empty($adjunt_faculty_notification_data['notification_file']) && file_exists('public/admin/uploads/adjunt_faculty/' . $adjunt_faculty_notification_data['notification_file'])): ?>
+                            <a href="<?= base_url() ?>public/admin/uploads/adjunt_faculty/<?= $adjunt_faculty_notification_data['notification_file'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                        <?php else: ?>
+                            <img src="<?= base_url() ?>public/admin/uploads/adjunt_faculty/invalid_image.png" alt="" height="40px">
+                        <?php endif; ?>
                     </div>
                     <div class="form-group">
-                        <input type="checkbox" name="notification_marquee" value="1">
+                        <input type="checkbox" name="notification_marquee" value="1" <?php if($adjunt_faculty_notification_data['notification_marquee'] == 1){ echo "checked"; } ?>>
                         <span for="">Display as Marquee</span>
                     </div>
                     
