@@ -29,7 +29,7 @@
                     </div>
                     <div class="form-group">
                         <span for="">Video Upload<span class="text-danger">*</span></span>
-                        <input type="file" class="form-control form-control-sm" name="video_file" accept="video/*" required>
+                        <input type="file" class="form-control form-control-sm" name="video_file" accept="video/*">
                         <a href="<?= base_url() ?>public/admin/uploads/adjunt_faculty/<?= $adjunt_faculty_video_data['video_file'] ?>" target="_blank"><i class="far fa-file-video" aria-hidden="true"></i></a>
                     </div>
                     <div class="form-group">
