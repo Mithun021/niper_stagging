@@ -262,24 +262,30 @@ $employee_model = new Employee_model();
         rankingCategory.addEventListener('change', toggleOtherCategoryField);
     });
 
-    
 
-    document.addEventListener("DOMContentLoaded", function() {
+
+    document.addEventListener("DOMContentLoaded", function () {
         // Function to toggle file input visibility
         function toggleFileInput(selectId, fileInputId) {
             const selectElement = document.getElementById(selectId);
             const fileInputElement = document.getElementById(fileInputId);
 
-            selectElement.addEventListener("change", function() {
+            function toggleVisibility() {
                 if (selectElement.value === "Yes") {
-                    fileInputElement.parentElement.parentElement.style.display = "block"; // Show the file input
+                    fileInputElement.parentElement.parentElement.style.display = "block"; // Show
                 } else {
-                    fileInputElement.parentElement.parentElement.style.display = "none"; // Hide the file input
+                    fileInputElement.parentElement.parentElement.style.display = "none"; // Hide
                 }
-            });
+            }
+
+            // Attach change listener
+            selectElement.addEventListener("change", toggleVisibility);
+
+            // Run once on page load
+            toggleVisibility();
         }
 
-        // Initialize toggling for the "Data Submitted for Pharmacy" and "Data Submitted Overall"
+        // Initialize toggling for both selects
         toggleFileInput("datasubmittedpharmacy", "data_submitted_file");
         toggleFileInput("datasubmittedoverall", "data_submitted_overall_file");
     });
