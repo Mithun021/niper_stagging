@@ -79,27 +79,69 @@ class RankingControllers extends BaseController
             if ($sessionData) {
                 $loggeduserId = $sessionData['loggeduserId']; 
             }
-            $ranking_file = $this->request->getFile('upload_file');
-            if ($ranking_file->isValid() && ! $ranking_file->hasMoved()) {
-                $ranking_fileNewName = rand(0,9999).$ranking_file->getRandomName();
-                $ranking_file->move(ROOTPATH . 'public/admin/uploads/ranking', $ranking_fileNewName);    
-            }else{
-                $ranking_fileNewName = "";
+            $ranking_data = $ranking_model->get($id);
+            $document = $this->request->getFile('upload_file');
+
+            $old_document_file = $ranking_data['upload_file'];
+            if (empty($old_document_file)) {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    $document_name = rand(0,9999). $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/ranking/', $document_name);
+                } else {
+                    $document_name = null;
+                }
+            } else {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    if (file_exists("public/admin/uploads/ranking/" . $old_document_file)) {
+                        unlink("public/admin/uploads/ranking/" . $old_document_file);
+                    }
+                    $document_name = rand(0,9999). $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/ranking/', $document_name);
+                } else {
+                    $document_name = $old_document_file;
+                }
             }
 
-            $data_submitted_file = $this->request->getFile('data_submitted_file');
-            if ($data_submitted_file->isValid() && ! $data_submitted_file->hasMoved()) {
-                $data_submitted_fileNewName = "submitted".$data_submitted_file->getRandomName();
-                $data_submitted_file->move(ROOTPATH . 'public/admin/uploads/ranking', $data_submitted_fileNewName);    
-            }else{
-                $data_submitted_fileNewName = "";
+            $document2 = $this->request->getFile('data_submitted_file');
+            $old_document_pharmacyfile = $ranking_data['pharmacy_file'];
+            if (empty($old_document_pharmacyfile)) {
+                if ($document2->isValid() && !$document2->hasMoved()) {
+                    $document2_name = "submitted". $document2->getRandomName();
+                    $document2->move(ROOTPATH . 'public/admin/uploads/ranking/', $document2_name);
+                } else {
+                    $document2_name = null;
+                }
+            } else {
+                if ($document2->isValid() && !$document2->hasMoved()) {
+                    if (file_exists("public/admin/uploads/ranking/" . $old_document_pharmacyfile)) {
+                        unlink("public/admin/uploads/ranking/" . $old_document_pharmacyfile);
+                    }
+                    $document2_name = "submitted". $document2->getRandomName();
+                    $document2->move(ROOTPATH . 'public/admin/uploads/ranking/', $document2_name);
+                } else {
+                    $document2_name = $old_document_pharmacyfile;
+                }
             }
-            $data_submitted_overall_file = $this->request->getFile('data_submitted_overall_file');
-            if ($data_submitted_overall_file->isValid() && ! $data_submitted_overall_file->hasMoved()) {
-                $data_submitted_overall_fileNewName = "overall".$data_submitted_overall_file->getRandomName();
-                $data_submitted_overall_file->move(ROOTPATH . 'public/admin/uploads/ranking', $data_submitted_overall_fileNewName);    
-            }else{
-                $data_submitted_overall_fileNewName = "";
+
+            $document3 = $this->request->getFile('data_submitted_overall_file');
+            $old_document_overallfile = $ranking_data['overall_file'];
+            if (empty($old_document_overallfile)) {
+                if ($document3->isValid() && !$document3->hasMoved()) {
+                    $document3_name = "overall". $document3->getRandomName();
+                    $document3->move(ROOTPATH . 'public/admin/uploads/ranking/', $document3_name);
+                } else {
+                    $document3_name = null;
+                }
+            } else {
+                if ($document3->isValid() && !$document3->hasMoved()) {
+                    if (file_exists("public/admin/uploads/ranking/" . $old_document_overallfile)) {
+                        unlink("public/admin/uploads/ranking/" . $old_document_overallfile);
+                    }
+                    $document3_name = "overall". $document3->getRandomName();
+                    $document3->move(ROOTPATH . 'public/admin/uploads/ranking/', $document3_name);
+                } else {
+                    $document3_name = $old_document_overallfile;
+                }
             }
 
             $data = [
@@ -110,11 +152,11 @@ class RankingControllers extends BaseController
                 'ranking_category' => $this->request->getPost('ranking_category'),
                 'other_ranking_category' => $this->request->getPost('other_ranking_category'),
                 'ranking_number' => $this->request->getPost('ranking_number'),
-                'upload_file' => $ranking_fileNewName,
+                'upload_file' => $document_name,
                 'datasubmittedpharmacy' => $this->request->getPost('datasubmittedpharmacy'),
                 'datasubmittedoverall' => $this->request->getPost('datasubmittedoverall'),
-                'pharmacy_file' => $data_submitted_fileNewName,
-                'overall_file' => $data_submitted_overall_fileNewName,
+                'pharmacy_file' => $document2_name,
+                'overall_file' => $document3_name,
                 'upload_by' => $loggeduserId
             ];
 
