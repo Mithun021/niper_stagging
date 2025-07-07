@@ -121,6 +121,37 @@ class Adjunt_facultyController extends BaseController
         }
     }
 
+    public function edit_adjunt_faculty_webpage($id)
+    {
+        $adjunt_faculty_webpage_model = new Adjunt_faculty_webpage_model();
+        $data = ['title' => 'Adjunt Facuty Webpage', 'webpage_id' => $id];
+        if ($this->request->is("get")) {
+            $data['adjunt_faculty_webpage'] = $adjunt_faculty_webpage_model->get();
+            $data['adjunt_faculty_webpage_data'] = $adjunt_faculty_webpage_model->get($id);
+            return view('admin/adjunt_faculty/edit-adjunt-faculty-webpage',$data);
+        }else if ($this->request->is("post")) {
+            $sessionData = session()->get('loggedUserData');
+            if ($sessionData) {
+                $loggeduserId = $sessionData['loggeduserId']; 
+            }
+
+            $data = [
+                'section_title' => $this->request->getPost('section_title'),
+                'section_description' => $this->request->getPost('section_description'),
+                'section_priority' => $this->request->getPost('section_priority'),
+                'upload_by' => $loggeduserId
+            ];
+
+            $result = $adjunt_faculty_webpage_model->add($data, $id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-adjunt-faculty-webpage/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-adjunt-faculty-webpage/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+
+        }
+    }
+
     public function adjunt_faculty_notification()
     {
         $adjunt_faculty_notification_model = new Adjunt_faculty_notification_model();

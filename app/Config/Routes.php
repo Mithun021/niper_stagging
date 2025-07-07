@@ -235,9 +235,20 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete-employee-talk-poster/(:num)', 'EmployeeController::delete_employee_talk_poster/$1');
 
     $routes->match(['get','post'],'other-faculty', 'Adjunt_facultyController::other_faculty');
+    $routes->match(['get','post'],'edit-other-faculty/(:num)', 'EmployeeController::edit_other_faculty/$1');
+    $routes->get('delete-other-faculty/(:num)', 'EmployeeController::delete_other_faculty/$1');
+
     $routes->match(['get','post'],'adjunt-faculty-webpage', 'Adjunt_facultyController::adjunt_faculty_webpage');
+    $routes->match(['get','post'],'edit-adjunt-faculty-webpage/(:num)', 'EmployeeController::edit_adjunt_faculty_webpage/$1');
+    $routes->get('delete-adjunt-faculty-webpage/(:num)', 'EmployeeController::delete_adjunt_faculty_webpage/$1');
+
     $routes->match(['get','post'],'adjunt-faculty-notification', 'Adjunt_facultyController::adjunt_faculty_notification');
+    $routes->match(['get','post'],'edit-adjunt-faculty-notification/(:num)', 'EmployeeController::edit_adjunt_faculty_notification/$1');
+    $routes->get('delete-adjunt-faculty-notification/(:num)', 'EmployeeController::delete_adjunt_faculty_notification/$1');
+
     $routes->match(['get','post'],'adjunt-faculty-video', 'Adjunt_facultyController::adjunt_faculty_video');
+    $routes->match(['get','post'],'edit-adjunt-faculty-video/(:num)', 'EmployeeController::edit_adjunt_faculty_video/$1');
+    $routes->get('delete-adjunt-faculty-video/(:num)', 'EmployeeController::delete_adjunt_faculty_video/$1');
 
     $routes->match(['get','post'],'facility-page', 'FacilityController::facility_page');
     $routes->match(['get','post'],'edit-facility-page/(:num)', 'FacilityController::edit_facility_page/$1');
