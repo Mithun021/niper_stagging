@@ -22,18 +22,18 @@ $adjunt_faculty_webpage_model = new Adjunt_faculty_webpage_model();
                 <?php if (session()->getFlashdata('status')) {
                     echo session()->getFlashdata('status');
                 } ?>
-                <form method="post" action="<?= base_url('admin/other-faculty') ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url('admin/edit-other-faculty/'.$faculty_id) ?>" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-4">
                             <span>First Name<span class="text-danger">*</span></span>
                             <div class="input-group">
                                 <select class="form-control form-control-sm" name="annotation" required>
-                                    <option value="Mr.">Mr.</option>
-                                    <option value="Mrs.">Mrs.</option>
-                                    <option value="Prof.">Prof.</option>
-                                    <option value="Dr.">Dr.</option>
+                                    <option value="Mr." <?php if($adjunt_other_faculty_data['annotation'] == "Mr."){ echo "selected"; } ?>>Mr.</option>
+                                    <option value="Mrs." <?php if($adjunt_other_faculty_data['annotation'] == "Mrs."){ echo "selected"; } ?>>Mrs.</option>
+                                    <option value="Prof." <?php if($adjunt_other_faculty_data['annotation'] == "Prof."){ echo "selected"; } ?>>Prof.</option>
+                                    <option value="Dr." <?php if($adjunt_other_faculty_data['annotation'] == "Dr."){ echo "selected"; } ?>>Dr.</option>
                                 </select>
-                                <input type="text" class="form-control form-control-sm" name="first_name" required>
+                                <input type="text" class="form-control form-control-sm" name="first_name" value="<?= $adjunt_other_faculty_data['first_name'] ?>" required>
                             </div>
 
                         </div>
