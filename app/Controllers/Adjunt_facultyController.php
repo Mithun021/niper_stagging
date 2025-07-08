@@ -184,6 +184,33 @@ class Adjunt_facultyController extends BaseController
         }
     }
 
+    public function delete_other_faculty($id){
+        $adjunt_other_faculty_model = new Adjunt_other_faculty_model();
+        $adjunt_other_faculty_designation_map_model = new Adjunt_other_faculty_designation_map_model();
+        $faculty = $adjunt_other_faculty_model->get($id);
+        if ($faculty) {
+            if (!empty($faculty['photo'])) {
+                $photoPath = ROOTPATH . 'public/admin/uploads/adjunt_faculty/' . $faculty['photo'];
+                if (file_exists($photoPath)) {
+                    unlink($photoPath);
+                }
+            }
+            if (!empty($faculty['resume'])) {
+                $resumePath = ROOTPATH . 'public/admin/uploads/adjunt_faculty/' . $faculty['resume'];
+                if (file_exists($resumePath)) {
+                    unlink($resumePath);
+                }
+            }
+        }
+        $result = $adjunt_other_faculty_model->delete($id);
+        if ($result) {
+            $adjunt_other_faculty_designation_map_model->where('adjunt_faculty_id', $id)->delete();
+            return redirect()->to('admin/other-faculty')->with('status', '<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/other-faculty')->with('status', '<div class="alert alert-danger" role="alert"> Failed to delete </div>');
+        }
+    }
+
     public function adjunt_faculty_webpage()
     {
         $adjunt_faculty_webpage_model = new Adjunt_faculty_webpage_model();
