@@ -111,20 +111,47 @@ class Adjunt_facultyController extends BaseController
                 $loggeduserId = $sessionData['loggeduserId']; 
             }
             $adjunt_other_faculty_data = $adjunt_other_faculty_model->get($id);
-            $photo = $this->request->getFile('photo');
-            if ($photo->isValid() && ! $photo->hasMoved()) {
-                $photoNewName = "file".$photo->getRandomName();
-                $photo->move(ROOTPATH . 'public/admin/uploads/adjunt_faculty', $photoNewName);    
-            }else{
-                $photoNewName = "";
+            $document = $this->request->getFile('photo');
+            $old_document_file = $adjunt_other_faculty_data['photo'];
+            if (empty($old_document_file)) {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    $document_name = "file" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/adjunt_faculty/', $document_name);
+                } else {
+                    $document_name = null;
+                }
+            } else {
+                if ($document->isValid() && !$document->hasMoved()) {
+                    if (file_exists("public/admin/uploads/adjunt_faculty/" . $old_document_file)) {
+                        unlink("public/admin/uploads/adjunt_faculty/" . $old_document_file);
+                    }
+                    $document_name = "file" . $document->getRandomName();
+                    $document->move(ROOTPATH . 'public/admin/uploads/adjunt_faculty/', $document_name);
+                } else {
+                    $document_name = $old_document_file;
+                }
             }
 
+
             $resume = $this->request->getFile('resume');
-            if ($resume->isValid() && ! $resume->hasMoved()) {
-                $resumeNewName = "file".$resume->getRandomName();
-                $resume->move(ROOTPATH . 'public/admin/uploads/adjunt_faculty', $resumeNewName);    
-            }else{
-                $resumeNewName = "";
+            $old_resume_file = $adjunt_other_faculty_data['resume'];
+            if (empty($old_resume_file)) {
+                if ($resume->isValid() && !$resume->hasMoved()) {
+                    $new_resume_name = "resume" . $resume->getRandomName();
+                    $resume->move(ROOTPATH . 'public/admin/uploads/adjunt_faculty/', $new_resume_name);
+                } else {
+                    $new_resume_name = null;
+                }
+            } else {
+                if ($resume->isValid() && !$resume->hasMoved()) {
+                    if (file_exists("public/admin/uploads/adjunt_faculty/" . $old_resume_file)) {
+                        unlink("public/admin/uploads/adjunt_faculty/" . $old_resume_file);
+                    }
+                    $new_resume_name = "resume" . $resume->getRandomName();
+                    $resume->move(ROOTPATH . 'public/admin/uploads/adjunt_faculty/', $new_resume_name);
+                } else {
+                    $new_resume_name = $old_resume_file;
+                }
             }
 
             $data = [
@@ -140,8 +167,8 @@ class Adjunt_facultyController extends BaseController
                 'facebook' => $this->request->getPost('facebook'),
                 'research_interest' => $this->request->getPost('research_interest'),
                 'description' => $this->request->getPost('description'),
-                'photo' => $photoNewName,
-                'resume' => $resumeNewName,
+                'photo' => $document_name,
+                'resume' => $new_resume_name,
                 //'faculty_type' => $this->request->getPost('faculty_type'),
               	'adjunt_faculty_webpage_id' => $this->request->getPost('adjunt_faculty_webpage_id'),
                 'status' => $this->request->getPost('status'),
