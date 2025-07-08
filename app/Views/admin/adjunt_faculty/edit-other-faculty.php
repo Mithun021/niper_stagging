@@ -248,6 +248,7 @@ $adjunt_faculty_webpage_model = new Adjunt_faculty_webpage_model();
     </div>
 </div>
 
+<script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
     function deleteOtherFacultyDestination(id){
         if(confirm("Are you sure you want to delete this?")){
