@@ -103,6 +103,7 @@ class Adjunt_facultyController extends BaseController
           	$data['adjunt_faculty_webpage'] = $adjunt_faculty_webpage_model->get();
             $data['adjunt_other_faculty'] = $adjunt_other_faculty_model->get();
             $data['adjunt_other_faculty_data'] = $adjunt_other_faculty_model->get($id);
+            $data['adjunt_other_faculty_designation_data'] = $adjunt_other_faculty_designation_map_model->getByAdjunt_id($id);
             return view('admin/adjunt_faculty/edit-other-faculty',$data);
         }else if ($this->request->is("post")) {
             $sessionData = session()->get('loggedUserData');
@@ -154,6 +155,22 @@ class Adjunt_facultyController extends BaseController
                 return redirect()->to('admin/edit-other-faculty/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
 
+        }
+    }
+
+    public function add_new_other_faculty_organisation($id){
+        $adjunt_other_faculty_designation_map_model = new Adjunt_other_faculty_designation_map_model();
+        $data = [
+            'adjunt_faculty_id' => $id,
+            'designation' => $this->request->getPost('designation'),
+            'organisation_name' => $this->request->getPost('organisation_name'),
+            'organisation_address' => $this->request->getPost('organisation_address')
+        ];
+        $result = $adjunt_other_faculty_designation_map_model->add($data);
+        if ($result === true) {
+            return redirect()->to('admin/edit-other-faculty/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+        } else {
+            return redirect()->to('admin/edit-other-faculty/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
         }
     }
 

@@ -27,7 +27,7 @@
             return $result;
         }
         public function getByAdjunt_id($id){
-            $result = $this->orderBy('id','asc')->findAll();
+            $result = $this->where('adjunt_faculty_id',$id)->findAll();
             return $result;
         }
     }

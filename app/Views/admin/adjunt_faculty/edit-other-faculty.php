@@ -58,9 +58,18 @@ $adjunt_faculty_webpage_model = new Adjunt_faculty_webpage_model();
                             
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            
-                                        </tr>
+                                    <?php if (!empty($adjunt_other_faculty_designation_data)) { ?>
+                                        <?php foreach ($adjunt_other_faculty_designation_data as $key => $value) { ?>
+                                            <tr>
+                                                <td><?= $value['designation'] ?></td>
+                                                <td><?= $value['organisation_name'] ?></td>
+                                                <td><?= $value['organisation_address'] ?></td>
+                                                <td>
+                                                    <a href="<?= base_url('admin/delete-other-faculty-organisation/'.$value['id']) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this organisation?')">Delete</a>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
