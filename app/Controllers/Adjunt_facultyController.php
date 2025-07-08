@@ -174,6 +174,16 @@ class Adjunt_facultyController extends BaseController
         }
     }
 
+    public function delete_other_faculty_organisation($id){
+        $adjunt_other_faculty_designation_map_model = new Adjunt_other_faculty_designation_map_model();
+        $result = $adjunt_other_faculty_designation_map_model->delete($id);
+        if ($result) {
+            echo "success";
+        } else {
+           echo "Failed to delete";
+        }
+    }
+
     public function adjunt_faculty_webpage()
     {
         $adjunt_faculty_webpage_model = new Adjunt_faculty_webpage_model();

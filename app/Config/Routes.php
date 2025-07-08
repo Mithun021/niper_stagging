@@ -239,6 +239,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'other-faculty', 'Adjunt_facultyController::other_faculty');
     $routes->match(['get','post'],'edit-other-faculty/(:num)', 'Adjunt_facultyController::edit_other_faculty/$1');
     $routes->post('add-new-other-faculty-organisation/(:num)', 'Adjunt_facultyController::add_new_other_faculty_organisation/$1');
+    $routes->get('delete-other-faculty-organisation/(:num)', 'Adjunt_facultyController::delete_other_faculty_organisation/$1');
     $routes->get('delete-other-faculty/(:num)', 'Adjunt_facultyController::delete_other_faculty/$1');
 
     $routes->match(['get','post'],'adjunt-faculty-webpage', 'Adjunt_facultyController::adjunt_faculty_webpage');

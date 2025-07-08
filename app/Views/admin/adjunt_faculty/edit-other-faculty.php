@@ -59,13 +59,13 @@ $adjunt_faculty_webpage_model = new Adjunt_faculty_webpage_model();
                                     </thead>
                                     <tbody>
                                     <?php if (!empty($adjunt_other_faculty_designation_data)) { ?>
-                                        <?php foreach ($adjunt_other_faculty_designation_data as $key => $value) { ?>
+                                        <?php foreach ($adjunt_other_faculty_designation_data as $key => $destination_data) { ?>
                                             <tr>
-                                                <td><?= $value['designation'] ?></td>
-                                                <td><?= $value['organisation_name'] ?></td>
-                                                <td><?= $value['organisation_address'] ?></td>
+                                                <td><?= $destination_data['designation'] ?></td>
+                                                <td><?= $destination_data['organisation_name'] ?></td>
+                                                <td><?= $destination_data['organisation_address'] ?></td>
                                                 <td>
-                                                    <a href="<?= base_url('admin/delete-other-faculty-organisation/'.$value['id']) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this organisation?')">Delete</a>
+                                                    <button type="button" class="btn btn-sm btn-danger" onclick="deleteOtherFacultyDestination(<?= $destination_data['id'] ?>)">-</button>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -247,5 +247,27 @@ $adjunt_faculty_webpage_model = new Adjunt_faculty_webpage_model();
         </div>
     </div>
 </div>
+
+<script>
+    function deleteOtherFacultyDestination(id){
+        if(confirm("Are you sure you want to delete this?")){
+            $.ajax({
+                url: "<?= base_url('admin/delete-other-faculty-organisation/') ?>" + id,
+                type: "GET",
+                data: { id: $id },
+                success: function(response) {
+                    if (response && (response.success || response === "success" || response == 1)) {
+                        location.reload();
+                    } else {
+                        alert("Failed to delete organisation.");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert("Failed to delete organisation.");
+                }
+            });
+        }
+    }
+</script>
 
 <?= $this->endSection() ?>
