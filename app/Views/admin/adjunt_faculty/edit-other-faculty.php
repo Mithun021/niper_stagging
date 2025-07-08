@@ -39,31 +39,31 @@ $adjunt_faculty_webpage_model = new Adjunt_faculty_webpage_model();
                         </div>
                         <div class="form-group col-md-4">
                             <span>Middle Name</span>
-                            <input type="text" class="form-control form-control-sm" name="middle_name">
+                            <input type="text" class="form-control form-control-sm" name="middle_name" value="<?= $adjunt_other_faculty_data['middle_name'] ?>" >
                         </div>
                         <div class="form-group col-md-4">
                             <span>Last Name<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="last_name" required>
+                            <input type="text" class="form-control form-control-sm" name="last_name" value="<?= $adjunt_other_faculty_data['last_name'] ?>"  required>
                         </div>
                         <div class="col-lg-12">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="addServicetable"> 
+                                <table class="table table-bordered"> 
                                     <thead class="bg-light">
                                         <tr>
                                             <td scope="col">Designation</td>
                                             <td scope="col">Organisation</td>
                                             <td scope="col">Organisation Address</td>
-                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" id="addnewservicerow">+</button></td>
+                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary">+</button></td>
                                         </tr>
                             
                                     </thead>
-                                    <tbody id="stockTbody">
-                                        <tr id="stockTrow">
+                                    <tbody>
+                                        <tr>
                                             <td> <input type="text" class="form-control form-control-sm" name="designation[]" required></td>
                                             <td><input type="text" class="form-control form-control-sm" name="organisation_name[]"></td>
                                             <td><input type="text" class="form-control form-control-sm" name="organisation_address[]"></td>
                                             <td>
-                                                <button type="button" class="btn btn-sm btn-danger" id="removenewServicerow">-</button>
+                                                <button type="button" class="btn btn-sm btn-danger">-</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -72,43 +72,53 @@ $adjunt_faculty_webpage_model = new Adjunt_faculty_webpage_model();
                         </div>
                         <div class="form-group col-md-4">
                             <span>Personal Email</span>
-                            <input type="email" class="form-control form-control-sm" name="personal_email">
+                            <input type="email" class="form-control form-control-sm" name="personal_email" value="<?= $adjunt_other_faculty_data['personal_email'] ?>" >
                         </div>
                         <div class="form-group col-md-4">
                             <span>Official Email</span>
-                            <input type="email" class="form-control form-control-sm" name="official_email">
+                            <input type="email" class="form-control form-control-sm" name="official_email" value="<?= $adjunt_other_faculty_data['official_email'] ?>" >
                         </div>
                         <div class="form-group col-md-4">
                             <span>Mobile</span>
-                            <input type="tel" class="form-control form-control-sm" name="mobile">
+                            <input type="tel" class="form-control form-control-sm" name="mobile" value="<?= $adjunt_other_faculty_data['mobile'] ?>" >
                         </div>
                         <div class="form-group col-md-4">
                             <span>LinkedIn</span>
-                            <input type="url" class="form-control form-control-sm" name="linkedin">
+                            <input type="url" class="form-control form-control-sm" name="linkedin" value="<?= $adjunt_other_faculty_data['linkedin'] ?>" >
                         </div>
                         <div class="form-group col-md-4">
                             <span>Twitter</span>
-                            <input type="url" class="form-control form-control-sm" name="twitter">
+                            <input type="url" class="form-control form-control-sm" name="twitter" value="<?= $adjunt_other_faculty_data['twitter'] ?>" >
                         </div>
                         <div class="form-group col-md-4">
                             <span>Facebook</span>
-                            <input type="url" class="form-control form-control-sm" name="facebook">
+                            <input type="url" class="form-control form-control-sm" name="facebook" value="<?= $adjunt_other_faculty_data['facebook'] ?>" >
                         </div>
                         <div class="form-group col-md-12">
                             <span>Research Interest</span>
-                            <textarea class="form-control form-control-sm" name="research_interest" id="editor"></textarea>
+                            <textarea class="form-control form-control-sm" name="research_interest" id="editor"><?= $adjunt_other_faculty_data['research_interest'] ?></textarea>
                         </div>
                         <div class="form-group col-md-12">
                             <span>Description</span>
-                            <textarea class="form-control form-control-sm" name="description" id="editor2"></textarea>
+                            <textarea class="form-control form-control-sm" name="description" id="editor2"><?= $adjunt_other_faculty_data['description'] ?></textarea>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Photo Upload</span>
                             <input type="file" class="form-control form-control-sm" name="photo">
+                            <?php if (!empty($adjunt_other_faculty_data['photo']) && file_exists('public/admin/uploads/adjunt_faculty/' . $adjunt_other_faculty_data['photo'])): ?>
+                                <a href="<?= base_url() ?>public/admin/uploads/adjunt_faculty/<?= $adjunt_other_faculty_data['photo'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/uploads/adjunt_faculty/<?= $adjunt_other_faculty_data['photo'] ?>" alt="" height="30px"></a>
+                            <?php else: ?>
+                                <img src="<?= base_url() ?>public/admin/uploads/adjunt_faculty/invalid_image.png" alt="" height="40px">
+                            <?php endif; ?>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Resume File Upload</span>
                             <input type="file" class="form-control form-control-sm" name="resume">
+                            <?php if (!empty($adjunt_other_faculty_data['resume']) && file_exists('public/admin/uploads/adjunt_faculty/' . $adjunt_other_faculty_data['resume'])): ?>
+                                <a href="<?= base_url() ?>public/admin/uploads/adjunt_faculty/<?= $adjunt_other_faculty_data['resume'] ?>" target="_blank"><img src="<?= base_url() ?>public/admin/assets/images/pdf.png" alt="" height="30px"></a>
+                            <?php else: ?>
+                                <img src="<?= base_url() ?>public/admin/uploads/adjunt_faculty/invalid_image.png" alt="" height="40px">
+                            <?php endif; ?>
                         </div>
                         <!--<div class="form-group col-md-6">
                             <span>Faculty Type<span class="text-danger">*</span></span>
@@ -123,15 +133,15 @@ $adjunt_faculty_webpage_model = new Adjunt_faculty_webpage_model();
                             <select class="form-control form-control-sm" name="adjunt_faculty_webpage_id" required>
                                 <option value="">--Select--</option>
                             <?php foreach ($adjunt_faculty_webpage as $key => $value) { ?>
-                               <option value="<?= $value['id'] ?>"><?= $value['section_title'] ?></option>
+                               <option value="<?= $value['id'] ?>" <?php if($adjunt_other_faculty_data['adjunt_faculty_webpage_id'] == $value['id']){ echo "selected"; } ?>><?= $value['section_title'] ?></option>
                             <?php } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <span>Status<span class="text-danger">*</span></span>
                             <select class="form-control form-control-sm" name="status" required>
-                                <option value="1">Active</option>
-                                <option value="0">Draft</option>
+                                <option value="1" <?php if($adjunt_other_faculty_data['status'] == 1){ echo "selected"; } ?>>Active</option>
+                                <option value="0" <?php if($adjunt_other_faculty_data['status'] == 0){ echo "selected"; } ?>>Draft</option>
                             </select>
                         </div>
                     </div>
