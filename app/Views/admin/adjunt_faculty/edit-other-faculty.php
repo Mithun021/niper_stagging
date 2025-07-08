@@ -255,7 +255,7 @@ $adjunt_faculty_webpage_model = new Adjunt_faculty_webpage_model();
             $.ajax({
                 url: "<?= base_url('admin/delete-other-faculty-organisation/') ?>" + id,
                 type: "GET",
-                data: { id: $id },
+                data: { id: id },
                 success: function(response) {
                     if (response && (response.success || response === "success" || response == 1)) {
                         location.reload();
