@@ -39,7 +39,7 @@ class Adjunt_facultyController extends BaseController
 
             $resume = $this->request->getFile('resume');
             if ($resume->isValid() && ! $resume->hasMoved()) {
-                $resumeNewName = "file".$resume->getRandomName();
+                $resumeNewName = "resume".$resume->getRandomName();
                 $resume->move(ROOTPATH . 'public/admin/uploads/adjunt_faculty', $resumeNewName);    
             }else{
                 $resumeNewName = "";
