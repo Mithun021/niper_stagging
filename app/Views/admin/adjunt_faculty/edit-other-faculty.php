@@ -53,18 +53,13 @@ $adjunt_faculty_webpage_model = new Adjunt_faculty_webpage_model();
                                             <td scope="col">Designation</td>
                                             <td scope="col">Organisation</td>
                                             <td scope="col">Organisation Address</td>
-                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary">+</button></td>
+                                            <td scope="col"><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal">+</button></td>
                                         </tr>
                             
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td> <input type="text" class="form-control form-control-sm" name="designation[]" required></td>
-                                            <td><input type="text" class="form-control form-control-sm" name="organisation_name[]"></td>
-                                            <td><input type="text" class="form-control form-control-sm" name="organisation_address[]"></td>
-                                            <td>
-                                                <button type="button" class="btn btn-sm btn-danger">-</button>
-                                            </td>
+                                            
                                         </tr>
                                     </tbody>
                                 </table>
@@ -207,6 +202,39 @@ $adjunt_faculty_webpage_model = new Adjunt_faculty_webpage_model();
                     </table>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="<?= base_url() ?>admin/add-new-other-faculty-organisation/<?= $faculty_id ?>" method="post">
+            <div class="modal-body">
+                <div class="form-group">
+                    <span>Designation</span>
+                    <input type="text" class="form-control form-control-sm" name="designation" required>
+                </div>
+                <div class="form-group">
+                    <span>Organisation Name</span>
+                    <input type="text" class="form-control form-control-sm" name="organisation_name" required>
+                </div>
+                <div class="form-group">
+                    <span>Organisation Address</span>
+                    <input type="text" class="form-control form-control-sm" name="organisation_address" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary waves-effect waves-light">Save changes</button>
+            </div>
+            </form>
         </div>
     </div>
 </div>
